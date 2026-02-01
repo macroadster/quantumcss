@@ -152,6 +152,7 @@ const utilityMaps = {
     value: ['rgba(255, 255, 255, 0.03)', 'blur(16px)', 'blur(16px)', '1px solid rgba(255, 255, 255, 0.1)', '0 8px 32px 0 rgba(0, 0, 0, 0.37)'] 
   },
   'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
+  'glow-peach': { property: 'box-shadow', value: '0 0 30px rgba(255, 179, 138, 0.2)' },
   'bg-starlight': { property: 'background', value: 'linear-gradient(135deg, #ffb38a 0%, #00d4ff 100%)' },
   'text-gradient-starlight': {
     property: ['background', '-webkit-background-clip', '-webkit-text-fill-color', 'display'], 

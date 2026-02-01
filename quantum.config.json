@@ -29,10 +29,15 @@
         "success": "#10b981",
         "warning": "#f59e0b", 
         "error": "#ef4444",
-        "neutral": "#6b7280"
+        "neutral": "#6b7280",
+        "muted": "rgba(241, 245, 249, 0.45)",
+        "starlight": "#00d4ff",
+        "starlight-peach": "#ffb38a",
+        "starlight-orange": "#ff7e5f",
+        "starlight-deep": "#08081a"
       },
       "fontFamily": {
-        "sans": ["system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "sans": ["Inter", "system-ui", "-apple-system", "sans-serif"],
         "serif": ["Georgia", "Cambria", "serif"],
         "mono": ["SF Mono", "Monaco", "Cascadia Code", "monospace"]
       },
@@ -51,7 +56,8 @@
         "16": "4rem",
         "20": "5rem",
         "24": "6rem",
-        "32": "8rem"
+        "32": "8rem",
+        "144": "36rem"
       },
       "borderRadius": {
         "none": "0px",
