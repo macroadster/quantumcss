@@ -1,0 +1,100 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": {
+          "50": "221 91% 97%",
+          "100": "221 91% 94%",
+          "200": "221 91% 89%",
+          "300": "221 91% 81%",
+          "400": "221 91% 70%",
+          "500": "221 91% 59%",
+          "600": "221 91% 49%",
+          "700": "221 91% 39%",
+          "800": "221 91% 29%",
+          "900": "221 91% 19%"
+        },
+        "secondary": {
+          "50": "210 40% 96%",
+          "100": "210 40% 92%",
+          "200": "210 40% 86%",
+          "300": "210 40% 78%",
+          "400": "210 40% 68%",
+          "500": "210 40% 56%",
+          "600": "210 40% 46%",
+          "700": "210 40% 36%",
+          "800": "210 40% 26%",
+          "900": "210 40% 16%"
+        },
+        "success": "142 71% 45%",
+        "warning": "38 92% 50%",
+        "error": "0 84% 60%",
+        "info": "199 89% 48%"
+      },
+      "fontFamily": {
+        "sans": ["Inter", "system-ui", "sans-serif"],
+        "serif": ["Playfair Display", "serif"],
+        "mono": ["Fira Code", "monospace"]
+      },
+      "spacing": {
+        "18": "4.5rem",
+        "88": "22rem",
+        "128": "32rem"
+      },
+      "borderRadius": {
+        "4xl": "2rem"
+      },
+      "shadows": {
+        "glow": "0 0 20px hsl(var(--color-primary-500) / 0.3)",
+        "inner-glow": "inset 0 0 20px hsl(var(--color-primary-500) / 0.1)"
+      },
+      "animation": {
+        "bounce-slow": "bounce 2s infinite",
+        "pulse-slow": "pulse 3s infinite",
+        "spin-slow": "spin 3s linear infinite",
+        "wiggle": "wiggle 1s ease-in-out infinite"
+      }
+    }
+  },
+  "darkMode": "class",
+  "content": [
+    "./src/**/*.{html,js,ts,jsx,tsx}",
+    "./docs/**/*.{html,js,ts,jsx,tsx}",
+    "./examples/**/*.{html,js,ts,jsx,tsx}"
+  ],
+  "presets": [
+    "modern-css",
+    "component-utilities"
+  ],
+  "plugins": [
+    "container-queries",
+    "logical-properties",
+    "state-variants",
+    "dark-mode"
+  ],
+  "purge": {
+    "enabled": true,
+    "layers": ["utilities", "components"],
+    "safelist": [
+      "btn",
+      "card",
+      "input",
+      "modal",
+      "dropdown",
+      "tooltip"
+    ]
+  },
+  "optimization": {
+    "minify": true,
+    "autoprefixer": true,
+    "cssnano": {
+      "preset": "default"
+    }
+  },
+  "build": {
+    "output": "dist",
+    "filename": "apex",
+    "sourcemap": false,
+    "extract": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "quantumcss",
+  "version": "1.0.0",
+  "description": "Advanced utility-first CSS framework that supersedes Tailwind CSS",
+  "main": "quantum.css",
+  "files": [
+    "quantum.css",
+    "quantum-responsive.css",
+    "quantum-components.css",
+    "quantum.min.css"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --watch",
+    "minify": "node build.js --minify",
+    "analyze": "node build.js --analyze"
+  },
+  "keywords": [
+    "css",
+    "utility-first",
+    "framework",
+    "tailwind",
+    "responsive",
+    "modern",
+    "container-queries",
+    "component-based"
+  ],
+  "author": "QuantumCSS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quantumcss/quantumcss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/quantumcss/quantumcss/issues"
+  },
+  "homepage": "https://quantumcss.dev",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "chokidar": "^5.0.0",
+    "glob": "^13.0.0"
+  }
+}

@@ -1,0 +1,238 @@
+/* FlowCSS - Typography Utilities */
+
+/* Font Family */
+.font-sans { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+.font-serif { font-family: Georgia, Cambria, "Times New Roman", Times, serif; }
+.font-mono { font-family: 'Fira Code', 'Courier New', monospace; }
+
+/* Font Size */
+.text-xs { font-size: var(--text-xs); line-height: var(--leading-normal); }
+.text-sm { font-size: var(--text-sm); line-height: var(--leading-normal); }
+.text-base { font-size: var(--text-base); line-height: var(--leading-normal); }
+.text-lg { font-size: var(--text-lg); line-height: var(--leading-normal); }
+.text-xl { font-size: var(--text-xl); line-height: var(--leading-normal); }
+.text-2xl { font-size: var(--text-2xl); line-height: var(--leading-snug); }
+.text-3xl { font-size: var(--text-3xl); line-height: var(--leading-snug); }
+.text-4xl { font-size: var(--text-4xl); line-height: var(--leading-tight); }
+.text-5xl { font-size: var(--text-5xl); line-height: var(--leading-none); }
+.text-6xl { font-size: 3.75rem; line-height: 1; }
+.text-7xl { font-size: 4.5rem; line-height: 1; }
+.text-8xl { font-size: 6rem; line-height: 1; }
+.text-9xl { font-size: 8rem; line-height: 1; }
+
+/* Font Weight */
+.font-thin { font-weight: var(--font-thin); }
+.font-extralight { font-weight: 200; }
+.font-light { font-weight: var(--font-light); }
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+.font-extrabold { font-weight: var(--font-extrabold); }
+.font-black { font-weight: 900; }
+
+/* Letter Spacing */
+.tracking-tighter { letter-spacing: -0.05em; }
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0em; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+
+/* Line Height */
+.leading-none { line-height: var(--leading-none); }
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Text Align */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+.text-start { text-align: start; }
+.text-end { text-align: end; }
+
+/* Text Color */
+.text-transparent { color: transparent; }
+.text-current { color: currentColor; }
+.text-white { color: var(--color-white); }
+.text-black { color: var(--color-black); }
+
+.text-gray-50 { color: var(--color-gray-50); }
+.text-gray-100 { color: var(--color-gray-100); }
+.text-gray-200 { color: var(--color-gray-200); }
+.text-gray-300 { color: var(--color-gray-300); }
+.text-gray-400 { color: var(--color-gray-400); }
+.text-gray-500 { color: var(--color-gray-500); }
+.text-gray-600 { color: var(--color-gray-600); }
+.text-gray-700 { color: var(--color-gray-700); }
+.text-gray-800 { color: var(--color-gray-800); }
+.text-gray-900 { color: var(--color-gray-900); }
+
+.text-red-50 { color: var(--color-red-50); }
+.text-red-100 { color: #fecaca; }
+.text-red-200 { color: #fca5a5; }
+.text-red-300 { color: #f87171; }
+.text-red-400 { color: #ef4444; }
+.text-red-500 { color: var(--color-red-500); }
+.text-red-600 { color: var(--color-red-600); }
+.text-red-700 { color: var(--color-red-700); }
+.text-red-800 { color: #991b1b; }
+.text-red-900 { color: #7f1d1d; }
+
+.text-blue-50 { color: var(--color-blue-50); }
+.text-blue-100 { color: #dbeafe; }
+.text-blue-200 { color: #bfdbfe; }
+.text-blue-300 { color: #93c5fd; }
+.text-blue-400 { color: #60a5fa; }
+.text-blue-500 { color: var(--color-blue-500); }
+.text-blue-600 { color: var(--color-blue-600); }
+.text-blue-700 { color: var(--color-blue-700); }
+.text-blue-800 { color: #1e40af; }
+.text-blue-900 { color: #1e3a8a; }
+
+.text-green-50 { color: var(--color-green-50); }
+.text-green-100 { color: #dcfce7; }
+.text-green-200 { color: #bbf7d0; }
+.text-green-300 { color: #86efac; }
+.text-green-400 { color: #4ade80; }
+.text-green-500 { color: var(--color-green-500); }
+.text-green-600 { color: var(--color-green-600); }
+.text-green-700 { color: var(--color-green-700); }
+.text-green-800 { color: #166534; }
+.text-green-900 { color: #14532d; }
+
+/* Text Opacity */
+.text-opacity-0 { --tw-text-opacity: 0; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-5 { --tw-text-opacity: 0.05; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-10 { --tw-text-opacity: 0.1; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-20 { --tw-text-opacity: 0.2; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-25 { --tw-text-opacity: 0.25; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-30 { --tw-text-opacity: 0.3; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-40 { --tw-text-opacity: 0.4; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-50 { --tw-text-opacity: 0.5; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-60 { --tw-text-opacity: 0.6; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-70 { --tw-text-opacity: 0.7; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-75 { --tw-text-opacity: 0.75; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-80 { --tw-text-opacity: 0.8; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-90 { --tw-text-opacity: 0.9; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-95 { --tw-text-opacity: 0.95; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+.text-opacity-100 { --tw-text-opacity: 1; color: rgb(0 0 0 / var(--tw-text-opacity)); }
+
+/* Font Variant Numeric */
+.normal-nums { font-variant-numeric: normal; }
+.ordinal { font-variant-numeric: ordinal; }
+.slashed-zero { font-variant-numeric: slashed-zero; }
+.lining-nums { font-variant-numeric: lining-nums; }
+.oldstyle-nums { font-variant-numeric: oldstyle-nums; }
+.proportional-nums { font-variant-numeric: proportional-nums; }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+.diagonal-fractions { font-variant-numeric: diagonal-fractions; }
+.stacked-fractions { font-variant-numeric: stacked-fractions; }
+
+/* Text Decoration */
+.underline { text-decoration-line: underline; }
+.overline { text-decoration-line: overline; }
+.line-through { text-decoration-line: line-through; }
+.no-underline { text-decoration-line: none; }
+
+.decoration-solid { text-decoration-style: solid; }
+.decoration-double { text-decoration-style: double; }
+.decoration-dotted { text-decoration-style: dotted; }
+.decoration-dashed { text-decoration-style: dashed; }
+.decoration-wavy { text-decoration-style: wavy; }
+
+.decoration-auto { text-decoration-thickness: auto; }
+.decoration-from-font { text-decoration-thickness: from-font; }
+.decoration-0 { text-decoration-thickness: 0px; }
+.decoration-1 { text-decoration-thickness: 1px; }
+.decoration-2 { text-decoration-thickness: 2px; }
+.decoration-4 { text-decoration-thickness: 4px; }
+.decoration-8 { text-decoration-thickness: 8px; }
+
+.underline-offset-auto { text-underline-offset: auto; }
+.underline-offset-0 { text-underline-offset: 0px; }
+.underline-offset-1 { text-underline-offset: 1px; }
+.underline-offset-2 { text-underline-offset: 2px; }
+.underline-offset-4 { text-underline-offset: 4px; }
+.underline-offset-8 { text-underline-offset: 8px; }
+
+/* Text Transform */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* Text Shadow */
+.text-shadow { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+.text-shadow-md { text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12); }
+.text-shadow-lg { text-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); }
+.text-shadow-glow { text-shadow: 0 0 10px var(--color-starlight-glow); }
+.text-shadow-none { text-shadow: none; }
+
+/* Text Overflow */
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.overflow-ellipsis { text-overflow: ellipsis; }
+.overflow-clip { text-overflow: clip; }
+
+/* Whitespace */
+.whitespace-normal { white-space: normal; }
+.whitespace-nowrap { white-space: nowrap; }
+.whitespace-pre { white-space: pre; }
+.whitespace-pre-line { white-space: pre-line; }
+.whitespace-pre-wrap { white-space: pre-wrap; }
+.whitespace-break-spaces { white-space: break-spaces; }
+
+/* Word Break */
+.break-normal { overflow-wrap: normal; word-break: normal; }
+.break-words { overflow-wrap: break-word; }
+.break-all { word-break: break-all; }
+
+/* Hyphens */
+.hyphens-none { hyphens: none; }
+.hyphens-manual { hyphens: manual; }
+.hyphens-auto { hyphens: auto; }
+
+/* Content */
+.content-none { content: none; }
+
+/* List Style Type */
+.list-none { list-style-type: none; }
+.list-disc { list-style-type: disc; }
+.list-decimal { list-style-type: decimal; }
+
+/* List Style Position */
+.list-inside { list-style-position: inside; }
+.list-outside { list-style-position: outside; }
+
+/* List Style Image */
+.list-image-none { list-style-image: none; }
+
+/* Alignment */
+.align-baseline { vertical-align: baseline; }
+.align-top { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+.align-text-top { vertical-align: text-top; }
+.align-text-bottom { vertical-align: text-bottom; }
+.align-sub { vertical-align: sub; }
+.align-super { vertical-align: super; }
+
+/* Indent */
+.indent-0 { text-indent: 0px; }
+.indent-1 { text-indent: var(--space-1); }
+.indent-2 { text-indent: var(--space-2); }
+.indent-3 { text-indent: var(--space-3); }
+.indent-4 { text-indent: var(--space-4); }
+.indent-5 { text-indent: var(--space-5); }
+.indent-6 { text-indent: var(--space-6); }
+.indent-8 { text-indent: var(--space-8); }
+.indent-10 { text-indent: var(--space-10); }
+.indent-12 { text-indent: var(--space-12); }
+.indent-16 { text-indent: var(--space-16); }
+.indent-20 { text-indent: var(--space-20); }
+.indent-24 { text-indent: var(--space-24); }
+.indent-32 { text-indent: var(--space-32); }

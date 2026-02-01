@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumCSS - Starlight Professional</title>
+    <link rel="stylesheet" href="dist/stellar.css">
+    <style>
+        :root { --bg-deep: #08081a; }
+        body {
+            background-color: var(--bg-deep);
+            color: #f1f5f9;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            transition: all 0.4s ease;
+        }
+        
+        body.light-mode {
+            --bg-deep: #f1f5f9;
+            background-color: var(--bg-deep);
+            color: #1e293b;
+        }
+
+        /* Fix legibility of native dropdown options */
+        select option { background-color: #1a1a2e; color: #f1f5f9; }
+        .light-mode select option { background-color: white; color: #1e293b; }
+
+        .light-mode .starlight-card { background: #ffffff; border-color: rgba(0,0,0,0.06); color: #334155; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+        .light-mode .text-muted { color: #64748b; }
+        .light-mode .input-starlight { 
+            background-color: #ffffff; border-color: #cbd5e1; color: #1e293b;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 9l4 4 4-4' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+        
+        .dropdown-item:hover { background-color: #00d4ff; color: #000000 !important; }
+        .light-mode .dropdown-menu { background: rgba(255, 255, 255, 0.98); border-color: #e2e8f0; }
+        .light-mode .dropdown-item { color: #475569; }
+        .light-mode .dropdown-item:hover { background-color: #00d4ff; color: #000000 !important; }
+
+        /* Tooltip Light Mode */
+        .light-mode .tooltip { background: rgba(0, 212, 255, 0.05); border-color: rgba(0, 212, 255, 0.3); color: #000; box-shadow: 0 4px 15px rgba(0, 212, 255, 0.1); }
+
+        .light-mode .checkbox-starlight, .light-mode .radio-starlight { background: #f1f5f9; border-color: #cbd5e1; }
+        .light-mode .dialog-content { background: #ffffff; border-color: #e2e8f0; color: #1e293b; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .hero { padding: 8rem 0 4rem; text-align: center; }
+        .section-label { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; font-weight: 800; color: #00d4ff; margin-bottom: 1rem; display: block; }
+        .starlight-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; padding: 2.5rem; backdrop-filter: blur(16px); position: relative; z-index: 1; }
+        .starlight-card.has-open-menu { z-index: 10; }
+        .text-muted { color: rgba(241, 245, 249, 0.5); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        
+        .btn-starlight:active, .btn-secondary:active, .input-starlight:active, .checkbox-starlight:active, .radio-starlight:active { transform: scale(0.96); }
+        .checkbox-starlight:checked { background: #00d4ff; border-color: #00d4ff; }
+        .checkbox-starlight:checked::after { content: '✓'; color: black; font-size: 0.8rem; font-weight: 900; }
+        .radio-starlight:checked { background: #00d4ff; border-color: #00d4ff; }
+        .radio-starlight:checked::after { content: ''; width: 0.5rem; height: 0.5rem; background: black; border-radius: 50%; }
+
+        /* Tooltip Trigger Logic */
+        .has-tooltip { position: relative; cursor: help; }
+        .has-tooltip:hover .tooltip { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+
+        .theme-toggle { position: fixed; top: 2rem; right: 2rem; z-index: 100; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.6rem 1.25rem; border-radius: 2rem; cursor: pointer; color: inherit; font-weight: 700; backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Theme</button>
+
+    <header class="hero container">
+        <span class="section-label">QuantumCSS v2.6</span>
+        <h1 class="text-6xl text-gradient-starlight mb-6">Starlight Interface</h1>
+        <p class="text-xl text-muted max-w-2xl mx-auto mb-10">Premium components for sophisticated interfaces. Standardized tooltips. Effortless interaction states.</p>
+        <div class="flex justify-center gap-4">
+            <button class="btn-starlight">Primary Action</button>
+            <button class="btn-secondary has-tooltip">
+                Hover for Tooltip
+                <div class="tooltip">Starlight Deployment System v2.6</div>
+            </button>
+        </div>
+    </header>
+
+    <main class="container pb-20">
+        <div class="grid-3">
+            <div class="starlight-card">
+                <h3 class="text-xl font-bold mb-6">Form Controls</h3>
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <label class="text-xs font-bold uppercase mb-2 block text-muted">Environment</label>
+                        <select class="input-starlight w-full">
+                            <option>Production</option>
+                            <option>Staging</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-4">
+                        <label class="has-tooltip flex items-center gap-2">
+                            <input type="checkbox" class="checkbox-starlight" checked>
+                            <span class="text-sm">Auto-sync</span>
+                            <div class="tooltip">Synchronize with mesh network</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="starlight-card" id="menu-card">
+                <h3 class="text-xl font-bold mb-6">Floating Menus</h3>
+                <div style="position: relative;">
+                    <button class="btn-secondary w-full justify-between" onclick="toggleDropdown(event)">
+                        Asset Actions <span>&darr;</span>
+                    </button>
+                    <div id="demo-dropdown" class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; width: 100%;">
+                        <button class="dropdown-item">View Analytics</button>
+                        <button class="dropdown-item">Security Audit</button>
+                        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 0.5rem 0;"></div>
+                        <button class="dropdown-item" style="color: #ff7e5f;">Decommission</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="starlight-card text-center">
+                <h3 class="text-xl font-bold mb-6">Tactile Feedback</h3>
+                <div class="flex flex-col gap-4">
+                    <button class="btn-starlight w-full">Press Effect</button>
+                    <p class="text-xs text-muted">All elements feature a 0.96x tactile scale on click.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+        function toggleDropdown(e) {
+            e.stopPropagation();
+            const m = document.getElementById('demo-dropdown');
+            const card = document.getElementById('menu-card');
+            const isOpen = m.style.display !== 'none';
+            m.style.display = isOpen ? 'none' : 'block';
+            card.classList.toggle('has-open-menu', !isOpen);
+        }
+        window.onclick = () => { 
+            document.getElementById('demo-dropdown').style.display = 'none';
+            document.getElementById('menu-card').classList.remove('has-open-menu');
+        }
+    </script>
+</body>
+</html>

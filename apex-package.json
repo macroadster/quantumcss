@@ -1,0 +1,42 @@
+{
+  "name": "apex-css",
+  "version": "2.0.0",
+  "description": "Next-generation utility-first CSS framework that supersedes Tailwind",
+  "main": "dist/apex.css",
+  "scripts": {
+    "build": "node build.js",
+    "build:dev": "node build.js --dev",
+    "build:analyze": "node build.js --analyze",
+    "build:minify": "node build.js --minify",
+    "dev": "node build.js --watch",
+    "serve": "node serve.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "css",
+    "utility-first",
+    "framework",
+    "tailwind",
+    "responsive",
+    "modern-css",
+    "components"
+  ],
+  "author": "Apex CSS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apexcss/apexcss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/apexcss/apexcss/issues"
+  },
+  "homepage": "https://apexcss.dev",
+  "files": [
+    "dist/",
+    "README.md",
+    "apex.config.json"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

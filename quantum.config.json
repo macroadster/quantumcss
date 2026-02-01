@@ -1,0 +1,202 @@
+# QuantumCSS Configuration
+
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": {
+          "50": "#eff6ff",
+          "100": "#dbeafe", 
+          "200": "#bfdbfe",
+          "300": "#93c5fd",
+          "400": "#60a5fa",
+          "500": "#3b82f6",
+          "600": "#2563eb",
+          "700": "#1d4ed8",
+          "800": "#1e40af",
+          "900": "#1e3a8a"
+        },
+        "secondary": {
+          "50": "#f8fafc",
+          "100": "#f1f5f9",
+          "200": "#e2e8f0", 
+          "300": "#cbd5e1",
+          "400": "#94a3b8",
+          "500": "#64748b",
+          "600": "#475569",
+          "700": "#334155",
+          "800": "#1e293b",
+          "900": "#0f172a"
+        },
+        "success": "#10b981",
+        "warning": "#f59e0b", 
+        "error": "#ef4444",
+        "neutral": "#6b7280"
+      },
+      "fontFamily": {
+        "sans": ["system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "serif": ["Georgia", "Cambria", "serif"],
+        "mono": ["SF Mono", "Monaco", "Cascadia Code", "monospace"]
+      },
+      "spacing": {
+        "px": "1px",
+        "0": "0px",
+        "1": "0.25rem",
+        "2": "0.5rem", 
+        "3": "0.75rem",
+        "4": "1rem",
+        "5": "1.25rem",
+        "6": "1.5rem",
+        "8": "2rem",
+        "10": "2.5rem",
+        "12": "3rem",
+        "16": "4rem",
+        "20": "5rem",
+        "24": "6rem",
+        "32": "8rem"
+      },
+      "borderRadius": {
+        "none": "0px",
+        "sm": "0.125rem",
+        "md": "0.375rem", 
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+        "full": "9999px"
+      },
+      "boxShadow": {
+        "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "md": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "xl": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+        "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)"
+      },
+      "animation": {
+        "spin": "spin 1s linear infinite",
+        "ping": "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
+        "pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "bounce": "bounce 1s infinite",
+        "fade-in": "fadeIn 0.5s ease-in-out",
+        "slide-up": "slideUp 0.3s ease-out",
+        "slide-down": "slideDown 0.3s ease-out"
+      },
+      "keyframes": {
+        "spin": {
+          "to": { "transform": "rotate(360deg)" }
+        },
+        "ping": {
+          "75%, 100%": { 
+            "transform": "scale(2)",
+            "opacity": "0"
+          }
+        },
+        "pulse": {
+          "0%, 100%": { "opacity": "1" },
+          "50%": { "opacity": "0.5" }
+        },
+        "bounce": {
+          "0%, 100%": { 
+            "transform": "translateY(-25%)",
+            "animationTimingFunction": "cubic-bezier(0.8, 0, 1, 1)"
+          },
+          "50%": { 
+            "transform": "none",
+            "animationTimingFunction": "cubic-bezier(0, 0, 0.2, 1)"
+          }
+        },
+        "fadeIn": {
+          "from": { "opacity": "0" },
+          "to": { "opacity": "1" }
+        },
+        "slideUp": {
+          "from": { 
+            "transform": "translateY(20px)",
+            "opacity": "0"
+          },
+          "to": { 
+            "transform": "translateY(0)",
+            "opacity": "1"
+          }
+        },
+        "slideDown": {
+          "from": { 
+            "transform": "translateY(-20px)",
+            "opacity": "0"
+          },
+          "to": { 
+            "transform": "translateY(0)",
+            "opacity": "1"
+          }
+        }
+      }
+    }
+  },
+  "plugins": [
+    "container-queries",
+    "logical-properties", 
+    "component-utilities",
+    "dark-mode",
+    "accessibility"
+  ],
+  "content": [
+    "./src/**/*.{html,js,ts,jsx,tsx}",
+    "./public/**/*.html"
+  ],
+  "presets": [
+    "modern-css"
+  ],
+  "prefix": "",
+  "important": false,
+  "separator": ":",
+  "corePlugins": {
+    "preflight": true,
+    "container": true,
+    "spacing": true,
+    "layout": true,
+    "typography": true,
+    "colors": true,
+    "borders": true,
+    "effects": true,
+    "interactivity": true,
+    "transitions": true,
+    "transforms": true,
+    "animation": true,
+    "svg": true,
+    "table": true,
+    "forms": true
+  },
+  "variants": {
+    "extend": {
+      "display": ["responsive", "container"],
+      "colors": ["dark", "light", "hover", "focus", "active", "disabled", "group-hover"],
+      "spacing": ["responsive", "container"],
+      "typography": ["responsive", "dark", "light"],
+      "borders": ["hover", "focus", "active"],
+      "effects": ["hover", "focus"],
+      "transitions": ["hover", "focus"],
+      "transforms": ["hover", "active"],
+      "animation": ["hover", "focus"]
+    }
+  },
+  "darkMode": "media",
+  "theme": {
+    "container": {
+      "center": true,
+      "padding": "1rem",
+      "screens": {
+        "sm": "640px",
+        "md": "768px", 
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px"
+      }
+    }
+  },
+  "experimental": {
+    "containerQueries": true,
+    "logicalProperties": true,
+    "cssNesting": true,
+    "cssLayers": true
+  }
+}
