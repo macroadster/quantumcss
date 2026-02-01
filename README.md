@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Bundle Size](https://img.shields.io/badge/bundle%20size-6.2KB-brightgreen)
 
-A modern, performance-optimized utility-first CSS framework that supersedes Tailwind CSS with semantic naming, component-aware utilities, and advanced CSS features.
+A modern, performance-optimized utility-first CSS framework with semantic naming, component-aware utilities, and advanced CSS features.
 
 ## 🚀 Features
 
@@ -51,6 +51,7 @@ pnpm add quantumcss
   <link rel="stylesheet" href="quantum.css">
   <link rel="stylesheet" href="quantum-responsive.css">
   <link rel="stylesheet" href="quantum-components.css">
+  <link rel="stylesheet" href="starlight-ui.css">
 </head>
 <body>
   <div class="container mx-auto p-6">
@@ -70,6 +71,7 @@ pnpm add quantumcss
 @import 'quantumcss/quantum.css';
 @import 'quantumcss/quantum-responsive.css';
 @import 'quantumcss/quantum-components.css';
+@import 'quantumcss/starlight-ui.css';
 ```
 
 ## 🎨 Utility Classes
@@ -261,22 +263,22 @@ Create `quantum.config.json`:
 ### Development
 ```bash
 # Watch for changes and rebuild
-npm run dev
+npm run watch
 
-# Start development server
-npm run dev -- --dev
+# Build for development (not minified)
+npm run build:dev
 
-# Build with analysis
-npm run build -- --analyze
+# Generate JIT utilities from content
+npm run generate
 ```
 
 ### Production
 ```bash
 # Build minified CSS
-npm run build -- --minify
+npm run build
 
-# Build with custom output
-node build.js --output dist/styles.css --minify
+# Generate JIT utilities with custom output
+npx quantumcss dist/custom.css
 ```
 
 ### Build Analysis
@@ -342,7 +344,6 @@ npm run analyze
 
 ### Bundle Size Comparison
 - **QuantumCSS**: 15KB gzipped
-- **Tailwind CSS**: 37KB gzipped
 - **Bootstrap**: 25KB gzipped
 - **Bulma**: 20KB gzipped
 
@@ -441,10 +442,10 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ### Development Setup
 ```bash
-git clone https://github.com/quantumcss/quantumcss.git
+git clone https://github.com/macroadster/quantumcss.git
 cd quantumcss
 npm install
-npm run dev
+npm run watch
 ```
 
 ## 📄 License
@@ -453,53 +454,33 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🔗 Links
 
-- **Documentation**: https://quantumcss.dev/docs
-- **Interactive Demo**: https://quantumcss.dev
-- **GitHub**: https://github.com/quantumcss/quantumcss
+- **Documentation**: https://github.com/macroadster/quantumcss#readme
+- **GitHub**: https://github.com/macroadster/quantumcss
 - **NPM**: https://npmjs.com/package/quantumcss
 - **Discord**: https://discord.gg/quantumcss
 
 ## ✨ Starlight Theme (Experimental)
 
-
-
 The Starlight theme provides a futuristic, ethereal design system inspired by modern AI interfaces and space aesthetics.
-
-
 
 ### Key Features
 
 - **Glassmorphism**: Hardware-accelerated blur effects for translucent interfaces.
-
 - **Atmospheric Glows**: Soft, colored shadows that simulate light sources.
-
 - **Vibrant Gradients**: Carefully crafted color transitions from warm peaches to cool blues.
-
 - **Modern Typography**: Improved letter spacing and text shadows for high-density displays.
-
-
 
 ### Example Usage
 
 ```html
-
 <div class="glass p-8 rounded-2xl glow-blue">
-
   <h2 class="text-starlight font-bold">Starlight Interface</h2>
-
   <p class="text-gray-400">Experience the future of styling.</p>
-
   <button class="bg-starlight text-black px-6 py-2 rounded-xl glow-blue">
-
     Launch
-
   </button>
-
 </div>
-
 ```
-
-
 
 ---
 

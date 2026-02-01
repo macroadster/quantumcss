@@ -49,7 +49,7 @@ function generateCSS(configPath) {
     }
   });
 
-  let css = '/* Stellar CSS - High Performance Output */\n';
+  let css = '/* Quantum CSS - High Performance Output */\n';
   css += '*, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb; }\n';
   css += 'html { line-height: 1.5; -webkit-text-size-adjust: 100%; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }\n';
   css += 'body { margin: 0; line-height: inherit; }\n';

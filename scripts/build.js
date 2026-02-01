@@ -4,8 +4,8 @@ const path = require('path');
 class QuantumCSSBuilder {
   constructor(config = {}) {
     this.config = {
-      inputDir: './',
-      outputFile: 'quantum.min.css',
+      inputDir: path.resolve(__dirname, '../src/styles'),
+      outputFile: path.resolve(__dirname, '../dist/quantum.min.css'),
       minify: false,
       watch: false,
       analyze: false,
@@ -15,7 +15,8 @@ class QuantumCSSBuilder {
     this.cssFiles = [
       'quantum.css',
       'quantum-responsive.css', 
-      'quantum-components.css'
+      'quantum-components.css',
+      'starlight-ui.css'
     ];
   }
 
@@ -58,15 +59,15 @@ class QuantumCSSBuilder {
         
         console.log(`✓ Loaded ${file} (${(stats.size / 1024).toFixed(2)} KB)`);
       } else {
-        console.warn(`⚠️  File not found: ${file}`);
+        console.warn(`⚠️  File not found: ${filePath}`);
       }
     }
 
     // Add banner
     const banner = `/*!
  * QuantumCSS v1.0.0 - Advanced Utility-First CSS Framework
- * https://quantumcss.dev
- * Copyright (c) 2024 QuantumCSS Team
+ * https://github.com/macroadster/quantumcss
+ * Copyright (c) 2026 Eric Yang
  * License: MIT
  */\n\n`;
 
@@ -79,11 +80,15 @@ class QuantumCSSBuilder {
     }
 
     // Write output file
-    const outputPath = path.join(this.config.inputDir, this.config.outputFile);
+    const outputPath = this.config.outputFile;
+    const outputDir = path.dirname(outputPath);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
     fs.writeFileSync(outputPath, combinedCSS);
     
     const outputStats = fs.statSync(outputPath);
-    const compressionRatio = ((totalSize - outputStats.size) / totalSize * 100).toFixed(1);
+    const compressionRatio = totalSize > 0 ? ((totalSize - outputStats.size) / totalSize * 100).toFixed(1) : 0;
     
     console.log(`✨ Build complete!`);
     console.log(`📁 Output: ${outputPath}`);
@@ -223,8 +228,6 @@ class QuantumCSSBuilder {
 function main() {
   const args = process.argv.slice(2);
   const config = {
-    inputDir: './',
-    outputFile: 'quantum.min.css',
     minify: false,
     watch: false,
     analyze: false

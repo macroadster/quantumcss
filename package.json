@@ -1,40 +1,43 @@
 {
   "name": "quantumcss",
   "version": "1.0.0",
-  "description": "Advanced utility-first CSS framework that supersedes Tailwind CSS",
-  "main": "quantum.css",
+  "description": "Advanced utility-first CSS framework with JIT generation and modern components",
+  "main": "dist/quantum.min.css",
+  "bin": {
+    "quantumcss": "src/cli.js"
+  },
   "files": [
-    "quantum.css",
-    "quantum-responsive.css",
-    "quantum-components.css",
-    "quantum.min.css"
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
-    "build": "node build.js",
-    "dev": "node build.js --watch",
-    "minify": "node build.js --minify",
-    "analyze": "node build.js --analyze"
+    "build": "node scripts/build.js --minify",
+    "build:dev": "node scripts/build.js",
+    "watch": "node scripts/build.js --watch",
+    "generate": "node src/cli.js",
+    "generate:watch": "node src/cli.js --watch"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/macroadster/quantumcss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/macroadster/quantumcss/issues"
+  },
+  "homepage": "https://github.com/macroadster/quantumcss#readme",
   "keywords": [
     "css",
     "utility-first",
     "framework",
-    "tailwind",
     "responsive",
     "modern",
-    "container-queries",
-    "component-based"
+    "jit",
+    "starlight"
   ],
-  "author": "QuantumCSS Team",
+  "author": "Eric Yang",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/quantumcss/quantumcss.git"
-  },
-  "bugs": {
-    "url": "https://github.com/quantumcss/quantumcss/issues"
-  },
-  "homepage": "https://quantumcss.dev",
   "engines": {
     "node": ">=14.0.0"
   },
