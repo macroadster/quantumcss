@@ -49,3 +49,14 @@ input:active,
 .active-scale:active {
   transform: scale(0.96);
 }
+
+/* Starlight Focus Ring */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-starlight-deep), 0 0 0 4px var(--color-starlight-blue);
+  transition: box-shadow var(--transition-fast);
+}
+
+body.light-mode :focus-visible {
+  box-shadow: 0 0 0 2px var(--light-bg), 0 0 0 4px var(--color-starlight-blue);
+}
