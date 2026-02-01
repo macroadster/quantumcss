@@ -16,7 +16,7 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 
 ### Enhanced Utilities
 - **500+ Utility Classes** - Comprehensive coverage
-- **Starlight Theme** - Ethereal, futuristic design system with glassmorphism and atmospheric glows
+- **Starlight Aesthetics** - Ethereal design system with glassmorphism, atmospheric glows, and vibrant gradients
 - **Component Utilities** - Pre-built button, card, form components
 - **State Variants** - Hover, focus, active, disabled states
 - **Dark Mode** - Automatic and manual dark mode support
@@ -156,6 +156,27 @@ pnpm add quantumcss
 <span class="badge badge-success">Success</span>
 <span class="badge badge-warning">Warning</span>
 <span class="badge badge-error">Error</span>
+```
+
+## ✨ Starlight UI
+
+The Starlight theme provides a futuristic, ethereal design system inspired by modern AI interfaces and space aesthetics.
+
+### Key Features
+- **Glassmorphism**: Hardware-accelerated blur effects for translucent interfaces (`.glass`).
+- **Atmospheric Glows**: Soft, colored shadows that simulate light sources (`.glow-blue`, `.glow-peach`).
+- **Vibrant Gradients**: Carefully crafted color transitions (`.bg-starlight`, `.text-gradient-starlight`).
+- **Premium Components**: Enhanced variants for modern interfaces (`.btn-starlight`, `.input-starlight`, `.starlight-card`).
+
+### Example Usage
+```html
+<div class="glass p-8 rounded-2xl glow-blue">
+  <h2 class="text-starlight font-bold">Starlight Interface</h2>
+  <p class="text-muted">Experience the future of styling.</p>
+  <button class="btn-starlight">
+    Launch
+  </button>
+</div>
 ```
 
 ## 📱 Responsive Design
@@ -459,31 +480,6 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **NPM**: https://npmjs.com/package/quantumcss
 - **Discord**: https://discord.gg/quantumcss
 
-## ✨ Starlight Theme (Experimental)
-
-The Starlight theme provides a futuristic, ethereal design system inspired by modern AI interfaces and space aesthetics.
-
-### Key Features
-
-- **Glassmorphism**: Hardware-accelerated blur effects for translucent interfaces.
-- **Atmospheric Glows**: Soft, colored shadows that simulate light sources.
-- **Vibrant Gradients**: Carefully crafted color transitions from warm peaches to cool blues.
-- **Modern Typography**: Improved letter spacing and text shadows for high-density displays.
-
-### Example Usage
-
-```html
-<div class="glass p-8 rounded-2xl glow-blue">
-  <h2 class="text-starlight font-bold">Starlight Interface</h2>
-  <p class="text-gray-400">Experience the future of styling.</p>
-  <button class="bg-starlight text-black px-6 py-2 rounded-xl glow-blue">
-    Launch
-  </button>
-</div>
-```
-
 ---
-
-
 
 **QuantumCSS** - The future of utility-first CSS frameworks. Built with modern CSS, designed for modern web development. 🚀
