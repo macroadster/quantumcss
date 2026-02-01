@@ -1102,91 +1102,16 @@ body {
 
 
 body.light-mode {
-
-
-
-
-
-
-
   background-color: var(--light-bg);
-
-
-
-
-
-
-
   color: var(--light-text);
-
-
-
-
-
-
-
+  --text-primary: var(--light-text);
+  --text-secondary: var(--light-text-muted);
+  --text-muted: var(--light-text-muted);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Tactile Active State for all interactive elements */
-
-
-
-
-
-
-
 button:active, 
-
-
-
-
-
-
-
 input:active, 
-
-
-
-
-
-
-
 .active-scale:active {
-
-
-
-
-
-
-
   transform: scale(0.96);
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-

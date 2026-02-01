@@ -30,7 +30,7 @@
         "warning": "#f59e0b", 
         "error": "#ef4444",
         "neutral": "#6b7280",
-        "muted": "rgba(241, 245, 249, 0.45)",
+        "muted": "var(--text-muted)",
         "starlight": "#00d4ff",
         "starlight-peach": "#ffb38a",
         "starlight-orange": "#ff7e5f",
