@@ -32,13 +32,13 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 
 ```bash
 # npm
-npm install quantumcss
+npm install @howssatoshi/quantumcss
 
 # yarn
-yarn add quantumcss
+yarn add @howssatoshi/quantumcss
 
 # pnpm
-pnpm add quantumcss
+pnpm add @howssatoshi/quantumcss
 ```
 
 ## 🎯 Quick Start
@@ -68,10 +68,7 @@ pnpm add quantumcss
 
 ### CSS Import
 ```css
-@import 'quantumcss/quantum.css';
-@import 'quantumcss/quantum-responsive.css';
-@import 'quantumcss/quantum-components.css';
-@import 'quantumcss/starlight-ui.css';
+@import '@howssatoshi/quantumcss/dist/quantum.min.css';
 ```
 
 ## 🎨 Utility Classes
@@ -299,7 +296,7 @@ npm run generate
 npm run build
 
 # Generate JIT utilities with custom output
-npx quantumcss dist/custom.css
+npx @howssatoshi/quantumcss dist/custom.css
 ```
 
 ### Build Analysis
@@ -477,7 +474,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 - **Documentation**: https://github.com/macroadster/quantumcss#readme
 - **GitHub**: https://github.com/macroadster/quantumcss
-- **NPM**: https://npmjs.com/package/quantumcss
+- **NPM**: https://npmjs.com/package/@howssatoshi/quantumcss
 - **Discord**: https://discord.gg/quantumcss
 
 ---
