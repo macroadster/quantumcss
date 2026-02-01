@@ -155,6 +155,38 @@ body.light-mode select option {
 
 body.light-mode .input-starlight {
   background-color: #ffffff;
+  border-color: #cbd5e1;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 9l4 4 4-4' /%3E%3C/svg%3E");
   background-repeat: no-repeat;
+}
+
+body.light-mode .btn-secondary {
+  border-color: #cbd5e1;
+}
+
+/* 7. Dialog & Menu Theme Support */
+body.light-mode .dialog-overlay {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+body.light-mode .dialog-content {
+  background-color: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--light-text);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.99);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .dropdown-item {
+  color: #475569;
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-starlight-blue) !important;
+  color: #000000 !important;
 }
