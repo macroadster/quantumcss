@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const { generateCSS } = require('../src/generator');
 
 class QuantumCSSBuilder {
   constructor(config = {}) {
     this.config = {
       inputDir: path.resolve(__dirname, '../src/styles'),
       outputFile: path.resolve(__dirname, '../dist/quantum.min.css'),
+      configPath: path.resolve(__dirname, '../quantum.config.json'),
       minify: false,
       watch: false,
       analyze: false,
@@ -47,6 +49,7 @@ class QuantumCSSBuilder {
     
     console.log('🚀 Building QuantumCSS...');
     
+    // 1. Load static CSS files
     for (const file of this.cssFiles) {
       const filePath = path.join(this.config.inputDir, file);
       
@@ -57,10 +60,20 @@ class QuantumCSSBuilder {
         combinedCSS += css + '\n';
         totalSize += stats.size;
         
-        console.log(`✓ Loaded ${file} (${(stats.size / 1024).toFixed(2)} KB)`);
+        console.log(`✓ Loaded static ${file} (${(stats.size / 1024).toFixed(2)} KB)`);
       } else {
-        console.warn(`⚠️  File not found: ${filePath}`);
+        console.warn(`⚠️  Static file not found: ${filePath}`);
       }
+    }
+
+    // 2. Run JIT Generator
+    console.log('✨ Running JIT Generator...');
+    try {
+      const jitCSS = generateCSS(this.config.configPath);
+      combinedCSS += '\n/* JIT Generated Utilities */\n' + jitCSS;
+      console.log(`✓ JIT Utilities generated`);
+    } catch (error) {
+      console.error('❌ JIT Generation failed:', error.message);
     }
 
     // Add banner
@@ -92,7 +105,7 @@ class QuantumCSSBuilder {
     
     console.log(`✨ Build complete!`);
     console.log(`📁 Output: ${outputPath}`);
-    console.log(`📊 Size: ${(outputStats.size / 1024).toFixed(2)} KB (${compressionRatio}% reduction)`);
+    console.log(`📊 Final Size: ${(outputStats.size / 1024).toFixed(2)} KB`);
     
     // Analyze if requested
     if (this.config.analyze) {

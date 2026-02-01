@@ -118,7 +118,7 @@ function generateCSS(configPath) {
              value = `${cParts[2]}px`;
           }
       } else if (prefix === 'gap') {
-        property = 'gap'; value = theme.spacing[valKey] || `${valKey}rem`;
+        property = 'gap'; value = theme.spacing[valKey] || (valKey ? (isNaN(valKey) ? valKey : `${valKey}rem`) : '0px');
       } else if (prefix === 'grid' && cParts[1] === 'cols') {
         property = 'grid-template-columns';
         value = `repeat(${cParts[2]}, minmax(0, 1fr))`;
@@ -134,8 +134,14 @@ function generateCSS(configPath) {
             value = theme.spacing[valKey] || valKey;
         }
       } else if (utilityMaps[prefix]) {
-        property = utilityMaps[prefix];
-        value = theme.spacing[valKey] || valKey;
+        const mapEntry = utilityMaps[prefix];
+        if (typeof mapEntry === 'object' && !Array.isArray(mapEntry)) {
+          property = mapEntry.property;
+          value = mapEntry.value;
+        } else {
+          property = mapEntry;
+          value = theme.spacing[valKey] || valKey;
+        }
       }
     }
 
