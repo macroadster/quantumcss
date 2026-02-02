@@ -1057,21 +1057,39 @@ body.light-mode ::-webkit-scrollbar-thumb { border-color: var(--light-bg); }
 
 /* Starlight Focus Ring */
 
-:focus-visible {
+
+
+:focus, :focus-visible {
+
+
 
   outline: none;
 
+
+
   box-shadow: 0 0 0 2px var(--color-starlight-deep), 0 0 0 4px var(--color-starlight-blue);
 
+
+
   transition: box-shadow var(--transition-fast);
+
+
 
 }
 
 
 
-body.light-mode :focus-visible {
 
-  box-shadow: 0 0 0 2px var(--light-bg), 0 0 0 4px var(--color-starlight-blue);
+
+
+
+body.light-mode :focus, body.light-mode :focus-visible {
+
+
+
+  box-shadow: 0 0 0 2px var(--light-bg), 0 0 0 4px rgba(59, 130, 246, 0.4);
+
+
 
 }
 

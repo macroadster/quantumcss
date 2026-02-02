@@ -235,23 +235,44 @@ body.light-mode .dropdown-item:hover {
   color: #1e293b;
 }
 
-/* 7. Textarea Fixes */
-textarea.input-starlight, .textarea-starlight {
+/* 7. Input & Glass Fixes */
+.input-starlight, .textarea-starlight {
   height: auto;
-  min-height: 120px;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 0.75rem;
   color: inherit;
   width: 100%;
+}
+
+textarea.input-starlight, .textarea-starlight {
+  min-height: 120px;
   display: block;
 }
 
-body.light-mode textarea.input-starlight, 
+body.light-mode .input-starlight, 
 body.light-mode .textarea-starlight {
   background-color: #ffffff;
   border-color: #cbd5e1;
+}
+
+body.light-mode .glass {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 8. Input Focus States */
+.input-starlight:focus, .textarea-starlight:focus {
+  outline: none;
+  border-color: var(--color-starlight-blue);
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1);
+}
+
+body.light-mode .input-starlight:focus,
+body.light-mode .textarea-starlight:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
 }
 
 /* 9. Code Interface Window */
