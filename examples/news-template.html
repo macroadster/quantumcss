@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum News | Decoding the Future</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <style>
+        body { background-color: #ffffff; color: #0f172a; }
+        .news-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media (min-width: 1024px) {
+            .news-grid { grid-template-columns: 3fr 1fr; }
+        }
+        .featured-card { position: relative; overflow: hidden; border-radius: 1rem; }
+        .featured-card img { width: 100%; height: 600px; object-cover: cover; transition: transform 0.5s ease; }
+        .featured-card:hover img { transform: scale(1.03); }
+        .featured-overlay { 
+            position: absolute; 
+            bottom: 0; left: 0; right: 0; 
+            padding: 3rem; 
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); 
+            color: white; 
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Top Bar -->
+    <div class="border-b border-slate-100 py-2 bg-slate-50">
+        <div class="container mx-auto px-6 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            <div>Monday, February 2, 2026</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-900">Archive</a>
+                <a href="#" class="hover:text-slate-900">Terminal</a>
+                <a href="#" class="hover:text-slate-900">Status: Stable</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="border-b border-slate-900 border-b-4 sticky top-0 bg-white z-50">
+        <div class="container mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-4xl font-black tracking-tighter uppercase italic">QUANTUM<span class="text-blue-600">NEWS</span></div>
+            <div class="flex flex-wrap justify-center gap-8 text-xs font-black uppercase tracking-widest">
+                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Quantum Computing</a>
+                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Neural Nets</a>
+                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Bio-Tech</a>
+                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Space-X</a>
+                <a href="#" class="text-blue-600">Live Updates</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 hover:bg-slate-100 rounded-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                <button class="bg-slate-900 text-white px-6 py-2 rounded font-bold text-xs uppercase tracking-widest">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breaking News -->
+    <div class="bg-blue-600 text-white py-3 overflow-hidden whitespace-nowrap">
+        <div class="inline-block animate-marquee uppercase font-black text-xs tracking-widest">
+            BREAKING: FIRST QUANTUM RECTIFIER DEPLOYED IN MARS COLONY • NEURAL LINK 5.0 BETA BEGINS NEXT WEEK • TOKAMAK REACTOR REACHES NET GAIN STABILITY FOR 48 HOURS • 
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="news-grid">
+            <!-- Main Content -->
+            <div class="space-y-12">
+                <!-- Featured Article -->
+                <section class="featured-card group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80" alt="Quantum Core">
+                    <div class="featured-overlay">
+                        <span class="bg-blue-600 text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest mb-4 inline-block">Exclusive</span>
+                        <h2 class="text-5xl font-black leading-tight mb-4 tracking-tighter">Inside the First <br>Stable Qubit Lattice</h2>
+                        <p class="text-slate-300 text-lg max-w-2xl mb-6 font-medium">Scientists have achieved a 99.99% coherence rate, effectively ending the era of digital computing as we know it.</p>
+                        <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
+                            <span>By Dr. Aris Thorne</span>
+                            <span class="text-slate-500">•</span>
+                            <span>12 Min Read</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Secondary News -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <article class="space-y-4 group cursor-pointer">
+                        <div class="aspect-video bg-slate-100 overflow-hidden rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                        </div>
+                        <span class="text-blue-600 text-[10px] font-black uppercase tracking-widest">Space-X</span>
+                        <h3 class="text-2xl font-black tracking-tight leading-tight group-hover:underline">The Dyson Ring: First Solar Panels Deploy Around the Moon</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">A massive infrastructure project aims to beam 500 terawatts of clean energy directly to Earth's grid.</p>
+                    </article>
+
+                    <article class="space-y-4 group cursor-pointer">
+                        <div class="aspect-video bg-slate-100 overflow-hidden rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                        </div>
+                        <span class="text-blue-600 text-[10px] font-black uppercase tracking-widest">Bio-Tech</span>
+                        <h3 class="text-2xl font-black tracking-tight leading-tight group-hover:underline">Synthetic Neurons Successfully Grafted to Human Cortex</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">The breakthrough could lead to a permanent cure for degenerative neural conditions by 2030.</p>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="space-y-12">
+                <div>
+                    <h4 class="border-b-2 border-slate-900 pb-2 text-xs font-black uppercase tracking-widest mb-6">Trending Terminal</h4>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 items-start group cursor-pointer">
+                            <span class="text-4xl font-black text-slate-100 group-hover:text-blue-100 transition-colors">01</span>
+                            <div>
+                                <h5 class="font-bold text-sm leading-tight group-hover:text-blue-600 transition-colors">Market Pulse: Quantum Chip Stocks Surge 400%</h5>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start group cursor-pointer">
+                            <span class="text-4xl font-black text-slate-100 group-hover:text-blue-100 transition-colors">02</span>
+                            <div>
+                                <h5 class="font-bold text-sm leading-tight group-hover:text-blue-600 transition-colors">Autonomous Grid: AI Takes Over Power Distribution in EU</h5>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">5 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start group cursor-pointer">
+                            <span class="text-4xl font-black text-slate-100 group-hover:text-blue-100 transition-colors">03</span>
+                            <div>
+                                <h5 class="font-bold text-sm leading-tight group-hover:text-blue-600 transition-colors">Ocean Cleanup: Nano-Bots Clear Great Pacific Patch</h5>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">8 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-4">Newsletter</h4>
+                    <p class="text-xs text-slate-500 mb-6">Join 2.4M subscribers for daily quantum insights.</p>
+                    <input type="email" placeholder="terminal@id.io" class="w-full bg-white border border-slate-200 p-3 rounded text-sm mb-4 outline-none focus:border-blue-600">
+                    <button class="w-full bg-blue-600 text-white font-black text-[10px] uppercase tracking-widest py-3 rounded hover:bg-blue-700 transition-colors">Subscribe</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-20 mt-24">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="text-3xl font-black tracking-tighter uppercase italic mb-6">QUANTUM<span class="text-blue-600">NEWS</span></div>
+                <p class="text-slate-400 max-w-md text-sm leading-relaxed">Reporting from the edge of tomorrow. We translate complex breakthroughs into human experience.</p>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-6">Network</h5>
+                <ul class="space-y-3 text-xs font-bold list-none p-0">
+                    <li><a href="#" class="hover:text-blue-600">Quantum Intelligence</a></li>
+                    <li><a href="#" class="hover:text-blue-600">Space Terminal</a></li>
+                    <li><a href="#" class="hover:text-blue-600">Bio Nexus</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-6">Connect</h5>
+                <ul class="space-y-3 text-xs font-bold list-none p-0">
+                    <li><a href="#" class="hover:text-blue-600">Neural Link</a></li>
+                    <li><a href="#" class="hover:text-blue-600">Secure Comms</a></li>
+                    <li><a href="#" class="hover:text-blue-600">Terminal Access</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-12 flex justify-between items-center text-[10px] font-bold text-slate-600 uppercase tracking-widest">
+            <p>&copy; 2026 Quantum News Network</p>
+            <p>Verification Code: QN-9982-X</p>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+    </style>
+</body>
+</html>

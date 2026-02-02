@@ -28,6 +28,7 @@ function scaffold(template, targetPath) {
     travel: 'travel/index.html',
     shopping: 'shopping/index.html',
     starlight: 'starlight.html',
+    news: 'news-template.html',
     docs: 'kitchen-sink.html',
     demo: 'demo.html'
   };
