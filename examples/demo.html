@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum CSS - Gallery</title>
-    <link rel="stylesheet" href="../dist/quantum.min.css">
     <style>
         body { transition: background-color 0.5s ease, color 0.5s ease; }
-        body.dark-mode { background-color: #020617; color: #f1f5f9; }
         
-        body.dark-mode .text-gray-900 { color: #f1f5f9 !important; }
-        body.dark-mode .text-gray-700 { color: #cbd5e1 !important; }
-        body.dark-mode .text-gray-600 { color: #94a3b8 !important; }
-        body.dark-mode .text-gray-500 { color: #64748b !important; }
+        body.light-mode .text-slate-900 { color: #0f172a !important; }
+        body.light-mode .text-slate-700 { color: #334155 !important; }
+        body.light-mode .text-slate-600 { color: #475569 !important; }
+        body.light-mode .text-slate-500 { color: #64748b !important; }
         
-        body.dark-mode .bg-white {
-            background-color: #0f172a !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
+        body.light-mode .bg-white {
+            background-color: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
         }
-        body.dark-mode .border-gray-200, 
-        body.dark-mode .border-gray-100,
-        body.dark-mode .border-gray-300 {
-            border-color: rgba(255, 255, 255, 0.1) !important;
+        body.light-mode .border-slate-200, 
+        body.light-mode .border-slate-100,
+        body.light-mode .border-slate-300 {
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        body.light-mode .glass {
+            background: rgba(255, 255, 255, 0.7) !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+            color: #0f172a !important;
+            backdrop-filter: blur(12px) !important;
         }
 
         /* Theme Toggle Styling */
@@ -36,25 +40,25 @@
         }
 
         .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        body.dark-mode .theme-toggle:hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
-        .sun-icon { display: block; }
-        body.dark-mode .sun-icon { display: none; }
-        body.dark-mode .moon-icon { display: block; }
-        .moon-icon { display: none; }
+        body.light-mode .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .sun-icon { display: none; }
+        body.light-mode .sun-icon { display: block; }
+        body.light-mode .moon-icon { display: none; }
+        .moon-icon { display: block; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 p-8">
+<body class="light-mode bg-slate-50 text-slate-900 p-8">
     <div class="max-w-160 mx-auto">
-        <header class="mb-16 border-b border-gray-200 pb-8 flex justify-between items-start">
+        <header class="mb-16 border-b border-slate-200 pb-8 flex justify-between items-start">
             <div class="flex-1">
                 <h1 class="text-5xl font-bold tracking-tighter mb-4">Quantum CSS Gallery</h1>
-                <p class="text-xl text-gray-500 mb-6">A comprehensive showcase of the utility-first widgets and components.</p>
+                <p class="text-xl text-slate-500 mb-6">A comprehensive showcase of the utility-first widgets and components.</p>
                 <a href="starlight.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-full font-bold hover:bg-blue-700 transition">✨ View Starlight Demo</a>
             </div>
             <div id="theme-btn" class="theme-toggle mt-2" title="Toggle Theme">
@@ -69,10 +73,10 @@
             <div class="flex flex-col gap-4">
                 <h1 class="text-6xl font-bold tracking-tighter">Heading 6xl</h1>
                 <h2 class="text-4xl font-bold">Heading 4xl</h2>
-                <h3 class="text-2xl font-medium">Heading 2xl Medium</h3>
-                <p class="text-lg text-gray-700">Large paragraph text with gray-700 color.</p>
-                <p class="text-base text-gray-600">Base paragraph text. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p class="text-sm text-gray-500 italic">Small helper text or captions.</p>
+                <h3 class="text-2xl font-medium text-slate-700">Heading 2xl Medium</h3>
+                <p class="text-lg text-slate-700">Large paragraph text with slate-700 color.</p>
+                <p class="text-base text-slate-600">Base paragraph text. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="text-sm text-slate-500 italic">Small helper text or captions.</p>
             </div>
         </section>
 
@@ -81,8 +85,8 @@
             <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-8">Buttons & Interaction</h2>
             <div class="flex flex-col md:flex-row gap-6 items-start">
                 <button class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition shadow-md">Primary Action</button>
-                <button class="bg-gray-800 text-white px-8 py-3 rounded font-bold hover:bg-black transition shadow-md">Secondary</button>
-                <button class="border border-gray-300 px-8 py-3 rounded font-medium hover:bg-gray-100 transition">Outlined</button>
+                <button class="bg-slate-800 text-white px-8 py-3 rounded font-bold hover:bg-black transition shadow-md">Secondary</button>
+                <button class="border border-slate-300 px-8 py-3 rounded font-medium hover:bg-slate-100 transition">Outlined</button>
                 <button class="text-blue-600 font-bold hover:scale-105 transition">Ghost Link →</button>
             </div>
         </section>
@@ -91,10 +95,10 @@
         <section class="mb-20">
             <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-8">Grid & Spacing</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 text-center font-bold">1</div>
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 text-center font-bold">2</div>
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 text-center font-bold">3</div>
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 text-center font-bold">4</div>
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-100 text-center font-bold">1</div>
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-100 text-center font-bold">2</div>
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-100 text-center font-bold">3</div>
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-100 text-center font-bold">4</div>
             </div>
             <div class="mt-8 flex gap-4">
                 <div class="w-3/4 bg-blue-50 p-4 rounded border border-blue-200 text-blue-600 font-medium">w-3/4 (75%)</div>
@@ -106,13 +110,13 @@
         <section class="mb-20">
             <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-8">Shadows & Depth</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="bg-white p-10 rounded-lg shadow-md border border-gray-100">
+                <div class="bg-white p-10 rounded-lg shadow-md border border-slate-100">
                     <h3 class="text-xl font-bold mb-4">Shadow Medium</h3>
-                    <p class="text-gray-500">Standard elevation for UI components.</p>
+                    <p class="text-slate-500">Standard elevation for UI components.</p>
                 </div>
-                <div class="bg-white p-10 rounded-lg shadow-xl border border-gray-100">
+                <div class="bg-white p-10 rounded-lg shadow-xl border border-slate-100">
                     <h3 class="text-xl font-bold mb-4">Shadow Extra Large</h3>
-                    <p class="text-gray-500">High elevation for featured content and modals.</p>
+                    <p class="text-slate-500">High elevation for featured content and modals.</p>
                 </div>
             </div>
         </section>
@@ -120,10 +124,10 @@
         <!-- Responsive Section -->
         <section class="mb-20">
             <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-8">Responsive States</h2>
-            <div class="bg-gray-900 p-12 rounded-lg text-center">
+            <div class="bg-slate-900 p-12 rounded-lg text-center">
                 <div class="text-white text-2xl md:text-5xl font-bold mb-4">Responsive Text</div>
-                <p class="text-gray-400 text-sm md:text-lg mb-8">Watch me scale from sm to lg based on screen size.</p>
-                <div class="w-full md:w-1/2 mx-auto bg-gray-800 p-4 rounded border border-gray-700 text-gray-300">
+                <p class="text-slate-400 text-sm md:text-lg mb-8">Watch me scale from sm to lg based on screen size.</p>
+                <div class="w-full md:w-1/2 mx-auto bg-slate-800 p-4 rounded border border-slate-700 text-slate-300">
                     Responsive Width
                 </div>
             </div>
@@ -132,16 +136,16 @@
         <!-- Forms Section -->
         <section class="mb-20">
             <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-8">Forms</h2>
-            <div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm max-w-128">
+            <div class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm max-w-128">
                 <div class="mb-6">
                     <label class="block text-sm font-bold mb-2">Email Address</label>
-                    <input type="text" class="w-full px-4 py-3 rounded border border-gray-300 outline-none focus:border-blue-600 transition" placeholder="you@example.com">
+                    <input type="text" class="w-full px-4 py-3 rounded border border-slate-300 outline-none focus:border-blue-600 transition" placeholder="you@example.com">
                 </div>
                 <button class="w-full bg-blue-600 text-white py-3 rounded font-bold hover:bg-blue-700 transition">Subscribe Now</button>
             </div>
         </section>
 
-        <footer class="mt-32 pt-8 border-t border-gray-200 text-center text-gray-400 text-sm">
+        <footer class="mt-32 pt-8 border-t border-slate-200 text-center text-slate-400 text-sm">
             Generated by Quantum CSS · 2026
         </footer>
     </div>
@@ -151,15 +155,15 @@
         const themeBtn = document.getElementById('theme-btn');
         if (themeBtn) {
             themeBtn.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                const isDark = document.body.classList.contains('dark-mode');
+                document.body.classList.toggle('light-mode');
+                const isLight = document.body.classList.contains('light-mode');
                 
                 // Update all icons
                 document.querySelectorAll('.sun-icon').forEach(icon => {
-                    icon.style.display = isDark ? 'none' : 'block';
+                    icon.style.display = isLight ? 'block' : 'none';
                 });
                 document.querySelectorAll('.moon-icon').forEach(icon => {
-                    icon.style.display = isDark ? 'block' : 'none';
+                    icon.style.display = isLight ? 'none' : 'block';
                 });
             });
         }
