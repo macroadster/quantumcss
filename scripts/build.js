@@ -163,7 +163,7 @@ class QuantumCSSBuilder {
         .theme-toggle { 
             position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; 
             width: 3rem; height: 3rem; border-radius: 50%; 
-            display: flex; items-center: center; justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
             color: white; transition: all 0.3s ease; backdrop-filter: blur(10px); 
         }
