@@ -14,6 +14,8 @@
         body.light-mode h2 { border-bottom-color: rgba(0,0,0,0.1); }
         .token-name { font-family: monospace; font-size: 0.875rem; opacity: 0.7; }
         .token-value { font-size: 0.75rem; opacity: 0.5; }
+        .ani-card { background: #0f172a; color: white; transition: all 0.3s; }
+        body.light-mode .ani-card { background: #f1f5f9; color: #0f172a; }
         .theme-toggle { position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; padding: 0.75rem 1.25rem; border-radius: 9999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-weight: bold; backdrop-filter: blur(10px); }
         body.light-mode .theme-toggle { background: white; border-color: rgba(0,0,0,0.1); color: #0f172a; }
     </style>
@@ -550,31 +552,31 @@
         <section>
             <h2>Cosmic Animations</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
+                <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
                     <div class="w-16 h-16 bg-starlight rounded-full ani-float"></div>
-                    <div class="token-name text-white/70">ani-float</div>
+                    <div class="token-name">ani-float</div>
                 </div>
-                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
+                <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
                     <div class="w-16 h-16 bg-blue-500 rounded-full ani-cosmic-pulse"></div>
-                    <div class="token-name text-white/70">ani-cosmic-pulse</div>
+                    <div class="token-name">ani-cosmic-pulse</div>
                 </div>
-                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
+                <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
                     <div class="w-16 h-16 bg-orange-500 rounded-full ani-twinkle"></div>
-                    <div class="token-name text-white/70">ani-twinkle</div>
+                    <div class="token-name">ani-twinkle</div>
                 </div>
-                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 relative overflow-hidden h-48 text-white">
+                <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4 relative overflow-hidden h-48">
                     <div class="absolute inset-0 ani-nebula"></div>
-                    <div class="relative token-name text-white/70">ani-nebula</div>
+                    <div class="relative token-name">ani-nebula</div>
                 </div>
-                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
-                    <div class="w-4 h-4 bg-white rounded-full ani-orbit"></div>
-                    <div class="token-name text-white/70">ani-orbit</div>
+                <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
+                    <div class="w-4 h-4 bg-current rounded-full ani-orbit"></div>
+                    <div class="token-name">ani-orbit</div>
                 </div>
-                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
+                <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
                     <svg width="60" height="60" viewBox="0 0 100 100" class="text-starlight">
                         <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none" class="ani-svg-draw" />
                     </svg>
-                    <div class="token-name text-white/70">ani-svg-draw</div>
+                    <div class="token-name">ani-svg-draw</div>
                 </div>
             </div>
         </section>
