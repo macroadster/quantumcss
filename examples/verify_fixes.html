@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verification of Fixes</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+</head>
+<body class="p-10 space-y-8 bg-black text-white">
+    <nav class="sticky top-0 z-50 glass p-4 mb-8">
+        <a href="#" class="font-bold">Home</a>
+        <a href="#" class="ml-4">Blog</a>
+        <a href="#" class="ml-4">About</a>
+    </nav>
+
+    <div class="starlight-card p-10">
+        <h1 class="text-4xl mb-4">Verification of Fixes</h1>
+        
+        <div class="space-y-4">
+            <p>This paragraph should have margin-top if space-y-4 works.</p>
+            <p>Another paragraph to test vertical spacing.</p>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-4">
+            <div class="lg:col-span-8 bg-blue-500 p-4">lg:grid-cols-12 test (8/12)</div>
+            <div class="lg:col-span-4 bg-red-500 p-4">lg:grid-cols-12 test (4/12)</div>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+            <span class="badge badge-primary">Primary Badge</span>
+            <span class="badge badge-secondary">Secondary Badge</span>
+            <span class="badge badge-success">Success Badge</span>
+        </div>
+
+        <div class="mt-8">
+            <p>Testing <a href="#">link styling</a> within text.</p>
+        </div>
+
+        <div class="mt-8 space-y-4">
+            <h3 class="text-xl">Form Elements</h3>
+            <input type="text" class="input-starlight" placeholder="Starlight Input">
+            <textarea class="textarea-starlight" placeholder="Starlight Textarea"></textarea>
+            <select class="input-starlight">
+                <option>Option 1</option>
+                <option>Option 2</option>
+            </select>
+        </div>
+        
+        <div class="z-50 p-4 bg-green-500 mt-4">This has z-50</div>
+    </div>
+</body>
+</html>

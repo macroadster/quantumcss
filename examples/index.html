@@ -18,42 +18,48 @@
     </style>
 </head>
 <body>
-    <div class="stars-container" id="stars"></div>
+    <div class="stars-container" id="stars">
+        <div class="star" style="top: 10%; left: 20%; --duration: 3s;"></div>
+        <div class="star" style="top: 30%; left: 80%; --duration: 4s;"></div>
+        <div class="star" style="top: 70%; left: 40%; --duration: 5s;"></div>
+        <div class="star" style="top: 50%; left: 10%; --duration: 3s;"></div>
+        <div class="star" style="top: 90%; left: 90%; --duration: 4s;"></div>
+    </div>
     <button class="theme-toggle" onclick="toggleTheme()">🌙 Theme</button>
 
     <div id="dialog" class="dialog-overlay" style="display: none;">
         <div class="dialog-content">
-            <div class="p-8">
-                <h2 class="text-2xl font-bold mb-2">Advanced Deployment</h2>
-                <p class="text-sm text-muted mb-8">Configure your synchronization parameters below.</p>
+            <div class="p-12">
+                <h2 class="text-3xl font-black uppercase italic tracking-tighter mb-4">Advanced Deployment</h2>
+                <p class="text-base text-slate-400 font-medium mb-10">Configure your synchronization parameters below.</p>
                 
-                <div class="mb-6">
-                    <label class="text-xs font-bold uppercase mb-2 block opacity-70">Target Cluster</label>
-                    <select class="input-starlight w-full">
+                <div class="mb-10">
+                    <label class="text-[10px] font-black uppercase tracking-[0.3em] mb-4 block text-slate-500">Target Cluster</label>
+                    <select class="input-starlight w-full h-14">
                         <option>Andromeda Prime</option>
                         <option>Nebula Secondary</option>
                     </select>
                 </div>
 
-                <div class="flex gap-4 justify-end">
-                    <button class="btn-secondary px-8" onclick="closeDialog()">Cancel</button>
-                    <button class="btn-starlight px-8">Confirm</button>
+                <div class="flex gap-6 justify-end">
+                    <button class="btn-secondary px-10 h-14 font-black uppercase tracking-widest text-[10px]" onclick="closeDialog()">Cancel</button>
+                    <button class="btn-starlight px-10 h-14 font-black uppercase tracking-widest text-[10px]">Confirm Deploy</button>
                 </div>
             </div>
         </div>
     </div>
 
     <header class="hero container">
-        <div class="pt-20 pb-12 text-center">
-            <span class="text-xs font-bold tracking-widest text-starlight uppercase mb-4 block">QuantumCSS v1.0.0</span>
-            <h1 class="text-6xl text-gradient-starlight mb-6">Starlight Design</h1>
-            <p class="text-xl text-muted max-w-2xl mx-auto mb-10">
+        <div class="py-24 text-center">
+            <span class="text-[10px] font-black tracking-[0.3em] text-starlight uppercase mb-6 block">QuantumCSS v1.0.0</span>
+            <h1 class="text-7xl md:text-8xl text-gradient-starlight font-black uppercase italic tracking-tighter mb-8">Starlight Design</h1>
+            <p class="text-2xl text-slate-400 max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
                 A standardized, high-performance UI library. 
-                Generalised styles. Premium components. Ethereal aesthetics.
+                Standard design primitives. Premium components. Ethereal aesthetics.
             </p>
-            <div class="flex justify-center gap-4">
-                <button class="btn-starlight">Primary Action</button>
-                <button class="btn-secondary" onclick="openDialog()">Open Dialog</button>
+            <div class="flex justify-center gap-6">
+                <button class="btn-starlight px-12 h-14 text-[11px] font-black uppercase tracking-widest">Primary Launch</button>
+                <button class="btn-secondary px-12 h-14 text-[11px] font-black uppercase tracking-widest" onclick="openDialog()">Open Protocol</button>
             </div>
         </div>
     </header>

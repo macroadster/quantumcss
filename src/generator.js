@@ -3,180 +3,170 @@ const path = require('path');
 const { glob } = require('glob');
 const { defaultTheme, utilityMaps } = require('./defaults');
 
-const breakpoints = {
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
-};
+const breakpoints = { sm: '640px', md: '768px', lg: '1024px', xl: '1280px' };
 
 function generateCSS(configPath) {
-  delete require.cache[path.resolve(configPath)];
-  const config = require(path.resolve(configPath));
+  const resolvedPath = path.resolve(configPath);
+  let config = { content: [], theme: { extend: {} } };
   
-  const contentPaths = config.content || [];
-  const theme = { ...defaultTheme };
-  if (config.theme) {
-    if (config.theme.extend) {
-      theme.colors = { ...theme.colors, ...config.theme.extend.colors };
-      theme.spacing = { ...theme.spacing, ...config.theme.extend.spacing };
-      theme.fontSize = { ...theme.fontSize, ...config.theme.extend.fontSize };
-      theme.shadows = { ...theme.shadows, ...config.theme.extend.shadows };
-    } else {
-      Object.assign(theme, config.theme);
-    }
+  if (fs.existsSync(resolvedPath)) {
+    try {
+      delete require.cache[resolvedPath];
+      config = require(resolvedPath);
+    } catch (e) {}
+  }
+  
+  const theme = JSON.parse(JSON.stringify(defaultTheme));
+  if (config.theme && config.theme.extend) {
+    const ext = config.theme.extend;
+    if (ext.colors) Object.assign(theme.colors, ext.colors);
+    if (ext.spacing) Object.assign(theme.spacing, ext.spacing);
+    if (ext.fontSize) Object.assign(theme.fontSize, ext.fontSize);
   }
 
   const flattenedColors = {};
   Object.entries(theme.colors).forEach(([name, value]) => {
-    if (typeof value === 'string') {
-      flattenedColors[name] = value;
-    } else {
-      Object.entries(value).forEach(([shade, hex]) => {
-        flattenedColors[`${name}-${shade}`] = hex;
-      });
+    if (typeof value === 'string') flattenedColors[name] = value;
+    else {
+      Object.entries(value).forEach(([shade, hex]) => { flattenedColors[`${name}-${shade}`] = hex; });
+      if (value['500']) flattenedColors[name] = value['500'];
     }
   });
 
-  const files = contentPaths.flatMap(p => glob.sync(p));
+  function resolveColor(key) {
+    if (!key) return null;
+    if (flattenedColors[key]) return flattenedColors[key];
+    if (key.includes('/')) {
+      const [base, opacity] = key.split('/');
+      const color = flattenedColors[base] || flattenedColors[`${base}-500`];
+      if (color && color.startsWith('#')) {
+        const r = parseInt(color.slice(1, 3), 16), g = parseInt(color.slice(3, 5), 16), b = parseInt(color.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${parseInt(opacity) / 100})`;
+      }
+    }
+    return null;
+  }
+
+  const files = (config.content || []).flatMap(p => glob.sync(p));
   const rawClasses = new Set();
+  const classRegex = /class="([^"]+)"/g;
 
   files.forEach(file => {
-    const content = fs.readFileSync(file, 'utf8');
-    const matches = content.match(/[a-z0-9\-\/:]+/g);
-    if (matches) {
-      matches.forEach(cls => rawClasses.add(cls));
-    }
+    try {
+      const content = fs.readFileSync(file, 'utf8');
+      let match;
+      while ((match = classRegex.exec(content)) !== null) {
+        match[1].split(/\s+/).forEach(cls => { if (cls) rawClasses.add(cls); });
+      }
+    } catch (e) {}
   });
-
-  let css = '/* Quantum CSS - High Performance Output */\n';
-  css += '*, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb; }\n';
-  css += 'html { line-height: 1.5; -webkit-text-size-adjust: 100%; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }\n';
-  css += 'body { margin: 0; line-height: inherit; }\n';
-  css += 'img { display: block; max-width: 100%; height: auto; }\n';
-  css += 'button { cursor: pointer; background: transparent; padding: 0; color: inherit; font: inherit; }\n\n';
 
   const utilities = new Set();
   const responsiveUtils = { sm: new Set(), md: new Set(), lg: new Set(), xl: new Set() };
 
   function processClass(fullCls) {
-    let cls = fullCls;
-    let variant = null;
-    let breakpoint = null;
-
+    let cls = fullCls, variant = null, breakpoint = null, isNeg = false;
+    if (cls.startsWith('-')) { isNeg = true; cls = cls.substring(1); }
     const parts = cls.split(':');
-    if (parts.length > 1) {
-      if (breakpoints[parts[0]]) {
-        breakpoint = parts[0];
-        cls = parts.slice(1).join(':');
-      }
-      const subParts = cls.split(':');
-      if (subParts.length > 1) {
-        variant = subParts[0];
-        cls = subParts[1];
-      } else if (!breakpoint) {
-        variant = parts[0];
-        cls = parts[1];
-      }
+    let currentPart = 0;
+    while (currentPart < parts.length) {
+      const p = parts[currentPart];
+      if (breakpoints[p]) { breakpoint = p; }
+      else if (['hover', 'focus', 'placeholder', 'group-hover'].includes(p)) { variant = p; }
+      else { cls = parts.slice(currentPart).join(':'); break; }
+      currentPart++;
     }
 
-    let property = null;
-    let value = null;
-
+    let property = null, value = null, customSelector = null;
     if (utilityMaps[cls]) {
-      if (typeof utilityMaps[cls] === 'object' && !Array.isArray(utilityMaps[cls])) {
-        property = utilityMaps[cls].property;
-        value = utilityMaps[cls].value;
-      } else {
-        property = utilityMaps[cls];
-      }
+      const entry = utilityMaps[cls];
+      if (typeof entry === 'object' && !Array.isArray(entry)) { property = entry.property; value = entry.value; }
+      else { property = entry; }
     }
 
     if (!property || !value) {
       const cParts = cls.split('-');
-      const prefix = cParts[0];
-      const valKey = cParts.slice(1).join('-');
+      const prefix = cParts[0], valKey = cParts.slice(1).join('-');
 
       if (prefix === 'text') {
-        if (theme.fontSize[valKey]) { property = 'font-size'; value = theme.fontSize[valKey]; } 
-        else if (flattenedColors[valKey]) { property = 'color'; value = flattenedColors[valKey]; }
-      } else if (prefix === 'bg') {
-        property = 'background-color'; value = flattenedColors[valKey];
-      } else if (prefix === 'shadow') {
-        property = 'box-shadow'; value = theme.shadows[valKey] || theme.shadows.md;
+        if (theme.fontSize[valKey]) { property = ['font-size', 'line-height']; value = [theme.fontSize[valKey], (valKey.includes('xl') || parseInt(valKey) >= 3) ? '1.2' : '1.5']; }
+        else { const color = resolveColor(valKey); if (color) { property = 'color'; value = color; } }
+      } else if (prefix === 'bg') { const color = resolveColor(valKey); if (color) { property = 'background-color'; value = color; } }
+      else if (prefix === 'z') { property = 'z-index'; value = isNeg ? `-${valKey}` : valKey; }
+      else if (prefix === 'aspect') {
+        property = ['aspect-ratio', 'width'];
+        let ratio = 'auto';
+        if (valKey.startsWith('[') && valKey.endsWith(']')) ratio = valKey.slice(1, -1).replace(/\//g, ' / ');
+        else if (valKey === 'video') ratio = '16 / 9';
+        else if (valKey === 'square') ratio = '1 / 1';
+        else ratio = valKey.replace(/\//g, ' / ');
+        value = [ratio, '100%'];
+      } else if (prefix === 'grid' && cParts[1] === 'cols') {
+        property = 'grid-template-columns'; value = `repeat(${cParts[2]}, minmax(0, 1fr))`;
+      } else if (prefix === 'col' && cParts[1] === 'span') {
+        property = 'grid-column'; value = `span ${cParts[2]} / span ${cParts[2]}`;
+      } else if (prefix === 'gap') {
+        const dirMap = { x: 'column-gap', y: 'row-gap' };
+        property = dirMap[cParts[1]] || 'gap';
+        const v = dirMap[cParts[1]] ? cParts[2] : valKey;
+        value = theme.spacing[v] || v;
+      } else if (prefix === 'space') {
+        const amount = theme.spacing[cParts[2]] || (cParts[2] ? `${parseInt(cParts[2]) * 0.25}rem` : '0px');
+        const escaped = fullCls.replace(/([:[\]\/])/g, '\\$1');
+        customSelector = `.${escaped} > * + *`;
+        property = cParts[1] === 'y' ? 'margin-top' : 'margin-left';
+        value = isNeg ? `-${amount}` : amount;
       } else if (prefix === 'rounded') {
         property = 'border-radius';
-        if (valKey === 'lg') value = '0.5rem';
-        else if (valKey === 'full') value = '9999px';
+        if (valKey === 'lg') value = '0.5rem'; else if (valKey === 'full') value = '9999px';
+        else if (valKey === 'md') value = '0.375rem';
         else value = theme.spacing[valKey] || (valKey ? `${parseInt(valKey) * 0.125}rem` : '0.25rem');
+      } else if (['w', 'h', 'p', 'm', 'pt', 'pr', 'pb', 'pl', 'px', 'py', 'mt', 'mr', 'mb', 'ml', 'mx', 'my', 'top', 'right', 'bottom', 'left'].includes(prefix)) {
+        const sideMap = { 
+          pt: 'padding-top', pr: 'padding-right', pb: 'padding-bottom', pl: 'padding-left', px: ['padding-left', 'padding-right'], py: ['padding-top', 'padding-bottom'],
+          mt: 'margin-top',mr: 'margin-right', mb: 'margin-bottom', ml: 'margin-left', mx: ['margin-left', 'margin-right'], my: ['margin-top', 'margin-bottom'],
+          p: 'padding', m: 'margin', w: 'width', h: 'height', top: 'top', right: 'right', bottom: 'bottom', left: 'left' 
+        };
+        property = sideMap[prefix] || prefix;
+        let v = valKey;
+        if (v.startsWith('[') && v.endsWith(']')) v = v.slice(1, -1);
+        else if (v.includes('/')) v = `${(parseInt(v.split('/')[0])/parseInt(v.split('/')[1])*100).toFixed(2)}%`;
+        else v = theme.spacing[v] || v;
+        value = isNeg ? (Array.isArray(v) ? v.map(x => `-${x}`) : `-${v}`) : v;
       } else if (prefix === 'border') {
-          if (flattenedColors[valKey]) {
-            property = 'border-color'; value = flattenedColors[valKey];
-          } else if (cParts[1] === 'l' || cParts[1] === 'r' || cParts[1] === 't' || cParts[1] === 'b') {
-             const sideMap = { l: 'left', r: 'right', t: 'top', b: 'bottom' };
-             property = `border-${sideMap[cParts[1]]}-width`;
-             value = `${cParts[2]}px`;
-          }
-      } else if (prefix === 'gap') {
-        property = 'gap'; value = theme.spacing[valKey] || (valKey ? (isNaN(valKey) ? valKey : `${valKey}rem`) : '0px');
-      } else if (prefix === 'grid' && cParts[1] === 'cols') {
-        property = 'grid-template-columns';
-        value = `repeat(${cParts[2]}, minmax(0, 1fr))`;
-      } else if (prefix === 'flex' && cParts[1] === 'row') {
-        property = 'flex-direction';
-        value = 'row';
-      } else if (prefix === 'w' || prefix === 'h') {
-        property = utilityMaps[prefix];
-        if (valKey.includes('/')) {
-            const [n, d] = valKey.split('/');
-            value = `${(parseInt(n)/parseInt(d)*100).toFixed(2)}%`;
-        } else {
-            value = theme.spacing[valKey] || valKey;
-        }
-      } else if (utilityMaps[prefix]) {
-        const mapEntry = utilityMaps[prefix];
-        if (typeof mapEntry === 'object' && !Array.isArray(mapEntry)) {
-          property = mapEntry.property;
-          value = mapEntry.value;
-        } else {
-          property = mapEntry;
-          value = theme.spacing[valKey] || valKey;
-        }
+        const color = resolveColor(valKey);
+        if (color) { property = 'border-color'; value = color; }
+        else if (['l', 'r', 't', 'b'].includes(cParts[1])) {
+          const sideMap = { l: 'left', r: 'right', t: 'top', b: 'bottom' };
+          property = `border-${sideMap[cParts[1]]}-width`;
+          value = `${cParts[2]}px`;
+        } else if (!isNaN(parseInt(valKey))) { property = 'border-width'; value = `${parseInt(valKey)}px`; }
       }
     }
 
     if (property && value) {
-      let selector = `.${fullCls.replace(/:/g, '\\:').replace(/\//g, '\\/')}`;
-      if (variant === 'hover' || variant === 'focus') selector += `:${variant}`;
-      
-      let rules = '';
-      if (Array.isArray(property)) {
-        if (Array.isArray(value)) {
-          rules = property.map((p, i) => `  ${p}: ${value[i]};`).join('\n');
-        } else {
-          rules = property.map(p => `  ${p}: ${value};`).join('\n');
-        }
-      } else {
-        rules = `  ${property}: ${value};`;
+      const escapedFull = fullCls.replace(/([:[\]\/])/g, '\\$1');
+      let selector = customSelector || `.${escapedFull}`;
+      if (variant) {
+        if (variant === 'group-hover') selector = `.group:hover ${selector}`;
+        else selector += `:${variant}`;
       }
-
-      const cssBlock = `${selector} {\n${rules}\n}\n`;
-      if (breakpoint) { responsiveUtils[breakpoint].add(cssBlock); } 
-      else { utilities.add(cssBlock); }
+      let rules = Array.isArray(property) ? property.map((p, i) => `  ${p}: ${Array.isArray(value) ? value[i] : value};`).join('\n') : `  ${property}: ${value};`;
+      const block = `${selector} {
+${rules}
+}
+`;
+      if (breakpoint) responsiveUtils[breakpoint].add(block); else utilities.add(block);
     }
   }
 
   rawClasses.forEach(processClass);
-
-  css += Array.from(utilities).join('\n');
+  let css = '/* Quantum CSS JIT Output */\n' + Array.from(utilities).join('\n');
   Object.entries(breakpoints).forEach(([name, width]) => {
     if (responsiveUtils[name].size > 0) {
-      css += `\n@media (min-width: ${width}) {\n`;
-      css += Array.from(responsiveUtils[name]).map(u => '  ' + u.replace(/\n/g, '\n  ')).join('\n').trimEnd();
-      css += '\n}\n';
+      css += `\n@media (min-width: ${width}) {\n${Array.from(responsiveUtils[name]).map(u => '  ' + u.replace(/\n/g, '\n  ')).join('\n').trimEnd()}\n}\n`;
     }
   });
-
   return css;
 }
 

@@ -48,13 +48,10 @@ pnpm add @howssatoshi/quantumcss
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="quantum.css">
-  <link rel="stylesheet" href="quantum-responsive.css">
-  <link rel="stylesheet" href="quantum-components.css">
-  <link rel="stylesheet" href="starlight-ui.css">
+  <link rel="stylesheet" href="dist/quantum.min.css">
 </head>
 <body>
-  <div class="container mx-auto p-6">
+  <div class="container mx-auto p-6 space-y-4">
     <h1 class="text-3xl font-bold text-primary mb-4">
       Hello QuantumCSS!
     </h1>
@@ -76,8 +73,9 @@ pnpm add @howssatoshi/quantumcss
 ### Layout
 ```html
 <div class="container mx-auto px-4">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="card">Content</div>
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6">
+    <div class="lg:col-span-8 card">Main Content</div>
+    <div class="lg:col-span-4 card">Sidebar</div>
   </div>
 </div>
 ```
@@ -86,18 +84,22 @@ pnpm add @howssatoshi/quantumcss
 ```html
 <h1 class="text-4xl font-bold text-primary">Heading</h1>
 <p class="text-base text-neutral leading-relaxed">Paragraph text</p>
+<!-- Smart Typography: Large text sizes automatically include unitless line-heights -->
+<h2 class="text-5xl font-bold">Overlapping Fixed</h2>
 ```
 
 ### Colors
 ```html
-<div class="bg-primary text-white p-4 rounded-lg">
-  <div class="text-secondary">Secondary text</div>
+<!-- JIT Color Resolution: Support for base names and opacity -->
+<div class="bg-primary/10 text-primary p-4 rounded-lg border border-primary">
+  <div class="text-secondary">Opacity and base color mapping</div>
 </div>
 ```
 
 ### Spacing
 ```html
 <div class="m-4 p-6 mb-8">
+  <!-- Smart Spacing: space-y and space-x utilities for child elements -->
   <div class="space-y-4">
     <div class="py-2">Item 1</div>
     <div class="py-2">Item 2</div>
@@ -149,7 +151,9 @@ pnpm add @howssatoshi/quantumcss
 
 ### Badges
 ```html
+<!-- Enhanced Badges: Less rounded (0.375rem), 1px border, and glassmorphism compatible -->
 <span class="badge badge-primary">Primary</span>
+<span class="badge badge-secondary">Secondary</span>
 <span class="badge badge-success">Success</span>
 <span class="badge badge-warning">Warning</span>
 <span class="badge badge-error">Error</span>
@@ -160,16 +164,16 @@ pnpm add @howssatoshi/quantumcss
 The Starlight theme provides a futuristic, ethereal design system inspired by modern AI interfaces and space aesthetics.
 
 ### Key Features
-- **Glassmorphism**: Hardware-accelerated blur effects for translucent interfaces (`.glass`).
+- **Glassmorphism**: Hardware-accelerated blur effects with improved composability (`.glass`).
 - **Atmospheric Glows**: Soft, colored shadows that simulate light sources (`.glow-blue`, `.glow-peach`).
 - **Vibrant Gradients**: Carefully crafted color transitions (`.bg-starlight`, `.text-gradient-starlight`).
-- **Premium Components**: Enhanced variants for modern interfaces (`.btn-starlight`, `.input-starlight`, `.starlight-card`).
+- **Premium Components**: Enhanced variants including theme-aware links and layering-friendly containers.
 
 ### Example Usage
 ```html
-<div class="glass p-8 rounded-2xl glow-blue">
+<div class="glass p-8 rounded-2xl glow-blue border-l-4 border-primary">
   <h2 class="text-starlight font-bold">Starlight Interface</h2>
-  <p class="text-muted">Experience the future of styling.</p>
+  <p class="text-muted">Experience the future of styling with smart composability.</p>
   <button class="btn-starlight">
     Launch
   </button>
