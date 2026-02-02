@@ -26,6 +26,9 @@ function scaffold(template, targetPath) {
     gaming: 'gaming-template.html',
     blog: 'blog-template.html',
     travel: 'travel/index.html',
+    shopping: 'shopping/index.html',
+    starlight: 'starlight.html',
+    docs: 'kitchen-sink.html',
     demo: 'demo.html'
   };
 
@@ -44,8 +47,7 @@ function scaffold(template, targetPath) {
   let content = fs.readFileSync(srcPath, 'utf8');
   
   // Adjust stylesheet path in template
-  content = content.replace(/href="(\.\.\/)+dist\/quantum\.min\.css"/, 'href="dist/quantum.css"');
-  content = content.replace(/href="(\.\.\/)+dist\/quantum\.css"/, 'href="dist/quantum.css"');
+  content = content.replace(/href="(\.\.\/)*dist\/quantum(\.min)?\.css"/, 'href="dist/quantum.css"');
 
   const fullTargetPath = path.resolve(targetPath);
   const targetDir = path.dirname(fullTargetPath);
