@@ -67,6 +67,14 @@
         body.light-mode input[type="date"]::-webkit-calendar-picker-indicator {
             filter: none;
         }
+
+        input[type="date"] {
+            color-scheme: dark;
+        }
+
+        body.light-mode input[type="date"] {
+            color-scheme: light;
+        }
     </style>
 </head>
 <body class="text-primary">
@@ -112,7 +120,7 @@
             <div class="border-l border-white/10 hidden md:block"></div>
             <div class="flex-1 flex flex-col items-start px-6">
                 <label class="text-[10px] text-starlight-blue mb-3 font-black uppercase tracking-[0.3em]">Departure</label>
-                <input type="date" class="w-full bg-transparent border-none text-white focus:outline-none text-2xl font-black p-0" style="color-scheme: dark;">
+                <input type="date" class="w-full bg-transparent border-none text-white focus:outline-none text-2xl font-black p-0" id="departure-date">
             </div>
             <button class="btn-starlight px-16 py-6 h-auto md:h-full text-lg font-black uppercase tracking-widest shadow-2xl hover:glow-blue">Search</button>
         </div>
