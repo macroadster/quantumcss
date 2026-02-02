@@ -58,6 +58,8 @@ const utilityMaps = {
   'w-full': { property: 'width', value: '100%' },
   'h-full': { property: 'height', value: '100%' },
   'min-w-0': { property: 'min-width', value: '0' },
+  'overflow-hidden': { property: 'overflow', value: 'hidden' },
+  'overflow-visible': { property: 'overflow', value: 'visible' },
   'border-none': { property: 'border-width', value: '0' },
   'bg-transparent': { property: 'background-color', value: 'transparent' },
   'glass': {
@@ -81,6 +83,10 @@ const utilityMaps = {
   'input-starlight': {
     property: ['background-color', 'border', 'color', 'border-radius', 'padding', 'appearance', 'transition', 'height'],
     value: ['rgba(255, 255, 255, 0.04)', '1px solid rgba(255, 255, 255, 0.15)', 'inherit', '0.75rem', '0 1rem', 'none', 'all 0.2s ease', '3rem']
+  },
+  'textarea-starlight': {
+    property: ['background-color', 'border', 'color', 'border-radius', 'padding', 'appearance', 'transition', 'min-height', 'width', 'display'],
+    value: ['rgba(255, 255, 255, 0.04)', '1px solid rgba(255, 255, 255, 0.15)', 'inherit', '0.75rem', '1rem', 'none', 'all 0.2s ease', '8rem', '100%', 'block']
   },
   'checkbox-starlight': {
     property: ['appearance', 'width', 'height', 'background', 'border', 'border-radius', 'cursor', 'transition', 'position', 'display', 'align-items', 'justify-content'],

@@ -98,16 +98,16 @@
 
           <div class="space-y-6">
             <h2 class="text-3xl font-black text-white uppercase italic tracking-tighter">Code Interface</h2>
-            <div class="glass overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <div class="bg-white/5 border-b border-white/10 px-6 py-5 flex items-center justify-between">
-                <div class="flex gap-2">
-                  <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                  <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                  <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+            <div class="code-window">
+              <div class="code-window-header">
+                <div class="code-window-controls">
+                  <div class="code-window-dot bg-red-500"></div>
+                  <div class="code-window-dot bg-yellow-500"></div>
+                  <div class="code-window-dot bg-green-500"></div>
                 </div>
-                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">quantum.config.json</span>
+                <span class="code-window-title">quantum.config.json</span>
               </div>
-              <pre class="p-8 text-sm overflow-x-auto bg-black/20"><code>{
+              <pre class="p-8 text-sm overflow-x-auto bg-white/5"><code>{
   "theme": {
     "extend": {
       "colors": {
