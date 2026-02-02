@@ -148,20 +148,29 @@ class QuantumCSSBuilder {
     <title>Quantum CSS - Kitchen Sink</title>
     <link rel="stylesheet" href="../dist/quantum.min.css">
     <style>
+        :root { --bg: #ffffff; --text: #0f172a; --border: #eee; --card-bg: #f8fafc; }
+        body.dark { --bg: #020617; --text: #f8fafc; --border: #1e293b; --card-bg: #0f172a; }
+        
+        body { background-color: var(--bg); color: var(--text); transition: background-color 0.3s, color 0.3s; }
         .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
         .swatch { height: 4rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(0,0,0,0.1); }
         .spacing-bar { height: 1rem; background: #3b82f6; border-radius: 0.25rem; }
         section { margin-bottom: 4rem; }
-        h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
-        .token-name { font-family: monospace; font-size: 0.875rem; color: #666; }
-        .token-value { font-size: 0.75rem; color: #999; }
+        h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+        .token-name { font-family: monospace; font-size: 0.875rem; color: var(--text); opacity: 0.7; }
+        .token-value { font-size: 0.75rem; color: var(--text); opacity: 0.5; }
+        .glass-preview { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .dark .glass-preview { background: rgba(0, 0, 0, 0.2); }
+        .theme-toggle { position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; padding: 0.75rem; border-radius: 9999px; background: var(--card-bg); border: 1px solid var(--border); }
     </style>
 </head>
-<body class="bg-white text-slate-900 p-8">
+<body class="p-8">
+    <button class="theme-toggle" onclick="document.body.classList.toggle('dark')">🌓 Toggle Theme</button>
+    
     <div class="max-w-6xl mx-auto">
         <header class="mb-12">
             <h1 class="text-5xl font-bold tracking-tight mb-2">Kitchen Sink</h1>
-            <p class="text-xl text-slate-500">Dynamic documentation of all design tokens and components.</p>
+            <p class="text-xl opacity-70">Dynamic documentation of all design tokens and components.</p>
         </header>
 
         <!-- Colors Section -->
@@ -270,31 +279,31 @@ class QuantumCSSBuilder {
         <section>
             <h2>Cosmic Animations</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="glass p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
+                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
                     <div class="w-16 h-16 bg-starlight rounded-full ani-float"></div>
-                    <div class="token-name">ani-float</div>
+                    <div class="token-name text-white/70">ani-float</div>
                 </div>
-                <div class="glass p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
+                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
                     <div class="w-16 h-16 bg-blue-500 rounded-full ani-cosmic-pulse"></div>
-                    <div class="token-name">ani-cosmic-pulse</div>
+                    <div class="token-name text-white/70">ani-cosmic-pulse</div>
                 </div>
-                <div class="glass p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
+                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
                     <div class="w-16 h-16 bg-orange-500 rounded-full ani-twinkle"></div>
-                    <div class="token-name">ani-twinkle</div>
+                    <div class="token-name text-white/70">ani-twinkle</div>
                 </div>
-                <div class="glass p-12 rounded-2xl flex flex-col items-center justify-center gap-4 relative overflow-hidden h-48">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20 ani-nebula"></div>
-                    <div class="relative token-name">ani-nebula</div>
+                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 relative overflow-hidden h-48 text-white">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-purple-900/40 ani-nebula"></div>
+                    <div class="relative token-name text-white/70">ani-nebula</div>
                 </div>
-                <div class="glass p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
+                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
                     <div class="w-4 h-4 bg-white rounded-full ani-orbit"></div>
-                    <div class="token-name">ani-orbit</div>
+                    <div class="token-name text-white/70">ani-orbit</div>
                 </div>
-                <div class="glass p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
+                <div class="bg-slate-900 p-12 rounded-2xl flex flex-col items-center justify-center gap-4 text-white">
                     <svg width="60" height="60" viewBox="0 0 100 100" class="text-starlight">
                         <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none" class="ani-svg-draw" />
                     </svg>
-                    <div class="token-name">ani-svg-draw</div>
+                    <div class="token-name text-white/70">ani-svg-draw</div>
                 </div>
             </div>
         </section>
@@ -307,9 +316,9 @@ class QuantumCSSBuilder {
     Object.keys(utilityMaps).forEach(cls => {
       if (cls.startsWith('btn-') || cls.startsWith('input-') || cls === 'glass' || cls === 'bg-starlight' || cls.includes('gradient')) {
         html += `
-                <div class="p-6 border border-slate-100 rounded-xl">
+                <div class="p-6 border border-slate-100 rounded-xl" style="background: var(--card-bg); border-color: var(--border);">
                     <div class="mb-4 token-name">${cls}</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-50 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         ${cls.startsWith('btn-') ? `<button class="${cls}">Button Example</button>` : 
                           cls.startsWith('input-') ? `<input class="${cls}" placeholder="Input Example">` :
                           cls === 'glass' ? `<div class="${cls} p-8 rounded-xl border border-white/20">Glass Effect</div>` :
@@ -324,7 +333,7 @@ class QuantumCSSBuilder {
             </div>
         </section>
 
-        <footer class="mt-20 pt-8 border-t border-slate-200 text-slate-400 text-sm">
+        <footer class="mt-20 pt-8 border-t border-slate-200 text-slate-400 text-sm" style="border-color: var(--border);">
             Generated by Quantum CSS Dynamic Docs · ${new Date().toLocaleDateString()}
         </footer>
     </div>
