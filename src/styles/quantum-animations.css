@@ -1,0 +1,74 @@
+/* Cosmic Animation Library */
+
+@keyframes nebula-drift {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  33% { transform: translate(2%, 1%) scale(1.05); opacity: 0.5; }
+  66% { transform: translate(-1%, 2%) scale(0.95); opacity: 0.4; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+}
+
+@keyframes cosmic-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.2), 0 0 40px rgba(0, 212, 255, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.5), 0 0 80px rgba(0, 212, 255, 0.2); }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
+}
+
+@keyframes svg-draw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Animation Classes */
+
+.ani-nebula {
+  animation: nebula-drift 20s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.ani-cosmic-pulse {
+  animation: cosmic-pulse 4s ease-in-out infinite;
+}
+
+.ani-twinkle {
+  animation: star-twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+}
+
+.ani-orbit {
+  animation: orbit var(--orbit-duration, 10s) linear infinite;
+}
+
+.ani-svg-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: svg-draw 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.ani-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+/* Staggered Animations */
+.ani-stagger-1 { animation-delay: 0.1s; }
+.ani-stagger-2 { animation-delay: 0.2s; }
+.ani-stagger-3 { animation-delay: 0.3s; }
+.ani-stagger-4 { animation-delay: 0.4s; }
+.ani-stagger-5 { animation-delay: 0.5s; }
+
+/* Speed Modifiers */
+.ani-fast { animation-duration: 0.5s !important; }
+.ani-slow { animation-duration: 8s !important; }
+.ani-slower { animation-duration: 15s !important; }
