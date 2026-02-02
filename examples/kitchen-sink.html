@@ -16,6 +16,8 @@
         .token-value { font-size: 0.75rem; opacity: 0.5; }
         .ani-card { background: #0f172a; color: white; transition: all 0.3s; }
         body.light-mode .ani-card { background: #f1f5f9; color: #0f172a; }
+        .ani-orbit-star { background-color: white; }
+        body.light-mode .ani-orbit-star { background-color: #2563eb; }
         .theme-toggle { position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; padding: 0.75rem 1.25rem; border-radius: 9999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-weight: bold; backdrop-filter: blur(10px); }
         body.light-mode .theme-toggle { background: white; border-color: rgba(0,0,0,0.1); color: #0f172a; }
     </style>
@@ -569,7 +571,7 @@
                     <div class="relative token-name">ani-nebula</div>
                 </div>
                 <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
-                    <div class="w-4 h-4 bg-current rounded-full ani-orbit"></div>
+                    <div class="w-4 h-4 ani-orbit-star rounded-full ani-orbit"></div>
                     <div class="token-name">ani-orbit</div>
                 </div>
                 <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
