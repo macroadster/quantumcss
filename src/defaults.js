@@ -77,8 +77,8 @@ const utilityMaps = {
     value: ['linear-gradient(135deg, #ffb38a 0%, #00d4ff 100%)', '#000', 'none', '0 0 20px rgba(0, 212, 255, 0.3)', '700', 'all 0.2s ease', '3rem', '0 1.5rem', 'inline-flex', 'center', 'center', '0.75rem', 'pointer']
   },
   'btn-secondary': {
-    property: ['background', 'color', 'border', 'font-weight', 'transition', 'height', 'padding', 'display', 'align-items', 'justify-content', 'border-radius', 'cursor'],
-    value: ['rgba(255, 255, 255, 0.05)', 'inherit', '1px solid rgba(255, 255, 255, 0.15)', '700', 'all 0.2s ease', '3rem', '0 1.5rem', 'inline-flex', 'center', 'center', '0.75rem', 'pointer']
+    property: ['background', 'color', 'border', 'font-weight', 'transition', 'height', 'padding', 'display', 'align-items', 'justify-content', 'border-radius', 'cursor', 'backdrop-filter', '-webkit-backdrop-filter'],
+    value: ['rgba(255, 255, 255, 0.05)', 'inherit', '1px solid rgba(255, 255, 255, 0.15)', '700', 'all 0.2s ease', '3rem', '0 1.5rem', 'inline-flex', 'center', 'center', '0.75rem', 'pointer', 'blur(12px)', 'blur(12px)']
   },
   'input-starlight': {
     property: ['background-color', 'border', 'color', 'border-radius', 'padding', 'appearance', 'transition', 'height'],
