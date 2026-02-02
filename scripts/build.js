@@ -322,6 +322,34 @@ class QuantumCSSBuilder {
             </div>
         </section>
 
+        <!-- Presets Section -->
+        ${config.componentPresets ? `
+        <section>
+            <h2>Component Presets</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                ${Object.entries(config.componentPresets).map(([name, utilities]) => `
+                    <div class="starlight-card p-6">
+                        <div class="mb-4 flex justify-between items-center">
+                            <span class="token-name">.${name}</span>
+                            <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
+                        </div>
+                        <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
+                            ${name.includes('card') ? `
+                                <div class="${name}">
+                                    <h4 class="font-bold">Preset Card</h4>
+                                    <p class="text-sm opacity-70">Using ${name}</p>
+                                </div>
+                            ` : `
+                                <button class="${name}">Preset Button</button>
+                            `}
+                        </div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">${utilities}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </section>
+        ` : ''}
+
         <!-- Components Section -->
         <section>
             <h2>Component Utilities</h2>

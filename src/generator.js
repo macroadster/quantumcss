@@ -74,7 +74,7 @@ function generateCSS(configPath) {
     gap: 'gap', 'gap-x': 'column-gap', 'gap-y': 'row-gap'
   };
 
-  function processClass(fullCls) {
+  function getRulesForClass(fullCls) {
     let cls = fullCls, variant = null, breakpoint = null, isNeg = false;
     if (cls.startsWith('-')) { isNeg = true; cls = cls.substring(1); }
     const parts = cls.split(':');
@@ -85,6 +85,28 @@ function generateCSS(configPath) {
       else if (['hover', 'focus', 'placeholder', 'group-hover'].includes(p)) { variant = p; }
       else { cls = parts.slice(currentPart).join(':'); break; }
       currentPart++;
+    }
+
+    // Check Presets
+    if (config.componentPresets && config.componentPresets[cls]) {
+      const presetClasses = config.componentPresets[cls].split(/\s+/);
+      let allGroups = [];
+      presetClasses.forEach(pCls => {
+        const subGroups = getRulesForClass(pCls);
+        if (subGroups) {
+          subGroups.forEach(group => {
+            // Apply the preset's own breakpoint/variant to sub-groups if they don't have one?
+            // Actually, usually presets are used as base classes.
+            // If someone does md:btn-primary, we want the md: to apply to all rules in the preset.
+            allGroups.push({
+              breakpoint: breakpoint || group.breakpoint,
+              variant: variant || group.variant,
+              rules: group.rules
+            });
+          });
+        }
+      });
+      return allGroups;
     }
 
     let property = null, value = null, customSelector = null;
@@ -167,16 +189,39 @@ function generateCSS(configPath) {
     }
 
     if (property && value) {
+      let rules = Array.isArray(property) ? property.map((p, i) => `  ${p}: ${Array.isArray(value) ? value[i] : value};`) : [`  ${property}: ${value};`];
+      return [{ breakpoint, variant, customSelector, rules }];
+    }
+    return null;
+  }
+
+  function processClass(fullCls) {
+    const groups = getRulesForClass(fullCls);
+    if (!groups) return;
+
+    // Merge groups with same selector (breakpoint + variant)
+    const merged = new Map();
+    groups.forEach(group => {
+      const key = `${group.breakpoint || ''}|${group.variant || ''}|${group.customSelector || ''}`;
+      if (!merged.has(key)) {
+        merged.set(key, { ...group, rules: [...group.rules] });
+      } else {
+        merged.get(key).rules.push(...group.rules);
+      }
+    });
+
+    merged.forEach(group => {
+      const { breakpoint, variant, customSelector, rules } = group;
       const escapedFull = fullCls.replace(/([:[\/])/g, '\\$1');
       let selector = customSelector || `.${escapedFull}`;
       if (variant) { if (variant === 'group-hover') selector = `.group:hover ${selector}`; else selector += `:${variant}`}
-      let rules = Array.isArray(property) ? property.map((p, i) => `  ${p}: ${Array.isArray(value) ? value[i] : value};`).join('\n') : `  ${property}: ${value};`;
+      
       const block = `${selector} {
-${rules}
+${rules.join('\n')}
 }
 `;
       if (breakpoint) responsiveUtils[breakpoint].add(block); else utilities.add(block);
-    }
+    });
   }
 
   rawClasses.forEach(processClass);

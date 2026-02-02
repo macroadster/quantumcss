@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum CSS - Verify Presets</title>
+    <link rel="stylesheet" href="../dist/quantum.css">
+</head>
+<body class="bg-gray-50 p-12">
+    <div class="max-w-4xl mx-auto space-y-12">
+        <h1 class="text-4xl font-bold">Verification: Component Presets</h1>
+        
+        <div class="space-y-4">
+            <h2 class="text-xl font-semibold">Buttons</h2>
+            <div class="flex gap-4">
+                <button class="btn-primary">Primary Preset</button>
+                <button class="md:btn-primary">Responsive Primary</button>
+                <button class="btn-secondary">Secondary Preset</button>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <h2 class="text-xl font-semibold">Cards</h2>
+            <div class="card-premium max-w-sm">
+                <h3 class="text-2xl font-bold mb-4">Premium Card</h3>
+                <p class="text-gray-600">This card uses the 'card-premium' preset defined in quantum.config.json.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
