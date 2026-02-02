@@ -9,6 +9,11 @@
         body {
             background: radial-gradient(circle at top right, #08081a, #000);
             overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        body.light-mode {
+            background: #f1f5f9;
+            color: #1e293b;
         }
         .hero-glow {
             position: absolute;
@@ -19,6 +24,34 @@
             background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
             z-index: -1;
         }
+        /* Theme Toggle Styling */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode .glass {
+            background: rgba(0, 0, 0, 0.03) !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+            color: #1e293b !important;
+        }
+
+        .sun-icon { display: none; }
+        body.light-mode .sun-icon { display: block; }
+        body.light-mode .moon-icon { display: none; }
     </style>
 </head>
 <body class="text-primary">
@@ -34,7 +67,13 @@
                 <a href="#" class="hover:text-starlight-blue transition-colors">Excursions</a>
                 <a href="#" class="hover:text-starlight-blue transition-colors">Concierge</a>
             </div>
-            <button class="btn-starlight px-8 h-12 text-[10px] font-black uppercase tracking-widest">Book Now</button>
+            <div class="flex items-center gap-4">
+                <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                    <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
+                <button class="btn-starlight px-8 h-12 text-[10px] font-black uppercase tracking-widest">Book Now</button>
+            </div>
         </div>
     </nav>
 
@@ -161,5 +200,24 @@
             <p class="text-xs text-muted">© 2026 Nebula Voyage Group. Clear skies.</p>
         </div>
     </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                const isLight = document.body.classList.contains('light-mode');
+                
+                // Update all icons
+                document.querySelectorAll('.sun-icon').forEach(icon => {
+                    icon.classList.toggle('hidden', !isLight);
+                });
+                document.querySelectorAll('.moon-icon').forEach(icon => {
+                    icon.classList.toggle('hidden', isLight);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

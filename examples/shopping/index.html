@@ -6,9 +6,43 @@
     <title>Quantum Store | Future of Fashion</title>
     <link rel="stylesheet" href="../../dist/quantum.min.css">
     <style>
-        body { background-color: #f8fafc; color: #0f172a; }
+        body { background-color: #f8fafc; color: #0f172a; transition: background-color 0.5s ease, color 0.5s ease; }
+        body.dark-mode { background-color: #020617; color: #f1f5f9; }
         .product-card:hover .product-image { transform: scale(1.05); }
         .product-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        /* Theme Toggle Styling */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .bg-white {
+            background-color: #0f172a !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark-mode .text-slate-900 {
+            color: #f1f5f9 !important;
+        }
+
+        .sun-icon { display: block; }
+        body.dark-mode .sun-icon { display: none; }
+        body.dark-mode .moon-icon { display: block; }
+        .moon-icon { display: none; }
     </style>
 </head>
 <body class="light-mode">
@@ -28,6 +62,10 @@
                 <a href="#" class="text-orange-600 font-bold">Limited</a>
             </div>
             <div class="flex items-center space-x-6">
+                <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                    <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
                 <div class="relative group">
                     <a href="#" class="text-slate-900 p-3 block bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
@@ -207,5 +245,25 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                
+                // Update all icons
+                document.querySelectorAll('.sun-icon').forEach(icon => {
+                    icon.style.display = isDark ? 'none' : 'block';
+                });
+                document.querySelectorAll('.moon-icon').forEach(icon => {
+                    icon.style.display = isDark ? 'block' : 'none';
+                });
+            });
+        }
+    </script>
 </body>
 </html>
