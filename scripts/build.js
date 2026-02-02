@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { generateCSS } = require('../src/generator');
+const { defaultTheme, utilityMaps } = require('../src/defaults');
 
 class QuantumCSSBuilder {
   constructor(config = {}) {
@@ -115,6 +116,192 @@ class QuantumCSSBuilder {
     return combinedCSS;
   }
 
+  // Generate dynamic documentation (Kitchen Sink)
+  generateDocs() {
+    console.log('📖 Generating dynamic documentation...');
+    
+    const configPath = this.config.configPath;
+    const config = fs.existsSync(configPath) ? require(configPath) : { theme: {} };
+    
+    const theme = JSON.parse(JSON.stringify(defaultTheme || {}));
+    theme.colors = theme.colors || {};
+    theme.spacing = theme.spacing || {};
+    theme.borderRadius = theme.borderRadius || {};
+    theme.fontSize = theme.fontSize || {};
+    theme.shadows = theme.shadows || {};
+
+    if (config.theme && config.theme.extend) {
+      const ext = config.theme.extend;
+      if (ext.colors) Object.assign(theme.colors, ext.colors);
+      if (ext.spacing) Object.assign(theme.spacing, ext.spacing);
+      if (ext.borderRadius) Object.assign(theme.borderRadius, ext.borderRadius);
+      if (ext.fontSize) Object.assign(theme.fontSize, ext.fontSize);
+      if (ext.boxShadow) Object.assign(theme.shadows, ext.boxShadow);
+    }
+
+    let html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum CSS - Kitchen Sink</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <style>
+        .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+        .swatch { height: 4rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(0,0,0,0.1); }
+        .spacing-bar { height: 1rem; background: #3b82f6; border-radius: 0.25rem; }
+        section { margin-bottom: 4rem; }
+        h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+        .token-name { font-family: monospace; font-size: 0.875rem; color: #666; }
+        .token-value { font-size: 0.75rem; color: #999; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 p-8">
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-12">
+            <h1 class="text-5xl font-bold tracking-tight mb-2">Kitchen Sink</h1>
+            <p class="text-xl text-slate-500">Dynamic documentation of all design tokens and components.</p>
+        </header>
+
+        <!-- Colors Section -->
+        <section>
+            <h2>Colors</h2>
+            <div class="token-grid">`;
+
+    Object.entries(theme.colors).forEach(([name, value]) => {
+      if (typeof value === 'string') {
+        html += `
+                <div>
+                    <div class="swatch" style="background-color: ${value};"></div>
+                    <div class="token-name">${name}</div>
+                    <div class="token-value">${value}</div>
+                </div>`;
+      } else {
+        Object.entries(value).forEach(([shade, hex]) => {
+          html += `
+                <div>
+                    <div class="swatch" style="background-color: ${hex};"></div>
+                    <div class="token-name">${name}-${shade}</div>
+                    <div class="token-value">${hex}</div>
+                </div>`;
+        });
+      }
+    });
+
+    html += `
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section>
+            <h2>Typography (Font Sizes)</h2>
+            <div class="flex flex-col gap-8">`;
+
+    Object.entries(theme.fontSize).forEach(([name, size]) => {
+      html += `
+                <div class="flex items-center gap-4">
+                    <div class="w-24 token-name">${name} (${size})</div>
+                    <div class="text-${name}">The quick brown fox jumps over the lazy dog.</div>
+                </div>`;
+    });
+
+    html += `
+            </div>
+        </section>
+
+        <!-- Spacing Section -->
+        <section>
+            <h2>Spacing</h2>
+            <div class="flex flex-col gap-4">`;
+
+    Object.entries(theme.spacing).sort((a, b) => {
+      const valA = a[1].includes('rem') ? parseFloat(a[1]) * 16 : parseFloat(a[1]);
+      const valB = b[1].includes('rem') ? parseFloat(b[1]) * 16 : parseFloat(b[1]);
+      return valA - valB;
+    }).forEach(([name, value]) => {
+      html += `
+                <div class="flex items-center gap-4">
+                    <div class="w-24 token-name">${name} (${value})</div>
+                    <div class="spacing-bar" style="width: ${value}"></div>
+                </div>`;
+    });
+
+    html += `
+            </div>
+        </section>
+
+        <!-- Border Radius Section -->
+        <section>
+            <h2>Border Radius</h2>
+            <div class="token-grid">`;
+
+    Object.entries(theme.borderRadius).forEach(([name, value]) => {
+      html += `
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-blue-100 mx-auto mb-2 border border-blue-200" style="border-radius: ${value}"></div>
+                    <div class="token-name">${name}</div>
+                    <div class="token-value">${value}</div>
+                </div>`;
+    });
+
+    html += `
+            </div>
+        </section>
+
+        <!-- Shadows Section -->
+        <section>
+            <h2>Shadows</h2>
+            <div class="token-grid">`;
+
+    Object.entries(theme.shadows).forEach(([name, value]) => {
+      html += `
+                <div class="text-center">
+                    <div class="w-32 h-32 bg-white mx-auto mb-4 rounded-lg" style="box-shadow: ${value}"></div>
+                    <div class="token-name">${name}</div>
+                </div>`;
+    });
+
+    html += `
+            </div>
+        </section>
+
+        <!-- Components Section -->
+        <section>
+            <h2>Component Utilities</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">`;
+
+    Object.keys(utilityMaps).forEach(cls => {
+      if (cls.startsWith('btn-') || cls.startsWith('input-') || cls === 'glass' || cls === 'bg-starlight' || cls.includes('gradient')) {
+        html += `
+                <div class="p-6 border border-slate-100 rounded-xl">
+                    <div class="mb-4 token-name">${cls}</div>
+                    <div class="flex items-center justify-center p-8 bg-slate-50 rounded-lg">
+                        ${cls.startsWith('btn-') ? `<button class="${cls}">Button Example</button>` : 
+                          cls.startsWith('input-') ? `<input class="${cls}" placeholder="Input Example">` :
+                          cls === 'glass' ? `<div class="${cls} p-8 rounded-xl border border-white/20">Glass Effect</div>` :
+                          `<div class="${cls} p-8 rounded-xl w-full text-center">Example Block</div>`
+                        }
+                    </div>
+                </div>`;
+      }
+    });
+
+    html += `
+            </div>
+        </section>
+
+        <footer class="mt-20 pt-8 border-t border-slate-200 text-slate-400 text-sm">
+            Generated by Quantum CSS Dynamic Docs · ${new Date().toLocaleDateString()}
+        </footer>
+    </div>
+</body>
+</html>`;
+
+    const outputPath = path.resolve(__dirname, '../examples/kitchen-sink.html');
+    fs.writeFileSync(outputPath, html);
+    console.log(`✓ Kitchen Sink generated at ${outputPath}`);
+  }
+
   // Analyze CSS statistics
   analyzeCSS(css) {
     console.log('\n📊 CSS Analysis:');
@@ -168,13 +355,20 @@ class QuantumCSSBuilder {
   watch() {
     console.log('👀 Watching for changes...');
     
-    this.cssFiles.forEach(file => {
-      const filePath = path.join(this.config.inputDir, file);
-      
+    const filesToWatch = [...this.cssFiles.map(f => path.join(this.config.inputDir, f))];
+    if (fs.existsSync(this.config.configPath)) {
+      filesToWatch.push(this.config.configPath);
+    }
+
+    filesToWatch.forEach(filePath => {
       if (fs.existsSync(filePath)) {
         fs.watchFile(filePath, () => {
-          console.log(`📝 Changes detected in ${file}. Rebuilding...`);
-          this.buildCSS();
+          console.log(`📝 Changes detected in ${path.basename(filePath)}. Rebuilding...`);
+          this.buildCSS().then(() => {
+            if (this.config.docs || this.config.watch && this.config.dev) {
+               this.generateDocs();
+            }
+          });
         });
       }
     });
@@ -243,7 +437,9 @@ function main() {
   const config = {
     minify: false,
     watch: false,
-    analyze: false
+    analyze: false,
+    docs: false,
+    dev: false
   };
   
   // Parse command line arguments
@@ -261,10 +457,15 @@ function main() {
       case '-a':
         config.analyze = true;
         break;
+      case '--docs':
+        config.docs = true;
+        break;
       case '--dev':
       case '-d':
         config.watch = true;
         config.minify = false;
+        config.docs = true;
+        config.dev = true;
         break;
     }
   });
@@ -273,15 +474,19 @@ function main() {
   
   if (config.watch && args.includes('--dev')) {
     builder.buildCSS().then(() => {
+      builder.generateDocs();
       builder.watch();
       builder.startDevServer();
     });
   } else if (config.watch) {
     builder.buildCSS().then(() => {
+      if (config.docs) builder.generateDocs();
       builder.watch();
     });
   } else {
-    builder.buildCSS();
+    builder.buildCSS().then(() => {
+      if (config.docs) builder.generateDocs();
+    });
   }
 }
 

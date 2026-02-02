@@ -16,6 +16,7 @@
     "build": "node scripts/build.js --minify",
     "build:dev": "node scripts/build.js",
     "watch": "node scripts/build.js --watch",
+    "docs": "node scripts/build.js --docs",
     "generate": "node src/cli.js",
     "generate:watch": "node src/cli.js --watch"
   },
