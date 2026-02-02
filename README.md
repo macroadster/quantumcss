@@ -33,7 +33,7 @@ Quickly jumpstart your project with a premium template:
 ```bash
 npx @howssatoshi/quantumcss scaffold gaming index.html
 ```
-*Available templates: `gaming`, `blog`, `news`, `shopping`, `travel`, `starlight`, `demo`*
+*Available templates: `gaming`, `blog`, `news`, `shopping`, `travel`, `starlight`*
 
 ### HTML Usage
 ```html

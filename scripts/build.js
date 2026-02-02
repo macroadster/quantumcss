@@ -523,7 +523,7 @@ class QuantumCSSBuilder {
     const PORT = process.env.PORT || 3000;
     server.listen(PORT, () => {
       console.log(`🚀 Dev server running at http://localhost:${PORT}`);
-      console.log(`📖 Open your browser to see the QuantumCSS demo`);
+      console.log(`📖 Open your browser to see the QuantumCSS examples`);
     });
   }
 }

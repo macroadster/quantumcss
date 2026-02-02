@@ -29,8 +29,7 @@ function scaffold(template, targetPath) {
     shopping: 'shopping/index.html',
     starlight: 'starlight.html',
     news: 'news-template.html',
-    docs: 'kitchen-sink.html',
-    demo: 'demo.html'
+    docs: 'kitchen-sink.html'
   };
 
   const templateFile = templateMap[template];
