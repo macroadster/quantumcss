@@ -6,7 +6,8 @@
     <title>Quantum News | Decoding the Future</title>
     <link rel="stylesheet" href="../dist/quantum.min.css">
     <style>
-        body { background-color: #ffffff; color: #0f172a; }
+        body { background-color: #ffffff; color: #0f172a; transition: background-color 0.5s ease, color 0.5s ease; }
+        body.dark-mode { background-color: #020617; color: #f1f5f9; }
         .news-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
         @media (min-width: 1024px) {
             .news-grid { grid-template-columns: 3fr 1fr; }
@@ -21,6 +22,57 @@
             background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); 
             color: white; 
         }
+
+        /* Theme Toggle Styling */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode nav {
+            background-color: #020617 !important;
+            border-bottom-color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .bg-white {
+            background-color: #020617 !important;
+        }
+
+        body.dark-mode .bg-slate-50 {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        body.dark-mode .border-slate-100 {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark-mode .text-slate-900,
+        body.dark-mode .text-slate-500 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .bg-slate-900 {
+            background-color: #f1f5f9 !important;
+            color: #020617 !important;
+        }
+
+        .sun-icon { display: block; }
+        body.dark-mode .sun-icon { display: none; }
+        body.dark-mode .moon-icon { display: block; }
+        .moon-icon { display: none; }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -51,6 +103,10 @@
                 <button class="p-2 hover:bg-slate-100 rounded-full">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
+                <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                    <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
                 <button class="bg-slate-900 text-white px-6 py-2 rounded font-bold text-xs uppercase tracking-widest">Login</button>
             </div>
         </div>
@@ -183,5 +239,23 @@
             animation: marquee 30s linear infinite;
         }
     </style>
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                
+                // Update all icons
+                document.querySelectorAll('.sun-icon').forEach(icon => {
+                    icon.style.display = isDark ? 'none' : 'block';
+                });
+                document.querySelectorAll('.moon-icon').forEach(icon => {
+                    icon.style.display = isDark ? 'block' : 'none';
+                });
+            });
+        }
+    </script>
 </body>
 </html>
