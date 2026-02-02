@@ -284,6 +284,37 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-color: rgba(239, 68, 68, 0.3);
 }
 
+/* Light Mode Overrides for Badges */
+body.light-mode .badge-primary {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+body.light-mode .badge-secondary {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #475569;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .badge-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+body.light-mode .badge-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+body.light-mode .badge-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
 /* Alert Component */
 .alert {
   padding: var(--space-4);
