@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Ultra Gaming Experience</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <style>
+        body {
+            background: radial-gradient(circle at top right, #1a1a3a, #0a0a1a 40%), #050505;
+            color: #f1f5f9;
+            min-height: 100vh;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        body.light-mode {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(10, 10, 26, 0.4), rgba(10, 10, 26, 0.9)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        body.light-mode .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .game-card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 0.025em;
+        }
+
+        body.light-mode .nav-link {
+            color: #475569;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Animation */
+        #menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        #menu-toggle.open span:nth-child(2) { opacity: 0; }
+        #menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        
+        #menu-toggle span {
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode #menu-toggle span {
+            background-color: #1e293b;
+        }
+
+        .mobile-menu-active {
+            overflow: hidden;
+        }
+
+        /* Theme Toggle Styling */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="glass sticky top-0 z-50 py-4 px-8 flex justify-between items-center border-b border-white border-opacity-5">
+        <div class="text-3xl font-bold tracking-tighter text-gradient-starlight cursor-pointer">GAMEVAULT</div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex gap-10 items-center">
+            <a href="#" class="nav-link text-white hover:text-starlight transition">Store</a>
+            <a href="#" class="nav-link text-white hover:text-starlight transition">Games</a>
+            <a href="#" class="nav-link text-white hover:text-starlight transition">News</a>
+            <a href="#" class="nav-link text-white hover:text-starlight transition">Community</a>
+            
+            <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </div>
+
+            <button class="bg-starlight text-black px-8 py-2.5 rounded-full font-bold glow-blue hover:scale-105 transition">Play Now</button>
+        </div>
+
+        <!-- Hamburger Button -->
+        <div class="flex items-center gap-4 md:hidden">
+            <div id="theme-btn-mobile" class="theme-toggle" title="Toggle Theme">
+                <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </div>
+            <button id="menu-toggle" class="flex flex-col gap-1.5 focus:outline-none z-50">
+                <span class="w-6 h-0.5 bg-white"></span>
+                <span class="w-6 h-0.5 bg-white"></span>
+                <span class="w-6 h-0.5 bg-white"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-starlight-deep/98 z-40 hidden flex-col items-center justify-center gap-8 animate-fade-in">
+        <a href="#" class="text-3xl font-bold hover:text-starlight transition">Store</a>
+        <a href="#" class="text-3xl font-bold hover:text-starlight transition">Games</a>
+        <a href="#" class="text-3xl font-bold hover:text-starlight transition">News</a>
+        <a href="#" class="text-3xl font-bold hover:text-starlight transition">Community</a>
+        <button class="mt-4 bg-starlight text-black px-12 py-4 rounded-full font-bold glow-blue">Play Now</button>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="max-w-[1200px] mx-auto px-6 animate-slide-up">
+            <span class="badge badge-primary mb-6">Trending Now</span>
+            <h1 class="text-7xl font-bold tracking-tighter mb-6">CYBERPUNK <span class="text-gradient-starlight">2077</span></h1>
+            <p class="text-xl text-gray-300 mb-10 max-w-prose mx-auto">
+                Step into Night City, an obsessed megalopolis where you play as V, a mercenary outlaw going after a one-of-a-kind implant.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button class="bg-white text-black px-12 py-4 rounded-full font-bold hover:bg-starlight transition shadow-lg border-none">Buy Now - $59.99</button>
+                <button class="glass text-white px-12 py-4 rounded-full font-bold hover:bg-opacity-20 transition border border-white border-opacity-10">Watch Trailer</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Games -->
+    <main class="max-w-[1200px] mx-auto py-24 px-6">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-sm font-bold text-starlight uppercase tracking-widest mb-2">Editor's Choice</h2>
+                <h3 class="text-4xl font-bold tracking-tight">Featured Games</h3>
+            </div>
+            <a href="#" class="text-starlight font-bold border-b border-starlight pb-1 hover:text-white hover:border-white transition">View All Games →</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Game Card 1 -->
+            <div class="starlight-card group cursor-pointer overflow-hidden p-0">
+                <div class="game-card-img group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="text-xl font-bold">Retro Pulse</h4>
+                        <span class="text-starlight font-bold">$19.99</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">A high-octane synthwave racer with neon visuals.</p>
+                    <div class="flex gap-2">
+                        <span class="badge badge-secondary text-2xs">Action</span>
+                        <span class="badge badge-secondary text-2xs">Indie</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card 2 -->
+            <div class="starlight-card group cursor-pointer overflow-hidden p-0">
+                <div class="game-card-img group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="text-xl font-bold">Star Frontier</h4>
+                        <span class="text-starlight font-bold">Free</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">Explore the outer reaches of the galaxy in this MMO.</p>
+                    <div class="flex gap-2">
+                        <span class="badge badge-secondary text-2xs">MMO</span>
+                        <span class="badge badge-secondary text-2xs">Sci-Fi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card 3 -->
+            <div class="starlight-card group cursor-pointer overflow-hidden p-0">
+                <div class="game-card-img group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="text-xl font-bold">Quest Lore</h4>
+                        <span class="text-starlight font-bold">$44.99</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">An epic open-world RPG with branching storylines.</p>
+                    <div class="flex gap-2">
+                        <span class="badge badge-secondary text-2xs">RPG</span>
+                        <span class="badge badge-secondary text-2xs">Adventure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FAQ Section -->
+    <section class="max-w-[1200px] mx-auto px-6 mb-32">
+        <div class="mb-12 text-center">
+            <h2 class="text-sm font-bold text-starlight uppercase tracking-widest mb-2">Support Center</h2>
+            <h3 class="text-4xl font-bold tracking-tight">Frequently Asked Questions</h3>
+        </div>
+
+        <div class="max-w-144 mx-auto flex flex-col gap-4">
+            <!-- Accordion 1 -->
+            <div class="accordion-item accordion-starlight active">
+                <div class="accordion-header">
+                    <span>What are the minimum system requirements?</span>
+                    <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="accordion-content">
+                    <p>For the best experience, we recommend an NVIDIA RTX 3060 or equivalent, 16GB RAM, and an i7 processor. However, most titles are optimized to run on mid-range hardware with adjusted settings.</p>
+                </div>
+            </div>
+
+            <!-- Accordion 2 -->
+            <div class="accordion-item accordion-starlight">
+                <div class="accordion-header">
+                    <span>How do I claim my pre-order bonuses?</span>
+                    <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="accordion-content">
+                    <p>Pre-order bonuses are automatically linked to your GameVault account. Once the game launches, you can find your rewards in the "Inventory" tab of the game launcher.</p>
+                </div>
+            </div>
+
+            <!-- Accordion 3 -->
+            <div class="accordion-item accordion-starlight">
+                <div class="accordion-header">
+                    <span>Is cross-platform play supported?</span>
+                    <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes! Most of our multiplayer titles support cross-play between PC, PlayStation, and Xbox. You can manage your cross-play preferences in the social settings menu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="max-w-[1200px] mx-auto px-6 mb-32">
+        <div class="glass p-16 rounded-3xl border border-white border-opacity-5 text-center glow-blue">
+            <h2 class="text-5xl font-bold mb-6 tracking-tight">Join the <span class="text-gradient-starlight">Elite</span></h2>
+            <p class="text-lg text-gray-400 mb-10 max-w-prose mx-auto">Get exclusive access to beta tests, early drops, and a community of over 10 million gamers.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <input type="email" class="glass px-8 py-4 rounded-xl outline-none focus:border-starlight transition md:w-96 text-white" placeholder="Enter your email...">
+                <button class="bg-starlight text-black px-12 py-4 rounded-xl font-bold glow-blue hover:scale-105 transition border-none">Sign Up Free</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-20 px-6 border-t border-white border-opacity-5">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-2 md:col-span-1">
+                <div class="text-2xl font-bold tracking-tighter text-gradient-starlight mb-6">GAMEVAULT</div>
+                <p class="text-gray-500 text-sm">The ultimate destination for gamers worldwide. Play, connect, and grow.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6">Platform</h5>
+                <ul class="flex flex-col gap-4 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Download</a></li>
+                    <li><a href="#" class="hover:text-white transition">Web Player</a></li>
+                    <li><a href="#" class="hover:text-white transition">Mobile App</a></li>
+                    <li><a href="#" class="hover:text-white transition">Pro Features</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6">Company</h5>
+                <ul class="flex flex-col gap-4 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Press</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6">Support</h5>
+                <ul class="flex flex-col gap-4 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Help Center</a></li>
+                    <li><a href="#" class="hover:text-white transition">Safety</a></li>
+                    <li><a href="#" class="hover:text-white transition">Terms</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-[1200px] mx-auto pt-8 border-t border-white border-opacity-5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-gray-600 text-xs">&copy; 2026 GameVault Interactive. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-600 hover:text-starlight transition">Twitter</a>
+                <a href="#" class="text-gray-600 hover:text-starlight transition">Discord</a>
+                <a href="#" class="text-gray-600 hover:text-starlight transition">Twitch</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const themeBtns = [document.getElementById('theme-btn'), document.getElementById('theme-btn-mobile')];
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            mobileOverlay.classList.toggle('hidden');
+            mobileOverlay.classList.toggle('flex');
+            document.body.classList.toggle('mobile-menu-active');
+        });
+
+        // Theme Toggle Logic
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                const isLight = document.body.classList.contains('light-mode');
+                
+                // Update all icons
+                document.querySelectorAll('.sun-icon').forEach(icon => {
+                    icon.classList.toggle('hidden', !isLight);
+                });
+                document.querySelectorAll('.moon-icon').forEach(icon => {
+                    icon.classList.toggle('hidden', isLight);
+                });
+            });
+        });
+
+        // Close menu on link click
+        mobileOverlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('open');
+                mobileOverlay.classList.add('hidden');
+                mobileOverlay.classList.remove('flex');
+                document.body.classList.remove('mobile-menu-active');
+            });
+        });
+
+        // Accordion Logic
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close other items
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

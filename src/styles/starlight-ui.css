@@ -308,3 +308,77 @@ body.light-mode .code-window-header {
 body.light-mode .code-window-title {
   color: #94a3b8;
 }
+
+/* 10. Starlight Accordion */
+.accordion-starlight.accordion-item {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-4);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.accordion-starlight.accordion-item:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.05);
+}
+
+.accordion-starlight.accordion-item.active {
+  border-color: var(--color-starlight-blue);
+  background: rgba(0, 212, 255, 0.03);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.1), inset 0 0 20px rgba(0, 212, 255, 0.05);
+}
+
+.accordion-starlight .accordion-header {
+  background: transparent !important;
+  padding: var(--space-6) var(--space-8);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.125rem;
+}
+
+.accordion-starlight.active .accordion-header {
+  background: linear-gradient(to right, rgba(255, 179, 138, 0.15), rgba(0, 212, 255, 0.15)) !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.accordion-starlight .accordion-content {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 1rem;
+  line-height: 1.8;
+  padding: 0;
+}
+
+.accordion-starlight.active .accordion-content {
+  padding: var(--space-6) var(--space-8);
+}
+
+.accordion-starlight .accordion-icon {
+  color: var(--color-starlight-blue);
+  filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
+}
+
+body.light-mode .accordion-starlight.accordion-item {
+  background: white;
+  border-color: #e2e8f0;
+}
+
+body.light-mode .accordion-starlight.accordion-item.active {
+  border-color: #3b82f6;
+  background: #f8fafc;
+}
+
+body.light-mode .accordion-starlight .accordion-header {
+  color: #1e293b;
+}
+
+body.light-mode .accordion-starlight .accordion-content {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+}

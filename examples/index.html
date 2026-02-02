@@ -11,10 +11,15 @@
         .theme-toggle { 
             position: fixed; top: 2rem; right: 2rem; z-index: 100; 
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
-            padding: 0.6rem 1.25rem; border-radius: 2rem; cursor: pointer; 
+            padding: 0.6rem; border-radius: 2rem; cursor: pointer; 
             color: inherit; font-weight: 700; backdrop-filter: blur(10px); 
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
         }
-        body.light-mode .theme-toggle { background: #fff; border-color: #cbd5e1; }
+        .theme-toggle:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); }
+        body.light-mode .theme-toggle { background: #fff; border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .theme-toggle svg { width: 1.5rem; height: 1.5rem; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -25,7 +30,10 @@
         <div class="star" style="top: 50%; left: 10%; --duration: 3s;"></div>
         <div class="star" style="top: 90%; left: 90%; --duration: 4s;"></div>
     </div>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Theme</button>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <svg class="sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    </button>
 
     <div id="dialog" class="dialog-overlay" style="display: none;">
         <div class="dialog-content">
@@ -132,7 +140,12 @@
             starsContainer.appendChild(star);
         }
 
-        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+        function toggleTheme() { 
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            document.querySelector('.sun-icon').classList.toggle('hidden', !isLight);
+            document.querySelector('.moon-icon').classList.toggle('hidden', isLight);
+        }
         function openDialog() { document.getElementById('dialog').style.display = 'flex'; }
         function closeDialog() { document.getElementById('dialog').style.display = 'none'; }
         function toggleDropdown(e) {
