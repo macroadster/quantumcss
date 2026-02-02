@@ -160,12 +160,26 @@ class QuantumCSSBuilder {
         body.light-mode .ani-card { background: #f1f5f9; color: #0f172a; }
         .ani-orbit-star { background-color: white; }
         body.light-mode .ani-orbit-star { background-color: #2563eb; }
-        .theme-toggle { position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; padding: 0.75rem 1.25rem; border-radius: 9999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-weight: bold; backdrop-filter: blur(10px); }
-        body.light-mode .theme-toggle { background: white; border-color: rgba(0,0,0,0.1); color: #0f172a; }
+        .theme-toggle { 
+            position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; 
+            width: 3rem; height: 3rem; border-radius: 50%; 
+            display: flex; items-center: center; justify-content: center;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
+            color: white; transition: all 0.3s ease; backdrop-filter: blur(10px); 
+        }
+        .theme-toggle:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
+        body.light-mode .theme-toggle { background: white; border-color: rgba(0,0,0,0.1); color: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        body.light-mode .theme-toggle:hover { background: #f8fafc; }
+        .sun-icon { display: none; }
+        body.light-mode .sun-icon { display: block; }
+        body.light-mode .moon-icon { display: none; }
     </style>
 </head>
 <body class="p-8">
-    <button class="theme-toggle" onclick="document.body.classList.toggle('light-mode')">🌓 Toggle Theme</button>
+    <button class="theme-toggle" onclick="document.body.classList.toggle('light-mode')" title="Toggle Theme">
+        <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+        <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    </button>
     
     <div class="max-w-6xl mx-auto">
         <header class="mb-12">
