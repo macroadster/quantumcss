@@ -403,3 +403,25 @@ body.light-mode .accordion-starlight .accordion-content {
   background: #f1f5f9 !important;
   color: #475569 !important;
 }
+
+@media (forced-colors: active) {
+  button:focus, input:focus, select:focus, textarea:focus {
+    outline: 2px solid SelectedItem !important;
+    outline-offset: 2px;
+  }
+  
+  .starlight-card:hover, .accordion-starlight.accordion-item:hover {
+    border-color: SelectedItem !important;
+  }
+
+  .text-gradient-starlight, .bg-starlight {
+    background: none !important;
+    -webkit-text-fill-color: CanvasText !important;
+    color: CanvasText !important;
+    text-decoration: underline;
+  }
+  
+  .btn-starlight {
+    border: 2px solid ButtonText !important;
+  }
+}
