@@ -11,6 +11,16 @@
         .product-card:hover .product-image { transform: scale(1.05); }
         .product-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
 
+        /* Twinkle Hover Effect */
+        a:hover, .product-card:hover {
+            animation: star-twinkle 1s infinite ease-in-out;
+        }
+
+        @keyframes star-twinkle {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
         /* Theme Toggle Styling */
         .theme-toggle {
             cursor: pointer;
@@ -123,10 +133,10 @@
                 <div>
                     <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-slate-400 mb-8">Color Way</h4>
                     <div class="flex flex-wrap gap-4">
-                        <button class="w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-900 ring-4 ring-slate-900/5 hover:scale-110 transition-transform"></button>
-                        <button class="w-10 h-10 rounded-full bg-white border-2 border-slate-200 ring-4 ring-transparent ring-offset-2 hover:scale-110 transition-transform"></button>
-                        <button class="w-10 h-10 rounded-full bg-orange-600 border-2 border-transparent ring-4 ring-transparent ring-offset-2 hover:scale-110 transition-transform"></button>
-                        <button class="w-10 h-10 rounded-full bg-blue-600 border-2 border-transparent ring-4 ring-transparent ring-offset-2 hover:scale-110 transition-transform"></button>
+                        <button class="w-10 h-10 rounded-full border-2 border-slate-900 ring-4 ring-slate-900/5 hover:scale-110 transition-transform" style="background-color: #0f172a;"></button>
+                        <button class="w-10 h-10 rounded-full border-2 border-slate-200 ring-4 ring-transparent ring-offset-2 hover:scale-110 transition-transform" style="background-color: #ffffff;"></button>
+                        <button class="w-10 h-10 rounded-full border-2 border-transparent ring-4 ring-transparent ring-offset-2 hover:scale-110 transition-transform" style="background-color: #ea580c;"></button>
+                        <button class="w-10 h-10 rounded-full border-2 border-transparent ring-4 ring-transparent ring-offset-2 hover:scale-110 transition-transform" style="background-color: #2563eb;"></button>
                     </div>
                 </div>
             </aside>
@@ -197,11 +207,11 @@
 
                 <!-- Pagination -->
                 <div class="mt-20 flex justify-center items-center space-x-6 w-full border-t border-slate-100 pt-16">
-                    <button class="btn-starlight w-12 h-12 flex items-center justify-center p-0 text-base shadow-xl shadow-orange-600/20">1</button>
+                    <button class="btn-secondary w-12 h-12 flex items-center justify-center p-0 text-base shadow-sm border-slate-900">1</button>
                     <button class="btn-secondary w-12 h-12 flex items-center justify-center p-0 text-slate-400 hover:text-slate-900 hover:border-slate-900 transition-all text-base">2</button>
                     <button class="btn-secondary w-12 h-12 flex items-center justify-center p-0 text-slate-400 hover:text-slate-900 hover:border-slate-900 transition-all text-base">3</button>
                     <div class="px-4 text-slate-200 font-black text-lg">/</div>
-                    <button class="btn-starlight px-10 h-12 text-[10px] font-black uppercase tracking-widest shadow-xl shadow-orange-600/20">Next Cluster</button>
+                    <button class="btn-secondary px-10 h-12 text-[10px] font-black uppercase tracking-widest shadow-sm">Next Cluster</button>
                 </div>
             </div>
         </div>
