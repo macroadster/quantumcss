@@ -28,6 +28,44 @@
     .sun-icon { display: none; }
     body.light-mode .sun-icon { display: block; }
     body.light-mode .moon-icon { display: none; }
+
+    body.light-mode {
+        background-color: #f8fafc;
+        color: #1e293b;
+    }
+
+    body.light-mode .text-white,
+    body.light-mode h1,
+    body.light-mode h2,
+    body.light-mode h3,
+    body.light-mode h4 {
+        color: #0f172a !important;
+    }
+
+    body.light-mode .text-secondary,
+    body.light-mode .text-slate-300,
+    body.light-mode .prose {
+        color: #475569 !important;
+    }
+
+    body.light-mode .glass {
+        background: rgba(255, 255, 255, 0.7) !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    body.light-mode .starlight-card {
+        background: white;
+        border-color: #e2e8f0;
+    }
+
+    body.light-mode .code-window {
+        background: #f1f5f9;
+        border-color: #e2e8f0;
+    }
+
+    body.light-mode .code-window pre {
+        color: #1e293b;
+    }
   </style>
 </head>
 <body class="bg-starlight-deep text-primary font-sans antialiased min-h-screen relative overflow-x-hidden">

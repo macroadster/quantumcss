@@ -52,6 +52,21 @@
         .sun-icon { display: none; }
         body.light-mode .sun-icon { display: block; }
         body.light-mode .moon-icon { display: none; }
+
+        body.light-mode .starlight-card p,
+        body.light-mode header p,
+        body.light-mode section p {
+            color: #475569;
+        }
+
+        body.light-mode .btn-outline:hover {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        body.light-mode input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: none;
+        }
     </style>
 </head>
 <body class="text-primary">
