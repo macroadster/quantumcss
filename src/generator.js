@@ -62,7 +62,10 @@ function generateCSS(configPath) {
   });
 
   const utilities = new Set();
-  const responsiveUtils = { sm: new Set(), md: new Set(), lg: new Set(), xl: new Set(), '2xl': new Set() };
+  const responsiveUtils = { 
+    sm: new Set(), md: new Set(), lg: new Set(), xl: new Set(), '2xl': new Set(),
+    dark: new Set()
+  };
 
   const sideMap = {
     p: 'padding', pt: 'padding-top', pr: 'padding-right', pb: 'padding-bottom', pl: 'padding-left',
@@ -82,6 +85,7 @@ function generateCSS(configPath) {
     while (currentPart < parts.length) {
       const p = parts[currentPart];
       if (breakpoints[p]) { breakpoint = p; }
+      else if (p === 'dark') { breakpoint = 'dark'; }
       else if (['hover', 'focus', 'placeholder', 'group-hover'].includes(p)) { variant = p; }
       else { cls = parts.slice(currentPart).join(':'); break; }
       currentPart++;
@@ -170,6 +174,11 @@ function generateCSS(configPath) {
       } else if (prefix === 'duration') {
         property = 'transition-duration';
         value = `${valKey}ms`;
+      } else if (prefix === 'backdrop' && cParts[1] === 'blur') {
+        property = ['backdrop-filter', '-webkit-backdrop-filter'];
+        const blurMap = { sm: '4px', md: '12px', lg: '16px', xl: '24px' };
+        const blurVal = blurMap[cParts[2]] || (isNaN(parseInt(cParts[2])) ? '8px' : `${cParts[2]}px`);
+        value = `blur(${blurVal})`;
       } else if (sideMap[prefix]) {
         property = sideMap[prefix];
         let v = valKey;
@@ -227,10 +236,15 @@ ${rules.join('\n')}
   rawClasses.forEach(processClass);
   let css = '/* Quantum CSS JIT Output */\n' + Array.from(utilities).join('\n');
   Object.entries(breakpoints).forEach(([name, width]) => {
-    if (responsiveUtils[name].size > 0) {
+    if (responsiveUtils[name] && responsiveUtils[name].size > 0) {
       css += `\n@media (min-width: ${width}) {\n${Array.from(responsiveUtils[name]).map(u => '  ' + u.replace(/\n/g, '\n  ')).join('\n').trimEnd()}\n}\n`;
     }
   });
+
+  if (responsiveUtils.dark && responsiveUtils.dark.size > 0) {
+    css += `\n@media (prefers-color-scheme: dark) {\n${Array.from(responsiveUtils.dark).map(u => '  ' + u.replace(/\n/g, '\n  ')).join('\n').trimEnd()}\n}\n`;
+  }
+
   return css;
 }
 
