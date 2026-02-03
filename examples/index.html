@@ -11,10 +11,11 @@
         .theme-toggle { 
             position: fixed; top: 2rem; right: 2rem; z-index: 100; 
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
-            padding: 0.6rem; border-radius: 2rem; cursor: pointer; 
+            width: 2.7rem; height: 2.7rem; border-radius: 50%; cursor: pointer; 
             color: inherit; font-weight: 700; backdrop-filter: blur(10px); 
             display: flex; align-items: center; justify-content: center;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
         .theme-toggle:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); }
         body.light-mode .theme-toggle { background: #fff; border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }

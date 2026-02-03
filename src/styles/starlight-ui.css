@@ -31,11 +31,11 @@ a:active {
 }
 
 body.light-mode a {
-  color: #2563eb;
+  color: var(--color-starlight-blue);
 }
 
 body.light-mode a:hover {
-  color: #1d4ed8;
+  color: var(--color-starlight-peach);
 }
 
 /* 1. Starlight Card */
@@ -78,6 +78,12 @@ body.light-mode .starlight-card {
 }
 
 .radio-starlight { border-radius: 50%; }
+
+body.light-mode .checkbox-starlight,
+body.light-mode .radio-starlight {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
+}
 
 .checkbox-starlight:checked, .radio-starlight:checked {
   background: var(--color-starlight-blue);
@@ -191,7 +197,7 @@ body.light-mode .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: rgba(15, 15, 30, 0.98);
+  background-color: var(--color-starlight-deep);;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
@@ -231,8 +237,8 @@ body.light-mode .dropdown-item {
 }
 
 body.light-mode .dropdown-item:hover {
-  background-color: #f1f5f9;
-  color: #1e293b;
+  background-color: var(--color-starlight-blue);
+  color: black;
 }
 
 /* 7. Input & Glass Fixes */
@@ -271,8 +277,8 @@ body.light-mode .glass {
 
 body.light-mode .input-starlight:focus,
 body.light-mode .textarea-starlight:focus {
-  border-color: #93c5fd;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
+  border-color: var(--color-starlight-blue);
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1);
 }
 
 /* 9. Code Interface Window */
@@ -391,7 +397,7 @@ body.light-mode .accordion-starlight.accordion-item {
 }
 
 body.light-mode .accordion-starlight.accordion-item.active {
-  border-color: #3b82f6;
+  border-color: var(--color-starlight-blue);
   background: #f8fafc;
 }
 
@@ -422,8 +428,8 @@ body.light-mode .accordion-starlight .accordion-content {
   transform: translateY(-50%);
   color: var(--text-muted);
   pointer-events: none;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* 12. Gallery Widget */
@@ -498,7 +504,7 @@ body.light-mode .accordion-starlight .accordion-content {
 }
 
 body.light-mode .stat-value {
-  background: linear-gradient(135deg, #1e293b 0%, var(--color-primary-600) 100%);
+  background: linear-gradient(135deg, #1e293b 0%, var(--color-starlight-blue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -556,7 +562,7 @@ body.light-mode .nav-glass {
 }
 
 body.light-mode .hamburger {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.02);
   border-color: rgba(0,0,0,0.1);
 }
 
@@ -668,11 +674,24 @@ body.light-mode .range-starlight {
 
 body.light-mode .toggle-starlight .toggle-slider {
   background: rgba(0,0,0,0.1);
-  border-color: rgba(0,0,0,0.1);
+  border-color: rgba(0,0,0,0.15);
 }
 
-.toggle-starlight .toggle-input:checked + .toggle-slider {
-  background: var(--color-starlight-blue);
+body.light-mode .bg-starlight,
+body.light-mode .bg-starlight:hover,
+body.light-mode .hover\:bg-starlight:hover,
+body.light-mode .btn-starlight,
+body.light-mode .btn-starlight:hover,
+body.light-mode .hover\:btn-starlight:hover,
+body.light-mode .btn-primary,
+body.light-mode .btn-primary:hover {
+  background: linear-gradient(135deg, #ffb38a 40%, #00d4ff 100%) !important;
+}
+
+body.light-mode .text-gradient-starlight {
+  background: linear-gradient(135deg, #ffb38a 40%, #00d4ff 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 body.light-mode .text-success { color: #059669; }

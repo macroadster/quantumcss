@@ -29,12 +29,14 @@
         /* Theme Toggle Styling */
         .theme-toggle {
             cursor: pointer;
-            padding: 0.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
             transition: background 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .theme-toggle:hover {
@@ -131,9 +133,9 @@
                     <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 </div>
                 <div class="relative group">
-                    <a href="#" class="text-slate-900 p-3 block bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
+                    <a href="#" class="text-slate-900 w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                        <span class="absolute top-0 right-0 bg-orange-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-black shadow-lg border-2 border-white">3</span>
+                        <span class="absolute -top-1 -right-1 bg-orange-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-black shadow-lg border-2 border-white">3</span>
                     </a>
                 </div>
             </div>
@@ -206,7 +208,7 @@
                                 <span class="badge badge-primary bg-orange-600 text-white border-none px-3 py-1 text-[9px] shadow-lg font-black tracking-widest">New Season</span>
                             </div>
                             <div class="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                <button class="btn btn-primary w-full bg-slate-900 text-white border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
+                                <button class="btn-starlight w-full border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
                             </div>
                         </div>
                         <div class="flex justify-between items-start px-1">
@@ -226,7 +228,7 @@
                                 <span class="badge badge-secondary bg-slate-900/80 text-white border-none px-3 py-1 text-[9px] backdrop-blur-md font-black tracking-widest">Best Seller</span>
                             </div>
                             <div class="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                <button class="btn btn-primary w-full bg-slate-900 text-white border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
+                                <button class="btn-starlight w-full border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
                             </div>
                         </div>
                         <div class="flex justify-between items-start px-1">
@@ -246,7 +248,7 @@
                                 <span class="badge badge-secondary bg-blue-600 text-white border-none px-3 py-1 text-[9px] shadow-lg font-black tracking-widest">Pre-Order</span>
                             </div>
                             <div class="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                <button class="btn btn-primary w-full bg-slate-900 text-white border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
+                                <button class="btn-starlight w-full border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
                             </div>
                         </div>
                         <div class="flex justify-between items-start px-1">

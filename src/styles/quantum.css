@@ -9,6 +9,7 @@
 
 /* CSS Custom Properties (Design Tokens) */
 :root {
+  color-scheme: dark;
   /* Colors */
   --color-primary: #3b82f6;
   --color-primary-50: #eff6ff;
@@ -168,6 +169,9 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-starlight-deep);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-starlight-blue) transparent;
 }
 
 body {
@@ -1069,25 +1073,63 @@ textarea {
 
 /* Nebula Scrollbar */
 
+
+
 ::-webkit-scrollbar { width: 8px; }
 
-::-webkit-scrollbar-track { background: var(--color-starlight-deep); }
 
-body.light-mode ::-webkit-scrollbar-track { background: var(--light-bg); }
+
+
+
+
+
+::-webkit-scrollbar-track { background: transparent; }
+
+
+
+
 
 
 
 ::-webkit-scrollbar-thumb { 
 
-  background: linear-gradient(to bottom, var(--color-starlight-peach), var(--color-starlight-blue)); 
+
+
+  background: linear-gradient(135deg, var(--color-starlight-peach) 0%, var(--color-starlight-blue) 100%); 
+
+
 
   border-radius: 10px;
 
+
+
   border: 2px solid var(--color-starlight-deep);
+
+
 
 }
 
-body.light-mode ::-webkit-scrollbar-thumb { border-color: var(--light-bg); }
+
+
+body.light-mode,
+
+html.light-mode {
+
+  scrollbar-color: var(--color-starlight-blue) transparent;
+
+}
+
+
+
+body.light-mode::-webkit-scrollbar-thumb,
+
+body.light-mode ::-webkit-scrollbar-thumb { 
+
+  background: linear-gradient(135deg, var(--color-starlight-peach) 40%, var(--color-starlight-blue) 100%);
+
+  border-color: var(--light-bg); 
+
+}
 
 
 
@@ -1167,7 +1209,9 @@ body {
 
 
 
-body.light-mode {
+body.light-mode,
+html.light-mode {
+  color-scheme: light;
   background-color: var(--light-bg);
   color: var(--light-text);
   --text-primary: var(--light-text);
