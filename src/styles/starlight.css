@@ -579,7 +579,7 @@ body.light-mode .hamburger span {
   top: 100%;
   right: 2rem;
   width: 250px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--color-starlight-deep);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.05);
