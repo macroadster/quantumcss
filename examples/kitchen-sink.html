@@ -177,7 +177,7 @@
                 <div>
                     <div class="swatch" style="background-color: #f97316;"></div>
                     <div class="token-name">orange-500</div>
-                    <div class="token-value">#f97316</div>
+                    <div class="token-value fabric">#f97316</div>
                 </div>
                 <div>
                     <div class="swatch" style="background-color: #ea580c;"></div>
@@ -704,9 +704,243 @@
             </div>
         </section>
 
+        <!-- Interactive Search -->
+        <section>
+            <h2>Interactive Search</h2>
+            <div class="starlight-card p-8 flex flex-col items-center gap-6">
+                <div class="search-container">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="input-starlight search-input" placeholder="Search the galaxy...">
+                </div>
+                <p class="text-sm text-muted">A glassmorphic search bar with integrated iconography.</p>
+            </div>
+        </section>
+
+        <!-- Navigation & Menu -->
+        <section>
+            <h2>Navigation & Menus</h2>
+            <div class="starlight-card p-0 overflow-hidden">
+                <nav class="nav-glass">
+                    <div class="font-bold text-xl text-gradient-starlight">Starlight.ai</div>
+                    <div class="flex items-center gap-4">
+                        <div class="hidden md:flex gap-6 text-sm">
+                            <a href="#">Fleet</a>
+                            <a href="#">Stations</a>
+                            <a href="#">Resources</a>
+                        </div>
+                        <div class="hamburger" id="menuToggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="nav-menu-mobile" id="mobileMenu">
+                        <div class="flex flex-col gap-2">
+                            <button class="dropdown-item">Dashboard</button>
+                            <button class="dropdown-item">Missions</button>
+                            <button class="dropdown-item">Cargo</button>
+                            <hr class="border-white/10 my-1">
+                            <button class="dropdown-item text-error">System Shutdown</button>
+                        </div>
+                    </div>
+                </nav>
+                <div class="p-20 text-center opacity-50">
+                    Scroll context for sticky navigation
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Widgets -->
+        <section>
+            <h2>Dashboard Widgets</h2>
+            <div class="dashboard-grid">
+                <div class="starlight-card stat-card">
+                    <span class="stat-label">Core Stability</span>
+                    <span class="stat-value">98.4%</span>
+                    <div class="stat-trend up">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        2.1%
+                    </div>
+                </div>
+                <div class="starlight-card stat-card">
+                    <span class="stat-label">Fuel Reserves</span>
+                    <span class="stat-value">12.8k</span>
+                    <div class="stat-trend down">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        0.4%
+                    </div>
+                </div>
+                <div class="starlight-card stat-card">
+                    <span class="stat-label">Neural Sync</span>
+                    <span class="stat-value">Active</span>
+                    <div class="stat-trend up">
+                        <div class="w-2 h-2 bg-success rounded-full ani-cosmic-pulse mr-1"></div>
+                        Optimal
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Widget -->
+        <section>
+            <h2>Gallery Widget</h2>
+            <div class="starlight-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Nebula">
+                    <div class="gallery-overlay">
+                        <span class="text-xs font-bold uppercase tracking-widest">Orion Nebula</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80" alt="Earth">
+                    <div class="gallery-overlay">
+                        <span class="text-xs font-bold uppercase tracking-widest">Blue Marble</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=800&q=80" alt="Galaxy">
+                    <div class="gallery-overlay">
+                        <span class="text-xs font-bold uppercase tracking-widest">Andromeda</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=800&q=80" alt="Deep Space">
+                    <div class="gallery-overlay">
+                        <span class="text-xs font-bold uppercase tracking-widest">Void</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comprehensive Forms -->
+        <section>
+            <h2>Advanced Form Controls</h2>
+            <div class="starlight-card">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-8" onsubmit="return false">
+                    <div class="flex flex-col gap-4">
+                        <label class="text-sm font-semibold opacity-70">Mission Designation</label>
+                        <input type="text" class="input-starlight" placeholder="Enter codename...">
+                        
+                        <label class="text-sm font-semibold opacity-70">Sector Selection</label>
+                        <select class="input-starlight select-starlight">
+                            <option>Alpha Centauri</option>
+                            <option>Betelgeuse</option>
+                            <option>Kepler-186f</option>
+                        </select>
+
+                        <label class="text-sm font-semibold opacity-70">Warp Factor</label>
+                        <input type="range" class="range-starlight" min="1" max="9" step="0.1">
+                        <div class="flex justify-between text-xs opacity-50">
+                            <span>Sub-light</span>
+                            <span>Trans-warp</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-semibold">Cloaking Device</div>
+                                <div class="text-xs opacity-50">Renders vessel invisible to radar</div>
+                            </div>
+                            <label class="toggle toggle-starlight">
+                                <input type="checkbox" class="toggle-input">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="checkbox-starlight" checked>
+                                <span class="text-sm">Auto-pilot engaged</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="checkbox-starlight">
+                                <span class="text-sm">Shields at maximum</span>
+                            </label>
+                        </div>
+
+                        <div class="flex gap-4 mt-auto">
+                            <button class="btn-starlight flex-1">Launch Mission</button>
+                            <button class="btn-secondary">Save Draft</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Dialog Section -->
+        <section>
+            <h2>Dialog Windows</h2>
+            <div class="starlight-card p-12 text-center">
+                <button class="btn-starlight btn-lg" onclick="toggleDialog(true)">Open System Override</button>
+            </div>
+
+            <!-- Dialog Overlay -->
+            <div class="dialog-overlay hidden" id="systemDialog">
+                <div class="dialog-content q-animate-scale-in">
+                    <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
+                    <p class="mb-6 opacity-70">You are about to bypass the safety protocols of the main reactor. This action is irreversible and may lead to catastrophic failure.</p>
+                    
+                    <div class="bg-black/40 p-4 rounded-lg mb-6 border border-white/5 font-mono text-xs">
+                        <div class="text-success">> Initiating bypass...</div>
+                        <div class="text-success">> Cracking encryption...</div>
+                        <div class="text-warning">> Warning: Thermal limits approaching</div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button class="btn-starlight flex-1" onclick="toggleDialog(false)">Confirm Override</button>
+                        <button class="btn-secondary" onclick="toggleDialog(false)">Abort Mission</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <footer class="mt-20 pt-8 border-t border-white/10 opacity-50 text-sm">
             Generated by Quantum CSS Dynamic Docs · 2/2/2026
         </footer>
     </div>
+
+    <script>
+        // Dialog Toggle
+        function toggleDialog(show) {
+            const dialog = document.getElementById('systemDialog');
+            if (show) {
+                dialog.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                dialog.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Close dialog on overlay click
+        const systemDialog = document.getElementById('systemDialog');
+        if (systemDialog) {
+            systemDialog.addEventListener('click', (e) => {
+                if (e.target === systemDialog) {
+                    toggleDialog(false);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
