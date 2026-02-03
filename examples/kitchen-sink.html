@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum CSS - Kitchen Sink</title>
     <link rel="stylesheet" href="../dist/quantum.min.css">
+    <script src="../src/starlight.js"></script>
     <style>
         .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
         .swatch { height: 4rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(0,0,0,0.1); }
@@ -879,7 +880,7 @@
 
             <!-- Dialog Overlay -->
             <div class="dialog-overlay hidden" id="systemDialog">
-                <div class="dialog-content q-animate-scale-in">
+                <div class="dialog-content ani-scale-in">
                     <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
                     <p class="mb-6 opacity-70">You are about to bypass the safety protocols of the main reactor. This action is irreversible and may lead to catastrophic failure.</p>
                     

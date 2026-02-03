@@ -1,18 +1,5 @@
 /* Starlight UI - Premium Components */
 
-/* 0. Layout Helpers */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 var(--space-8);
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-8);
-}
-
 /* Links */
 a {
   color: var(--color-starlight-blue);
@@ -135,12 +122,12 @@ body.light-mode .radio-starlight {
   transform: translateX(-50%) translateY(0);
 }
 
-/* 4. Skeletons & Twinkle */
-.stars-container {
+/* 4. Starlight Stars (Atmospheric Background) */
+.starlight-stars {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
 }
 
@@ -149,12 +136,12 @@ body.light-mode .radio-starlight {
   background: white;
   border-radius: 50%;
   opacity: 0.3;
-  animation: twinkle var(--duration, 3s) infinite ease-in-out;
+  animation: star-twinkle var(--duration, 3s) infinite ease-in-out;
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+body.light-mode .star {
+  background: var(--color-starlight-blue);
+  opacity: 0.15;
 }
 
 /* 5. Dialog & Overlays */

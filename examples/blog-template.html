@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Starlight Blog Template</title>
   <link rel="stylesheet" href="../dist/quantum.min.css">
+  <script src="../src/starlight.js"></script>
   <style>
     /* Theme Toggle Styling */
     .theme-toggle {
@@ -76,7 +77,7 @@
 <body class="bg-starlight-deep text-primary font-sans antialiased min-h-screen relative overflow-x-hidden">
   
   <!-- Ambient Background Glows -->
-  <div class="stars-container">
+  <div class="starlight-stars">
     <div class="star" style="top: 10%; left: 20%; --duration: 3s;"></div>
     <div class="star" style="top: 30%; left: 80%; --duration: 4s;"></div>
     <div class="star" style="top: 70%; left: 40%; --duration: 5s;"></div>
@@ -84,7 +85,7 @@
     <div class="star" style="top: 90%; left: 90%; --duration: 4s;"></div>
   </div>
 
-  <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
     <div class="absolute top-0 left-0 w-full h-full bg-gradient-radial from-primary opacity-10"></div>
   </div>
 
