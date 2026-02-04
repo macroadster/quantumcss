@@ -41,6 +41,7 @@
             <button class="btn-secondary" onclick="setTheme('dark')">🌙 Dark</button>
             <button class="btn-outline" onclick="setTheme('auto')">🖥️ Follow System</button>
             <button class="btn-ghost" onclick="toggleTheme()">🔄 Cycle</button>
+            <button class="btn-warning" onclick="forceRefresh()">🔃 Force Refresh</button>
         </div>
         
         <div class="status-message" id="status">
@@ -71,10 +72,20 @@
             const statusEl = document.getElementById('status');
             const stateEl = document.getElementById('current-state');
             
+            // Debug information
+            console.log('Theme Debug:', {
+                currentTheme,
+                savedTheme,
+                effectiveTheme,
+                systemPrefers,
+                htmlDataTheme: html.getAttribute('data-theme'),
+                htmlAttributes: Object.keys(html.attributes).map(attr => `${attr}: ${html.getAttribute(attr)}`)
+            });
+            
             statusEl.innerHTML = `
-                <strong>Current Theme:</strong> ${currentTheme}<br>
+                <strong>Current Theme:</strong> ${currentTheme || 'null'}<br>
                 <strong>Saved Preference:</strong> ${savedTheme || 'none'}<br>
-                <strong>Effective Theme:</strong> ${effectiveTheme || currentTheme}<br>
+                <strong>Effective Theme:</strong> ${effectiveTheme || currentTheme || 'null'}<br>
                 <strong>System Prefers:</strong> ${systemPrefers ? 'light' : 'dark'}
             `;
             
@@ -108,13 +119,44 @@
             updateStatus();
         });
         
-        // Initial update
+        // Initial update - wait for first themechange event or timeout
+        let themeInitialized = false;
+        const firstThemeChange = (e) => {
+            if (!themeInitialized) {
+                themeInitialized = true;
+                window.removeEventListener('themechange', firstThemeChange);
+                updateStatus();
+            }
+        };
+        
+        window.addEventListener('themechange', firstThemeChange);
+        
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(updateStatus, 100); // Small delay to ensure theme initialization
+            // Wait for Starlight to initialize, then check status
+            setTimeout(() => {
+                if (!themeInitialized) {
+                    // If no themechange event fired yet, check current state
+                    themeInitialized = true;
+                    window.removeEventListener('themechange', firstThemeChange);
+                    updateStatus();
+                }
+            }, 500); // Longer delay to ensure Starlight initialization
         });
         
         // Also update every 2 seconds to show real-time changes
         setInterval(updateStatus, 2000);
+        
+        // Force refresh function
+        function forceRefresh() {
+            console.log('Forcing theme refresh...');
+            // Manually trigger Starlight theme initialization
+            if (window.Starlight && window.Starlight.initTheme) {
+                window.Starlight.initTheme();
+                setTimeout(updateStatus, 100);
+            } else {
+                console.error('Starlight not available');
+            }
+        }
     </script>
 </body>
 </html>
