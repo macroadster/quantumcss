@@ -77,7 +77,7 @@ function generateCSS(configPath) {
     gap: 'gap', 'gap-x': 'column-gap', 'gap-y': 'row-gap'
   };
 
-  function getRulesForClass(fullCls) {
+  function getRulesForClass(fullCls, processedPresets = new Set()) {
     let cls = fullCls, variant = null, breakpoint = null, isNeg = false;
     if (cls.startsWith('-')) { isNeg = true; cls = cls.substring(1); }
     const parts = cls.split(':');
@@ -91,17 +91,17 @@ function generateCSS(configPath) {
       currentPart++;
     }
 
-    // Check Presets
-    if (config.componentPresets && config.componentPresets[cls]) {
-      const presetClasses = config.componentPresets[cls].split(/\s+/);
+    // Check Presets (User Config & Defaults)
+    const presetValue = (config.componentPresets && config.componentPresets[cls]) || (utilityMaps[cls] && typeof utilityMaps[cls] === 'string' ? utilityMaps[cls] : null);
+    
+    if (presetValue && !processedPresets.has(cls)) {
+      processedPresets.add(cls);
+      const presetClasses = presetValue.split(/\s+/);
       let allGroups = [];
       presetClasses.forEach(pCls => {
-        const subGroups = getRulesForClass(pCls);
+        const subGroups = getRulesForClass(pCls, new Set(processedPresets));
         if (subGroups) {
           subGroups.forEach(group => {
-            // Apply the preset's own breakpoint/variant to sub-groups if they don't have one?
-            // Actually, usually presets are used as base classes.
-            // If someone does md:btn-primary, we want the md: to apply to all rules in the preset.
             allGroups.push({
               breakpoint: breakpoint || group.breakpoint,
               variant: variant || group.variant,
@@ -114,9 +114,9 @@ function generateCSS(configPath) {
     }
 
     let property = null, value = null, customSelector = null;
-    if (utilityMaps[cls]) {
+    if (utilityMaps[cls] && typeof utilityMaps[cls] === 'object') {
       const entry = utilityMaps[cls];
-      if (typeof entry === 'object' && !Array.isArray(entry)) { property = entry.property; value = entry.value; }
+      if (!Array.isArray(entry)) { property = entry.property; value = entry.value; }
       else { property = entry; }
     }
 

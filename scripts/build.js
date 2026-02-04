@@ -339,26 +339,41 @@ class QuantumCSSBuilder {
         ${config.componentPresets ? `
         <section>
             <h2>Component Presets</h2>
+            <p class="mb-6 opacity-70">Atomic and molecular utility compositions for individual elements.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                ${Object.entries(config.componentPresets).map(([name, utilities]) => `
+                ${Object.entries(config.componentPresets)
+                    .filter(([name]) => !name.startsWith('starlight-'))
+                    .map(([name, utilities]) => {
+                    let example = `<button class="${name}">Preset Button</button>`;
+                    
+                    if (name.includes('nav')) {
+                        example = `<nav class="${name} rounded-lg overflow-hidden"><div class="p-4 flex justify-between items-center"><span class="font-bold">Logo</span><div class="flex gap-4 text-xs"><span>Link 1</span><span>Link 2</span></div></div></nav>`;
+                    } else if (name.includes('search')) {
+                        example = `<div class="${name}"><svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" class="input-starlight search-input" placeholder="Search..."></div>`;
+                    } else if (name.includes('grid') || name.includes('dashboard')) {
+                        example = `<div class="${name} w-full"><div class="starlight-card p-4 text-center">A</div><div class="starlight-card p-4 text-center">B</div><div class="starlight-card p-4 text-center">C</div></div>`;
+                    } else if (name.includes('gallery')) {
+                        example = `<div class="${name} w-full">${[1,2,3,4].map(i => `<div class="gallery-item"><div class="absolute inset-0 bg-starlight/10 flex items-center justify-center text-2xs opacity-50">IMAGE ${i}</div></div>`).join('')}</div>`;
+                    } else if (name.includes('form')) {
+                        example = `<div class="${name} w-full"><div class="flex flex-col gap-2"><label class="text-[10px] uppercase font-bold opacity-50">Field A</label><input class="input-starlight" placeholder="Value..."></div><div class="form-row"><span class="text-xs">Option B</span><label class="toggle toggle-starlight"><input type="checkbox" class="toggle-input"><span class="toggle-slider"></span></label></div></div>`;
+                    } else if (name.includes('dialog')) {
+                        example = `<div class="${name}"><button class="dialog-close" style="top:1rem; right:1rem;"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg></button><h4 class="font-bold mb-2">Dialog Title</h4><p class="text-sm opacity-70 mb-4">Sample content for the dialog preset.</p><div class="flex gap-4"><button class="btn-starlight flex-1">Action</button><button class="btn-secondary flex-1">Cancel</button></div></div>`;
+                    } else if (name.includes('card')) {
+                        example = `<div class="${name}"><h4 class="font-bold">Preset Card</h4><p class="text-sm opacity-70">Using ${name}</p></div>`;
+                    }
+
+                    return `
                     <div class="starlight-card p-6">
                         <div class="mb-4 flex justify-between items-center">
                             <span class="token-name">.${name}</span>
                             <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
                         </div>
                         <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
-                            ${name.includes('card') ? `
-                                <div class="${name}">
-                                    <h4 class="font-bold">Preset Card</h4>
-                                    <p class="text-sm opacity-70">Using ${name}</p>
-                                </div>
-                            ` : `
-                                <button class="${name}">Preset Button</button>
-                            `}
+                            ${example}
                         </div>
                         <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">${utilities}</div>
                     </div>
-                `).join('')}
+                `}).join('')}
             </div>
         </section>
         ` : ''}
@@ -369,6 +384,9 @@ class QuantumCSSBuilder {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">`;
 
     Object.keys(utilityMaps).forEach(cls => {
+      // Skip high-level presets which are displayed in their own section below
+      if (['starlight-nav', 'starlight-search', 'starlight-dashboard', 'starlight-gallery', 'starlight-form', 'starlight-dialog'].includes(cls)) return;
+
       if (cls.startsWith('btn-') || cls.startsWith('input-') || cls === 'glass' || cls === 'bg-starlight' || cls.includes('gradient')) {
         html += `
                 <div class="starlight-card p-6">
@@ -388,194 +406,152 @@ class QuantumCSSBuilder {
             </div>
         </section>
 
-        <!-- Interactive Search -->
+        <!-- High-Level Presets -->
         <section>
-            <h2>Interactive Search</h2>
-            <div class="starlight-card p-8 flex flex-col items-center gap-6">
-                <div class="search-container">
-                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                    <input type="text" class="input-starlight search-input" placeholder="Search the galaxy...">
-                </div>
-                <p class="text-sm text-muted">A glassmorphic search bar with integrated iconography.</p>
-            </div>
-        </section>
-
-        <!-- Navigation & Menu -->
-        <section>
-            <h2>Navigation & Menus</h2>
-            <div class="starlight-card p-0 overflow-hidden">
-                <nav class="nav-glass">
-                    <div class="font-bold text-xl text-gradient-starlight">Starlight.ai</div>
-                    <div class="flex items-center gap-4">
-                        <div class="hidden md:flex gap-6 text-sm">
-                            <a href="#">Fleet</a>
-                            <a href="#">Stations</a>
-                            <a href="#">Resources</a>
-                        </div>
-                        <div class="hamburger" id="menuToggle">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="nav-menu-mobile" id="mobileMenu">
-                        <div class="flex flex-col gap-2">
-                            <button class="dropdown-item">Dashboard</button>
-                            <button class="dropdown-item">Missions</button>
-                            <button class="dropdown-item">Cargo</button>
-                            <hr class="border-white/10 my-1">
-                            <button class="dropdown-item text-error">System Shutdown</button>
-                        </div>
-                    </div>
-                </nav>
-                <div class="p-20 text-center opacity-50">
-                    Scroll context for sticky navigation
-                </div>
-            </div>
-        </section>
-
-        <!-- Dashboard Widgets -->
-        <section>
-            <h2>Dashboard Widgets</h2>
-            <div class="dashboard-grid">
-                <div class="starlight-card stat-card">
-                    <span class="stat-label">Core Stability</span>
-                    <span class="stat-value">98.4%</span>
-                    <div class="stat-trend up">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                        2.1%
-                    </div>
-                </div>
-                <div class="starlight-card stat-card">
-                    <span class="stat-label">Fuel Reserves</span>
-                    <span class="stat-value">12.8k</span>
-                    <div class="stat-trend down">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                        0.4%
-                    </div>
-                </div>
-                <div class="starlight-card stat-card">
-                    <span class="stat-label">Neural Sync</span>
-                    <span class="stat-value">Active</span>
-                    <div class="stat-trend up">
-                        <div class="w-2 h-2 bg-success rounded-full ani-cosmic-pulse mr-1"></div>
-                        Optimal
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Widget -->
-        <section>
-            <h2>Gallery Widget</h2>
-            <div class="starlight-gallery">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Nebula">
-                    <div class="gallery-overlay">
-                        <span class="text-xs font-bold uppercase tracking-widest">Orion Nebula</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80" alt="Earth">
-                    <div class="gallery-overlay">
-                        <span class="text-xs font-bold uppercase tracking-widest">Blue Marble</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=800&q=80" alt="Galaxy">
-                    <div class="gallery-overlay">
-                        <span class="text-xs font-bold uppercase tracking-widest">Andromeda</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=800&q=80" alt="Deep Space">
-                    <div class="gallery-overlay">
-                        <span class="text-xs font-bold uppercase tracking-widest">Void</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Comprehensive Forms -->
-        <section>
-            <h2>Advanced Form Controls</h2>
-            <div class="starlight-card">
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-8" onsubmit="return false">
-                    <div class="flex flex-col gap-4">
-                        <label class="text-sm font-semibold opacity-70">Mission Designation</label>
-                        <input type="text" class="input-starlight" placeholder="Enter codename...">
-                        
-                        <label class="text-sm font-semibold opacity-70">Sector Selection</label>
-                        <select class="input-starlight select-starlight">
-                            <option>Alpha Centauri</option>
-                            <option>Betelgeuse</option>
-                            <option>Kepler-186f</option>
-                        </select>
-
-                        <label class="text-sm font-semibold opacity-70">Warp Factor</label>
-                        <input type="range" class="range-starlight" min="1" max="9" step="0.1">
-                        <div class="flex justify-between text-xs opacity-50">
-                            <span>Sub-light</span>
-                            <span>Trans-warp</span>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col gap-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <div class="font-semibold">Cloaking Device</div>
-                                <div class="text-xs opacity-50">Renders vessel invisible to radar</div>
+            <h2>High-Level Component Presets</h2>
+            <p class="mb-6 opacity-70">Semantic classes that compose multiple utilities for rapid AI-driven development.</p>
+            <div class="grid grid-cols-1 gap-12">
+                <!-- Navigation -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Navigation Menu (.starlight-nav)</div>
+                    <nav class="starlight-nav relative">
+                        <div class="p-4 flex justify-between items-center">
+                            <div class="font-bold text-xl text-gradient-starlight">Starlight OS</div>
+                            <div class="flex items-center gap-8">
+                                <div class="nav-desktop">
+                                    <a href="#" class="nav-link">Fleet</a>
+                                    <a href="#" class="nav-link">Stations</a>
+                                    <a href="#" class="nav-link">Resources</a>
+                                </div>
+                                <div class="hamburger">
+                                    <span></span><span></span><span></span>
+                                </div>
                             </div>
-                            <label class="toggle toggle-starlight">
-                                <input type="checkbox" class="toggle-input">
-                                <span class="toggle-slider"></span>
-                            </label>
                         </div>
+                    </nav>
+                    <div class="p-12 text-center opacity-30 italic text-sm">Scroll context for navigation</div>
+                </div>
 
-                        <div class="flex flex-col gap-3">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="checkbox-starlight" checked>
-                                <span class="text-sm">Auto-pilot engaged</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="checkbox-starlight">
-                                <span class="text-sm">Shields at maximum</span>
-                            </label>
+                <!-- Search -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Interactive Search (.starlight-search)</div>
+                    <div class="p-12 flex flex-col items-center gap-6">
+                        <div class="starlight-search">
+                            <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" class="input-starlight search-input" placeholder="Search the cosmos...">
                         </div>
+                        <p class="text-sm text-muted">A glassmorphic search bar with integrated iconography.</p>
+                    </div>
+                </div>
 
-                        <div class="flex gap-4 mt-auto">
-                            <button class="btn-starlight flex-1">Launch Mission</button>
-                            <button class="btn-secondary">Save Draft</button>
+                <!-- Dashboard -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dashboard Grid (.starlight-dashboard)</div>
+                    <div class="p-8">
+                        <div class="starlight-dashboard">
+                            <div class="starlight-card stat-card">
+                                <span class="stat-label">Core Stability</span>
+                                <span class="stat-value">98.4%</span>
+                                <div class="stat-trend up">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                    2.1%
+                                </div>
+                            </div>
+                            <div class="starlight-card stat-card">
+                                <span class="stat-label">Neural Sync</span>
+                                <span class="stat-value">Active</span>
+                                <div class="stat-trend up">
+                                    <div class="w-2 h-2 bg-success rounded-full ani-cosmic-pulse mr-1"></div>
+                                    Optimal
+                                </div>
+                            </div>
+                            <div class="starlight-card stat-card">
+                                <span class="stat-label">Latency</span>
+                                <span class="stat-value">12ms</span>
+                                <div class="stat-trend down">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    0.4%
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
-        </section>
+                </div>
 
-        <!-- Dialog Section -->
-        <section>
-            <h2>Dialog Windows</h2>
-            <div class="starlight-card p-12 text-center">
-                <button class="btn-starlight btn-lg" onclick="toggleDialog(true)">Open System Override</button>
-            </div>
-
-            <!-- Dialog Overlay -->
-            <div class="dialog-overlay hidden" id="systemDialog">
-                <div class="dialog-content ani-scale-in">
-                    <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
-                    <p class="mb-6 opacity-70">You are about to bypass the safety protocols of the main reactor. This action is irreversible and may lead to catastrophic failure.</p>
-                    
-                    <div class="bg-black/40 p-4 rounded-lg mb-6 border border-white/5 font-mono text-xs">
-                        <div class="text-success">> Initiating bypass...</div>
-                        <div class="text-success">> Cracking encryption...</div>
-                        <div class="text-warning">> Warning: Thermal limits approaching</div>
+                <!-- Gallery -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Gallery Widget (.starlight-gallery)</div>
+                    <div class="p-8">
+                        <div class="starlight-gallery">
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Nebula">
+                                <div class="gallery-overlay"><span class="text-xs font-bold uppercase tracking-widest">Orion</span></div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80" alt="Earth">
+                                <div class="gallery-overlay"><span class="text-xs font-bold uppercase tracking-widest">Terra</span></div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=800&q=80" alt="Galaxy">
+                                <div class="gallery-overlay"><span class="text-xs font-bold uppercase tracking-widest">Andromeda</span></div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=800&q=80" alt="Deep Space">
+                                <div class="gallery-overlay"><span class="text-xs font-bold uppercase tracking-widest">Void</span></div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="flex gap-4">
-                        <button class="btn-starlight flex-1" onclick="toggleDialog(false)">Confirm Override</button>
-                        <button class="btn-secondary" onclick="toggleDialog(false)">Abort Mission</button>
+                <!-- Form -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Advanced Form (.starlight-form)</div>
+                    <div class="p-8">
+                        <div class="starlight-form">
+                            <div class="flex flex-col gap-4">
+                                <label class="text-sm font-semibold opacity-70">Mission Designation</label>
+                                <input type="text" class="input-starlight" placeholder="Enter codename...">
+                                <label class="text-sm font-semibold opacity-70">Warp Factor</label>
+                                <input type="range" class="range-starlight" min="1" max="9" step="0.1">
+                            </div>
+                            <div class="flex flex-col gap-6">
+                                <div class="form-row">
+                                    <div>
+                                        <div class="font-semibold">Cloaking Device</div>
+                                        <div class="text-[10px] opacity-50">Stealth mode activation</div>
+                                    </div>
+                                    <label class="toggle toggle-starlight"><input type="checkbox" class="toggle-input"><span class="toggle-slider"></span></label>
+                                </div>
+                                <div class="flex gap-4 mt-auto">
+                                    <button class="btn-starlight flex-1">Launch</button>
+                                    <button class="btn-secondary">Abort</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dialog -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
+                    <div class="p-12 text-center">
+                        <button class="btn-starlight btn-lg" onclick="toggleDialog(true)">Test Complete Dialog</button>
+                    </div>
+                    <div class="dialog-overlay hidden" id="systemDialog">
+                        <div class="starlight-dialog">
+                            <button class="dialog-close" onclick="toggleDialog(false)">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
+                            <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
+                            <p class="mb-6 opacity-70">You are about to bypass safety protocols. This action is irreversible.</p>
+                            <div class="bg-black/20 p-4 rounded-lg mb-6 font-mono text-xs border border-white/5">
+                                <div class="text-success">> STATUS: AUTHORIZED</div>
+                                <div class="text-success">> CORE: ACCESSIBLE</div>
+                            </div>
+                            <div class="flex gap-4">
+                                <button class="btn-starlight flex-1" onclick="toggleDialog(false)">Confirm</button>
+                                <button class="btn-secondary flex-1" onclick="toggleDialog(false)">Abort</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -597,23 +573,6 @@ class QuantumCSSBuilder {
                 dialog.classList.add('hidden');
                 document.body.style.overflow = 'auto';
             }
-        }
-
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                mobileMenu.classList.toggle('active');
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
-                    mobileMenu.classList.remove('active');
-                }
-            });
         }
 
         // Close dialog on overlay click

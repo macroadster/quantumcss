@@ -43,48 +43,6 @@
             background-position: center;
         }
 
-        .nav-link {
-            position: relative;
-            font-weight: 600;
-            letter-spacing: 0.025em;
-        }
-
-        body.light-mode .nav-link {
-            color: #475569;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #00d4ff;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Hamburger Animation */
-        #menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        #menu-toggle.open span:nth-child(2) { opacity: 0; }
-        #menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-        
-        #menu-toggle span {
-            transition: all 0.3s ease;
-        }
-
-        body.light-mode #menu-toggle span {
-            background-color: #1e293b;
-        }
-
-        .mobile-menu-active {
-            overflow: hidden;
-        }
-
         /* Theme Toggle Styling */
         .theme-toggle {
             cursor: pointer;
@@ -145,46 +103,51 @@
 </head>
 <body class="font-sans">
     <!-- Navigation -->
-    <nav class="glass sticky top-0 z-50 py-4 px-8 flex justify-between items-center border-b border-white border-opacity-5">
+    <nav class="nav-glass">
         <div class="text-3xl font-bold tracking-tighter text-gradient-starlight cursor-pointer">GAMEVAULT</div>
         
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex gap-10 items-center">
-            <a href="#" class="nav-link text-white hover:text-starlight transition">Store</a>
-            <a href="#" class="nav-link text-white hover:text-starlight transition">Games</a>
-            <a href="#" class="nav-link text-white hover:text-starlight transition">News</a>
-            <a href="#" class="nav-link text-white hover:text-starlight transition">Community</a>
-            
-            <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
-                <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <div class="flex items-center gap-8">
+            <!-- Desktop Menu -->
+            <div class="nav-desktop">
+                <a href="#" class="nav-link">Store</a>
+                <a href="#" class="nav-link">Games</a>
+                <a href="#" class="nav-link">News</a>
+                <a href="#" class="nav-link">Community</a>
+                
+                <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                    <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
+
+                <button class="bg-starlight text-black px-8 py-2.5 rounded-full font-bold glow-blue hover:scale-105 transition border-none">Play Now</button>
             </div>
 
-            <button class="bg-starlight text-black px-8 py-2.5 rounded-full font-bold glow-blue hover:scale-105 transition border-none">Play Now</button>
+            <!-- Mobile Actions -->
+            <div class="flex items-center gap-4 md:hidden">
+                <div id="theme-btn-mobile" class="theme-toggle" title="Toggle Theme">
+                    <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
 
-        <!-- Hamburger Button -->
-        <div class="flex items-center gap-4 md:hidden">
-            <div id="theme-btn-mobile" class="theme-toggle" title="Toggle Theme">
-                <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <!-- Mobile Menu -->
+        <div class="nav-menu-mobile">
+            <div class="flex flex-col gap-4">
+                <a href="#" class="dropdown-item">Store</a>
+                <a href="#" class="dropdown-item">Games</a>
+                <a href="#" class="dropdown-item">News</a>
+                <a href="#" class="dropdown-item">Community</a>
+                <hr class="border-white/10">
+                <button class="bg-starlight text-black px-8 py-3 rounded-xl font-bold glow-blue border-none">Play Now</button>
             </div>
-            <button id="menu-toggle" class="flex flex-col gap-1.5 focus:outline-none z-50">
-                <span class="w-6 h-0.5 bg-white"></span>
-                <span class="w-6 h-0.5 bg-white"></span>
-                <span class="w-6 h-0.5 bg-white"></span>
-            </button>
         </div>
     </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-overlay" class="fixed inset-0 bg-starlight-deep/98 z-40 hidden flex-col items-center justify-center gap-8 animate-fade-in">
-        <a href="#" class="text-3xl font-bold hover:text-starlight transition">Store</a>
-        <a href="#" class="text-3xl font-bold hover:text-starlight transition">Games</a>
-        <a href="#" class="text-3xl font-bold hover:text-starlight transition">News</a>
-        <a href="#" class="text-3xl font-bold hover:text-starlight transition">Community</a>
-        <button class="mt-4 bg-starlight text-black px-12 py-4 rounded-full font-bold glow-blue">Play Now</button>
-    </div>
 
     <!-- Hero Section -->
     <header class="hero-section">
@@ -362,42 +325,26 @@
         </div>
     </footer>
 
+    <script src="../src/starlight.js"></script>
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileOverlay = document.getElementById('mobile-overlay');
         const themeBtns = [document.getElementById('theme-btn'), document.getElementById('theme-btn-mobile')];
         
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('open');
-            mobileOverlay.classList.toggle('hidden');
-            mobileOverlay.classList.toggle('flex');
-            document.body.classList.toggle('mobile-menu-active');
-        });
-
         // Theme Toggle Logic
         themeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.body.classList.toggle('light-mode');
-                const isLight = document.body.classList.contains('light-mode');
-                
-                // Update all icons
-                document.querySelectorAll('.sun-icon').forEach(icon => {
-                    icon.classList.toggle('hidden', !isLight);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                    const isLight = document.body.classList.contains('light-mode');
+                    
+                    // Update all icons
+                    document.querySelectorAll('.sun-icon').forEach(icon => {
+                        icon.classList.toggle('hidden', !isLight);
+                    });
+                    document.querySelectorAll('.moon-icon').forEach(icon => {
+                        icon.classList.toggle('hidden', isLight);
+                    });
                 });
-                document.querySelectorAll('.moon-icon').forEach(icon => {
-                    icon.classList.toggle('hidden', isLight);
-                });
-            });
-        });
-
-        // Close menu on link click
-        mobileOverlay.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('open');
-                mobileOverlay.classList.add('hidden');
-                mobileOverlay.classList.remove('flex');
-                document.body.classList.remove('mobile-menu-active');
-            });
+            }
         });
 
         // Accordion Logic

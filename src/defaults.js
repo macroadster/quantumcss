@@ -62,6 +62,24 @@ const utilityMaps = {
   'overflow-visible': { property: 'overflow', value: 'visible' },
   'border-none': { property: 'border-width', value: '0' },
   'bg-transparent': { property: 'background-color', value: 'transparent' },
+  'relative': { property: 'position', value: 'relative' },
+  'absolute': { property: 'position', value: 'absolute' },
+  'top-1/2': { property: 'top', value: '50%' },
+  'left-4': { property: 'left', value: '1rem' },
+  'pl-12': { property: 'padding-left', value: '3rem' },
+  '-translate-y-1/2': { property: 'transform', value: 'translateY(-50%)' },
+  'pointer-events-none': { property: 'pointer-events', value: 'none' },
+  'w-5': { property: 'width', value: '1.25rem' },
+  'h-5': { property: 'height', value: '1.25rem' },
+  'z-10': { property: 'z-index', value: '10' },
+  'form-row': {
+    property: ['display', 'justify-content', 'align-items', 'gap'],
+    value: ['flex', 'space-between', 'center', '1rem']
+  },
+  'dialog-close': {
+    property: ['position', 'top', 'right', 'width', 'height', 'border-radius', 'display', 'align-items', 'justify-content', 'cursor'],
+    value: ['absolute', '1.5rem', '1.5rem', '2rem', '2rem', '50%', 'flex', 'center', 'center', 'pointer']
+  },
   'glass': {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-width', 'border-color'], 
     value: ['rgba(255, 255, 255, 0.03)', 'blur(16px)', 'blur(16px)', '1px', 'rgba(255, 255, 255, 0.1)'] 
@@ -88,10 +106,19 @@ const utilityMaps = {
     property: ['background-color', 'border', 'color', 'border-radius', 'padding', 'appearance', 'transition', 'min-height', 'width', 'display'],
     value: ['rgba(255, 255, 255, 0.04)', '1px solid rgba(255, 255, 255, 0.15)', 'inherit', '0.75rem', '1rem', 'none', 'all 0.2s ease', '8rem', '100%', 'block']
   },
-  'checkbox-starlight': {
-    property: ['appearance', 'width', 'height', 'background', 'border', 'border-radius', 'cursor', 'transition', 'position', 'display', 'align-items', 'justify-content'],
-    value: ['none', '1.25rem', '1.25rem', 'rgba(255, 255, 255, 0.05)', '1px solid rgba(255, 255, 255, 0.2)', '0.375rem', 'pointer', 'all 0.2s ease', 'relative', 'inline-flex', 'center', 'center']
-  }
-};
-
-module.exports = { defaultTheme, utilityMaps };
+      'checkbox-starlight': {
+      property: ['appearance', 'width', 'height', 'background', 'border', 'border-radius', 'cursor', 'transition', 'position', 'display', 'align-items', 'justify-content'],
+      value: ['none', '1.25rem', '1.25rem', 'rgba(255, 255, 255, 0.05)', '1px solid rgba(255, 255, 255, 0.2)', '0.375rem', 'pointer', 'all 0.2s ease', 'relative', 'inline-flex', 'center', 'center']
+    },
+    'search-container': 'relative block w-full',
+    'search-input': 'pl-12 w-full',
+    'search-icon': 'absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10 w-5 h-5',
+    'starlight-nav': 'nav-glass w-full sticky top-0 z-[1000]',
+    'starlight-search': 'search-container w-full max-w-144',
+    'starlight-dashboard': 'dashboard-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    'starlight-gallery': 'starlight-gallery grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4',
+    'starlight-form': 'starlight-card grid grid-cols-1 md:grid-cols-2 gap-8',
+    'starlight-dialog': 'starlight-dialog ani-scale-in'
+  };
+  
+  module.exports = { defaultTheme, utilityMaps };

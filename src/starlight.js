@@ -35,6 +35,42 @@ const Starlight = {
         container.appendChild(star);
       }
     });
+  },
+
+  /**
+   * Initializes navigation menu toggles for mobile view.
+   * Expects a toggle element with class '.hamburger' and a menu with class '.nav-menu-mobile'.
+   */
+  initNavigation() {
+    const toggles = document.querySelectorAll('.hamburger');
+    
+    toggles.forEach(toggle => {
+      // Find the closest navigation container or parent
+      const nav = toggle.closest('nav') || toggle.closest('.starlight-nav') || toggle.parentElement;
+      if (!nav) return;
+
+      // Find the menu - it might be inside the nav or a sibling
+      let menu = nav.querySelector('.nav-menu-mobile');
+      if (!menu && nav.nextElementSibling && nav.nextElementSibling.classList.contains('nav-menu-mobile')) {
+        menu = nav.nextElementSibling;
+      }
+      
+      if (menu) {
+        toggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isActive = toggle.classList.toggle('active');
+          menu.classList.toggle('active', isActive);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+            menu.classList.remove('active');
+            toggle.classList.remove('active');
+          }
+        });
+      }
+    });
   }
 };
 
@@ -45,5 +81,6 @@ if (typeof window !== 'undefined') {
     if (document.querySelector('.starlight-stars')) {
       Starlight.initStars();
     }
+    Starlight.initNavigation();
   });
 }
