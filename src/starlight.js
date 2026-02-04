@@ -460,10 +460,11 @@ const Starlight = {
         // Save theme preference
         localStorage.setItem(elementConfig.storageKey, nextTheme);
         
-        // Emit theme change event
-        window.dispatchEvent(new CustomEvent('themechange', { 
-          detail: { theme: nextTheme, previousTheme: currentTheme, source: element } 
-        }));
+          // Emit theme change event
+          const systemEvent = new CustomEvent('themechange', {
+            detail: { theme: newTheme, previousTheme: savedTheme, source: 'system' }
+          });
+          window.dispatchEvent(systemEvent);
         
         return nextTheme;
       };
@@ -575,9 +576,10 @@ const Starlight = {
         }
       });
       
-      window.dispatchEvent(new CustomEvent('themechange', { 
-        detail: { theme: nextTheme, effectiveTheme, previousTheme: currentTheme, source: 'global' } 
-      }));
+      const globalEvent = new CustomEvent('themechange', {
+        detail: { theme: nextTheme, effectiveTheme, previousTheme: currentTheme, source: 'global' }
+      });
+      window.dispatchEvent(globalEvent);
       
       return nextTheme;
     };
@@ -615,9 +617,10 @@ const Starlight = {
         }
       });
       
-      window.dispatchEvent(new CustomEvent('themechange', { 
-        detail: { theme, effectiveTheme, previousTheme: currentTheme, source: 'manual' } 
-      }));
+      const elementEvent = new CustomEvent('themechange', {
+        detail: { theme: nextTheme, previousTheme: currentTheme, source: element }
+      });
+      window.dispatchEvent(elementEvent);
       
       return true;
     };
