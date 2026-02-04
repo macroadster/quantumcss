@@ -103,49 +103,55 @@
 </head>
 <body class="font-sans">
     <!-- Navigation -->
-    <nav class="nav-glass">
-        <div class="text-3xl font-bold tracking-tighter text-gradient-starlight cursor-pointer">GAMEVAULT</div>
-        
-        <div class="flex items-center gap-8">
-            <!-- Desktop Menu -->
-            <div class="nav-desktop">
-                <a href="#" class="nav-link">Store</a>
-                <a href="#" class="nav-link">Games</a>
-                <a href="#" class="nav-link">News</a>
-                <a href="#" class="nav-link">Community</a>
-                
-                <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
-                    <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    <nav class="starlight-nav">
+        <div class="p-4 md:px-8 flex justify-between items-center w-full">
+            <div class="text-3xl font-bold tracking-tighter text-gradient-starlight cursor-pointer">GAMEVAULT</div>
+            
+            <div class="flex items-center gap-8">
+                <!-- Desktop Menu -->
+                <div class="nav-desktop">
+                    <ul class="nav-list mr-8">
+                        <li><a href="#" class="nav-link">Store</a></li>
+                        <li><a href="#" class="nav-link">Games</a></li>
+                        <li><a href="#" class="nav-link">News</a></li>
+                        <li><a href="#" class="nav-link">Community</a></li>
+                    </ul>
+                    
+                    <div class="flex items-center gap-4">
+                        <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                            <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                            <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        </div>
+                        <button class="bg-starlight text-black px-8 py-2.5 rounded-full font-bold glow-blue hover:scale-105 transition border-none">Play Now</button>
+                    </div>
                 </div>
 
-                <button class="bg-starlight text-black px-8 py-2.5 rounded-full font-bold glow-blue hover:scale-105 transition border-none">Play Now</button>
-            </div>
-
-            <!-- Mobile Actions -->
-            <div class="flex items-center gap-4 md:hidden">
-                <div id="theme-btn-mobile" class="theme-toggle" title="Toggle Theme">
-                    <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                </div>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <!-- Mobile Actions -->
+                <div class="flex items-center gap-4 md:hidden">
+                    <div id="theme-btn-mobile" class="theme-toggle" title="Toggle Theme">
+                        <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                        <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </div>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Mobile Menu -->
         <div class="nav-menu-mobile">
-            <div class="flex flex-col gap-4">
-                <a href="#" class="dropdown-item">Store</a>
-                <a href="#" class="dropdown-item">Games</a>
-                <a href="#" class="dropdown-item">News</a>
-                <a href="#" class="dropdown-item">Community</a>
-                <hr class="border-white/10">
-                <button class="bg-starlight text-black px-8 py-3 rounded-xl font-bold glow-blue border-none">Play Now</button>
-            </div>
+            <ul class="nav-list vertical">
+                <li><a href="#" class="nav-link">Store</a></li>
+                <li><a href="#" class="nav-link">Games</a></li>
+                <li><a href="#" class="nav-link">News</a></li>
+                <li><a href="#" class="nav-link">Community</a></li>
+                <li class="pt-4 border-t border-white/10">
+                    <button class="bg-starlight text-black w-full py-3 rounded-xl font-bold glow-blue border-none">Play Now</button>
+                </li>
+            </ul>
         </div>
     </nav>
 
