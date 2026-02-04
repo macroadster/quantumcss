@@ -489,7 +489,16 @@ const Starlight = {
       initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     }
     
+    console.log('Starlight initTheme:', {
+      savedTheme,
+      initialTheme,
+      systemPrefers: window.matchMedia('(prefers-color-scheme: light)').matches,
+      config
+    });
+    
     document.documentElement.setAttribute('data-theme', initialTheme);
+    console.log('Set data-theme to:', initialTheme);
+    console.log('Current html[data-theme] after setting:', document.documentElement.getAttribute('data-theme'));
     
     // Store the effective theme if auto mode
     if (savedTheme === 'auto' && config.autoDetect) {
