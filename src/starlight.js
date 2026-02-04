@@ -413,12 +413,14 @@ const Starlight = {
     const config = {
       defaultTheme: 'dark',
       storageKey: 'theme',
-      themes: ['light', 'dark'],
+      themes: ['light', 'dark', 'auto'],
       iconSelector: {
         light: '.sun-icon, [data-theme-icon="light"]',
-        dark: '.moon-icon, [data-theme-icon="dark"]'
+        dark: '.moon-icon, [data-theme-icon="dark"]',
+        auto: '.system-icon, [data-theme-icon="auto"]'
       },
-      autoDetect: true
+      autoDetect: true,
+      followSystem: false
     };
     
     // Override config with global settings if available
@@ -476,9 +478,23 @@ const Starlight = {
     };
     
     // Initialize theme on load
-    const savedTheme = localStorage.getItem(config.storageKey) || 
-                      (config.autoDetect && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : config.defaultTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    const savedTheme = localStorage.getItem(config.storageKey);
+    let initialTheme = savedTheme;
+    
+    if (!savedTheme && config.autoDetect) {
+      // No saved preference, auto-detect from system
+      initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : config.defaultTheme;
+    } else if (savedTheme === 'auto' && config.autoDetect) {
+      // User wants to follow system
+      initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    
+    // Store the effective theme if auto mode
+    if (savedTheme === 'auto' && config.autoDetect) {
+      localStorage.setItem(`${config.storageKey}-effective`, initialTheme);
+    }
     
     // Set initial icon states for all theme toggles
     document.querySelectorAll('.theme-toggle, [data-theme-toggle]').forEach(toggle => {
@@ -502,8 +518,17 @@ const Starlight = {
       const currentTheme = html.getAttribute('data-theme') || config.defaultTheme;
       const themeIndex = config.themes.indexOf(currentTheme);
       const nextTheme = config.themes[(themeIndex + 1) % config.themes.length];
-      html.setAttribute('data-theme', nextTheme);
       
+      // Set effective theme (auto becomes system preference)
+      let effectiveTheme = nextTheme;
+      if (nextTheme === 'auto' && config.autoDetect) {
+        effectiveTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        localStorage.setItem(`${config.storageKey}-effective`, effectiveTheme);
+      } else {
+        localStorage.setItem(`${config.storageKey}-effective`, null);
+      }
+      
+      html.setAttribute('data-theme', effectiveTheme);
       localStorage.setItem(config.storageKey, nextTheme);
       
       // Update icons
@@ -518,20 +543,69 @@ const Starlight = {
       });
       
       window.dispatchEvent(new CustomEvent('themechange', { 
-        detail: { theme: nextTheme, previousTheme: currentTheme, source: 'global' } 
+        detail: { theme: nextTheme, effectiveTheme, previousTheme: currentTheme, source: 'global' } 
       }));
       
       return nextTheme;
+    };
+    
+    // Additional helper to set specific theme
+    window.setTheme = (theme) => {
+      if (!config.themes.includes(theme)) {
+        console.warn(`Theme "${theme}" not available. Available themes:`, config.themes);
+        return false;
+      }
+      
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme') || config.defaultTheme;
+      
+      // Set effective theme (auto becomes system preference)
+      let effectiveTheme = theme;
+      if (theme === 'auto' && config.autoDetect) {
+        effectiveTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        localStorage.setItem(`${config.storageKey}-effective`, effectiveTheme);
+      } else {
+        localStorage.setItem(`${config.storageKey}-effective`, null);
+      }
+      
+      html.setAttribute('data-theme', effectiveTheme);
+      localStorage.setItem(config.storageKey, theme);
+      
+      // Update icons
+      config.themes.forEach(t => {
+        const iconSelector = config.iconSelector[t];
+        if (iconSelector) {
+          const icons = document.querySelectorAll(iconSelector);
+          icons.forEach(icon => {
+            icon.classList.toggle('hidden', t !== theme);
+          });
+        }
+      });
+      
+      window.dispatchEvent(new CustomEvent('themechange', { 
+        detail: { theme, effectiveTheme, previousTheme: currentTheme, source: 'manual' } 
+      }));
+      
+      return true;
     };
     
     // Auto-detect system theme changes
     if (config.autoDetect) {
       window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
         const systemTheme = e.matches ? 'light' : 'dark';
-        const hasUserPreference = localStorage.getItem(config.storageKey) !== null;
+        const savedTheme = localStorage.getItem(config.storageKey);
         
-        if (!hasUserPreference) {
-          document.documentElement.setAttribute('data-theme', systemTheme);
+        // Update theme if user hasn't explicitly chosen light/dark
+        if (!savedTheme || savedTheme === 'auto') {
+          const newTheme = systemTheme;
+          document.documentElement.setAttribute('data-theme', newTheme);
+          
+          // Update effective theme storage for auto mode
+          if (savedTheme === 'auto') {
+            localStorage.setItem(`${config.storageKey}-effective`, newTheme);
+          } else {
+            localStorage.setItem(config.storageKey, newTheme);
+          }
           
           // Update icons
           config.themes.forEach(theme => {
@@ -539,10 +613,43 @@ const Starlight = {
             if (iconSelector) {
               const icons = document.querySelectorAll(iconSelector);
               icons.forEach(icon => {
-                icon.classList.toggle('hidden', theme !== systemTheme);
+                icon.classList.toggle('hidden', theme !== newTheme);
               });
             }
           });
+          
+          // Emit theme change event
+          window.dispatchEvent(new CustomEvent('themechange', { 
+            detail: { theme: newTheme, previousTheme: savedTheme, source: 'system' } 
+          }));
+        }
+      });
+    }
+        }
+        
+        if (newTheme) {
+          document.documentElement.setAttribute('data-theme', newTheme);
+          
+          // Update storage if no explicit user preference
+          if (!hasUserPreference) {
+            localStorage.setItem(config.storageKey, newTheme);
+          }
+          
+          // Update icons
+          config.themes.forEach(theme => {
+            const iconSelector = config.iconSelector[theme];
+            if (iconSelector) {
+              const icons = document.querySelectorAll(iconSelector);
+              icons.forEach(icon => {
+                icon.classList.toggle('hidden', theme !== newTheme);
+              });
+            }
+          });
+          
+          // Emit theme change event
+          window.dispatchEvent(new CustomEvent('themechange', { 
+            detail: { theme: newTheme, previousTheme: savedTheme, source: 'system' } 
+          }));
         }
       });
     }

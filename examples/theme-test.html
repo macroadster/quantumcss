@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Auto-Detection Test</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <script src="../src/starlight.js"></script>
+    <style>
+        body { min-height: 100vh; }
+        .demo-section { 
+            margin: 2rem auto; 
+            max-width: 600px; 
+            padding: 2rem; 
+        }
+        .theme-controls { 
+            display: flex; 
+            gap: 1rem; 
+            margin-bottom: 2rem; 
+            justify-content: center; 
+        }
+        .status-message {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="starlight-stars" id="stars"></div>
+    
+    <div class="demo-section starlight-card">
+        <h1>🎨 Theme Auto-Detection Test</h1>
+        
+        <div class="theme-controls">
+            <button class="btn-starlight" onclick="setTheme('light')">☀️ Light</button>
+            <button class="btn-secondary" onclick="setTheme('dark')">🌙 Dark</button>
+            <button class="btn-outline" onclick="setTheme('auto')">🖥️ Follow System</button>
+            <button class="btn-ghost" onclick="toggleTheme()">🔄 Cycle</button>
+        </div>
+        
+        <div class="status-message" id="status">
+            Loading theme information...
+        </div>
+        
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Click "Follow System" to enable automatic theme switching</li>
+            <li>Change your OS theme (macOS: System Settings → Appearance, Windows: Settings → Personalization → Colors)</li>
+            <li>The webpage should automatically switch to match your OS</li>
+            <li>Try "Cycle" to rotate through all available themes</li>
+        </ol>
+        
+        <h3>Current State:</h3>
+        <div id="current-state"></div>
+    </div>
+    
+    <script>
+        // Monitor theme changes
+        function updateStatus() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const savedTheme = localStorage.getItem('theme');
+            const effectiveTheme = localStorage.getItem('theme-effective');
+            const systemPrefers = window.matchMedia('(prefers-color-scheme: light)').matches;
+            
+            const statusEl = document.getElementById('status');
+            const stateEl = document.getElementById('current-state');
+            
+            statusEl.innerHTML = `
+                <strong>Current Theme:</strong> ${currentTheme}<br>
+                <strong>Saved Preference:</strong> ${savedTheme || 'none'}<br>
+                <strong>Effective Theme:</strong> ${effectiveTheme || currentTheme}<br>
+                <strong>System Prefers:</strong> ${systemPrefers ? 'light' : 'dark'}
+            `;
+            
+            stateEl.innerHTML = `
+                <div class="starlight-card" style="padding: 1rem; margin-top: 1rem;">
+                    <h4>🎯 Theme Configuration:</h4>
+                    <p><strong>html[data-theme]:</strong> ${currentTheme}</p>
+                    <p><strong>localStorage theme:</strong> ${savedTheme || 'null'}</p>
+                    <p><strong>localStorage theme-effective:</strong> ${effectiveTheme || 'null'}</p>
+                    <p><strong>System prefers-color-scheme:</strong> ${systemPrefers ? 'light' : 'dark'}</p>
+                    
+                    <h5>💡 How this works:</h5>
+                    <ul>
+                        <li>If theme is "auto", the system preference is followed</li>
+                        <li>System theme changes are automatically detected</li>
+                        <li>Your manual choice is saved and restored</li>
+                    </ul>
+                </div>
+            `;
+        }
+        
+        // Listen for theme changes
+        window.addEventListener('themechange', (e) => {
+            console.log('Theme changed:', e.detail);
+            updateStatus();
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+            console.log('System theme changed to:', e.matches ? 'light' : 'dark');
+            updateStatus();
+        });
+        
+        // Initial update
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateStatus, 100); // Small delay to ensure theme initialization
+        });
+        
+        // Also update every 2 seconds to show real-time changes
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>
