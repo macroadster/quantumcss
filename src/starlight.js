@@ -658,7 +658,6 @@ const Starlight = {
         }
       });
     }
-        }
         
         if (newTheme) {
           document.documentElement.setAttribute('data-theme', newTheme);
