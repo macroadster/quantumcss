@@ -10,7 +10,7 @@ a {
 
 a:hover {
   color: var(--color-starlight-peach);
-  text-shadow: 0 0 8px rgba(255, 179, 138, 0.4);
+  text-shadow: 0 0 8px rgb(255 179 138 / 40%);
 }
 
 a:active {
@@ -38,17 +38,17 @@ html[data-theme="light"] a:hover {
 }
 
 .starlight-card:hover {
-  border-color: rgba(0, 212, 255, 0.4);
+  border-color: rgb(0 212 255 / 40%);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 212, 255, 0.1);
-  background-color: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 40%), 0 0 20px rgb(0 212 255 / 10%);
+  background-color: rgb(255 255 255 / 4%);
 }
 
 html[data-theme="light"] .starlight-card {
   background: var(--light-card-bg);
   border-color: var(--light-card-border);
   color: #334155;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 2%);
 }
 
 /* 2. Checkboxes & Radio Buttons */
@@ -56,8 +56,8 @@ html[data-theme="light"] .starlight-card {
   appearance: none;
   width: 1.25rem;
   height: 1.25rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid rgb(255 255 255 / 20%);
   border-radius: 0.375rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -71,8 +71,8 @@ html[data-theme="light"] .starlight-card {
 
 html[data-theme="light"] .checkbox-starlight,
 html[data-theme="light"] .radio-starlight {
-  border-color: rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.05);
+  border-color: rgb(0 0 0 / 20%);
+  background: rgb(0 0 0 / 5%);
 }
 
 .checkbox-starlight:checked, .radio-starlight:checked {
@@ -106,9 +106,9 @@ html[data-theme="light"] .radio-starlight {
   left: 50%;
   transform: translateX(-50%) translateY(10px);
   padding: 0.5rem 0.75rem;
-  background-color: rgba(10, 10, 30, 0.98);
+  background-color: rgb(10 10 30 / 98%);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 212, 255, 0.3);
+  border: 1px solid rgb(0 212 255 / 30%);
   border-radius: 0.5rem;
   color: #f1f5f9;
   font-size: 0.75rem;
@@ -117,7 +117,7 @@ html[data-theme="light"] .radio-starlight {
   opacity: 0;
   transition: all 0.2s ease;
   z-index: 800;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgb(0 0 0 / 40%);
 }
 
 .has-tooltip:hover .tooltip {
@@ -151,7 +151,7 @@ html[data-theme="light"] .star {
 .dialog-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgb(0 0 0 / 60%);
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
@@ -160,24 +160,24 @@ html[data-theme="light"] .star {
 }
 
 .dialog-content {
-  background-color: rgba(10, 10, 20, 0.98);
+  background-color: rgb(10 10 20 / 98%);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 1.5rem;
   padding: 2.5rem;
   max-width: 90%;
   width: 600px;
   max-height: 85vh;
   overflow-y: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
   position: relative;
 }
 
 .starlight-dialog {
-  background-color: rgba(10, 10, 20, 0.98);
+  background-color: rgb(10 10 20 / 98%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 1.5rem;
   padding: 3rem;
   width: 100%;
@@ -186,7 +186,7 @@ html[data-theme="light"] .star {
   overflow-y: auto;
   margin: auto;
   position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
 }
 
 /* Custom scrollbar for dialogs */
@@ -197,7 +197,7 @@ html[data-theme="light"] .star {
 
 .dialog-content::-webkit-scrollbar-track,
 .starlight-dialog::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(255 255 255 / 5%);
   border-radius: 4px;
 }
 
@@ -209,14 +209,14 @@ html[data-theme="light"] .star {
 
 html[data-theme="light"] .dialog-content::-webkit-scrollbar-track,
 html[data-theme="light"] .starlight-dialog::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
 }
 
 html[data-theme="light"] .starlight-dialog {
-  background-color: rgba(255, 255, 255, 0.98);
-  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(255 255 255 / 98%);
+  border-color: rgb(0 0 0 / 10%);
   color: #1e293b;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 15%);
 }
 
 .dialog-close {
@@ -226,8 +226,8 @@ html[data-theme="light"] .starlight-dialog {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid rgb(255 255 255 / 10%);
   color: white;
   display: flex;
   align-items: center;
@@ -238,13 +238,13 @@ html[data-theme="light"] .starlight-dialog {
 }
 
 html[data-theme="light"] .dialog-close {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.1);
+  background: rgb(0 0 0 / 5%);
+  border-color: rgb(0 0 0 / 10%);
   color: #1e293b;
 }
 
 .dialog-close:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgb(255 255 255 / 15%);
   border-color: var(--color-starlight-blue);
   transform: rotate(90deg);
 }
@@ -257,14 +257,14 @@ html[data-theme="light"] .dialog-close {
 }
 
 html[data-theme="light"] .dialog-overlay {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgb(255 255 255 / 40%);
 }
 
 html[data-theme="light"] .dialog-content {
-  background-color: rgba(255, 255, 255, 0.98);
-  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(255 255 255 / 98%);
+  border-color: rgb(0 0 0 / 10%);
   color: #1e293b;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 15%);
 }
 
 /* 6. Dropdown Menu */
@@ -274,13 +274,13 @@ html[data-theme="light"] .dialog-content {
   left: 0;
   background-color: var(--color-starlight-deep);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 0.75rem;
   padding: 0.5rem;
   margin-top: 0.5rem;
   min-width: 200px;
   z-index: 600;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 40px rgb(0 0 0 / 40%);
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -301,7 +301,7 @@ html[data-theme="light"] .dialog-content {
   width: 100%;
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(255 255 255 / 70%);
   transition: all 0.2s ease;
   text-align: left;
   background: transparent;
@@ -315,9 +315,9 @@ html[data-theme="light"] .dialog-content {
 }
 
 html[data-theme="light"] .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.99);
+  background-color: rgb(255 255 255 / 99%);
   border-color: #cbd5e1;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
 }
 
 html[data-theme="light"] .dropdown-item {
@@ -333,8 +333,8 @@ html[data-theme="light"] .dropdown-item:hover {
 .input-starlight, .textarea-starlight {
   height: auto;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgb(255 255 255 / 4%);
+  border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 0.75rem;
   color: inherit;
   width: 100%;
@@ -347,44 +347,44 @@ textarea.input-starlight, .textarea-starlight {
 
 html[data-theme="light"] .input-starlight, 
 html[data-theme="light"] .textarea-starlight {
-  background-color: #ffffff;
+  background-color: #fff;
   border-color: #cbd5e1;
 }
 
 html[data-theme="light"] .glass {
-  background-color: rgba(0, 0, 0, 0.02);
-  border-color: rgba(0, 0, 0, 0.05);
+  background-color: rgb(0 0 0 / 2%);
+  border-color: rgb(0 0 0 / 5%);
 }
 
 /* 8. Input Focus States */
 .input-starlight:focus, .textarea-starlight:focus {
   outline: none;
   border-color: var(--color-starlight-blue);
-  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1), 0 0 20px rgba(0, 212, 255, 0.1);
-  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 0 20px rgb(0 212 255 / 10%);
+  background-color: rgb(255 255 255 / 6%);
 }
 
 html[data-theme="light"] .input-starlight:focus,
 html[data-theme="light"] .textarea-starlight:focus {
   border-color: var(--color-starlight-blue);
-  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
-  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 4px 12px rgb(0 0 0 / 5%);
+  background-color: #fff;
 }
 
 /* 9. Code Interface Window */
 .code-window {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
 }
 
 .code-window-header {
-  background: rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgb(255 255 255 / 5%);
+  border-bottom: 1px solid rgb(255 255 255 / 5%);
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -408,13 +408,13 @@ html[data-theme="light"] .textarea-starlight:focus {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgb(255 255 255 / 40%);
 }
 
 html[data-theme="light"] .code-window {
   background: #f8fafc;
   border-color: #e2e8f0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 5%);
 }
 
 html[data-theme="light"] .code-window-header {
@@ -428,10 +428,10 @@ html[data-theme="light"] .code-window-title {
 
 /* 10. Starlight Accordion */
 .accordion-starlight.accordion-item {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgb(255 255 255 / 2%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgb(255 255 255 / 8%);
   border-radius: var(--radius-xl);
   margin-bottom: var(--space-4);
   transition: all var(--transition-base);
@@ -439,15 +439,15 @@ html[data-theme="light"] .code-window-title {
 }
 
 .accordion-starlight.accordion-item:hover {
-  border-color: rgba(0, 212, 255, 0.3);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.05);
+  border-color: rgb(0 212 255 / 30%);
+  background: rgb(255 255 255 / 4%);
+  box-shadow: 0 0 20px rgb(0 212 255 / 5%);
 }
 
 .accordion-starlight.accordion-item.active {
   border-color: var(--color-starlight-blue);
-  background: rgba(0, 212, 255, 0.03);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.1), inset 0 0 20px rgba(0, 212, 255, 0.05);
+  background: rgb(0 212 255 / 3%);
+  box-shadow: 0 0 30px rgb(0 212 255 / 10%), inset 0 0 20px rgb(0 212 255 / 5%);
 }
 
 .accordion-starlight .accordion-header {
@@ -460,13 +460,13 @@ html[data-theme="light"] .code-window-title {
 }
 
 .accordion-starlight.active .accordion-header {
-  background: linear-gradient(to right, rgba(255, 179, 138, 0.15), rgba(0, 212, 255, 0.15)) !important;
-  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  background: linear-gradient(to right, rgb(255 179 138 / 15%), rgb(0 212 255 / 15%)) !important;
+  border-bottom: 1px solid rgb(0 212 255 / 20%);
 }
 
 .accordion-starlight .accordion-content {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)) !important;
-  color: rgba(255, 255, 255, 0.6) !important;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 30%), rgb(0 0 0 / 10%)) !important;
+  color: rgb(255 255 255 / 60%) !important;
   font-size: 1rem;
   line-height: 1.8;
   padding: 0;
@@ -478,7 +478,7 @@ html[data-theme="light"] .code-window-title {
 
 .accordion-starlight .accordion-icon {
   color: var(--color-starlight-blue);
-  filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
+  filter: drop-shadow(0 0 5px rgb(0 212 255 / 50%));
 }
 
 html[data-theme="light"] .accordion-starlight.accordion-item {
@@ -565,7 +565,7 @@ html[data-theme="light"] .search-icon {
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  background: linear-gradient(to top, rgb(0 0 0 / 80%), transparent);
   display: flex;
   align-items: flex-end;
   padding: 1rem;
@@ -624,10 +624,10 @@ html[data-theme="light"] .stat-value {
 
 /* 14. Hamburger Menu Glass */
 .nav-glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(255 255 255 / 5%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -637,9 +637,9 @@ html[data-theme="light"] .stat-value {
 }
 
 html[data-theme="light"] .nav-glass {
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  background: rgb(255 255 255 / 95%);
+  border-bottom-color: rgb(0 0 0 / 8%);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 3%);
 }
 
 .nav-desktop {
@@ -663,7 +663,7 @@ html[data-theme="light"] .nav-glass {
 .nav-link {
   font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(255 255 255 / 70%);
   transition: all 0.3s;
   position: relative;
   padding: 0.5rem 0;
@@ -683,7 +683,7 @@ html[data-theme="light"] .nav-glass {
 }
 
 .nav-list.vertical .nav-link:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(255 255 255 / 5%);
   color: var(--color-starlight-blue);
 }
 
@@ -722,8 +722,8 @@ html[data-theme="light"] .nav-link:hover {
   align-items: center;
   gap: 0.4rem;
   cursor: pointer;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 0.5rem;
   padding: 0.5rem;
   transition: all 0.3s;
@@ -731,17 +731,17 @@ html[data-theme="light"] .nav-link:hover {
 }
 
 html[data-theme="light"] .hamburger {
-  background: rgba(0,0,0,0.02);
-  border-color: rgba(0,0,0,0.1);
+  background: rgb(0 0 0 / 2%);
+  border-color: rgb(0 0 0 / 10%);
 }
 
 .hamburger:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgb(255 255 255 / 10%);
   border-color: var(--color-starlight-blue);
 }
 
 html[data-theme="light"] .hamburger:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgb(0 0 0 / 10%);
 }
 
 .hamburger span {
@@ -764,10 +764,10 @@ html[data-theme="light"] .hamburger span {
 
 .nav-menu-mobile {
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgb(0 0 0 / 20%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgb(255 255 255 / 5%);
   padding: 0;
   max-height: 0;
   overflow: hidden;
@@ -783,9 +783,9 @@ html[data-theme="light"] .hamburger span {
 }
 
 html[data-theme="light"] .nav-menu-mobile {
-  background: #ffffff;
-  border-top-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  border-top-color: rgb(0 0 0 / 8%);
+  box-shadow: 0 15px 30px rgb(0 0 0 / 5%);
 }
 
 /* Vertical Accordion Dropdowns */
@@ -815,11 +815,11 @@ html[data-theme="light"] .nav-menu-mobile {
 .nav-list.vertical .dropdown-item {
   padding: 0.5rem 1rem;
   font-size: 0.825rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgb(255 255 255 / 10%);
   border-radius: 0;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .nav-desktop {
     display: flex;
   }
@@ -844,15 +844,15 @@ html[data-theme="light"] .nav-menu-mobile {
   width: 280px !important;
   min-width: 280px !important;
   border-bottom: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgb(255 255 255 / 10%);
   padding: 2.5rem 1.5rem;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
 html[data-theme="light"] .starlight-nav.vertical {
-  background: rgba(255, 255, 255, 0.98);
-  border-right-color: rgba(0, 0, 0, 0.08);
+  background: rgb(255 255 255 / 98%);
+  border-right-color: rgb(0 0 0 / 8%);
 }
 
 /* 15. More Form Controls */
@@ -873,13 +873,13 @@ html[data-theme="light"] .select-starlight {
   appearance: none;
   width: 100%;
   height: 6px;
-  background: rgba(255,255,255,0.1);
+  background: rgb(255 255 255 / 10%);
   border-radius: 3px;
   outline: none;
 }
 
 html[data-theme="light"] .range-starlight {
-  background: rgba(0,0,0,0.1);
+  background: rgb(0 0 0 / 10%);
 }
 
 .range-starlight::-webkit-slider-thumb {
@@ -903,25 +903,25 @@ html[data-theme="light"] .range-starlight {
   height: 1.75rem;
 }
 
-.toggle-starlight .toggle-slider:before {
+.toggle-starlight .toggle-slider::before {
   height: 1.25rem;
   width: 1.25rem;
   top: 0.25rem;
   left: 0.25rem;
 }
 
-.toggle-starlight input:checked + .toggle-slider:before {
+.toggle-starlight input:checked + .toggle-slider::before {
   transform: translateX(1.75rem);
 }
 
 .toggle-starlight .toggle-slider {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 10%);
 }
 
 html[data-theme="light"] .toggle-starlight .toggle-slider {
-  background: rgba(0,0,0,0.1);
-  border-color: rgba(0,0,0,0.15);
+  background: rgb(0 0 0 / 10%);
+  border-color: rgb(0 0 0 / 15%);
 }
 
 html[data-theme="light"] .bg-starlight,
@@ -945,36 +945,36 @@ html[data-theme="light"] .text-success { color: #059669; }
 html[data-theme="light"] .text-warning { color: #d97706; }
 
 html[data-theme="light"] .dialog-content .bg-black\/40 {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(0 0 0 / 5%);
+  border-color: rgb(0 0 0 / 10%);
 }
 
 /* 18. Semantic Typography Utilities */
 .text-glow {
-  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.2);
+  text-shadow: 0 0 10px rgb(0 212 255 / 50%), 0 0 20px rgb(0 212 255 / 20%);
 }
 
 .text-glass {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255 255 255 / 60%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
 
 html[data-theme="light"] .text-glow {
-  text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+  text-shadow: 0 0 8px rgb(0 212 255 / 30%);
 }
 
 html[data-theme="light"] .text-glass {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgb(0 0 0 / 50%);
 }
 
 /* 17. Skeleton Loading (Starlight Variant) */
 .starlight-loading {
   background: linear-gradient(
     90deg, 
-    rgba(255, 255, 255, 0.03) 25%, 
-    rgba(255, 255, 255, 0.08) 50%, 
-    rgba(255, 255, 255, 0.03) 75%
+    rgb(255 255 255 / 3%) 25%, 
+    rgb(255 255 255 / 8%) 50%, 
+    rgb(255 255 255 / 3%) 75%
   );
   background-size: 200% 100%;
   animation: starlight-shimmer 2s infinite linear;
@@ -990,9 +990,9 @@ html[data-theme="light"] .text-glass {
 html[data-theme="light"] .starlight-loading {
   background: linear-gradient(
     90deg, 
-    rgba(0, 0, 0, 0.03) 25%, 
-    rgba(0, 0, 0, 0.06) 50%, 
-    rgba(0, 0, 0, 0.03) 75%
+    rgb(0 0 0 / 3%) 25%, 
+    rgb(0 0 0 / 6%) 50%, 
+    rgb(0 0 0 / 3%) 75%
   );
   background-size: 200% 100%;
 }
@@ -1004,29 +1004,29 @@ html[data-theme="light"] .starlight-loading {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgb(255 255 255 / 2%);
   backdrop-filter: blur(10px);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 5%);
   border-radius: 10px;
   transition: all 0.3s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 212, 255, 0.3);
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+  background: rgb(0 212 255 / 30%);
+  box-shadow: 0 0 10px rgb(0 212 255 / 20%);
 }
 
 html[data-theme="light"] ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgb(0 0 0 / 3%);
 }
 
 html[data-theme="light"] ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 10%);
+  border-color: rgb(0 0 0 / 5%);
 }
 
 html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
@@ -1036,11 +1036,11 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
 /* Firefox Support */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: rgb(255 255 255 / 10%) transparent;
 }
 
 html[data-theme="light"] * {
-  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+  scrollbar-color: rgb(0 0 0 / 10%) transparent;
 }
 
 @media (forced-colors: active) {
@@ -1073,26 +1073,26 @@ html[data-theme="light"] * {
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 20px rgb(0 212 255 / 30%);
     text-decoration: none;
   }
   
   .btn-starlight:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 25px rgba(0, 212, 255, 0.4);
+    box-shadow: 0 5px 25px rgb(0 212 255 / 40%);
     filter: brightness(1.1);
   }
   
   .btn-starlight:active {
     transform: translateY(0) scale(0.95);
-    box-shadow: 0 2px 10px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 2px 10px rgb(0 212 255 / 20%);
     filter: brightness(0.9);
   }
   
   .btn-starlight:focus-visible {
     outline: 2px solid white;
     outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 0 4px rgb(0 212 255 / 30%);
   }
   
   html[data-theme="light"] .btn-starlight:focus-visible {

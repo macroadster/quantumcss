@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum News | Decoding the Future</title>
     <link rel="stylesheet" href="../dist/quantum.min.css">
+    <script src="../src/starlight.js"></script>
     <style>
         body { background-color: #020617; color: #f1f5f9; transition: background-color 0.5s ease, color 0.5s ease; }
         html[data-theme="light"] body { background-color: #ffffff; color: #0f172a; }
@@ -147,7 +148,7 @@
         .sun-icon { display: none; }
     </style>
 </head>
-<body class="font-sans antialiased light-mode">
+<body class="font-sans antialiased">
     <!-- Top Bar -->
     <div class="border-b border-slate-100 py-2 bg-slate-50">
         <div class="container mx-auto px-6 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500">
@@ -312,22 +313,8 @@
         }
     </style>
     <script>
-        // Theme Toggle Logic
-        const themeBtn = document.getElementById('theme-btn');
-        if (themeBtn) {
-            themeBtn.addEventListener('click', () => {
-                document.body.classList.toggle('light-mode');
-                const isLight = document.body.classList.contains('light-mode');
-                
-                // Update all icons
-                document.querySelectorAll('.sun-icon').forEach(icon => {
-                    icon.style.display = isLight ? 'block' : 'none';
-                });
-                document.querySelectorAll('.moon-icon').forEach(icon => {
-                    icon.style.display = isLight ? 'none' : 'block';
-                });
-            });
-        }
+        // Theme initialization and management is now handled 
+        // automatically by Starlight.initTheme() in starlight.js
     </script>
 </body>
 </html>

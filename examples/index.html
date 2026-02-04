@@ -61,7 +61,7 @@
 
     <header class="hero container">
         <div class="pt-8 pb-12 text-center">
-            <span class="text-[10px] font-black tracking-[0.3em] text-starlight uppercase mb-6 block">QuantumCSS v1.4.2</span>
+            <span class="text-[10px] font-black tracking-[0.3em] text-starlight uppercase mb-6 block">QuantumCSS v1.5.0</span>
             <h1 class="text-7xl md:text-8xl text-gradient-starlight font-black uppercase italic tracking-tighter mb-8">Starlight Design</h1>
             <p class="text-xl text-slate-400 max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
                 A standardized, high-performance UI library. 
@@ -131,68 +131,8 @@
         function openDialog() { document.getElementById('dialog').style.display = 'flex'; }
         function closeDialog() { document.getElementById('dialog').style.display = 'none'; }
         
-        // Initialize theme on load with auto-detection
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check for system preference first, then saved preference
-            const savedTheme = localStorage.getItem('theme');
-            let initialTheme;
-            
-            if (!savedTheme) {
-                // No saved preference - check system preference and default to auto
-                const systemPrefers = window.matchMedia('(prefers-color-scheme: light)').matches;
-                initialTheme = 'auto'; // Enable auto-follow by default
-                console.log('No saved theme found, defaulting to auto mode');
-            } else {
-                initialTheme = savedTheme;
-                console.log('Using saved theme:', savedTheme);
-            }
-            
-            // Set the initial theme (setTheme will handle auto conversion)
-            if (typeof setTheme === 'function') {
-                setTheme(initialTheme);
-            } else {
-                // Fallback: basic theme setting
-                const effectiveTheme = initialTheme === 'auto' ? 
-                    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') : initialTheme;
-                document.documentElement.setAttribute('data-theme', effectiveTheme);
-                
-                // Update icons
-                const sunIcon = document.querySelector('.sun-icon');
-                const moonIcon = document.querySelector('.moon-icon');
-                if (sunIcon && moonIcon) {
-                    const isLight = effectiveTheme === 'light';
-                    sunIcon.classList.toggle('hidden', !isLight);
-                    moonIcon.classList.toggle('hidden', isLight);
-                }
-                
-                localStorage.setItem('theme', initialTheme);
-            }
-        });
-        
-        // Listen for system theme changes when in auto mode
-        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme === 'auto') {
-                const newTheme = e.matches ? 'light' : 'dark';
-                console.log('System theme changed, updating to:', newTheme);
-                
-                document.documentElement.setAttribute('data-theme', newTheme);
-                
-                // Update icons
-                const sunIcon = document.querySelector('.sun-icon');
-                const moonIcon = document.querySelector('.moon-icon');
-                if (sunIcon && moonIcon) {
-                    const isLight = newTheme === 'light';
-                    sunIcon.classList.toggle('hidden', !isLight);
-                    moonIcon.classList.toggle('hidden', isLight);
-                }
-                
-                // Emit event for any listeners
-                window.dispatchEvent(new CustomEvent('themechange', {
-                    detail: { theme: 'auto', effectiveTheme: newTheme, source: 'system' }
-                }));
-            }
-        });
+        // Theme initialization and system preference detection are now handled 
+        // automatically by Starlight.initTheme() in starlight.js
     </script>
 </body>
 </html>

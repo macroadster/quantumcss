@@ -1,6 +1,6 @@
 {
   "name": "@howssatoshi/quantumcss",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "Advanced utility-first CSS framework with JIT generation and modern components",
   "main": "dist/quantum.min.css",
   "bin": {
@@ -46,5 +46,11 @@
   "dependencies": {
     "chokidar": "^5.0.0",
     "glob": "^13.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "stylelint": "^17.1.1",
+    "stylelint-config-standard": "^40.0.0"
   }
 }

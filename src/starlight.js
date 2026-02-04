@@ -419,271 +419,144 @@ const Starlight = {
         dark: '.moon-icon, [data-theme-icon="dark"]',
         auto: '.system-icon, [data-theme-icon="auto"]'
       },
-      autoDetect: true,
-      followSystem: false
+      autoDetect: true
     };
     
     // Override config with global settings if available
     if (window.StarlightConfig && window.StarlightConfig.theme) {
       Object.assign(config, window.StarlightConfig.theme);
     }
-    
-    const createThemeToggle = (element) => {
-      const elementConfig = Object.assign({}, config, {
-        themes: (element.getAttribute('data-themes') || config.themes.join(',')).split(','),
-        storageKey: element.getAttribute('data-theme-storage') || config.storageKey,
-        iconSelector: {
-          light: element.getAttribute('data-theme-icon-light') || config.iconSelector.light,
-          dark: element.getAttribute('data-theme-icon-dark') || config.iconSelector.dark
+
+    const html = document.documentElement;
+
+    /**
+     * Updates the UI icons to match the target theme
+     * @param {string} theme - The theme that is active (light, dark, or auto)
+     * @param {string} effectiveTheme - The actual theme being displayed
+     */
+    const updateIcons = (theme, effectiveTheme) => {
+      const hasAutoIcon = document.querySelector(config.iconSelector.auto) !== null;
+      
+      config.themes.forEach(t => {
+        const selector = config.iconSelector[t];
+        if (selector) {
+          document.querySelectorAll(selector).forEach(icon => {
+            if (theme === 'auto') {
+              // In auto mode, show system icon if it exists, otherwise show the effective theme icon
+              const isAutoIcon = t === 'auto';
+              const isEffectiveIcon = t === effectiveTheme;
+              
+              if (hasAutoIcon) {
+                icon.classList.toggle('hidden', !isAutoIcon);
+              } else {
+                icon.classList.toggle('hidden', !isEffectiveIcon);
+              }
+            } else {
+              icon.classList.toggle('hidden', t !== theme);
+            }
+          });
         }
       });
-      
-      const toggleTheme = () => {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme') || elementConfig.defaultTheme;
-        const themeIndex = elementConfig.themes.indexOf(currentTheme);
-        const nextTheme = elementConfig.themes[(themeIndex + 1) % elementConfig.themes.length];
-        
-        html.setAttribute('data-theme', nextTheme);
-        
-        // Update icons
-        elementConfig.themes.forEach(theme => {
-          const iconSelector = elementConfig.iconSelector[theme];
-          if (iconSelector) {
-            const icons = document.querySelectorAll(iconSelector);
-            icons.forEach(icon => {
-              icon.classList.toggle('hidden', theme !== nextTheme);
-            });
-          }
-        });
-        
-        // Save theme preference
-        localStorage.setItem(elementConfig.storageKey, nextTheme);
-        
-          // Emit theme change event
-          const systemEvent = new CustomEvent('themechange', {
-            detail: { theme: newTheme, previousTheme: savedTheme, source: 'system' }
-          });
-          window.dispatchEvent(systemEvent);
-        
-        return nextTheme;
-      };
-      
-      // Add click handler
-      element.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggleTheme();
-      });
-      
-      return toggleTheme;
     };
-    
-    // Initialize theme on load
-    const savedTheme = localStorage.getItem(config.storageKey);
-    let initialTheme = savedTheme;
-    
-    if (!savedTheme && config.autoDetect) {
-      // No saved preference, auto-detect from system
-      initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : config.defaultTheme;
-    } else if (savedTheme === 'auto' && config.autoDetect) {
-      // User wants to follow system
-      initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
-    
-    console.log('Starlight initTheme:', {
-      savedTheme,
-      initialTheme,
-      systemPrefers: window.matchMedia('(prefers-color-scheme: light)').matches,
-      config
-    });
-    
-    document.documentElement.setAttribute('data-theme', initialTheme);
-    console.log('Set data-theme to:', initialTheme);
-    console.log('Current html[data-theme] after setting:', document.documentElement.getAttribute('data-theme'));
-    
-    // Monitor for theme changes to detect if something is clearing it
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-          console.log('Theme attribute changed:', {
-            oldValue: mutation.oldValue,
-            newValue: document.documentElement.getAttribute('data-theme'),
-            timestamp: new Date().toISOString()
-          });
-        }
-      });
-    });
-    
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-      attributeOldValue: true
-    });
-    
-    // Store the effective theme if auto mode
-    if (savedTheme === 'auto' && config.autoDetect) {
-      localStorage.setItem(`${config.storageKey}-effective`, initialTheme);
-    }
-    
-    // Set initial icon states for all theme toggles
-    document.querySelectorAll('.theme-toggle, [data-theme-toggle]').forEach(toggle => {
-      createThemeToggle(toggle);
-    });
-    
-    // Set initial icon states
-    config.themes.forEach(theme => {
-      const iconSelector = config.iconSelector[theme];
-      if (iconSelector) {
-        const icons = document.querySelectorAll(iconSelector);
-        icons.forEach(icon => {
-          icon.classList.toggle('hidden', theme !== initialTheme);
-        });
-      }
-    });
-    
-    // Add global theme toggle function for backward compatibility
-    window.toggleTheme = () => {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme') || config.defaultTheme;
-      const themeIndex = config.themes.indexOf(currentTheme);
-      const nextTheme = config.themes[(themeIndex + 1) % config.themes.length];
-      
-      console.log('toggleTheme called:', { currentTheme, nextTheme, themeIndex });
-      
-      // Set effective theme (auto becomes system preference)
-      let effectiveTheme = nextTheme;
-      if (nextTheme === 'auto' && config.autoDetect) {
-        effectiveTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        localStorage.setItem(`${config.storageKey}-effective`, effectiveTheme);
-      } else {
-        localStorage.setItem(`${config.storageKey}-effective`, null);
-      }
-      
-      console.log('Setting theme:', { nextTheme, effectiveTheme });
-      html.setAttribute('data-theme', effectiveTheme);
-      console.log('After setTheme - data-theme:', html.getAttribute('data-theme'));
-      
-      localStorage.setItem(config.storageKey, nextTheme);
-      
-      // Update icons
-      config.themes.forEach(theme => {
-        const iconSelector = config.iconSelector[theme];
-        if (iconSelector) {
-          const icons = document.querySelectorAll(iconSelector);
-          icons.forEach(icon => {
-            icon.classList.toggle('hidden', theme !== nextTheme);
-          });
-        }
-      });
-      
-      const globalEvent = new CustomEvent('themechange', {
-        detail: { theme: nextTheme, effectiveTheme, previousTheme: currentTheme, source: 'global' }
-      });
-      window.dispatchEvent(globalEvent);
-      
-      return nextTheme;
-    };
-    
-    // Additional helper to set specific theme
-    window.setTheme = (theme) => {
+
+    /**
+     * Sets the theme and updates storage/UI
+     * @param {string} theme - The theme to set (light, dark, or auto)
+     * @param {string} source - Source of the change for event detail
+     * @param {boolean} save - Whether to save the preference to localStorage
+     */
+    window.setTheme = (theme, source = 'api', save = true) => {
       if (!config.themes.includes(theme)) {
-        console.warn(`Theme "${theme}" not available. Available themes:`, config.themes);
-        return false;
+        console.warn(`Starlight: Theme "${theme}" is not supported.`);
+        return;
       }
-      
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme') || config.defaultTheme;
-      
-      // Set effective theme (auto becomes system preference)
+
+      const previousTheme = localStorage.getItem(config.storageKey) || (config.autoDetect ? 'auto' : config.defaultTheme);
       let effectiveTheme = theme;
+
       if (theme === 'auto' && config.autoDetect) {
         effectiveTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         localStorage.setItem(`${config.storageKey}-effective`, effectiveTheme);
       } else {
-        localStorage.setItem(`${config.storageKey}-effective`, null);
+        localStorage.removeItem(`${config.storageKey}-effective`);
+      }
+
+      // Apply to DOM
+      html.setAttribute('data-theme', effectiveTheme);
+      document.body.classList.toggle('light-mode', effectiveTheme === 'light');
+      document.body.classList.toggle('dark-mode', effectiveTheme === 'dark');
+      
+      // Save preference
+      if (save) {
+        localStorage.setItem(config.storageKey, theme);
       }
       
-      html.setAttribute('data-theme', effectiveTheme);
-      localStorage.setItem(config.storageKey, theme);
-      
       // Update icons
-      config.themes.forEach(t => {
-        const iconSelector = config.iconSelector[t];
-        if (iconSelector) {
-          const icons = document.querySelectorAll(iconSelector);
-          icons.forEach(icon => {
-            icon.classList.toggle('hidden', t !== theme);
-          });
-        }
-      });
-      
-      const elementEvent = new CustomEvent('themechange', {
-        detail: { theme: nextTheme, previousTheme: currentTheme, source: element }
-      });
-      window.dispatchEvent(elementEvent);
-      
-      return true;
+      updateIcons(theme, effectiveTheme);
+
+      // Dispatch event
+      window.dispatchEvent(new CustomEvent('themechange', {
+        detail: { theme, effectiveTheme, previousTheme, source }
+      }));
+
+      return theme;
     };
-    
+
+    /**
+     * Cycles to the next available theme
+     */
+    window.toggleTheme = () => {
+      const currentTheme = localStorage.getItem(config.storageKey) || (config.autoDetect ? 'auto' : config.defaultTheme);
+      const currentIndex = config.themes.indexOf(currentTheme);
+      const nextIndex = (currentIndex + 1) % config.themes.length;
+      const nextTheme = config.themes[nextIndex];
+      
+      return window.setTheme(nextTheme, 'toggle');
+    };
+
+    // Initialize individual toggles
+    const createThemeToggle = (element) => {
+      element.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.toggleTheme();
+      });
+    };
+
     // Auto-detect system theme changes
     if (config.autoDetect) {
       window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-        const systemTheme = e.matches ? 'light' : 'dark';
         const savedTheme = localStorage.getItem(config.storageKey);
+        const currentActiveTheme = savedTheme || 'auto';
         
-        // Update theme if user hasn't explicitly chosen light/dark
-        if (!savedTheme || savedTheme === 'auto') {
-          const newTheme = systemTheme;
-          document.documentElement.setAttribute('data-theme', newTheme);
+        if (currentActiveTheme === 'auto') {
+          const newEffective = e.matches ? 'light' : 'dark';
           
-          // Update effective theme storage for auto mode
-          if (savedTheme === 'auto') {
-            localStorage.setItem(`${config.storageKey}-effective`, newTheme);
-          } else {
-            localStorage.setItem(config.storageKey, newTheme);
-          }
+          // Apply to DOM
+          html.setAttribute('data-theme', newEffective);
+          document.body.classList.toggle('light-mode', newEffective === 'light');
+          document.body.classList.toggle('dark-mode', newEffective === 'dark');
           
-          // Update icons
-          config.themes(themeToUse => {
-            const iconSelector = config.iconSelector[themeToUse];
-            if (iconSelector) {
-              const icons = document.querySelectorAll(iconSelector);
-              icons.forEach(icon => {
-                icon.classList.toggle('hidden', themeToUse !== newTheme);
-              });
-            }
-          });
+          localStorage.setItem(`${config.storageKey}-effective`, newEffective);
+          updateIcons('auto', newEffective);
           
-          // Emit theme change event
-          const systemThemeEventDetail = { 
-            theme: newTheme, 
-            previousTheme: savedTheme || 'none', 
-            source: 'system' 
-          };
-          const systemThemeChangeEvent = new CustomEvent('themechange', { detail: systemThemeEventDetail });
-          window.dispatchEvent(systemThemeChangeEvent);
-        }
-          
-          // Update icons
-          config.themes(themeToUse => {
-            const iconSelector = config.iconSelector[themeToUse];
-            if (iconSelector) {
-              const icons = document.querySelectorAll(iconSelector);
-              icons.forEach(icon => {
-                icon.classList.toggle('hidden', themeToUse !== newTheme);
-              });
-            }
-          });
-          
-          // Emit theme change event
-          const eventDetail = { theme: newTheme, previousTheme: savedTheme, source: 'system' };
-          const themeChangeEvent = new CustomEvent('themechange', { detail: eventDetail });
-          window.dispatchEvent(themeChangeEvent);
+          window.dispatchEvent(new CustomEvent('themechange', {
+            detail: { theme: 'auto', effectiveTheme: newEffective, source: 'system' }
+          }));
         }
       });
     }
-   }
-};
+
+    // Initialize UI
+    document.querySelectorAll('.theme-toggle, [data-theme-toggle]').forEach(createThemeToggle);
+
+    // Set initial theme
+    const savedTheme = localStorage.getItem(config.storageKey);
+    if (savedTheme) {
+      window.setTheme(savedTheme, 'init');
+    } else {
+      window.setTheme(config.autoDetect ? 'auto' : config.defaultTheme, 'init', false);
+    }
+  }
 };
 
 // Auto-initialize if the element exists and we're in a browser

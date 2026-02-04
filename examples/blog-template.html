@@ -260,22 +260,8 @@
   </footer>
 
   <script>
-    // Theme Toggle Logic
-    const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            
-            // Update all icons
-            document.querySelectorAll('.sun-icon').forEach(icon => {
-                icon.classList.toggle('hidden', !isLight);
-            });
-            document.querySelectorAll('.moon-icon').forEach(icon => {
-                icon.classList.toggle('hidden', isLight);
-            });
-        });
-    }
+    // Theme initialization is handled automatically by starlight.js
+    // Custom template logic can go here
   </script>
 
 </body>

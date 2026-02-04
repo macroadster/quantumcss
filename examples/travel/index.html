@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nebula Voyage | Starlight Travel</title>
     <link rel="stylesheet" href="../../dist/quantum.min.css">
+    <script src="../../src/starlight.js"></script>
     <style>
         body {
             background: radial-gradient(circle at top right, #08081a, #000);
@@ -246,22 +247,8 @@
     </footer>
 
     <script>
-        // Theme Toggle Logic
-        const themeBtn = document.getElementById('theme-btn');
-        if (themeBtn) {
-            themeBtn.addEventListener('click', () => {
-                document.body.classList.toggle('light-mode');
-                const isLight = document.body.classList.contains('light-mode');
-                
-                // Update all icons
-                document.querySelectorAll('.sun-icon').forEach(icon => {
-                    icon.classList.toggle('hidden', !isLight);
-                });
-                document.querySelectorAll('.moon-icon').forEach(icon => {
-                    icon.classList.toggle('hidden', isLight);
-                });
-            });
-        }
+        // Theme initialization and management is now handled 
+        // automatically by Starlight.initTheme() in starlight.js
     </script>
 </body>
 </html>

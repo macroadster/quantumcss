@@ -58,13 +58,24 @@ function generateCSS(configPath) {
       while ((match = classAttrRegex.exec(content)) !== null) {
         match[1].split(/\s+/).forEach(cls => { if (cls) rawClasses.add(cls); });
       }
-    } catch (e) {}
+    } catch {
+      // Ignore errors reading files
+    }
   });
 
   const utilities = new Set();
   const responsiveUtils = { 
     sm: new Set(), md: new Set(), lg: new Set(), xl: new Set(), '2xl': new Set(),
     dark: new Set()
+  };
+
+  /**
+   * Escapes a class name for use in a CSS selector
+   * @param {string} cls - The raw class name
+   * @returns {string} The escaped selector
+   */
+  const escapeSelector = (cls) => {
+    return cls.replace(/([:[\]/.\\])/g, '\\$1');
   };
 
   const sideMap = {
@@ -159,8 +170,8 @@ function generateCSS(configPath) {
       } else if (prefix === 'col' && cParts[1] === 'span') {
         property = 'grid-column'; value = `span ${cParts[2]} / span ${cParts[2]}`;
       } else if (prefix === 'space') {
-        const amount = theme.spacing[cParts[2]] || `${parseInt(cParts[2]) * 0.25}rem`;
-        const escaped = fullCls.replace(/([:[\/])/g, '\\$1');
+        const amount = theme.spacing[cParts[2]] || `${parseFloat(cParts[2]) * 0.25}rem`;
+        const escaped = escapeSelector(fullCls);
         customSelector = `.${escaped} > * + *`;
         property = cParts[1] === 'y' ? 'margin-top' : 'margin-left';
         value = isNeg ? `-${amount}` : amount;
@@ -169,12 +180,12 @@ function generateCSS(configPath) {
         if (valKey.startsWith('[') && valKey.endsWith(']')) value = valKey.slice(1, -1);
         else if (theme.borderRadius[valKey]) value = theme.borderRadius[valKey];
         else {
-          const num = parseInt(valKey);
+          const num = parseFloat(valKey);
           value = isNaN(num) ? '0.375rem' : `${num * 0.125}rem`;
         }
       } else if (prefix === 'scale') {
         property = 'transform';
-        value = `scale(${parseInt(valKey) / 100})`;
+        value = `scale(${parseFloat(valKey) / 100})`;
       } else if (prefix === 'transition') {
         property = 'transition-property';
         if (valKey === 'all') value = 'all';
@@ -193,8 +204,8 @@ function generateCSS(configPath) {
         property = sideMap[prefix];
         let v = valKey;
         if (v.startsWith('[') && v.endsWith(']')) v = v.slice(1, -1);
-        else if (v.includes('/')) v = `${(parseInt(v.split('/')[0])/parseInt(v.split('/')[1])*100).toFixed(2)}%`;
-        else v = theme.spacing[v] || v;
+        else if (v.includes('/')) v = `${(parseFloat(v.split('/')[0])/parseFloat(v.split('/')[1])*100).toFixed(2)}%`;
+        else v = theme.spacing[v] || (isNaN(parseFloat(v)) ? v : `${parseFloat(v) * 0.25}rem`);
         value = isNeg ? (Array.isArray(v) ? v.map(x => `-${x}`) : `-${v}`) : v;
       } else if (prefix === 'shadow') {
         if (theme.shadows[valKey]) { property = 'box-shadow'; value = theme.shadows[valKey]; }
@@ -235,7 +246,7 @@ function generateCSS(configPath) {
 
     merged.forEach(group => {
       const { breakpoint, variant, customSelector, rules } = group;
-      const escapedFull = fullCls.replace(/([:[\/])/g, '\\$1');
+      const escapedFull = escapeSelector(fullCls);
       let selector = customSelector || `.${escapedFull}`;
       if (variant) { if (variant === 'group-hover') selector = `.group:hover ${selector}`; else selector += `:${variant}`}
       

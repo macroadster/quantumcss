@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starlight AI - Design System</title>
     <link rel="stylesheet" href="../dist/quantum.min.css">
+    <script src="../src/starlight.js"></script>
     <style>
         body {
             background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);
@@ -153,50 +154,8 @@
     </div>
 
     <script>
-        // Enhanced Theme Toggle Logic with Auto-Detection
-        const themeBtn = document.getElementById('theme-btn');
-        if (themeBtn) {
-            themeBtn.addEventListener('click', () => {
-                // Use enhanced theme toggle if available
-                if (typeof toggleTheme === 'function') {
-                    toggleTheme();
-                } else {
-                    // Fallback to basic toggle
-                    const html = document.documentElement;
-                    const currentTheme = html.getAttribute('data-theme') || 'dark';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    html.setAttribute('data-theme', newTheme);
-                    
-                    const isLight = newTheme === 'light';
-                    document.querySelectorAll('.sun-icon').forEach(icon => {
-                        icon.classList.toggle('hidden', !isLight);
-                });
-                document.querySelectorAll('.moon-icon').forEach(icon => {
-                    icon.classList.toggle('hidden', isLight);
-                });
-            });
-        }
-        
-        // Initialize with auto-detection
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            let initialTheme;
-            
-            if (!savedTheme) {
-                initialTheme = 'auto';
-                console.log('No saved theme, defaulting to auto mode');
-            } else {
-                initialTheme = savedTheme;
-                console.log('Using saved theme:', savedTheme);
-            }
-            
-            // Set initial theme using enhanced functions
-            if (typeof setTheme === 'function') {
-                setTheme(initialTheme);
-            } else {
-                console.warn('Enhanced theme functions not available');
-            }
-        });
+        // Theme initialization and management is now handled 
+        // automatically by Starlight.initTheme() in starlight.js
     </script>
 </body>
 </html>

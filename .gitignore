@@ -3,3 +3,6 @@ dist/
 .DS_Store
 *.log
 f930836b8f77bc64e10f9a6aa57be07440b84fdcd5ac758e2a62eed5b3c854a0/
+
+# bv (beads viewer) local config and caches
+.bv/

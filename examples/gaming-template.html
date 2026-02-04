@@ -333,26 +333,6 @@
 
     <script src="../src/starlight.js"></script>
     <script>
-        const themeBtns = [document.getElementById('theme-btn'), document.getElementById('theme-btn-mobile')];
-        
-        // Theme Toggle Logic
-        themeBtns.forEach(btn => {
-            if (btn) {
-                btn.addEventListener('click', () => {
-                    document.body.classList.toggle('light-mode');
-                    const isLight = document.body.classList.contains('light-mode');
-                    
-                    // Update all icons
-                    document.querySelectorAll('.sun-icon').forEach(icon => {
-                        icon.classList.toggle('hidden', !isLight);
-                    });
-                    document.querySelectorAll('.moon-icon').forEach(icon => {
-                        icon.classList.toggle('hidden', isLight);
-                    });
-                });
-            }
-        });
-
         // Accordion Logic
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {

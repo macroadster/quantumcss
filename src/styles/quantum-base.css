@@ -1,15 +1,16 @@
 /*!
  * QuantumCSS + Starlight UI
  * Advanced utility-first framework with ethereal cosmic aesthetics
- * Version: 1.4.2
+ * Version: 1.5.0
  * Features: Modern CSS, JIT Engine, Starlight Components, Dark Mode
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap';
 
 /* CSS Custom Properties (Design Tokens) */
 :root {
   color-scheme: dark;
+
   /* Colors */
   --color-primary: #3b82f6;
   --color-primary-50: #eff6ff;
@@ -22,7 +23,6 @@
   --color-primary-700: #1d4ed8;
   --color-primary-800: #1e40af;
   --color-primary-900: #1e3a8a;
-
   --color-secondary: #64748b;
   --color-success: #10b981;
   --color-warning: #f59e0b;
@@ -61,11 +61,11 @@
   --radius-full: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
 
   /* Animation */
   --duration-75: 75ms;
@@ -76,7 +76,6 @@
   --duration-500: 500ms;
   --duration-700: 700ms;
   --duration-1000: 1000ms;
-
   --ease-linear: linear;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -87,23 +86,26 @@
   --color-starlight-peach: #ffb38a;
   --color-starlight-orange: #ff7e5f;
   --color-starlight-deep: #08081a;
-  --color-starlight-glow: rgba(0, 212, 255, 0.35);
+  --color-starlight-glow: rgb(0 212 255 / 35%);
+  
+  /* Semantic Background Colors */
+  --bg-primary: var(--color-starlight-deep);
   
   /* Semantic Text Colors */
   --text-primary: #f1f5f9;
-  --text-secondary: rgba(241, 245, 249, 0.7);
-  --text-muted: rgba(241, 245, 249, 0.45);
+  --text-secondary: rgb(241 245 249 / 70%);
+  --text-muted: rgb(241 245 249 / 45%);
   
   /* Light Mode Palette */
   --light-bg: #f1f5f9;
   --light-text: #1e293b;
   --light-text-muted: #64748b;
-  --light-card-bg: #ffffff;
-  --light-card-border: rgba(0, 0, 0, 0.06);
+  --light-card-bg: #fff;
+  --light-card-border: rgb(0 0 0 / 6%);
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgb(255 255 255 / 3%);
+  --glass-border: rgb(255 255 255 / 10%);
   --glass-blur: blur(16px);
 
   /* Transitions */
@@ -115,11 +117,11 @@
 /* High Contrast (Accessibility) Mode Support */
 @media (prefers-contrast: more) {
   :root {
-    --color-starlight-blue: #0088cc; /* Darkened for better contrast on light */
+    --color-starlight-blue: #08c; /* Darkened for better contrast on light */
     --color-starlight-orange: #d14d33;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.4);
-    --text-muted: rgba(241, 245, 249, 0.8);
+    --glass-bg: rgb(255 255 255 / 10%);
+    --glass-border: rgb(255 255 255 / 40%);
+    --text-muted: rgb(241 245 249 / 80%);
   }
 }
 
@@ -165,7 +167,7 @@
 html {
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -551,8 +553,8 @@ textarea {
 .text-warning { color: var(--color-warning); }
 .text-error { color: var(--color-error); }
 .text-neutral { color: var(--color-neutral); }
-.text-white { color: #ffffff; }
-.text-black { color: #000000; }
+.text-white { color: #fff; }
+.text-black { color: #000; }
 
 .bg-primary { background-color: var(--color-primary); }
 .bg-secondary { background-color: var(--color-secondary); }
@@ -560,11 +562,11 @@ textarea {
 .bg-warning { background-color: var(--color-warning); }
 .bg-error { background-color: var(--color-error); }
 .bg-neutral { background-color: var(--color-neutral); }
-.bg-white { background-color: #ffffff; color: #0f172a; }
-.bg-black { background-color: #000000; color: #ffffff; }
+.bg-white { background-color: #fff; color: #0f172a; }
+.bg-black { background-color: #000; color: #fff; }
 
 /* Border Utilities */
-.border-0 { border-width: 0px; }
+.border-0 { border-width: 0; }
 .border { border-width: 1px; }
 .border-2 { border-width: 2px; }
 .border-4 { border-width: 4px; }
@@ -599,11 +601,11 @@ textarea {
 .relative { position: relative; }
 .sticky { position: sticky; }
 
-.inset-0 { inset: 0px; }
-.top-0 { top: 0px; }
-.right-0 { right: 0px; }
-.bottom-0 { bottom: 0px; }
-.left-0 { left: 0px; }
+.inset-0 { inset: 0; }
+.top-0 { top: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0 { left: 0; }
 
 /* Size Utilities */
 .w-auto { width: auto; }
@@ -665,6 +667,7 @@ textarea {
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border-width: 0;
 }
@@ -677,6 +680,7 @@ textarea {
   margin: 0;
   overflow: visible;
   clip: auto;
+  clip-path: none;
   white-space: normal;
 }
 
@@ -772,17 +776,8 @@ textarea {
 
 
 ::-webkit-scrollbar-thumb { 
-
-
-
   background: linear-gradient(135deg, var(--color-starlight-peach) 0%, var(--color-starlight-blue) 100%); 
-
-
-
   border-radius: 10px;
-
-
-
   border: 2px solid var(--color-starlight-deep);
 
 
@@ -791,13 +786,37 @@ textarea {
 
 
 
-html[data-theme="light"] {
+html[data-theme="light"],
+body.light-mode {
   color-scheme: light;
-  background-color: var(--light-bg);
-  color: var(--light-text);
+
+  --bg-primary: var(--light-bg);
   --text-primary: var(--light-text);
   --text-secondary: var(--light-text-muted);
   --text-muted: var(--light-text-muted);
+
+  scrollbar-color: var(--color-starlight-blue) transparent;
+}
+
+html[data-theme="dark"],
+body.dark-mode {
+  color-scheme: dark;
+
+  --bg-primary: var(--color-starlight-deep);
+  --text-primary: #f1f5f9;
+}
+
+/* Force theme colors on body to override template-specific hardcoded styles */
+html[data-theme="light"] body,
+body.light-mode {
+  background: var(--light-bg) !important;
+  color: var(--light-text) !important;
+}
+
+html[data-theme="dark"] body,
+body.dark-mode {
+  background: var(--color-starlight-deep) !important;
+  color: #f1f5f9 !important;
 }
 
 
@@ -814,17 +833,8 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb {
 
 
 :focus, :focus-visible {
-
-
-
   outline: none;
-
-
-
   box-shadow: 0 0 0 2px var(--color-starlight-deep), 0 0 0 4px var(--color-starlight-blue);
-
-
-
   transition: box-shadow var(--transition-fast);
 
 
@@ -838,7 +848,7 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb {
 
 
 html[data-theme="light"] :focus, html[data-theme="light"] :focus-visible {
-  box-shadow: 0 0 0 2px var(--light-bg), 0 0 0 4px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 0 2px var(--light-bg), 0 0 0 4px rgb(59 130 246 / 40%);
 }
 
 
@@ -848,25 +858,10 @@ html[data-theme="light"] :focus, html[data-theme="light"] :focus-visible {
 
 
 body {
-
-
-
   margin: 0;
-
-
-
   min-height: 100vh;
-
-
-
-  background-color: var(--color-starlight-deep);
-
-
-
+  background-color: var(--bg-primary);
   color: var(--text-primary);
-
-
-
   transition: background-color var(--transition-slow), color var(--transition-slow);
 
 
@@ -878,10 +873,6 @@ body {
 
 
 
-
-html[data-theme="light"] {
-  scrollbar-color: var(--color-starlight-blue) transparent;
-}
 
 /* Tactile Active State for all interactive elements */
 button:active, 

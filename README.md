@@ -1,18 +1,19 @@
 # Quantum CSS - Next-Generation Utility Framework
 
-![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.3.0-blue)
+![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.5.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Bundle Size](https://img.shields.io/badge/bundle%20size-15KB-brightgreen)
+![Bundle Size](https://img.shields.io/badge/bundle%20size-19KB-brightgreen)
 
 A modern, performance-optimized utility-first CSS framework with semantic naming, recursive component presets, and advanced cosmic effects.
 
 ## 🚀 Features
 
 ### Modern CSS Capabilities
-- **Recursive Component Presets** - Define custom components in config using existing utilities
-- **Cosmic Animation Library** - Advanced effects like parallax nebula drifts and orbit paths
-- **High Contrast Mode** - Native support for `prefers-contrast` and `forced-colors`
-- **JIT Dark Mode** - Dynamic generation of dark mode variants via `dark:` prefix
+- **Robust Theme Engine** - Seamlessly follow OS settings with automatic `prefers-color-scheme` detection and dynamic live-switching.
+- **Recursive Component Presets** - Define custom components in config using existing utilities.
+- **Cosmic Animation Library** - Advanced effects like parallax nebula drifts and orbit paths.
+- **High Contrast Mode** - Native support for `prefers-contrast` and `forced-colors`.
+- **JIT Dark Mode** - Dynamic generation of dark mode variants via `dark:` prefix.
 
 ### Developer Experience
 - **Advanced CLI Scaffolding** - Instantly generate pre-styled templates (Gaming, Blog, News, Shopping, Travel)
@@ -99,7 +100,7 @@ QuantumCSS automatically optimizes contrast for accessibility when the user enab
 ## 📊 Performance
 
 ### Bundle Size
-- **QuantumCSS Core**: ~15KB gzipped
+- **QuantumCSS Core**: ~19KB gzipped
 - **Optimized Selectors**: Minimal specificity for maximum performance
 - **Tree Shaking**: Only used utilities and presets are generated in JIT mode
 

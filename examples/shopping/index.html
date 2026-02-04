@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum Store | Future of Fashion</title>
     <link rel="stylesheet" href="../../dist/quantum.min.css">
+    <script src="../../src/starlight.js"></script>
     <style>
         body { background-color: #f8fafc; color: #0f172a; transition: background-color 0.5s ease, color 0.5s ease; }
         body.dark-mode { background-color: #020617; color: #f1f5f9; }
@@ -111,7 +112,7 @@
         .moon-icon { display: none; }
     </style>
 </head>
-<body class="light-mode">
+<body class="">
     <!-- Announcement Bar -->
     <div class="bg-slate-900 text-white py-3 text-center text-[10px] font-black tracking-[0.3em] uppercase">
         Interstellar Shipping Enabled • New Drops Every Sunday
@@ -313,24 +314,6 @@
     </footer>
 
     <script>
-        // Theme Toggle Logic
-        const themeBtn = document.getElementById('theme-btn');
-        if (themeBtn) {
-            themeBtn.addEventListener('click', () => {
-                document.body.classList.toggle('light-mode');
-                document.body.classList.toggle('dark-mode');
-                const isDark = document.body.classList.contains('dark-mode');
-                
-                // Update all icons
-                document.querySelectorAll('.sun-icon').forEach(icon => {
-                    icon.style.display = isDark ? 'none' : 'block';
-                });
-                document.querySelectorAll('.moon-icon').forEach(icon => {
-                    icon.style.display = isDark ? 'block' : 'none';
-                });
-            });
-        }
-
         // Color Swatch Selection
         const swatches = document.querySelectorAll('.color-swatch');
         swatches.forEach(swatch => {
@@ -339,6 +322,9 @@
                 swatch.classList.add('selected');
             });
         });
+
+        // Theme initialization and management is now handled 
+        // automatically by Starlight.initTheme() in starlight.js
     </script>
 </body>
 </html>

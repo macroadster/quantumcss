@@ -6,8 +6,8 @@
 /* Hover State Utilities */
 .hover\:text-primary:hover { color: var(--color-primary); }
 .hover\:text-secondary:hover { color: var(--color-secondary); }
-.hover\:text-white:hover { color: #ffffff; }
-.hover\:text-black:hover { color: #000000; }
+.hover\:text-white:hover { color: #fff; }
+.hover\:text-black:hover { color: #000; }
 
 .hover\:bg-primary:hover { background-color: var(--color-primary); }
 .hover\:bg-secondary:hover { background-color: var(--color-secondary); }
@@ -59,7 +59,7 @@
 
 /* Group Hover Utilities */
 .group:hover .group-hover\:text-primary { color: var(--color-primary); }
-.group:hover .group-hover\:text-white { color: #ffffff; }
+.group:hover .group-hover\:text-white { color: #fff; }
 
 .group:hover .group-hover\:bg-primary { background-color: var(--color-primary); }
 .group:hover .group-hover\:bg-secondary { background-color: var(--color-secondary); }
@@ -102,21 +102,21 @@
 }
 
 .btn-secondary {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgb(255 255 255 / 5%);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgb(255 255 255 / 10%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgb(255 255 255 / 10%);
 }
 
 body.light-mode .btn-secondary {
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgb(0 0 0 / 3%);
   color: #1e293b;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: rgb(0 0 0 / 10%);
 }
 
 .btn-outline {
@@ -285,64 +285,64 @@ body.light-mode .input:disabled {
 }
 
 .badge-primary {
-  background-color: rgba(0, 212, 255, 0.15);
+  background-color: rgb(0 212 255 / 15%);
   color: #00d4ff;
-  border-color: rgba(0, 212, 255, 0.3);
+  border-color: rgb(0 212 255 / 30%);
 }
 
 .badge-secondary {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(255, 255, 255, 0.1);
+  background-color: rgb(255 255 255 / 5%);
+  color: rgb(255 255 255 / 80%);
+  border-color: rgb(255 255 255 / 10%);
 }
 
 .badge-success {
-  background-color: rgba(16, 185, 129, 0.15);
+  background-color: rgb(16 185 129 / 15%);
   color: #10b981;
-  border-color: rgba(16, 185, 129, 0.3);
+  border-color: rgb(16 185 129 / 30%);
 }
 
 .badge-warning {
-  background-color: rgba(245, 158, 11, 0.15);
+  background-color: rgb(245 158 11 / 15%);
   color: #f59e0b;
-  border-color: rgba(245, 158, 11, 0.3);
+  border-color: rgb(245 158 11 / 30%);
 }
 
 .badge-error {
-  background-color: rgba(239, 68, 68, 0.15);
+  background-color: rgb(239 68 68 / 15%);
   color: #ef4444;
-  border-color: rgba(239, 68, 68, 0.3);
+  border-color: rgb(239 68 68 / 30%);
 }
 
 /* Light Mode Overrides for Badges */
 html[data-theme="light"] .badge-primary {
-  background-color: rgba(59, 130, 246, 0.1);
+  background-color: rgb(59 130 246 / 10%);
   color: #2563eb;
-  border-color: rgba(59, 130, 246, 0.2);
+  border-color: rgb(59 130 246 / 20%);
 }
 
 html[data-theme="light"] .badge-secondary {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgb(0 0 0 / 5%);
   color: #475569;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: rgb(0 0 0 / 10%);
 }
 
 html[data-theme="light"] .badge-success {
-  background-color: rgba(16, 185, 129, 0.1);
+  background-color: rgb(16 185 129 / 10%);
   color: #059669;
-  border-color: rgba(16, 185, 129, 0.2);
+  border-color: rgb(16 185 129 / 20%);
 }
 
 html[data-theme="light"] .badge-warning {
-  background-color: rgba(245, 158, 11, 0.1);
+  background-color: rgb(245 158 11 / 10%);
   color: #d97706;
-  border-color: rgba(245, 158, 11, 0.2);
+  border-color: rgb(245 158 11 / 20%);
 }
 
 html[data-theme="light"] .badge-error {
-  background-color: rgba(239, 68, 68, 0.1);
+  background-color: rgb(239 68 68 / 10%);
   color: #dc2626;
-  border-color: rgba(239, 68, 68, 0.2);
+  border-color: rgb(239 68 68 / 20%);
 }
 
 /* Alert Component */
@@ -380,7 +380,7 @@ html[data-theme="light"] .badge-error {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0 0 0 / 50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -407,7 +407,7 @@ body.light-mode .modal-content {
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgb(255 255 255 / 10%);
   border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -419,7 +419,7 @@ body.light-mode .modal-content {
 
 /* Skeleton Loading */
 .skeleton {
-  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+  background: linear-gradient(90deg, rgb(255 255 255 / 5%) 25%, rgb(255 255 255 / 10%) 50%, rgb(255 255 255 / 5%) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
   border-radius: var(--radius-md);
@@ -586,7 +586,7 @@ body.light-mode .accordion-content {
 /* Tab Component */
 .tab-list {
   display: flex;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
 .tab-button {
@@ -601,7 +601,7 @@ body.light-mode .accordion-content {
 }
 
 .tab-button:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgb(255 255 255 / 5%);
   color: var(--text-primary);
 }
 
@@ -678,7 +678,7 @@ body.light-mode .tab-button.active {
   border-radius: var(--radius-full);
 }
 
-.toggle-slider:before {
+.toggle-slider::before {
   position: absolute;
   content: "";
   height: 1.25rem;
@@ -694,7 +694,7 @@ body.light-mode .tab-button.active {
   background-color: var(--color-primary);
 }
 
-.toggle-input:checked + .toggle-slider:before {
+.toggle-input:checked + .toggle-slider::before {
   transform: translateX(1.5rem);
 }
 
@@ -756,7 +756,7 @@ body.light-mode .tab-button.active {
 }
 
 .table-wrapper::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(255 255 255 / 5%);
   border-radius: 4px;
 }
 
@@ -766,7 +766,7 @@ body.light-mode .tab-button.active {
 }
 
 body.light-mode .table-wrapper::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
 }
 
 .table {
@@ -780,19 +780,19 @@ body.light-mode .table-wrapper::-webkit-scrollbar-track {
 .table th {
   padding: var(--space-3) var(--space-4);
   font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: rgb(255 255 255 / 5%);
+  border-bottom: 2px solid rgb(255 255 255 / 10%);
   color: var(--text-primary);
 }
 
 .table td {
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
   color: var(--text-secondary);
 }
 
 .table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgb(255 255 255 / 3%);
 }
 
 /* Light Mode Table Styles */

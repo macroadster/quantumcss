@@ -4,6 +4,7 @@
  */
 
 /* Modern Responsive Breakpoints */
+
 /* Using logical properties and container queries */
 
 @custom-media --sm (min-width: 640px);
@@ -325,7 +326,7 @@
 }
 
 /* High DPI Display Utilities */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (min-resolution: 2dppx), (min-resolution: 192dpi) {
   .retina\:text-sm { font-size: 0.875rem; line-height: 1.25rem; }
   .retina\:border { border-width: 0.5px; }
 }
@@ -339,7 +340,7 @@
 
 /* Dark Mode Utilities */
 @media (prefers-color-scheme: dark) {
-  .dark\:text-white { color: #ffffff; }
+  .dark\:text-white { color: #fff; }
   .dark\:text-gray-200 { color: #e5e7eb; }
   .dark\:text-gray-300 { color: #d1d5db; }
   .dark\:bg-gray-900 { background-color: #111827; }
@@ -351,10 +352,10 @@
 
 /* Light Mode Utilities */
 @media (prefers-color-scheme: light) {
-  .light\:text-black { color: #000000; }
+  .light\:text-black { color: #000; }
   .light\:text-gray-800 { color: #1f2937; }
   .light\:text-gray-700 { color: #374151; }
-  .light\:bg-white { background-color: #ffffff; }
+  .light\:bg-white { background-color: #fff; }
   .light\:bg-gray-50 { background-color: #f9fafb; }
   .light\:bg-gray-100 { background-color: #f3f4f6; }
   .light\:border-gray-300 { border-color: #d1d5db; }
