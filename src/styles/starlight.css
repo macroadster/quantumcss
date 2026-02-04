@@ -272,7 +272,7 @@ body.light-mode .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: var(--color-starlight-deep);;
+  background-color: var(--color-starlight-deep);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
@@ -281,6 +281,19 @@ body.light-mode .dialog-content {
   min-width: 200px;
   z-index: 600;
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown.active .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .dropdown-item {
@@ -611,28 +624,40 @@ body.light-mode .stat-value {
 
 /* 14. Hamburger Menu Glass */
 .nav-glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   position: sticky;
   top: 0;
   z-index: 1000;
+  padding: 0;
 }
 
 body.light-mode .nav-glass {
-  background: rgba(255, 255, 255, 0.8);
-  border-bottom-color: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .nav-desktop {
   display: none;
-  gap: 2rem;
   align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list.vertical {
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .nav-link {
@@ -642,27 +667,43 @@ body.light-mode .nav-glass {
   transition: all 0.3s;
   position: relative;
   padding: 0.5rem 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-list.vertical .nav-link {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav-list.vertical .dropdown {
+  width: 100%;
+  display: block;
+}
+
+.nav-list.vertical .nav-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-starlight-blue);
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
   width: 0;
   height: 2px;
   background: var(--color-starlight-blue);
-  transition: width 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 10px var(--color-starlight-glow);
-}
-
-.nav-link:hover {
-  color: white;
+  transform: translateX(-50%);
 }
 
 .nav-link:hover::after {
-  width: 100%;
+  width: 80%;
 }
+
 
 body.light-mode .nav-link {
   color: #475569;
@@ -716,44 +757,66 @@ body.light-mode .hamburger span {
   background: #1e293b;
 }
 
-.hamburger.active span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
+.hamburger.active span {
+  background-color: var(--color-starlight-blue);
+  box-shadow: 0 0 10px var(--color-starlight-glow);
 }
 
 .nav-menu-mobile {
-  position: absolute;
-  top: 100%;
-  right: 2rem;
-  width: 250px;
-  background: var(--color-starlight-deep);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
-  padding: 1rem;
-  margin-top: 0.5rem;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  display: none;
-  animation: slideInDown 0.3s ease forwards;
-  z-index: 1001;
-}
-
-body.light-mode .nav-menu-mobile {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
 }
 
 .nav-menu-mobile.active {
   display: block;
+  max-height: 500px;
+  padding: 1.5rem 2rem;
+  opacity: 1;
+}
+
+body.light-mode .nav-menu-mobile {
+  background: #ffffff;
+  border-top-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Vertical Accordion Dropdowns */
+.nav-list.vertical .dropdown-menu {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  box-shadow: none;
+  border: none;
+  padding: 0 0 0 1.5rem;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: transparent;
+  pointer-events: none;
+}
+
+.nav-list.vertical .dropdown.active .dropdown-menu {
+  max-height: 300px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  pointer-events: auto;
+}
+
+.nav-list.vertical .dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 0.825rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
 }
 
 @media (min-width: 768px) {
@@ -773,6 +836,23 @@ body.light-mode .nav-menu-mobile {
 @keyframes slideInDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.starlight-nav.vertical {
+  flex-direction: column;
+  height: 100%;
+  width: 280px !important;
+  min-width: 280px !important;
+  border-bottom: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem 1.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+body.light-mode .starlight-nav.vertical {
+  background: rgba(255, 255, 255, 0.98);
+  border-right-color: rgba(0, 0, 0, 0.08);
 }
 
 /* 15. More Form Controls */
@@ -821,6 +901,17 @@ body.light-mode .range-starlight {
 .toggle-starlight {
   width: 3.5rem;
   height: 1.75rem;
+}
+
+.toggle-starlight .toggle-slider:before {
+  height: 1.25rem;
+  width: 1.25rem;
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.toggle-starlight input:checked + .toggle-slider:before {
+  transform: translateX(1.75rem);
 }
 
 .toggle-starlight .toggle-slider {

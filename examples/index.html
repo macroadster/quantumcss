@@ -100,11 +100,11 @@
             <!-- Custom Menu -->
             <div class="starlight-card" id="menu-card">
                 <h3 class="text-xl font-bold mb-6">Floating Menus</h3>
-                <div style="position: relative;">
-                    <button class="btn-secondary w-full justify-between" onclick="toggleDropdown(event)">
+                <div class="dropdown w-full">
+                    <button class="btn-secondary w-full justify-between">
                         Asset Actions <span>&darr;</span>
                     </button>
-                    <div id="demo-dropdown" class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; width: 100%;">
+                    <div id="demo-dropdown" class="dropdown-menu w-full">
                         <button class="dropdown-item">View Analytics</button>
                         <button class="dropdown-item">Security Audit</button>
                         <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 0.5rem 0;"></div>
@@ -136,18 +136,6 @@
         }
         function openDialog() { document.getElementById('dialog').style.display = 'flex'; }
         function closeDialog() { document.getElementById('dialog').style.display = 'none'; }
-        function toggleDropdown(e) {
-            e.stopPropagation();
-            const m = document.getElementById('demo-dropdown');
-            const card = document.getElementById('menu-card');
-            const isOpen = m.style.display !== 'none';
-            m.style.display = isOpen ? 'none' : 'block';
-            card.classList.toggle('has-open-menu', !isOpen);
-        }
-        window.onclick = () => { 
-            document.getElementById('demo-dropdown').style.display = 'none';
-            document.getElementById('menu-card').classList.remove('has-open-menu');
-        }
     </script>
 </body>
 </html>

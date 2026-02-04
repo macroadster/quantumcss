@@ -703,24 +703,80 @@
             <p class="mb-6 opacity-70">Semantic classes that compose multiple utilities for rapid AI-driven development.</p>
             <div class="grid grid-cols-1 gap-12">
                 <!-- Navigation -->
-                <div class="starlight-card p-0 overflow-hidden">
+                <div class="starlight-card p-0 mb-12">
                     <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Navigation Menu (.starlight-nav)</div>
-                    <nav class="starlight-nav relative">
-                        <div class="p-4 flex justify-between items-center">
-                            <div class="font-bold text-xl text-gradient-starlight">Starlight OS</div>
-                            <div class="flex items-center gap-8">
-                                <div class="nav-desktop">
-                                    <a href="#" class="nav-link">Fleet</a>
-                                    <a href="#" class="nav-link">Stations</a>
-                                    <a href="#" class="nav-link">Resources</a>
-                                </div>
-                                <div class="hamburger">
-                                    <span></span><span></span><span></span>
+                    <div class="relative">
+                        <nav class="starlight-nav relative">
+                            <div class="p-4 md:px-8 flex justify-between items-center w-full">
+                                <div class="font-bold text-xl text-gradient-starlight">Starlight OS</div>
+                                <div class="flex items-center gap-8">
+                                    <div class="nav-desktop">
+                                        <ul class="nav-list">
+                                            <li><a href="#" class="nav-link">Fleet</a></li>
+                                            <li>
+                                                <div class="dropdown">
+                                                    <a href="#" class="nav-link">Stations ▾</a>
+                                                    <div class="dropdown-menu">
+                                                        <a href="#" class="dropdown-item">Alpha Base</a>
+                                                        <a href="#" class="dropdown-item">Delta Outpost</a>
+                                                        <a href="#" class="dropdown-item">Omega Point</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li><a href="#" class="nav-link">Resources</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hamburger">
+                                        <span></span><span></span><span></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </nav>
-                    <div class="p-12 text-center opacity-30 italic text-sm">Scroll context for navigation</div>
+                            <!-- Mobile Menu -->
+                            <div class="nav-menu-mobile">
+                                <ul class="nav-list vertical">
+                                    <li><a href="#" class="nav-link">Fleet</a></li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <a href="#" class="nav-link">Stations ▾</a>
+                                            <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item">Alpha Base</a>
+                                                <a href="#" class="dropdown-item">Delta Outpost</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="#" class="nav-link">Resources</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="p-12 text-center opacity-50 italic text-sm border-t border-white/5 light:bg-slate-300">Horizontal layout (standard)</div>
+                    </div>
+                </div>
+
+                <!-- Vertical Navigation -->
+                <div class="starlight-card p-0">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Vertical Sidebar (.starlight-nav.vertical)</div>
+                    <div class="flex h-[400px] overflow-hidden">
+                        <nav class="starlight-nav vertical static border-r border-white/10">
+                            <div class="font-bold text-xl text-gradient-starlight mb-8">Starlight OS</div>
+                            <div class="nav-desktop block w-full">
+                                <ul class="nav-list vertical w-full">
+                                    <li><a href="#" class="nav-link">Fleet</a></li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <a href="#" class="nav-link">Stations ▾</a>
+                                            <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item">Alpha Base</a>
+                                                <a href="#" class="dropdown-item">Delta Outpost</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="#" class="nav-link">Resources</a></li>
+                                    <li><a href="#" class="nav-link">Analytics</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="flex-1 p-8 opacity-50 italic text-sm overflow-y-auto light:bg-slate-300">Dashboard content area...</div>
+                    </div>
                 </div>
 
                 <!-- Search -->
@@ -740,7 +796,7 @@
                     <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dashboard Grid (.starlight-dashboard)</div>
                     <div class="p-8">
                         <div class="starlight-dashboard">
-                            <div class="starlight-card stat-card">
+                            <div class="starlight-card stat-card light:shadow-lg">
                                 <span class="stat-label">Core Stability</span>
                                 <span class="stat-value">98.4%</span>
                                 <div class="stat-trend up">
@@ -748,7 +804,7 @@
                                     2.1%
                                 </div>
                             </div>
-                            <div class="starlight-card stat-card">
+                            <div class="starlight-card stat-card light:shadow-lg">
                                 <span class="stat-label">Neural Sync</span>
                                 <span class="stat-value">Active</span>
                                 <div class="stat-trend up">
@@ -756,7 +812,7 @@
                                     Optimal
                                 </div>
                             </div>
-                            <div class="starlight-card stat-card">
+                            <div class="starlight-card stat-card light:shadow-lg">
                                 <span class="stat-label">Latency</span>
                                 <span class="stat-value">12ms</span>
                                 <div class="stat-trend down">
@@ -822,25 +878,82 @@
                 </div>
 
                 <!-- Dialog -->
-                <div class="starlight-card p-0 overflow-hidden">
+                <div class="starlight-card p-0">
                     <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
-                    <div class="p-12 text-center">
-                        <button class="btn-starlight btn-lg" onclick="toggleDialog(true)">Test Complete Dialog</button>
-                    </div>
-                    <div class="dialog-overlay hidden" id="systemDialog">
-                        <div class="starlight-dialog">
-                            <button class="dialog-close" onclick="toggleDialog(false)">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            </button>
-                            <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
-                            <p class="mb-6 opacity-70">You are about to bypass safety protocols. This action is irreversible.</p>
-                            <div class="bg-black/20 p-4 rounded-lg mb-6 font-mono text-xs border border-white/5">
-                                <div class="text-success">> STATUS: AUTHORIZED</div>
-                                <div class="text-success">> CORE: ACCESSIBLE</div>
-                            </div>
+                    <div class="p-8">
+                        <!-- Inline Preview -->
+                        <div class="starlight-dialog relative mx-auto mb-8 shadow-none border-white/10" style="max-width: 500px;">
+                            <h3 class="text-xl font-bold mb-4 text-gradient-starlight">System Preview</h3>
+                            <p class="mb-6 opacity-70 text-sm">This is an inline preview of the dialog component. It scales to fit its container.</p>
                             <div class="flex gap-4">
-                                <button class="btn-starlight flex-1" onclick="toggleDialog(false)">Confirm</button>
-                                <button class="btn-secondary flex-1" onclick="toggleDialog(false)">Abort</button>
+                                <button class="btn-starlight btn-sm flex-1">Action</button>
+                                <button class="btn-secondary btn-sm flex-1">Cancel</button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center pt-4 border-t border-white/5">
+                            <button class="btn-starlight" onclick="toggleDialog(true)">Launch Overlay Dialog</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Accordion Group (.accordion-starlight)</div>
+                    <div class="p-8">
+                        <div class="accordion-group max-w-2xl mx-auto">
+                            <div class="accordion-item accordion-starlight active">
+                                <div class="accordion-header">
+                                    <span>Cosmic Manifestation</span>
+                                    <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>The universe began as a singularity of infinite density and heat, expanding rapidly in a cosmic event known as the Big Bang.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item accordion-starlight">
+                                <div class="accordion-header">
+                                    <span>Neural Synchronization</span>
+                                    <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Advanced neural interfaces allow for near-instantaneous data transfer between organic consciousness and digital mesh networks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Tab Interface (.tab-list)</div>
+                    <div class="p-8">
+                        <div class="max-w-2xl mx-auto">
+                            <div class="tab-list mb-4">
+                                <button class="tab-button active" data-tab="tab-overview">Overview</button>
+                                <button class="tab-button" data-tab="tab-specs">Specifications</button>
+                                <button class="tab-button" data-tab="tab-logs">System Logs</button>
+                            </div>
+                            <div class="tab-content glass p-6 rounded-xl">
+                                <div class="tab-panel active" id="tab-overview">
+                                    <h4 class="text-lg font-bold mb-2">Fleet Overview</h4>
+                                    <p class="text-sm opacity-70">Current status: All systems nominal. 24 vessels in active sector.</p>
+                                </div>
+                                <div class="tab-panel" id="tab-specs">
+                                    <h4 class="text-lg font-bold mb-2">Technical Specs</h4>
+                                    <ul class="text-sm opacity-70 list-disc pl-5">
+                                        <li>Core Engine: Antimatter Warp v4</li>
+                                        <li>Hull Plating: Reinforced Tritanium</li>
+                                        <li>Shields: Multi-phasic Harmonic</li>
+                                    </ul>
+                                </div>
+                                <div class="tab-panel" id="tab-logs">
+                                    <div class="font-mono text-xs opacity-60">
+                                        [12:04:33] Nebula drive initiated<br>
+                                        [12:05:12] Synchronization complete<br>
+                                        [12:10:04] Entering silent running mode
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -849,8 +962,27 @@
         </section>
 
         <footer class="mt-20 pt-8 border-t border-white/10 opacity-50 text-sm">
-            Generated by Quantum CSS Dynamic Docs · 2/3/2026
+            Generated by Quantum CSS Dynamic Docs · 2/4/2026
         </footer>
+    </div>
+
+    <!-- Dialog Overlay (Moved to bottom to prevent clipping) -->
+    <div class="dialog-overlay hidden" id="systemDialog">
+        <div class="starlight-dialog">
+            <button class="dialog-close" onclick="toggleDialog(false)">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
+            <p class="mb-6 opacity-70">You are about to bypass safety protocols. This action is irreversible.</p>
+            <div class="bg-black/20 p-4 rounded-lg mb-6 font-mono text-xs border border-white/5">
+                <div class="text-success">> STATUS: AUTHORIZED</div>
+                <div class="text-success">> CORE: ACCESSIBLE</div>
+            </div>
+            <div class="flex gap-4">
+                <button class="btn-starlight flex-1" onclick="toggleDialog(false)">Confirm</button>
+                <button class="btn-secondary flex-1" onclick="toggleDialog(false)">Abort</button>
+            </div>
+        </div>
     </div>
 
     <script>

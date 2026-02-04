@@ -71,6 +71,101 @@ const Starlight = {
         });
       }
     });
+  },
+
+  /**
+   * Initializes dropdown menus.
+   * Toggles '.active' class on '.dropdown' elements when clicked.
+   */
+  initDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.dropdown-toggle') || dropdown.querySelector('button') || dropdown.querySelector('a');
+      
+      if (toggle) {
+        toggle.addEventListener('click', (e) => {
+          // If it's a link that points somewhere, let it work normally
+          if (toggle.tagName === 'A' && toggle.getAttribute('href') && toggle.getAttribute('href') !== '#') {
+            return;
+          }
+          
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const isActive = dropdown.classList.contains('active');
+          
+          // Close all other dropdowns
+          document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (d !== dropdown) d.classList.remove('active');
+          });
+          
+          dropdown.classList.toggle('active', !isActive);
+        });
+      }
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+          d.classList.remove('active');
+        });
+      }
+    });
+  },
+
+  /**
+   * Initializes accordion components.
+   * Toggles '.active' class on '.accordion-item' when header is clicked.
+   */
+  initAccordions() {
+    const headers = document.querySelectorAll('.accordion-header');
+    
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const group = item.closest('.accordion-group');
+        const isActive = item.classList.contains('active');
+        
+        // If in a group, close others
+        if (group) {
+          group.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+        }
+        
+        item.classList.toggle('active', !isActive);
+      });
+    });
+  },
+
+  /**
+   * Initializes tab components.
+   * Switches '.active' class on buttons and panels.
+   */
+  initTabs() {
+    const tabLists = document.querySelectorAll('.tab-list');
+    
+    tabLists.forEach(list => {
+      const buttons = list.querySelectorAll('.tab-button');
+      const container = list.parentElement;
+      
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetId = button.getAttribute('data-tab');
+          if (!targetId) return;
+          
+          // Update buttons
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // Update panels
+          const panels = container.querySelectorAll('.tab-panel');
+          panels.forEach(panel => {
+            panel.classList.toggle('active', panel.id === targetId);
+          });
+        });
+      });
+    });
   }
 };
 
@@ -82,5 +177,8 @@ if (typeof window !== 'undefined') {
       Starlight.initStars();
     }
     Starlight.initNavigation();
+    Starlight.initDropdowns();
+    Starlight.initAccordions();
+    Starlight.initTabs();
   });
 }

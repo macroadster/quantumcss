@@ -113,6 +113,10 @@ const utilityMaps = {
     'search-container': 'relative block w-full',
     'search-input': 'pl-12 w-full',
     'search-icon': 'absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10 w-5 h-5',
+    'nav-glass': {
+      property: ['background', 'backdrop-filter', '-webkit-backdrop-filter', 'border-bottom', 'width', 'display', 'flex-direction', 'padding', 'position', 'top', 'z-index'],
+      value: ['rgba(255, 255, 255, 0.05)', 'blur(24px)', 'blur(24px)', '1px solid rgba(255, 255, 255, 0.1)', '100%', 'flex', 'column', '0', 'sticky', '0', '1000']
+    },
     'starlight-nav': 'nav-glass w-full sticky top-0 z-[1000]',
     'starlight-search': 'search-container w-full max-w-144',
     'starlight-dashboard': 'dashboard-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',

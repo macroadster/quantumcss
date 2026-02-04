@@ -86,6 +86,7 @@ function generateCSS(configPath) {
       const p = parts[currentPart];
       if (breakpoints[p]) { breakpoint = p; }
       else if (p === 'dark') { breakpoint = 'dark'; }
+      else if (p === 'light') { breakpoint = 'light'; }
       else if (['hover', 'focus', 'placeholder', 'group-hover'].includes(p)) { variant = p; }
       else { cls = parts.slice(currentPart).join(':'); break; }
       currentPart++;
@@ -135,7 +136,16 @@ function generateCSS(configPath) {
         if (theme.fontSize[valKey]) { property = ['font-size', 'line-height']; value = [theme.fontSize[valKey], (valKey.includes('xl') || parseInt(valKey) >= 3) ? '1.2' : '1.5']; }
         else { const color = resolveColor(valKey); if (color) { property = 'color'; value = color; } }
       } else if (prefix === 'bg') { const color = resolveColor(valKey); if (color) { property = 'background-color'; value = color; } }
-      else if (prefix === 'z') { property = 'z-index'; value = isNeg ? `-${valKey}` : valKey; }
+      else if (prefix === 'z') { 
+        if (valKey.startsWith('[') && valKey.endsWith(']')) value = valKey.slice(1, -1);
+        else value = isNeg ? `-${valKey}` : valKey;
+        property = 'z-index';
+      }
+      else if (prefix === 'top') {
+        property = 'top';
+        if (valKey.startsWith('[') && valKey.endsWith(']')) value = valKey.slice(1, -1);
+        else value = theme.spacing[valKey] || valKey;
+      }
       else if (prefix === 'aspect') {
         property = ['aspect-ratio', 'width', 'height'];
         let ratio = 'auto';
@@ -186,7 +196,11 @@ function generateCSS(configPath) {
         else if (v.includes('/')) v = `${(parseInt(v.split('/')[0])/parseInt(v.split('/')[1])*100).toFixed(2)}%`;
         else v = theme.spacing[v] || v;
         value = isNeg ? (Array.isArray(v) ? v.map(x => `-${x}`) : `-${v}`) : v;
-      } else if (prefix === 'border') {
+      } else if (prefix === 'shadow') {
+        if (theme.shadows[valKey]) { property = 'box-shadow'; value = theme.shadows[valKey]; }
+        else if (valKey === '') { property = 'box-shadow'; value = theme.shadows.md || '0 4px 6px -1px rgb(0 0 0 / 0.1)'; }
+      }
+      else if (prefix === 'border') {
         const color = resolveColor(valKey);
         if (color) { property = 'border-color'; value = color; }
         else if (['l', 'r', 't', 'b'].includes(cParts[1])) {
@@ -225,11 +239,19 @@ function generateCSS(configPath) {
       let selector = customSelector || `.${escapedFull}`;
       if (variant) { if (variant === 'group-hover') selector = `.group:hover ${selector}`; else selector += `:${variant}`}
       
-      const block = `${selector} {
+      if (breakpoint === 'light') {
+        const block = `body.light-mode ${selector} {
 ${rules.join('\n')}
 }
 `;
-      if (breakpoint) responsiveUtils[breakpoint].add(block); else utilities.add(block);
+        utilities.add(block);
+      } else {
+        const block = `${selector} {
+${rules.join('\n')}
+}
+`;
+        if (breakpoint) responsiveUtils[breakpoint].add(block); else utilities.add(block);
+      }
     });
   }
 
