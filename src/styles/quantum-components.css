@@ -315,31 +315,31 @@ body.light-mode .input:disabled {
 }
 
 /* Light Mode Overrides for Badges */
-body.light-mode .badge-primary {
+html[data-theme="light"] .badge-primary {
   background-color: rgba(59, 130, 246, 0.1);
   color: #2563eb;
   border-color: rgba(59, 130, 246, 0.2);
 }
 
-body.light-mode .badge-secondary {
+html[data-theme="light"] .badge-secondary {
   background-color: rgba(0, 0, 0, 0.05);
   color: #475569;
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-body.light-mode .badge-success {
+html[data-theme="light"] .badge-success {
   background-color: rgba(16, 185, 129, 0.1);
   color: #059669;
   border-color: rgba(16, 185, 129, 0.2);
 }
 
-body.light-mode .badge-warning {
+html[data-theme="light"] .badge-warning {
   background-color: rgba(245, 158, 11, 0.1);
   color: #d97706;
   border-color: rgba(245, 158, 11, 0.2);
 }
 
-body.light-mode .badge-error {
+html[data-theme="light"] .badge-error {
   background-color: rgba(239, 68, 68, 0.1);
   color: #dc2626;
   border-color: rgba(239, 68, 68, 0.2);
