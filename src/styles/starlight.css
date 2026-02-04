@@ -38,7 +38,10 @@ body.light-mode a:hover {
 }
 
 .starlight-card:hover {
-  border-color: rgba(0, 212, 255, 0.3);
+  border-color: rgba(0, 212, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 212, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 body.light-mode .starlight-card {
@@ -311,13 +314,15 @@ body.light-mode .glass {
 .input-starlight:focus, .textarea-starlight:focus {
   outline: none;
   border-color: var(--color-starlight-blue);
-  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1), 0 0 20px rgba(0, 212, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 body.light-mode .input-starlight:focus,
 body.light-mode .textarea-starlight:focus {
   border-color: var(--color-starlight-blue);
-  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
 }
 
 /* 9. Code Interface Window */
@@ -818,6 +823,100 @@ body.light-mode .text-warning { color: #d97706; }
 body.light-mode .dialog-content .bg-black\/40 {
   background-color: rgba(0, 0, 0, 0.05);
   border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 18. Semantic Typography Utilities */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+.text-glass {
+  color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+body.light-mode .text-glow {
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+body.light-mode .text-glass {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* 17. Skeleton Loading (Starlight Variant) */
+.starlight-loading {
+  background: linear-gradient(
+    90deg, 
+    rgba(255, 255, 255, 0.03) 25%, 
+    rgba(255, 255, 255, 0.08) 50%, 
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: starlight-shimmer 2s infinite linear;
+  border-radius: var(--radius-md);
+  min-height: 1rem;
+}
+
+@keyframes starlight-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+body.light-mode .starlight-loading {
+  background: linear-gradient(
+    90deg, 
+    rgba(0, 0, 0, 0.03) 25%, 
+    rgba(0, 0, 0, 0.06) 50%, 
+    rgba(0, 0, 0, 0.03) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* 16. Themed Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+body.light-mode ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-starlight-blue);
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+body.light-mode * {
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
 }
 
 @media (forced-colors: active) {

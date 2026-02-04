@@ -116,7 +116,7 @@ const utilityMaps = {
     'starlight-nav': 'nav-glass w-full sticky top-0 z-[1000]',
     'starlight-search': 'search-container w-full max-w-144',
     'starlight-dashboard': 'dashboard-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
-    'starlight-gallery': 'starlight-gallery grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4',
+    'starlight-gallery': 'starlight-gallery grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
     'starlight-form': 'starlight-card grid grid-cols-1 md:grid-cols-2 gap-8',
     'starlight-dialog': 'starlight-dialog ani-scale-in'
   };

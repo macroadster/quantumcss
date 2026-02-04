@@ -55,6 +55,26 @@ Define your own components in `quantum.config.json`:
 }
 ```
 
+### High-Level Component Presets (AI-Optimized)
+
+Starlight UI provides "Organism-level" presets that compose multiple utilities into functional semantic blocks. Perfect for rapid prototyping and AI generation.
+
+- `starlight-nav` - Complete sticky glassmorphic navigation bar
+- `starlight-search` - Search container with integrated icon and padding
+- `starlight-dashboard` - Responsive 3-column dashboard grid
+- `starlight-gallery` - Optimized grid for image/media galleries
+- `starlight-form` - Multi-column layout for advanced form controls
+- `starlight-dialog` - Centered, animated glassmorphic modal
+
+```html
+<!-- Example: Create a full dashboard grid with one class -->
+<div class="starlight-dashboard">
+  <div class="starlight-card">...</div>
+  <div class="starlight-card">...</div>
+  <div class="starlight-card">...</div>
+</div>
+```
+
 ## ✨ Cosmic Animations
 
 Bring your UI to life with space-inspired effects:
