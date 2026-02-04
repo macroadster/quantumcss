@@ -158,10 +158,16 @@ body.light-mode .btn-secondary {
 /* Card Component */
 .card {
   background-color: white;
+  color: #1e293b;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: all var(--duration-200) var(--ease-in-out);
+}
+
+body.light-mode .card {
+  background-color: white;
+  color: #1e293b;
 }
 
 .card:hover {
@@ -182,6 +188,12 @@ body.light-mode .btn-secondary {
   padding: var(--space-6);
   border-top: 1px solid #e5e7eb;
   background-color: #f9fafb;
+  color: #1e293b;
+}
+
+body.light-mode .card-footer {
+  background-color: #f9fafb;
+  color: #1e293b;
 }
 
 /* Input Component */
@@ -192,8 +204,14 @@ body.light-mode .btn-secondary {
   border: 1px solid #d1d5db;
   border-radius: var(--radius-md);
   background-color: white;
+  color: #1e293b;
   font-size: 1rem;
   transition: all var(--duration-150) var(--ease-in-out);
+}
+
+body.light-mode .input {
+  background-color: white;
+  color: #1e293b;
 }
 
 textarea.input {
@@ -235,6 +253,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: #f3f4f6;
   color: #6b7280;
   cursor: not-allowed;
+}
+
+body.light-mode .input:disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
 }
 
 .input-error {
@@ -366,11 +389,17 @@ body.light-mode .badge-error {
 
 .modal-content {
   background-color: white;
+  color: #1e293b;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-2xl);
   max-width: 90vw;
   max-height: 90vh;
   overflow-y: auto;
+}
+
+body.light-mode .modal-content {
+  background-color: white;
+  color: #1e293b;
 }
 
 /* Loading Spinner */
@@ -445,6 +474,7 @@ body.light-mode .skeleton {
   top: 100%;
   left: 0;
   background-color: white;
+  color: #1e293b;
   border: 1px solid #e5e7eb;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
@@ -454,6 +484,11 @@ body.light-mode .skeleton {
   visibility: hidden;
   transform: translateY(-10px);
   transition: all var(--duration-150) var(--ease-in-out);
+}
+
+body.light-mode .dropdown-content {
+  background-color: white;
+  color: #1e293b;
 }
 
 .dropdown.active .dropdown-content {
@@ -470,11 +505,22 @@ body.light-mode .skeleton {
   background: none;
   border: none;
   cursor: pointer;
+  color: #1e293b;
   transition: background-color var(--duration-150) var(--ease-in-out);
 }
 
 .dropdown-item:hover {
   background-color: #f3f4f6;
+  color: #1e293b;
+}
+
+body.light-mode .dropdown-item {
+  color: #1e293b;
+}
+
+body.light-mode .dropdown-item:hover {
+  background-color: #f3f4f6;
+  color: #1e293b;
 }
 
 /* Accordion Component */
@@ -488,6 +534,7 @@ body.light-mode .skeleton {
 .accordion-header {
   padding: var(--space-4);
   background-color: #f9fafb;
+  color: #1e293b;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -497,14 +544,31 @@ body.light-mode .skeleton {
 
 .accordion-header:hover {
   background-color: #f3f4f6;
+  color: #1e293b;
 }
 
 .accordion-content {
   padding: var(--space-4);
   background-color: white;
+  color: #1e293b;
   max-height: 0;
   overflow: hidden;
   transition: max-height var(--duration-300) var(--ease-in-out);
+}
+
+body.light-mode .accordion-header {
+  background-color: #f9fafb;
+  color: #1e293b;
+}
+
+body.light-mode .accordion-header:hover {
+  background-color: #f3f4f6;
+  color: #1e293b;
+}
+
+body.light-mode .accordion-content {
+  background-color: white;
+  color: #1e293b;
 }
 
 .accordion-item.active .accordion-content {
@@ -531,16 +595,27 @@ body.light-mode .skeleton {
   border: none;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  color: #1e293b;
   transition: all var(--duration-150) var(--ease-in-out);
 }
 
 .tab-button:hover {
   background-color: #f3f4f6;
+  color: #1e293b;
 }
 
 .tab-button.active {
   border-bottom-color: var(--color-primary);
   color: var(--color-primary);
+}
+
+body.light-mode .tab-button {
+  color: #1e293b;
+}
+
+body.light-mode .tab-button:hover {
+  background-color: #f3f4f6;
+  color: #1e293b;
 }
 
 .tab-content {
