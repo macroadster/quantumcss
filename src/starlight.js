@@ -682,32 +682,8 @@ const Starlight = {
         }
       });
     }
-        
-        if (newTheme) {
-          document.documentElement.setAttribute('data-theme', newTheme);
-          
-          // Update storage if no explicit user preference
-          if (!hasUserPreference) {
-            localStorage.setItem(config.storageKey, newTheme);
-          }
-          
-          // Update icons
-          config.themes.forEach(theme => {
-            const iconSelector = config.iconSelector[theme];
-            if (iconSelector) {
-              const icons = document.querySelectorAll(iconSelector);
-              icons.forEach(icon => {
-                icon.classList.toggle('hidden', theme !== newTheme);
-              });
-            }
-          });
-          
-          // Emit theme change event
-          const systemThemeEventDetail = { theme: newTheme, previousTheme: savedTheme, source: 'system' };
-          const systemThemeChangeEvent = new CustomEvent('themechange', { detail: systemThemeEventDetail });
-          window.dispatchEvent(systemThemeChangeEvent);
-        }
-  }
+   }
+};
 };
 
 // Auto-initialize if the element exists and we're in a browser
