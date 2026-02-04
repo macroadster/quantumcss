@@ -1030,6 +1030,29 @@
                 }
             });
         }
+    <script>
+        // Initialize theme with auto-detection support
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            let initialTheme;
+            
+            if (!savedTheme) {
+                // No saved preference - default to auto for better UX
+                const systemPrefers = window.matchMedia('(prefers-color-scheme: light)').matches;
+                initialTheme = 'auto';
+                console.log('No saved theme, enabling auto-detection');
+            } else {
+                initialTheme = savedTheme;
+                console.log('Using saved theme:', savedTheme);
+            }
+            
+            // Use the enhanced setTheme function if available
+            if (typeof setTheme === 'function') {
+                setTheme(initialTheme);
+            } else {
+                console.warn('Enhanced theme functions not available');
+            }
+        });
     </script>
 </body>
 </html>

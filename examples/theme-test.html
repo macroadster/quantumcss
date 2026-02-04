@@ -41,6 +41,7 @@
             <button class="btn-secondary" onclick="setTheme('dark')">🌙 Dark</button>
             <button class="btn-outline" onclick="setTheme('auto')">🖥️ Follow System</button>
             <button class="btn-ghost" onclick="toggleTheme()">🔄 Cycle</button>
+            <button class="btn-success" onclick="resetToAuto()">🔄 Reset to Auto</button>
             <button class="btn-warning" onclick="forceRefresh()">🔃 Force Refresh</button>
         </div>
         
@@ -142,6 +143,17 @@
                 }
             }, 500); // Longer delay to ensure Starlight initialization
         });
+        
+        // Reset to auto function
+        function resetToAuto() {
+            console.log('Resetting to auto theme...');
+            if (typeof setTheme === 'function') {
+                setTheme('auto');
+                updateStatus();
+            } else {
+                console.error('setTheme function not available');
+            }
+        }
         
         // Also update every 2 seconds to show real-time changes
         setInterval(updateStatus, 2000);

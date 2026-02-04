@@ -128,30 +128,70 @@
     </main>
 
     <script>
-        function toggleTheme() { 
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            
-            const isLight = newTheme === 'light';
-            document.querySelector('.sun-icon').classList.toggle('hidden', !isLight);
-            document.querySelector('.moon-icon').classList.toggle('hidden', isLight);
-            
-            // Save theme preference
-            localStorage.setItem('theme', newTheme);
-        }
-        
         function openDialog() { document.getElementById('dialog').style.display = 'flex'; }
         function closeDialog() { document.getElementById('dialog').style.display = 'none'; }
         
-        // Initialize theme on load
+        // Initialize theme on load with auto-detection
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            const isLight = savedTheme === 'light';
-            document.querySelector('.sun-icon').classList.toggle('hidden', !isLight);
-            document.querySelector('.moon-icon').classList.toggle('hidden', isLight);
+            // Check for system preference first, then saved preference
+            const savedTheme = localStorage.getItem('theme');
+            let initialTheme;
+            
+            if (!savedTheme) {
+                // No saved preference - check system preference and default to auto
+                const systemPrefers = window.matchMedia('(prefers-color-scheme: light)').matches;
+                initialTheme = 'auto'; // Enable auto-follow by default
+                console.log('No saved theme found, defaulting to auto mode');
+            } else {
+                initialTheme = savedTheme;
+                console.log('Using saved theme:', savedTheme);
+            }
+            
+            // Set the initial theme (setTheme will handle auto conversion)
+            if (typeof setTheme === 'function') {
+                setTheme(initialTheme);
+            } else {
+                // Fallback: basic theme setting
+                const effectiveTheme = initialTheme === 'auto' ? 
+                    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') : initialTheme;
+                document.documentElement.setAttribute('data-theme', effectiveTheme);
+                
+                // Update icons
+                const sunIcon = document.querySelector('.sun-icon');
+                const moonIcon = document.querySelector('.moon-icon');
+                if (sunIcon && moonIcon) {
+                    const isLight = effectiveTheme === 'light';
+                    sunIcon.classList.toggle('hidden', !isLight);
+                    moonIcon.classList.toggle('hidden', isLight);
+                }
+                
+                localStorage.setItem('theme', initialTheme);
+            }
+        });
+        
+        // Listen for system theme changes when in auto mode
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'auto') {
+                const newTheme = e.matches ? 'light' : 'dark';
+                console.log('System theme changed, updating to:', newTheme);
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                
+                // Update icons
+                const sunIcon = document.querySelector('.sun-icon');
+                const moonIcon = document.querySelector('.moon-icon');
+                if (sunIcon && moonIcon) {
+                    const isLight = newTheme === 'light';
+                    sunIcon.classList.toggle('hidden', !isLight);
+                    moonIcon.classList.toggle('hidden', isLight);
+                }
+                
+                // Emit event for any listeners
+                window.dispatchEvent(new CustomEvent('themechange', {
+                    detail: { theme: 'auto', effectiveTheme: newTheme, source: 'system' }
+                }));
+            }
         });
     </script>
 </body>
