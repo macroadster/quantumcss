@@ -682,9 +682,9 @@ const Starlight = {
           });
           
           // Emit theme change event
-          window.dispatchEvent(new CustomEvent('themechange', { 
-            detail: { theme: newTheme, previousTheme: savedTheme, source: 'system' } 
-          }));
+          const systemThemeEventDetail = { theme: newTheme, previousTheme: savedTheme, source: 'system' };
+          const systemThemeChangeEvent = new CustomEvent('themechange', { detail: systemThemeEventDetail });
+          window.dispatchEvent(systemThemeChangeEvent);
         }
       });
     }
