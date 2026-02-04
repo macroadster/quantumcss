@@ -644,12 +644,12 @@ const Starlight = {
           }
           
           // Update icons
-          config.themes.forEach(theme => {
-            const iconSelector = config.iconSelector[theme];
+          config.themes(themeToUse => {
+            const iconSelector = config.iconSelector[themeToUse];
             if (iconSelector) {
               const icons = document.querySelectorAll(iconSelector);
               icons.forEach(icon => {
-                icon.classList.toggle('hidden', theme !== newTheme);
+                icon.classList.toggle('hidden', themeToUse !== newTheme);
               });
             }
           });
@@ -686,8 +686,6 @@ const Starlight = {
           const systemThemeChangeEvent = new CustomEvent('themechange', { detail: systemThemeEventDetail });
           window.dispatchEvent(systemThemeChangeEvent);
         }
-      });
-    }
   }
 };
 
