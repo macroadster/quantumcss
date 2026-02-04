@@ -586,36 +586,46 @@ body.light-mode .accordion-content {
 /* Tab Component */
 .tab-list {
   display: flex;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tab-button {
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-4);
   background: none;
   border: none;
   cursor: pointer;
   border-bottom: 2px solid transparent;
-  color: #1e293b;
+  color: var(--text-secondary);
+  font-weight: 500;
   transition: all var(--duration-150) var(--ease-in-out);
 }
 
 .tab-button:hover {
-  background-color: #f3f4f6;
-  color: #1e293b;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
 }
 
 .tab-button.active {
-  border-bottom-color: var(--color-primary);
-  color: var(--color-primary);
+  border-bottom-color: var(--color-starlight-blue);
+  color: var(--color-starlight-blue);
+}
+
+body.light-mode .tab-list {
+  border-bottom-color: #e2e8f0;
 }
 
 body.light-mode .tab-button {
-  color: #1e293b;
+  color: #64748b;
 }
 
 body.light-mode .tab-button:hover {
-  background-color: #f3f4f6;
-  color: #1e293b;
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+body.light-mode .tab-button.active {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .tab-content {

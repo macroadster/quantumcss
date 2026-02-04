@@ -167,6 +167,8 @@ body.light-mode .star {
   padding: 2.5rem;
   max-width: 90%;
   width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   position: relative;
 }
@@ -180,9 +182,34 @@ body.light-mode .star {
   padding: 3rem;
   width: 100%;
   max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
   margin: auto;
   position: relative;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom scrollbar for dialogs */
+.dialog-content::-webkit-scrollbar,
+.starlight-dialog::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dialog-content::-webkit-scrollbar-track,
+.starlight-dialog::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.dialog-content::-webkit-scrollbar-thumb,
+.starlight-dialog::-webkit-scrollbar-thumb {
+  background: var(--color-starlight-blue, #3b82f6);
+  border-radius: 4px;
+}
+
+body.light-mode .dialog-content::-webkit-scrollbar-track,
+body.light-mode .starlight-dialog::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 body.light-mode .starlight-dialog {
