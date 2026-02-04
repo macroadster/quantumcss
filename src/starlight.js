@@ -500,6 +500,25 @@ const Starlight = {
     console.log('Set data-theme to:', initialTheme);
     console.log('Current html[data-theme] after setting:', document.documentElement.getAttribute('data-theme'));
     
+    // Monitor for theme changes to detect if something is clearing it
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          console.log('Theme attribute changed:', {
+            oldValue: mutation.oldValue,
+            newValue: document.documentElement.getAttribute('data-theme'),
+            timestamp: new Date().toISOString()
+          });
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+      attributeOldValue: true
+    });
+    
     // Store the effective theme if auto mode
     if (savedTheme === 'auto' && config.autoDetect) {
       localStorage.setItem(`${config.storageKey}-effective`, initialTheme);
@@ -516,7 +535,7 @@ const Starlight = {
       if (iconSelector) {
         const icons = document.querySelectorAll(iconSelector);
         icons.forEach(icon => {
-          icon.classList.toggle('hidden', theme !== savedTheme);
+          icon.classList.toggle('hidden', theme !== initialTheme);
         });
       }
     });
@@ -528,6 +547,8 @@ const Starlight = {
       const themeIndex = config.themes.indexOf(currentTheme);
       const nextTheme = config.themes[(themeIndex + 1) % config.themes.length];
       
+      console.log('toggleTheme called:', { currentTheme, nextTheme, themeIndex });
+      
       // Set effective theme (auto becomes system preference)
       let effectiveTheme = nextTheme;
       if (nextTheme === 'auto' && config.autoDetect) {
@@ -537,7 +558,10 @@ const Starlight = {
         localStorage.setItem(`${config.storageKey}-effective`, null);
       }
       
+      console.log('Setting theme:', { nextTheme, effectiveTheme });
       html.setAttribute('data-theme', effectiveTheme);
+      console.log('After setTheme - data-theme:', html.getAttribute('data-theme'));
+      
       localStorage.setItem(config.storageKey, nextTheme);
       
       // Update icons
