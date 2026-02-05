@@ -15,6 +15,8 @@ function generateCSS(configPath) {
   theme.spacing = theme.spacing || {};
   theme.borderRadius = theme.borderRadius || {};
   theme.fontSize = theme.fontSize || {};
+  theme.maxWidth = theme.maxWidth || {};
+  theme.shadows = theme.shadows || {};
 
   if (config.theme && config.theme.extend) {
     const ext = config.theme.extend;
@@ -22,6 +24,8 @@ function generateCSS(configPath) {
     if (ext.spacing) Object.assign(theme.spacing, ext.spacing);
     if (ext.borderRadius) Object.assign(theme.borderRadius, ext.borderRadius);
     if (ext.fontSize) Object.assign(theme.fontSize, ext.fontSize);
+    if (ext.maxWidth) Object.assign(theme.maxWidth, ext.maxWidth);
+    if (ext.boxShadow) Object.assign(theme.shadows, ext.boxShadow);
   }
 
   const flattenedColors = {};
@@ -204,8 +208,12 @@ function generateCSS(configPath) {
         property = sideMap[prefix];
         let v = valKey;
         if (v.startsWith('[') && v.endsWith(']')) v = v.slice(1, -1);
-        else if (v.includes('/')) v = `${(parseFloat(v.split('/')[0])/parseFloat(v.split('/')[1])*100).toFixed(2)}%`;
-        else v = theme.spacing[v] || (isNaN(parseFloat(v)) ? v : `${parseFloat(v) * 0.25}rem`);
+        else if (v.includes('/')) v = `${(parseFloat(v.split('/')[0]) / parseFloat(v.split('/')[1]) * 100).toFixed(2)}%`;
+        else {
+          // Priority: 1. Specific theme map (e.g. maxWidth for max-w) 2. spacing map 3. Numeric conversion 4. raw value
+          const themeMap = prefix === 'max-w' ? theme.maxWidth : (theme[prefix] || theme.spacing);
+          v = (themeMap && themeMap[v]) || theme.spacing[v] || (/^\d+(\.\d+)?$/.test(v) ? `${parseFloat(v) * 0.25}rem` : v);
+        }
         value = isNeg ? (Array.isArray(v) ? v.map(x => `-${x}`) : `-${v}`) : v;
       } else if (prefix === 'shadow') {
         if (theme.shadows[valKey]) { property = 'box-shadow'; value = theme.shadows[valKey]; }
