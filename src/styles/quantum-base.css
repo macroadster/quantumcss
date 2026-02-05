@@ -810,13 +810,13 @@ body.dark-mode {
 html[data-theme="light"] body,
 body.light-mode {
   background: var(--light-bg) !important;
-  color: var(--light-text) !important;
+  color: var(--light-text);
 }
 
 html[data-theme="dark"] body,
 body.dark-mode {
   background: var(--color-starlight-deep) !important;
-  color: #f1f5f9 !important;
+  color: #f1f5f9;
 }
 
 
