@@ -45,61 +45,44 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        nav {
+        /* Dark Mode Overrides */
+        body.dark-mode .bg-white,
+        html[data-theme="dark"] .bg-white {
             background-color: #020617 !important;
-            border-bottom-color: #f1f5f9 !important;
-        }
-
-        body.light-mode nav {
-            background-color: #ffffff !important;
-            border-bottom-color: #0f172a !important;
-        }
-
-        .bg-white {
-            background-color: #020617 !important;
-        }
-
-        body.light-mode .bg-white {
-            background-color: #ffffff !important;
-        }
-
-        .bg-slate-50 {
-            background-color: rgba(255, 255, 255, 0.05) !important;
-        }
-
-        body.light-mode .bg-slate-50 {
-            background-color: #f8fafc !important;
-        }
-
-        .border-slate-100 {
-            border-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        body.light-mode .border-slate-100 {
-            border-color: #f1f5f9 !important;
-        }
-
-        .text-slate-900,
-        .text-slate-500 {
             color: #f1f5f9 !important;
         }
 
-        body.light-mode .text-slate-900 { color: #0f172a !important; }
-        body.light-mode .text-slate-500 { color: #64748b !important; }
-
-        .bg-slate-900 {
+        body.dark-mode .bg-slate-900,
+        html[data-theme="dark"] .bg-slate-900 {
             background-color: #f1f5f9 !important;
             color: #020617 !important;
         }
 
-        body.light-mode .bg-slate-900 {
-            background-color: #0f172a !important;
-            color: #ffffff !important;
+        body.dark-mode .text-slate-900,
+        body.dark-mode .text-slate-500,
+        html[data-theme="dark"] .text-slate-900,
+        html[data-theme="dark"] .text-slate-500 {
+            color: #f1f5f9 !important;
         }
 
         /* Improved Dark Mode Visibility */
-        body.dark-mode .text-blue-600 {
+        body.dark-mode .text-blue-600,
+        html[data-theme="dark"] .text-blue-600 {
             color: #60a5fa !important;
+        }
+
+        body.dark-mode nav,
+        html[data-theme="dark"] nav {
+            background-color: #020617 !important;
+            border-bottom-color: #f1f5f9 !important;
+            color: #f1f5f9 !important;
+        }
+
+        body.light-mode nav,
+        html[data-theme="light"] nav {
+            background-color: #ffffff !important;
+            border-bottom-color: #0f172a !important;
+            color: #0f172a !important;
         }
 
         /* Trending Terminal Number Visibility */
@@ -146,11 +129,6 @@
         body.light-mode footer a:hover {
             color: #ea580c !important;
         }
-
-        .moon-icon { display: block; }
-        body.light-mode .moon-icon { display: none; }
-        body.light-mode .sun-icon { display: block; }
-        .sun-icon { display: none; }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -169,7 +147,7 @@
     <!-- Navigation -->
     <nav class="border-b border-slate-900 border-b-4 sticky top-0 bg-white z-50">
         <div class="container mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-4xl font-black tracking-tighter uppercase italic">QUANTUM<span class="text-blue-600">NEWS</span></div>
+            <div class="text-4xl font-black tracking-tighter uppercase italic text-primary">QUANTUM<span class="text-blue-600">NEWS</span></div>
             <div class="flex flex-wrap justify-center gap-8 text-xs font-black uppercase tracking-widest">
                 <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Quantum Computing</a>
                 <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Neural Nets</a>
@@ -178,10 +156,10 @@
                 <a href="#" class="text-blue-600">Live Updates</a>
             </div>
             <div class="flex items-center gap-4">
-                <button class="w-10 h-10 flex items-center justify-center hover:glass-light rounded-full transition-colors">
+                <button class="w-10 h-10 flex items-center justify-center hover:glass-light rounded-full transition-colors text-primary">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
-                <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                <div id="theme-btn" class="theme-toggle text-primary" title="Toggle Theme">
                     <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                     <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 </div>
@@ -281,7 +259,7 @@
     <footer class="bg-slate-900 text-white py-20 mt-24">
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-16">
             <div class="col-span-1 md:col-span-2">
-                <div class="text-3xl font-black tracking-tighter uppercase italic mb-6">QUANTUM<span class="text-blue-600">NEWS</span></div>
+                <div class="text-3xl font-black tracking-tighter uppercase italic mb-6 text-primary">QUANTUM<span class="text-blue-600">NEWS</span></div>
                 <p class="text-slate-400 max-w-md text-sm leading-relaxed">Reporting from the edge of tomorrow. We translate complex breakthroughs into human experience.</p>
             </div>
             <div>
