@@ -1,6 +1,6 @@
 {
   "name": "@howssatoshi/quantumcss",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Advanced utility-first CSS framework with JIT generation and modern components",
   "main": "dist/quantum.min.css",
   "bin": {
