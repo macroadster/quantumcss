@@ -874,6 +874,13 @@ body.light-mode .table tbody tr:hover {
   border-radius: 1rem;
 }
 
+/* Top navigation actions container */
+.top-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 /* Page header with actions */
 .page-header {
   display: flex;
