@@ -820,3 +820,957 @@ body.light-mode .table tbody tr:hover {
 .overflow-y-auto {
   overflow-y: auto;
 }
+
+/* ============================================================================
+   APP LAYOUT PATTERNS
+   Standardized layout components for dashboard and admin applications
+   ============================================================================ */
+
+/* Main app layout - sidebar + content grid */
+.app-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  height: 100vh;
+  background: var(--bg-primary, #08081a);
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+.app-layout-narrow {
+  grid-template-columns: 80px minmax(0, 1fr);
+}
+
+.app-layout-wide {
+  grid-template-columns: 320px minmax(0, 1fr);
+}
+
+/* Sidebar navigation container */
+.sidebar {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content area */
+.main-content {
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Top navigation bar */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+/* Page header with actions */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Light mode overrides for layout */
+body.light-mode .sidebar {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-right-color: #e2e8f0;
+}
+
+body.light-mode .top-nav {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 1024px) {
+  .app-layout {
+    grid-template-columns: 80px 1fr;
+  }
+  
+  .sidebar {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* ============================================================================
+   NAVIGATION PATTERNS
+   Sidebar navigation items and sections
+   ============================================================================ */
+
+/* Navigation section container */
+.nav-section {
+  margin-bottom: 1.5rem;
+}
+
+/* Navigation section title */
+.nav-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted, #64748b);
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+/* Navigation item */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem;
+  border-radius: 0.625rem;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0.25rem;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #f1f5f9);
+}
+
+.nav-item.active {
+  background: rgba(0, 212, 255, 0.12);
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* Constrain nav item icons - prevent oversized icons */
+.nav-item svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  max-width: 1.125rem;
+  max-height: 1.125rem;
+  flex-shrink: 0;
+}
+
+/* Sidebar scrollbar styling to prevent layout shift */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+body.light-mode .sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* Navigation badge (count) */
+.nav-badge {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Light mode overrides for navigation */
+body.light-mode .nav-item:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+body.light-mode .nav-section-title {
+  color: #64748b;
+}
+
+/* ============================================================================
+   STAT CARDS
+   Dashboard metric cards with icons and values
+   ============================================================================ */
+
+/* Stats grid layout */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Individual stat card */
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Stat card header with icon and trend */
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+/* Icon wrapper for stat cards */
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon color variants */
+.stat-icon-blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.stat-icon-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.stat-icon-orange {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+}
+
+.stat-icon-purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+.stat-icon-red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+/* Stat value display */
+.stat-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+  margin-bottom: 0.25rem;
+}
+
+/* Stat label */
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* Trend indicator */
+.stat-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.stat-trend-up {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.stat-trend-down {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+/* Light mode overrides for stat cards */
+body.light-mode .stat-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+body.light-mode .stat-card:hover {
+  background: #f8fafc;
+}
+
+body.light-mode .stat-icon-blue {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+body.light-mode .stat-icon-green {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+body.light-mode .stat-icon-orange {
+  background: rgba(249, 115, 22, 0.1);
+}
+
+body.light-mode .stat-icon-purple {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+body.light-mode .stat-icon-red {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive stats grid */
+@media (max-width: 1280px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   ICON BUTTONS
+   Square and circular icon buttons
+   ============================================================================ */
+
+/* Base icon button */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.625rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary, #94a3b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* Circular icon button */
+.icon-btn-circle {
+  border-radius: 50%;
+}
+
+/* Small icon button */
+.icon-btn-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+}
+
+/* Large icon button */
+.icon-btn-lg {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+}
+
+/* Action buttons container */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Action button for tables/lists */
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted, #64748b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* Delete action button */
+.action-btn-delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Light mode overrides for icon buttons */
+body.light-mode .icon-btn,
+body.light-mode .action-btn {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #64748b;
+}
+
+body.light-mode .icon-btn:hover,
+body.light-mode .action-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* ============================================================================
+   THEME TOGGLE
+   Theme toggle button and wrapper for sidebars
+   ============================================================================ */
+
+/* Theme toggle wrapper */
+.theme-toggle-wrapper {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Theme toggle button */
+.theme-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.625rem;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* Sun/moon icon visibility */
+.sun-icon {
+  display: none;
+}
+
+body.light-mode .sun-icon {
+  display: inline;
+}
+
+body.light-mode .moon-icon {
+  display: none;
+}
+
+/* Light mode overrides for theme toggle */
+body.light-mode .theme-btn {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+body.light-mode .theme-toggle-wrapper {
+  border-top-color: #e2e8f0;
+}
+
+/* ============================================================================
+   AVATARS
+   User avatars with initials and images
+   ============================================================================ */
+
+/* Base avatar */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, var(--color-starlight, #00d4ff));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: white;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Avatar sizes */
+.avatar-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.75rem;
+}
+
+.avatar-md {
+  width: 36px;
+  height: 36px;
+  font-size: 0.8125rem;
+}
+
+.avatar-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1rem;
+}
+
+.avatar-xl {
+  width: 56px;
+  height: 56px;
+  font-size: 1.25rem;
+}
+
+/* User cell (for tables/lists) */
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--text-primary, #f1f5f9);
+  margin-bottom: 0.125rem;
+}
+
+.user-email {
+  font-size: 0.75rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* Light mode overrides for user info */
+body.light-mode .user-name {
+  color: #0f172a;
+}
+
+body.light-mode .user-email {
+  color: #64748b;
+}
+
+/* ============================================================================
+   STATUS BADGES
+   Status indicators with dots and labels
+   ============================================================================ */
+
+/* Base status badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Status variants */
+.status-active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.status-active::before {
+  background: #34d399;
+}
+
+.status-pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.status-pending::before {
+  background: #fbbf24;
+}
+
+.status-inactive {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.status-inactive::before {
+  background: #f87171;
+}
+
+/* Role badge */
+.role-badge {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary, #94a3b8);
+}
+
+.role-admin {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--color-starlight, #00d4ff);
+}
+
+.role-moderator {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+/* Count badge */
+.badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6);
+  border-radius: 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Label/tag */
+.label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.label-work {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.label-personal {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.label-important {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Light mode overrides for badges */
+body.light-mode .status-active {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+body.light-mode .status-pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+body.light-mode .status-inactive {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+body.light-mode .role-badge {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+body.light-mode .role-admin {
+  background: rgba(0, 212, 255, 0.1);
+  color: #0284c7;
+}
+
+body.light-mode .label-work {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+}
+
+body.light-mode .label-personal {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+body.light-mode .label-important {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+/* ============================================================================
+   SEARCH INPUTS
+   Search boxes with integrated icons
+   ============================================================================ */
+
+/* Search container */
+.search-box {
+  position: relative;
+}
+
+/* Search input */
+.search-input {
+  width: 280px;
+  padding: 0.625rem 1rem 0.625rem 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.625rem;
+  color: var(--text-primary, #f1f5f9);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted, #64748b);
+}
+
+/* Search icon */
+.search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted, #64748b);
+  pointer-events: none;
+}
+
+/* Full-width search input */
+.search-input-full {
+  width: 100%;
+}
+
+/* Filter select (for table filters) */
+.filter-select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: rgba(0, 212, 255, 0.5);
+}
+
+/* Light mode overrides for search */
+body.light-mode .search-input,
+body.light-mode .filter-select {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light-mode .search-input:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+}
+
+body.light-mode .search-input::placeholder {
+  color: #94a3b8;
+}
+
+/* ============================================================================
+   STATUS INDICATORS
+   Online status and notification dots
+   ============================================================================ */
+
+/* Online status indicator */
+.online-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary, #08081a);
+}
+
+/* Away status indicator */
+.away-indicator {
+  background: #f59e0b;
+}
+
+/* Busy status indicator */
+.busy-indicator {
+  background: #ef4444;
+}
+
+/* Offline status indicator */
+.offline-indicator {
+  background: #64748b;
+}
+
+/* Notification dot */
+.notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary, #08081a);
+}
+
+/* Notification badge with number */
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #ef4444;
+  border-radius: 9px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-primary, #08081a);
+}
+
+/* Light mode overrides for indicators */
+body.light-mode .online-indicator,
+body.light-mode .notification-dot,
+body.light-mode .notification-badge {
+  border-color: #ffffff;
+}
+
+/* ============================================================================
+   PAGINATION
+   Table and list pagination controls
+   ============================================================================ */
+
+.pagination {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.page-btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary, #f1f5f9);
+}
+
+.page-btn.active {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--color-starlight, #00d4ff);
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Light mode overrides for pagination */
+body.light-mode .page-btn {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #64748b;
+}
+
+body.light-mode .page-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light-mode .page-btn.active {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #2563eb;
+}

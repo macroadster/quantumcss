@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlight Chat - Messages</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <link rel="stylesheet" href="../src/styles/quantum-components.css">
+    <script src="../src/starlight.js"></script>
+    <style>
+        .chat-app {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            height: 100vh;
+            background: var(--bg-primary, #08081a);
+            overflow: hidden;
+        }
+        .chat-sidebar {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .sidebar-header { padding: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .chat-tabs { display: flex; gap: 0.25rem; padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .chat-tab { flex: 1; padding: 0.5rem; background: transparent; border: none; border-radius: 0.5rem;
+            color: var(--text-muted, #64748b); font-size: 0.8125rem; font-weight: 500; cursor: pointer;
+        }
+        .chat-tab.active { color: var(--color-starlight, #00d4ff); background: rgba(0, 212, 255, 0.1); }
+        .conversation-list { flex: 1; overflow-y: auto; padding: 0.5rem; }
+        .conversation-item { display: flex; align-items: center; gap: 0.875rem; padding: 0.875rem; border-radius: 0.75rem; cursor: pointer; margin-bottom: 0.25rem; }
+        .conversation-item:hover { background: rgba(255, 255, 255, 0.03); }
+        .conversation-item.active { background: rgba(0, 212, 255, 0.08); }
+        .conversation-avatar { position: relative; flex-shrink: 0; }
+        .conversation-avatar img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+        .conversation-info { flex: 1; min-width: 0; }
+        .conversation-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+        .conversation-name { font-size: 0.9375rem; font-weight: 600; color: var(--text-primary, #f1f5f9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .conversation-time { font-size: 0.75rem; color: var(--text-muted, #64748b); }
+        .conversation-message { font-size: 0.875rem; color: var(--text-secondary, #94a3b8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .conversation-item.unread .conversation-message { color: var(--text-primary, #f1f5f9); font-weight: 500; }
+        .chat-main { display: flex; flex-direction: column; overflow: hidden; }
+        .chat-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); }
+        .chat-header-info { display: flex; align-items: center; gap: 0.875rem; }
+        .chat-header-avatar { position: relative; }
+        .chat-header-avatar img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+        .chat-header-details h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary, #f1f5f9); margin-bottom: 0.125rem; }
+        .chat-header-details p { font-size: 0.8125rem; color: #10b981; }
+        .messages-container { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+        .message-date { text-align: center; margin: 1rem 0; }
+        .message-date span { font-size: 0.75rem; color: var(--text-muted, #64748b); background: rgba(255, 255, 255, 0.05); padding: 0.375rem 0.875rem; border-radius: 9999px; }
+        .message { display: flex; gap: 0.75rem; max-width: 70%; }
+        .message.sent { align-self: flex-end; flex-direction: row-reverse; }
+        .message-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .message-content { display: flex; flex-direction: column; gap: 0.25rem; }
+        .message-bubble { padding: 0.875rem 1.125rem; border-radius: 1.125rem; font-size: 0.9375rem; line-height: 1.5; }
+        .message.received .message-bubble { background: rgba(255, 255, 255, 0.08); color: var(--text-primary, #f1f5f9); border-bottom-left-radius: 0.25rem; }
+        .message.sent .message-bubble { background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6); color: white; border-bottom-right-radius: 0.25rem; }
+        .message-time { font-size: 0.75rem; color: var(--text-muted, #64748b); align-self: flex-start; margin-left: 0.5rem; }
+        .message.sent .message-time { align-self: flex-end; margin-left: 0; margin-right: 0.5rem; }
+        .chat-input-container { padding: 1rem 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); }
+        .chat-input-wrapper { display: flex; align-items: flex-end; gap: 0.75rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; padding: 0.625rem 0.75rem; }
+        .chat-input { flex: 1; background: transparent; border: none; color: var(--text-primary, #f1f5f9); font-size: 0.9375rem; resize: none; max-height: 120px; padding: 0.5rem 0; outline: none; }
+        .chat-input::placeholder { color: var(--text-muted, #64748b); }
+        .send-btn { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .send-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4); }
+        .sun-icon { display: none; }
+        body.light-mode .sun-icon { display: inline; }
+        body.light-mode .moon-icon { display: none; }
+        body.light-mode { --bg-primary: #f8fafc; --text-primary: #0f172a; --text-secondary: #475569; --text-muted: #64748b; }
+        body.light-mode .chat-sidebar { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); border-right-color: #e2e8f0; }
+        body.light-mode .chat-header, body.light-mode .chat-input-container { background: #f8fafc; border-color: #e2e8f0; }
+        body.light-mode .chat-input-wrapper { background: #f1f5f9; border-color: #e2e8f0; }
+        body.light-mode .conversation-item:hover { background: #f8fafc; }
+        body.light-mode .conversation-item.active { background: rgba(0, 212, 255, 0.08); }
+        body.light-mode .message.received .message-bubble { background: #f1f5f9; color: #0f172a; }
+        @media (max-width: 768px) { .chat-app { grid-template-columns: 1fr; } .chat-sidebar { display: none; } .message { max-width: 85%; } }
+    </style>
+</head>
+<body>
+    <div class="chat-app">
+        <aside class="chat-sidebar">
+            <div class="sidebar-header">
+                <div class="user-cell" style="margin-bottom: 1rem;">
+                    <div class="avatar avatar-lg" style="position: relative;">
+                        JD
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-email" style="color: var(--text-muted, #64748b); font-size: 0.8125rem;">Online</div>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="search-input search-input-full" placeholder="Search conversations...">
+                </div>
+            </div>
+            <div class="chat-tabs">
+                <button class="chat-tab active">All</button>
+                <button class="chat-tab">Unread</button>
+                <button class="chat-tab">Groups</button>
+            </div>
+            <div class="conversation-list">
+                <div class="conversation-item active unread">
+                    <div class="conversation-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah">
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <span class="conversation-name">Sarah Chen</span>
+                            <span class="conversation-time">2m</span>
+                        </div>
+                        <div class="conversation-preview">
+                            <span class="conversation-message">Hey! Are we still on for lunch?</span>
+                            <span class="badge-count">2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="conversation-item unread">
+                    <div class="conversation-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Mike">
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <span class="conversation-name">Mike Ross</span>
+                            <span class="conversation-time">15m</span>
+                        </div>
+                        <div class="conversation-preview">
+                            <span class="conversation-message">Just sent the project files!</span>
+                            <span class="unread-badge">1</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Emily">
+                    </div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <span class="conversation-name">Emily Watson</span>
+                            <span class="conversation-time">2h</span>
+                        </div>
+                        <div class="conversation-preview">
+                            <span class="conversation-message">Thanks for the help!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="theme-toggle-wrapper">
+                <button class="theme-btn" onclick="toggleTheme()">
+                    <svg class="sun-icon w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+                    <svg class="moon-icon w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+                    <span class="theme-label">Toggle Theme</span>
+                </button>
+            </div>
+        </aside>
+        <div class="chat-main">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-header-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah">
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="chat-header-details">
+                        <h3>Sarah Chen</h3>
+                        <p>Online</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="icon-btn icon-btn-circle">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn icon-btn-circle">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn icon-btn-circle">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="messages-container">
+                <div class="message-date"><span>Today</span></div>
+                <div class="message received">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="message-avatar" alt="Sarah">
+                    <div class="message-content">
+                        <div class="message-bubble">Hey! How's it going? 🌟</div>
+                        <span class="message-time">9:41 AM</span>
+                    </div>
+                </div>
+                <div class="message sent">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="message-avatar" alt="You">
+                    <div class="message-content">
+                        <div class="message-bubble">Pretty good! Just working on the new project. How about you?</div>
+                        <span class="message-time">9:43 AM</span>
+                    </div>
+                </div>
+                <div class="message received">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="message-avatar" alt="Sarah">
+                    <div class="message-content">
+                        <div class="message-bubble">Same here! Are we still on for lunch tomorrow?</div>
+                        <span class="message-time">9:45 AM</span>
+                    </div>
+                </div>
+                <div class="message sent">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="message-avatar" alt="You">
+                    <div class="message-content">
+                        <div class="message-bubble">Absolutely! Looking forward to it 🍕</div>
+                        <span class="message-time">9:46 AM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <button class="icon-btn icon-btn-circle">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </button>
+                    <input type="text" class="chat-input" placeholder="Type a message...">
+                    <button class="icon-btn icon-btn-circle">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                        </svg>
+                    </button>
+                    <button class="send-btn">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') document.body.classList.add('light-mode');
+        document.querySelectorAll('.conversation-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                this.classList.remove('unread');
+                const badge = this.querySelector('.unread-badge');
+                if (badge) badge.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

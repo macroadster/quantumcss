@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlight Mail - Modern Email Client</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <link rel="stylesheet" href="../src/styles/quantum-components.css">
+    <script src="../src/starlight.js"></script>
+    <style>
+        /* Email Client Layout */
+        .email-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        .email-sidebar {
+            background: linear-gradient(180deg, rgba(8, 8, 26, 0.98) 0%, rgba(15, 23, 42, 0.98) 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+
+        .email-main {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            overflow: hidden;
+        }
+
+        .email-list {
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .email-content {
+            overflow-y: auto;
+            max-height: 100vh;
+            padding: 2rem;
+        }
+
+        /* Email List Items */
+        .email-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .email-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .email-item.active {
+            background: rgba(0, 212, 255, 0.08);
+            border-left: 3px solid var(--color-starlight, #00d4ff);
+        }
+
+        .email-item.unread {
+            background: rgba(0, 212, 255, 0.04);
+        }
+
+        .email-item.unread .email-sender,
+        .email-item.unread .email-subject {
+            font-weight: 600;
+        }
+
+        .email-sender {
+            font-size: 0.875rem;
+            color: #f1f5f9;
+            margin-bottom: 0.25rem;
+        }
+
+        .email-preview {
+            font-size: 0.8125rem;
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .email-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .email-time {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Compose Button */
+        .compose-btn {
+            background: linear-gradient(135deg, #00d4ff 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 0.875rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .compose-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Email Header */
+        .email-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .email-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Avatar sizes for email */
+        .avatar-lg {
+            width: 48px;
+            height: 48px;
+            font-size: 1rem;
+        }
+
+        /* User Profile section */
+        .user-profile-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            margin-top: auto;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Sun/Moon icons */
+        .sun-icon { display: none; }
+        body.light-mode .sun-icon { display: block; }
+        body.light-mode .moon-icon { display: none; }
+
+        /* Light Mode Overrides */
+        body.light-mode {
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        body.light-mode .email-sidebar {
+            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            border-right-color: #e2e8f0;
+        }
+
+        body.light-mode .email-list {
+            background: #ffffff;
+            border-right-color: #e2e8f0;
+        }
+
+        body.light-mode .email-content {
+            background: #f8fafc;
+        }
+
+        body.light-mode .email-item {
+            border-bottom-color: #f1f5f9;
+        }
+
+        body.light-mode .email-item:hover {
+            background: #f8fafc;
+        }
+
+        body.light-mode .email-item.active {
+            background: rgba(0, 212, 255, 0.08);
+        }
+
+        body.light-mode .email-item.unread {
+            background: rgba(59, 130, 246, 0.04);
+        }
+
+        body.light-mode .email-sender {
+            color: #0f172a;
+        }
+
+        body.light-mode .email-preview {
+            color: #64748b;
+        }
+
+        body.light-mode .email-time {
+            color: #94a3b8;
+        }
+
+        body.light-mode .user-profile-section {
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+        }
+
+        body.light-mode .user-name {
+            color: #0f172a;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .email-layout {
+                grid-template-columns: 240px 1fr;
+            }
+            
+            .email-main {
+                grid-template-columns: 320px 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .email-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .email-sidebar {
+                display: none;
+            }
+            
+            .email-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .email-list {
+                border-right: none;
+            }
+            
+            .email-content {
+                display: none;
+            }
+            
+            .email-content.mobile-visible {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 100;
+                background: inherit;
+            }
+        }
+
+        /* Header area */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(8, 8, 26, 0.5);
+        }
+
+        body.light-mode .top-bar {
+            background: #ffffff;
+            border-bottom-color: #e2e8f0;
+        }
+
+        .email-subject {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        body.light-mode .email-subject {
+            color: #0f172a;
+        }
+
+        .email-body {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 0.9375rem;
+        }
+
+        body.light-mode .email-body {
+            color: #475569;
+        }
+
+        .email-body p {
+            margin-bottom: 1rem;
+        }
+
+        .email-sender-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sender-details h3 {
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 0.25rem;
+        }
+
+        body.light-mode .sender-details h3 {
+            color: #0f172a;
+        }
+
+        .sender-details p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-starlight-deep text-primary font-sans antialiased">
+    <div class="email-layout">
+        <!-- Sidebar -->
+        <aside class="email-sidebar">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-starlight to-blue-500 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold text-gradient-starlight">Starlight Mail</span>
+            </div>
+
+            <button class="compose-btn">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Compose
+            </button>
+
+            <nav class="space-y-1 mb-6">
+                <button class="nav-item active" style="width: 100%;">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+                    </svg>
+                    <span>Inbox</span>
+                    <span class="nav-badge">12</span>
+                </button>
+                <button class="nav-item" style="width: 100%;">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                    </svg>
+                    <span>Starred</span>
+                </button>
+                <button class="nav-item" style="width: 100%;">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                    <span>Sent</span>
+                </button>
+                <button class="nav-item" style="width: 100%;">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                    <span>Drafts</span>
+                    <span class="nav-badge">3</span>
+                </button>
+                <button class="nav-item" style="width: 100%;">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                    <span>Trash</span>
+                </button>
+            </nav>
+
+            <div class="pt-6 border-t border-white/10">
+                <h3 class="nav-section-title" style="padding-left: 0.75rem;">Labels</h3>
+                <nav class="space-y-1">
+                    <button class="nav-item" style="width: 100%;">
+                        <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                        <span>Work</span>
+                    </button>
+                    <button class="nav-item" style="width: 100%;">
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        <span>Personal</span>
+                    </button>
+                    <button class="nav-item" style="width: 100%;">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span>Important</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="user-profile-section">
+                <div class="user-cell" style="flex: 1; min-width: 0;">
+                    <div class="avatar avatar-lg">JD</div>
+                    <div class="user-info" style="min-width: 0;">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-email" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">john.doe@starlight.dev</div>
+                    </div>
+                </div>
+                <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme" style="flex-shrink: 0;">
+                    <svg class="w-5 h-5 sun-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                    </svg>
+                    <svg class="w-5 h-5 moon-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="email-main">
+            <!-- Email List -->
+            <div class="email-list">
+                <div class="top-bar">
+                    <h2 class="text-lg font-semibold">Inbox</h2>
+                    <div class="flex gap-2">
+                        <button class="icon-btn" title="Refresh">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" title="More">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="search-box px-4 py-3">
+                    <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="search-input search-input-full" placeholder="Search emails...">
+                </div>
+
+                <div class="email-item unread active">
+                    <div class="email-meta">
+                        <span class="email-sender">Sarah Chen</span>
+                        <span class="email-time">10:30 AM</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Project Update: Q4 Roadmap</div>
+                    <div class="email-preview">Hi team, I wanted to share the latest updates on our Q4 roadmap and discuss the timeline for...</div>
+                    <div class="mt-2">
+                        <span class="label label-work">Work</span>
+                    </div>
+                </div>
+
+                <div class="email-item unread">
+                    <div class="email-meta">
+                        <span class="email-sender">Alex Rivera</span>
+                        <span class="email-time">9:45 AM</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Design System Meeting - Tomorrow</div>
+                    <div class="email-preview">Hey everyone, just a reminder about our design system meeting scheduled for tomorrow at 2 PM...</div>
+                    <div class="mt-2">
+                        <span class="label label-work">Work</span>
+                        <span class="label label-important">Important</span>
+                    </div>
+                </div>
+
+                <div class="email-item">
+                    <div class="email-meta">
+                        <span class="email-sender">Mom</span>
+                        <span class="email-time">Yesterday</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Weekend Plans?</div>
+                    <div class="email-preview">Hi sweetie! Are you coming over for dinner this weekend? Dad is making his famous lasagna...</div>
+                    <div class="mt-2">
+                        <span class="label label-personal">Personal</span>
+                    </div>
+                </div>
+
+                <div class="email-item unread">
+                    <div class="email-meta">
+                        <span class="email-sender">GitHub</span>
+                        <span class="email-time">Yesterday</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Security alert for your repository</div>
+                    <div class="email-preview">We noticed a new sign-in to your GitHub account from a device we don't recognize...</div>
+                </div>
+
+                <div class="email-item">
+                    <div class="email-meta">
+                        <span class="email-sender">Marketing Team</span>
+                        <span class="email-time">Yesterday</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Campaign Performance Report</div>
+                    <div class="email-preview">Please find attached the performance report for last month's marketing campaign. The results show...</div>
+                    <div class="mt-2">
+                        <span class="label label-work">Work</span>
+                    </div>
+                </div>
+
+                <div class="email-item">
+                    <div class="email-meta">
+                        <span class="email-sender">Spotify</span>
+                        <span class="email-time">2 days ago</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Your 2024 Wrapped is here!</div>
+                    <div class="email-preview">Discover your year in music. From your most-played songs to the artists that defined your year...</div>
+                </div>
+
+                <div class="email-item">
+                    <div class="email-meta">
+                        <span class="email-sender">David Kim</span>
+                        <span class="email-time">2 days ago</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Re: Code Review Feedback</div>
+                    <div class="email-preview">Thanks for the quick review! I've addressed all the comments and pushed the changes to the PR...</div>
+                    <div class="mt-2">
+                        <span class="label label-work">Work</span>
+                    </div>
+                </div>
+
+                <div class="email-item">
+                    <div class="email-meta">
+                        <span class="email-sender">Netflix</span>
+                        <span class="email-time">3 days ago</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">New on Netflix this week</div>
+                    <div class="email-preview">Check out the latest releases and returning favorites now streaming on Netflix...</div>
+                </div>
+
+                <div class="email-item">
+                    <div class="email-meta">
+                        <span class="email-sender">Emily Watson</span>
+                        <span class="email-time">3 days ago</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Lunch next week?</div>
+                    <div class="email-preview">Hey! It's been a while since we caught up. Are you free for lunch next Tuesday?</div>
+                    <div class="mt-2">
+                        <span class="label label-personal">Personal</span>
+                    </div>
+                </div>
+
+                <div class="email-item">
+                    <div class="email-meta">
+                        <span class="email-sender">AWS Notifications</span>
+                        <span class="email-time">4 days ago</span>
+                    </div>
+                    <div class="email-subject text-sm mb-1">Monthly billing statement</div>
+                    <div class="email-preview">Your AWS bill for November 2024 is now available. Total amount: $127.43...</div>
+                    <div class="mt-2">
+                        <span class="label label-work">Work</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Content -->
+            <div class="email-content">
+                <div class="email-header">
+                    <div class="email-sender-info">
+                        <div class="avatar avatar-lg">SC</div>
+                        <div class="sender-details">
+                            <h3>Sarah Chen</h3>
+                            <p>sarah.chen@company.com · To: john.doe@starlight.dev</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-slate-400">Today, 10:30 AM</span>
+                <div class="email-actions">
+                    <button class="icon-btn" title="Reply">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" title="Forward">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" title="Star">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" title="More">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+                    </div>
+                </div>
+
+                <h1 class="email-subject">Project Update: Q4 Roadmap</h1>
+
+                <div class="email-body">
+                    <p>Hi John,</p>
+                    
+                    <p>I hope this email finds you well. I wanted to share the latest updates on our Q4 roadmap and discuss the timeline for the upcoming features we've been planning.</p>
+                    
+                    <p>First, I'm excited to announce that we've completed the initial phase of the Starlight UI component library. The feedback from the beta testing group has been overwhelmingly positive, with users praising the intuitive design and smooth animations.</p>
+                    
+                    <p>Key highlights from this quarter:</p>
+                    <ul style="margin: 1rem 0; padding-left: 1.5rem; color: inherit;">
+                        <li style="margin-bottom: 0.5rem;">Completed 15 new component designs</li>
+                        <li style="margin-bottom: 0.5rem;">Achieved 40% faster load times on dashboard views</li>
+                        <li style="margin-bottom: 0.5rem;">Reduced bundle size by 25% through tree-shaking optimizations</li>
+                        <li>Implemented dark mode with system preference detection</li>
+                    </ul>
+                    
+                    <p>I've attached the detailed roadmap document for your review. Please let me know if you have any questions or if you'd like to schedule a meeting to discuss the implementation details.</p>
+                    
+                    <p>Looking forward to hearing your thoughts!</p>
+                    
+                    <p>Best regards,<br>
+                    Sarah Chen<br>
+                    Senior Product Manager<br>
+                    <span style="color: var(--color-starlight, #00d4ff);">Starlight Technologies</span></p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <h3 class="text-sm font-semibold mb-4 text-slate-400">Attachments (2)</h3>
+                    <div class="flex gap-4">
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium">Q4_Roadmap_2024.pdf</div>
+                                <div class="text-xs text-slate-500">2.4 MB</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium">Budget_Summary.xlsx</div>
+                                <div class="text-xs text-slate-500">856 KB</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex gap-3">
+                    <button class="btn-starlight flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
+                        </svg>
+                        Reply
+                    </button>
+                    <button class="btn-secondary flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                        </svg>
+                        Forward
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+
+        // Email item click handler
+        document.querySelectorAll('.email-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.email-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                this.classList.remove('unread');
+            });
+        });
+
+        // Folder click handler
+        document.querySelectorAll('.folder-item').forEach(folder => {
+            folder.addEventListener('click', function() {
+                document.querySelectorAll('.folder-item').forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
