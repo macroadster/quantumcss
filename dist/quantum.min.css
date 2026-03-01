@@ -1919,7 +1919,6 @@ body.light-mode .tab-button.active {
 
 .progress-bar {
   height: 100%;
-  background-color: var(--q-color-primary);
   transition: width var(--q-duration-300) var(--q-ease-in-out);
 }
 
