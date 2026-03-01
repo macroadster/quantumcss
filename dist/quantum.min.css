@@ -4466,7 +4466,8 @@ html[data-theme="light"] * {
 .search-input {
   padding-left: 3rem;
   width: 100%;
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
 }
 
 .p-12 {
@@ -4524,7 +4525,8 @@ html[data-theme="light"] * {
   height: 3rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 0.5rem;
@@ -4689,7 +4691,8 @@ html[data-theme="light"] * {
   padding-left: 1rem;
   padding-right: 1rem;
   border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
 }
 
 .textarea-starlight {
@@ -4708,7 +4711,8 @@ html[data-theme="light"] * {
   padding: 1rem;
   min-height: 8rem;
   border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
 }
 
 .bg-green-500 {
@@ -4735,7 +4739,8 @@ html[data-theme="light"] * {
   height: 3rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
 }
 
 .p-8 {
@@ -5688,7 +5693,8 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   width: 1.25rem;
   height: 1.25rem;
   border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
 }
 
 .mt-6 {
@@ -5817,15 +5823,18 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
 }
 
 .focus-glow-purple-500:focus {
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15), 0 0 20px rgba(168, 85, 247, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.25), 0 0 30px rgba(168, 85, 247, 0.5) !important;
 }
 
 .focus-glow-orange-500:focus {
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15), 0 0 20px rgba(249, 115, 22, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.25), 0 0 30px rgba(249, 115, 22, 0.5) !important;
 }
 
 .focus-glow {
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
 }
 
 .mr-8 {
@@ -6363,7 +6372,8 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
     height: 3rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     padding-top: 0.5rem;

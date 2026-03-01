@@ -283,12 +283,15 @@ function generateCSS(configPath) {
       } else if (prefix === 'focus-glow') {
         const color = resolveColor(valKey) || resolveColor('primary') || '#00d4ff';
         const rgba = getRGBA(color);
-        const glowColor = withOpacity(rgba, 0.35);
-        const ringColor = withOpacity(rgba, 0.15);
+        const glowColor = withOpacity(rgba, 0.5);
+        const ringColor = withOpacity(rgba, 0.25);
         
-        property = 'box-shadow';
-        value = `0 0 0 3px ${ringColor}, 0 0 20px ${glowColor}`;
+        const rules = [
+          '  outline: none !important;',
+          `  box-shadow: 0 0 0 4px ${ringColor}, 0 0 30px ${glowColor} !important;`
+        ];
         variant = variant || 'focus';
+        return [{ breakpoint, variant, customSelector, rules }];
       }
     }
 

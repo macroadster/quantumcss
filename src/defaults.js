@@ -170,8 +170,8 @@ const utilityMaps = {
   'glow-peach': { property: 'box-shadow', value: '0 0 30px rgba(255, 179, 138, 0.25)' },
   'glow-orange': { property: 'box-shadow', value: '0 0 30px rgba(255, 126, 95, 0.25)' },
   'focus-glow': {
-    property: 'box-shadow',
-    value: '0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35)',
+    property: ['outline', 'box-shadow'],
+    value: ['none !important', '0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important'],
     variant: 'focus'
   },
   'btn-starlight': 'btn-base theme-starlight h-12 px-6 focus-glow',
