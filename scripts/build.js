@@ -177,6 +177,37 @@ class QuantumCSSBuilder {
         .sun-icon { display: none; }
         body.light-mode .sun-icon { display: block; }
         body.light-mode .moon-icon { display: none; }
+
+        /* Theme Designer Panel */
+        .designer-panel {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
+            width: 320px; background: rgba(8, 8, 26, 0.85);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem;
+            padding: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+        .designer-panel.minimized { transform: translateY(calc(100% - 3.5rem)); }
+        .designer-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 1.5rem; cursor: pointer;
+        }
+        .designer-title { font-weight: 900; font-size: 0.75rem; text-transform: uppercase; tracking-widest; opacity: 0.8; }
+        .control-group { margin-bottom: 1.25rem; }
+        .control-label { display: flex; justify-content: space-between; font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; opacity: 0.6; }
+        .designer-slider { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; appearance: none; outline: none; }
+        .designer-slider::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; background: var(--q-color-starlight-blue, #00d4ff); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--q-color-starlight-blue); }
+        .designer-btn { 
+            width: 100%; padding: 0.75rem; border-radius: 0.75rem; border: none; 
+            background: var(--q-color-starlight-blue); color: #000; font-weight: 800; 
+            font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+        }
+        .designer-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .designer-btn:active { transform: scale(0.98); }
+        
+        body.light-mode .designer-panel { background: rgba(255, 255, 255, 0.9); border-color: rgba(0,0,0,0.1); color: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        body.light-mode .designer-slider { background: rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="p-8">
@@ -697,7 +728,102 @@ class QuantumCSSBuilder {
         </div>
     </div>
 
+    <!-- Theme Designer Panel -->
+    <div class="designer-panel" id="designerPanel">
+        <div class="designer-header" onclick="document.getElementById('designerPanel').classList.toggle('minimized')">
+            <div class="designer-title">Theme Designer</div>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label"><span>Primary Hue</span> <span id="hueVal">217°</span></div>
+            <input type="range" class="designer-slider" id="hueSlider" min="0" max="360" value="217">
+        </div>
+
+        <div class="control-group">
+            <div class="control-label"><span>Glass Blur</span> <span id="blurVal">16px</span></div>
+            <input type="range" class="designer-slider" id="blurSlider" min="0" max="40" value="16">
+        </div>
+
+        <div class="control-group">
+            <div class="control-label"><span>Spacing Scale</span> <span id="spaceVal">1.0x</span></div>
+            <input type="range" class="designer-slider" id="spaceSlider" min="0.5" max="2" step="0.1" value="1">
+        </div>
+
+        <button class="designer-btn" onclick="copyConfig()">Copy quantum.config.json</button>
+    </div>
+
     <script>
+        // Theme Designer Logic
+        const root = document.documentElement;
+        const hueSlider = document.getElementById('hueSlider');
+        const blurSlider = document.getElementById('blurSlider');
+        const spaceSlider = document.getElementById('spaceSlider');
+
+        hueSlider.oninput = function() {
+            const h = this.value;
+            document.getElementById('hueVal').innerText = h + '°';
+            // Simple HSL to Hex approximation for primary-500
+            root.style.setProperty('--q-color-primary', 'hsl(' + h + ', 91%, 60%)');
+            root.style.setProperty('--q-color-starlight-blue', 'hsl(' + h + ', 100%, 50%)');
+        };
+
+        blurSlider.oninput = function() {
+            const b = this.value;
+            document.getElementById('blurVal').innerText = b + 'px';
+            root.style.setProperty('--q-glass-blur', 'blur(' + b + 'px)');
+            // Update all elements with inline glass overrides
+            document.querySelectorAll('.glass, .starlight-card, .starlight-nav').forEach(el => {
+                el.style.backdropFilter = 'blur(' + b + 'px)';
+                el.style.webkitBackdropFilter = 'blur(' + b + 'px)';
+            });
+        };
+
+        spaceSlider.oninput = function() {
+            const s = this.value;
+            document.getElementById('spaceVal').innerText = s + 'x';
+            // Update base spacing unit (0.25rem = 4px)
+            const base = 0.25 * s;
+            for(let i=1; i<=64; i++) {
+                root.style.setProperty('--q-space-' + i, (base * i) + 'rem');
+            }
+        };
+
+        function copyConfig() {
+            const h = hueSlider.value;
+            const b = blurSlider.value;
+            const config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: 'hsl(' + h + ', 91%, 60%)',
+                            starlight: 'hsl(' + h + ', 100%, 50%)'
+                        },
+                        glass: {
+                            blur: 'blur(' + b + 'px)'
+                        }
+                    }
+                }
+            };
+            navigator.clipboard.writeText(JSON.stringify(config, null, 2));
+            const btn = document.querySelector('.designer-btn');
+            const oldText = btn.innerText;
+            btn.innerText = 'COPIED!';
+            setTimeout(() => btn.innerText = oldText, 2000);
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                body.classList.add('light-mode');
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+
         // Dialog Toggle
         function toggleDialog(show) {
             const dialog = document.getElementById('systemDialog');

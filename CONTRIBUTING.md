@@ -38,6 +38,38 @@ We use a **Research -> Strategy -> Execution** lifecycle for all changes.
 *   The JIT engine lives in `src/generator.js`.
 *   Ensure that any new utility added is "tree-shakable"—it should only appear in the final CSS if it's used in the scanned content files.
 
+#### Plugins & Extensions
+You can extend QuantumCSS without modifying the core by creating a plugin. A plugin is a JavaScript function that receives the following context:
+
+```javascript
+module.exports = function({ theme, utilityMaps, componentPresets, addUtilities }) {
+  // 1. Extend the theme (colors, spacing, etc.)
+  theme.colors['custom'] = '#hexvalue';
+
+  // 2. Add new utilities
+  addUtilities({
+    'my-utility': { property: 'display', value: 'flex' }
+  });
+
+  // 3. Register component presets
+  componentPresets['my-button'] = 'btn-base bg-custom text-white';
+
+  // 4. (Optional) Return a post-processing hook
+  return {
+    transformCSS: (css) => {
+      return css + '\n/* Custom Post-processing */';
+    }
+  };
+};
+```
+
+Register your plugin in `quantum.config.json`:
+```json
+{
+  "plugins": ["./plugins/my-plugin.js"]
+}
+```
+
 ## 🧪 Testing & Validation
 
 All changes MUST be verified visually and structurally:

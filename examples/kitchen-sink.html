@@ -32,6 +32,37 @@
         .sun-icon { display: none; }
         body.light-mode .sun-icon { display: block; }
         body.light-mode .moon-icon { display: none; }
+
+        /* Theme Designer Panel */
+        .designer-panel {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
+            width: 320px; background: rgba(8, 8, 26, 0.85);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem;
+            padding: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+        .designer-panel.minimized { transform: translateY(calc(100% - 3.5rem)); }
+        .designer-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 1.5rem; cursor: pointer;
+        }
+        .designer-title { font-weight: 900; font-size: 0.75rem; text-transform: uppercase; tracking-widest; opacity: 0.8; }
+        .control-group { margin-bottom: 1.25rem; }
+        .control-label { display: flex; justify-content: space-between; font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; opacity: 0.6; }
+        .designer-slider { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; appearance: none; outline: none; }
+        .designer-slider::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; background: var(--q-color-starlight-blue, #00d4ff); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--q-color-starlight-blue); }
+        .designer-btn { 
+            width: 100%; padding: 0.75rem; border-radius: 0.75rem; border: none; 
+            background: var(--q-color-starlight-blue); color: #000; font-weight: 800; 
+            font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+        }
+        .designer-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .designer-btn:active { transform: scale(0.98); }
+        
+        body.light-mode .designer-panel { background: rgba(255, 255, 255, 0.9); border-color: rgba(0,0,0,0.1); color: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        body.light-mode .designer-slider { background: rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="p-8">
@@ -788,7 +819,7 @@
         <!-- Animations Section -->
         <section>
             <h2>Cosmic Animations</h2>
-            <div class="grid grid-cols-1 md__grid-cols-3 gap-8 text-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
                     <div class="w-16 h-16 bg-starlight rounded-full ani-float"></div>
                     <div class="token-name">ani-float</div>
@@ -835,17 +866,17 @@
         <section>
             <h2>Component Presets</h2>
             <p class="mb-6 opacity-70">Atomic and molecular utility compositions for individual elements.</p>
-            <div class="grid grid-cols-1 md__grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
                     <div class="starlight-card p-6">
                         <div class="mb-4 flex justify-between items-center">
                             <span class="token-name">.btn-primary</span>
                             <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
                         </div>
-                        <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg mb-4">
+                        <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
                             <button class="btn-primary">Preset Button</button>
                         </div>
-                        <div class="token-value text-xs bg-black_20 p-3 rounded font-mono">btn-starlight px-6 py-2 shadow-md hover__scale-105 active__scale-95</div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">btn-starlight px-6 py-2 shadow-md hover__scale-105 active__scale-95</div>
                     </div>
                 
                     <div class="starlight-card p-6">
@@ -853,10 +884,10 @@
                             <span class="token-name">.btn-secondary</span>
                             <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
                         </div>
-                        <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg mb-4">
+                        <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
                             <button class="btn-secondary">Preset Button</button>
                         </div>
-                        <div class="token-value text-xs bg-black_20 p-3 rounded font-mono">btn-base theme-glass px-6 py-2 shadow-md hover__bg-white_10 active__scale-95</div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">btn-base theme-glass px-6 py-2 shadow-md hover__bg-white_10 active__scale-95</div>
                     </div>
                 
                     <div class="starlight-card p-6">
@@ -864,10 +895,21 @@
                             <span class="token-name">.card-premium</span>
                             <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
                         </div>
-                        <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg mb-4">
+                        <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
                             <div class="card-premium"><h4 class="font-bold">Preset Card</h4><p class="text-sm opacity-70">Using card-premium</p></div>
                         </div>
-                        <div class="token-value text-xs bg-black_20 p-3 rounded font-mono">card-base theme-glass p-8 shadow-xl</div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">card-base theme-glass p-8 shadow-xl</div>
+                    </div>
+                
+                    <div class="starlight-card p-6">
+                        <div class="mb-4 flex justify-between items-center">
+                            <span class="token-name">.btn-neon</span>
+                            <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
+                        </div>
+                        <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
+                            <button class="btn-neon">Preset Button</button>
+                        </div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">btn-base px-8 py-4 bg-black text-neon-green border-neon-green hover__glow-starlight transition</div>
                     </div>
                 
             </div>
@@ -877,52 +919,52 @@
         <!-- Components Section -->
         <section>
             <h2>Component Utilities</h2>
-            <div class="grid grid-cols-1 md__grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">btn-base</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         <button class="btn-base">Button Example</button>
                     </div>
                 </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">input-base</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         <input class="input-base" placeholder="Input Example">
                     </div>
                 </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">glass</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
-                        <div class="glass p-8 rounded-xl border border-white_20">Glass Effect</div>
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
+                        <div class="glass p-8 rounded-xl border border-white/20">Glass Effect</div>
                     </div>
                 </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">bg-starlight</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         <div class="bg-starlight p-8 rounded-xl w-full text-center">Example Block</div>
                     </div>
                 </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">text-gradient-starlight</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         <div class="text-gradient-starlight p-8 rounded-xl w-full text-center">Example Block</div>
                     </div>
                 </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">btn-starlight</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         <button class="btn-starlight">Button Example</button>
                     </div>
                 </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">btn-secondary</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         <button class="btn-secondary">Button Example</button>
                     </div>
                 </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">input-starlight</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500_10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
                         <input class="input-starlight" placeholder="Input Example">
                     </div>
                 </div>
@@ -936,10 +978,10 @@
             <div class="grid grid-cols-1 gap-12">
                 <!-- Navigation -->
                 <div class="starlight-card p-0 mb-12">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Navigation Menu (.starlight-nav)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Navigation Menu (.starlight-nav)</div>
                     <div class="relative">
                         <nav class="starlight-nav relative">
-                            <div class="p-4 md__px-8 flex justify-between items-center w-full">
+                            <div class="p-4 md:px-8 flex justify-between items-center w-full">
                                 <div class="font-bold text-xl text-gradient-starlight">Starlight OS</div>
                                 <div class="flex items-center gap-8">
                                     <div class="nav-desktop">
@@ -980,15 +1022,15 @@
                                 </ul>
                             </div>
                         </nav>
-                        <div class="p-12 text-center opacity-50 italic text-sm border-t border-white_5 light__bg-slate-300">Horizontal layout (standard)</div>
+                        <div class="p-12 text-center opacity-50 italic text-sm border-t border-white/5 light:bg-slate-300">Horizontal layout (standard)</div>
                     </div>
                 </div>
 
                 <!-- Vertical Navigation -->
                 <div class="starlight-card p-0">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Vertical Sidebar (.starlight-nav.vertical)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Vertical Sidebar (.starlight-nav.vertical)</div>
                     <div class="flex h-[400px] overflow-hidden">
-                        <nav class="starlight-nav vertical static border-r border-white_10">
+                        <nav class="starlight-nav vertical static border-r border-white/10">
                             <div class="font-bold text-xl text-gradient-starlight mb-8">Starlight OS</div>
                             <div class="nav-desktop block w-full">
                                 <ul class="nav-list vertical w-full">
@@ -1007,13 +1049,13 @@
                                 </ul>
                             </div>
                         </nav>
-                        <div class="flex-1 p-8 opacity-50 italic text-sm overflow-y-auto light__bg-slate-300">Dashboard content area...</div>
+                        <div class="flex-1 p-8 opacity-50 italic text-sm overflow-y-auto light:bg-slate-300">Dashboard content area...</div>
                     </div>
                 </div>
 
                 <!-- Search -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Interactive Search (.starlight-search)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Interactive Search (.starlight-search)</div>
                     <div class="p-12 flex flex-col items-center gap-6">
                         <div class="starlight-search">
                             <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -1025,10 +1067,10 @@
 
                 <!-- Dashboard -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dashboard Grid (.starlight-dashboard)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dashboard Grid (.starlight-dashboard)</div>
                     <div class="p-8">
                         <div class="starlight-dashboard">
-                            <div class="starlight-card stat-card light__shadow-lg">
+                            <div class="starlight-card stat-card light:shadow-lg">
                                 <span class="stat-label">Core Stability</span>
                                 <span class="stat-value">98.4%</span>
                                 <div class="stat-trend up">
@@ -1036,7 +1078,7 @@
                                     2.1%
                                 </div>
                             </div>
-                            <div class="starlight-card stat-card light__shadow-lg">
+                            <div class="starlight-card stat-card light:shadow-lg">
                                 <span class="stat-label">Neural Sync</span>
                                 <span class="stat-value">Active</span>
                                 <div class="stat-trend up">
@@ -1044,7 +1086,7 @@
                                     Optimal
                                 </div>
                             </div>
-                            <div class="starlight-card stat-card light__shadow-lg">
+                            <div class="starlight-card stat-card light:shadow-lg">
                                 <span class="stat-label">Latency</span>
                                 <span class="stat-value">12ms</span>
                                 <div class="stat-trend down">
@@ -1058,7 +1100,7 @@
 
                 <!-- Gallery -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Gallery Widget (.starlight-gallery)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Gallery Widget (.starlight-gallery)</div>
                     <div class="p-8">
                         <div class="starlight-gallery">
                             <div class="gallery-item">
@@ -1083,7 +1125,7 @@
 
                 <!-- Form -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Advanced Form (.starlight-form)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Advanced Form (.starlight-form)</div>
                     <div class="p-8">
                         <div class="starlight-form">
                             <div class="flex flex-col gap-4">
@@ -1111,10 +1153,10 @@
 
                 <!-- Dialog -->
                 <div class="starlight-card p-0">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
                     <div class="p-8">
                         <!-- Inline Preview -->
-                        <div class="dialog-base theme-glass-dark relative mx-auto mb-8 shadow-none border-white_10" style="max-width: 500px;">
+                        <div class="dialog-base theme-glass-dark relative mx-auto mb-8 shadow-none border-white/10" style="max-width: 500px;">
                             <h3 class="text-xl font-bold mb-4 text-gradient-starlight">System Preview</h3>
                             <p class="mb-6 opacity-70 text-sm">This is an inline preview of the dialog component. It scales to fit its container.</p>
                             <div class="flex gap-4">
@@ -1123,7 +1165,7 @@
                             </div>
                         </div>
                         
-                        <div class="text-center pt-4 border-t border-white_5">
+                        <div class="text-center pt-4 border-t border-white/5">
                             <button class="btn-starlight" onclick="toggleDialog(true)">Launch Overlay Dialog</button>
                         </div>
                     </div>
@@ -1131,7 +1173,7 @@
 
                 <!-- Accordion -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Accordion Group (.accordion-starlight)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Accordion Group (.accordion-starlight)</div>
                     <div class="p-8">
                         <div class="max-w-2xl mx-auto" data-accordion>
                             <div class="accordion-item accordion-starlight active">
@@ -1158,7 +1200,7 @@
 
                 <!-- Tabs -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Tab Interface (.tab-list)</div>
+                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Tab Interface (.tab-list)</div>
                     <div class="p-8">
                         <div class="max-w-2xl mx-auto">
                             <div class="tab-list mb-4">
@@ -1193,8 +1235,8 @@
             </div>
         </section>
 
-        <footer class="mt-20 pt-8 border-t border-white_10 opacity-50 text-sm">
-            Generated by Quantum CSS Dynamic Docs · 3/1_2026
+        <footer class="mt-20 pt-8 border-t border-white/10 opacity-50 text-sm">
+            Generated by Quantum CSS Dynamic Docs · 3/1/2026
         </footer>
     </div>
 
@@ -1206,7 +1248,7 @@
             </button>
             <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
             <p class="mb-6 opacity-70">You are about to bypass safety protocols. This action is irreversible.</p>
-            <div class="bg-black_20 p-4 rounded-lg mb-6 font-mono text-xs border border-white_5">
+            <div class="bg-black/20 p-4 rounded-lg mb-6 font-mono text-xs border border-white/5">
                 <div class="text-success">> STATUS: AUTHORIZED</div>
                 <div class="text-success">> CORE: ACCESSIBLE</div>
             </div>
@@ -1217,7 +1259,102 @@
         </div>
     </div>
 
+    <!-- Theme Designer Panel -->
+    <div class="designer-panel" id="designerPanel">
+        <div class="designer-header" onclick="document.getElementById('designerPanel').classList.toggle('minimized')">
+            <div class="designer-title">Theme Designer</div>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label"><span>Primary Hue</span> <span id="hueVal">217°</span></div>
+            <input type="range" class="designer-slider" id="hueSlider" min="0" max="360" value="217">
+        </div>
+
+        <div class="control-group">
+            <div class="control-label"><span>Glass Blur</span> <span id="blurVal">16px</span></div>
+            <input type="range" class="designer-slider" id="blurSlider" min="0" max="40" value="16">
+        </div>
+
+        <div class="control-group">
+            <div class="control-label"><span>Spacing Scale</span> <span id="spaceVal">1.0x</span></div>
+            <input type="range" class="designer-slider" id="spaceSlider" min="0.5" max="2" step="0.1" value="1">
+        </div>
+
+        <button class="designer-btn" onclick="copyConfig()">Copy quantum.config.json</button>
+    </div>
+
     <script>
+        // Theme Designer Logic
+        const root = document.documentElement;
+        const hueSlider = document.getElementById('hueSlider');
+        const blurSlider = document.getElementById('blurSlider');
+        const spaceSlider = document.getElementById('spaceSlider');
+
+        hueSlider.oninput = function() {
+            const h = this.value;
+            document.getElementById('hueVal').innerText = h + '°';
+            // Simple HSL to Hex approximation for primary-500
+            root.style.setProperty('--q-color-primary', 'hsl(' + h + ', 91%, 60%)');
+            root.style.setProperty('--q-color-starlight-blue', 'hsl(' + h + ', 100%, 50%)');
+        };
+
+        blurSlider.oninput = function() {
+            const b = this.value;
+            document.getElementById('blurVal').innerText = b + 'px';
+            root.style.setProperty('--q-glass-blur', 'blur(' + b + 'px)');
+            // Update all elements with inline glass overrides
+            document.querySelectorAll('.glass, .starlight-card, .starlight-nav').forEach(el => {
+                el.style.backdropFilter = 'blur(' + b + 'px)';
+                el.style.webkitBackdropFilter = 'blur(' + b + 'px)';
+            });
+        };
+
+        spaceSlider.oninput = function() {
+            const s = this.value;
+            document.getElementById('spaceVal').innerText = s + 'x';
+            // Update base spacing unit (0.25rem = 4px)
+            const base = 0.25 * s;
+            for(let i=1; i<=64; i++) {
+                root.style.setProperty('--q-space-' + i, (base * i) + 'rem');
+            }
+        };
+
+        function copyConfig() {
+            const h = hueSlider.value;
+            const b = blurSlider.value;
+            const config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: 'hsl(' + h + ', 91%, 60%)',
+                            starlight: 'hsl(' + h + ', 100%, 50%)'
+                        },
+                        glass: {
+                            blur: 'blur(' + b + 'px)'
+                        }
+                    }
+                }
+            };
+            navigator.clipboard.writeText(JSON.stringify(config, null, 2));
+            const btn = document.querySelector('.designer-btn');
+            const oldText = btn.innerText;
+            btn.innerText = 'COPIED!';
+            setTimeout(() => btn.innerText = oldText, 2000);
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                body.classList.add('light-mode');
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+
         // Dialog Toggle
         function toggleDialog(show) {
             const dialog = document.getElementById('systemDialog');

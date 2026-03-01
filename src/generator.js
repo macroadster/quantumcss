@@ -11,6 +11,8 @@ function generateCSS(configPath) {
   const config = fs.existsSync(resolvedPath) ? require(resolvedPath) : { content: [], theme: {} };
   
   const theme = JSON.parse(JSON.stringify(defaultTheme || {}));
+  const currentUtilityMaps = { ...utilityMaps };
+  
   theme.colors = theme.colors || {};
   theme.spacing = theme.spacing || {};
   theme.borderRadius = theme.borderRadius || {};
@@ -53,6 +55,44 @@ function generateCSS(configPath) {
       }
     }
     return null;
+  }
+
+  const postProcessors = [];
+
+  // Load Plugins
+  if (config.plugins && Array.isArray(config.plugins)) {
+    config.plugins.forEach(pluginPath => {
+      try {
+        // Support both relative paths and node_modules
+        let resolvedPluginPath;
+        try {
+          resolvedPluginPath = require.resolve(pluginPath, { paths: [process.cwd(), __dirname] });
+        } catch {
+          resolvedPluginPath = path.resolve(process.cwd(), pluginPath);
+        }
+
+        if (fs.existsSync(resolvedPluginPath)) {
+          delete require.cache[resolvedPluginPath];
+          const plugin = require(resolvedPluginPath);
+          if (typeof plugin === 'function') {
+            const result = plugin({ 
+              theme, 
+              utilityMaps: currentUtilityMaps, 
+              componentPresets: config.componentPresets || {}, 
+              flattenedColors,
+              addUtilities: (newUtils) => Object.assign(currentUtilityMaps, newUtils)
+            });
+            
+            // If plugin returns an object with transformCSS, add it to postProcessors
+            if (result && typeof result.transformCSS === 'function') {
+              postProcessors.push(result.transformCSS);
+            }
+          }
+        }
+      } catch (err) {
+        console.error(`❌ Error loading plugin ${pluginPath}:`, err);
+      }
+    });
   }
 
   const getRGBA = (color) => {
@@ -129,7 +169,7 @@ function generateCSS(configPath) {
     }
 
     // Check Presets (User Config & Defaults)
-    const presetValue = (config.componentPresets && config.componentPresets[cls]) || (utilityMaps[cls] && typeof utilityMaps[cls] === 'string' ? utilityMaps[cls] : null);
+    const presetValue = (config.componentPresets && config.componentPresets[cls]) || (currentUtilityMaps[cls] && typeof currentUtilityMaps[cls] === 'string' ? currentUtilityMaps[cls] : null);
     
     if (presetValue && !processedPresets.has(cls)) {
       processedPresets.add(cls);
@@ -151,8 +191,8 @@ function generateCSS(configPath) {
     }
 
     let property = null, value = null, customSelector = null;
-    if (utilityMaps[cls] && typeof utilityMaps[cls] === 'object') {
-      const entry = utilityMaps[cls];
+    if (currentUtilityMaps[cls] && typeof currentUtilityMaps[cls] === 'object') {
+      const entry = currentUtilityMaps[cls];
       if (!Array.isArray(entry)) { 
         property = entry.property; 
         value = entry.value; 
@@ -411,6 +451,11 @@ ${rules.join('\n')}
   if (responsiveUtils.dark && responsiveUtils.dark.size > 0) {
     css += `\n@media (prefers-color-scheme: dark) {\n${Array.from(responsiveUtils.dark).map(u => '  ' + u.replace(/\n/g, '\n  ')).join('\n').trimEnd()}\n}\n`;
   }
+
+  // Apply Post-Processors
+  postProcessors.forEach(processor => {
+    css = processor(css);
+  });
 
   return css;
 }
