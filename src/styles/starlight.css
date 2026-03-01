@@ -38,19 +38,17 @@ html[data-theme="light"] a:hover {
 }
 
 .starlight-card:hover {
-  border-color: rgba(0, 212, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 212, 255, 0.05);
   background-color: rgba(255, 255, 255, 0.04);
 }
 
 /* ... existing code ... */
 
 .nav-glass:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 html[data-theme="light"] .nav-glass:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.98);
 }
 
 html[data-theme="light"] .starlight-card {
@@ -789,6 +787,7 @@ html[data-theme="light"] .hamburger span {
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
+  transform: translateY(-10px);
 }
 
 .nav-menu-mobile.active {
@@ -797,6 +796,7 @@ html[data-theme="light"] .hamburger span {
   max-height: 100vh;
   padding: 1.5rem 2rem;
   opacity: 1;
+  transform: translateY(0);
 }
 
 html[data-theme="light"] .nav-menu-mobile {

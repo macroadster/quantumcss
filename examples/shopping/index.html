@@ -141,7 +141,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-white_80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+    <nav class="bg-white_80 backdrop-blur-md sticky top-0 z-50 border-b border-none">
         <div class="max-w-[1440px] mx-auto px-8 py-4 flex justify-between items-center">
             <div class="text-2xl font-black tracking-tighter uppercase text-primary">QUANTUM<span class="text-orange-600">STORE</span></div>
             <div class="hidden lg__flex space-x-12 text-[11px] font-black uppercase tracking-[0.2em]">
@@ -176,7 +176,7 @@
                 </div>
                 <div class="flex items-center space-x-6">
                     <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Sort by</span>
-                    <select class="input-starlight h-14 min-w-56 text-slate-900 border-slate-200">
+                    <select class="input-starlight h-14 min-w-56 text-slate-900 border-none">
                         <option>Newest Arrivals</option>
                         <option>Price: Low to High</option>
                         <option>Price: High to Low</option>
@@ -213,7 +213,7 @@
                     <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-slate-400 mb-8">Color Way</h4>
                     <div class="flex flex-wrap gap-4" id="color-swatches">
                         <button class="w-10 h-10 rounded-full border-2 border-slate-900 color-swatch selected transition-transform" style="background-color: #0f172a;"></button>
-                        <button class="w-10 h-10 rounded-full border-2 border-slate-200 color-swatch transition-transform" style="background-color: #ffffff;"></button>
+                        <button class="w-10 h-10 rounded-full border-2 border-none color-swatch transition-transform" style="background-color: #ffffff;"></button>
                         <button class="w-10 h-10 rounded-full border-2 border-transparent color-swatch transition-transform" style="background-color: #ea580c;"></button>
                         <button class="w-10 h-10 rounded-full border-2 border-transparent color-swatch transition-transform" style="background-color: #2563eb;"></button>
                     </div>
@@ -225,7 +225,7 @@
                 <div class="grid grid-cols-1 md__grid-cols-2 lg__grid-cols-3 xl__grid-cols-4 gap-x-8 gap-y-16">
                     <!-- Product 1 -->
                     <div class="product-card group cursor-pointer block">
-                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl border border-slate-100">
+                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl  ">
                             <img src="images/windbreaker.jpg" alt="Neon Pulse" class="product-image w-full h-full object-cover">
                             <div class="absolute top-4 left-4 flex flex-col space-y-2">
                                 <span class="badge badge-primary bg-orange-600 text-white border-none px-3 py-1 text-[9px] shadow-lg font-black tracking-widest">New Season</span>
@@ -245,7 +245,7 @@
 
                     <!-- Product 2 -->
                     <div class="product-card group cursor-pointer block">
-                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl border border-slate-100">
+                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl  ">
                             <img src="images/sneakers.jpg" alt="Gravity-Lock" class="product-image w-full h-full object-cover">
                             <div class="absolute top-4 left-4">
                                 <span class="badge badge-secondary bg-slate-900_80 text-white border-none px-3 py-1 text-[9px] backdrop-blur-md font-black tracking-widest">Best Seller</span>
@@ -265,7 +265,7 @@
 
                     <!-- Product 3 -->
                     <div class="product-card group cursor-pointer block">
-                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl border border-slate-100">
+                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl  ">
                             <img src="images/headset.jpg" alt="Neural Link" class="product-image w-full h-full object-cover">
                             <div class="absolute top-4 left-4">
                                 <span class="badge badge-secondary bg-blue-600 text-white border-none px-3 py-1 text-[9px] shadow-lg font-black tracking-widest">Pre-Order</span>
@@ -285,8 +285,8 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="mt-20 flex justify-center items-center space-x-6 w-full border-t border-slate-100 pt-16">
-                    <button class="glass w-12 h-12 flex items-center justify-center p-0 text-base shadow-sm font-black border-blue-600_50">1</button>
+                <div class="mt-20 flex justify-center items-center space-x-6 w-full   pt-16">
+                    <button class="glass w-12 h-12 flex items-center justify-center p-0 text-base shadow-sm font-black border-none">1</button>
                     <button class="glass w-12 h-12 flex items-center justify-center p-0 text-slate-400 hover__text-slate-900 transition-all text-base opacity-60 hover__opacity-100">2</button>
                     <button class="glass w-12 h-12 flex items-center justify-center p-0 text-slate-400 hover__text-slate-900 transition-all text-base opacity-60 hover__opacity-100">3</button>
                     <div class="px-4 text-slate-200 font-black text-lg">/</div>
@@ -323,7 +323,7 @@
                 <div class="lg__col-span-4 space-y-8">
                     <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-600">Neural Connect</h5>
                     <div class="flex flex-col space-y-4">
-                        <input type="email" class="input-starlight h-12 w-full bg-slate-900 border-slate-800 text-white placeholder__text-slate-600" placeholder="id@nexus.io">
+                        <input type="email" class="input-starlight h-12 w-full bg-slate-900 border-none text-white placeholder__text-slate-600" placeholder="id@nexus.io">
                         <button class="btn-starlight w-full h-12 text-[10px] font-black uppercase tracking-widest shadow-2xl shadow-orange-600_20">Sync Comms Link</button>
                     </div>
                 </div>
