@@ -4550,9 +4550,12 @@ html[data-theme="light"] * {
 .card-premium {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  padding: var(--q-space-10);
   overflow: hidden;
   border-radius: var(--q-radius-lg);
   transition: all 0.3s ease;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -4626,9 +4629,12 @@ html[data-theme="light"] * {
 .starlight-card {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  padding: var(--q-space-10);
   overflow: hidden;
   border-radius: var(--q-radius-lg);
   transition: all 0.3s ease;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -5410,9 +5416,12 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
 .starlight-form {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  padding: var(--q-space-10);
   overflow: hidden;
   border-radius: var(--q-radius-lg);
   transition: all 0.3s ease;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -5421,6 +5430,7 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 2rem;
+  align-items: flex-start;
 }
 
 .form-row {
@@ -5435,6 +5445,9 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
 }
 
 .starlight-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   position: fixed;
   top: 50%;
   left: 50%;

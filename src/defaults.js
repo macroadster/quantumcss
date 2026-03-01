@@ -113,8 +113,8 @@ const utilityMaps = {
     value: ['flex', 'row', 'center', '100%', 'sticky', '0', '1000']
   },
   'card-base': {
-    property: ['display', 'flex-direction', 'overflow', 'border-radius', 'transition'],
-    value: ['flex', 'column', 'hidden', 'var(--q-radius-lg)', 'all 0.3s ease']
+    property: ['display', 'flex-direction', 'align-items', 'padding', 'overflow', 'border-radius', 'transition', 'position'],
+    value: ['flex', 'column', 'stretch', 'var(--q-space-10)', 'hidden', 'var(--q-radius-lg)', 'all 0.3s ease', 'relative']
   },
   'btn-base': {
     property: ['display', 'align-items', 'justify-content', 'cursor', 'transition', 'font-weight', 'border-radius', 'border'],
@@ -125,8 +125,8 @@ const utilityMaps = {
     value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none']
   },
   'dialog-base': {
-    property: ['position', 'top', 'left', 'transform', 'max-width', 'max-height', 'overflow-y', 'z-index', 'border-radius'],
-    value: ['fixed', '50%', '50%', 'translate(-50%, -50%)', '90vw', '90vh', 'auto', '2000', 'var(--q-radius-xl)']
+    property: ['display', 'flex-direction', 'align-items', 'position', 'top', 'left', 'transform', 'max-width', 'max-height', 'overflow-y', 'z-index', 'border-radius'],
+    value: ['flex', 'column', 'stretch', 'fixed', '50%', '50%', 'translate(-50%, -50%)', '90vw', '90vh', 'auto', '2000', 'var(--q-radius-xl)']
   },
   'badge-base': {
     property: ['display', 'align-items', 'justify-content', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'border-radius', 'border'],
@@ -179,8 +179,8 @@ const utilityMaps = {
     'starlight-search': 'search-container theme-glass-dark rounded-xl',
     'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
     'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
-    'starlight-form': 'starlight-card grid grid-cols-1 md:grid-cols-2 gap-8',
-    'starlight-dialog': 'dialog-base theme-glass-dark p-8 ani-scale-in'
+    'starlight-form': 'starlight-card grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
+    'starlight-dialog': 'dialog-base theme-glass-dark p-8 ani-scale-in items-stretch'
   };
   
   module.exports = { defaultTheme, utilityMaps };
