@@ -610,7 +610,7 @@ class QuantumCSSBuilder {
                 <div class="starlight-card p-0 overflow-hidden">
                     <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Accordion Group (.accordion-starlight)</div>
                     <div class="p-8">
-                        <div class="accordion-group max-w-2xl mx-auto">
+                        <div class="max-w-2xl mx-auto" data-accordion>
                             <div class="accordion-item accordion-starlight active">
                                 <div class="accordion-header">
                                     <span>Cosmic Manifestation</span>

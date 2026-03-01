@@ -238,7 +238,7 @@
             <h3 class="text-4xl font-bold tracking-tight">Frequently Asked Questions</h3>
         </div>
 
-        <div class="max-w-144 mx-auto flex flex-col gap-4">
+        <div class="max-w-144 mx-auto flex flex-col gap-4" data-accordion>
             <!-- Accordion 1 -->
             <div class="accordion-item accordion-starlight active">
                 <div class="accordion-header">
@@ -333,23 +333,8 @@
 
     <script src="../src/starlight.js"></script>
     <script>
-        // Accordion Logic
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const isActive = item.classList.contains('active');
-                
-                // Close other items
-                document.querySelectorAll('.accordion-item').forEach(otherItem => {
-                    otherItem.classList.remove('active');
-                });
-                
-                // Toggle current item
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
+        // Theme initialization and management is now handled 
+        // automatically by Starlight.initTheme() in starlight.js
     </script>
 </body>
 </html>

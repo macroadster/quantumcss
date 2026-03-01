@@ -242,8 +242,11 @@ const Starlight = {
     });
     
     // Fallback for legacy accordion-header (backward compatibility)
+    // Only target headers that are NOT already managed by a data-accordion container
     const legacyHeaders = document.querySelectorAll('.accordion-header:not([data-accordion])');
     legacyHeaders.forEach(header => {
+      if (header.closest('[data-accordion]')) return;
+      
       const item = header.parentElement;
       const group = item.closest('.accordion-group');
       
