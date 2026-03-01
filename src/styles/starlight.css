@@ -38,9 +38,19 @@ html[data-theme="light"] a:hover {
 }
 
 .starlight-card:hover {
-  border-color: rgba(0, 212, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 212, 255, 0.05);
   background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ... existing code ... */
+
+.nav-glass:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .nav-glass:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 html[data-theme="light"] .starlight-card {
