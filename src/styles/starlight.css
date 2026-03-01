@@ -275,7 +275,7 @@ html[data-theme="light"] .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgb(255 255 255 / 5%);
+  background: rgb(255 255 255 / 12%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgb(255 255 255 / 10%);
@@ -862,6 +862,7 @@ html[data-theme="light"] .starlight-nav.vertical {
 /* 15. More Form Controls */
 .select-starlight {
   appearance: none;
+  line-height: normal;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;

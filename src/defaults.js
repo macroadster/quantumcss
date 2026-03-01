@@ -121,8 +121,8 @@ const utilityMaps = {
     value: ['inline-flex', 'center', 'center', 'pointer', 'all 0.2s ease', '600', 'var(--q-radius-md)', 'none']
   },
   'input-base': {
-    property: ['display', 'width', 'appearance', 'transition', 'border-radius', 'border'],
-    value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none']
+    property: ['display', 'width', 'appearance', 'transition', 'border-radius', 'border', 'line-height'],
+    value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none', 'normal']
   },
   'dialog-base': {
     property: ['display', 'flex-direction', 'align-items', 'padding', 'overflow-y', 'border-radius', 'position'],
@@ -179,7 +179,7 @@ const utilityMaps = {
     'search-icon': 'absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10 w-5 h-5',
     'nav-glass': 'nav-base theme-glass-dark',
     'starlight-card': 'card-base theme-glass-dark',
-    'starlight-nav': 'nav-base theme-glass-dark px-4 md:px-8',
+    'starlight-nav': 'nav-base theme-glass-dark',
     'starlight-search': 'search-container theme-glass-dark rounded-xl',
     'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
     'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
