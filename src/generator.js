@@ -148,7 +148,11 @@ function generateCSS(configPath) {
     let property = null, value = null, customSelector = null;
     if (utilityMaps[cls] && typeof utilityMaps[cls] === 'object') {
       const entry = utilityMaps[cls];
-      if (!Array.isArray(entry)) { property = entry.property; value = entry.value; }
+      if (!Array.isArray(entry)) { 
+        property = entry.property; 
+        value = entry.value; 
+        if (entry.variant && !variant) variant = entry.variant;
+      }
       else { property = entry; }
     }
 

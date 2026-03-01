@@ -198,7 +198,7 @@ textarea:focus,
 select:focus, 
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5);
 }
 
 textarea {
