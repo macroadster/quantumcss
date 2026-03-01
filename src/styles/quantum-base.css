@@ -183,10 +183,12 @@ body {
 input, textarea, select, button {
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit;
+  line-height: normal;
   color: inherit;
   border: none;
   outline: 0;
+  padding: 0;
+  margin: 0;
   background: transparent;
 }
 

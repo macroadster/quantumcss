@@ -190,10 +190,12 @@ body {
 input, textarea, select, button {
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit;
+  line-height: normal;
   color: inherit;
   border: none;
   outline: 0;
+  padding: 0;
+  margin: 0;
   background: transparent;
 }
 
@@ -3456,7 +3458,7 @@ html[data-theme="light"] .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgb(255 255 255 / 12%);
+  background: rgb(255 255 255 / 15%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgb(255 255 255 / 10%);
@@ -3519,12 +3521,13 @@ html[data-theme="light"] .dropdown-item:hover {
 /* 7. Input & Glass Fixes */
 .input-starlight, .textarea-starlight {
   height: auto;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   background-color: rgb(255 255 255 / 4%);
   border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 0.75rem;
   color: inherit;
   width: 100%;
+  line-height: normal;
 }
 
 textarea.input-starlight, .textarea-starlight {
@@ -3811,10 +3814,11 @@ html[data-theme="light"] .stat-value {
 
 /* 14. Hamburger Menu Glass */
 .nav-glass {
-  background: rgb(255 255 255 / 5%);
+  background: rgb(255 255 255 / 15%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgb(255 255 255 / 10%);
+  background-clip: border-box;
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -4048,6 +4052,8 @@ html[data-theme="light"] .starlight-nav.vertical {
 .select-starlight {
   appearance: none;
   line-height: normal;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
@@ -4639,7 +4645,7 @@ html[data-theme="light"] * {
   border-radius: var(--q-radius-lg);
   transition: all 0.3s ease;
   position: relative;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -4674,7 +4680,7 @@ html[data-theme="light"] * {
   border-radius: var(--q-radius-md);
   border: none;
   line-height: normal;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -4693,7 +4699,7 @@ html[data-theme="light"] * {
   border-radius: var(--q-radius-md);
   border: none;
   line-height: normal;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -5329,7 +5335,7 @@ html[data-theme="light"] * {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -5364,7 +5370,7 @@ html[data-theme="light"] .light\:bg-slate-300, body.light-mode .light\:bg-slate-
   position: relative;
   display: block;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -5427,7 +5433,7 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   border-radius: var(--q-radius-lg);
   transition: all 0.3s ease;
   position: relative;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -5460,7 +5466,7 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
 }
 
 .theme-glass-dark {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -5498,7 +5504,7 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   max-width: 90vw;
   max-height: 90vh;
   z-index: 2000;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
@@ -5638,7 +5644,7 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   font-weight: 600;
   border-radius: var(--q-radius-md);
   border: none;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);

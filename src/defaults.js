@@ -163,7 +163,7 @@ const utilityMaps = {
   },
   'theme-glass-dark': {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width'],
-    value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px']
+    value: ['rgba(255, 255, 255, 0.15)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px']
   },
   'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
   'glow-starlight': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
@@ -179,7 +179,7 @@ const utilityMaps = {
     'search-icon': 'absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10 w-5 h-5',
     'nav-glass': 'nav-base theme-glass-dark',
     'starlight-card': 'card-base theme-glass-dark',
-    'starlight-nav': 'nav-base theme-glass-dark',
+    'starlight-nav': 'nav-base theme-glass-dark w-full',
     'starlight-search': 'search-container theme-glass-dark rounded-xl',
     'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
     'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
