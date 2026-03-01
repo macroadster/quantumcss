@@ -591,7 +591,7 @@ class QuantumCSSBuilder {
                     <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
                     <div class="p-8">
                         <!-- Inline Preview -->
-                        <div class="starlight-dialog relative mx-auto mb-8 shadow-none border-white/10" style="max-width: 500px;">
+                        <div class="dialog-base theme-glass-dark relative mx-auto mb-8 shadow-none border-white/10" style="max-width: 500px;">
                             <h3 class="text-xl font-bold mb-4 text-gradient-starlight">System Preview</h3>
                             <p class="mb-6 opacity-70 text-sm">This is an inline preview of the dialog component. It scales to fit its container.</p>
                             <div class="flex gap-4">

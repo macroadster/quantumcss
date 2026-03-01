@@ -111,7 +111,7 @@
     "starlight-dashboard": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
     "starlight-gallery": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4",
     "starlight-form": "starlight-card grid grid-cols-1 md:grid-cols-2 gap-8 items-start",
-    "starlight-dialog": "dialog-base theme-glass-dark p-8 ani-scale-in items-stretch"
+    "starlight-dialog": "dialog-base modal-fixed theme-glass-dark ani-scale-in"
   },
   "darkMode": "media"
 }

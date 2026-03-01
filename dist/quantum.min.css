@@ -5444,25 +5444,22 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   margin-top: auto;
 }
 
-.starlight-dialog {
+.dialog-base {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 90vw;
-  max-height: 90vh;
+  padding: var(--q-space-10);
   overflow-y: auto;
-  z-index: 2000;
   border-radius: var(--q-radius-xl);
+  position: relative;
+}
+
+.theme-glass-dark {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-color: rgba(255, 255, 255, 0.1);
   border-width: 1px;
-  padding: 2rem;
 }
 
 .pt-4 {
@@ -5479,6 +5476,28 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.starlight-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: var(--q-space-10);
+  overflow-y: auto;
+  border-radius: var(--q-radius-xl);
+  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90vw;
+  max-height: 90vh;
+  z-index: 2000;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: rgba(255, 255, 255, 0.1);
+  border-width: 1px;
 }
 
 .dialog-close {

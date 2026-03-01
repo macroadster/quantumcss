@@ -125,8 +125,12 @@ const utilityMaps = {
     value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none']
   },
   'dialog-base': {
-    property: ['display', 'flex-direction', 'align-items', 'position', 'top', 'left', 'transform', 'max-width', 'max-height', 'overflow-y', 'z-index', 'border-radius'],
-    value: ['flex', 'column', 'stretch', 'fixed', '50%', '50%', 'translate(-50%, -50%)', '90vw', '90vh', 'auto', '2000', 'var(--q-radius-xl)']
+    property: ['display', 'flex-direction', 'align-items', 'padding', 'overflow-y', 'border-radius', 'position'],
+    value: ['flex', 'column', 'stretch', 'var(--q-space-10)', 'auto', 'var(--q-radius-xl)', 'relative']
+  },
+  'modal-fixed': {
+    property: ['position', 'top', 'left', 'transform', 'max-width', 'max-height', 'z-index'],
+    value: ['fixed', '50%', '50%', 'translate(-50%, -50%)', '90vw', '90vh', '2000']
   },
   'badge-base': {
     property: ['display', 'align-items', 'justify-content', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'border-radius', 'border'],
@@ -180,7 +184,7 @@ const utilityMaps = {
     'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
     'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
     'starlight-form': 'starlight-card grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
-    'starlight-dialog': 'dialog-base theme-glass-dark p-8 ani-scale-in items-stretch'
+    'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark ani-scale-in'
   };
   
   module.exports = { defaultTheme, utilityMaps };
