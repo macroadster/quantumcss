@@ -298,8 +298,12 @@ function generateCSS(configPath) {
           '  outline: none !important;',
           `  box-shadow: 0 0 0 4px ${ringColor}, 0 0 30px ${glowColor} !important;`
         ];
-        variant = variant || 'focus';
-        return [{ breakpoint, variant, customSelector, rules }];
+        
+        // Apply to both focus and active states for better interactive feedback
+        return [
+          { breakpoint, variant: variant || 'focus', customSelector, rules },
+          { breakpoint, variant: 'active', customSelector, rules }
+        ];
       }
     }
 

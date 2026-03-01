@@ -196,7 +196,9 @@ input, textarea, select, button {
 input:focus, 
 textarea:focus, 
 select:focus, 
-button:focus {
+button:focus,
+input:active,
+button:active {
   outline: none;
   box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5);
 }

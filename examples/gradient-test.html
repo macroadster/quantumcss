@@ -3,70 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient Test</title>
+    <title>Quantum CSS - Interactivity & Theme Test</title>
     <link rel="stylesheet" href="../dist/quantum.min.css">
     <style>
         .test-box {
-            width: 200px;
-            height: 100px;
-            margin: 20px;
+            width: 100%;
+            height: 120px;
+            border-radius: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: bold;
+            font-weight: 900;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
+        /* Theme Styles */
+        .theme-blue-peach .hero-gradient { background: linear-gradient(to right, var(--q-color-starlight-blue), var(--q-color-starlight-peach)); }
+        .theme-purple-via .hero-gradient { background: linear-gradient(to br, #3b82f6, #a855f7, #ef4444); }
+        
+        body { transition: background-color 0.5s ease; }
     </style>
 </head>
-<body class="bg-starlight-deep p-10">
-    <div class="bg-gradient-to-r from-starlight-blue to-starlight-peach test-box">
-        Gradient Blue-Peach
-    </div>
-    <div class="bg-gradient-to-br from-blue-500 via-purple-500 to-red-500 test-box">
-        Via Purple
-    </div>
-    <div class="text-transparent bg-clip-text bg-gradient-to-r from-starlight-orange to-starlight-peach text-6xl font-black mb-10">
-        Gradient Text Example
-    </div>
-    <div class="bg-starlight-blue/20 border border-starlight-blue p-4 rounded-lg">
-        Opacity Background
-    </div>
-    <div class="border-4 border-red-500/50 p-4 mt-4 font-bold text-white">
-        Opacity Border (Red 50%)
-    </div>
-
-    <div class="mt-10 relative bg-slate-800 rounded-xl overflow-hidden" style="width: 400px; height: 300px;">
-        <svg class="svg-fluid opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect x="0" y="0" width="100" height="100" fill="url(#grad)" />
-            <defs>
-                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
-                </linearGradient>
-            </defs>
-        </svg>
-        <div class="overlay-base text-white text-2xl font-black text-center w-full">
-            CENTERED<br>OVERLAY
-        </div>
-        <div class="overlay-top-left p-3 bg-black/50 text-[10px] font-bold text-starlight">TOP LEFT</div>
-        <div class="overlay-bottom-right p-3 bg-black/50 text-[10px] font-bold text-starlight">BOTTOM RIGHT</div>
-    </div>
-
-    <div class="mt-10 flex gap-6">
-        <button class="btn-starlight focus-glow-purple-500">Purple Focus</button>
-        <button class="btn-secondary focus-glow-orange-500">Orange Focus</button>
-        <button class="bg-white/5 p-4 rounded-lg focus-glow text-white">Default Focus</button>
-    </div>
-
-    <div class="mt-10 flex flex-col gap-6 max-w-md">
+<body class="bg-starlight-deep p-10 theme-blue-peach">
+    
+    <!-- Theme Toggle -->
+    <div class="mb-12 flex justify-between items-center">
         <div>
-            <label class="text-[10px] font-bold text-slate-500 uppercase mb-2 block">Purple Focus Input</label>
-            <input type="text" class="input-starlight focus-glow-purple-500" placeholder="Click for Purple Glow...">
+            <h1 class="text-white text-2xl font-black uppercase tracking-widest mb-2">Interactivity Test</h1>
+            <p class="text-slate-500 text-sm">Testing JIT Gradients, Focus Glows, and Overlays</p>
         </div>
-        <div>
-            <label class="text-[10px] font-bold text-slate-500 uppercase mb-2 block">Orange Focus Input</label>
-            <input type="text" class="input-starlight focus-glow-orange-500" placeholder="Click for Orange Glow...">
+        <button class="btn-starlight px-8 py-3 rounded-full font-bold" onclick="toggleTheme()">
+            Switch Visual Theme
+        </button>
+    </div>
+
+    <!-- Hero Gradient Section -->
+    <div class="mb-10">
+        <div class="hero-gradient test-box shadow-2xl">
+            Active Theme Gradient
         </div>
     </div>
+
+    <!-- Text Effects -->
+    <div class="mb-12">
+        <div class="text-transparent bg-clip-text bg-gradient-to-r from-starlight-orange to-starlight-peach text-6xl font-black mb-4">
+            GRADIENT TEXT
+        </div>
+        <div class="flex gap-4 items-center">
+            <div class="bg-starlight-blue/10 border border-starlight-blue/30 p-4 rounded-lg text-starlight-blue font-bold text-sm">
+                OPACITY BG + BORDER
+            </div>
+            <div class="border-4 border-red-500/50 p-4 rounded-lg font-black text-white uppercase tracking-tighter">
+                50% RED BORDER
+            </div>
+        </div>
+    </div>
+
+    <!-- SVG & Overlay Section -->
+    <div class="mb-12">
+        <h3 class="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-4">SVG Positioning Primitives</h3>
+        <div class="relative bg-slate-900 rounded-2xl overflow-hidden border border-white/5" style="width: 100%; height: 300px;">
+            <svg class="svg-fluid opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <rect x="0" y="0" width="100" height="100" fill="url(#grad)" />
+                <defs>
+                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:var(--q-color-starlight-blue);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:var(--q-color-purple-500);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="overlay-base text-white text-3xl font-black text-center w-full pointer-events-none">
+                CENTERED<br>OVERLAY
+            </div>
+            <div class="overlay-top-left p-4 bg-black/50 text-[10px] font-bold text-starlight-blue tracking-widest">TOP LEFT</div>
+            <div class="overlay-bottom-right p-4 bg-black/50 text-[10px] font-bold text-starlight-blue tracking-widest">BOTTOM RIGHT</div>
+        </div>
+    </div>
+
+    <!-- Focus Glow Interaction Section -->
+    <div class="mb-12">
+        <h3 class="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-6">Interactive Focus Primitives (Click to Test Glow)</h3>
+        
+        <div class="flex flex-wrap gap-6 mb-8">
+            <button class="btn-starlight focus-glow-purple-500 px-8 py-4">Purple Glow Button</button>
+            <button class="btn-secondary focus-glow-orange-500 px-8 py-4">Orange Glow Button</button>
+            <button class="bg-white/5 p-4 rounded-xl focus-glow text-white font-bold px-8">Default Glow Button</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <label class="text-[10px] font-bold text-slate-500 uppercase mb-3 block">Purple Focus Input</label>
+                <input type="text" class="input-starlight focus-glow-purple-500 h-14" placeholder="Focus for Purple Glow...">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold text-slate-500 uppercase mb-3 block">Orange Focus Input</label>
+                <input type="text" class="input-starlight focus-glow-orange-500 h-14" placeholder="Focus for Orange Glow...">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('theme-blue-peach')) {
+                body.classList.replace('theme-blue-peach', 'theme-purple-via');
+            } else {
+                body.classList.replace('theme-purple-via', 'theme-blue-peach');
+            }
+        }
+    </script>
 </body>
 </html>
