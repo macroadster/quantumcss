@@ -168,7 +168,7 @@ function generateCSS(configPath) {
 
       if (prefix === 'text') {
         if (theme.fontSize[valKey]) { property = ['font-size', 'line-height']; value = [theme.fontSize[valKey], (valKey.includes('xl') || parseInt(valKey) >= 3) ? '1.2' : '1.5']; }
-        else { const color = resolveColor(valKey); if (color) { property = 'color'; value = color; } }
+        else { const color = resolveColor(valKey); if (color) { property = 'color'; value = `${color} !important`; } }
       } else if (prefix === 'bg') {
         if (cParts[1] === 'gradient' && cParts[2] === 'to') {
           const dirMap = { r: 'to right', l: 'to left', t: 'to top', b: 'to bottom', tr: 'to top right', tl: 'to top left', br: 'to bottom right', bl: 'to bottom left' };
@@ -179,14 +179,14 @@ function generateCSS(configPath) {
             const rules = [
               '  --q-gradient-from-transparent: rgba(0,0,0,0);',
               '  --q-gradient-to-transparent: rgba(0,0,0,0);',
-              `  ${property}: ${value};`,
+              `  ${property}: ${value} !important;`,
               '  --q-gradient-stops: var(--q-gradient-from, var(--q-gradient-from-transparent)), var(--q-gradient-to, var(--q-gradient-to-transparent));'
             ];
             return [{ breakpoint: null, variant: null, customSelector: null, rules }];
           }
         }
         const color = resolveColor(valKey); 
-        if (color) { property = 'background-color'; value = color; } 
+        if (color) { property = 'background-color'; value = `${color} !important`; } 
       } else if (prefix === 'from') {
         const color = resolveColor(valKey);
         if (color) {
@@ -271,15 +271,19 @@ function generateCSS(configPath) {
       } else if (prefix === 'shadow') {
         if (theme.shadows[valKey]) { property = 'box-shadow'; value = theme.shadows[valKey]; }
         else if (valKey === '') { property = 'box-shadow'; value = theme.shadows.md || '0 4px 6px -1px rgb(0 0 0 / 0.1)'; }
-      }
-      else if (prefix === 'border') {
+      } else if (prefix === 'border') {
         const color = resolveColor(valKey);
         if (color) { property = 'border-color'; value = color; }
         else if (['l', 'r', 't', 'b'].includes(cParts[1])) {
           const sideMapSide = { l: 'left', r: 'right', t: 'top', b: 'bottom' };
-          property = `border-${sideMapSide[cParts[1]]}-width`;
-          value = `${cParts[2]}px`;
-        } else if (!isNaN(parseInt(valKey))) { property = 'border-width'; value = `${parseInt(valKey)}px`; }
+          property = [`border-${sideMapSide[cParts[1]]}-width`, 'border-style'];
+          value = [`${cParts[2]}px`, 'solid'];
+        } else if (!isNaN(parseInt(valKey))) { 
+          property = ['border-width', 'border-style']; 
+          value = [`${parseInt(valKey)}px`, 'solid']; 
+        } else if (['solid', 'dashed', 'dotted', 'double', 'none'].includes(valKey)) {
+          property = 'border-style'; value = valKey;
+        }
       } else if (prefix === 'focus-glow') {
         const color = resolveColor(valKey) || resolveColor('primary') || '#00d4ff';
         const rgba = getRGBA(color);
