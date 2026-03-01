@@ -7,14 +7,22 @@ const Starlight = {
   /**
    * Initializes a randomized star field in the target container.
    * @param {string} selector - CSS selector for the container (default: '.starlight-stars')
-   * @param {number} count - Number of stars to generate (default: 150)
+   * @param {number} count - Number of stars to generate (default: 100)
    */
-  initStars(selector = '.starlight-stars', count = 150) {
+  initStars(selector = '.starlight-stars', count = 100) {
     const containers = document.querySelectorAll(selector);
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     containers.forEach(container => {
       // Clear existing stars if any
       container.innerHTML = '';
+      
+      // If user prefers reduced motion, maybe skip or show static stars
+      if (prefersReducedMotion) {
+        count = Math.floor(count / 2); // Show fewer stars if motion is reduced
+      }
       
       for (let i = 0; i < count; i++) {
         const star = document.createElement('div');
@@ -30,7 +38,12 @@ const Starlight = {
         star.style.height = `${size}px`;
         
         // Randomize animation duration (2s to 5s)
-        star.style.setProperty('--q-duration', `${Math.random() * 3 + 2}s`);
+        if (!prefersReducedMotion) {
+          star.style.setProperty('--q-duration', `${Math.random() * 3 + 2}s`);
+        } else {
+          star.style.animation = 'none';
+          star.style.opacity = (Math.random() * 0.3 + 0.1).toString();
+        }
         
         container.appendChild(star);
       }

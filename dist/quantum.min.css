@@ -3312,6 +3312,7 @@ html[data-theme="light"] .radio-starlight {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  contain: strict;
 }
 
 .star {
@@ -3320,6 +3321,9 @@ html[data-theme="light"] .radio-starlight {
   border-radius: 50%;
   opacity: 0.3;
   animation: star-twinkle var(--q-duration, 3s) infinite ease-in-out;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 html[data-theme="light"] .star {
