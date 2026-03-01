@@ -43,11 +43,11 @@
 }
 
 .ani-twinkle {
-  animation: star-twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+  animation: star-twinkle var(--q-twinkle-duration, 3s) ease-in-out infinite;
 }
 
 .ani-orbit {
-  animation: orbit var(--orbit-duration, 10s) linear infinite;
+  animation: orbit var(--q-orbit-duration, 10s) linear infinite;
 }
 
 .ani-svg-draw {

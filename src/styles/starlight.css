@@ -2,14 +2,14 @@
 
 /* Links */
 a {
-  color: var(--color-starlight-blue);
+  color: var(--q-color-starlight-blue);
   text-decoration: none;
-  transition: all var(--transition-base);
+  transition: all var(--q-transition-base);
   position: relative;
 }
 
 a:hover {
-  color: var(--color-starlight-peach);
+  color: var(--q-color-starlight-peach);
   text-shadow: 0 0 8px rgb(255 179 138 / 40%);
 }
 
@@ -18,23 +18,23 @@ a:active {
 }
 
 html[data-theme="light"] a {
-  color: var(--color-starlight-blue);
+  color: var(--q-color-starlight-blue);
 }
 
 html[data-theme="light"] a:hover {
-  color: var(--color-starlight-peach);
+  color: var(--q-color-starlight-peach);
 }
 
 /* 1. Starlight Card */
 .starlight-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-10);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--q-glass-bg);
+  border: 1px solid var(--q-glass-border);
+  border-radius: var(--q-radius-2xl);
+  padding: var(--q-space-10);
+  backdrop-filter: var(--q-glass-blur);
+  -webkit-backdrop-filter: var(--q-glass-blur);
   position: relative;
-  transition: border-color var(--transition-base), transform var(--transition-base), background-color var(--transition-base);
+  transition: border-color var(--q-transition-base), transform var(--q-transition-base), background-color var(--q-transition-base);
 }
 
 .starlight-card:hover {
@@ -45,8 +45,8 @@ html[data-theme="light"] a:hover {
 }
 
 html[data-theme="light"] .starlight-card {
-  background: var(--light-card-bg);
-  border-color: var(--light-card-border);
+  background: var(--q-light-card-bg);
+  border-color: var(--q-light-card-border);
   color: #334155;
   box-shadow: 0 4px 20px rgb(0 0 0 / 2%);
 }
@@ -76,8 +76,8 @@ html[data-theme="light"] .radio-starlight {
 }
 
 .checkbox-starlight:checked, .radio-starlight:checked {
-  background: var(--color-starlight-blue);
-  border-color: var(--color-starlight-blue);
+  background: var(--q-color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
 }
 
 .checkbox-starlight:checked::after {
@@ -139,11 +139,11 @@ html[data-theme="light"] .radio-starlight {
   background: white;
   border-radius: 50%;
   opacity: 0.3;
-  animation: star-twinkle var(--duration, 3s) infinite ease-in-out;
+  animation: star-twinkle var(--q-duration, 3s) infinite ease-in-out;
 }
 
 html[data-theme="light"] .star {
-  background: var(--color-starlight-blue);
+  background: var(--q-color-starlight-blue);
   opacity: 0.15;
 }
 
@@ -203,7 +203,7 @@ html[data-theme="light"] .star {
 
 .dialog-content::-webkit-scrollbar-thumb,
 .starlight-dialog::-webkit-scrollbar-thumb {
-  background: var(--color-starlight-blue, #3b82f6);
+  background: var(--q-color-starlight-blue, #3b82f6);
   border-radius: 4px;
 }
 
@@ -245,7 +245,7 @@ html[data-theme="light"] .dialog-close {
 
 .dialog-close:hover {
   background: rgb(255 255 255 / 15%);
-  border-color: var(--color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
   transform: rotate(90deg);
 }
 
@@ -272,8 +272,9 @@ html[data-theme="light"] .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: var(--color-starlight-deep);
-  backdrop-filter: blur(20px);
+  background: rgb(255 255 255 / 5%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 0.75rem;
   padding: 0.5rem;
@@ -301,7 +302,7 @@ html[data-theme="light"] .dialog-content {
   width: 100%;
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
-  color: rgb(255 255 255 / 70%);
+  color: var(--q-text-primary, rgb(255 255 255 / 70%));
   transition: all 0.2s ease;
   text-align: left;
   background: transparent;
@@ -310,13 +311,13 @@ html[data-theme="light"] .dialog-content {
 }
 
 .dropdown-item:hover {
-  background-color: var(--color-starlight-blue);
+  background-color: var(--q-color-starlight-blue);
   color: black;
 }
 
 html[data-theme="light"] .dropdown-menu {
-  background-color: rgb(255 255 255 / 99%);
-  border-color: #cbd5e1;
+  background: rgb(255 255 255 / 95%);
+  border-color: rgb(0 0 0 / 8%);
   box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
 }
 
@@ -325,7 +326,7 @@ html[data-theme="light"] .dropdown-item {
 }
 
 html[data-theme="light"] .dropdown-item:hover {
-  background-color: var(--color-starlight-blue);
+  background-color: var(--q-color-starlight-blue);
   color: black;
 }
 
@@ -352,21 +353,21 @@ html[data-theme="light"] .textarea-starlight {
 }
 
 html[data-theme="light"] .glass {
-  background-color: rgb(0 0 0 / 2%);
-  border-color: rgb(0 0 0 / 5%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 /* 8. Input Focus States */
 .input-starlight:focus, .textarea-starlight:focus {
   outline: none;
-  border-color: var(--color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
   box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 0 20px rgb(0 212 255 / 10%);
   background-color: rgb(255 255 255 / 6%);
 }
 
 html[data-theme="light"] .input-starlight:focus,
 html[data-theme="light"] .textarea-starlight:focus {
-  border-color: var(--color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
   box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 4px 12px rgb(0 0 0 / 5%);
   background-color: #fff;
 }
@@ -377,7 +378,7 @@ html[data-theme="light"] .textarea-starlight:focus {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgb(255 255 255 / 10%);
-  border-radius: var(--radius-xl);
+  border-radius: var(--q-radius-xl);
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
 }
@@ -432,9 +433,9 @@ html[data-theme="light"] .code-window-title {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgb(255 255 255 / 8%);
-  border-radius: var(--radius-xl);
-  margin-bottom: var(--space-4);
-  transition: all var(--transition-base);
+  border-radius: var(--q-radius-xl);
+  margin-bottom: var(--q-space-4);
+  transition: all var(--q-transition-base);
   position: relative;
 }
 
@@ -445,14 +446,14 @@ html[data-theme="light"] .code-window-title {
 }
 
 .accordion-starlight.accordion-item.active {
-  border-color: var(--color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
   background: rgb(0 212 255 / 3%);
   box-shadow: 0 0 30px rgb(0 212 255 / 10%), inset 0 0 20px rgb(0 212 255 / 5%);
 }
 
 .accordion-starlight .accordion-header {
   background: transparent !important;
-  padding: var(--space-6) var(--space-8);
+  padding: var(--q-space-6) var(--q-space-8);
   color: white;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -473,11 +474,11 @@ html[data-theme="light"] .code-window-title {
 }
 
 .accordion-starlight.active .accordion-content {
-  padding: var(--space-6) var(--space-8);
+  padding: var(--q-space-6) var(--q-space-8);
 }
 
 .accordion-starlight .accordion-icon {
-  color: var(--color-starlight-blue);
+  color: var(--q-color-starlight-blue);
   filter: drop-shadow(0 0 5px rgb(0 212 255 / 50%));
 }
 
@@ -487,7 +488,7 @@ html[data-theme="light"] .accordion-starlight.accordion-item {
 }
 
 html[data-theme="light"] .accordion-starlight.accordion-item.active {
-  border-color: var(--color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
   background: #f8fafc;
 }
 
@@ -517,7 +518,7 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
   left: 1.125rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-muted);
+  color: var(--q-text-muted);
   pointer-events: none;
   width: 1.25rem;
   height: 1.25rem;
@@ -532,25 +533,25 @@ html[data-theme="light"] .search-icon {
 .starlight-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-4);
+  gap: var(--q-space-4);
 }
 
 .gallery-item {
   position: relative;
   aspect-ratio: 1;
-  border-radius: var(--radius-xl);
+  border-radius: var(--q-radius-xl);
   overflow: hidden;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--q-glass-bg);
+  border: 1px solid var(--q-glass-border);
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all var(--q-transition-base);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  transition: transform var(--q-transition-slow);
 }
 
 .gallery-item:hover img {
@@ -558,8 +559,8 @@ html[data-theme="light"] .search-icon {
 }
 
 .gallery-item:hover {
-  border-color: var(--color-starlight-blue);
-  box-shadow: 0 0 20px var(--color-starlight-glow);
+  border-color: var(--q-color-starlight-blue);
+  box-shadow: 0 0 20px var(--q-color-starlight-glow);
 }
 
 .gallery-overlay {
@@ -581,26 +582,26 @@ html[data-theme="light"] .search-icon {
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-6);
+  gap: var(--q-space-6);
 }
 
 .stat-card {
-  padding: var(--space-6);
+  padding: var(--q-space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--q-space-2);
 }
 
 .stat-value {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #fff 0%, var(--color-starlight-blue) 100%);
+  background: linear-gradient(135deg, #fff 0%, var(--q-color-starlight-blue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 html[data-theme="light"] .stat-value {
-  background: linear-gradient(135deg, #1e293b 0%, var(--color-starlight-blue) 100%);
+  background: linear-gradient(135deg, #1e293b 0%, var(--q-color-starlight-blue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -609,7 +610,7 @@ html[data-theme="light"] .stat-value {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--q-text-muted);
 }
 
 .stat-trend {
@@ -619,8 +620,8 @@ html[data-theme="light"] .stat-value {
   gap: 0.25rem;
 }
 
-.stat-trend.up { color: var(--color-success); }
-.stat-trend.down { color: var(--color-error); }
+.stat-trend.up { color: var(--q-color-success); }
+.stat-trend.down { color: var(--q-color-error); }
 
 /* 14. Hamburger Menu Glass */
 .nav-glass {
@@ -684,7 +685,7 @@ html[data-theme="light"] .nav-glass {
 
 .nav-list.vertical .nav-link:hover {
   background: rgb(255 255 255 / 5%);
-  color: var(--color-starlight-blue);
+  color: var(--q-color-starlight-blue);
 }
 
 .nav-link::after {
@@ -694,9 +695,9 @@ html[data-theme="light"] .nav-glass {
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--color-starlight-blue);
+  background: var(--q-color-starlight-blue);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px var(--color-starlight-glow);
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
   transform: translateX(-50%);
 }
 
@@ -737,7 +738,7 @@ html[data-theme="light"] .hamburger {
 
 .hamburger:hover {
   background: rgb(255 255 255 / 10%);
-  border-color: var(--color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
 }
 
 html[data-theme="light"] .hamburger:hover {
@@ -758,13 +759,13 @@ html[data-theme="light"] .hamburger span {
 }
 
 .hamburger.active span {
-  background-color: var(--color-starlight-blue);
-  box-shadow: 0 0 10px var(--color-starlight-glow);
+  background-color: var(--q-color-starlight-blue);
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
 
 .nav-menu-mobile {
   width: 100%;
-  background: rgb(0 0 0 / 20%);
+  background: rgb(255 255 255 / 5%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgb(255 255 255 / 5%);
@@ -886,16 +887,16 @@ html[data-theme="light"] .range-starlight {
   appearance: none;
   width: 18px;
   height: 18px;
-  background: var(--color-starlight-blue);
+  background: var(--q-color-starlight-blue);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 10px var(--color-starlight-glow);
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
   transition: all 0.2s;
 }
 
 .range-starlight::-webkit-slider-thumb:hover {
   transform: scale(1.2);
-  box-shadow: 0 0 20px var(--color-starlight-blue);
+  box-shadow: 0 0 20px var(--q-color-starlight-blue);
 }
 
 .toggle-starlight {
@@ -978,7 +979,7 @@ html[data-theme="light"] .text-glass {
   );
   background-size: 200% 100%;
   animation: starlight-shimmer 2s infinite linear;
-  border-radius: var(--radius-md);
+  border-radius: var(--q-radius-md);
   min-height: 1rem;
 }
 
@@ -1030,7 +1031,7 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb {
 }
 
 html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-starlight-blue);
+  background: var(--q-color-starlight-blue);
 }
 
 /* Firefox Support */
@@ -1061,7 +1062,7 @@ html[data-theme="light"] * {
   }
   
   .btn-starlight {
-    background: linear-gradient(135deg, var(--color-starlight-peach) 0%, var(--color-starlight-blue) 100%);
+    background: linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%);
     color: #000;
     font-weight: 700;
     border: none;
@@ -1096,5 +1097,5 @@ html[data-theme="light"] * {
   }
   
   html[data-theme="light"] .btn-starlight:focus-visible {
-    outline-color: var(--color-starlight-blue);
+    outline-color: var(--q-color-starlight-blue);
   }}

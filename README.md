@@ -18,8 +18,25 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 ### Developer Experience
 - **Advanced CLI Scaffolding** - Instantly generate pre-styled templates (Gaming, Blog, News, Shopping, Travel)
 - **Dynamic Documentation** - Generate a "Kitchen Sink" overview of your unique design tokens
+- **Unified Naming Standard** - Consistent `--q-` prefix for all CSS variables (e.g., `--q-color-primary`).
 - **TypeScript Support** - Full type definitions
 - **Zero Configuration** - Works out of the box
+
+## 🎨 Advanced Utilities
+
+### Gradients & Color Stops
+QuantumCSS provides powerful JIT gradient utilities with support for multiple color stops and transparency:
+- `bg-gradient-to-{r|l|t|b|tr|tl|br|bl}` - Set gradient direction
+- `from-{color}`, `via-{color}`, `to-{color}` - Define color stops
+- `from-{color}/50` - Opacity support for gradient stops
+- `text-transparent bg-clip-text` - Create gradient text
+
+### SVG & Data Visualization
+Specialized utilities for handling complex SVG scaling and data overlays:
+- `svg-fluid` - Responsive SVG scaling
+- `vector-non-scaling` - Constant-width strokes regardless of SVG scale
+- `overlay-base` - Centered absolute-positioned data labels
+- `overlay-top-left`, `overlay-bottom-right`, etc. - Corner positioning
 
 ## 📦 Installation
 
@@ -45,13 +62,28 @@ npx @howssatoshi/quantumcss scaffold gaming index.html
 
 ## ⚙️ Configuration
 
-### Component Presets
-Define your own components in `quantum.config.json`:
+### Decoupled Component Architecture
+QuantumCSS separates structural logic from aesthetic themes for maximum reusability. Define your own components in `quantum.config.json` by combining these layers:
+
+**1. Structural Base Classes**
+- `nav-base` - Standard flex row navigation
+- `card-base` - Flex column container with overflow hidden
+- `btn-base` - Center-aligned interactive button
+- `input-base` - Block-level form input
+- `dialog-base` - Centered modal container
+- `badge-base` - Inline-flex status indicator
+
+**2. Aesthetic Theme Classes**
+- `theme-starlight` - The iconic cosmic gradient and glow
+- `theme-glass` - Clean translucent glassmorphism
+- `theme-glass-dark` - Darker, higher contrast glassmorphism
+- `glass` - Base glassmorphic utility
+
 ```json
 {
   "componentPresets": {
-    "btn-action": "btn-starlight px-8 py-3 rounded-xl hover:scale-105 transition",
-    "card-glass": "glass p-6 rounded-2xl border border-white/10 dark:bg-white/5"
+    "btn-action": "btn-base theme-starlight px-8 py-3",
+    "card-premium": "card-base theme-glass-dark p-10 hover:scale-105"
   }
 }
 ```

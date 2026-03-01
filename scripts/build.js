@@ -151,7 +151,7 @@ class QuantumCSSBuilder {
     <style>
         .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
         .swatch { height: 4rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(0,0,0,0.1); }
-        .spacing-bar { height: 1rem; background: var(--color-starlight-blue, #3b82f6); border-radius: 0.25rem; }
+        .spacing-bar { height: 1rem; background: var(--q-color-starlight-blue, #3b82f6); border-radius: 0.25rem; }
         section { margin-bottom: 4rem; }
         h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
         body.light-mode h2 { border-bottom-color: rgba(0,0,0,0.1); }
@@ -160,7 +160,7 @@ class QuantumCSSBuilder {
         .ani-card { background: #0f172a; color: white; transition: all 0.3s; }
         body.light-mode .ani-card { background: #f1f5f9; color: #0f172a; }
         .ani-orbit-star { background-color: white; }
-        body.light-mode .ani-orbit-star { background-color: var(--color-starlight-blue, #2563eb); }
+        body.light-mode .ani-orbit-star { background-color: var(--q-color-starlight-blue, #2563eb); }
         .theme-toggle { 
             position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; 
             width: 3rem; height: 3rem; border-radius: 50%; 

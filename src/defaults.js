@@ -17,6 +17,21 @@ const defaultTheme = {
       100: '#d1fae5',
       500: '#10b981'
     },
+    purple: {
+      50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 300: '#d8b4fe', 400: '#c084fc', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce'
+    },
+    yellow: {
+      50: '#fefce8', 100: '#fef9c3', 200: '#fef08a', 300: '#fde047', 400: '#facc15', 500: '#eab308', 600: '#ca8a04', 700: '#a16207'
+    },
+    pink: {
+      50: '#fdf2f8', 100: '#fce7f3', 200: '#fbcfe8', 300: '#f9a8d4', 400: '#f472b6', 500: '#ec4899', 600: '#db2777', 700: '#be185d'
+    },
+    cyan: {
+      50: '#ecfeff', 100: '#cffafe', 200: '#a5f3fc', 300: '#67e8f9', 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2', 700: '#0e7490'
+    },
+    indigo: {
+      50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca'
+    },
     starlight: {
       blue: '#00d4ff', peach: '#ffb38a', orange: '#ff7e5f', deep: '#08081a',
     },
@@ -65,6 +80,7 @@ const utilityMaps = {
   'min-w-0': { property: 'min-width', value: '0' },
   'overflow-hidden': { property: 'overflow', value: 'hidden' },
   'overflow-visible': { property: 'overflow', value: 'visible' },
+  'bg-clip-text': { property: ['background-clip', '-webkit-background-clip'], value: ['text', 'text'] },
   'border-none': { property: 'border-width', value: '0' },
   'bg-transparent': { property: 'background-color', value: 'transparent' },
   'relative': { property: 'position', value: 'relative' },
@@ -77,6 +93,45 @@ const utilityMaps = {
   'w-5': { property: 'width', value: '1.25rem' },
   'h-5': { property: 'height', value: '1.25rem' },
   'z-10': { property: 'z-index', value: '10' },
+  'svg-fluid': {
+    property: ['width', 'height', 'max-width', 'display'],
+    value: ['100%', 'auto', '100%', 'block']
+  },
+  'svg-contain': { property: 'object-fit', value: 'contain' },
+  'svg-cover': { property: 'object-fit', value: 'cover' },
+  'vector-non-scaling': { property: 'vector-effect', value: 'non-scaling-stroke' },
+  'overlay-base': {
+    property: ['position', 'top', 'left', 'transform'],
+    value: ['absolute', '50%', '50%', 'translate(-50%, -50%)']
+  },
+  'overlay-top-left': { property: ['position', 'top', 'left'], value: ['absolute', '0', '0'] },
+  'overlay-top-right': { property: ['position', 'top', 'right'], value: ['absolute', '0', '0'] },
+  'overlay-bottom-left': { property: ['position', 'bottom', 'left'], value: ['absolute', '0', '0'] },
+  'overlay-bottom-right': { property: ['position', 'bottom', 'right'], value: ['absolute', '0', '0'] },
+  'nav-base': {
+    property: ['display', 'flex-direction', 'align-items', 'width', 'position', 'top', 'z-index'],
+    value: ['flex', 'row', 'center', '100%', 'sticky', '0', '1000']
+  },
+  'card-base': {
+    property: ['display', 'flex-direction', 'overflow', 'border-radius', 'transition'],
+    value: ['flex', 'column', 'hidden', 'var(--q-radius-lg)', 'all 0.3s ease']
+  },
+  'btn-base': {
+    property: ['display', 'align-items', 'justify-content', 'cursor', 'transition', 'font-weight', 'border-radius', 'border'],
+    value: ['inline-flex', 'center', 'center', 'pointer', 'all 0.2s ease', '600', 'var(--q-radius-md)', 'none']
+  },
+  'input-base': {
+    property: ['display', 'width', 'appearance', 'transition', 'border-radius', 'border'],
+    value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none']
+  },
+  'dialog-base': {
+    property: ['position', 'top', 'left', 'transform', 'max-width', 'max-height', 'overflow-y', 'z-index', 'border-radius'],
+    value: ['fixed', '50%', '50%', 'translate(-50%, -50%)', '90vw', '90vh', 'auto', '2000', 'var(--q-radius-xl)']
+  },
+  'badge-base': {
+    property: ['display', 'align-items', 'justify-content', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'border-radius', 'border'],
+    value: ['inline-flex', 'center', 'center', '0.75rem', '600', 'uppercase', '0.05em', 'var(--q-radius-sm)', 'none']
+  },
   'form-row': {
     property: ['display', 'justify-content', 'align-items', 'gap'],
     value: ['flex', 'space-between', 'center', '1rem']
@@ -89,45 +144,43 @@ const utilityMaps = {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-width', 'border-color'], 
     value: ['rgba(255, 255, 255, 0.03)', 'blur(16px)', 'blur(16px)', '1px', 'rgba(255, 255, 255, 0.1)'] 
   },
-  'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
-  'bg-starlight': { property: 'background', value: 'linear-gradient(135deg, #ffb38a 0%, #00d4ff 100%)' },
+  'bg-starlight': { property: 'background', value: 'linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)' },
   'text-gradient-starlight': {
     property: ['background', '-webkit-background-clip', '-webkit-text-fill-color', 'display'], 
-    value: ['linear-gradient(to right, #ffb38a, #00d4ff)', 'text', 'transparent', 'inline-block'] 
+    value: ['linear-gradient(to right, var(--q-color-starlight-peach), var(--q-color-starlight-blue))', 'text', 'transparent', 'inline-block'] 
   },
-  'btn-starlight': {
-    property: ['background', 'color', 'border', 'box-shadow', 'font-weight', 'transition', 'height', 'padding', 'display', 'align-items', 'justify-content', 'border-radius', 'cursor'],
-    value: ['linear-gradient(135deg, #ffb38a 0%, #00d4ff 100%)', '#000', 'none', '0 0 20px rgba(0, 212, 255, 0.3)', '700', 'all 0.2s ease', '3rem', '0 1.5rem', 'inline-flex', 'center', 'center', '0.5rem', 'pointer']
+  'theme-starlight': {
+    property: ['background', 'color', 'border-color', 'box-shadow'],
+    value: ['linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)', '#000', 'transparent', '0 0 30px rgba(0, 212, 255, 0.2)']
   },
-  'btn-secondary': {
-    property: ['background', 'color', 'border', 'font-weight', 'transition', 'height', 'padding', 'display', 'align-items', 'justify-content', 'border-radius', 'cursor', 'backdrop-filter', '-webkit-backdrop-filter'],
-    value: ['rgba(255, 255, 255, 0.05)', '#ffffff', '1px solid rgba(255, 255, 255, 0.15)', '700', 'all 0.2s ease', '3rem', '0 1.5rem', 'inline-flex', 'center', 'center', '0.5rem', 'pointer', 'blur(12px)', 'blur(12px)']
+  'theme-glass': {
+    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width'],
+    value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px']
   },
-  'input-starlight': {
-    property: ['background-color', 'border', 'color', 'border-radius', 'padding', 'appearance', 'transition', 'height'],
-    value: ['rgba(255, 255, 255, 0.04)', '1px solid rgba(255, 255, 255, 0.15)', 'inherit', '0.75rem', '0 1rem', 'none', 'all 0.2s ease', '3rem']
+  'theme-glass-dark': {
+    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width'],
+    value: ['rgba(255, 255, 255, 0.05)', 'blur(24px)', 'blur(24px)', 'rgba(255, 255, 255, 0.1)', '1px']
   },
-  'textarea-starlight': {
-    property: ['background-color', 'border', 'color', 'border-radius', 'padding', 'appearance', 'transition', 'min-height', 'width', 'display'],
-    value: ['rgba(255, 255, 255, 0.04)', '1px solid rgba(255, 255, 255, 0.15)', 'inherit', '0.75rem', '1rem', 'none', 'all 0.2s ease', '8rem', '100%', 'block']
-  },
-      'checkbox-starlight': {
-      property: ['appearance', 'width', 'height', 'background', 'border', 'border-radius', 'cursor', 'transition', 'position', 'display', 'align-items', 'justify-content'],
-      value: ['none', '1.25rem', '1.25rem', 'rgba(255, 255, 255, 0.05)', '1px solid rgba(255, 255, 255, 0.2)', '0.375rem', 'pointer', 'all 0.2s ease', 'relative', 'inline-flex', 'center', 'center']
-    },
-    'search-container': 'relative block w-full',
+  'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
+  'glow-starlight': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
+  'glow-peach': { property: 'box-shadow', value: '0 0 30px rgba(255, 179, 138, 0.25)' },
+  'glow-orange': { property: 'box-shadow', value: '0 0 30px rgba(255, 126, 95, 0.25)' },
+  'btn-starlight': 'btn-base theme-starlight h-12 px-6',
+  'btn-secondary': 'btn-base theme-glass-dark h-12 px-6 border-white/15',
+  'input-starlight': 'input-base theme-glass-dark h-12 px-4 border-white/15',
+  'textarea-starlight': 'input-base theme-glass-dark p-4 min-h-32 border-white/15',
+  'checkbox-starlight': 'btn-base theme-glass-dark w-5 h-5 border-white/20',
+  'search-container': 'relative block w-full',
     'search-input': 'pl-12 w-full',
     'search-icon': 'absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10 w-5 h-5',
-    'nav-glass': {
-      property: ['background', 'backdrop-filter', '-webkit-backdrop-filter', 'border-bottom', 'width', 'display', 'flex-direction', 'padding', 'position', 'top', 'z-index'],
-      value: ['rgba(255, 255, 255, 0.05)', 'blur(24px)', 'blur(24px)', '1px solid rgba(255, 255, 255, 0.1)', '100%', 'flex', 'column', '0', 'sticky', '0', '1000']
-    },
-    'starlight-nav': 'nav-glass w-full sticky top-0 z-[1000]',
-    'starlight-search': 'search-container w-full max-w-144',
-    'starlight-dashboard': 'dashboard-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
-    'starlight-gallery': 'starlight-gallery grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
+    'nav-glass': 'nav-base theme-glass-dark',
+    'starlight-card': 'card-base theme-glass-dark',
+    'starlight-nav': 'nav-base theme-glass-dark px-4 md:px-8',
+    'starlight-search': 'search-container theme-glass-dark rounded-xl',
+    'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
     'starlight-form': 'starlight-card grid grid-cols-1 md:grid-cols-2 gap-8',
-    'starlight-dialog': 'starlight-dialog ani-scale-in'
+    'starlight-dialog': 'dialog-base theme-glass-dark p-8 ani-scale-in'
   };
   
   module.exports = { defaultTheme, utilityMaps };

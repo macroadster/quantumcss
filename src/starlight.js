@@ -30,7 +30,7 @@ const Starlight = {
         star.style.height = `${size}px`;
         
         // Randomize animation duration (2s to 5s)
-        star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+        star.style.setProperty('--q-duration', `${Math.random() * 3 + 2}s`);
         
         container.appendChild(star);
       }

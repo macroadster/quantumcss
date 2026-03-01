@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Test</title>
+    <link rel="stylesheet" href="../scripts/quantum.min.css">
+    <style>
+        .test-box {
+            width: 200px;
+            height: 100px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-starlight-deep p-10">
+    <div class="bg-gradient-to-r from-starlight-blue to-starlight-peach test-box">
+        Gradient Blue-Peach
+    </div>
+    <div class="bg-gradient-to-br from-blue-500 via-purple-500 to-red-500 test-box">
+        Via Purple
+    </div>
+    <div class="text-transparent bg-clip-text bg-gradient-to-r from-starlight-orange to-starlight-peach text-4xl font-bold">
+        Gradient Text
+    </div>
+    <div class="bg-starlight-blue/20 border border-starlight-blue p-4 rounded-lg">
+        Opacity Background
+    </div>
+    <div class="border-4 border-red-500/50 p-4 mt-4">
+        Opacity Border
+    </div>
+
+    <div class="mt-10 relative bg-slate-800 rounded-xl overflow-hidden" style="width: 300px; height: 200px;">
+        <svg class="svg-fluid opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect x="0" y="0" width="100" height="100" fill="url(#grad)" />
+            <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+        <div class="overlay-base text-white text-xl font-bold">Centered Overlay</div>
+        <div class="overlay-top-left p-2 bg-black/50 text-xs">Top Left</div>
+        <div class="overlay-bottom-right p-2 bg-black/50 text-xs">Bottom Right</div>
+    </div>
+</body>
+</html>

@@ -9,7 +9,7 @@
     <style>
         .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
         .swatch { height: 4rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(0,0,0,0.1); }
-        .spacing-bar { height: 1rem; background: var(--color-starlight-blue, #3b82f6); border-radius: 0.25rem; }
+        .spacing-bar { height: 1rem; background: var(--q-color-starlight-blue, #3b82f6); border-radius: 0.25rem; }
         section { margin-bottom: 4rem; }
         h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
         body.light-mode h2 { border-bottom-color: rgba(0,0,0,0.1); }
@@ -18,7 +18,7 @@
         .ani-card { background: #0f172a; color: white; transition: all 0.3s; }
         body.light-mode .ani-card { background: #f1f5f9; color: #0f172a; }
         .ani-orbit-star { background-color: white; }
-        body.light-mode .ani-orbit-star { background-color: var(--color-starlight-blue, #2563eb); }
+        body.light-mode .ani-orbit-star { background-color: var(--q-color-starlight-blue, #2563eb); }
         .theme-toggle { 
             position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; 
             width: 3rem; height: 3rem; border-radius: 50%; 
@@ -201,9 +201,224 @@
                     <div class="token-value">#10b981</div>
                 </div>
                 <div>
+                    <div class="swatch" style="background-color: #faf5ff;"></div>
+                    <div class="token-name">purple-50</div>
+                    <div class="token-value">#faf5ff</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #f3e8ff;"></div>
+                    <div class="token-name">purple-100</div>
+                    <div class="token-value">#f3e8ff</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #e9d5ff;"></div>
+                    <div class="token-name">purple-200</div>
+                    <div class="token-value">#e9d5ff</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #d8b4fe;"></div>
+                    <div class="token-name">purple-300</div>
+                    <div class="token-value">#d8b4fe</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #c084fc;"></div>
+                    <div class="token-name">purple-400</div>
+                    <div class="token-value">#c084fc</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #a855f7;"></div>
+                    <div class="token-name">purple-500</div>
+                    <div class="token-value">#a855f7</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #9333ea;"></div>
+                    <div class="token-name">purple-600</div>
+                    <div class="token-value">#9333ea</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #7e22ce;"></div>
+                    <div class="token-name">purple-700</div>
+                    <div class="token-value">#7e22ce</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #fefce8;"></div>
+                    <div class="token-name">yellow-50</div>
+                    <div class="token-value">#fefce8</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #fef9c3;"></div>
+                    <div class="token-name">yellow-100</div>
+                    <div class="token-value">#fef9c3</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #fef08a;"></div>
+                    <div class="token-name">yellow-200</div>
+                    <div class="token-value">#fef08a</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #fde047;"></div>
+                    <div class="token-name">yellow-300</div>
+                    <div class="token-value">#fde047</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #facc15;"></div>
+                    <div class="token-name">yellow-400</div>
+                    <div class="token-value">#facc15</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #eab308;"></div>
+                    <div class="token-name">yellow-500</div>
+                    <div class="token-value">#eab308</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #ca8a04;"></div>
+                    <div class="token-name">yellow-600</div>
+                    <div class="token-value">#ca8a04</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #a16207;"></div>
+                    <div class="token-name">yellow-700</div>
+                    <div class="token-value">#a16207</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #fdf2f8;"></div>
+                    <div class="token-name">pink-50</div>
+                    <div class="token-value">#fdf2f8</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #fce7f3;"></div>
+                    <div class="token-name">pink-100</div>
+                    <div class="token-value">#fce7f3</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #fbcfe8;"></div>
+                    <div class="token-name">pink-200</div>
+                    <div class="token-value">#fbcfe8</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #f9a8d4;"></div>
+                    <div class="token-name">pink-300</div>
+                    <div class="token-value">#f9a8d4</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #f472b6;"></div>
+                    <div class="token-name">pink-400</div>
+                    <div class="token-value">#f472b6</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #ec4899;"></div>
+                    <div class="token-name">pink-500</div>
+                    <div class="token-value">#ec4899</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #db2777;"></div>
+                    <div class="token-name">pink-600</div>
+                    <div class="token-value">#db2777</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #be185d;"></div>
+                    <div class="token-name">pink-700</div>
+                    <div class="token-value">#be185d</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #ecfeff;"></div>
+                    <div class="token-name">cyan-50</div>
+                    <div class="token-value">#ecfeff</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #cffafe;"></div>
+                    <div class="token-name">cyan-100</div>
+                    <div class="token-value">#cffafe</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #a5f3fc;"></div>
+                    <div class="token-name">cyan-200</div>
+                    <div class="token-value">#a5f3fc</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #67e8f9;"></div>
+                    <div class="token-name">cyan-300</div>
+                    <div class="token-value">#67e8f9</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #22d3ee;"></div>
+                    <div class="token-name">cyan-400</div>
+                    <div class="token-value">#22d3ee</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #06b6d4;"></div>
+                    <div class="token-name">cyan-500</div>
+                    <div class="token-value">#06b6d4</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #0891b2;"></div>
+                    <div class="token-name">cyan-600</div>
+                    <div class="token-value">#0891b2</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #0e7490;"></div>
+                    <div class="token-name">cyan-700</div>
+                    <div class="token-value">#0e7490</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #eef2ff;"></div>
+                    <div class="token-name">indigo-50</div>
+                    <div class="token-value">#eef2ff</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #e0e7ff;"></div>
+                    <div class="token-name">indigo-100</div>
+                    <div class="token-value">#e0e7ff</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #c7d2fe;"></div>
+                    <div class="token-name">indigo-200</div>
+                    <div class="token-value">#c7d2fe</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #a5b4fc;"></div>
+                    <div class="token-name">indigo-300</div>
+                    <div class="token-value">#a5b4fc</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #818cf8;"></div>
+                    <div class="token-name">indigo-400</div>
+                    <div class="token-value">#818cf8</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #6366f1;"></div>
+                    <div class="token-name">indigo-500</div>
+                    <div class="token-value">#6366f1</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #4f46e5;"></div>
+                    <div class="token-name">indigo-600</div>
+                    <div class="token-value">#4f46e5</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #4338ca;"></div>
+                    <div class="token-name">indigo-700</div>
+                    <div class="token-value">#4338ca</div>
+                </div>
+                <div>
                     <div class="swatch" style="background-color: #00d4ff;"></div>
-                    <div class="token-name">starlight</div>
+                    <div class="token-name">starlight-blue</div>
                     <div class="token-value">#00d4ff</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #ffb38a;"></div>
+                    <div class="token-name">starlight-peach</div>
+                    <div class="token-value">#ffb38a</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #ff7e5f;"></div>
+                    <div class="token-name">starlight-orange</div>
+                    <div class="token-value">#ff7e5f</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #08081a;"></div>
+                    <div class="token-name">starlight-deep</div>
+                    <div class="token-value">#08081a</div>
                 </div>
                 <div>
                     <div class="swatch" style="background-color: transparent;"></div>
@@ -334,6 +549,11 @@
                     <div class="swatch" style="background-color: var(--text-muted);"></div>
                     <div class="token-name">muted</div>
                     <div class="token-value">var(--text-muted)</div>
+                </div>
+                <div>
+                    <div class="swatch" style="background-color: #00d4ff;"></div>
+                    <div class="token-name">starlight-blue</div>
+                    <div class="token-value">#00d4ff</div>
                 </div>
                 <div>
                     <div class="swatch" style="background-color: #ffb38a;"></div>
@@ -625,7 +845,7 @@
                         <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
                             <button class="btn-primary">Preset Button</button>
                         </div>
-                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">btn-starlight px-6 py-2 rounded-lg transition shadow-md hover:scale-105 active:scale-95</div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">btn-starlight px-6 py-2 shadow-md hover:scale-105 active:scale-95</div>
                     </div>
                 
                     <div class="starlight-card p-6">
@@ -636,7 +856,7 @@
                         <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
                             <button class="btn-secondary">Preset Button</button>
                         </div>
-                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">glass text-secondary px-6 py-2 rounded-lg transition shadow-md hover:bg-white/10 active:scale-95</div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">btn-base theme-glass px-6 py-2 shadow-md hover:bg-white/10 active:scale-95</div>
                     </div>
                 
                     <div class="starlight-card p-6">
@@ -647,7 +867,7 @@
                         <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
                             <div class="card-premium"><h4 class="font-bold">Preset Card</h4><p class="text-sm opacity-70">Using card-premium</p></div>
                         </div>
-                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-slate-100 hover:scale-105 transition dark:bg-white/5 dark:border-white/10 dark:backdrop-blur-md</div>
+                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">card-base theme-glass p-8 shadow-xl hover:scale-105</div>
                     </div>
                 
             </div>
@@ -658,6 +878,18 @@
         <section>
             <h2>Component Utilities</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="starlight-card p-6">
+                    <div class="mb-4 token-name">btn-base</div>
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
+                        <button class="btn-base">Button Example</button>
+                    </div>
+                </div>
+                <div class="starlight-card p-6">
+                    <div class="mb-4 token-name">input-base</div>
+                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
+                        <input class="input-base" placeholder="Input Example">
+                    </div>
+                </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">glass</div>
                     <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
@@ -962,7 +1194,7 @@
         </section>
 
         <footer class="mt-20 pt-8 border-t border-white/10 opacity-50 text-sm">
-            Generated by Quantum CSS Dynamic Docs · 2/4/2026
+            Generated by Quantum CSS Dynamic Docs · 3/1/2026
         </footer>
     </div>
 

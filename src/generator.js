@@ -51,6 +51,22 @@ function generateCSS(configPath) {
     return null;
   }
 
+  const getRGBA = (color) => {
+    if (!color || color === 'transparent') return 'rgba(0,0,0,0)';
+    if (color.startsWith('rgba')) return color;
+    if (color.startsWith('#')) {
+      const hex = color.length === 4 ? `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}` : color;
+      const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      return `rgba(${r}, ${g}, ${b}, 1)`;
+    }
+    return color;
+  };
+
+  const withOpacity = (rgba, alpha) => {
+    if (!rgba.startsWith('rgba')) return rgba;
+    return rgba.replace(/[\d.]+\)$/, `${alpha})`);
+  };
+
   const files = (config.content || []).flatMap(p => glob.sync(p));
   const rawClasses = new Set();
   const classAttrRegex = /class="([^"]+)"/g;
@@ -150,8 +166,42 @@ function generateCSS(configPath) {
       if (prefix === 'text') {
         if (theme.fontSize[valKey]) { property = ['font-size', 'line-height']; value = [theme.fontSize[valKey], (valKey.includes('xl') || parseInt(valKey) >= 3) ? '1.2' : '1.5']; }
         else { const color = resolveColor(valKey); if (color) { property = 'color'; value = color; } }
-      } else if (prefix === 'bg') { const color = resolveColor(valKey); if (color) { property = 'background-color'; value = color; } }
-      else if (prefix === 'z') { 
+      } else if (prefix === 'bg') {
+        if (cParts[1] === 'gradient' && cParts[2] === 'to') {
+          const dirMap = { r: 'to right', l: 'to left', t: 'to top', b: 'to bottom', tr: 'to top right', tl: 'to top left', br: 'to bottom right', bl: 'to bottom left' };
+          const dir = dirMap[cParts[3]];
+          if (dir) {
+            property = 'background-image';
+            value = `linear-gradient(${dir}, var(--q-gradient-stops))`;
+            const rules = [
+              '  --q-gradient-from-transparent: rgba(0,0,0,0);',
+              '  --q-gradient-to-transparent: rgba(0,0,0,0);',
+              `  ${property}: ${value};`,
+              '  --q-gradient-stops: var(--q-gradient-from, var(--q-gradient-from-transparent)), var(--q-gradient-to, var(--q-gradient-to-transparent));'
+            ];
+            return [{ breakpoint: null, variant: null, customSelector: null, rules }];
+          }
+        }
+        const color = resolveColor(valKey); 
+        if (color) { property = 'background-color'; value = color; } 
+      } else if (prefix === 'from') {
+        const color = resolveColor(valKey);
+        if (color) {
+          const rgba = getRGBA(color);
+          property = ['--q-gradient-from', '--q-gradient-to', '--q-gradient-from-transparent', '--q-gradient-stops'];
+          value = [rgba, withOpacity(rgba, 0), withOpacity(rgba, 0), 'var(--q-gradient-from), var(--q-gradient-to)'];
+        }
+      } else if (prefix === 'via') {
+        const color = resolveColor(valKey);
+        if (color) {
+          const rgba = getRGBA(color);
+          property = ['--q-gradient-to', '--q-gradient-to-transparent', '--q-gradient-stops'];
+          value = [withOpacity(rgba, 0), withOpacity(rgba, 0), `var(--q-gradient-from), ${rgba}, var(--q-gradient-to)`];
+        }
+      } else if (prefix === 'to') {
+        const color = resolveColor(valKey);
+        if (color) { property = '--q-gradient-to'; value = getRGBA(color); }
+      } else if (prefix === 'z') { 
         if (valKey.startsWith('[') && valKey.endsWith(']')) value = valKey.slice(1, -1);
         else value = isNeg ? `-${valKey}` : valKey;
         property = 'z-index';
@@ -259,11 +309,23 @@ function generateCSS(configPath) {
       if (variant) { if (variant === 'group-hover') selector = `.group:hover ${selector}`; else selector += `:${variant}`}
       
       if (breakpoint === 'light') {
-        const block = `body.light-mode ${selector} {
+        const block = `html[data-theme="light"] ${selector}, body.light-mode ${selector} {
 ${rules.join('\n')}
 }
 `;
         utilities.add(block);
+      } else if (breakpoint === 'dark') {
+        const block = `html[data-theme="dark"] ${selector}, body.dark-mode ${selector} {
+${rules.join('\n')}
+}
+`;
+        utilities.add(block);
+        // Also add to media query for system preference
+        const mediaBlock = `${selector} {
+${rules.join('\n')}
+}
+`;
+        responsiveUtils['dark'].add(mediaBlock);
       } else {
         const block = `${selector} {
 ${rules.join('\n')}
@@ -275,7 +337,39 @@ ${rules.join('\n')}
   }
 
   rawClasses.forEach(processClass);
-  let css = '/* Quantum CSS JIT Output */\n' + Array.from(utilities).join('\n');
+
+  let rootVariables = ':root {\n';
+  
+  // Recursively flatten theme for variables
+  const generateVars = (obj, prefix = '') => {
+    Object.entries(obj).forEach(([key, value]) => {
+      if (typeof value === 'string') {
+        rootVariables += `  --q-${prefix}${key}: ${value};\n`;
+      } else if (typeof value === 'object' && value !== null) {
+        generateVars(value, `${prefix}${key}-`);
+      }
+    });
+  };
+
+  // Map theme keys to standard prefixes
+  const themeMap = {
+    colors: 'color-',
+    spacing: 'space-',
+    borderRadius: 'radius-',
+    shadows: 'shadow-',
+    fontSize: 'size-',
+    maxWidth: 'max-w-'
+  };
+
+  Object.entries(themeMap).forEach(([themeKey, varPrefix]) => {
+    if (theme[themeKey]) {
+      generateVars(theme[themeKey], varPrefix);
+    }
+  });
+
+  rootVariables += '}\n\n';
+
+  let css = '/* Quantum CSS JIT Output */\n' + rootVariables + Array.from(utilities).join('\n');
   Object.entries(breakpoints).forEach(([name, width]) => {
     if (responsiveUtils[name] && responsiveUtils[name].size > 0) {
       css += `\n@media (min-width: ${width}) {\n${Array.from(responsiveUtils[name]).map(u => '  ' + u.replace(/\n/g, '\n  ')).join('\n').trimEnd()}\n}\n`;
