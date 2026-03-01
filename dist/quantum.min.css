@@ -3458,9 +3458,9 @@ html[data-theme="light"] .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: rgba(8, 8, 26, 0.8) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
+  background-color: rgba(8, 8, 26, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   padding: 0.5rem;
@@ -3505,11 +3505,11 @@ html[data-theme="light"] .dialog-content {
 }
 
 html[data-theme="light"] .dropdown-menu {
-  background: rgb(255 255 255 / 95%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-color: rgb(0 0 0 / 8%);
-  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 html[data-theme="light"] .dropdown-item {
