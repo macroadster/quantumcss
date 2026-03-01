@@ -197,6 +197,15 @@ input, textarea, select, button {
   padding: 0;
   margin: 0;
   background: transparent;
+  transition: box-shadow var(--q-transition-base), border-color var(--q-transition-base), transform var(--q-transition-base);
+}
+
+input:focus, 
+textarea:focus, 
+select:focus, 
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
 }
 
 textarea {
@@ -3550,21 +3559,6 @@ html[data-theme="light"] .glass {
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* 8. Input Focus States */
-.input-starlight:focus, .textarea-starlight:focus {
-  outline: none;
-  border-color: var(--q-color-starlight-blue);
-  box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 0 20px rgb(0 212 255 / 10%);
-  background-color: rgb(255 255 255 / 6%);
-}
-
-html[data-theme="light"] .input-starlight:focus,
-html[data-theme="light"] .textarea-starlight:focus {
-  border-color: var(--q-color-starlight-blue);
-  box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 4px 12px rgb(0 0 0 / 5%);
-  background-color: #fff;
-}
-
 /* 9. Code Interface Window */
 .code-window {
   background: rgb(0 0 0 / 40%);
@@ -4472,6 +4466,7 @@ html[data-theme="light"] * {
 .search-input {
   padding-left: 3rem;
   width: 100%;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
 }
 
 .p-12 {
@@ -4529,6 +4524,7 @@ html[data-theme="light"] * {
   height: 3rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 0.5rem;
@@ -4693,6 +4689,7 @@ html[data-theme="light"] * {
   padding-left: 1rem;
   padding-right: 1rem;
   border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
 }
 
 .textarea-starlight {
@@ -4711,6 +4708,7 @@ html[data-theme="light"] * {
   padding: 1rem;
   min-height: 8rem;
   border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
 }
 
 .bg-green-500 {
@@ -4737,6 +4735,7 @@ html[data-theme="light"] * {
   height: 3rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
 }
 
 .p-8 {
@@ -5689,6 +5688,7 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   width: 1.25rem;
   height: 1.25rem;
   border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
 }
 
 .mt-6 {
@@ -5814,6 +5814,18 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.focus-glow-purple-500:focus {
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15), 0 0 20px rgba(168, 85, 247, 0.35);
+}
+
+.focus-glow-orange-500:focus {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15), 0 0 20px rgba(249, 115, 22, 0.35);
+}
+
+.focus-glow {
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
 }
 
 .mr-8 {
@@ -6351,6 +6363,7 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
     height: 3rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.35);
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     padding-top: 0.5rem;

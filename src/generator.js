@@ -156,7 +156,10 @@ function generateCSS(configPath) {
       const cParts = cls.split('-');
       let prefix = cParts[0], valKey = cParts.slice(1).join('-');
       
-      if ((prefix === 'max' || prefix === 'min' || prefix === 'gap' || prefix === 'gap-x' || prefix === 'gap-y') && cParts[1]) {
+      if (cParts[0] === 'focus' && cParts[1] === 'glow') {
+        prefix = 'focus-glow';
+        valKey = cParts.slice(2).join('-');
+      } else if ((prefix === 'max' || prefix === 'min' || prefix === 'gap' || prefix === 'gap-x' || prefix === 'gap-y') && cParts[1]) {
         if (['w', 'h', 'x', 'y'].includes(cParts[1])) {
           prefix = `${cParts[0]}-${cParts[1]}`;
           valKey = cParts.slice(2).join('-');
@@ -277,6 +280,15 @@ function generateCSS(configPath) {
           property = `border-${sideMapSide[cParts[1]]}-width`;
           value = `${cParts[2]}px`;
         } else if (!isNaN(parseInt(valKey))) { property = 'border-width'; value = `${parseInt(valKey)}px`; }
+      } else if (prefix === 'focus-glow') {
+        const color = resolveColor(valKey) || resolveColor('primary') || '#00d4ff';
+        const rgba = getRGBA(color);
+        const glowColor = withOpacity(rgba, 0.35);
+        const ringColor = withOpacity(rgba, 0.15);
+        
+        property = 'box-shadow';
+        value = `0 0 0 3px ${ringColor}, 0 0 20px ${glowColor}`;
+        variant = variant || 'focus';
       }
     }
 

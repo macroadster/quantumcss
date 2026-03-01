@@ -38,40 +38,34 @@ Specialized utilities for handling complex SVG scaling and data overlays:
 - `overlay-base` - Centered absolute-positioned data labels
 - `overlay-top-left`, `overlay-bottom-right`, etc. - Corner positioning
 
-## 📦 Installation
+## 📦 Installation & CLI
 
+Install the core library and the JIT engine:
 ```bash
 npm install @howssatoshi/quantumcss
 ```
 
-## 🎯 Quick Start
+### Command Line Interface
+QuantumCSS includes a powerful CLI for project orchestration:
 
-### CLI Scaffolding
-Quickly jumpstart your project with a premium template:
-```bash
-npx @howssatoshi/quantumcss scaffold gaming index.html
-```
-*Available templates: `gaming`, `blog`, `news`, `shopping`, `travel`, `starlight`*
-
-### HTML Usage
-```html
-<button class="btn-starlight ani-float">
-  Launch Experience
-</button>
-```
+- **`npx quantumcss init`** - Generate a default `quantum.config.json`.
+- **`npx quantumcss build [output]`** - Generate the JIT CSS bundle (default: `dist/quantum.css`).
+- **`npx quantumcss watch [output]`** - Automatically rebuild when your HTML or config changes.
+- **`npx quantumcss scaffold <type>`** - Generate a starter template (`gaming`, `blog`, `travel`, etc.).
 
 ## ⚙️ Configuration
 
 ### Decoupled Component Architecture
 QuantumCSS separates structural logic from aesthetic themes for maximum reusability. Define your own components in `quantum.config.json` by combining these layers:
 
-**1. Structural Base Classes**
+**1. Structural & Interactive Base Classes**
 - `nav-base` - Standard flex row navigation
 - `card-base` - Flex column container with overflow hidden
 - `btn-base` - Center-aligned interactive button
 - `input-base` - Block-level form input
 - `dialog-base` - Centered modal container
 - `badge-base` - Inline-flex status indicator
+- `focus-glow` - Premium cosmic focus state (soft colored glow)
 
 **2. Aesthetic Theme Classes**
 - `theme-starlight` - The iconic cosmic gradient and glow
@@ -82,7 +76,7 @@ QuantumCSS separates structural logic from aesthetic themes for maximum reusabil
 ```json
 {
   "componentPresets": {
-    "btn-action": "btn-base theme-starlight px-8 py-3",
+    "btn-action": "btn-base theme-starlight px-8 py-3 focus-glow",
     "card-premium": "card-base theme-glass-dark p-10 shadow-2xl"
   }
 }

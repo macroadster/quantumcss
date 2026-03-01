@@ -367,21 +367,6 @@ html[data-theme="light"] .glass {
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* 8. Input Focus States */
-.input-starlight:focus, .textarea-starlight:focus {
-  outline: none;
-  border-color: var(--q-color-starlight-blue);
-  box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 0 20px rgb(0 212 255 / 10%);
-  background-color: rgb(255 255 255 / 6%);
-}
-
-html[data-theme="light"] .input-starlight:focus,
-html[data-theme="light"] .textarea-starlight:focus {
-  border-color: var(--q-color-starlight-blue);
-  box-shadow: 0 0 0 4px rgb(0 212 255 / 10%), 0 4px 12px rgb(0 0 0 / 5%);
-  background-color: #fff;
-}
-
 /* 9. Code Interface Window */
 .code-window {
   background: rgb(0 0 0 / 40%);
