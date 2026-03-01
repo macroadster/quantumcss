@@ -59,12 +59,15 @@
         .message.sent .message-bubble { background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6); color: white; border-bottom-right-radius: 0.25rem; }
         .message-time { font-size: 0.75rem; color: var(--text-muted, #64748b); align-self: flex-start; margin-left: 0.5rem; }
         .message.sent .message-time { align-self: flex-end; margin-left: 0; margin-right: 0.5rem; }
-        .chat-input-container { padding: 1rem 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); }
-        .chat-input-wrapper { display: flex; align-items: flex-end; gap: 0.75rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; padding: 0.625rem 0.75rem; }
-        .chat-input { flex: 1; background: transparent; border: none; color: var(--text-primary, #f1f5f9); font-size: 0.9375rem; resize: none; max-height: 120px; padding: 0.5rem 0; outline: none; }
+        .chat-input-container { padding: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); }
+        .chat-input-wrapper { display: flex; align-items: flex-end; gap: 0.75rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.25rem; padding: 0.5rem 0.75rem; }
+        .chat-input { flex: 1; background: transparent; border: none; color: var(--text-primary, #f1f5f9); font-size: 0.9375rem; resize: none; max-height: 120px; padding: 0.625rem 0; outline: none; }
         .chat-input::placeholder { color: var(--text-muted, #64748b); }
-        .send-btn { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-        .send-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4); }
+        .send-btn { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-bottom: 0.125rem; }
+        .theme-toggle-wrapper { padding: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+        .theme-btn { width: 100%; display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.75rem; color: var(--text-primary, #f1f5f9); cursor: pointer; transition: all 0.2s ease; }
+        .theme-btn:hover { background: rgba(255, 255, 255, 0.08); }
+        .theme-label { font-size: 0.875rem; font-weight: 500; }
         .sun-icon { display: none; }
         body.light-mode .sun-icon { display: inline; }
         body.light-mode .moon-icon { display: none; }
