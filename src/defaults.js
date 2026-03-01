@@ -165,6 +165,7 @@ const utilityMaps = {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width', 'border-style'],
     value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.03)', '1px', 'solid']
   },
+  'starlight-dialog-bg': { property: 'background-color', value: 'rgba(8, 8, 26, 0.98) !important' },
   'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
   'glow-starlight': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
   'glow-peach': { property: 'box-shadow', value: '0 0 30px rgba(255, 179, 138, 0.25)' },
@@ -189,7 +190,7 @@ const utilityMaps = {
     'starlight-dashboard': 'grid grid-cols-1 md__grid-cols-2 lg__grid-cols-3 gap-8',
     'starlight-gallery': 'grid grid-cols-1 sm__grid-cols-2 lg__grid-cols-4 gap-4',
     'starlight-form': 'card-base theme-glass-dark grid grid-cols-1 md__grid-cols-2 gap-8 items-start',
-    'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark ani-scale-in'
+    'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark starlight-dialog-bg ani-scale-in'
   };
   
   module.exports = { defaultTheme, utilityMaps };

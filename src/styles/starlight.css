@@ -626,7 +626,8 @@ html[data-theme="light"] .stat-value {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background-clip: border-box;
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -762,7 +763,7 @@ html[data-theme="light"] .hamburger span {
 }
 
 .nav-menu-mobile {
-  width: 100%;
+  flex-basis: 100%;
   background: rgb(255 255 255 / 5%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -775,8 +776,9 @@ html[data-theme="light"] .hamburger span {
 }
 
 .nav-menu-mobile.active {
-  display: block;
-  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
   padding: 1.5rem 2rem;
   opacity: 1;
 }
