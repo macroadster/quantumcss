@@ -83,7 +83,7 @@ QuantumCSS separates structural logic from aesthetic themes for maximum reusabil
 {
   "componentPresets": {
     "btn-action": "btn-base theme-starlight px-8 py-3",
-    "card-premium": "card-base theme-glass-dark p-10 hover:scale-105"
+    "card-premium": "card-base theme-glass-dark p-10 shadow-2xl"
   }
 }
 ```
@@ -129,12 +129,17 @@ This creates `examples/kitchen-sink.html` with all your colors, spacing, presets
 ### High Contrast Support
 QuantumCSS automatically optimizes contrast for accessibility when the user enables high contrast mode in their OS.
 
-## 📊 Performance
+## ⚡ Performance
 
-### Bundle Size
-- **QuantumCSS Core**: ~19KB gzipped
-- **Optimized Selectors**: Minimal specificity for maximum performance
-- **Tree Shaking**: Only used utilities and presets are generated in JIT mode
+### Rendering & Scrolling
+- **GPU Acceleration**: Cosmic effects and star fields use `will-change` and hardware-accelerated transforms to ensure 60fps scrolling even on low-power devices.
+- **CSS Containment**: Uses `contain: strict` on atmospheric backgrounds to isolate layout and paint cycles.
+- **Motion Sensitivity**: Automatically scales down or disables complex animations when `prefers-reduced-motion` is detected.
+
+### Optimized Payload
+- **Gzipped Bundle**: ~24 KB (Full library + JIT utilities)
+- **Zero Runtime**: No heavy JavaScript required for layout or styling.
+- **JIT Tree-Shaking**: Only the utilities you actually use are included in your final production build.
 
 ## 🤝 Contributing
 
