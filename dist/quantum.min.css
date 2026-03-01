@@ -3482,6 +3482,8 @@ html[data-theme="light"] .dialog-content {
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
 }
 
 .dropdown-item {
