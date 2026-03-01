@@ -80,7 +80,7 @@ class QuantumCSSBuilder {
 
     // Add banner
     const banner = `/*!
- * QuantumCSS + Starlight UI v1.6.2 - Advanced Utility-First CSS Framework
+ * QuantumCSS + Starlight UI v1.7.0 - Advanced Utility-First CSS Framework
  * https://github.com/macroadster/quantumcss
  * Copyright (c) 2026 Eric Yang
  * License: MIT
