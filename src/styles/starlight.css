@@ -276,8 +276,8 @@ html[data-theme="light"] .dialog-content {
   top: 100%;
   left: 0;
   background: rgb(255 255 255 / 12%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 0.75rem;
   padding: 0.5rem;
@@ -320,6 +320,8 @@ html[data-theme="light"] .dialog-content {
 
 html[data-theme="light"] .dropdown-menu {
   background: rgb(255 255 255 / 95%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-color: rgb(0 0 0 / 8%);
   box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
 }
@@ -629,8 +631,8 @@ html[data-theme="light"] .stat-value {
 /* 14. Hamburger Menu Glass */
 .nav-glass {
   background: rgb(255 255 255 / 5%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgb(255 255 255 / 10%);
   display: flex;
   flex-direction: column;
@@ -642,6 +644,8 @@ html[data-theme="light"] .stat-value {
 
 html[data-theme="light"] .nav-glass {
   background: rgb(255 255 255 / 95%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom-color: rgb(0 0 0 / 8%);
   box-shadow: 0 4px 12px rgb(0 0 0 / 3%);
 }
