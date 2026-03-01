@@ -275,16 +275,16 @@ html[data-theme="light"] .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgb(255 255 255 / 15%);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   padding: 0.5rem;
   margin-top: 0.5rem;
   min-width: 200px;
   z-index: 600;
-  box-shadow: 0 20px 40px rgb(0 0 0 / 40%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -305,7 +305,7 @@ html[data-theme="light"] .dialog-content {
   width: 100%;
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
-  color: var(--q-text-primary, rgb(255 255 255 / 70%));
+  color: var(--q-text-primary, rgba(255, 255, 255, 0.7));
   transition: all 0.2s ease;
   text-align: left;
   background: transparent;
@@ -314,7 +314,7 @@ html[data-theme="light"] .dialog-content {
 }
 
 .dropdown-item:hover {
-  background-color: var(--q-color-starlight-blue);
+  background-color: rgba(0, 212, 255, 0.8);
   color: black;
 }
 
@@ -629,12 +629,12 @@ html[data-theme="light"] .stat-value {
 .stat-trend.up { color: var(--q-color-success); }
 .stat-trend.down { color: var(--q-color-error); }
 
-/* 14. Hamburger Menu Glass */
+/* 9. Glass Navigation */
 .nav-glass {
-  background: rgb(255 255 255 / 15%);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background-clip: border-box;
   display: flex;
   flex-direction: column;
