@@ -1,28 +1,30 @@
-# Quantum CSS Library: Improvement Roadmap
+# Quantum CSS Library: Future Roadmap (v1.8.0+)
 
-Based on the initial implementation of the "Quantum Nexus" dashboard, the following areas have been identified for improvement to enhance the library's robustness, developer experience, and flexibility.
+Following the successful stabilization of the v1.7.x series, which introduced the JIT engine, decoupled architecture, and standardized naming, the focus shifts toward developer experience, extensibility, and interactive polish.
 
-## 1. Complete Utility Coverage
-The library currently lacks several standard utility classes that developers expect when using a utility-first framework.
-- **Gradients:** Add full support for `bg-gradient-to-*` (r, l, t, b, tr, tl, br, bl) along with `from-*`, `via-*`, and `to-*` stops.
-- **Typography:** Ensure `text-transparent` and `bg-clip-text` are consistently available across all themes.
-- **Colors:** Ensure all theme colors (e.g., `starlight-blue`, `starlight-peach`) have corresponding `text-*`, `bg-*`, and `border-*` utilities, including opacity variants (e.g., `bg-primary/20`).
+## 1. Functional CLI Scaffolding
+The CLI should evolve from a build wrapper to a full project orchestrator.
+- **`init` Command**: Generate a sensible `quantum.config.json` and basic directory structure.
+- **`scaffold` Command**: Boilerplate generation for common layouts (e.g., `quantumcss scaffold --template gaming`).
+- **Watch Mode**: Improved chokidar integration for a seamless "hot reload" CSS experience.
 
-## 2. Decouple Theme from Structure
-Component presets are currently too tightly coupled to the "Starlight" aesthetic, making them difficult to repurpose.
-- **Abstract Logic:** Separate structural classes (e.g., `nav-base`, `card-base`) from aesthetic classes (e.g., `theme-starlight`, `theme-glass`).
-- **Flexible Defaults:** Re-evaluate default layouts for components. For example, `starlight-nav` should likely default to a row layout rather than a column layout to match standard web patterns.
+## 2. "Glow Focus" Interaction System
+Replace standard browser focus rings with a cohesive, cosmic interaction language.
+- **Semantic Focus**: A `focus-glow` utility that automatically pulls the component's accent color (primary, starlight-blue, etc.).
+- **Consistent States**: Unified focus/active/hover behavior across all interactive primitives (buttons, inputs, toggles).
 
-## 3. Configuration & Variable Consistency
-There is a disconnect between `quantum.config.json` and the compiled CSS variables.
-- **Dynamic Propagation:** Ensure that changes in the `config.json` theme section correctly propagate to the CSS variables used by components.
-- **Naming Standards:** Standardize variable naming (e.g., use `--q-color-primary` consistently) to avoid confusion between library-provided variables and user-defined ones.
+## 3. Formalized Plugin Architecture
+Enable community and project-specific extensions without modifying the core generator.
+- **Dynamic Maps**: Allow external JS plugins to register new `utilityMaps`.
+- **Preset Injection**: Plugins should be able to provide complex `componentPresets`.
+- **Configuration Hooks**: Lifecycle hooks for the JIT engine to allow post-processing of generated CSS.
 
-## 4. Enhanced SVG & Data Visualization Support
-The library provides "impressive" containers but lacks the tools to manage the content within them effectively.
-- **Scaling Utilities:** Add utility classes to handle SVG `preserveAspectRatio` and `viewBox` scaling issues (e.g., `svg-fluid`, `svg-fixed-text`).
-- **Component Overlays:** Provide standardized patterns for absolute-positioned overlays (like data labels) that don't stretch with fluid SVG backgrounds.
+## 4. Interactive "Kitchen Sink" Playground
+Transform the static documentation into a dynamic configuration tool.
+- **Variable Sliders**: Real-time manipulation of core tokens (blur radius, primary hue, spacing scale).
+- **Copy-Paste Export**: Allow users to "design" their theme in the browser and export the resulting `quantum.config.json`.
 
-## 5. Documentation & "It Just Works" Reliability
-- **Component Specs:** Clearly document the internal CSS properties of presets (like `starlight-nav`) so developers know exactly what they are overriding.
-- **Error Boundaries:** Ensure that if a theme or plugin is missing in the config, the library falls back gracefully rather than breaking the layout.
+## 5. Advanced Data Visualization Primitives
+Expand the SVG support into a set of specialized layout primitives.
+- **Chart Containers**: Responsive aspect-ratio containers specifically for SVG charts.
+- **Tooltip Portals**: Standardized way to handle high-z-index tooltips that don't get clipped by parent overflow.
