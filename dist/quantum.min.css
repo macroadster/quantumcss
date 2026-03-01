@@ -3458,9 +3458,9 @@ html[data-theme="light"] .dialog-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(8, 8, 26, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   padding: 0.5rem;
@@ -3473,6 +3473,7 @@ html[data-theme="light"] .dialog-content {
   transform: translateY(10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+  will-change: backdrop-filter, transform, opacity;
 }
 
 .dropdown:hover .dropdown-menu,
@@ -3481,8 +3482,6 @@ html[data-theme="light"] .dialog-content {
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
 }
 
 .dropdown-item {
