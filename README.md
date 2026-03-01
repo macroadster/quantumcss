@@ -2,7 +2,7 @@
 
 ![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.7.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Bundle Size](https://img.shields.io/badge/bundle%20size-19KB-brightgreen)
+![Bundle Size](https://img.shields.io/badge/bundle%20size-24%20KB%20(gzipped)-brightgreen)
 
 A modern, performance-optimized utility-first CSS framework with semantic naming, recursive component presets, and advanced cosmic effects.
 

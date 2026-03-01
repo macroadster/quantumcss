@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 const { generateCSS } = require('../src/generator');
 const { defaultTheme, utilityMaps } = require('../src/defaults');
 
@@ -103,11 +104,13 @@ class QuantumCSSBuilder {
     fs.writeFileSync(outputPath, combinedCSS);
     
     const outputStats = fs.statSync(outputPath);
+    const gzippedSize = zlib.gzipSync(combinedCSS).length;
     const compressionRatio = totalSize > 0 ? ((totalSize - outputStats.size) / totalSize * 100).toFixed(1) : 0;
     
     console.log(`✨ Build complete!`);
     console.log(`📁 Output: ${outputPath}`);
     console.log(`📊 Final Size: ${(outputStats.size / 1024).toFixed(2)} KB`);
+    console.log(`📦 Gzipped Size: ${(gzippedSize / 1024).toFixed(2)} KB`);
     
     // Analyze if requested
     if (this.config.analyze) {
