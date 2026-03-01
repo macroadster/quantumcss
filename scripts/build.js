@@ -16,14 +16,12 @@ class QuantumCSSBuilder {
       ...config
     };
     
-    this.cssFiles = [
-      'quantum-base.css',
-      'quantum-responsive.css', 
-      'quantum-components.css',
-      'quantum-animations.css',
-      'starlight.css'
-    ];
-  }
+        this.cssFiles = [
+          'quantum-base.css',
+          'quantum-components.css',
+          'quantum-animations.css',
+          'starlight.css'
+        ];  }
 
   // Simple CSS minifier
   minifyCSS(css) {

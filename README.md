@@ -2,7 +2,7 @@
 
 ![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.7.3-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Bundle Size](https://img.shields.io/badge/bundle%20size-24%20KB%20(gzipped)-brightgreen)
+![Bundle Size](https://img.shields.io/badge/bundle%20size-18%20KB%20(gzipped)-brightgreen)
 
 A modern, performance-optimized utility-first CSS framework with semantic naming, recursive component presets, and advanced cosmic effects.
 
@@ -13,13 +13,14 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 - **Recursive Component Presets** - Define custom components in config using existing utilities.
 - **Cosmic Animation Library** - Advanced effects like parallax nebula drifts and orbit paths.
 - **High Contrast Mode** - Native support for `prefers-contrast` and `forced-colors`.
-- **JIT Dark Mode** - Dynamic generation of dark mode variants via `dark__` prefix.
+- **JIT Attribute Mode** - Clean separation of concerns via semantic attributes (`hover`, `md`, `dark`).
 
 ### Developer Experience
 - **Advanced CLI Scaffolding** - Instantly generate pre-styled templates (Gaming, Blog, News, Shopping, Travel)
 - **Dynamic Documentation** - Generate a "Kitchen Sink" overview of your unique design tokens
 - **Unified Naming Standard** - Consistent `--q-` prefix for all CSS variables (e.g., `--q-color-primary`).
-- **Zero-Escape Naming** - No more `\:` or `\/` in your CSS! Uses clean `__` and `_` separators.
+- **Attribute-Driven Styling** - No more monolithic class strings! Use dedicated attributes for environment and interactivity.
+- **Zero-Escape CSS** - 100% clean CSS output without risky backslash escapes.
 - **TypeScript Support** - Full type definitions
 - **Zero Configuration** - Works out of the box
 
@@ -29,15 +30,23 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 QuantumCSS provides powerful JIT gradient utilities with support for multiple color stops and transparency:
 - `bg-gradient-to-{r|l|t|b|tr|tl|br|bl}` - Set gradient direction
 - `from-{color}`, `via-{color}`, `to-{color}` - Define color stops
-- `from-{color}_50` - Opacity support for gradient stops
+- `from-{color}_50` - Opacity support for gradient stops (uses `_` separator)
 - `text-transparent bg-clip-text` - Create gradient text
 
-### SVG & Data Visualization
-Specialized utilities for handling complex SVG scaling and data overlays:
-- `svg-fluid` - Responsive SVG scaling
-- `vector-non-scaling` - Constant-width strokes regardless of SVG scale
-- `overlay-base` - Centered absolute-positioned data labels
-- `overlay-top-left`, `overlay-bottom-right`, etc. - Corner positioning
+### Lane-Based Attributes
+Separate your styles into semantic lanes for maximum readability:
+- **Environment**: `sm`, `md`, `lg`, `xl`, `2xl`
+- **Interactivity**: `hover`, `focus`, `active`, `group-hover`
+- **Theme**: `dark`, `light`
+
+```html
+<!-- Clean, Semantic, Conflict-Free -->
+<div class="grid cols-1" md="cols-3" hover="bg-primary" dark="bg-black">
+  <button class="btn-starlight" hover="scale-105" active="scale-95">
+    Launch
+  </button>
+</div>
+```
 
 ## 📦 Installation & CLI
 

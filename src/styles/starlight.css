@@ -82,19 +82,19 @@ html[data-theme="light"] .radio-starlight {
   background: rgb(0 0 0 / 5%);
 }
 
-.checkbox-starlight__checked, .radio-starlight__checked {
+.checkbox-starlight:checked, .radio-starlight:checked {
   background: var(--q-color-starlight-blue);
   border-color: var(--q-color-starlight-blue);
 }
 
-.checkbox-starlight__checked::after {
+.checkbox-starlight:checked::after {
   content: '✓';
   color: black;
   font-size: 0.8rem;
   font-weight: 900;
 }
 
-.radio-starlight__checked::after {
+.radio-starlight:checked::after {
   content: '';
   width: 0.5rem;
   height: 0.5rem;
@@ -900,7 +900,7 @@ html[data-theme="light"] .range-starlight {
   background: rgb(0 0 0 / 10%);
 }
 
-.range-starlight__:-webkit-slider-thumb {
+.range-starlight:-webkit-slider-thumb {
   appearance: none;
   width: 18px;
   height: 18px;
@@ -911,7 +911,7 @@ html[data-theme="light"] .range-starlight {
   transition: all 0.2s;
 }
 
-.range-starlight__:-webkit-slider-thumb:hover {
+.range-starlight:-webkit-slider-thumb:hover {
   transform: scale(1.2);
   box-shadow: 0 0 20px var(--q-color-starlight-blue);
 }
@@ -943,11 +943,11 @@ html[data-theme="light"] .toggle-starlight .toggle-slider {
 }
 
 html[data-theme="light"] .bg-starlight,
-html[data-theme="light"] .bg-starlight__hover,
-html[data-theme="light"] .hover__bg-starlight__hover,
+html[data-theme="light"] .bg-starlight:hover,
+html[data-theme="light"] .hover__bg-starlight:hover,
 html[data-theme="light"] .btn-starlight,
-html[data-theme="light"] .btn-starlight__hover,
-html[data-theme="light"] .hover__btn-starlight__hover,
+html[data-theme="light"] .btn-starlight:hover,
+html[data-theme="light"] .hover__btn-starlight:hover,
 html[data-theme="light"] .btn-primary,
 html[data-theme="light"] .btn-primary:hover {
   background: linear-gradient(135deg, #ffb38a 40%, #00d4ff 100%) !important;
@@ -1095,22 +1095,22 @@ html[data-theme="light"] * {
     text-decoration: none;
   }
   
-  .btn-starlight__hover {
+  .btn-starlight:hover {
     transform: translateY(-2px);
     filter: brightness(1.1);
   }
   
-  .btn-starlight__active {
+  .btn-starlight:active {
     transform: translateY(0) scale(0.95);
     filter: brightness(0.9);
   }
   
-  .btn-starlight__focus-visible {
+  .btn-starlight:focus-visible {
     outline: 2px solid white;
     outline-offset: 2px;
     box-shadow: 0 0 0 4px rgb(0 212 255 / 30%);
   }
   
-  html[data-theme="light"] .btn-starlight__focus-visible {
+  html[data-theme="light"] .btn-starlight:focus-visible {
     outline-color: var(--q-color-starlight-blue);
   }}

@@ -39,7 +39,7 @@ function init() {
         colors: {
           primary: defaultTheme.colors.blue[500],
           secondary: defaultTheme.colors.slate[600],
-          starlight: defaultTheme.colors.starlight
+          starlight: defaultTheme.colors.starlight.blue
         }
       }
     },
