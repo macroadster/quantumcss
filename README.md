@@ -1,6 +1,6 @@
 # Quantum CSS - Next-Generation Utility Framework
 
-![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.7.0-blue)
+![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.7.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Bundle Size](https://img.shields.io/badge/bundle%20size-24%20KB%20(gzipped)-brightgreen)
 
