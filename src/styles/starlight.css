@@ -154,8 +154,9 @@ html[data-theme="light"] .star {
 .dialog-overlay {
   position: fixed;
   inset: 0;
-  background: rgb(0 0 0 / 60%);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   justify-content: center;

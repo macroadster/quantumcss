@@ -3337,8 +3337,9 @@ html[data-theme="light"] .star {
 .dialog-overlay {
   position: fixed;
   inset: 0;
-  background: rgb(0 0 0 / 60%);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5535,6 +5536,43 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   height: 3.5rem;
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.badge-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--q-radius-sm);
+  border: none;
+}
+
+.bg-starlight-blue\/10 {
+  background-color: rgba(0, 212, 255, 0.1);
+}
+
+.text-starlight-blue {
+  color: #00d4ff;
+}
+
+.border-starlight-blue\/20 {
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -5632,10 +5670,6 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   --q-gradient-to: rgba(239, 68, 68, 0);
   --q-gradient-from-transparent: rgba(239, 68, 68, 0);
   --q-gradient-stops: var(--q-gradient-from), var(--q-gradient-to);
-}
-
-.gap-3 {
-  gap: 0.75rem;
 }
 
 .checkbox-starlight {
@@ -5845,10 +5879,6 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
   padding: 4rem;
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .mb-16 {
   margin-bottom: 4rem;
 }
@@ -5879,11 +5909,6 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
 
 .top-bar {
   top: bar;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .mb-1 {
@@ -6046,10 +6071,6 @@ html[data-theme="light"] .light\:shadow-lg, body.light-mode .light\:shadow-lg {
 
 .shadow-2xl {
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-}
-
-.text-starlight-blue {
-  color: #00d4ff;
 }
 
 .mb-3 {

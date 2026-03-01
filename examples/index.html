@@ -38,9 +38,12 @@
     </button>
 
     <div id="dialog" class="dialog-overlay" style="display: none;">
-        <div class="dialog-content">
-            <div class="p-12">
-                <h2 class="text-3xl font-black uppercase italic tracking-tighter mb-4">Advanced Deployment</h2>
+        <div class="starlight-dialog">
+            <button class="dialog-close" onclick="closeDialog()">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="p-4">
+                <h2 class="text-3xl font-black uppercase italic tracking-tighter mb-4 text-gradient-starlight">Advanced Deployment</h2>
                 <p class="text-base text-slate-400 font-medium mb-10">Configure your synchronization parameters below.</p>
                 
                 <div class="mb-10">
@@ -48,7 +51,25 @@
                     <select class="input-starlight w-full h-14">
                         <option>Andromeda Prime</option>
                         <option>Nebula Secondary</option>
+                        <option>Triangulum Core</option>
                     </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <label class="text-[10px] font-black uppercase tracking-[0.3em] mb-4 block text-slate-500">Node Priority</label>
+                        <div class="flex gap-3">
+                            <span class="badge-base bg-starlight-blue/10 text-starlight-blue border-starlight-blue/20 px-4 py-2">Alpha</span>
+                            <span class="badge-base bg-white/5 text-slate-500 border-white/10 px-4 py-2">Omega</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-black uppercase tracking-[0.3em] mb-4 block text-slate-500">Sync Status</label>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-green-500 ani-pulse"></div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-slate-300">Ready</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex gap-6 justify-end">
