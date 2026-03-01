@@ -2123,7 +2123,6 @@ body.light-mode .table tbody tr:hover {
 
 /* Main content area */
 .main-content {
-  padding: 1.5rem 2rem;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -2187,7 +2186,6 @@ body.light-mode .top-nav {
   }
   
   .main-content {
-    padding: 1rem;
   }
   
   .page-header {
@@ -4487,6 +4485,10 @@ html[data-theme="light"] * {
   width: 100%;
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .p-12 {
   padding: 3rem;
 }
@@ -5139,10 +5141,6 @@ html[data-theme="light"] * {
 
 .mt-1 {
   margin-top: 0.25rem;
-}
-
-.p-6 {
-  padding: 1.5rem;
 }
 
 .border-slate-200 {
@@ -6333,6 +6331,10 @@ html[data-theme="light"] .light__bg-slate-300, body.light-mode .light__bg-slate-
 }
 
 @media (min-width: 768px) {
+  .md__p-8 {
+    padding: 2rem;
+  }
+  
   .md__btn-primary {
     display: inline-flex;
     align-items: center;

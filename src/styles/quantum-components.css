@@ -856,7 +856,6 @@ body.light-mode .table tbody tr:hover {
 
 /* Main content area */
 .main-content {
-  padding: 1.5rem 2rem;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -920,7 +919,6 @@ body.light-mode .top-nav {
   }
   
   .main-content {
-    padding: 1rem;
   }
   
   .page-header {
