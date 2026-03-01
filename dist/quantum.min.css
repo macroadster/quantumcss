@@ -4952,7 +4952,7 @@ html[data-theme="light"] * {
 }
 
 .border-t {
-  border-top-width: undefinedpx;
+  border-top-width: 1px;
   border-style: solid;
 }
 
@@ -5330,7 +5330,7 @@ html[data-theme="light"] * {
 }
 
 .border-b {
-  border-bottom-width: undefinedpx;
+  border-bottom-width: 1px;
   border-style: solid;
 }
 
@@ -5374,7 +5374,7 @@ html[data-theme="light"] .light__bg-slate-300, body.light-mode .light__bg-slate-
 }
 
 .border-r {
-  border-right-width: undefinedpx;
+  border-right-width: 1px;
   border-style: solid;
 }
 
@@ -6088,7 +6088,7 @@ html[data-theme="light"] .light__bg-slate-300, body.light-mode .light__bg-slate-
 }
 
 .border-l {
-  border-left-width: undefinedpx;
+  border-left-width: 1px;
   border-style: solid;
 }
 
