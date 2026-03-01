@@ -3220,7 +3220,6 @@ html[data-theme="light"] a:hover {
 
 .starlight-card:hover {
   border-color: rgb(0 212 255 / 40%);
-  transform: translateY(-4px);
   box-shadow: 0 12px 40px rgb(0 0 0 / 40%), 0 0 20px rgb(0 212 255 / 10%);
   background-color: rgb(255 255 255 / 4%);
 }
@@ -4563,10 +4562,6 @@ html[data-theme="light"] * {
   border-width: 1px;
   padding: 2rem;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-.card-premium:hover {
-  transform: scale(1.05);
 }
 
 .max-w-sm {

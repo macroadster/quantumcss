@@ -105,7 +105,7 @@
   "componentPresets": {
     "btn-primary": "btn-starlight px-6 py-2 shadow-md hover:scale-105 active:scale-95",
     "btn-secondary": "btn-base theme-glass px-6 py-2 shadow-md hover:bg-white/10 active:scale-95",
-    "card-premium": "card-base theme-glass p-8 shadow-xl hover:scale-105",
+    "card-premium": "card-base theme-glass p-8 shadow-xl",
     "starlight-nav": "nav-base theme-glass-dark px-4 md:px-8",
     "starlight-search": "search-container theme-glass-dark rounded-xl",
     "starlight-dashboard": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
