@@ -13,12 +13,13 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 - **Recursive Component Presets** - Define custom components in config using existing utilities.
 - **Cosmic Animation Library** - Advanced effects like parallax nebula drifts and orbit paths.
 - **High Contrast Mode** - Native support for `prefers-contrast` and `forced-colors`.
-- **JIT Dark Mode** - Dynamic generation of dark mode variants via `dark:` prefix.
+- **JIT Dark Mode** - Dynamic generation of dark mode variants via `dark__` prefix.
 
 ### Developer Experience
 - **Advanced CLI Scaffolding** - Instantly generate pre-styled templates (Gaming, Blog, News, Shopping, Travel)
 - **Dynamic Documentation** - Generate a "Kitchen Sink" overview of your unique design tokens
 - **Unified Naming Standard** - Consistent `--q-` prefix for all CSS variables (e.g., `--q-color-primary`).
+- **Zero-Escape Naming** - No more `\:` or `\/` in your CSS! Uses clean `__` and `_` separators.
 - **TypeScript Support** - Full type definitions
 - **Zero Configuration** - Works out of the box
 
@@ -28,7 +29,7 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 QuantumCSS provides powerful JIT gradient utilities with support for multiple color stops and transparency:
 - `bg-gradient-to-{r|l|t|b|tr|tl|br|bl}` - Set gradient direction
 - `from-{color}`, `via-{color}`, `to-{color}` - Define color stops
-- `from-{color}/50` - Opacity support for gradient stops
+- `from-{color}_50` - Opacity support for gradient stops
 - `text-transparent bg-clip-text` - Create gradient text
 
 ### SVG & Data Visualization

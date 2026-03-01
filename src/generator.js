@@ -40,12 +40,16 @@ function generateCSS(configPath) {
   function resolveColor(key) {
     if (!key) return null;
     if (flattenedColors[key]) return flattenedColors[key];
-    if (key.includes('/')) {
-      const [base, opacity] = key.split('/');
-      const color = flattenedColors[base] || flattenedColors[`${base}-500`];
-      if (color && color.startsWith('#')) {
-        const r = parseInt(color.slice(1, 3), 16), g = parseInt(color.slice(3, 5), 16), b = parseInt(color.slice(5, 7), 16);
-        return `rgba(${r}, ${g}, ${b}, ${parseInt(opacity) / 100})`;
+    if (key.includes('_')) {
+      const parts = key.split('_');
+      // If it's a color with opacity (e.g. primary_50)
+      if (parts.length === 2 && !isNaN(parseInt(parts[1]))) {
+        const [base, opacity] = parts;
+        const color = flattenedColors[base] || flattenedColors[`${base}-500`];
+        if (color && color.startsWith('#')) {
+          const r = parseInt(color.slice(1, 3), 16), g = parseInt(color.slice(3, 5), 16), b = parseInt(color.slice(5, 7), 16);
+          return `rgba(${r}, ${g}, ${b}, ${parseInt(opacity) / 100})`;
+        }
       }
     }
     return null;
@@ -95,7 +99,8 @@ function generateCSS(configPath) {
    * @returns {string} The escaped selector
    */
   const escapeSelector = (cls) => {
-    return cls.replace(/([:[\]/.\\])/g, '\\$1');
+    // No longer need complex escaping since we avoid : and /
+    return cls.replace(/([.[\]\\])/g, '\\$1');
   };
 
   const sideMap = {
@@ -111,15 +116,15 @@ function generateCSS(configPath) {
   function getRulesForClass(fullCls, processedPresets = new Set()) {
     let cls = fullCls, variant = null, breakpoint = null, isNeg = false;
     if (cls.startsWith('-')) { isNeg = true; cls = cls.substring(1); }
-    const parts = cls.split(':');
+    const parts = cls.split('__');
     let currentPart = 0;
     while (currentPart < parts.length) {
       const p = parts[currentPart];
       if (breakpoints[p]) { breakpoint = p; }
       else if (p === 'dark') { breakpoint = 'dark'; }
       else if (p === 'light') { breakpoint = 'light'; }
-      else if (['hover', 'focus', 'placeholder', 'group-hover'].includes(p)) { variant = p; }
-      else { cls = parts.slice(currentPart).join(':'); break; }
+      else if (['hover', 'focus', 'active', 'placeholder', 'group-hover'].includes(p)) { variant = p; }
+      else { cls = parts.slice(currentPart).join('__'); break; }
       currentPart++;
     }
 
@@ -221,10 +226,10 @@ function generateCSS(configPath) {
       else if (prefix === 'aspect') {
         property = ['aspect-ratio', 'width', 'height'];
         let ratio = 'auto';
-        if (valKey.startsWith('[') && valKey.endsWith(']')) ratio = valKey.slice(1, -1).replace(/\//g, ' / ');
+        if (valKey.startsWith('[') && valKey.endsWith(']')) ratio = valKey.slice(1, -1).replace(/_/g, ' / ');
         else if (valKey === 'video') ratio = '16 / 9';
         else if (valKey === 'square') ratio = '1 / 1';
-        else ratio = valKey.replace(/\//g, ' / ');
+        else ratio = valKey.replace(/_/g, ' / ');
         value = [ratio, '100%', 'auto'];
       } else if (prefix === 'grid' && cParts[1] === 'cols') {
         property = 'grid-template-columns'; value = `repeat(${cParts[2]}, minmax(0, 1fr))`;
@@ -265,7 +270,7 @@ function generateCSS(configPath) {
         property = sideMap[prefix];
         let v = valKey;
         if (v.startsWith('[') && v.endsWith(']')) v = v.slice(1, -1);
-        else if (v.includes('/')) v = `${(parseFloat(v.split('/')[0]) / parseFloat(v.split('/')[1]) * 100).toFixed(2)}%`;
+        else if (v.includes('_')) v = `${(parseFloat(v.split('_')[0]) / parseFloat(v.split('_')[1]) * 100).toFixed(2)}%`;
         else {
           // Priority: 1. Specific theme map (e.g. maxWidth for max-w) 2. spacing map 3. Numeric conversion 4. raw value
           const themeMap = prefix === 'max-w' ? theme.maxWidth : (theme[prefix] || theme.spacing);

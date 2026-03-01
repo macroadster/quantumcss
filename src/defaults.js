@@ -88,7 +88,7 @@ const utilityMaps = {
   'top-1/2': { property: 'top', value: '50%' },
   'left-4': { property: 'left', value: '1rem' },
   'pl-12': { property: 'padding-left', value: '3rem' },
-  '-translate-y-1/2': { property: 'transform', value: 'translateY(-50%)' },
+  '-translate-y-1_2': { property: 'transform', value: 'translateY(-50%)' },
   'pointer-events-none': { property: 'pointer-events', value: 'none' },
   'w-5': { property: 'width', value: '1.25rem' },
   'h-5': { property: 'height', value: '1.25rem' },
@@ -109,8 +109,8 @@ const utilityMaps = {
   'overlay-bottom-left': { property: ['position', 'bottom', 'left'], value: ['absolute', '0', '0'] },
   'overlay-bottom-right': { property: ['position', 'bottom', 'right'], value: ['absolute', '0', '0'] },
   'nav-base': {
-    property: ['display', 'flex-direction', 'align-items', 'width', 'position', 'top', 'z-index'],
-    value: ['flex', 'row', 'center', '100%', 'sticky', '0', '1000']
+    property: ['display', 'flex-direction', 'align-items', 'width', 'position', 'top', 'left', 'right', 'z-index'],
+    value: ['flex', 'row', 'center', '100%', 'sticky', '0', '0', '0', '1000']
   },
   'card-base': {
     property: ['display', 'flex-direction', 'align-items', 'padding', 'overflow', 'border-radius', 'transition', 'position'],
@@ -122,7 +122,7 @@ const utilityMaps = {
   },
   'input-base': {
     property: ['display', 'width', 'appearance', 'transition', 'border-radius', 'border', 'line-height'],
-    value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none', 'normal']
+    value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none', '1.2']
   },
   'dialog-base': {
     property: ['display', 'flex-direction', 'align-items', 'padding', 'overflow-y', 'border-radius', 'position'],
@@ -175,20 +175,20 @@ const utilityMaps = {
     variant: 'focus'
   },
   'btn-starlight': 'btn-base theme-starlight h-12 px-6',
-  'btn-secondary': 'btn-base theme-glass-dark h-12 px-6 border-white/15',
-  'input-starlight': 'input-base theme-glass-dark h-12 px-4 border-white/15',
-  'textarea-starlight': 'input-base theme-glass-dark p-4 min-h-32 border-white/15',
-  'checkbox-starlight': 'btn-base theme-glass-dark w-5 h-5 border-white/20',
+  'btn-secondary': 'btn-base theme-glass-dark h-12 px-6 border-white_15',
+  'input-starlight': 'input-base theme-glass-dark h-12 px-4 border-white_15',
+  'textarea-starlight': 'input-base theme-glass-dark p-4 min-h-32 border-white_15',
+  'checkbox-starlight': 'btn-base theme-glass-dark w-5 h-5 border-white_20',
   'search-container': 'relative block w-full',
     'search-input': 'pl-12 w-full',
-    'search-icon': 'absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10 w-5 h-5',
+    'search-icon': 'absolute left-4 top-1_2 -translate-y-1_2 pointer-events-none z-10 w-5 h-5',
     'nav-glass': 'nav-base theme-glass-dark',
     'starlight-card': 'card-base theme-glass-dark',
     'starlight-nav': 'nav-base theme-glass-dark w-full',
     'starlight-search': 'search-container theme-glass-dark rounded-xl',
-    'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
-    'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
-    'starlight-form': 'starlight-card grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
+    'starlight-dashboard': 'grid grid-cols-1 md__grid-cols-2 lg__grid-cols-3 gap-8',
+    'starlight-gallery': 'grid grid-cols-1 sm__grid-cols-2 lg__grid-cols-4 gap-4',
+    'starlight-form': 'starlight-card grid grid-cols-1 md__grid-cols-2 gap-8 items-start',
     'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark ani-scale-in'
   };
   

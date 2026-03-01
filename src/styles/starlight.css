@@ -74,19 +74,19 @@ html[data-theme="light"] .radio-starlight {
   background: rgb(0 0 0 / 5%);
 }
 
-.checkbox-starlight:checked, .radio-starlight:checked {
+.checkbox-starlight__checked, .radio-starlight__checked {
   background: var(--q-color-starlight-blue);
   border-color: var(--q-color-starlight-blue);
 }
 
-.checkbox-starlight:checked::after {
+.checkbox-starlight__checked::after {
   content: '✓';
   color: black;
   font-size: 0.8rem;
   font-weight: 900;
 }
 
-.radio-starlight:checked::after {
+.radio-starlight__checked::after {
   content: '';
   width: 0.5rem;
   height: 0.5rem;
@@ -699,7 +699,7 @@ html[data-theme="light"] .nav-glass {
   transform: translateX(-50%);
 }
 
-.nav-link:hover::after {
+.nav-link:hover__:after {
   width: 80%;
 }
 
@@ -884,7 +884,7 @@ html[data-theme="light"] .range-starlight {
   background: rgb(0 0 0 / 10%);
 }
 
-.range-starlight::-webkit-slider-thumb {
+.range-starlight__:-webkit-slider-thumb {
   appearance: none;
   width: 18px;
   height: 18px;
@@ -895,7 +895,7 @@ html[data-theme="light"] .range-starlight {
   transition: all 0.2s;
 }
 
-.range-starlight::-webkit-slider-thumb:hover {
+.range-starlight__:-webkit-slider-thumb:hover {
   transform: scale(1.2);
   box-shadow: 0 0 20px var(--q-color-starlight-blue);
 }
@@ -927,11 +927,11 @@ html[data-theme="light"] .toggle-starlight .toggle-slider {
 }
 
 html[data-theme="light"] .bg-starlight,
-html[data-theme="light"] .bg-starlight:hover,
-html[data-theme="light"] .hover\:bg-starlight:hover,
+html[data-theme="light"] .bg-starlight__hover,
+html[data-theme="light"] .hover__bg-starlight__hover,
 html[data-theme="light"] .btn-starlight,
-html[data-theme="light"] .btn-starlight:hover,
-html[data-theme="light"] .hover\:btn-starlight:hover,
+html[data-theme="light"] .btn-starlight__hover,
+html[data-theme="light"] .hover__btn-starlight__hover,
 html[data-theme="light"] .btn-primary,
 html[data-theme="light"] .btn-primary:hover {
   background: linear-gradient(135deg, #ffb38a 40%, #00d4ff 100%) !important;
@@ -946,7 +946,7 @@ html[data-theme="light"] .text-gradient-starlight {
 html[data-theme="light"] .text-success { color: #059669; }
 html[data-theme="light"] .text-warning { color: #d97706; }
 
-html[data-theme="light"] .dialog-content .bg-black\/40 {
+html[data-theme="light"] .dialog-content .bg-black_40 {
   background-color: rgb(0 0 0 / 5%);
   border-color: rgb(0 0 0 / 10%);
 }
@@ -1079,24 +1079,24 @@ html[data-theme="light"] * {
     text-decoration: none;
   }
   
-  .btn-starlight:hover {
+  .btn-starlight__hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 25px rgb(0 212 255 / 40%);
     filter: brightness(1.1);
   }
   
-  .btn-starlight:active {
+  .btn-starlight__active {
     transform: translateY(0) scale(0.95);
     box-shadow: 0 2px 10px rgb(0 212 255 / 20%);
     filter: brightness(0.9);
   }
   
-  .btn-starlight:focus-visible {
+  .btn-starlight__focus-visible {
     outline: 2px solid white;
     outline-offset: 2px;
     box-shadow: 0 0 0 4px rgb(0 212 255 / 30%);
   }
   
-  html[data-theme="light"] .btn-starlight:focus-visible {
+  html[data-theme="light"] .btn-starlight__focus-visible {
     outline-color: var(--q-color-starlight-blue);
   }}
