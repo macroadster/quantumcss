@@ -715,7 +715,7 @@ html[data-theme="light"] .nav-glass {
   transform: translateX(-50%);
 }
 
-.nav-link:hover__:after {
+.nav-link:hover::after {
   width: 80%;
 }
 
