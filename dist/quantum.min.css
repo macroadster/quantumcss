@@ -3824,18 +3824,25 @@ html[data-theme="light"] .stat-value {
 
 /* 9. Glass Navigation */
 .nav-glass {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background-clip: border-box;
   display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+  flex-direction: column;
   position: sticky;
   top: 0;
   z-index: 1000;
   padding: 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.5rem;
 }
 
 html[data-theme="light"] .nav-glass {
@@ -3926,12 +3933,11 @@ html[data-theme="light"] .nav-link:hover {
   align-items: center;
   gap: 0.4rem;
   cursor: pointer;
-  background: rgb(255 255 255 / 5%);
-  border: 1px solid rgb(255 255 255 / 10%);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.5rem;
   padding: 0.5rem;
   transition: all 0.3s;
-  position: relative;
 }
 
 html[data-theme="light"] .hamburger {
@@ -3968,10 +3974,10 @@ html[data-theme="light"] .hamburger span {
 
 .nav-menu-mobile {
   flex-basis: 100%;
-  background: rgb(255 255 255 / 5%);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid rgb(255 255 255 / 5%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 0;
   max-height: 0;
   overflow: hidden;
@@ -5373,6 +5379,14 @@ html[data-theme="light"] * {
   border-style: solid;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
+html[data-theme="light"] .light__bg-slate-300, body.light-mode .light__bg-slate-300 {
+  background-color: #cbd5e1 !important;
+}
+
 .h-\[400px\] {
   height: 400px;
 }
@@ -5512,10 +5526,6 @@ html[data-theme="light"] * {
   margin-top: 5rem;
 }
 
-.pt-8 {
-  padding-top: 2rem;
-}
-
 .starlight-dialog {
   display: flex;
   flex-direction: column;
@@ -5537,7 +5547,7 @@ html[data-theme="light"] * {
   border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
   border-style: solid;
-  background-color: rgba(8, 8, 26, 0.98) !important;
+  background-color: rgba(8, 8, 26, 0.95) !important;
 }
 
 .dialog-close {
@@ -5596,6 +5606,10 @@ html[data-theme="light"] * {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .pb-12 {
@@ -6396,17 +6410,17 @@ html[data-theme="light"] * {
     grid-column: span 2 / span 2;
   }
   
+  .md__px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
   .starlight-dashboard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   
   .starlight-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  
-  .md__px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
   
   .md__hidden {

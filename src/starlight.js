@@ -139,6 +139,12 @@ const Starlight = {
           e.stopPropagation();
           const isActive = toggle.classList.toggle('active');
           menu.classList.toggle('active', isActive);
+          
+          // Allow nav to wrap when menu is open so full-width menu stacks below
+          const parentNav = menu.closest('.starlight-nav') || menu.closest('.nav-glass');
+          if (parentNav) {
+            parentNav.style.flexFlow = isActive ? 'row wrap' : 'nowrap';
+          }
         });
 
         document.addEventListener('click', (e) => {
