@@ -4952,6 +4952,7 @@ html[data-theme="light"] * {
 }
 
 .border-t {
+  border-width: 0;
   border-top-width: 1px;
   border-style: solid;
 }
@@ -5330,6 +5331,7 @@ html[data-theme="light"] * {
 }
 
 .border-b {
+  border-width: 0;
   border-bottom-width: 1px;
   border-style: solid;
 }
@@ -5374,6 +5376,7 @@ html[data-theme="light"] .light__bg-slate-300, body.light-mode .light__bg-slate-
 }
 
 .border-r {
+  border-width: 0;
   border-right-width: 1px;
   border-style: solid;
 }
@@ -6088,6 +6091,7 @@ html[data-theme="light"] .light__bg-slate-300, body.light-mode .light__bg-slate-
 }
 
 .border-l {
+  border-width: 0;
   border-left-width: 1px;
   border-style: solid;
 }

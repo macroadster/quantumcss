@@ -326,8 +326,8 @@ function generateCSS(configPath) {
         else if (['l', 'r', 't', 'b'].includes(cParts[1])) {
           const sideMapSide = { l: 'left', r: 'right', t: 'top', b: 'bottom' };
           const width = cParts[2] ? `${cParts[2]}px` : '1px';
-          property = [`border-${sideMapSide[cParts[1]]}-width`, 'border-style'];
-          value = [width, 'solid'];
+          property = ['border-width', `border-${sideMapSide[cParts[1]]}-width`, 'border-style'];
+          value = ['0', width, 'solid'];
         } else if (!isNaN(parseInt(valKey))) { 
           property = ['border-width', 'border-style']; 
           value = [`${parseInt(valKey)}px`, 'solid']; 
