@@ -349,14 +349,11 @@ html[data-theme="light"] .dropdown-item:hover {
 
 /* 7. Input & Glass Fixes */
 .input-starlight, .textarea-starlight {
-  height: auto;
-  padding: 0.75rem 1rem;
   background-color: rgb(255 255 255 / 4%);
   border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 0.75rem;
   color: inherit;
   width: 100%;
-  line-height: normal;
 }
 
 textarea.input-starlight, .textarea-starlight {
@@ -1084,8 +1081,6 @@ html[data-theme="light"] * {
     font-weight: 700;
     border: none;
     border-radius: 0.5rem;
-    padding: 0 1.5rem;
-    height: 3rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;

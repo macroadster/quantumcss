@@ -381,7 +381,7 @@ class QuantumCSSBuilder {
                     if (name.includes('nav')) {
                         example = `<nav class="${name} rounded-lg overflow-hidden"><div class="p-4 flex justify-between items-center"><span class="font-bold">Logo</span><div class="flex gap-4 text-xs"><span>Link 1</span><span>Link 2</span></div></div></nav>`;
                     } else if (name.includes('search')) {
-                        example = `<div class="${name}"><svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" class="input-starlight search-input" placeholder="Search..."></div>`;
+                        example = `<div class="${name} h-12"><svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" class="input-starlight search-input h-12" placeholder="Search..."></div>`;
                     } else if (name.includes('grid') || name.includes('dashboard')) {
                         example = `<div class="${name} w-full"><div class="starlight-card p-4 text-center">A</div><div class="starlight-card p-4 text-center">B</div><div class="starlight-card p-4 text-center">C</div></div>`;
                     } else if (name.includes('gallery')) {
@@ -403,7 +403,7 @@ class QuantumCSSBuilder {
                         <div class="flex items-center justify-center p-8 bg-black_20 rounded-xl mb-4">
                             ${example}
                         </div>
-                        <div class="token-value text-xs bg-black_20 p-3 rounded font-mono">${utilities}</div>
+                        <div class="token-value text-xs bg-black_20 p-3 rounded font-mono">${utilities.replace(/"/g, '&quot;')}</div>
                     </div>
                 `}).join('')}
             </div>

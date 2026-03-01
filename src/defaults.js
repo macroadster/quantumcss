@@ -117,12 +117,12 @@ const utilityMaps = {
     value: ['flex', 'column', 'stretch', 'var(--q-space-10)', 'hidden', 'var(--q-radius-lg)', 'all 0.3s ease', 'relative']
   },
   'btn-base': {
-    property: ['display', 'align-items', 'justify-content', 'cursor', 'transition', 'font-weight', 'border-radius', 'border'],
-    value: ['inline-flex', 'center', 'center', 'pointer', 'all 0.2s ease', '600', 'var(--q-radius-md)', 'none']
+    property: ['display', 'align-items', 'justify-content', 'cursor', 'transition', 'font-weight', 'border-radius', 'border', 'height'],
+    value: ['inline-flex', 'center', 'center', 'pointer', 'all 0.2s ease', '600', 'var(--q-radius-md)', 'none', '3rem']
   },
   'input-base': {
-    property: ['display', 'width', 'appearance', 'transition', 'border-radius', 'border', 'line-height'],
-    value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none', '1.2']
+    property: ['display', 'width', 'appearance', 'transition', 'border-radius', 'border', 'line-height', 'height'],
+    value: ['block', '100%', 'none', 'all 0.2s ease', 'var(--q-radius-md)', 'none', '1.2', '3rem']
   },
   'dialog-base': {
     property: ['display', 'flex-direction', 'align-items', 'padding', 'overflow-y', 'border-radius', 'position'],
@@ -178,13 +178,13 @@ const utilityMaps = {
     value: ['none !important', '0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important'],
     variant: 'focus'
   },
-  'btn-starlight': 'btn-base theme-starlight h-12 px-6',
-  'btn-secondary': 'btn-base theme-glass-dark h-12 px-6 border-white_15',
-  'input-starlight': 'input-base theme-glass-dark h-12 px-4 border-white_15',
+  'btn-starlight': 'btn-base theme-starlight px-6',
+  'btn-secondary': 'btn-base theme-glass-dark px-6 border-white_15',
+  'input-starlight': 'input-base theme-glass-dark px-4 border-white_15',
   'textarea-starlight': 'input-base theme-glass-dark p-4 min-h-32 border-white_15',
   'checkbox-starlight': 'btn-base theme-glass-dark w-5 h-5 border-white_20',
-  'search-container': 'relative block w-full',
-    'search-input': 'pl-12 w-full',
+  'search-container': 'relative block w-full h-12',
+    'search-input': 'pl-12 w-full h-12',
     'search-icon': 'absolute left-4 top-1_2 -translate-y-1_2 pointer-events-none z-10 w-5 h-5',
     'nav-glass': 'nav-base theme-glass-dark',
     'starlight-card': 'card-base theme-glass-dark',
