@@ -110,7 +110,7 @@
     "starlight-search": "search-container theme-glass-dark rounded-xl",
     "starlight-dashboard": "grid grid-cols-1 md__grid-cols-2 lg__grid-cols-3 gap-8",
     "starlight-gallery": "grid grid-cols-1 sm__grid-cols-2 lg__grid-cols-4 gap-4",
-    "starlight-form": "starlight-card grid grid-cols-1 md__grid-cols-2 gap-8 items-start",
+    "starlight-form": "card-base theme-glass-dark grid grid-cols-1 md__grid-cols-2 gap-8 items-start",
     "starlight-dialog": "dialog-base modal-fixed theme-glass-dark ani-scale-in"
   },
   "darkMode": "media"

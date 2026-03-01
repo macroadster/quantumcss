@@ -153,11 +153,11 @@ class QuantumCSSBuilder {
     <script src="../src/starlight.js"></script>
     <style>
         .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-        .swatch { height: 4rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(0,0,0,0.1); }
+        .swatch { height: 4rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(0, 0, 0, 0.1); }
         .spacing-bar { height: 1rem; background: var(--q-color-starlight-blue, #3b82f6); border-radius: 0.25rem; }
         section { margin-bottom: 4rem; }
-        h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
-        body.light-mode h2 { border-bottom-color: rgba(0,0,0,0.1); }
+        h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.5rem; }
+        body.light-mode h2 { border-bottom-color: rgba(0, 0, 0, 0.1); }
         .token-name { font-family: monospace; font-size: 0.875rem; opacity: 0.7; }
         .token-value { font-size: 0.75rem; opacity: 0.5; }
         .ani-card { background: #0f172a; color: white; transition: all 0.3s; }
@@ -168,11 +168,11 @@ class QuantumCSSBuilder {
             position: fixed; top: 2rem; right: 2rem; z-index: 100; cursor: pointer; 
             width: 3rem; height: 3rem; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); 
             color: white; transition: all 0.3s ease; backdrop-filter: blur(10px); 
         }
         .theme-toggle:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
-        body.light-mode .theme-toggle { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.1); color: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        body.light-mode .theme-toggle { background: rgba(0, 0, 0, 0.02); border-color: rgba(0, 0, 0, 0.1); color: #0f172a; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
         body.light-mode .theme-toggle:hover { background: #f8fafc; }
         .sun-icon { display: none; }
         body.light-mode .sun-icon { display: block; }
@@ -196,7 +196,7 @@ class QuantumCSSBuilder {
         .designer-title { font-weight: 900; font-size: 0.75rem; text-transform: uppercase; tracking-widest; opacity: 0.8; }
         .control-group { margin-bottom: 1.25rem; }
         .control-label { display: flex; justify-content: space-between; font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; opacity: 0.6; }
-        .designer-slider { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; appearance: none; outline: none; }
+        .designer-slider { width: 100%; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; appearance: none; outline: none; }
         .designer-slider::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; background: var(--q-color-starlight-blue, #00d4ff); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--q-color-starlight-blue); }
         .designer-btn { 
             width: 100%; padding: 0.75rem; border-radius: 0.75rem; border: none; 
@@ -206,8 +206,8 @@ class QuantumCSSBuilder {
         .designer-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
         .designer-btn:active { transform: scale(0.98); }
         
-        body.light-mode .designer-panel { background: rgba(255, 255, 255, 0.9); border-color: rgba(0,0,0,0.1); color: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        body.light-mode .designer-slider { background: rgba(0,0,0,0.1); }
+        body.light-mode .designer-panel { background: rgba(255, 255, 255, 0.9); border-color: rgba(0, 0, 0, 0.1); color: #000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+        body.light-mode .designer-slider { background: rgba(0, 0, 0, 0.1); }
     </style>
 </head>
 <body class="p-8">
@@ -387,7 +387,7 @@ class QuantumCSSBuilder {
                     } else if (name.includes('grid') || name.includes('dashboard')) {
                         example = `<div class="${name} w-full"><div class="starlight-card p-4 text-center">A</div><div class="starlight-card p-4 text-center">B</div><div class="starlight-card p-4 text-center">C</div></div>`;
                     } else if (name.includes('gallery')) {
-                        example = `<div class="${name} w-full">${[1,2,3,4].map(i => `<div class="gallery-item"><div class="absolute inset-0 bg-starlight/10 flex items-center justify-center text-2xs opacity-50">IMAGE ${i}</div></div>`).join('')}</div>`;
+                        example = `<div class="${name} w-full">${[1,2,3,4].map(i => `<div class="gallery-item"><div class="absolute inset-0 bg-starlight_10 flex items-center justify-center text-2xs opacity-50">IMAGE ${i}</div></div>`).join('')}</div>`;
                     } else if (name.includes('form')) {
                         example = `<div class="${name} w-full"><div class="flex flex-col gap-2"><label class="text-[10px] uppercase font-bold opacity-50">Field A</label><input class="input-starlight" placeholder="Value..."></div><div class="form-row"><span class="text-xs">Option B</span><label class="toggle toggle-starlight"><input type="checkbox" class="toggle-input"><span class="toggle-slider"></span></label></div></div>`;
                     } else if (name.includes('dialog')) {
@@ -402,10 +402,10 @@ class QuantumCSSBuilder {
                             <span class="token-name">.${name}</span>
                             <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
                         </div>
-                        <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg mb-4">
+                        <div class="flex items-center justify-center p-8 bg-black_20 rounded-xl mb-4">
                             ${example}
                         </div>
-                        <div class="token-value text-xs bg-black/20 p-3 rounded font-mono">${utilities}</div>
+                        <div class="token-value text-xs bg-black_20 p-3 rounded font-mono">${utilities}</div>
                     </div>
                 `}).join('')}
             </div>
@@ -415,7 +415,7 @@ class QuantumCSSBuilder {
         <!-- Components Section -->
         <section>
             <h2>Component Utilities</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">`;
+            <div class="grid grid-cols-1 md__grid-cols-2 gap-8">`;
 
     Object.keys(utilityMaps).forEach(cls => {
       // Skip high-level presets which are displayed in their own section below
@@ -425,10 +425,10 @@ class QuantumCSSBuilder {
         html += `
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">${cls}</div>
-                    <div class="flex items-center justify-center p-8 bg-slate-500/10 rounded-lg">
+                    <div class="flex items-center justify-center p-8 bg-black_20 rounded-xl">
                         ${cls.startsWith('btn-') ? `<button class="${cls}">Button Example</button>` : 
                           cls.startsWith('input-') ? `<input class="${cls}" placeholder="Input Example">` :
-                          cls === 'glass' ? `<div class="${cls} p-8 rounded-xl border border-white/20">Glass Effect</div>` :
+                          cls === 'glass' ? `<div class="${cls} p-8 rounded-xl">Glass Effect</div>` :
                           `<div class="${cls} p-8 rounded-xl w-full text-center">Example Block</div>`
                         }
                     </div>
@@ -447,9 +447,9 @@ class QuantumCSSBuilder {
             <div class="grid grid-cols-1 gap-12">
                 <!-- Navigation -->
                 <div class="starlight-card p-0 mb-12">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Navigation Menu (.starlight-nav)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Navigation Menu (.starlight-nav)</div>
                     <div class="relative">
-                        <nav class="starlight-nav relative">
+                        <nav class="starlight-nav w-full relative">
                             <div class="p-4 md:px-8 flex justify-between items-center w-full">
                                 <div class="font-bold text-xl text-gradient-starlight">Starlight OS</div>
                                 <div class="flex items-center gap-8">
@@ -491,15 +491,15 @@ class QuantumCSSBuilder {
                                 </ul>
                             </div>
                         </nav>
-                        <div class="p-12 text-center opacity-50 italic text-sm border-t border-white/5 light:bg-slate-300">Horizontal layout (standard)</div>
+                        <div class="p-12 text-center opacity-50 italic text-sm border-t border-white_5 light="bg-slate-300"">Horizontal layout (standard)</div>
                     </div>
                 </div>
 
                 <!-- Vertical Navigation -->
                 <div class="starlight-card p-0">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Vertical Sidebar (.starlight-nav.vertical)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Vertical Sidebar (.starlight-nav.vertical)</div>
                     <div class="flex h-[400px] overflow-hidden">
-                        <nav class="starlight-nav vertical static border-r border-white/10">
+                        <nav class="starlight-nav vertical w-full static border-r border-white_10">
                             <div class="font-bold text-xl text-gradient-starlight mb-8">Starlight OS</div>
                             <div class="nav-desktop block w-full">
                                 <ul class="nav-list vertical w-full">
@@ -518,13 +518,13 @@ class QuantumCSSBuilder {
                                 </ul>
                             </div>
                         </nav>
-                        <div class="flex-1 p-8 opacity-50 italic text-sm overflow-y-auto light:bg-slate-300">Dashboard content area...</div>
+                        <div class="flex-1 p-8 opacity-50 italic text-sm overflow-y-auto light="bg-slate-300"">Dashboard content area...</div>
                     </div>
                 </div>
 
                 <!-- Search -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Interactive Search (.starlight-search)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Interactive Search (.starlight-search)</div>
                     <div class="p-12 flex flex-col items-center gap-6">
                         <div class="starlight-search">
                             <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -536,7 +536,7 @@ class QuantumCSSBuilder {
 
                 <!-- Dashboard -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dashboard Grid (.starlight-dashboard)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dashboard Grid (.starlight-dashboard)</div>
                     <div class="p-8">
                         <div class="starlight-dashboard">
                             <div class="starlight-card stat-card light:shadow-lg">
@@ -569,7 +569,7 @@ class QuantumCSSBuilder {
 
                 <!-- Gallery -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Gallery Widget (.starlight-gallery)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Gallery Widget (.starlight-gallery)</div>
                     <div class="p-8">
                         <div class="starlight-gallery">
                             <div class="gallery-item">
@@ -594,7 +594,7 @@ class QuantumCSSBuilder {
 
                 <!-- Form -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Advanced Form (.starlight-form)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Advanced Form (.starlight-form)</div>
                     <div class="p-8">
                         <div class="starlight-form">
                             <div class="flex flex-col gap-4">
@@ -622,10 +622,10 @@ class QuantumCSSBuilder {
 
                 <!-- Dialog -->
                 <div class="starlight-card p-0">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
                     <div class="p-8">
                         <!-- Inline Preview -->
-                        <div class="dialog-base theme-glass-dark relative mx-auto mb-8 shadow-none border-white/10" style="max-width: 500px;">
+                        <div class="dialog-base theme-glass-dark relative mx-auto mb-8 shadow-none border-white_10" style="max-width: 500px;">
                             <h3 class="text-xl font-bold mb-4 text-gradient-starlight">System Preview</h3>
                             <p class="mb-6 opacity-70 text-sm">This is an inline preview of the dialog component. It scales to fit its container.</p>
                             <div class="flex gap-4">
@@ -634,7 +634,7 @@ class QuantumCSSBuilder {
                             </div>
                         </div>
                         
-                        <div class="text-center pt-4 border-t border-white/5">
+                        <div class="text-center pt-4 border-t border-white_5">
                             <button class="btn-starlight" onclick="toggleDialog(true)">Launch Overlay Dialog</button>
                         </div>
                     </div>
@@ -642,7 +642,7 @@ class QuantumCSSBuilder {
 
                 <!-- Accordion -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Accordion Group (.accordion-starlight)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Accordion Group (.accordion-starlight)</div>
                     <div class="p-8">
                         <div class="max-w-2xl mx-auto" data-accordion>
                             <div class="accordion-item accordion-starlight active">
@@ -669,7 +669,7 @@ class QuantumCSSBuilder {
 
                 <!-- Tabs -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white/5 bg-white/5 text-[10px] uppercase font-bold tracking-widest opacity-50">Tab Interface (.tab-list)</div>
+                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Tab Interface (.tab-list)</div>
                     <div class="p-8">
                         <div class="max-w-2xl mx-auto">
                             <div class="tab-list mb-4">
@@ -704,7 +704,7 @@ class QuantumCSSBuilder {
             </div>
         </section>
 
-        <footer class="mt-20 pt-8 border-t border-white/10 opacity-50 text-sm">
+        <footer class="mt-20 pt-8 border-t border-white_10 opacity-50 text-sm">
             Generated by Quantum CSS Dynamic Docs · ${new Date().toLocaleDateString()}
         </footer>
     </div>
@@ -717,7 +717,7 @@ class QuantumCSSBuilder {
             </button>
             <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
             <p class="mb-6 opacity-70">You are about to bypass safety protocols. This action is irreversible.</p>
-            <div class="bg-black/20 p-4 rounded-lg mb-6 font-mono text-xs border border-white/5">
+            <div class="bg-black/20 p-4 rounded-lg mb-6 font-mono text-xs border border-white_5">
                 <div class="text-success">> STATUS: AUTHORIZED</div>
                 <div class="text-success">> CORE: ACCESSIBLE</div>
             </div>

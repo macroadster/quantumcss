@@ -59,20 +59,20 @@
 
   /* Border Radius */
   --q-radius-none: 0px;
-  --q-radius-sm__ 0.125rem;
-  --q-radius-md__ 0.375rem;
-  --q-radius-lg__ 0.5rem;
-  --q-radius-xl__ 0.75rem;
-  --q-radius-2xl__ 1rem;
-  --q-radius-3xl__ 1.5rem;
+  --q-radius-sm: 0.125rem;
+  --q-radius-md: 0.375rem;
+  --q-radius-lg: 0.5rem;
+  --q-radius-xl: 0.75rem;
+  --q-radius-2xl: 1rem;
+  --q-radius-3xl: 1.5rem;
   --q-radius-full: 9999px;
 
   /* Shadows */
-  --q-shadow-sm__ 0 1px 2px 0 rgb(0 0 0 / 5%);
-  --q-shadow-md__ 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
-  --q-shadow-lg__ 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
-  --q-shadow-xl__ 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
-  --q-shadow-2xl__ 0 25px 50px -12px rgb(0 0 0 / 25%);
+  --q-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --q-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+  --q-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+  --q-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+  --q-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
 
   /* Animation */
   --q-duration-75: 75ms;
@@ -112,7 +112,7 @@
 
   /* Glassmorphism */
   --q-glass-bg: rgb(255 255 255 / 3%);
-  --q-glass-border: rgb(255 255 255 / 10%);
+  --q-glass-border: rgb(255 255 255 / 5%);
   --q-glass-blur: blur(16px);
 
   /* Transitions */
@@ -135,12 +135,12 @@
 @media (forced-colors: active) {
   :root {
     --q-radius-none: 0;
-    --q-radius-sm__ 0;
-    --q-radius-md__ 0;
-    --q-radius-lg__ 0;
-    --q-radius-xl__ 0;
-    --q-radius-2xl__ 0;
-    --q-radius-3xl__ 0;
+    --q-radius-sm: 0;
+    --q-radius-md: 0;
+    --q-radius-lg: 0;
+    --q-radius-xl: 0;
+    --q-radius-2xl: 0;
+    --q-radius-3xl: 0;
     --q-radius-full: 0;
   }
   
@@ -207,7 +207,7 @@ button:focus,
 input:active,
 button:active {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.3);
 }
 
 textarea {
@@ -3232,9 +3232,9 @@ html[data-theme="light"] a:hover {
 }
 
 .starlight-card:hover {
-  border-color: rgb(0 212 255 / 40%);
-  box-shadow: 0 12px 40px rgb(0 0 0 / 40%), 0 0 20px rgb(0 212 255 / 10%);
-  background-color: rgb(255 255 255 / 4%);
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 212, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 html[data-theme="light"] .starlight-card {
@@ -4554,6 +4554,7 @@ html[data-theme="light"] * {
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
   border-width: 1px;
+  border-style: solid;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 0.5rem;
@@ -4583,6 +4584,7 @@ html[data-theme="light"] * {
   -webkit-backdrop-filter: blur(16px);
   border-color: rgba(255, 255, 255, 0.1);
   border-width: 1px;
+  border-style: solid;
   padding: 2rem;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
@@ -4629,6 +4631,7 @@ html[data-theme="light"] * {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-width: 1px;
+  border-style: solid;
   border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -4656,8 +4659,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
 }
 
 .mt-8 {
@@ -4691,8 +4695,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
   height: 3rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -4710,8 +4715,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
   padding: 1rem;
   min-height: 8rem;
   border-color: rgba(255, 255, 255, 0.15);
@@ -5303,6 +5309,10 @@ html[data-theme="light"] * {
   height: 1rem;
 }
 
+.bg-slate-500_10 {
+  background-color: rgba(100, 116, 139, 0.1) !important;
+}
+
 .btn-base {
   display: inline-flex;
   align-items: center;
@@ -5324,11 +5334,24 @@ html[data-theme="light"] * {
   line-height: 1.2;
 }
 
+.border-white_20 {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.border-white_5 {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.bg-white_5 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
 .starlight-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
+  min-width: 100%;
   position: sticky;
   top: 0;
   left: 0;
@@ -5337,8 +5360,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
 }
 
 .h-\[400px\] {
@@ -5348,6 +5372,10 @@ html[data-theme="light"] * {
 .border-r {
   border-right-width: undefinedpx;
   border-style: solid;
+}
+
+.border-white_10 {
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .block {
@@ -5365,8 +5393,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
   border-radius: 0.75rem;
 }
 
@@ -5424,8 +5453,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 2rem;
@@ -5457,8 +5487,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
 }
 
 .pt-4 {
@@ -5495,8 +5526,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
 }
 
 .dialog-close {
@@ -5555,14 +5587,6 @@ html[data-theme="light"] * {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.bg-white_5 {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-.border-white_10 {
-  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .pb-12 {
@@ -5676,8 +5700,9 @@ html[data-theme="light"] * {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.03);
   border-width: 1px;
+  border-style: solid;
   width: 1.25rem;
   height: 1.25rem;
   border-color: rgba(255, 255, 255, 0.2);
@@ -5746,10 +5771,6 @@ html[data-theme="light"] * {
 
 .border-red-500_50 {
   border-color: rgba(239, 68, 68, 0.5);
-}
-
-.border-white_5 {
-  border-color: rgba(255, 255, 255, 0.05);
 }
 
 .svg-fluid {

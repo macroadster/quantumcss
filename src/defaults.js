@@ -109,8 +109,8 @@ const utilityMaps = {
   'overlay-bottom-left': { property: ['position', 'bottom', 'left'], value: ['absolute', '0', '0'] },
   'overlay-bottom-right': { property: ['position', 'bottom', 'right'], value: ['absolute', '0', '0'] },
   'nav-base': {
-    property: ['display', 'flex-direction', 'align-items', 'width', 'position', 'top', 'left', 'right', 'z-index'],
-    value: ['flex', 'row', 'center', '100%', 'sticky', '0', '0', '0', '1000']
+    property: ['display', 'flex-direction', 'align-items', 'width', 'min-width', 'position', 'top', 'left', 'right', 'z-index'],
+    value: ['flex', 'row', 'center', '100%', '100%', 'sticky', '0', '0', '0', '1000']
   },
   'card-base': {
     property: ['display', 'flex-direction', 'align-items', 'padding', 'overflow', 'border-radius', 'transition', 'position'],
@@ -145,8 +145,8 @@ const utilityMaps = {
     value: ['absolute', '1.5rem', '1.5rem', '2rem', '2rem', '50%', 'flex', 'center', 'center', 'pointer']
   },
   'glass': {
-    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-width', 'border-color'], 
-    value: ['rgba(255, 255, 255, 0.03)', 'blur(16px)', 'blur(16px)', '1px', 'rgba(255, 255, 255, 0.1)'] 
+    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-width', 'border-style', 'border-color'], 
+    value: ['rgba(255, 255, 255, 0.03)', 'blur(16px)', 'blur(16px)', '1px', 'solid', 'rgba(255, 255, 255, 0.1)'] 
   },
   'bg-starlight': { property: 'background', value: 'linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)' },
   'text-gradient-starlight': {
@@ -158,12 +158,12 @@ const utilityMaps = {
     value: ['linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)', '#000', 'transparent', '0 0 30px rgba(0, 212, 255, 0.2)']
   },
   'theme-glass': {
-    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width'],
-    value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px']
+    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width', 'border-style'],
+    value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px', 'solid']
   },
   'theme-glass-dark': {
-    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width'],
-    value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px']
+    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width', 'border-style'],
+    value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.03)', '1px', 'solid']
   },
   'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
   'glow-starlight': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
@@ -188,7 +188,7 @@ const utilityMaps = {
     'starlight-search': 'search-container theme-glass-dark rounded-xl',
     'starlight-dashboard': 'grid grid-cols-1 md__grid-cols-2 lg__grid-cols-3 gap-8',
     'starlight-gallery': 'grid grid-cols-1 sm__grid-cols-2 lg__grid-cols-4 gap-4',
-    'starlight-form': 'starlight-card grid grid-cols-1 md__grid-cols-2 gap-8 items-start',
+    'starlight-form': 'card-base theme-glass-dark grid grid-cols-1 md__grid-cols-2 gap-8 items-start',
     'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark ani-scale-in'
   };
   
