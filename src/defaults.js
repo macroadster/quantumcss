@@ -167,7 +167,7 @@ const utilityMaps = {
   },
   'starlight-dialog-bg': { 
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter'], 
-    value: ['rgba(8, 8, 26, 0.8) !important', 'blur(24px) !important', 'blur(24px) !important'] 
+    value: ['rgba(8, 8, 26, 0.4) !important', 'blur(24px) !important', 'blur(24px) !important'] 
   },
   'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
   'glow-starlight': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
