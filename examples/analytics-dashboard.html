@@ -408,6 +408,25 @@
             }
         }
 
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 80px;
+            }
+            .sidebar .logo span,
+            .sidebar .nav-section-title,
+            .sidebar .nav-item span,
+            .sidebar .theme-label {
+                display: none;
+            }
+            .sidebar .nav-item {
+                justify-content: center;
+                padding: 0.75rem;
+            }
+            .sidebar .logo {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
             .app-layout {
                 grid-template-columns: 1fr;

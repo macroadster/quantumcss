@@ -201,7 +201,82 @@ const utilityMaps = {
     'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
     'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
     'starlight-form': 'card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
-    'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark starlight-dialog-bg ani-scale-in'
+    'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark starlight-dialog-bg ani-scale-in',
+    'starlight-sidebar': 'flex flex-col h-screen w-72 fixed left-0 top-0 bg-black_40 backdrop-blur-xl border-r border-white_10 p-6 z-40',
+    'starlight-feed-card': 'flex flex-col bg-white_03 backdrop-blur-md border border-white_10 rounded-2xl p-6 transition-all duration-300 ease',
+    'starlight-auth-form': 'flex flex-col max-w-md mx-auto bg-white_05 backdrop-blur-xl border border-white_10 rounded-2xl p-10 shadow-2xl',
+
+    'email-nav': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
+    'email-feed': 'flex flex-col h-full bg-white_05 backdrop-blur-md border-r border-white_10 overflow-y-auto',
+    'email-content': 'flex flex-col h-full overflow-y-auto',
+    
+    'music-nav': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
+    'music-content': 'flex flex-col h-full overflow-y-auto',
+    'music-footer': 'flex items-center justify-between px-6 py-4 bg-black_40 backdrop-blur-xl border-t border-white_10',
+    
+    'chat-sidebar': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 overflow-hidden',
+    'chat-content': 'flex flex-col h-full overflow-hidden',
+    
+    'admin-sidebar': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
+    'admin-content': 'flex flex-col h-full overflow-y-auto',
+    
+    'analytics-sidebar': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
+    'analytics-content': 'flex flex-col h-full overflow-y-auto',
+
+    'layout-email-3col': 'grid h-screen grid-cols-[280px_320px_1fr] overflow-hidden',
+    'layout-music-2col': 'grid h-screen grid-rows-[1fr_auto] overflow-hidden',
+    'layout-music-row': 'grid grid-cols-[280px_1fr] overflow-hidden',
+    'layout-chat-2col': 'grid h-screen grid-cols-[320px_1fr] overflow-hidden',
+    'layout-admin-2col': 'grid h-screen grid-cols-[260px_1fr] overflow-hidden',
+    'layout-analytics-2col': 'grid h-screen grid-cols-[240px_1fr] overflow-hidden',
+
+    'starlight-stat': 'flex flex-col gap-2 p-5 bg-white_03 border border-white_08 rounded-xl transition-all duration-300',
+    'starlight-stat-header': 'flex items-center justify-between',
+    'starlight-stat-icon': 'flex items-center justify-center w-10 h-10 rounded-lg',
+    'starlight-stat-value': 'text-3xl font-bold text-starlight-blue',
+    'starlight-stat-label': 'text-sm uppercase tracking-wide text-white_60',
+
+    'starlight-avatar': 'flex items-center justify-center rounded-full font-semibold text-white',
+    'starlight-avatar-sm': 'w-8 h-8 text-xs',
+    'starlight-avatar-md': 'w-10 h-10 text-sm',
+    'starlight-avatar-lg': 'w-12 h-12 text-base',
+    'starlight-avatar-xl': 'w-16 h-16 text-lg',
+
+    'starlight-theme-toggle': 'flex items-center justify-center w-10 h-10 rounded-full bg-white_05 border border-white_10 cursor-pointer transition-all duration-300',
+    'starlight-notification': 'relative flex items-center justify-center w-10 h-10 bg-transparent border-none cursor-pointer',
+    'starlight-notification-dot': 'absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse',
+
+    'starlight-table-container': 'bg-white_03 border border-white_08 rounded-xl overflow-hidden',
+    'starlight-table-header': 'flex items-center justify-between p-4 border-b border-white_08',
+    'starlight-table': 'w-full border-collapse',
+    'starlight-table-footer': 'flex items-center justify-between p-4 border-t border-white_08 text-white_60',
+
+    'starlight-chart': 'bg-white_03 border border-white_08 rounded-xl overflow-hidden',
+    'starlight-chart-header': 'flex items-center justify-between p-4 border-b border-white_05',
+    'starlight-chart-tabs': 'flex gap-1',
+    'starlight-chart-tab': 'px-3 py-1 text-xs font-medium bg-transparent border-none rounded-md cursor-pointer transition-all',
+    'starlight-chart-tab.active': 'bg-starlight-blue_15 text-starlight-blue',
+
+    'starlight-breadcrumb': 'flex items-center gap-2 text-sm',
+    'starlight-breadcrumb-item': 'text-white_60 no-underline transition-colors',
+    'starlight-breadcrumb-separator': 'text-white_40',
+    'starlight-breadcrumb-current': 'font-medium',
+
+    'starlight-gallery-grid': 'grid gap-4',
+    'starlight-gallery-item': 'relative aspect-video rounded-lg overflow-hidden',
+    'starlight-gallery-overlay': 'absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black_80 to-transparent opacity-0 transition-opacity',
+
+    'starlight-progress': 'flex items-center gap-3',
+    'starlight-progress-bar': 'flex-1 h-2 bg-white_10 rounded-full overflow-hidden',
+    'starlight-progress-fill': 'h-full bg-gradient-to-r from-starlight-blue to-starlight-peach rounded-full transition-all duration-500',
+
+    'starlight-player-controls': 'flex items-center gap-4',
+    'starlight-player-btn': 'flex items-center justify-center w-10 h-10 bg-transparent border-none cursor-pointer transition-all',
+    'starlight-player-btn-primary': 'w-12 h-12 bg-starlight-blue rounded-full text-black hover:bg-starlight-peach',
+
+    'starlight-page-header': 'flex items-center justify-between p-6',
+    'starlight-page-title': 'text-3xl font-bold',
+    'starlight-page-subtitle': 'text-sm text-white_60 mt-1'
   };
   
   module.exports = { defaultTheme, utilityMaps };
