@@ -113,15 +113,38 @@ function generateCSS(configPath) {
 
   const files = (config.content || []).flatMap(p => glob.sync(p));
   const rawClasses = new Set();
+  
+  // Scanners
   const classAttrRegex = /class="([^"]+)"/g;
+  const variants = ['sm', 'md', 'lg', 'xl', '2xl', 'dark', 'light', 'hover', 'focus', 'active', 'group-hover'];
+  const variantRegexes = variants.map(v => ({
+    variant: v,
+    regex: new RegExp(`\\s${v}="([^"]+)"`, 'g')
+  }));
 
   files.forEach(file => {
     try {
       const content = fs.readFileSync(file, 'utf8');
+      
+      // 1. Match standard class="..."
       let match;
       while ((match = classAttrRegex.exec(content)) !== null) {
         match[1].split(/\s+/).forEach(cls => { if (cls) rawClasses.add(cls); });
       }
+      
+      // 2. Match attribute lanes (e.g., md="flex gap-4")
+      variantRegexes.forEach(({ variant, regex }) => {
+        regex.lastIndex = 0;
+        while ((match = regex.exec(content)) !== null) {
+          match[1].split(/\s+/).forEach(cls => {
+            if (cls) {
+              // We convert attribute-based utilities to a canonical internal format
+              // using the __ separator, which getRulesForClass already understands.
+              rawClasses.add(`${variant}__${cls}`);
+            }
+          });
+        }
+      });
     } catch {
       // Ignore errors reading files
     }
@@ -139,8 +162,7 @@ function generateCSS(configPath) {
    * @returns {string} The escaped selector
    */
   const escapeSelector = (cls) => {
-    // No longer need complex escaping since we avoid : and /
-    return cls.replace(/([.[\]\\])/g, '\\$1');
+    return cls.replace(/([:.[\]\\])/g, '\\$1');
   };
 
   const sideMap = {
@@ -156,7 +178,10 @@ function generateCSS(configPath) {
   function getRulesForClass(fullCls, processedPresets = new Set()) {
     let cls = fullCls, variant = null, breakpoint = null, isNeg = false;
     if (cls.startsWith('-')) { isNeg = true; cls = cls.substring(1); }
-    const parts = cls.split('__');
+    
+    // Support both : and __ as separators
+    const parts = cls.includes('__') ? cls.split('__') : cls.split(':');
+    
     let currentPart = 0;
     while (currentPart < parts.length) {
       const p = parts[currentPart];
@@ -164,12 +189,19 @@ function generateCSS(configPath) {
       else if (p === 'dark') { breakpoint = 'dark'; }
       else if (p === 'light') { breakpoint = 'light'; }
       else if (['hover', 'focus', 'active', 'placeholder', 'group-hover'].includes(p)) { variant = p; }
-      else { cls = parts.slice(currentPart).join('__'); break; }
+      else { 
+        // Reconstruct the remaining class part
+        cls = parts.slice(currentPart).join(cls.includes('__') ? '__' : ':'); 
+        break; 
+      }
       currentPart++;
     }
 
     // Check Presets (User Config & Defaults)
-    const presetValue = (config.componentPresets && config.componentPresets[cls]) || (currentUtilityMaps[cls] && typeof currentUtilityMaps[cls] === 'string' ? currentUtilityMaps[cls] : null);
+    let presetValue = config.componentPresets && config.componentPresets[cls];
+    if (!presetValue && currentUtilityMaps[cls] && typeof currentUtilityMaps[cls] === 'string') {
+      presetValue = currentUtilityMaps[cls];
+    }
     
     if (presetValue && !processedPresets.has(cls)) {
       processedPresets.add(cls);
@@ -378,34 +410,70 @@ function generateCSS(configPath) {
     merged.forEach(group => {
       const { breakpoint, variant, customSelector, rules } = group;
       const escapedFull = escapeSelector(fullCls);
-      let selector = customSelector || `.${escapedFull}`;
-      if (variant) { if (variant === 'group-hover') selector = `.group:hover ${selector}`; else selector += `:${variant}`}
       
-      if (breakpoint === 'light') {
-        const block = `html[data-theme="light"] ${selector}, body.light-mode ${selector} {
-${rules.join('\n')}
-}
-`;
-        utilities.add(block);
-      } else if (breakpoint === 'dark') {
-        const block = `html[data-theme="dark"] ${selector}, body.dark-mode ${selector} {
-${rules.join('\n')}
-}
-`;
-        utilities.add(block);
-        // Also add to media query for system preference
-        const mediaBlock = `${selector} {
-${rules.join('\n')}
-}
-`;
-        responsiveUtils['dark'].add(mediaBlock);
+      // Generate multiple selectors for maximum compatibility
+      const selectors = [];
+      
+      if (customSelector) {
+        selectors.push(customSelector);
       } else {
-        const block = `${selector} {
-${rules.join('\n')}
+        // 1. Standard class selector (e.g., .md:flex or .md__flex)
+        let classSelector = `.${escapedFull}`;
+        if (variant) {
+          if (variant === 'group-hover') classSelector = `.group:hover ${classSelector}`;
+          else classSelector += `:${variant}`;
+        }
+        selectors.push(classSelector);
+
+        // 2. Attribute-based selector (e.g., [md~="flex"])
+        // If the class has a variant/breakpoint prefix, we can support it as an attribute
+        const separator = fullCls.includes('__') ? '__' : ':';
+        const parts = fullCls.split(separator);
+        if (parts.length > 1) {
+          const prefix = parts[0];
+          const utility = parts.slice(1).join(separator);
+          let attrSelector = `[${prefix}~="${utility}"]`;
+          
+          if (variant && variant !== 'group-hover' && variant === prefix) {
+             // Already covered by attribute name (e.g. [hover~="text-primary"])
+             // but we still need the :hover pseudo-class if it's a state
+             if (['hover', 'focus', 'active'].includes(variant)) {
+               attrSelector += `:${variant}`;
+             }
+          } else if (variant) {
+            if (variant === 'group-hover') attrSelector = `.group:hover ${attrSelector}`;
+            else attrSelector += `:${variant}`;
+          }
+          selectors.push(attrSelector);
+        }
+      }
+
+      selectors.forEach(selector => {
+        if (breakpoint === 'light') {
+          const block = `html[data-theme="light"] ${selector}, body.light-mode ${selector} {
+  ${rules.join('\n').trim()}
 }
 `;
-        if (breakpoint) responsiveUtils[breakpoint].add(block); else utilities.add(block);
-      }
+          utilities.add(block);
+        } else if (breakpoint === 'dark') {
+          const block = `html[data-theme="dark"] ${selector}, body.dark-mode ${selector} {
+  ${rules.join('\n').trim()}
+}
+`;
+          utilities.add(block);
+          const mediaBlock = `${selector} {
+  ${rules.join('\n').trim()}
+}
+`;
+          responsiveUtils['dark'].add(mediaBlock);
+        } else {
+          const block = `${selector} {
+  ${rules.join('\n').trim()}
+}
+`;
+          if (breakpoint) responsiveUtils[breakpoint].add(block); else utilities.add(block);
+        }
+      });
     });
   }
 

@@ -189,10 +189,13 @@ const utilityMaps = {
     'nav-glass': 'nav-base theme-glass-dark',
     'starlight-card': 'card-base theme-glass-dark',
     'starlight-nav': 'nav-base theme-glass-dark w-full',
+    'nav-reverse': { property: 'flex-direction', value: 'row-reverse' },
+    'nav-center': { property: 'display', value: 'grid' },
+    'hamburger-left': { property: 'order', value: '-1' },
     'starlight-search': 'search-container theme-glass-dark rounded-xl',
-    'starlight-dashboard': 'grid grid-cols-1 md__grid-cols-2 lg__grid-cols-3 gap-8',
-    'starlight-gallery': 'grid grid-cols-1 sm__grid-cols-2 lg__grid-cols-4 gap-4',
-    'starlight-form': 'card-base theme-glass-dark grid grid-cols-1 md__grid-cols-2 gap-8 items-start',
+    'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
+    'starlight-form': 'card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
     'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark starlight-dialog-bg ani-scale-in'
   };
   

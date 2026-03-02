@@ -263,9 +263,10 @@
                 padding: 1rem;
             }
             
-            .admin-logo span,
+            .admin-logo > div:last-child,
             .nav-section-title,
             .nav-item span,
+            .nav-badge,
             .theme-label {
                 display: none;
             }
@@ -274,9 +275,11 @@
                 justify-content: center;
                 padding: 0.75rem;
             }
-            
-            .search-input {
-                width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .top-nav-actions .starlight-search {
+                display: none;
             }
         }
         
@@ -423,11 +426,11 @@
                     <span>All Users</span>
                 </nav>
                 <div class="top-nav-actions">
-                    <div class="search-box">
+                    <div class="starlight-search max-w-xs">
                         <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
-                        <input type="text" class="search-input" placeholder="Search users...">
+                        <input type="text" class="bg-transparent border-none w-full h-full pl-12 outline-none text-sm text-white" placeholder="Search users...">
                     </div>
                     <button class="icon-btn">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

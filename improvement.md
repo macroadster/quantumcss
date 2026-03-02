@@ -1,30 +1,34 @@
-# Quantum CSS Library: Future Roadmap (v1.8.0+)
+# QuantumCSS: AI-First Development Roadmap (v1.9.0+)
 
-Following the successful stabilization of the v1.7.x series, which introduced the JIT engine, decoupled architecture, and standardized naming, the focus shifts toward developer experience, extensibility, and interactive polish.
+Following the stabilization of the JIT engine and the refinement of the "Semantic Lanes" (Attribute-Driven Styling), the next phase of QuantumCSS focuses on becoming the premier framework for **AI-Assisted Engineering**. 
 
-## 1. Functional CLI Scaffolding
-The CLI should evolve from a build wrapper to a full project orchestrator.
-- **`init` Command**: Generate a sensible `quantum.config.json` and basic directory structure.
-- **`scaffold` Command**: Boilerplate generation for common layouts (e.g., `quantumcss scaffold --template gaming`).
-- **Watch Mode**: Improved chokidar integration for a seamless "hot reload" CSS experience.
+The goal is to provide a design system that is not just "human-readable," but "AI-Optimal"—minimizing hallucinations, reducing token consumption, and maximizing layout stability.
 
-## 2. "Glow Focus" Interaction System
-Replace standard browser focus rings with a cohesive, cosmic interaction language.
-- **Semantic Focus**: A `focus-glow` utility that automatically pulls the component's accent color (primary, starlight-blue, etc.).
-- **Consistent States**: Unified focus/active/hover behavior across all interactive primitives (buttons, inputs, toggles).
+## 1. CLI "Manifest" & Context Injection
+To help LLMs (like Claude, GPT-4, and Gemini) understand the available design language without exhaustive documentation.
+- **`manifest` Command**: A CLI tool that generates a compact, AI-optimized JSON/Markdown catalog of all active theme tokens, utility classes, and component presets.
+- **Context Artifacts**: Automatic generation of a `.quantum-context` file that developers can drop into their project root to "prime" AI agents with project-specific styling rules.
 
-## 3. Formalized Plugin Architecture
-Enable community and project-specific extensions without modifying the core generator.
-- **Dynamic Maps**: Allow external JS plugins to register new `utilityMaps`.
-- **Preset Injection**: Plugins should be able to provide complex `componentPresets`.
-- **Configuration Hooks**: Lifecycle hooks for the JIT engine to allow post-processing of generated CSS.
+## 2. Expanded Semantic Component Presets (Starlight UI)
+LLMs are significantly more reliable when using high-level semantic classes than long strings of atomic utilities.
+- **High-Level Primitives**: Move beyond `btn-starlight` to full layout presets like `starlight-navbar`, `starlight-sidebar`, `starlight-feed-card`, and `starlight-auth-form`.
+- **Atomic Abstraction**: Encapsulate complex glassmorphism and animation logic inside these presets to reduce HTML token count and prevent AI-generated "utility soup."
 
-## 4. Interactive "Kitchen Sink" Playground
-Transform the static documentation into a dynamic configuration tool.
-- **Variable Sliders**: Real-time manipulation of core tokens (blur radius, primary hue, spacing scale).
-- **Copy-Paste Export**: Allow users to "design" their theme in the browser and export the resulting `quantum.config.json`.
+## 3. Configuration Schema & Validation
+Ensure that AI agents can autonomously update the theme without breaking the build.
+- **JSON Schema**: Provide a formal schema for `quantum.config.json` to enable real-time linting and autocompletion for both humans and AIs.
+- **Theme Constraints**: Allow the config to define "Safe Zones" (e.g., contrast ratio requirements) that the AI must respect when suggesting color palette changes.
 
-## 5. Advanced Data Visualization Primitives
-Expand the SVG support into a set of specialized layout primitives.
-- **Chart Containers**: Responsive aspect-ratio containers specifically for SVG charts.
-- **Tooltip Portals**: Standardized way to handle high-z-index tooltips that don't get clipped by parent overflow.
+## 4. AI System Prompt Artifacts
+Provide pre-written, tested "System Instructions" for different AI models.
+- **`SYSTEM_PROMPT.md`**: A copy-pasteable instruction set that tells an AI exactly how to write QuantumCSS code (e.g., "Prefer Attribute Mode for responsiveness," "Always use standard ':' separators," "Utilize Starlight presets for components").
+- **Design Rulebook**: A formalized set of design logic rules that AI can follow to ensure visual consistency with the Starlight aesthetic.
+
+## 5. Enhancement of semantic "Lanes" (Attribute Mode)
+Deepen the JIT engine's ability to reason about component state via HTML attributes.
+- **Composite Attributes**: Support for more complex attribute-driven logic that allows AI to group interaction states (e.g., `q-state="hover:text-primary focus:glow-blue"`).
+- **Logical Grouping**: Make the HTML structure even cleaner for AI to read/write, treating state and responsiveness as structured data rather than messy class strings.
+
+---
+
+*This roadmap prioritizes the synergy between human creativity and AI execution, positioning QuantumCSS as the bridge between design intent and generated reality.*

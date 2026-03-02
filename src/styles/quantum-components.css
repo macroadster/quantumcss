@@ -1,6 +1,6 @@
 
-.group:hover .group-hover__opacity-100 { opacity: 1; }
-.group:hover .group-hover__scale-110 { transform: scale(1.1); }
+.group:hover .group-hover\:opacity-100 { opacity: 1; }
+.group:hover .group-hover\:scale-110 { transform: scale(1.1); }
 
 /* Component-Specific Utilities */
 

@@ -242,18 +242,24 @@
             }
             
             .email-content {
-                display: none;
-            }
-            
-            .email-content.mobile-visible {
-                display: block;
                 position: fixed;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
                 z-index: 100;
-                background: inherit;
+                background: #08081a;
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                display: block; /* Always block, use transform to hide */
+            }
+
+            body.light-mode .email-content {
+                background: #f8fafc;
+            }
+            
+            .email-content.mobile-visible {
+                transform: translateX(0);
             }
         }
 
@@ -433,11 +439,13 @@
                     </div>
                 </div>
 
-                <div class="search-box px-4 py-3">
-                    <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                    <input type="text" class="search-input search-input-full" placeholder="Search emails...">
+                <div class="px-4 py-3">
+                    <div class="starlight-search">
+                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input type="text" class="bg-transparent border-none w-full h-full pl-12 outline-none text-sm text-white" placeholder="Search emails...">
+                    </div>
                 </div>
 
                 <div class="email-item unread active">
@@ -554,7 +562,13 @@
             </div>
 
             <!-- Email Content -->
-            <div class="email-content">
+            <div class="email-content" id="email-content">
+                <button class="md:hidden mb-6 flex items-center gap-2 text-starlight font-bold" onclick="closeEmail()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Inbox
+                </button>
                 <div class="email-header">
                     <div class="email-sender-info">
                         <div class="avatar avatar-lg">SC</div>
@@ -620,7 +634,7 @@
                 <div class="mt-8 pt-6 border-t border-white_10">
                     <h3 class="text-sm font-semibold mb-4 text-slate-400">Attachments (2)</h3>
                     <div class="flex gap-4">
-                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white_5   cursor-pointer hover="bg-white_10" transition-colors">
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white_5   cursor-pointer hover:bg-white_10 transition-colors">
                             <div class="w-10 h-10 rounded-lg bg-red-500_20 flex items-center justify-center">
                                 <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
@@ -631,7 +645,7 @@
                                 <div class="text-xs text-slate-500">2.4 MB</div>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white_5   cursor-pointer hover="bg-white_10" transition-colors">
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white_5   cursor-pointer hover:bg-white_10 transition-colors">
                             <div class="w-10 h-10 rounded-lg bg-green-500_20 flex items-center justify-center">
                                 <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
@@ -645,7 +659,7 @@
                     </div>
                 </div>
 
-                <div class="mt-8 flex gap-3">
+                <div class="mt-8 flex flex-wrap gap-3">
                     <button class="btn-starlight flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
@@ -682,8 +696,17 @@
                 document.querySelectorAll('.email-item').forEach(i => i.classList.remove('active'));
                 this.classList.add('active');
                 this.classList.remove('unread');
+                
+                // Mobile view toggle
+                if (window.innerWidth <= 768) {
+                    document.getElementById('email-content').classList.add('mobile-visible');
+                }
             });
         });
+
+        function closeEmail() {
+            document.getElementById('email-content').classList.remove('mobile-visible');
+        }
 
         // Folder click handler
         document.querySelectorAll('.folder-item').forEach(folder => {
