@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { generateCSS } = require('./generator');
-const { defaultTheme } = require('./defaults');
+const { defaultTheme, utilityMaps } = require('./defaults');
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
@@ -19,12 +19,52 @@ Commands:
   watch [output]      Build and watch for changes
   init                Generate a default ${CONFIG_FILE}
   scaffold <type>     Generate a template (gaming, blog, travel, etc.)
+  manifest [output]   Generate an AI-optimized design system catalog
 
 Options:
   -w, --watch         Same as the 'watch' command
   -v, --version       Show version
   -h, --help          Show this help
 `);
+}
+
+function manifest(outputPath) {
+  console.log('📖 Generating AI Design System Manifest...');
+  
+  let userConfig = {};
+  if (fs.existsSync(CONFIG_FILE)) {
+    try {
+      userConfig = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+    } catch (e) {
+      console.warn('⚠️  Could not parse quantum.config.json, using defaults only.');
+    }
+  }
+
+  const manifestData = {
+    version: pkg.version,
+    theme: {
+      colors: { ...defaultTheme.colors, ...(userConfig.theme?.extend?.colors || {}) },
+      spacing: { ...defaultTheme.spacing, ...(userConfig.theme?.extend?.spacing || {}) },
+      fontSize: defaultTheme.fontSize,
+      shadows: defaultTheme.shadows,
+      maxWidth: defaultTheme.maxWidth
+    },
+    utilityMaps: Object.keys(utilityMaps),
+    componentPresets: {
+      ...utilityMaps, // Default semantic presets are in utilityMaps
+      ...(userConfig.componentPresets || {})
+    },
+    variants: ['sm', 'md', 'lg', 'xl', '2xl', 'dark', 'light', 'hover', 'focus', 'active', 'group-hover'],
+    instructions: "Always use ':' for variants (e.g., md:flex). Prefer 'Attribute Mode' for complex layouts using sm=\"...\" md=\"...\" attributes."
+  };
+
+  const json = JSON.stringify(manifestData, null, 2);
+  if (outputPath) {
+    fs.writeFileSync(outputPath, json);
+    console.log(`✅ Manifest saved to ${outputPath}`);
+  } else {
+    console.log(json);
+  }
 }
 
 function init() {
@@ -132,6 +172,10 @@ function main() {
   switch (command) {
     case 'init':
       init();
+      break;
+    
+    case 'manifest':
+      manifest(args[1]);
       break;
     
     case 'scaffold':

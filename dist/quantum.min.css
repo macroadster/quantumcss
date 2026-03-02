@@ -5643,6 +5643,32 @@ html[data-theme="light"] [light~="shadow-lg"], body.light-mode [light~="shadow-l
   --q-gradient-stops: var(--q-gradient-from), var(--q-gradient-to);
 }
 
+.starlight-navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  min-width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.03);
+  border-width: 1px;
+  border-style: solid;
+  width: 100%;
+  top: 0px;
+  z-index: 50;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 .h-24 {
   height: 6rem;
 }
@@ -5727,7 +5753,15 @@ html[data-theme="light"] [light~="shadow-lg"], body.light-mode [light~="shadow-l
   color: #3b82f6 !important;
 }
 
-.backdrop-blur-md {
+.starlight-footer {
+  border-width: 0;
+  border-top-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.1);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-top: 5rem;
+  background-color: rgba(0, 0, 0, 0.2) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -5878,6 +5912,11 @@ html[data-theme="light"] [light~="shadow-lg"], body.light-mode [light~="shadow-l
 
 .bg-blue-600_20 {
   background-color: rgba(37, 99, 235, 0.2) !important;
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .ml-2 {
