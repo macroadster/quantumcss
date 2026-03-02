@@ -175,7 +175,7 @@ const utilityMaps = {
   'glow-orange': { property: 'box-shadow', value: '0 0 30px rgba(255, 126, 95, 0.25)' },
   'focus-glow': {
     property: ['outline', 'box-shadow'],
-    value: ['none !important', '0 0 0 4px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.5) !important'],
+    value: ['none !important', '0 0 0 4px rgba(0, 212, 255, 0.4), 0 0 35px rgba(0, 212, 255, 0.7) !important'],
     variant: 'focus'
   },
   'btn-starlight': 'btn-base theme-starlight px-6',

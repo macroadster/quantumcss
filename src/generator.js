@@ -337,12 +337,12 @@ function generateCSS(configPath) {
       } else if (prefix === 'focus-glow') {
         const color = resolveColor(valKey) || resolveColor('primary') || '#00d4ff';
         const rgba = getRGBA(color);
-        const glowColor = withOpacity(rgba, 0.5);
-        const ringColor = withOpacity(rgba, 0.25);
+        const glowColor = withOpacity(rgba, 0.7);
+        const ringColor = withOpacity(rgba, 0.4);
         
         const rules = [
           '  outline: none !important;',
-          `  box-shadow: 0 0 0 4px ${ringColor}, 0 0 30px ${glowColor} !important;`
+          `  box-shadow: 0 0 0 4px ${ringColor}, 0 0 35px ${glowColor} !important;`
         ];
         
         // Apply to both focus and active states for better interactive feedback
