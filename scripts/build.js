@@ -206,6 +206,7 @@ class QuantumCSSBuilder {
         
         body.light-mode .designer-panel { background: rgba(255, 255, 255, 0.9); border-color: rgba(0, 0, 0, 0.1); color: #000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
         body.light-mode .designer-slider { background: rgba(0, 0, 0, 0.1); }
+        body.light-mode .theme-glass { background: rgba(0, 0, 0, 0.03) !important; border-color: rgba(0, 0, 0, 0.1) !important; }
     </style>
 </head>
 <body class="p-8">
@@ -623,7 +624,7 @@ class QuantumCSSBuilder {
                     <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.starlight-dialog)</div>
                     <div class="p-8">
                         <!-- Inline Preview -->
-                        <div class="dialog-base theme-glass-dark relative mx-auto mb-8 shadow-none border-white_10" style="max-width: 500px;">
+                        <div class="dialog-base theme-glass relative mx-auto mb-8 shadow-none border-white_10" style="max-width: 500px;">
                             <h3 class="text-xl font-bold mb-4 text-gradient-starlight">System Preview</h3>
                             <p class="mb-6 opacity-70 text-sm">This is an inline preview of the dialog component. It scales to fit its container.</p>
                             <div class="flex gap-4">
