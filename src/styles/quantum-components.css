@@ -101,8 +101,9 @@ html[data-theme="light"] .btn-secondary {
 
 /* Card Component */
 .card {
-  background-color: var(--q-bg-primary);
+  background-color: var(--q-card-bg);
   color: var(--q-text-primary);
+  border: 1px solid var(--q-card-border);
   border-radius: var(--q-radius-lg);
   box-shadow: var(--q-shadow-md);
   overflow: hidden;
@@ -469,7 +470,7 @@ html[data-theme="light"] .dropdown-item:hover {
 
 /* Accordion Component */
 .accordion-item {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--q-card-border);
   border-radius: var(--q-radius-md);
   margin-bottom: var(--q-space-2);
   overflow: hidden;

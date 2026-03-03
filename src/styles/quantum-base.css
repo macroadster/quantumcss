@@ -91,6 +91,8 @@
   
   /* Semantic Background Colors */
   --q-bg-primary: var(--q-color-starlight-deep);
+  --q-card-bg: rgba(255 255 255 / 5%);
+  --q-card-border: rgba(255 255 255 / 8%);
   
   /* Semantic Text Colors */
   --q-text-primary: #f1f5f9;
