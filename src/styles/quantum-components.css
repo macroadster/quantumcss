@@ -90,6 +90,15 @@ html[data-theme="light"] .btn-secondary {
   font-size: 1.25rem;
 }
 
+/* Glass Utility */
+.glass {
+  background: var(--q-glass-bg);
+  border: 1px solid var(--q-glass-border);
+  backdrop-filter: var(--q-glass-blur);
+  -webkit-backdrop-filter: var(--q-glass-blur);
+  border-radius: var(--q-radius-xl);
+}
+
 /* Card Component */
 .card {
   background-color: white;
@@ -1373,7 +1382,7 @@ html[data-theme="light"] .user-email {
   color: #34d399;
 }
 
-.status-active__:before {
+.status-active::before {
   background: #34d399;
 }
 
@@ -1391,7 +1400,7 @@ html[data-theme="light"] .user-email {
   color: #f87171;
 }
 
-.status-inactive__:before {
+.status-inactive::before {
   background: #f87171;
 }
 
