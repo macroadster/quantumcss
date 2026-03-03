@@ -59,7 +59,7 @@
             gap: 0.75rem;
             padding: 0.875rem 1rem;
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(59, 130, 246, 0.15));
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.6);
             border-radius: 0.75rem;
             color: var(--color-starlight, #00d4ff);
             font-size: 0.875rem;
@@ -635,45 +635,45 @@
         }
 
         .sun-icon { display: none; }
-        body.light-mode .sun-icon { display: inline; }
-        body.light-mode .moon-icon { display: none; }
+        html[data-theme="light"] .sun-icon { display: inline; }
+        html[data-theme="light"] .moon-icon { display: none; }
 
         /* Light Mode */
-        body.light-mode {
+        html[data-theme="light"] {
             --bg-primary: #f8fafc;
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-muted: #64748b;
         }
 
-        body.light-mode .music-sidebar {
+        html[data-theme="light"] .music-sidebar {
             background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
             border-right-color: #e2e8f0;
         }
 
-        body.light-mode .player-bar {
+        html[data-theme="light"] .player-bar {
             background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
             border-top-color: #e2e8f0;
         }
 
-        body.light-mode .track-row:hover {
+        html[data-theme="light"] .track-row:hover {
             background: rgba(0, 0, 0, 0.03);
         }
 
-        body.light-mode .track-row.active {
+        html[data-theme="light"] .track-row.active {
             background: rgba(0, 212, 255, 0.08);
         }
 
-        body.light-mode .nav-arrow {
+        html[data-theme="light"] .nav-arrow {
             background: rgba(0, 0, 0, 0.1);
         }
 
-        body.light-mode .upgrade-btn {
+        html[data-theme="light"] .upgrade-btn {
             border-color: rgba(0, 0, 0, 0.2);
             color: var(--text-primary);
         }
 
-        body.light-mode .control-btn.play {
+        html[data-theme="light"] .control-btn.play {
             background: var(--text-primary);
             color: white;
         }
@@ -696,7 +696,7 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        body.light-mode ::-webkit-scrollbar-thumb {
+        html[data-theme="light"] ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
         }
 
@@ -1206,15 +1206,7 @@
     </div>
 
     <script>
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-        }
 
         // Track row click handler
         document.querySelectorAll('.track-row').forEach(row => {

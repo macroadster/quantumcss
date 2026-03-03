@@ -450,13 +450,13 @@ function generateCSS(configPath) {
 
       selectors.forEach(selector => {
         if (breakpoint === 'light') {
-          const block = `html[data-theme="light"] ${selector}, body.light-mode ${selector} {
+          const block = `html[data-theme="light"] ${selector} {
   ${rules.join('\n').trim()}
 }
 `;
           utilities.add(block);
         } else if (breakpoint === 'dark') {
-          const block = `html[data-theme="dark"] ${selector}, body.dark-mode ${selector} {
+          const block = `html[data-theme="dark"] ${selector} {
   ${rules.join('\n').trim()}
 }
 `;

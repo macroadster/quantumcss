@@ -24,52 +24,52 @@
         background: rgba(255, 255, 255, 0.1);
     }
 
-    body.light-mode .theme-toggle:hover {
+    html[data-theme="light"] .theme-toggle:hover {
         background: rgba(0, 0, 0, 0.05);
     }
 
     .sun-icon { display: none; }
-    body.light-mode .sun-icon { display: block; }
-    body.light-mode .moon-icon { display: none; }
+    html[data-theme="light"] .sun-icon { display: block; }
+    html[data-theme="light"] .moon-icon { display: none; }
 
-    body.light-mode {
+    html[data-theme="light"] {
         background-color: #f8fafc;
         color: #1e293b;
     }
 
-    body.light-mode .text-white,
-    body.light-mode .text-primary,
-    body.light-mode h1,
-    body.light-mode h2,
-    body.light-mode h3,
-    body.light-mode h4 {
+    html[data-theme="light"] .text-white,
+    html[data-theme="light"] .text-primary,
+    html[data-theme="light"] h1,
+    html[data-theme="light"] h2,
+    html[data-theme="light"] h3,
+    html[data-theme="light"] h4 {
         color: #0f172a !important;
     }
 
-    body.light-mode .text-secondary,
-    body.light-mode .text-muted,
-    body.light-mode .text-slate-300,
-    body.light-mode .prose,
-    body.light-mode .prose p {
+    html[data-theme="light"] .text-secondary,
+    html[data-theme="light"] .text-muted,
+    html[data-theme="light"] .text-slate-300,
+    html[data-theme="light"] .prose,
+    html[data-theme="light"] .prose p {
         color: #475569 !important;
     }
 
-    body.light-mode .glass {
+    html[data-theme="light"] .glass {
         background: rgba(255, 255, 255, 0.8) !important;
         border-color: rgba(0, 0, 0, 0.1) !important;
     }
 
-    body.light-mode .starlight-card {
+    html[data-theme="light"] .starlight-card {
         background: white;
         border-color: #e2e8f0;
     }
 
-    body.light-mode .code-window {
+    html[data-theme="light"] .code-window {
         background: #f1f5f9;
         border-color: #e2e8f0;
     }
 
-    body.light-mode .code-window pre {
+    html[data-theme="light"] .code-window pre {
         color: #1e293b;
     }
   </style>
@@ -110,7 +110,7 @@
         <a href="#" class="text-sm font-medium hover:text-primary transition-colors">Articles</a>
         <a href="#" class="text-sm font-medium hover:text-primary transition-colors">About</a>
         <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
-            <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+            <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
             <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
         </div>
         <button class="btn-starlight btn-sm">Subscribe</button>

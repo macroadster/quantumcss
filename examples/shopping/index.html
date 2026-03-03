@@ -8,7 +8,7 @@
     <script src="../../src/starlight.js"></script>
     <style>
         body { background-color: #f8fafc; color: #0f172a; transition: background-color 0.5s ease, color 0.5s ease; }
-        body.dark-mode { background-color: #020617; color: #f1f5f9; }
+        html[data-theme="dark"] { background-color: #020617; color: #f1f5f9; }
         .product-card:hover .product-image { transform: scale(1.05); }
         .product-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
 
@@ -44,45 +44,38 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        body.dark-mode .theme-toggle:hover {
+        html[data-theme="dark"] .theme-toggle:hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
-        body.dark-mode .bg-white,
         html[data-theme="dark"] .bg-white {
             background-color: #0f172a !important;
             border-color: rgba(255, 255, 255, 0.1) !important;
             color: #f1f5f9 !important;
         }
 
-        body.dark-mode .bg-white\_80,
         html[data-theme="dark"] .bg-white\_80 {
             background-color: rgba(2, 6, 23, 0.8) !important;
         }
 
-        body.dark-mode .glass,
         html[data-theme="dark"] .glass {
             background-color: rgba(255, 255, 255, 0.08) !important;
             border-color: rgba(255, 255, 255, 0.15) !important;
         }
 
-        body.dark-mode .bg-slate-100,
         html[data-theme="dark"] .bg-slate-100 {
             background-color: rgba(255, 255, 255, 0.1) !important;
         }
 
-        body.dark-mode .border-slate-100,
         html[data-theme="dark"] .border-slate-100 {
             border-color: rgba(255, 255, 255, 0.1) !important;
         }
 
-        body.dark-mode nav,
         html[data-theme="dark"] nav {
             background-color: rgba(2, 6, 23, 0.8) !important;
             border-color: rgba(255, 255, 255, 0.1) !important;
         }
 
-        body.light-mode footer,
         html[data-theme="light"] footer {
             background-color: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(20px);
@@ -90,45 +83,30 @@
             color: #1e293b !important;
         }
 
-        body.light-mode footer h5,
         html[data-theme="light"] footer h5 {
             color: #64748b !important;
         }
 
-        body.light-mode footer a,
         html[data-theme="light"] footer a {
             color: #475569 !important;
         }
 
-        body.light-mode footer a:hover,
         html[data-theme="light"] footer a:hover {
             color: #ea580c !important;
         }
 
-        body.light-mode footer .text-orange-600,
         html[data-theme="light"] footer .text-orange-600 {
             color: #ea580c !important;
         }
 
-        body.light-mode footer .bg-slate-950,
         html[data-theme="light"] footer .bg-slate-950 {
             background-color: rgba(255, 255, 255, 0.8) !important;
         }
 
-        body.dark-mode .text-slate-900,
-        body.dark-mode .text-slate-600,
-        body.dark-mode .text-slate-500,
-        html[data-theme="dark"] .text-slate-900,
-        html[data-theme="dark"] .text-slate-600,
         html[data-theme="dark"] .text-slate-500 {
             color: #f1f5f9 !important;
         }
 
-        body.light-mode .text-slate-900,
-        body.light-mode .text-slate-600,
-        body.light-mode .text-slate-500,
-        html[data-theme="light"] .text-slate-900,
-        html[data-theme="light"] .text-slate-600,
         html[data-theme="light"] .text-slate-500 {
             color: #0f172a !important;
         }

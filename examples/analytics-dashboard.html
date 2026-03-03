@@ -75,13 +75,13 @@
             color: var(--text-primary, #f1f5f9);
         }
 
-        body.light-mode .notification-btn {
+        html[data-theme="light"] .notification-btn {
             background: #ffffff;
             border-color: #e2e8f0;
             color: #64748b;
         }
 
-        body.light-mode .notification-badge {
+        html[data-theme="light"] .notification-badge {
             border-color: #ffffff;
         }
 
@@ -362,34 +362,34 @@
 
         /* Sun/Moon icons */
         .sun-icon { display: none; }
-        body.light-mode .sun-icon { display: inline; }
-        body.light-mode .moon-icon { display: none; }
+        html[data-theme="light"] .sun-icon { display: inline; }
+        html[data-theme="light"] .moon-icon { display: none; }
 
         /* Light Mode Overrides */
-        body.light-mode {
+        html[data-theme="light"] {
             --bg-primary: #f8fafc;
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-muted: #64748b;
         }
 
-        body.light-mode .chart-card {
+        html[data-theme="light"] .chart-card {
             background: #ffffff;
             border-color: #e2e8f0;
         }
 
-        body.light-mode .date-selector {
+        html[data-theme="light"] .date-selector {
             background: #ffffff;
             border-color: #e2e8f0;
         }
 
-        body.light-mode .header {
+        html[data-theme="light"] .header {
             border-bottom-color: #e2e8f0;
         }
 
-        body.light-mode .legend-item,
-        body.light-mode .activity-item,
-        body.light-mode .product-row {
+        html[data-theme="light"] .legend-item,
+        html[data-theme="light"] .activity-item,
+        html[data-theme="light"] .product-row {
             border-bottom-color: #f1f5f9;
         }
 
@@ -826,16 +826,8 @@
 
     <script>
         // Theme toggle
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
 
         // Check saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-        }
 
         // Chart drawing functions
         function drawLineChart() {

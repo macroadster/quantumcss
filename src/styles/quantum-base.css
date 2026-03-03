@@ -165,6 +165,7 @@
 }
 
 html {
+  scroll-behavior: smooth;
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
   font-family: Inter, system-ui, -apple-system, sans-serif;
@@ -800,8 +801,7 @@ textarea {
 
 
 
-html[data-theme="light"],
-body.light-mode {
+html[data-theme="light"] {
   color-scheme: light;
 
   --q-bg-primary: var(--q-light-bg);
@@ -812,8 +812,7 @@ body.light-mode {
   scrollbar-color: var(--q-color-starlight-blue) transparent;
 }
 
-html[data-theme="dark"],
-body.dark-mode {
+html[data-theme="dark"] {
   color-scheme: dark;
 
   --q-bg-primary: var(--q-color-starlight-deep);
@@ -821,14 +820,12 @@ body.dark-mode {
 }
 
 /* Force theme colors on body to override template-specific hardcoded styles */
-html[data-theme="light"] body,
-body.light-mode {
+html[data-theme="light"] body {
   background: var(--q-light-bg) !important;
   color: var(--q-light-text);
 }
 
-html[data-theme="dark"] body,
-body.dark-mode {
+html[data-theme="dark"] body {
   background: var(--q-color-starlight-deep) !important;
   color: #f1f5f9;
 }

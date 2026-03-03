@@ -13,7 +13,7 @@
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        body.light-mode {
+        html[data-theme="light"] {
             background: #f1f5f9;
             color: #1e293b;
         }
@@ -30,7 +30,7 @@
             text-align: center;
         }
 
-        body.light-mode .hero-section {
+        html[data-theme="light"] .hero-section {
             background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9)), 
                         url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
@@ -60,43 +60,43 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        body.light-mode .theme-toggle:hover {
+        html[data-theme="light"] .theme-toggle:hover {
             background: rgba(0, 0, 0, 0.05);
         }
 
-        body.light-mode .glass {
+        html[data-theme="light"] .glass {
             background: rgba(0, 0, 0, 0.03) !important;
             border-color: rgba(0, 0, 0, 0.1) !important;
             color: #1e293b !important;
         }
 
-        body.light-mode .badge-secondary {
+        html[data-theme="light"] .badge-secondary {
             background-color: rgba(0, 0, 0, 0.05);
             color: #475569;
             border-color: rgba(0, 0, 0, 0.1);
         }
 
-        body.light-mode .starlight-card p {
+        html[data-theme="light"] .starlight-card p {
             color: #64748b;
         }
 
-        body.light-mode footer {
+        html[data-theme="light"] footer {
             background-color: #f1f5f9;
             border-top-color: #e2e8f0;
         }
 
-        body.light-mode footer .text-gradient-starlight {
+        html[data-theme="light"] footer .text-gradient-starlight {
             background: none;
             -webkit-text-fill-color: #1e293b;
             color: #1e293b;
         }
 
-        body.light-mode footer p, 
-        body.light-mode footer a {
+        html[data-theme="light"] footer p, 
+        html[data-theme="light"] footer a {
             color: #64748b;
         }
 
-        body.light-mode footer a:hover {
+        html[data-theme="light"] footer a:hover {
             color: #2563eb;
         }
     </style>
@@ -119,7 +119,7 @@
                     
                     <div class="flex items-center gap-4">
                         <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
-                            <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                            <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                             <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                         </div>
                         <button class="bg-starlight text-black px-8 py-2.5 rounded-full font-bold glow-blue hover:scale-105 transition border-none">Play Now</button>
@@ -129,7 +129,7 @@
                 <!-- Mobile Actions -->
                 <div class="flex items-center gap-4 md:hidden hamburger-left">
                     <div id="theme-btn-mobile" class="theme-toggle" title="Toggle Theme">
-                        <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                        <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                         <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     </div>
                     <div class="hamburger">

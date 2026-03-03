@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "starlight": {
+      "type": "remote",
+      "url": "https://starlight-ai.freemyip.com/mcp",
+      "enabled": true,
+      "headers": {
+        "X-API-KEY": "fd534c232a937f6acacef3399d78e21643610afa7753c4c58a333fa1979b48e8"
+      }
+    }
+  },
+  "provider": {
+    "lmstudio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://192.168.1.92:11434/v1"
+      },
+      "models": {
+        "qwen3-vl:8b": {
+          "name": "qwen3-vl:8b",
+          "options": {
+            "temperture": 0.7,
+            "topp": 0.8,
+            "topk": 20,
+            "greedy": false,
+            "max_tokens": 8192,
+            "repeat_penalty": 1,
+            "presence_penalty": 1.5,
+            "chat_template_kwargs": {"enable_thinking":  false}
+          },
+          "limit": {
+            "context": 32768,
+            "output": 1024
+          }
+        }
+      }
+    }
+  }
+}

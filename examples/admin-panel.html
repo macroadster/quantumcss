@@ -178,7 +178,7 @@
         .quick-action-card:hover {
             background: rgba(255, 255, 255, 0.05);
             transform: translateY(-2px);
-            border-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.6);
         }
 
         .quick-action-icon {
@@ -204,41 +204,41 @@
         }
 
         /* Light Mode Overrides */
-        body.light-mode {
+        html[data-theme="light"] {
             --bg-primary: #f8fafc;
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-muted: #64748b;
         }
 
-        body.light-mode .admin-logo {
+        html[data-theme="light"] .admin-logo {
             border-bottom-color: #e2e8f0;
         }
 
-        body.light-mode .table-container,
-        body.light-mode .quick-action-card {
+        html[data-theme="light"] .table-container,
+        html[data-theme="light"] .quick-action-card {
             background: #ffffff;
             border-color: #e2e8f0;
         }
 
-        body.light-mode .quick-action-card:hover {
+        html[data-theme="light"] .quick-action-card:hover {
             background: #f8fafc;
         }
 
-        body.light-mode th {
+        html[data-theme="light"] th {
             background: #f8fafc;
             border-bottom-color: #e2e8f0;
         }
 
-        body.light-mode td {
+        html[data-theme="light"] td {
             border-bottom-color: #f1f5f9;
         }
 
-        body.light-mode tr:hover td {
+        html[data-theme="light"] tr:hover td {
             background: #f8fafc;
         }
 
-        body.light-mode .table-footer {
+        html[data-theme="light"] .table-footer {
             background: #f8fafc;
             border-top-color: #e2e8f0;
         }
@@ -823,15 +823,7 @@
     </div>
 
     <script>
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-        }
     </script>
 </body>
 </html>

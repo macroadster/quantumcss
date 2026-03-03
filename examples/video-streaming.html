@@ -94,6 +94,29 @@
             overflow: hidden;
         }
         
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 72px 1fr;
+            }
+            .sidebar .nav-item {
+                justify-content: center;
+                padding: 0.75rem 0;
+            }
+            .sidebar .nav-item span:last-child,
+            .sidebar .nav-section-title {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+        
         /* Sidebar */
         .sidebar {
             padding: 0.75rem 0;
@@ -288,21 +311,19 @@
         }
         
         /* Light Mode */
-        body.light-mode {
+        html[data-theme="light"] {
             --bg-primary: #ffffff;
             --text-primary: #0f0f0f;
             --text-secondary: #606060;
             --text-muted: #909090;
         }
-        body.light-mode header { background: #ffffff; border-bottom-color: #e5e5e5; }
-        body.light-mode .nav-item:hover, body.light-mode .nav-item.active { background: #f2f2f2; }
-        body.light-mode .category-tab { background: #f2f2f2; border-color: #e5e5e5; color: #0f0f0f; }
-        body.light-mode .category-tab.active { background: #0f0f0f; color: #ffffff; }
-        body.light-mode .video-thumbnail, body.light-mode .short-thumbnail { background: #f2f2f2; }
+        html[data-theme="light"] header { background: #ffffff; border-bottom-color: #e5e5e5; }
+        html[data-theme="light"] .nav-item:hover, html[data-theme="light"] .nav-item.active { background: #f2f2f2; }
+        html[data-theme="light"] .category-tab { background: #f2f2f2; border-color: #e5e5e5; color: #0f0f0f; }
+        html[data-theme="light"] .category-tab.active { background: #0f0f0f; color: #ffffff; }
+        html[data-theme="light"] .video-thumbnail, html[data-theme="light"] .short-thumbnail { background: #f2f2f2; }
         
         @media (max-width: 1024px) {
-            .main-content { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
             .video-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
         }
         @media (max-width: 640px) {
@@ -312,7 +333,7 @@
         }
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 4px; }
-        body.light-mode ::-webkit-scrollbar-thumb { background: #ccc; }
+        html[data-theme="light"] ::-webkit-scrollbar-thumb { background: #ccc; }
     </style>
 </head>
 <body>
@@ -545,13 +566,6 @@
     </div>
     
     <script>
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-        }
         
         document.querySelectorAll('.category-tab').forEach(tab => {
             tab.addEventListener('click', function() {

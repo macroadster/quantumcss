@@ -68,15 +68,15 @@
         .theme-btn:hover { background: rgba(255, 255, 255, 0.08); }
         .theme-label { font-size: 0.875rem; font-weight: 500; }
         .sun-icon { display: none; }
-        body.light-mode .sun-icon { display: inline; }
-        body.light-mode .moon-icon { display: none; }
-        body.light-mode { --bg-primary: #f8fafc; --text-primary: #0f172a; --text-secondary: #475569; --text-muted: #64748b; }
-        body.light-mode .chat-sidebar { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); border-right-color: #e2e8f0; }
-        body.light-mode .chat-header, body.light-mode .chat-input-container { background: #f8fafc; border-color: #e2e8f0; }
-        body.light-mode .chat-input-wrapper { background: #f1f5f9; border-color: #e2e8f0; }
-        body.light-mode .conversation-item:hover { background: #f8fafc; }
-        body.light-mode .conversation-item.active { background: rgba(0, 212, 255, 0.08); }
-        body.light-mode .message.received .message-bubble { background: #f1f5f9; color: #0f172a; }
+        html[data-theme="light"] .sun-icon { display: inline; }
+        html[data-theme="light"] .moon-icon { display: none; }
+        html[data-theme="light"] { --bg-primary: #f8fafc; --text-primary: #0f172a; --text-secondary: #475569; --text-muted: #64748b; }
+        html[data-theme="light"] .chat-sidebar { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); border-right-color: #e2e8f0; }
+        html[data-theme="light"] .chat-header, html[data-theme="light"] .chat-input-container { background: #f8fafc; border-color: #e2e8f0; }
+        html[data-theme="light"] .chat-input-wrapper { background: #f1f5f9; border-color: #e2e8f0; }
+        html[data-theme="light"] .conversation-item:hover { background: #f8fafc; }
+        html[data-theme="light"] .conversation-item.active { background: rgba(0, 212, 255, 0.08); }
+        html[data-theme="light"] .message.received .message-bubble { background: #f1f5f9; color: #0f172a; }
         @media (max-width: 768px) { .chat-app { grid-template-columns: 1fr; } .chat-sidebar { display: none; } .message { max-width: 85%; } }
     </style>
 </head>
@@ -248,20 +248,6 @@
         </div>
     </div>
     <script>
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') document.body.classList.add('light-mode');
-        document.querySelectorAll('.conversation-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-                this.classList.remove('unread');
-                const badge = this.querySelector('.unread-badge');
-                if (badge) badge.style.display = 'none';
-            });
         });
     </script>
 </body>

@@ -12,10 +12,10 @@
             overflow-x: hidden;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
-        body.dark-mode {
+        html[data-theme="dark"] {
             color: #f1f5f9;
         }
-        body.light-mode {
+        html[data-theme="light"] {
             background: #f1f5f9 !important;
             color: #1e293b;
         }
@@ -31,7 +31,7 @@
             transition: opacity 0.5s ease;
         }
 
-        body.light-mode .hero-glow {
+        html[data-theme="light"] .hero-glow {
             opacity: 0;
         }
 
@@ -52,28 +52,28 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        body.light-mode .theme-toggle:hover {
+        html[data-theme="light"] .theme-toggle:hover {
             background: rgba(0, 0, 0, 0.05);
         }
 
-        body.light-mode .glass {
+        html[data-theme="light"] .glass {
             background: rgba(0, 0, 0, 0.03) !important;
             border-color: rgba(0, 0, 0, 0.1) !important;
             color: #1e293b !important;
         }
 
-        body.light-mode .starlight-card p,
-        body.light-mode header p,
-        body.light-mode section p {
+        html[data-theme="light"] .starlight-card p,
+        html[data-theme="light"] header p,
+        html[data-theme="light"] section p {
             color: #475569;
         }
 
-        body.light-mode .btn-outline:hover {
+        html[data-theme="light"] .btn-outline:hover {
             background-color: #1e293b;
             color: white;
         }
 
-        body.light-mode input[type="date"]::-webkit-calendar-picker-indicator {
+        html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator {
             filter: none;
         }
 
@@ -81,19 +81,19 @@
             color-scheme: dark;
         }
 
-        body.light-mode input[type="date"] {
+        html[data-theme="light"] input[type="date"] {
             color-scheme: light;
         }
 
-        body.light-mode input {
+        html[data-theme="light"] input {
             color: #1e293b !important;
         }
 
-        body.light-mode input::placeholder {
+        html[data-theme="light"] input::placeholder {
             color: rgba(0, 0, 0, 0.3) !important;
         }
 
-        body.light-mode .text-starlight-blue {
+        html[data-theme="light"] .text-starlight-blue {
             color: #2563eb !important;
         }
     </style>
@@ -120,7 +120,7 @@
             </div>
             <div class="flex items-center gap-4">
                 <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
-                    <svg class="w-6 h-6 sun-icon hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                     <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 </div>
                 <button class="btn-starlight px-8 h-12 text-[10px] font-black uppercase tracking-widest">Book Now</button>

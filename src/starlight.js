@@ -505,8 +505,6 @@ const Starlight = {
 
       // Apply to DOM
       html.setAttribute('data-theme', effectiveTheme);
-      document.body.classList.toggle('light-mode', effectiveTheme === 'light');
-      document.body.classList.toggle('dark-mode', effectiveTheme === 'dark');
       
       // Save preference
       if (save) {
@@ -555,8 +553,6 @@ const Starlight = {
           
           // Apply to DOM
           html.setAttribute('data-theme', newEffective);
-          document.body.classList.toggle('light-mode', newEffective === 'light');
-          document.body.classList.toggle('dark-mode', newEffective === 'dark');
           
           localStorage.setItem(`${config.storageKey}-effective`, newEffective);
           updateIcons('auto', newEffective);

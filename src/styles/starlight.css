@@ -444,15 +444,15 @@ html[data-theme="light"] .code-window-title {
 }
 
 .accordion-starlight.accordion-item:hover {
-  border-color: rgb(0 212 255 / 30%);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
   background: rgb(255 255 255 / 4%);
-  box-shadow: 0 0 20px rgb(0 212 255 / 5%);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%);
 }
 
 .accordion-starlight.accordion-item.active {
   border-color: var(--q-color-starlight-blue);
-  background: rgb(0 212 255 / 3%);
-  box-shadow: 0 0 30px rgb(0 212 255 / 10%), inset 0 0 20px rgb(0 212 255 / 5%);
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 97%);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%), inset 0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%);
 }
 
 .accordion-starlight .accordion-header {
@@ -465,8 +465,8 @@ html[data-theme="light"] .code-window-title {
 }
 
 .accordion-starlight.active .accordion-header {
-  background: linear-gradient(to right, rgb(255 179 138 / 15%), rgb(0 212 255 / 15%)) !important;
-  border-bottom: 1px solid rgb(0 212 255 / 20%);
+  background: linear-gradient(to right, color-mix(in srgb, var(--q-color-starlight-peach), transparent 55%), color-mix(in srgb, var(--q-color-starlight-blue), transparent 55%)) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%);
 }
 
 .accordion-starlight .accordion-content {
@@ -974,11 +974,11 @@ html[data-theme="light"] .btn-starlight:hover,
 html[data-theme="light"] .hover\:btn-starlight:hover,
 html[data-theme="light"] .btn-primary,
 html[data-theme="light"] .btn-primary:hover {
-  background: linear-gradient(135deg, #ffb38a 40%, #00d4ff 100%) !important;
+  background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
 }
 
 html[data-theme="light"] .text-gradient-starlight {
-  background: linear-gradient(135deg, #ffb38a 40%, #00d4ff 100%) !important;
+  background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -993,7 +993,7 @@ html[data-theme="light"] .dialog-content .bg-black_40 {
 
 /* 18. Semantic Typography Utilities */
 .text-glow {
-  text-shadow: 0 0 10px rgb(0 212 255 / 50%), 0 0 20px rgb(0 212 255 / 20%);
+  text-shadow: 0 0 10px rgb(0 212 255 / 50%), 0 0 20px rgb(0 212 255 / 60%);
 }
 
 .text-glass {
@@ -1059,7 +1059,7 @@ html[data-theme="light"] .starlight-loading {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(0 212 255 / 30%);
-  box-shadow: 0 0 10px rgb(0 212 255 / 20%);
+  box-shadow: 0 0 10px rgb(0 212 255 / 60%);
 }
 
 html[data-theme="light"] ::-webkit-scrollbar-track {
