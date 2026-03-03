@@ -316,14 +316,14 @@ html[data-theme="light"] .badge-error {
 }
 
 .alert-info {
-  background-color: var(--q-card-bg);
-  border-color: #60a5fa;
-  color: var(--q-text-primary);
+  background-color: rgb(59 130 246 / 15%);
+  border-color: rgb(59 130 246 / 30%);
+  color: #60a5fa;
 }
 
 html[data-theme="light"] .alert-info {
-  background-color: #dbeafe;
-  border-color: #60a5fa;
+  background-color: rgb(59 130 246 / 10%);
+  border-color: rgb(59 130 246 / 20%);
   color: #1e40af;
 }
 
