@@ -483,8 +483,10 @@ html[data-theme="light"] .dropdown-item:hover {
 }
 
 .accordion-header {
-  padding: var(--q-space-4);
-  background-color: color-mix(in srgb, var(--q-color-primary), transparent 96%);
+  padding: var(--q-space-3) var(--q-space-4);
+  font-weight: 600;
+  background-color: rgb(255 255 255 / 5%);
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
   color: var(--q-text-primary);
   cursor: pointer;
   display: flex;
@@ -494,7 +496,7 @@ html[data-theme="light"] .dropdown-item:hover {
 }
 
 .accordion-header:hover {
-  background-color: color-mix(in srgb, var(--q-color-primary), transparent 92%);
+  background-color: rgb(255 255 255 / 8%);
   color: var(--q-text-primary);
 }
 
@@ -508,8 +510,13 @@ html[data-theme="light"] .dropdown-item:hover {
 }
 
 html[data-theme="light"] .accordion-header {
-  background-color: color-mix(in srgb, var(--q-color-primary), transparent 96%);
+  background-color: #f8fafc;
+  border-bottom-color: #e2e8f0;
   color: var(--q-light-text);
+}
+
+html[data-theme="light"] .accordion-header:hover {
+  background-color: #f1f5f9;
 }
 
 html[data-theme="light"] .accordion-header:hover {
