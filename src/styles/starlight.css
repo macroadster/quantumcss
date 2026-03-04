@@ -532,12 +532,17 @@ html[data-theme="light"] .dropdown-item:hover {
 }
 
 /* 7. Input & Glass Fixes */
-.input-starlight, .textarea-starlight {
+.input-starlight, .textarea-starlight, .select-starlight {
   background-color: rgb(255 255 255 / 4%);
   border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 0.75rem;
   color: inherit;
   width: 100%;
+}
+
+.select-starlight:hover {
+  background-color: rgb(255 255 255 / 8%);
+  border-color: var(--q-color-starlight-blue);
 }
 
 textarea.input-starlight, .textarea-starlight {
@@ -546,7 +551,8 @@ textarea.input-starlight, .textarea-starlight {
 }
 
 html[data-theme="light"] .input-starlight, 
-html[data-theme="light"] .textarea-starlight {
+html[data-theme="light"] .textarea-starlight,
+html[data-theme="light"] .select-starlight {
   background-color: #fff;
   border-color: #cbd5e1;
 }
