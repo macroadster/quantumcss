@@ -28,6 +28,17 @@
             color: white; 
         }
 
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+
         /* Theme Toggle Styling */
         .theme-toggle {
             cursor: pointer;
@@ -53,16 +64,18 @@
 </head>
 <body class="bg-surface">
     <!-- Navigation -->
-    <nav class="border-b border-white_5 sticky top-0 bg-surface z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl sm:text-4xl font-bold tracking-tighter uppercase italic text-primary">QUANTUM<span class="text-blue-600">NEWS</span></div>
-            <div class="hidden md:flex flex-wrap justify-center gap-8 text-xs font-black uppercase tracking-widest">
+    <nav class="starlight-navbar">
+        <div class="container mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="text-2xl sm:text-4xl font-bold tracking-tighter uppercase italic text-primary shrink-0">QUANTUM<span class="text-blue-600">NEWS</span></div>
+            
+            <div class="hidden md:flex flex-1 justify-center gap-12 text-xs font-black uppercase tracking-widest">
                 <a href="#" class="hover:text-blue-600 transition-colors">Neural Mesh</a>
                 <a href="#" class="hover:text-blue-600 transition-colors">Bio-Tech</a>
                 <a href="#" class="hover:text-blue-600 transition-colors">Space-X</a>
                 <a href="#" class="hover:text-blue-600 transition-colors">Quantum Compute</a>
             </div>
-            <div class="flex items-center gap-6">
+
+            <div class="flex items-center gap-6 shrink-0">
                 <div id="theme-btn" class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
                     <svg class="sun-icon w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                     <svg class="moon-icon w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -73,9 +86,17 @@
     </nav>
 
     <!-- Breaking News Ticker -->
-    <div class="bg-blue-600 text-white py-3 overflow-hidden whitespace-nowrap">
-        <div class="inline-block animate-marquee uppercase font-black text-xs tracking-widest">
-            • First Mars colony reports stable oxygen synthesis • Global Neural-Link rollout scheduled for Q3 • Quantum encryption broken by experimental lattice • Voyager 1 signal restored after 50 years •
+    <div class="bg-blue-600 text-white py-3 overflow-hidden">
+        <div class="flex animate-marquee uppercase font-black text-xs tracking-widest gap-24 items-center">
+            <span class="whitespace-nowrap">First Mars colony reports stable oxygen synthesis</span>
+            <span class="whitespace-nowrap">Global Neural-Link rollout scheduled for Q3</span>
+            <span class="whitespace-nowrap">Quantum encryption broken by experimental lattice</span>
+            <span class="whitespace-nowrap">Voyager 1 signal restored after 50 years</span>
+            <!-- Duplicated for seamless loop -->
+            <span class="whitespace-nowrap">First Mars colony reports stable oxygen synthesis</span>
+            <span class="whitespace-nowrap">Global Neural-Link rollout scheduled for Q3</span>
+            <span class="whitespace-nowrap">Quantum encryption broken by experimental lattice</span>
+            <span class="whitespace-nowrap">Voyager 1 signal restored after 50 years</span>
         </div>
     </div>
 
