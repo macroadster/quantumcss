@@ -19,7 +19,8 @@
     "watch": "node scripts/build.js --watch",
     "docs": "node scripts/build.js --docs",
     "generate": "node src/cli.js",
-    "generate:watch": "node src/cli.js --watch"
+    "generate:watch": "node src/cli.js --watch",
+    "release": "node scripts/release.js"
   },
   "repository": {
     "type": "git",
