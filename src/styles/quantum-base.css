@@ -1045,6 +1045,8 @@ body {
   background-color: transparent;
   color: var(--q-text-primary);
   transition: background-color var(--q-transition-slow), color var(--q-transition-slow);
+  position: relative;
+  z-index: 1;
 }
 
 
