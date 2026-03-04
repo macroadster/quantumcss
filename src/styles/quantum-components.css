@@ -1554,49 +1554,10 @@ html[data-theme="light"] .label-important {
    Search boxes with integrated icons
    ============================================================================ */
 
-/* Search container */
-.search-box {
-  position: relative;
-}
-
-/* Search input */
-.search-input {
-  width: 280px;
-  padding: 0.625rem 1rem 0.625rem 2.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.625rem;
-  color: var(--q-text-primary, #f1f5f9);
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: transparent;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: none !important;
-}
-
-/* Ensure the container gets the focus ring if using search-box wrapper */
-.search-box:focus-within, .starlight-search:focus-within {
-  box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
-  border-color: var(--q-color-starlight-blue);
-  border-radius: inherit;
-}
+/* Search input base handled in starlight.css */
 
 .search-input::placeholder {
   color: var(--q-text-muted, #64748b);
-}
-
-/* Search icon */
-.search-icon {
-  position: absolute;
-  left: 0.875rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--q-text-muted, #64748b);
-  pointer-events: none;
 }
 
 /* Full-width search input */
@@ -1618,28 +1579,20 @@ html[data-theme="light"] .label-important {
   background-position: right 0.5rem center;
   background-repeat: no-repeat;
   background-size: 1.25rem;
+  transition: all 0.2s ease;
 }
 
 .filter-select:focus {
   outline: none;
-  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
 }
 
 /* Light mode overrides for search */
-html[data-theme="light"] .search-input,
 html[data-theme="light"] .filter-select {
   background: #f1f5f9;
   border-color: #e2e8f0;
   color: #0f172a;
-}
-
-html[data-theme="light"] .search-input:focus {
-  border-color: #3b82f6;
-  background: #ffffff;
-}
-
-html[data-theme="light"] .search-input::placeholder {
-  color: #94a3b8;
 }
 
 /* ============================================================================

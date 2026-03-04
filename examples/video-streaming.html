@@ -46,14 +46,21 @@
             margin: 0 2rem;
             display: flex;
         }
-        .search-input {
+        .video-search-input {
             flex: 1;
-            padding: 0.625rem 1rem;
+            padding: 0.625rem 1.25rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0.5rem 0 0 0.5rem;
             color: var(--text-primary, #f1f5f9);
             font-size: 0.9375rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .video-search-input:focus {
+            border-color: var(--color-starlight, #00d4ff);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
         }
         .search-btn {
             padding: 0 1.25rem;
@@ -344,7 +351,7 @@
                 <span>Starlight</span>
             </div>
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Search">
+                <input type="text" class="video-search-input" placeholder="Search">
                 <button class="search-btn">🔍</button>
             </div>
             <div class="header-actions">
