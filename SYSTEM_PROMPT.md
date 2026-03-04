@@ -33,3 +33,20 @@ Maintain "Ethereal Cosmic" aesthetics:
 - Subtle `glow-blue` or `glow-starlight` shadows.
 - Heavy fonts with tracking-tighter for headings.
 - Proactive use of `animate-pulse` or `animate-float` for ambient life.
+
+## 🛡️ Critical Guardrails
+
+### 1. Surface Anchoring (Anti-Regression)
+Never use fixed color classes (like `text-black`, `font-black`, `bg-white`) on elements that don't have a **fixed background anchor**. Elements on the main body or dynamic containers must use **Semantic Tokens** (`text-primary`, `bg-surface`) to ensure they remain visible when switching between Light and Dark modes.
+
+### 2. Focus Ring "Embracing"
+All glassmorphic controls (Inputs, Selects, Search) must have a unified focus behavior.
+- Always use `:focus-within` on the container if it has rounded corners.
+- Suppress the default focus ring on the inner input using `box-shadow: none !important`.
+- The focus ring must "embrace" the outer boundary of the component.
+
+### 3. Transparency & Vibrancy
+Avoid hardcoded `rgba()` values. Use `color-mix` for transparency to maintain vibrancy:
+- **Dark Mode**: High opacity for light colors (>90%), 40-60% for mid-tones.
+- **Light Mode**: Low opacity for dark colors (<10%) to prevent muddy backgrounds.
+- **Glows**: Always use semantic glow tokens (`glow-blue`) instead of manual box-shadows.
