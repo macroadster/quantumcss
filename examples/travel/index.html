@@ -8,17 +8,22 @@
     <script src="../../src/starlight.js"></script>
     <style>
         body {
-            background: radial-gradient(circle at top right, #08081a, #000);
+            background: radial-gradient(circle at top right, var(--q-color-starlight-deep), #000);
             overflow-x: hidden;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
         html[data-theme="dark"] {
-            color: #f1f5f9;
+            color: var(--q-text-primary);
         }
         html[data-theme="light"] {
-            background: #f1f5f9 !important;
-            color: #1e293b;
+            background: var(--q-light-bg) !important;
+            color: var(--q-light-text);
         }
+
+        html[data-theme="light"] body {
+            background: var(--q-light-bg) !important;
+        }
+
         .hero-glow {
             position: absolute;
             top: -10%;
@@ -57,19 +62,19 @@
         }
 
         html[data-theme="light"] .glass {
-            background: rgba(0, 0, 0, 0.03) !important;
-            border-color: rgba(0, 0, 0, 0.1) !important;
-            color: #1e293b !important;
+            background: var(--q-glass-bg) !important;
+            border-color: var(--q-glass-border) !important;
+            color: var(--q-light-text) !important;
         }
 
         html[data-theme="light"] .starlight-card p,
         html[data-theme="light"] header p,
         html[data-theme="light"] section p {
-            color: #475569;
+            color: var(--q-light-text-muted);
         }
 
         html[data-theme="light"] .btn-outline:hover {
-            background-color: #1e293b;
+            background-color: var(--q-light-text);
             color: white;
         }
 
@@ -86,15 +91,167 @@
         }
 
         html[data-theme="light"] input {
-            color: #1e293b !important;
+            color: var(--q-light-text) !important;
         }
 
         html[data-theme="light"] input::placeholder {
-            color: rgba(0, 0, 0, 0.3) !important;
+            color: var(--q-light-text-muted) !important;
         }
 
         html[data-theme="light"] .text-starlight-blue {
-            color: #2563eb !important;
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .starlight-navbar {
+            background: var(--q-light-card-bg) !important;
+            border-bottom-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .starlight-navbar a {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .starlight-navbar a:hover {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .text-gradient-starlight {
+            background: none;
+            -webkit-text-fill-color: var(--q-light-text);
+            color: var(--q-light-text);
+        }
+
+        html[data-theme="light"] .nav-link {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .nav-link:hover {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .glass {
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .glass input {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .glass input::placeholder {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .glass .btn-starlight {
+            background: var(--q-light-text);
+            color: white;
+        }
+
+        html[data-theme="light"] .starlight-card {
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .starlight-card h3 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .starlight-card .text-slate-400 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .btn-outline {
+            border-color: var(--q-light-text) !important;
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .btn-outline:hover {
+            background-color: var(--q-light-text) !important;
+            color: white !important;
+        }
+
+        html[data-theme="light"] .starlight-footer {
+            background: var(--q-light-bg) !important;
+            border-top-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .starlight-footer a {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .starlight-footer a:hover {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .starlight-footer p {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .badge-primary {
+            background-color: rgba(37, 99, 235, 0.1) !important;
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .border-white_10 {
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .text-white {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .text-white_10 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .text-slate-400 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .text-slate-500 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .bg-white_5 {
+            background: var(--q-glass-bg) !important;
+        }
+
+        html[data-theme="light"] .border-white_10 {
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .border-white_5 {
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] h1 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] h2 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] h3 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .bg-gray-800,
+        html[data-theme="light"] .bg-gray-700,
+        html[data-theme="light"] .bg-gray-900 {
+            background-color: var(--q-light-card-bg) !important;
+        }
+
+        /* Card image overlay text stays light due to dark gradient */
+        html[data-theme="light"] .starlight-card .absolute .badge,
+        html[data-theme="light"] .starlight-card .absolute h3 {
+            color: white !important;
+        }
+
+        /* Newsletter section text */
+        html[data-theme="light"] .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, var(--q-color-primary-100), transparent) !important;
         }
     </style>
 </head>

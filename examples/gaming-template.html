@@ -8,14 +8,18 @@
     <style>
         body {
             background: radial-gradient(circle at top right, #1a1a3a, #0a0a1a 40%), #050505;
-            color: #f1f5f9;
+            color: var(--q-text-primary);
             min-height: 100vh;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         html[data-theme="light"] {
-            background: #f1f5f9;
-            color: #1e293b;
+            background: var(--q-light-bg);
+            color: var(--q-light-text);
+        }
+
+        html[data-theme="light"] body {
+            background: var(--q-light-bg) !important;
         }
 
         .hero-section {
@@ -31,7 +35,7 @@
         }
 
         html[data-theme="light"] .hero-section {
-            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9)), 
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95)), 
                         url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
@@ -65,39 +69,166 @@
         }
 
         html[data-theme="light"] .glass {
-            background: rgba(0, 0, 0, 0.03) !important;
-            border-color: rgba(0, 0, 0, 0.1) !important;
-            color: #1e293b !important;
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+            color: var(--q-light-text) !important;
         }
 
         html[data-theme="light"] .badge-secondary {
-            background-color: rgba(0, 0, 0, 0.05);
-            color: #475569;
-            border-color: rgba(0, 0, 0, 0.1);
+            background-color: var(--q-glass-bg);
+            color: var(--q-light-text-muted);
+            border-color: var(--q-light-card-border);
         }
 
         html[data-theme="light"] .starlight-card p {
-            color: #64748b;
+            color: var(--q-light-text-muted);
         }
 
         html[data-theme="light"] footer {
-            background-color: #f1f5f9;
-            border-top-color: #e2e8f0;
+            background-color: var(--q-light-bg);
+            border-top-color: var(--q-light-card-border);
         }
 
         html[data-theme="light"] footer .text-gradient-starlight {
             background: none;
-            -webkit-text-fill-color: #1e293b;
-            color: #1e293b;
+            -webkit-text-fill-color: var(--q-light-text);
+            color: var(--q-light-text);
         }
 
         html[data-theme="light"] footer p, 
         html[data-theme="light"] footer a {
-            color: #64748b;
+            color: var(--q-light-text-muted);
         }
 
         html[data-theme="light"] footer a:hover {
-            color: #2563eb;
+            color: var(--q-color-primary);
+        }
+
+        html[data-theme="light"] .starlight-nav {
+            background: var(--q-light-card-bg) !important;
+            border-bottom-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .starlight-nav .text-gradient-starlight {
+            background: none;
+            -webkit-text-fill-color: var(--q-light-text);
+            color: var(--q-light-text);
+        }
+
+        html[data-theme="light"] .nav-link {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .nav-link:hover {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .hero-section h1 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .hero-section p {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .hero-section .badge-primary {
+            background-color: rgba(37, 99, 235, 0.1) !important;
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .glass {
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .glass.text-white {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .starlight-card {
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .starlight-card h4 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .starlight-card p {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .text-gray-300 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .text-gray-400 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .text-gray-500 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .text-gray-600 {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .bg-white {
+            background-color: var(--q-light-card-bg) !important;
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .text-black {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .text-starlight {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .border-white_5 {
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .border-starlight {
+            border-color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .border-opacity-20 {
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] a.text-starlight {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .accordion-starlight {
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .accordion-header {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .accordion-content p {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] input.glass {
+            background: var(--q-light-card-bg) !important;
+            color: var(--q-light-text) !important;
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] input.glass::placeholder {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .bg-black {
+            background-color: var(--q-light-bg) !important;
         }
     </style>
 </head>
