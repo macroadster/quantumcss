@@ -55,12 +55,12 @@ test.describe('QuantumCSS Integrity Tests', () => {
   });
   
   test('Dropdowns should have blur effect in dark mode', async ({ page }) => {
-    await page.goto(`file://${path.resolve(__dirname, '../examples/index.html')}`);
+    await page.goto(`file://${path.resolve(__dirname, '../examples/kitchen-sink.html')}`);
     
-    const menuButton = page.locator('text=Asset Actions');
+    const menuButton = page.locator('text=Stations ▾').first();
     await menuButton.click();
     
-    const dropdown = page.locator('#demo-dropdown');
+    const dropdown = page.locator('.dropdown-menu').first();
     await expect(dropdown).toBeVisible();
     
     const blur = await dropdown.evaluate((el) => {
