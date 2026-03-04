@@ -558,6 +558,19 @@ html[data-theme="light"] .select-starlight {
   border-color: #cbd5e1;
 }
 
+.input-starlight:focus, .textarea-starlight:focus, .select-starlight:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
+}
+
+html[data-theme="light"] .input-starlight:focus, 
+html[data-theme="light"] .textarea-starlight:focus,
+html[data-theme="light"] .select-starlight:focus {
+  box-shadow: 0 0 0 2px var(--q-light-bg), 0 0 0 4px rgb(59 130 246 / 40%);
+  border-color: #3b82f6;
+}
+
 html[data-theme="light"] .glass {
   background-color: rgba(255, 255, 255, 0.5);
   border-color: rgba(0, 0, 0, 0.1);
@@ -712,6 +725,12 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
   outline: none;
 }
 
+html[data-theme="light"] .search-container:focus-within, 
+html[data-theme="light"] .starlight-search:focus-within {
+  box-shadow: 0 0 0 2px var(--q-light-bg), 0 0 0 4px rgb(59 130 246 / 40%);
+  border-color: #3b82f6;
+}
+
 .search-container input:focus, .starlight-search input:focus {
   box-shadow: none !important;
   outline: none !important;
@@ -721,6 +740,14 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
   width: 100%;
   border-radius: inherit;
   padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+}
+
+html[data-theme="light"] .search-container,
+html[data-theme="light"] .starlight-search {
+  background-color: #fff;
+  border: 1px solid #cbd5e1;
 }
 
 .search-container.has-icon .search-input,
