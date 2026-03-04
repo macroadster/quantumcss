@@ -3,31 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Store | Future of Fashion</title>
+    <title>LUXE | Premium Fashion Store</title>
     <link rel="stylesheet" href="../../dist/quantum.min.css">
     <script src="../../src/starlight.js"></script>
     <style>
-        body { background-color: var(--q-color-bg); color: var(--q-color-text); transition: background-color 0.5s ease, color 0.5s ease; }
-        
-        .product-card:hover .product-image { transform: scale(1.05); }
-        .product-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        /* Twinkle Hover Effect */
-        a:hover, .product-card:hover, .color-swatch:hover {
-            animation: star-twinkle 1s infinite ease-in-out;
+        body {
+            background: var(--q-color-bg);
+            color: var(--q-color-text);
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        @keyframes star-twinkle {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
+        html[data-theme="light"] body {
+            background: var(--q-light-bg);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, var(--q-color-starlight-deep) 0%, #1a1a3a 100%);
+        }
+
+        html[data-theme="light"] .hero-bg {
+            background: linear-gradient(135deg, var(--q-color-slate-100) 0%, var(--q-color-slate-200) 100%);
+        }
+
+        .hero-bg h1,
+        .hero-bg p,
+        .hero-bg .badge-primary {
+            position: relative;
+            z-index: 1;
+        }
+
+        html[data-theme="light"] .hero-bg h1 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .hero-bg p {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        .category-card:hover .category-image {
+            transform: scale(1.08);
+        }
+
+        .category-image {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .color-swatch.selected {
-            box-shadow: 0 0 0 4px #00d4ff, 0 0 20px rgba(0, 212, 255, 0.6);
-            border-color: #00d4ff !important;
+            box-shadow: 0 0 0 3px var(--q-color-primary), 0 0 15px var(--q-color-starlight-glow);
         }
 
-        /* Theme Toggle Styling */
         .theme-toggle {
             cursor: pointer;
             width: 2.5rem;
@@ -44,178 +76,415 @@
             background: var(--q-highlight-bg);
         }
 
+        html[data-theme="light"] .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
         .sun-icon { display: none; }
         html[data-theme="light"] .sun-icon { display: inline; }
         html[data-theme="light"] .moon-icon { display: none; }
+
+        html[data-theme="light"] .starlight-nav {
+            background: var(--q-light-card-bg) !important;
+            border-bottom-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .nav-link {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .nav-link:hover {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .text-primary {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .text-secondary {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .text-muted {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] .bg-surface {
+            background: var(--q-light-card-bg) !important;
+        }
+
+        html[data-theme="light"] .border-white_5,
+        html[data-theme="light"] .border-white_10 {
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .glass {
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .starlight-card {
+            background: var(--q-light-card-bg) !important;
+            border-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] .starlight-card h3,
+        html[data-theme="light"] .starlight-card h4 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .starlight-card p {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] footer {
+            background: var(--q-light-bg) !important;
+            border-top-color: var(--q-light-card-border) !important;
+        }
+
+        html[data-theme="light"] footer h5 {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] footer p,
+        html[data-theme="light"] footer a {
+            color: var(--q-light-text-muted) !important;
+        }
+
+        html[data-theme="light"] footer a:hover {
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .text-gradient-starlight {
+            background: none;
+            -webkit-text-fill-color: var(--q-light-text);
+            color: var(--q-light-text);
+        }
+
+        html[data-theme="light"] .bg-white {
+            background: var(--q-light-card-bg) !important;
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .text-white {
+            color: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .bg-black {
+            background: var(--q-light-bg) !important;
+        }
+
+        html[data-theme="light"] .select-starlight {
+            background: var(--q-light-card-bg);
+            color: var(--q-light-text);
+            border-color: var(--q-light-card-border);
+        }
+
+        html[data-theme="light"] .checkbox-starlight {
+            border-color: var(--q-light-text-muted);
+        }
+
+        html[data-theme="light"] .bg-slate-900 {
+            background: var(--q-light-text) !important;
+        }
+
+        html[data-theme="light"] .product-image-container {
+            background: var(--q-light-card-bg);
+        }
+
+        html[data-theme="light"] .badge-primary {
+            background: var(--q-color-primary-100) !important;
+            color: var(--q-color-primary) !important;
+        }
+
+        html[data-theme="light"] .badge-secondary {
+            background: var(--q-glass-bg) !important;
+            color: var(--q-light-text-muted) !important;
+            border-color: var(--q-light-card-border) !important;
+        }
     </style>
 </head>
-<body class="">
-    <!-- Announcement Bar -->
-    <div class="bg-slate-900 text-white py-3 text-center text-[10px] font-black tracking-[0.3em] uppercase">
-        Interstellar Shipping Enabled • New Drops Every Sunday
+<body>
+    <!-- Promo Banner -->
+    <div class="bg-starlight text-black py-2 text-center text-xs font-bold tracking-wider">
+        FREE SHIPPING ON ORDERS OVER $100 · USE CODE: LUXE2026
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-surface backdrop-blur-md sticky top-0 z-50 border-b border-white_5">
-        <div class="max-w-[1440px] mx-auto px-8 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black tracking-tighter uppercase text-primary">QUANTUM<span class="text-orange-600">STORE</span></div>
-            <div class="hidden lg:flex space-x-12 text-[11px] font-black uppercase tracking-[0.2em]">
-                <a href="#" class="text-primary hover:text-orange-600 transition-colors">Men</a>
-                <a href="#" class="text-primary hover:text-orange-600 transition-colors">Women</a>
-                <a href="#" class="text-primary hover:text-orange-600 transition-colors">Cybernetics</a>
-                <a href="#" class="text-orange-600 font-bold">Limited</a>
+    <nav class="starlight-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-3xl font-black tracking-tighter text-gradient-starlight uppercase">LUXE</div>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-wide">
+                <a href="#" class="nav-link">New In</a>
+                <a href="#" class="nav-link">Women</a>
+                <a href="#" class="nav-link">Men</a>
+                <a href="#" class="nav-link">Accessories</a>
+                <a href="#" class="nav-link text-primary">Sale</a>
             </div>
-            <div class="flex items-center space-x-6">
-                <div id="theme-btn" class="theme-toggle text-primary" onclick="toggleTheme()" title="Toggle Theme">
-                    <svg class="sun-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                    <svg class="moon-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+
+            <div class="flex items-center gap-4">
+                <div id="theme-btn" class="theme-toggle text-primary" title="Toggle Theme">
+                    <svg class="sun-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="moon-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 </div>
-                <div class="relative group">
-                    <a href="#" class="text-primary w-10 h-10 flex items-center justify-center bg-highlight rounded-full transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                        <span class="absolute -top-1 -right-1 bg-orange-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-black shadow-lg border-2 border-white">3</span>
-                    </a>
+                <a href="#" class="relative p-2">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">3</span>
+                </a>
+                <div class="md:hidden">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="nav-menu-mobile">
+            <ul class="nav-list vertical">
+                <li><a href="#" class="nav-link">New In</a></li>
+                <li><a href="#" class="nav-link">Women</a></li>
+                <li><a href="#" class="nav-link">Men</a></li>
+                <li><a href="#" class="nav-link">Accessories</a></li>
+                <li><a href="#" class="nav-link">Sale</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="bg-surface">
-        <div class="max-w-[1440px] mx-auto px-8 py-12">
-            <div class="flex flex-col md:flex-row justify-between items-end gap-12">
-                <div class="max-w-2xl">
-                    <span class="text-orange-600 font-bold uppercase text-xs tracking-widest mb-4 block">Season 2026</span>
-                    <h1 class="text-6xl font-black mb-4 uppercase italic tracking-tighter leading-none">Cyber-Wear</h1>
-                    <p class="text-secondary text-xl font-medium leading-relaxed">Synthetics, LED-integration, and reactive fibers for the next digital era.</p>
-                </div>
-                <div class="flex items-center space-x-6">
-                    <span class="text-xs font-bold text-muted uppercase tracking-widest">Sort by</span>
-                    <select class="select-starlight h-14 min-w-56">
-                        <option>Newest Arrivals</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                    </select>
+    <!-- Hero Section -->
+    <header class="hero-bg py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl">
+                <span class="badge badge-primary mb-6 inline-block">New Collection</span>
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                    Redefine Your <br>
+                    <span class="text-gradient-starlight">Style</span>
+                </h1>
+                <p class="text-xl text-secondary mb-10 max-w-lg leading-relaxed">
+                    Discover our curated collection of premium fashion pieces designed for the modern lifestyle.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="btn-starlight px-10 py-4 text-sm font-bold uppercase tracking-wider">Shop Now</button>
+                    <button class="btn btn-outline px-10 py-4 text-sm font-bold uppercase tracking-wider">View Lookbook</button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-[1440px] mx-auto px-8 py-16">
-        <div class="flex flex-col lg:flex-row gap-16 items-start">
-            <!-- Sidebar -->
-            <aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
+    <!-- Categories -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Categories</h4>
-                    <div class="space-y-4">
-                        <label class="flex items-center space-x-4 cursor-pointer group">
-                            <input type="checkbox" class="checkbox-starlight" checked>
-                            <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Heavy Jackets</span>
-                        </label>
-                        <label class="flex items-center space-x-4 cursor-pointer group">
-                            <input type="checkbox" class="checkbox-starlight">
-                            <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Tech Footwear</span>
-                        </label>
-                        <label class="flex items-center space-x-4 cursor-pointer group">
-                            <input type="checkbox" class="checkbox-starlight">
-                            <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Cyber-Accessories</span>
-                        </label>
+                    <span class="text-xs font-bold text-muted uppercase tracking-widest mb-2 block">Browse</span>
+                    <h2 class="text-4xl font-black tracking-tight">Shop by Category</h2>
+                </div>
+                <a href="#" class="text-primary font-semibold hover:underline">View All →</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="category-card group cursor-pointer">
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden relative mb-4">
+                        <div class="category-image w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-2xl font-black text-white uppercase">Women's</h3>
+                            <p class="text-white/80 text-sm">245 Items</p>
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Color Way</h4>
-                    <div class="flex flex-wrap gap-4" id="color-swatches">
-                        <button class="w-10 h-10 rounded-full border-2 border-accent color-swatch selected transition-transform" style="background-color: #0f172a;"></button>
-                        <button class="w-10 h-10 rounded-full border-2 border-none color-swatch transition-transform" style="background-color: #ffffff;"></button>
-                        <button class="w-10 h-10 rounded-full border-2 border-transparent color-swatch transition-transform" style="background-color: #ea580c;"></button>
-                        <button class="w-10 h-10 rounded-full border-2 border-transparent color-swatch transition-transform" style="background-color: #2563eb;"></button>
+                <div class="category-card group cursor-pointer">
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden relative mb-4">
+                        <div class="category-image w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-2xl font-black text-white uppercase">Men's</h3>
+                            <p class="text-white/80 text-sm">312 Items</p>
+                        </div>
                     </div>
                 </div>
-            </aside>
 
-            <!-- Product Grid -->
-            <div class="flex-1">
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                    <!-- Product 1 -->
-                    <div class="product-card group cursor-pointer">
-                        <div class="aspect-[4/5] bg-surface rounded-3xl overflow-hidden relative mb-6">
-                            <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/windbreaker.jpg');"></div>
-                            <div class="absolute top-6 right-6">
-                                <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                </button>
-                            </div>
-                            <div class="absolute bottom-6 left-6">
-                                <span class="badge badge-primary">New Season</span>
-                            </div>
+                <div class="category-card group cursor-pointer">
+                    <div class="aspect-[3/4] rounded-2xl overflow-hidden relative mb-4">
+                        <div class="category-image w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-2xl font-black text-white uppercase">Accessories</h3>
+                            <p class="text-white/80 text-sm">89 Items</p>
                         </div>
-                        <h3 class="text-xl font-bold mb-1">Neon Windbreaker</h3>
-                        <p class="text-muted text-sm mb-3">Iridescent synthetic fiber</p>
-                        <div class="text-2xl font-black italic tracking-tighter text-orange-600">$249.00</div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="product-card group cursor-pointer">
-                        <div class="aspect-[4/5] bg-surface rounded-3xl overflow-hidden relative mb-6">
-                            <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/sneakers.jpg');"></div>
-                            <div class="absolute top-6 right-6">
-                                <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-1">Pulse Sneakers</h3>
-                        <p class="text-muted text-sm mb-3">LED-reactive soles</p>
-                        <div class="text-2xl font-black italic tracking-tighter text-orange-600">$189.00</div>
-                    </div>
-
-                    <!-- Product 3 -->
-                    <div class="product-card group cursor-pointer">
-                        <div class="aspect-[4/5] bg-surface rounded-3xl overflow-hidden relative mb-6">
-                            <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/headset.jpg');"></div>
-                            <div class="absolute top-6 right-6">
-                                <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-1">Aural Core Headset</h3>
-                        <p class="text-muted text-sm mb-3">Bone-conduction tech</p>
-                        <div class="text-2xl font-black italic tracking-tighter text-orange-600">$320.00</div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
-    <footer class="bg-surface py-20 border-t border-white_5">
-        <div class="max-w-[1440px] mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16">
-            <div class="col-span-2">
-                <div class="text-2xl font-black tracking-tighter uppercase mb-8">QUANTUM<span class="text-orange-600">STORE</span></div>
-                <p class="text-secondary max-w-sm mb-8">Pioneering the intersection of fashion and high-tech utility. Interstellar shipping enabled since 2024.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-secondary hover:text-orange-600">Instagram</a>
-                    <a href="#" class="text-secondary hover:text-orange-600">X.com</a>
-                    <a href="#" class="text-secondary hover:text-orange-600">Discord</a>
+    <!-- Featured Products -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="text-xs font-bold text-muted uppercase tracking-widest mb-2 block">Trending</span>
+                    <h2 class="text-4xl font-black tracking-tight">Featured Products</h2>
+                </div>
+                <a href="#" class="text-primary font-semibold hover:underline">View All →</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="product-image-container aspect-[4/5] rounded-2xl overflow-hidden relative mb-4">
+                        <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/windbreaker.jpg');"></div>
+                        <div class="absolute top-4 right-4">
+                            <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                <svg class="w-5 h-5 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="badge badge-primary text-xs">New</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold mb-1">Neon Windbreaker</h4>
+                    <p class="text-muted text-sm mb-2">Premium Jacket</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-black text-primary">$249</span>
+                        <div class="flex gap-2">
+                            <button class="w-6 h-6 rounded-full border-2 border-slate-600 selected" title="Black"></button>
+                            <button class="w-6 h-6 rounded-full border border-slate-300" title="White" style="background: white;"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="product-image-container aspect-[4/5] rounded-2xl overflow-hidden relative mb-4">
+                        <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/sneakers.jpg');"></div>
+                        <div class="absolute top-4 right-4">
+                            <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                <svg class="w-5 h-5 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <h4 class="font-bold mb-1">Pulse Sneakers</h4>
+                    <p class="text-muted text-sm mb-2">Performance</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-black text-primary">$189</span>
+                        <div class="flex gap-2">
+                            <button class="w-6 h-6 rounded-full border-2 border-slate-600" title="Black"></button>
+                            <button class="w-6 h-6 rounded-full border border-slate-300 selected" title="White" style="background: white;"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="product-image-container aspect-[4/5] rounded-2xl overflow-hidden relative mb-4">
+                        <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/headset.jpg');"></div>
+                        <div class="absolute top-4 right-4">
+                            <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                <svg class="w-5 h-5 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="badge badge-secondary text-xs">Best Seller</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold mb-1">Aural Headset</h4>
+                    <p class="text-muted text-sm mb-2">Audio Tech</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-black text-primary">$320</span>
+                        <div class="flex gap-2">
+                            <button class="w-6 h-6 rounded-full border-2 border-slate-600 selected" title="Black"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="product-image-container aspect-[4/5] rounded-2xl overflow-hidden relative mb-4">
+                        <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="absolute top-4 right-4">
+                            <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                <svg class="w-5 h-5 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-orange-600 text-white text-xs px-3 py-1 rounded-full font-bold">-20%</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold mb-1">Smart Watch</h4>
+                    <p class="text-muted text-sm mb-2">Wearable Tech</p>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl font-black text-primary">$199</span>
+                        <span class="text-sm text-muted line-through">$249</span>
+                    </div>
                 </div>
             </div>
-            <div>
-                <h5 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Support</h5>
-                <ul class="space-y-4 text-sm font-bold">
-                    <li><a href="#" class="text-secondary hover:text-orange-600">Shipping Info</a></li>
-                    <li><a href="#" class="text-secondary hover:text-orange-600">Returns</a></li>
-                    <li><a href="#" class="text-secondary hover:text-orange-600">Sizing Guide</a></li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass p-12 md:p-16 rounded-3xl text-center">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">Join the LUXE Club</h2>
+                <p class="text-secondary mb-8 max-w-xl mx-auto">Subscribe for exclusive access to new arrivals, private sales, and style inspiration.</p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" class="input-starlight flex-1" placeholder="Enter your email">
+                    <button class="btn-starlight px-8 py-4 font-bold uppercase tracking-wider whitespace-nowrap">Subscribe</button>
+                </div>
             </div>
-            <div>
-                <h5 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Legal</h5>
-                <ul class="space-y-4 text-sm font-bold">
-                    <li><a href="#" class="text-secondary hover:text-orange-600">Privacy Policy</a></li>
-                    <li><a href="#" class="text-secondary hover:text-orange-600">Terms of Service</a></li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white_5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="text-3xl font-black tracking-tighter text-gradient-starlight uppercase mb-4">LUXE</div>
+                    <p class="text-secondary max-w-sm mb-6">Premium fashion for the modern lifestyle. Quality pieces designed to last.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white_5 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white_5 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white_5 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-bold uppercase text-xs tracking-wider mb-4">Shop</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">New Arrivals</a></li>
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Women</a></li>
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Men</a></li>
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Accessories</a></li>
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Sale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold uppercase text-xs tracking-wider mb-4">Help</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Customer Service</a></li>
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Returns</a></li>
+                        <li><a href="#" class="text-secondary hover:text-primary transition-colors">Size Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white_5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-muted text-sm">© 2026 LUXE. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-muted">
+                    <a href="#" class="hover:text-primary">Privacy</a>
+                    <a href="#" class="hover:text-primary">Terms</a>
+                    <a href="#" class="hover:text-primary">Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
