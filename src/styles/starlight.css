@@ -595,6 +595,10 @@ html[data-theme="light"] .glass {
   opacity: 0.6;
 }
 
+.code-window-dot:nth-child(1) { background: #ff5f56; }
+.code-window-dot:nth-child(2) { background: #ffbd2e; }
+.code-window-dot:nth-child(3) { background: #27c93f; }
+
 .code-window-title {
   font-size: 0.65rem;
   font-weight: 800;
@@ -1000,6 +1004,7 @@ html[data-theme="light"] .hamburger span {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   pointer-events: none;
+  display: none;
 }
 
 .nav-menu-mobile.active {
