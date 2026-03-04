@@ -697,6 +697,12 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
   position: relative;
   display: block;
   width: 100%;
+  transition: all var(--q-duration-base) var(--q-ease-in-out);
+}
+
+.search-container:focus-within {
+  box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
 }
 
 .search-input {
