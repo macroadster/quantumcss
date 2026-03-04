@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="../../dist/quantum.min.css">
     <script src="../../src/starlight.js"></script>
     <style>
-        body { background-color: #f8fafc; color: #0f172a; transition: background-color 0.5s ease, color 0.5s ease; }
-        html[data-theme="dark"] { background-color: #020617; color: #f1f5f9; }
+        body { background-color: var(--q-color-bg); color: var(--q-color-text); transition: background-color 0.5s ease, color 0.5s ease; }
+        
         .product-card:hover .product-image { transform: scale(1.05); }
         .product-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
 
@@ -41,75 +41,12 @@
         }
 
         .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.05);
+            background: var(--q-highlight-bg);
         }
 
-        html[data-theme="dark"] .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        html[data-theme="dark"] .bg-white {
-            background-color: #0f172a !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
-            color: #f1f5f9 !important;
-        }
-
-        html[data-theme="dark"] .bg-white\_80 {
-            background-color: rgba(2, 6, 23, 0.8) !important;
-        }
-
-        html[data-theme="dark"] .glass {
-            background-color: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.15) !important;
-        }
-
-        html[data-theme="dark"] .bg-slate-100 {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        html[data-theme="dark"] .border-slate-100 {
-            border-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        html[data-theme="dark"] nav {
-            background-color: rgba(2, 6, 23, 0.8) !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        html[data-theme="light"] footer {
-            background-color: rgba(255, 255, 255, 0.8) !important;
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
-            color: #1e293b !important;
-        }
-
-        html[data-theme="light"] footer h5 {
-            color: #64748b !important;
-        }
-
-        html[data-theme="light"] footer a {
-            color: #475569 !important;
-        }
-
-        html[data-theme="light"] footer a:hover {
-            color: #ea580c !important;
-        }
-
-        html[data-theme="light"] footer .text-orange-600 {
-            color: #ea580c !important;
-        }
-
-        html[data-theme="light"] footer .bg-slate-950 {
-            background-color: rgba(255, 255, 255, 0.8) !important;
-        }
-
-        html[data-theme="dark"] .text-slate-500 {
-            color: #f1f5f9 !important;
-        }
-
-        html[data-theme="light"] .text-slate-500 {
-            color: #0f172a !important;
-        }
+        .sun-icon { display: none; }
+        html[data-theme="light"] .sun-icon { display: inline; }
+        html[data-theme="light"] .moon-icon { display: none; }
     </style>
 </head>
 <body class="">
@@ -119,22 +56,22 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-white_80 backdrop-blur-md sticky top-0 z-50">
+    <nav class="bg-surface backdrop-blur-md sticky top-0 z-50 border-b border-white_5">
         <div class="max-w-[1440px] mx-auto px-8 py-4 flex justify-between items-center">
             <div class="text-2xl font-black tracking-tighter uppercase text-primary">QUANTUM<span class="text-orange-600">STORE</span></div>
             <div class="hidden lg:flex space-x-12 text-[11px] font-black uppercase tracking-[0.2em]">
-                <a href="#" class="text-slate-900 hover:text-orange-600 transition-colors">Men</a>
-                <a href="#" class="text-slate-900 hover:text-orange-600 transition-colors">Women</a>
-                <a href="#" class="text-slate-900 hover:text-orange-600 transition-colors">Cybernetics</a>
+                <a href="#" class="text-primary hover:text-orange-600 transition-colors">Men</a>
+                <a href="#" class="text-primary hover:text-orange-600 transition-colors">Women</a>
+                <a href="#" class="text-primary hover:text-orange-600 transition-colors">Cybernetics</a>
                 <a href="#" class="text-orange-600 font-bold">Limited</a>
             </div>
             <div class="flex items-center space-x-6">
-                <div id="theme-btn" class="theme-toggle text-primary" title="Toggle Theme">
-                    <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                <div id="theme-btn" class="theme-toggle text-primary" onclick="toggleTheme()" title="Toggle Theme">
+                    <svg class="sun-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="moon-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 </div>
                 <div class="relative group">
-                    <a href="#" class="text-primary w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
+                    <a href="#" class="text-primary w-10 h-10 flex items-center justify-center bg-highlight rounded-full transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         <span class="absolute -top-1 -right-1 bg-orange-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-black shadow-lg border-2 border-white">3</span>
                     </a>
@@ -144,16 +81,16 @@
     </nav>
 
     <!-- Header Section -->
-    <header class="bg-white">
+    <header class="bg-surface">
         <div class="max-w-[1440px] mx-auto px-8 py-12">
             <div class="flex flex-col md:flex-row justify-between items-end gap-12">
                 <div class="max-w-2xl">
                     <span class="text-orange-600 font-bold uppercase text-xs tracking-widest mb-4 block">Season 2026</span>
                     <h1 class="text-6xl font-black mb-4 uppercase italic tracking-tighter leading-none">Cyber-Wear</h1>
-                    <p class="text-slate-500 text-xl font-medium leading-relaxed">Synthetics, LED-integration, and reactive fibers for the next digital era.</p>
+                    <p class="text-secondary text-xl font-medium leading-relaxed">Synthetics, LED-integration, and reactive fibers for the next digital era.</p>
                 </div>
                 <div class="flex items-center space-x-6">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Sort by</span>
+                    <span class="text-xs font-bold text-muted uppercase tracking-widest">Sort by</span>
                     <select class="select-starlight h-14 min-w-56">
                         <option>Newest Arrivals</option>
                         <option>Price: Low to High</option>
@@ -170,27 +107,27 @@
             <!-- Sidebar -->
             <aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
                 <div>
-                    <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-slate-400 mb-8">Categories</h4>
+                    <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Categories</h4>
                     <div class="space-y-4">
                         <label class="flex items-center space-x-4 cursor-pointer group">
                             <input type="checkbox" class="checkbox-starlight" checked>
-                            <span class="text-sm font-bold text-slate-600 group-hover:text-slate-900 transition-colors">Heavy Jackets</span>
+                            <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Heavy Jackets</span>
                         </label>
                         <label class="flex items-center space-x-4 cursor-pointer group">
                             <input type="checkbox" class="checkbox-starlight">
-                            <span class="text-sm font-bold text-slate-600 group-hover:text-slate-900 transition-colors">Tech Footwear</span>
+                            <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Tech Footwear</span>
                         </label>
                         <label class="flex items-center space-x-4 cursor-pointer group">
                             <input type="checkbox" class="checkbox-starlight">
-                            <span class="text-sm font-bold text-slate-600 group-hover:text-slate-900 transition-colors">Cyber-Accessories</span>
+                            <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Cyber-Accessories</span>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-slate-400 mb-8">Color Way</h4>
+                    <h4 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Color Way</h4>
                     <div class="flex flex-wrap gap-4" id="color-swatches">
-                        <button class="w-10 h-10 rounded-full border-2 border-slate-900 color-swatch selected transition-transform" style="background-color: #0f172a;"></button>
+                        <button class="w-10 h-10 rounded-full border-2 border-primary color-swatch selected transition-transform" style="background-color: #0f172a;"></button>
                         <button class="w-10 h-10 rounded-full border-2 border-none color-swatch transition-transform" style="background-color: #ffffff;"></button>
                         <button class="w-10 h-10 rounded-full border-2 border-transparent color-swatch transition-transform" style="background-color: #ea580c;"></button>
                         <button class="w-10 h-10 rounded-full border-2 border-transparent color-swatch transition-transform" style="background-color: #2563eb;"></button>
@@ -199,132 +136,88 @@
             </aside>
 
             <!-- Product Grid -->
-            <div class="flex-1 min-w-0">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
+            <div class="flex-1">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                     <!-- Product 1 -->
-                    <div class="product-card group cursor-pointer block">
-                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl  ">
-                            <img src="images/windbreaker.jpg" alt="Neon Pulse" class="product-image w-full h-full object-cover">
-                            <div class="absolute top-4 left-4 flex flex-col space-y-2">
-                                <span class="badge badge-primary bg-orange-600 text-white border-none px-3 py-1 text-[9px] shadow-lg font-black tracking-widest">New Season</span>
+                    <div class="product-card group cursor-pointer">
+                        <div class="aspect-[4/5] bg-surface rounded-3xl overflow-hidden relative mb-6">
+                            <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/windbreaker.jpg');"></div>
+                            <div class="absolute top-6 right-6">
+                                <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                </button>
                             </div>
-                            <div class="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                <button class="btn-starlight w-full border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
+                            <div class="absolute bottom-6 left-6">
+                                <span class="badge badge-primary">New Season</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-start px-1">
-                            <div>
-                                <h3 class="font-black text-[13px] uppercase tracking-tight text-slate-900">Neon Pulse Windbreaker</h3>
-                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Reflective Fiber</p>
-                            </div>
-                            <span class="font-black text-base text-slate-900">299S</span>
-                        </div>
+                        <h3 class="text-xl font-bold mb-1">Neon Windbreaker</h3>
+                        <p class="text-muted text-sm mb-3">Iridescent synthetic fiber</p>
+                        <div class="text-2xl font-black italic tracking-tighter text-orange-600">$249.00</div>
                     </div>
 
                     <!-- Product 2 -->
-                    <div class="product-card group cursor-pointer block">
-                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl  ">
-                            <img src="images/sneakers.jpg" alt="Gravity-Lock" class="product-image w-full h-full object-cover">
-                            <div class="absolute top-4 left-4">
-                                <span class="badge badge-secondary bg-slate-900_80 text-white border-none px-3 py-1 text-[9px] backdrop-blur-md font-black tracking-widest">Best Seller</span>
-                            </div>
-                            <div class="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                <button class="btn-starlight w-full border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
+                    <div class="product-card group cursor-pointer">
+                        <div class="aspect-[4/5] bg-surface rounded-3xl overflow-hidden relative mb-6">
+                            <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/sneakers.jpg');"></div>
+                            <div class="absolute top-6 right-6">
+                                <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                </button>
                             </div>
                         </div>
-                        <div class="flex justify-between items-start px-1">
-                            <div>
-                                <h3 class="font-black text-[13px] uppercase tracking-tight text-slate-900">Gravity-Lock Sneakers</h3>
-                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Mag-Closure v4</p>
-                            </div>
-                            <span class="font-black text-base text-slate-900">540S</span>
-                        </div>
+                        <h3 class="text-xl font-bold mb-1">Pulse Sneakers</h3>
+                        <p class="text-muted text-sm mb-3">LED-reactive soles</p>
+                        <div class="text-2xl font-black italic tracking-tighter text-orange-600">$189.00</div>
                     </div>
 
                     <!-- Product 3 -->
-                    <div class="product-card group cursor-pointer block">
-                        <div class="aspect-[3/4] bg-slate-100 relative overflow-hidden mb-6 rounded-2xl  ">
-                            <img src="images/headset.jpg" alt="Neural Link" class="product-image w-full h-full object-cover">
-                            <div class="absolute top-4 left-4">
-                                <span class="badge badge-secondary bg-blue-600 text-white border-none px-3 py-1 text-[9px] shadow-lg font-black tracking-widest">Pre-Order</span>
-                            </div>
-                            <div class="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                <button class="btn-starlight w-full border-none rounded-xl text-[9px] font-black uppercase tracking-widest py-4 shadow-2xl">Quick Add</button>
+                    <div class="product-card group cursor-pointer">
+                        <div class="aspect-[4/5] bg-surface rounded-3xl overflow-hidden relative mb-6">
+                            <div class="product-image w-full h-full bg-cover bg-center" style="background-image: url('images/headset.jpg');"></div>
+                            <div class="absolute top-6 right-6">
+                                <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                </button>
                             </div>
                         </div>
-                        <div class="flex justify-between items-start px-1">
-                            <div>
-                                <h3 class="font-black text-[13px] uppercase tracking-tight text-slate-900">Neural Link Headset v2</h3>
-                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Neural-Fiber Mesh</p>
-                            </div>
-                            <span class="font-black text-base text-slate-900">1,200S</span>
-                        </div>
+                        <h3 class="text-xl font-bold mb-1">Aural Core Headset</h3>
+                        <p class="text-muted text-sm mb-3">Bone-conduction tech</p>
+                        <div class="text-2xl font-black italic tracking-tighter text-orange-600">$320.00</div>
                     </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="mt-20 flex flex-wrap justify-center items-center gap-4 space-x-0 md:space-x-6 w-full pt-16">
-                    <button class="glass w-12 h-12 flex items-center justify-center p-0 text-base shadow-sm font-black border-none">1</button>
-                    <button class="glass w-12 h-12 flex items-center justify-center p-0 text-slate-400 hover:text-slate-900 transition-all text-base opacity-60 hover:opacity-100">2</button>
-                    <button class="glass w-12 h-12 flex items-center justify-center p-0 text-slate-400 hover:text-slate-900 transition-all text-base opacity-60 hover:opacity-100">3</button>
-                    <div class="px-4 text-slate-200 font-black text-lg">/</div>
-                    <button class="glass px-10 h-12 text-[10px] font-black uppercase tracking-widest shadow-sm opacity-80 hover:opacity-100">Next Cluster</button>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 text-white py-12 mt-32 relative">
-        <div class="max-w-[1440px] mx-auto px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                <div class="lg:col-span-4 space-y-8">
-                    <div class="text-4xl font-black tracking-tighter uppercase text-primary">QUANTUM<span class="text-orange-600">STORE</span></div>
-                    <p class="text-slate-400 text-sm font-medium leading-loose max-w-sm">Redefining human aesthetics for the digital era through synthetic fiber and light integration.</p>
-                </div>
-                <div class="lg:col-span-2">
-                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] mb-8 text-slate-600">Inventory</h5>
-                    <ul class="space-y-4 text-sm font-bold list-none p-0">
-                        <li><a href="#" class="text-white hover:text-orange-600 transition-colors">Drops</a></li>
-                        <li><a href="#" class="text-white hover:text-orange-600 transition-colors">Wanted</a></li>
-                        <li><a href="#" class="text-white hover:text-orange-600 transition-colors">Tech</a></li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-2">
-                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] mb-8 text-slate-600">Support</h5>
-                    <ul class="space-y-4 text-sm font-bold list-none p-0">
-                        <li><a href="#" class="text-white hover:text-orange-600 transition-colors">Logistics</a></li>
-                        <li><a href="#" class="text-white hover:text-orange-600 transition-colors">Returns</a></li>
-                        <li><a href="#" class="text-white hover:text-orange-600 transition-colors">Sizing</a></li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-4 space-y-8">
-                    <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-600">Neural Connect</h5>
-                    <div class="flex flex-col space-y-4">
-                        <input type="email" class="input-starlight h-12 w-full bg-slate-900 border-none text-white placeholder:text-slate-600" placeholder="id@nexus.io">
-                        <button class="btn-starlight w-full h-12 text-[10px] font-black uppercase tracking-widest shadow-2xl shadow-orange-600_20">Sync Comms Link</button>
-                    </div>
+    <footer class="bg-surface py-20 border-t border-white_5">
+        <div class="max-w-[1440px] mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div class="col-span-2">
+                <div class="text-2xl font-black tracking-tighter uppercase mb-8">QUANTUM<span class="text-orange-600">STORE</span></div>
+                <p class="text-secondary max-w-sm mb-8">Pioneering the intersection of fashion and high-tech utility. Interstellar shipping enabled since 2024.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-secondary hover:text-orange-600">Instagram</a>
+                    <a href="#" class="text-secondary hover:text-orange-600">X.com</a>
+                    <a href="#" class="text-secondary hover:text-orange-600">Discord</a>
                 </div>
             </div>
-            <div class="mt-20 pt-12   flex justify-between items-center text-[10px] font-bold text-slate-600 uppercase tracking-widest">
-                <p>© 2026 Quantum Store</p>
-                <p class="italic tracking-normal">Encrypted Connection Verified</p>
+            <div>
+                <h5 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Support</h5>
+                <ul class="space-y-4 text-sm font-bold">
+                    <li><a href="#" class="text-secondary hover:text-orange-600">Shipping Info</a></li>
+                    <li><a href="#" class="text-secondary hover:text-orange-600">Returns</a></li>
+                    <li><a href="#" class="text-secondary hover:text-orange-600">Sizing Guide</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-black uppercase text-[10px] tracking-[0.3em] text-muted mb-8">Legal</h5>
+                <ul class="space-y-4 text-sm font-bold">
+                    <li><a href="#" class="text-secondary hover:text-orange-600">Privacy Policy</a></li>
+                    <li><a href="#" class="text-secondary hover:text-orange-600">Terms of Service</a></li>
+                </ul>
             </div>
         </div>
     </footer>
-
-    <script>
-        // Color Swatch Selection
-        const swatches = document.querySelectorAll('.color-swatch');
-        swatches.forEach(swatch => {
-            swatch.addEventListener('click', () => {
-                swatches.forEach(s => s.classList.remove('selected'));
-                swatch.classList.add('selected');
-            });
-        });
-
-        // Theme initialization and management is now handled 
-        // automatically by Starlight.initTheme() in starlight.js
-    </script>
 </body>
 </html>

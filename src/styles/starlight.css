@@ -46,7 +46,7 @@ html[data-theme="light"] a:hover {
 /* ... existing code ... */
 
 .nav-glass:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--q-color-border-strong);
 }
 
 .starlight-nav, .starlight-navbar {
@@ -247,7 +247,7 @@ html[data-theme="light"] .starlight-card {
   appearance: none;
   width: 1.25rem;
   height: 1.25rem;
-  background: rgb(255 255 255 / 5%);
+  background: var(--q-color-border);
   border: 1px solid rgb(255 255 255 / 20%);
   border-radius: 0.375rem;
   cursor: pointer;
@@ -321,7 +321,8 @@ html[data-theme="light"] .radio-starlight {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
+  background: var(--q-bg-primary);
   overflow: hidden;
   contain: strict;
 }
@@ -358,7 +359,7 @@ html[data-theme="light"] .star {
 .dialog-content {
   background-color: rgb(10 10 20 / 98%);
   backdrop-filter: blur(20px);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid var(--q-color-border-strong);
   border-radius: 1.5rem;
   padding: 2.5rem;
   max-width: 90%;
@@ -373,7 +374,7 @@ html[data-theme="light"] .star {
   background-color: rgb(10 10 20 / 98%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid var(--q-color-border-strong);
   border-radius: 1.5rem;
   padding: 3rem;
   width: 100%;
@@ -393,7 +394,7 @@ html[data-theme="light"] .star {
 
 .dialog-content::-webkit-scrollbar-track,
 .starlight-dialog::-webkit-scrollbar-track {
-  background: rgb(255 255 255 / 5%);
+  background: var(--q-color-border);
   border-radius: 4px;
 }
 
@@ -422,8 +423,8 @@ html[data-theme="light"] .starlight-dialog {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: rgb(255 255 255 / 5%);
-  border: 1px solid rgb(255 255 255 / 10%);
+  background: var(--q-color-border);
+  border: 1px solid var(--q-color-border-strong);
   color: white;
   display: flex;
   align-items: center;
@@ -471,7 +472,7 @@ html[data-theme="light"] .dialog-content {
   background-color: rgba(8, 8, 26, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--q-color-border-strong);
   border-radius: 0.75rem;
   padding: 0.5rem;
   margin-top: 0.5rem;
@@ -581,15 +582,15 @@ html[data-theme="light"] .glass {
   background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid var(--q-color-border-strong);
   border-radius: var(--q-radius-xl);
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
 }
 
 .code-window-header {
-  background: rgb(255 255 255 / 5%);
-  border-bottom: 1px solid rgb(255 255 255 / 5%);
+  background: var(--q-color-border);
+  border-bottom: 1px solid var(--q-color-border);
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -814,6 +815,7 @@ html[data-theme="light"] .search-icon {
   padding: 1rem;
   opacity: 0;
   transition: opacity 0.3s ease;
+  color: white !important;
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -870,7 +872,7 @@ html[data-theme="light"] .stat-value {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--q-color-border-strong);
   background-clip: border-box;
   display: flex;
   flex-direction: column;
@@ -937,7 +939,7 @@ html[data-theme="light"] .nav-glass {
 }
 
 .nav-list.vertical .nav-link:hover {
-  background: rgb(255 255 255 / 5%);
+  background: var(--q-color-border);
   color: var(--q-color-starlight-blue);
 }
 
@@ -976,8 +978,8 @@ html[data-theme="light"] .nav-link:hover {
   align-items: center;
   gap: 0.4rem;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--q-color-border);
+  border: 1px solid var(--q-color-border-strong);
   border-radius: 0.5rem;
   padding: 0.5rem;
   transition: all 0.3s;
@@ -989,7 +991,7 @@ html[data-theme="light"] .hamburger {
 }
 
 .hamburger:hover {
-  background: rgb(255 255 255 / 10%);
+  background: var(--q-color-border-strong);
   border-color: var(--q-color-starlight-blue);
 }
 
@@ -1024,7 +1026,7 @@ html[data-theme="light"] .hamburger span {
   background: rgba(8, 8, 26, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--q-color-border);
   padding: 0 2rem;
   max-height: 0;
   overflow: hidden;
@@ -1076,7 +1078,7 @@ html[data-theme="light"] .nav-menu-mobile {
 .nav-list.vertical .dropdown-item {
   padding: 0.5rem 1rem;
   font-size: 0.825rem;
-  border-left: 1px solid rgb(255 255 255 / 10%);
+  border-left: 1px solid var(--q-color-border-strong);
   border-radius: 0;
 }
 
@@ -1105,7 +1107,7 @@ html[data-theme="light"] .nav-menu-mobile {
   width: 280px !important;
   min-width: 280px !important;
   border-bottom: none;
-  border-right: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid var(--q-color-border-strong);
   padding: 2.5rem 1.5rem;
   align-items: flex-start;
   justify-content: flex-start;
@@ -1155,7 +1157,7 @@ html[data-theme="light"] .select-starlight {
   appearance: none;
   width: 100%;
   height: 6px;
-  background: rgb(255 255 255 / 10%);
+  background: var(--q-color-border-strong);
   border-radius: 3px;
   outline: none;
 }
@@ -1197,8 +1199,8 @@ html[data-theme="light"] .range-starlight {
 }
 
 .toggle-starlight .toggle-slider {
-  background: rgb(255 255 255 / 10%);
-  border: 1px solid rgb(255 255 255 / 10%);
+  background: var(--q-color-border-strong);
+  border: 1px solid var(--q-color-border-strong);
 }
 
 html[data-theme="light"] .toggle-starlight .toggle-slider {
@@ -1291,8 +1293,8 @@ html[data-theme="light"] .starlight-loading {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(255 255 255 / 10%);
-  border: 1px solid rgb(255 255 255 / 5%);
+  background: var(--q-color-border-strong);
+  border: 1px solid var(--q-color-border);
   border-radius: 10px;
   transition: all 0.3s;
 }
@@ -1318,7 +1320,7 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
 /* Firefox Support */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(255 255 255 / 10%) transparent;
+  scrollbar-color: var(--q-color-border-strong) transparent;
 }
 
 html[data-theme="light"] * {
@@ -1389,7 +1391,7 @@ html[data-theme="light"] * {
   background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid var(--q-color-border-strong);
   padding: 1rem;
   overflow-y: auto;
 }
@@ -1398,10 +1400,10 @@ html[data-theme="light"] * {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: rgb(255 255 255 / 5%);
+  background: var(--q-color-border);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-right: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid var(--q-color-border-strong);
   overflow-y: auto;
 }
 
@@ -1420,7 +1422,7 @@ html[data-theme="light"] * {
   background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid var(--q-color-border-strong);
   padding: 1rem;
   overflow-y: auto;
 }
@@ -1440,7 +1442,7 @@ html[data-theme="light"] * {
   background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid rgb(255 255 255 / 10%);
+  border-top: 1px solid var(--q-color-border-strong);
 }
 
 /* Chat 2-column layout */
@@ -1451,7 +1453,7 @@ html[data-theme="light"] * {
   background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid var(--q-color-border-strong);
   overflow: hidden;
 }
 
@@ -1470,7 +1472,7 @@ html[data-theme="light"] * {
   background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid var(--q-color-border-strong);
   padding: 1rem;
   overflow-y: auto;
 }
@@ -1490,7 +1492,7 @@ html[data-theme="light"] * {
   background: rgb(0 0 0 / 40%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid var(--q-color-border-strong);
   padding: 1rem;
   overflow-y: auto;
 }
@@ -1561,7 +1563,7 @@ html[data-theme="light"] * {
 }
 
 .starlight-stat:hover {
-  background: rgb(255 255 255 / 5%);
+  background: var(--q-color-border);
   border-color: rgb(255 255 255 / 12%);
 }
 
@@ -1674,8 +1676,8 @@ html[data-theme="light"] * {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: rgb(255 255 255 / 5%);
-  border: 1px solid rgb(255 255 255 / 10%);
+  background: var(--q-color-border);
+  border: 1px solid var(--q-color-border-strong);
   color: inherit;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1683,7 +1685,7 @@ html[data-theme="light"] * {
 }
 
 .starlight-theme-toggle:hover {
-  background: rgb(255 255 255 / 10%);
+  background: var(--q-color-border-strong);
   transform: scale(1.05);
 }
 
@@ -1762,7 +1764,7 @@ html[data-theme="light"] * {
 .starlight-table td {
   padding: 0.875rem 1.25rem;
   text-align: left;
-  border-bottom: 1px solid rgb(255 255 255 / 5%);
+  border-bottom: 1px solid var(--q-color-border);
 }
 
 .starlight-table th {
@@ -1801,7 +1803,7 @@ html[data-theme="light"] * {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid rgb(255 255 255 / 5%);
+  border-bottom: 1px solid var(--q-color-border);
 }
 
 .starlight-chart-title {
@@ -1899,6 +1901,7 @@ html[data-theme="light"] * {
   background: linear-gradient(to top, rgb(0 0 0 / 80%), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
+  color: white !important;
 }
 
 .starlight-gallery-item:hover .starlight-gallery-overlay {
@@ -1915,7 +1918,7 @@ html[data-theme="light"] * {
 .starlight-progress-bar {
   flex: 1;
   height: 0.5rem;
-  background: rgb(255 255 255 / 10%);
+  background: var(--q-color-border-strong);
   border-radius: 9999px;
   overflow: hidden;
 }
