@@ -700,9 +700,13 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
   transition: all var(--q-duration-base) var(--q-ease-in-out);
 }
 
-.search-container:focus-within {
+.search-container:focus-within, .starlight-search:focus-within {
   box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
   border-color: var(--q-color-starlight-blue);
+}
+
+.search-container input:focus, .starlight-search input:focus {
+  box-shadow: none !important;
 }
 
 .search-input {

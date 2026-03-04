@@ -1573,8 +1573,16 @@ html[data-theme="light"] .label-important {
 
 .search-input:focus {
   outline: none;
-  border-color: rgba(0, 212, 255, 0.5);
+  border-color: transparent;
   background: rgba(255, 255, 255, 0.08);
+  box-shadow: none !important;
+}
+
+/* Ensure the container gets the focus ring if using search-box wrapper */
+.search-box:focus-within, .starlight-search:focus-within {
+  box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
+  border-radius: inherit;
 }
 
 .search-input::placeholder {
