@@ -175,7 +175,7 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--q-color-starlight-deep);
+  background-color: var(--q-bg-primary);
   scrollbar-width: thin;
   scrollbar-color: var(--q-color-starlight-blue) transparent;
 }
@@ -1042,12 +1042,9 @@ html[data-theme="light"] :focus, html[data-theme="light"] :focus-visible {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--q-bg-primary);
+  background-color: transparent;
   color: var(--q-text-primary);
   transition: background-color var(--q-transition-slow), color var(--q-transition-slow);
-
-
-
 }
 
 

@@ -54,8 +54,8 @@
         .message-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
         .message-content { display: flex; flex-direction: column; gap: 0.25rem; }
         .message-bubble { padding: 0.875rem 1.125rem; border-radius: 1.125rem; font-size: 0.9375rem; line-height: 1.5; }
-        .message.received .message-bubble { background: var(--q-color-bg-muted); color: var(--q-text-primary, #f1f5f9); border-bottom-left-radius: 0.25rem; }
-        .message.sent .message-bubble { background: var(--q-gradient-primary); color: white; border-bottom-right-radius: 0.25rem; }
+        .message.received .message-bubble { background: color-mix(in srgb, var(--q-color-bg), white 8%); color: var(--q-text-primary, #f1f5f9); border-bottom-left-radius: 0.25rem; }
+        .message.sent .message-bubble { background: var(--q-color-starlight-blue); color: #000; font-weight: 600; border-bottom-right-radius: 0.25rem; }
         .message-time { font-size: 0.75rem; color: var(--q-text-muted, #64748b); align-self: flex-start; margin-left: 0.5rem; }
         .message.sent .message-time { align-self: flex-end; margin-left: 0; margin-right: 0.5rem; }
         .chat-input-container { padding: 0 1.25rem; border-top: 1px solid var(--q-color-border); background: color-mix(in srgb, var(--q-color-bg), white 1%); height: 5rem; min-height: 5rem; display: flex; align-items: center; flex-shrink: 0; box-sizing: border-box; }
@@ -71,6 +71,8 @@
         html[data-theme="light"] .sun-icon { display: inline; }
         html[data-theme="light"] .moon-icon { display: none; }
         html[data-theme="light"] { --bg-primary: var(--q-light-bg); --text-primary: var(--q-light-text); --text-secondary: var(--q-light-text-muted); --text-muted: var(--q-light-text-muted); }
+        html[data-theme="light"] .message.received .message-bubble { background: #fff; border: 1px solid #e2e8f0; color: #0f172a; }
+        html[data-theme="light"] .message.sent .message-bubble { background: var(--q-color-primary); color: #fff; }
         @media (max-width: 768px) { .chat-app { grid-template-columns: 1fr; } .chat-sidebar { display: none; } .message { max-width: 85%; } }
     </style>
 </head>
