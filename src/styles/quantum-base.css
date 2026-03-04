@@ -913,6 +913,39 @@ html[data-theme="light"] {
   --q-text-primary: var(--q-light-text);
   --q-text-secondary: var(--q-light-text-muted);
   --q-text-muted: var(--q-light-text-muted);
+  
+  --q-card-bg: color-mix(in srgb, #fff, transparent 5%);
+  --q-card-border: color-mix(in srgb, #000, transparent 90%);
+  --q-card-shadow: 0 10px 40px rgb(0 0 0 / 10%);
+  
+  --q-btn-primary-bg: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%);
+  --q-btn-primary-hover-bg: linear-gradient(135deg, var(--q-color-starlight-peach) 50%, var(--q-color-starlight-blue) 110%);
+  --q-btn-primary-color: #fff;
+  
+  --q-input-bg: #fff;
+  --q-input-border: #cbd5e1;
+  
+  --q-dropdown-bg: rgba(255, 255, 255, 0.98);
+  --q-dropdown-border: color-mix(in srgb, #000, transparent 82%);
+  --q-dropdown-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+  
+  --q-glass-bg: color-mix(in srgb, #fff, transparent 15%);
+  --q-glass-border: color-mix(in srgb, #000, transparent 82%);
+  
+  --q-color-bg: var(--q-bg-primary);
+  --q-color-surface: var(--q-card-bg);
+  --q-color-border: var(--q-card-border);
+  --q-color-border-strong: color-mix(in srgb, var(--q-color-border), black 15%);
+  --q-color-text: var(--q-text-primary);
+  
+  --q-color-bg-muted: color-mix(in srgb, var(--q-color-bg), black 10%);
+  
+  --q-skeleton-bg: color-mix(in srgb, var(--q-color-bg), black 10%);
+  --q-skeleton-shimmer: color-mix(in srgb, var(--q-color-bg), black 5%);
+  
+  /* Highlights & Highlights Transparency */
+  --q-highlight-bg: color-mix(in srgb, var(--q-color-primary), transparent 80%);
+  --q-highlight-border: color-mix(in srgb, var(--q-color-primary), transparent 60%);
 
   scrollbar-color: var(--q-color-starlight-blue) transparent;
 }
@@ -922,6 +955,39 @@ html[data-theme="dark"] {
 
   --q-bg-primary: var(--q-color-starlight-deep);
   --q-text-primary: #f1f5f9;
+  
+  --q-card-bg: color-mix(in srgb, #fff, transparent 94%);
+  --q-card-border: color-mix(in srgb, #fff, transparent 88%);
+  --q-card-shadow: 0 25px 50px -12px rgb(0 0 0 / 60%);
+  
+  --q-btn-primary-bg: #00d4ff;
+  --q-btn-primary-hover-bg: #00b8e6;
+  --q-btn-primary-color: #fff;
+  
+  --q-input-bg: color-mix(in srgb, #fff, transparent 92%);
+  --q-input-border: color-mix(in srgb, #fff, transparent 75%);
+  
+  --q-dropdown-bg: color-mix(in srgb, #08081a, transparent 15%);
+  --q-dropdown-border: color-mix(in srgb, #fff, transparent 80%);
+  --q-dropdown-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  
+  --q-glass-bg: color-mix(in srgb, #fff, transparent 90%);
+  --q-glass-border: color-mix(in srgb, #fff, transparent 85%);
+  
+  --q-color-bg: var(--q-bg-primary);
+  --q-color-surface: var(--q-card-bg);
+  --q-color-border: var(--q-card-border);
+  --q-color-border-strong: color-mix(in srgb, var(--q-color-border), white 15%);
+  --q-color-text: var(--q-text-primary);
+  
+  --q-color-bg-muted: color-mix(in srgb, var(--q-color-bg), white 10%);
+  
+  --q-skeleton-bg: color-mix(in srgb, var(--q-color-surface), white 5%);
+  --q-skeleton-shimmer: color-mix(in srgb, var(--q-color-surface), white 10%);
+  
+  /* Highlights & Highlights Transparency */
+  --q-highlight-bg: color-mix(in srgb, var(--q-color-primary), transparent 60%);
+  --q-highlight-border: color-mix(in srgb, var(--q-color-primary), transparent 40%);
 }
 
 /* Force theme colors on body to override template-specific hardcoded styles */

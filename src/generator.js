@@ -122,6 +122,9 @@ function generateCSS(configPath) {
     regex: new RegExp(`\\s${v}="([^"]+)"`, 'g')
   }));
 
+  const jitLimit = (config.jit && config.jit.limit) || 10000;
+  const jitWarnAt = (config.jit && config.jit.warnAt) || (jitLimit * 0.8);
+
   files.forEach(file => {
     try {
       const content = fs.readFileSync(file, 'utf8');
@@ -129,7 +132,9 @@ function generateCSS(configPath) {
       // 1. Match standard class="..."
       let match;
       while ((match = classAttrRegex.exec(content)) !== null) {
-        match[1].split(/\s+/).forEach(cls => { if (cls) rawClasses.add(cls); });
+        match[1].split(/\s+/).forEach(cls => { 
+          if (cls && rawClasses.size < jitLimit) rawClasses.add(cls); 
+        });
       }
       
       // 2. Match attribute lanes (e.g., md="flex gap-4")
@@ -137,7 +142,7 @@ function generateCSS(configPath) {
         regex.lastIndex = 0;
         while ((match = regex.exec(content)) !== null) {
           match[1].split(/\s+/).forEach(cls => {
-            if (cls) {
+            if (cls && rawClasses.size < jitLimit) {
               // We convert attribute-based utilities to a canonical internal format
               // using the __ separator, which getRulesForClass already understands.
               rawClasses.add(`${variant}__${cls}`);
@@ -149,6 +154,10 @@ function generateCSS(configPath) {
       // Ignore errors reading files
     }
   });
+
+  if (rawClasses.size >= jitWarnAt) {
+    console.warn(`⚠️  JIT Warning: Generated ${rawClasses.size} utilities, approaching limit of ${jitLimit}.`);
+  }
 
   const utilities = new Set();
   const responsiveUtils = { 
@@ -162,7 +171,7 @@ function generateCSS(configPath) {
    * @returns {string} The escaped selector
    */
   const escapeSelector = (cls) => {
-    return cls.replace(/([:.[\]\\])/g, '\\$1');
+    return cls.replace(/([:.[\]\\/])/g, '\\$1');
   };
 
   const sideMap = {
