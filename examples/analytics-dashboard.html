@@ -860,7 +860,7 @@
             const range = maxValue - minValue;
 
             // Draw grid lines
-            ctx.strokeStyle = document.body.classList.contains('light-mode') ? '#e2e8f0' : 'rgba(255,255,255,0.05)';
+            ctx.strokeStyle = document.documentElement.getAttribute('data-theme') === 'light' ? '#e2e8f0' : 'rgba(255,255,255,0.05)';
             ctx.lineWidth = 1;
             
             for (let i = 0; i <= 5; i++) {
@@ -926,7 +926,7 @@
             });
 
             // Draw labels
-            ctx.fillStyle = document.body.classList.contains('light-mode') ? '#64748b' : '#64748b';
+            ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'light' ? '#64748b' : '#94a3b8';
             ctx.font = '12px Inter, system-ui, sans-serif';
             ctx.textAlign = 'center';
             
@@ -978,7 +978,7 @@
             });
 
             // Draw center text
-            ctx.fillStyle = document.body.classList.contains('light-mode') ? '#0f172a' : '#f1f5f9';
+            ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'light' ? '#0f172a' : '#f1f5f9';
             ctx.font = 'bold 20px Inter, system-ui, sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -998,15 +998,10 @@
         });
 
         // Redraw on theme change
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    drawLineChart();
-                    drawDonutChart();
-                }
-            });
+        window.addEventListener('themechange', () => {
+            drawLineChart();
+            drawDonutChart();
         });
-        observer.observe(document.body, { attributes: true });
     </script>
 </body>
 </html>

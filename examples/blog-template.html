@@ -37,7 +37,6 @@
         color: #1e293b;
     }
 
-    html[data-theme="light"] .text-white,
     html[data-theme="light"] .text-primary,
     html[data-theme="light"] h1,
     html[data-theme="light"] h2,
@@ -72,6 +71,8 @@
     html[data-theme="light"] .code-window pre {
         color: #1e293b;
     }
+    body { background: transparent !important; }
+    nav, main, footer, section { position: relative; z-index: 1; }
   </style>
 </head>
 <body class="bg-starlight-deep text-primary font-sans antialiased min-h-screen relative overflow-x-hidden">
@@ -85,7 +86,7 @@
     <div class="star" style="top: 90%; left: 90%; --duration: 4s;"></div>
   </div>
 
-  <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-n1 pointer-events-none">
     <div class="absolute top-0 left-0 w-full h-full bg-gradient-radial from-primary opacity-10"></div>
   </div>
 
@@ -147,14 +148,14 @@
             <span>5 min read</span>
           </div>
           
-          <h1 class="text-5xl md:text-7xl font-black leading-tight text-white uppercase italic tracking-tighter">
+          <h1 class="text-5xl md:text-7xl font-black leading-tight text-primary uppercase italic tracking-tighter">
             The Future of <span class="text-gradient-starlight">UI Design</span>
           </h1>
 
           <div class="flex items-center gap-4 pt-4">
-            <img src="https://media.licdn.com/dms/image/v2/D5603AQFDAUK1PK6IzQ/profile-displayphoto-scale_100_100/B56Zml2ZwgJkAg-_0/1759424127811?e=1771459200&v=beta&t=kk4HtXlQ0REqJ5bz6yy3akXwYeEfvznb8PZ4hQg85u4" alt="Eric Yang" class="w-12 h-12 rounded-full border border-primary_30">
+            <img src="images/eric.png" alt="Eric Yang" class="w-12 h-12 rounded-full border border-accent_30">
             <div>
-              <p class="font-bold text-white uppercase text-xs tracking-widest">Eric Yang</p>
+              <p class="font-bold text-primary uppercase text-xs tracking-widest">Eric Yang</p>
               <p class="text-xs text-secondary font-medium">Frontend Architect</p>
             </div>
           </div>
@@ -169,12 +170,12 @@
 
         <!-- Content -->
         <div class="prose max-w-none text-slate-300 text-lg leading-relaxed space-y-10">
-          <p class="text-2xl text-white font-medium">
+          <p class="text-2xl text-primary font-medium">
             Glassmorphism, neon glows, and deep gradients are making a comeback. Powered by modern CSS, they create an immersive experience.
           </p>
           
           <div class="space-y-6">
-            <h2 class="text-3xl font-black text-white uppercase italic tracking-tighter flex items-center gap-4">
+            <h2 class="text-3xl font-black text-primary uppercase italic tracking-tighter flex items-center gap-4">
               <span class="w-2 h-10 bg-starlight rounded-full shadow-[0_0_15px_rgba(0,212,255,0.5)]"></span>
               The Starlight Paradigm
             </h2>
@@ -183,12 +184,12 @@
             </p>
           </div>
 
-          <div class="glass p-8 rounded-2xl   border-primary bg-primary_5 italic text-xl text-white">
+          <div class="glass p-8 rounded-2xl   border-accent bg-accent_5 italic text-xl text-primary">
             "Design is not just what it looks like and feels like. Design is how it works... in zero gravity."
           </div>
 
           <div class="space-y-6">
-            <h2 class="text-3xl font-black text-white uppercase italic tracking-tighter">Code Interface</h2>
+            <h2 class="text-3xl font-black text-primary uppercase italic tracking-tighter">Code Interface</h2>
             <div class="code-window">
               <div class="code-window-header">
                 <div class="code-window-controls">
@@ -235,7 +236,7 @@
 
         <!-- Newsletter -->
         <div class="glass p-6 rounded-2xl glow-blue border border-white_5">
-          <h3 class="text-lg font-bold mb-2 text-white">Join the Newsletter</h3>
+          <h3 class="text-lg font-bold mb-2 text-primary">Join the Newsletter</h3>
           <p class="text-secondary text-sm mb-4">Get the latest design trends delivered to your inbox.</p>
           <form class="space-y-3">
             <input type="email" placeholder="your@email.com" class="input-starlight w-full bg-black_20 border-white_10">
@@ -248,12 +249,12 @@
           <h3 class="text-xs font-bold text-muted uppercase tracking-wider">Recommended</h3>
           
           <a href="#" class="block glass p-4 rounded-xl hover:bg-white_5 transition-colors group">
-            <h4 class="font-bold text-white group-hover:text-primary transition-colors">Glassmorphism in 2026</h4>
+            <h4 class="font-bold text-primary group-hover:text-primary transition-colors">Glassmorphism in 2026</h4>
             <p class="text-xs text-muted mt-1">Feb 1 • 4 min read</p>
           </a>
           
           <a href="#" class="block glass p-4 rounded-xl hover:bg-white_5 transition-colors group">
-            <h4 class="font-bold text-white group-hover:text-primary transition-colors">Modern CSS Variables</h4>
+            <h4 class="font-bold text-primary group-hover:text-primary transition-colors">Modern CSS Variables</h4>
             <p class="text-xs text-muted mt-1">Jan 28 • 8 min read</p>
           </a>
         </div>
@@ -271,8 +272,8 @@
           © 2026 StarlightBlog. Powered by QuantumCSS.
         </div>
         <div class="flex gap-6">
-          <a href="#" class="text-muted hover:text-white transition-colors">Privacy</a>
-          <a href="#" class="text-muted hover:text-white transition-colors">Terms</a>
+          <a href="#" class="text-muted hover:text-primary transition-colors">Privacy</a>
+          <a href="#" class="text-muted hover:text-primary transition-colors">Terms</a>
         </div>
       </div>
     </div>

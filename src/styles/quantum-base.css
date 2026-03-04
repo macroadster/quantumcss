@@ -558,6 +558,7 @@ textarea {
 .font-semibold { font-weight: 600; }
 .font-bold { font-weight: 700; }
 .font-extrabold { font-weight: 800; }
+.font-black { font-weight: 900; }
 
 .text-left { text-align: left; }
 .text-center { text-align: center; }
@@ -565,8 +566,10 @@ textarea {
 .text-justify { text-align: justify; }
 
 /* Color Utilities */
-.text-primary { color: var(--q-color-primary); }
-.text-secondary { color: var(--q-color-secondary); }
+.text-primary { color: var(--q-text-primary); }
+.text-secondary { color: var(--q-text-secondary); }
+.text-muted { color: var(--q-text-muted); }
+.text-accent { color: var(--q-color-primary); }
 .text-success { color: var(--q-color-success); }
 .text-warning { color: var(--q-color-warning); }
 .text-error { color: var(--q-color-error); }
@@ -574,7 +577,9 @@ textarea {
 .text-white { color: #fff; }
 .text-black { color: #000; }
 
-.bg-primary { background-color: var(--q-color-primary); }
+.bg-primary { background-color: var(--q-bg-primary); }
+.bg-surface { background-color: var(--q-color-surface); }
+.bg-accent { background-color: var(--q-color-primary); }
 .bg-secondary { background-color: var(--q-color-secondary); }
 .bg-success { background-color: var(--q-color-success); }
 .bg-warning { background-color: var(--q-color-warning); }
@@ -806,6 +811,8 @@ textarea {
 
 /* Z-Index Utilities */
 .z-auto { z-index: auto; }
+.z-n10 { z-index: -10; }
+.z-n1 { z-index: -1; }
 .z-0 { z-index: 0; }
 .z-10 { z-index: 10; }
 .z-20 { z-index: 20; }
@@ -992,12 +999,12 @@ html[data-theme="dark"] {
 
 /* Force theme colors on body to override template-specific hardcoded styles */
 html[data-theme="light"] body {
-  background: var(--q-light-bg) !important;
+  background-color: var(--q-light-bg) !important;
   color: var(--q-light-text);
 }
 
 html[data-theme="dark"] body {
-  background: var(--q-color-starlight-deep) !important;
+  background-color: var(--q-color-starlight-deep) !important;
   color: #f1f5f9;
 }
 

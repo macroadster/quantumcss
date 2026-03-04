@@ -8,10 +8,11 @@
     <script src="../src/starlight.js"></script>
     <style>
         body {
-            background: var(--q-color-bg);
+            background: transparent !important;
             color: var(--q-color-text);
             transition: background 0.5s ease, color 0.5s ease;
         }
+        nav, main, footer, section, header { position: relative; z-index: 1; }
         
         .hero-ai {
             min-height: 90vh;
@@ -149,6 +150,15 @@
             <h2 class="text-5xl font-black uppercase italic mb-12">Release History</h2>
             
             <div class="starlight-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">March 2026</span>
+                        <h3 class="text-xl font-bold mb-2">v1.10.0: Semantic Token Refactor</h3>
+                        <p class="opacity-70 text-sm">Refactored text-primary to be theme-aware and added accent utilities for brand consistency.</p>
+                    </div>
+                </div>
+                
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
