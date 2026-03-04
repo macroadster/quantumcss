@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="../dist/quantum.min.css">
     <script src="../src/starlight.js"></script>
     <style>
-        /* Base / Dark Mode (Default) */
         body { 
-            background-color: #020617; 
-            color: #f1f5f9; 
+            background-color: var(--q-color-bg); 
+            color: var(--q-color-text); 
             transition: background-color 0.5s ease, color 0.5s ease; 
         }
         
@@ -40,278 +39,116 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            color: #f1f5f9;
+            color: var(--q-color-text);
         }
 
         .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--q-highlight-bg);
         }
 
-        /* Dark Mode Styles (Default Overrides) */
-        .bg-white {
-            background-color: #020617 !important;
-            color: #f1f5f9 !important;
-        }
-
-        .bg-slate-50 {
-            background-color: rgba(255, 255, 255, 0.05) !important;
-        }
-
-        .bg-slate-900 {
-            background-color: #f1f5f9 !important;
-            color: #020617 !important;
-        }
-
-        .border-slate-100 {
-            border-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        .text-slate-900,
-        .text-slate-500 {
-            color: #f1f5f9 !important;
-        }
-
-        .text-blue-600 {
-            color: #60a5fa !important;
-        }
-
-        nav {
-            background-color: #020617 !important;
-             ottom-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        /* Light Mode Overrides */
-        html[data-theme="light"] {
-            background-color: #ffffff;
-            color: #0f172a;
-        }
-
-        html[data-theme="light"] .bg-white {
-            background-color: #ffffff !important;
-            color: #0f172a !important;
-        }
-
-        html[data-theme="light"] .bg-slate-50 {
-            background-color: #f8fafc !important;
-        }
-
-        html[data-theme="light"] .bg-slate-900 {
-            background-color: #0f172a !important;
-            color: #ffffff !important;
-        }
-
-        html[data-theme="light"] .border-slate-100 {
-            border-color: #f1f5f9 !important;
-        }
-
-        html[data-theme="light"] .text-slate-900 { color: #0f172a !important; }
-        html[data-theme="light"] .text-slate-500 { color: #64748b !important; }
-        html[data-theme="light"] .text-blue-600 { color: #2563eb !important; }
-
-        html[data-theme="light"] nav {
-            background-color: #ffffff !important;
-             ottom-color: #0f172a !important;
-        }
-
-        html[data-theme="light"] .theme-toggle {
-            color: #0f172a;
-        }
-
-        html[data-theme="light"] .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        /* Component Visibility */
-        .text-slate-100 {
-            color: rgba(255, 255, 255, 0.2) !important;
-        }
-
-        html[data-theme="light"] .text-slate-100 {
-            color: #cbd5e1 !important;
-        }
-
-        /* Glassy Hover for Icons */
-        .hover\:glass-light="hover" {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(4px);
-        }
-
-        html[data-theme="light"] .hover\:glass-light="hover" {
-            background-color: rgba(0, 0, 0, 0.05) !important;
-            backdrop-filter: blur(4px);
-        }
-
-        footer a:hover { color: #60a5fa !important; }
-        html[data-theme="light"] footer a:hover { color: #2563eb !important; }
+        .sun-icon { display: none; }
+        html[data-theme="light"] .sun-icon { display: inline; }
+        html[data-theme="light"] .moon-icon { display: none; }
     </style>
 </head>
-<body class="font-sans antialiased">
-    <!-- Top Bar -->
-    <div class="  border-slate-100 py-2 bg-slate-50">
-        <div class="container mx-auto px-6 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            <div>Monday, February 2, 2026</div>
-            <div class="flex gap-6">
-                <a href="#" class="hover="text-slate-900"">Archive</a>
-                <a href="#" class="hover="text-slate-900"">Terminal</a>
-                <a href="#" class="hover="text-slate-900"">Status: Stable</a>
-            </div>
-        </div>
-    </div>
-
+<body class="bg-surface">
     <!-- Navigation -->
-    <nav class="border-b border-slate-900 sticky top-0 bg-white z-50">
-        <div class="container mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-2xl sm:text-4xl font-black tracking-tighter uppercase italic text-primary">QUANTUM<span class="text-blue-600">NEWS</span></div>
-            <div class="flex flex-wrap justify-center gap-8 text-xs font-black uppercase tracking-widest">
-                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Quantum Computing</a>
-                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Neural Nets</a>
-                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Bio-Tech</a>
-                <a href="#" class="border-b-2 border-transparent hover:border-blue-600 transition-colors">Space-X</a>
-                <a href="#" class="text-blue-600">Live Updates</a>
+    <nav class="border-b border-white_5 sticky top-0 bg-surface z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl sm:text-4xl font-bold tracking-tighter uppercase italic text-primary">QUANTUM<span class="text-blue-600">NEWS</span></div>
+            <div class="hidden md:flex flex-wrap justify-center gap-8 text-xs font-black uppercase tracking-widest">
+                <a href="#" class="hover:text-blue-600 transition-colors">Neural Mesh</a>
+                <a href="#" class="hover:text-blue-600 transition-colors">Bio-Tech</a>
+                <a href="#" class="hover:text-blue-600 transition-colors">Space-X</a>
+                <a href="#" class="hover:text-blue-600 transition-colors">Quantum Compute</a>
             </div>
-            <div class="flex items-center flex-wrap justify-center gap-4">
-                <button class="w-10 h-10 flex items-center justify-center hover:bg-slate-100 rounded-full transition-colors text-primary">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </button>
-                <div id="theme-btn" class="theme-toggle text-primary" title="Toggle Theme">
-                    <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                    <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <div class="flex items-center gap-6">
+                <div id="theme-btn" class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                    <svg class="sun-icon w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg class="moon-icon w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 </div>
-                <button class="bg-slate-900 text-white px-6 py-2 rounded font-bold text-xs uppercase tracking-widest">Login</button>
+                <button class="btn btn-secondary px-6 py-2 rounded font-bold text-xs uppercase tracking-widest">Login</button>
             </div>
         </div>
     </nav>
 
-    <!-- Breaking News -->
+    <!-- Breaking News Ticker -->
     <div class="bg-blue-600 text-white py-3 overflow-hidden whitespace-nowrap">
         <div class="inline-block animate-marquee uppercase font-black text-xs tracking-widest">
-            BREAKING: FIRST QUANTUM RECTIFIER DEPLOYED IN MARS COLONY • NEURAL LINK 5.0 BETA BEGINS NEXT WEEK • TOKAMAK REACTOR REACHES NET GAIN STABILITY FOR 48 HOURS • 
+            • First Mars colony reports stable oxygen synthesis • Global Neural-Link rollout scheduled for Q3 • Quantum encryption broken by experimental lattice • Voyager 1 signal restored after 50 years •
         </div>
     </div>
 
-    <main class="container mx-auto px-6 py-12">
+    <!-- Main Grid -->
+    <main class="max-w-7xl mx-auto px-6 py-12">
         <div class="news-grid">
-            <!-- Main Content -->
+            
+            <!-- Left Column: News Feed -->
             <div class="space-y-12">
                 <!-- Featured Article -->
-                <section class="featured-card group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80" alt="Quantum Core">
+                <div class="featured-card group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80" alt="Quantum Compute">
                     <div class="featured-overlay">
                         <span class="bg-blue-600 text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest mb-4 inline-block">Exclusive</span>
-                        <h2 class="text-5xl font-black leading-tight mb-4 tracking-tighter">Inside the First <br>Stable Qubit Lattice</h2>
-                        <p class="text-slate-300 text-lg max-w-2xl mb-6 font-medium">Scientists have achieved a 99.99% coherence rate, effectively ending the era of digital computing as we know it.</p>
-                        <div class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
-                            <span>By Dr. Aris Thorne</span>
-                            <span class="text-slate-500">•</span>
-                            <span>12 Min Read</span>
-                        </div>
+                        <h2 class="text-5xl font-black leading-tight mb-4 tracking-tighter uppercase italic">Inside the First <br>Stable Qubit Lattice</h2>
+                        <p class="text-lg opacity-90 max-w-xl">Deep dive into the breakthrough that ended the quantum decoherence era, paving the way for instantaneous planetary compute.</p>
                     </div>
-                </section>
+                </div>
 
-                <!-- Secondary News -->
+                <!-- Secondary Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <article class="space-y-4 group cursor-pointer">
-                        <div class="aspect-video bg-slate-100 overflow-hidden rounded-lg">
-                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                    <div class="group cursor-pointer">
+                        <div class="overflow-hidden rounded-xl mb-6 aspect-video bg-slate-800">
+                            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <span class="text-blue-600 text-[10px] font-black uppercase tracking-widest">Space-X</span>
-                        <h3 class="text-2xl font-black tracking-tight leading-tight group-hover:underline">The Dyson Ring: First Solar Panels Deploy Around the Moon</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed">A massive infrastructure project aims to beam 500 terawatts of clean energy directly to Earth's grid.</p>
-                    </article>
-
-                    <article class="space-y-4 group cursor-pointer">
-                        <div class="aspect-video bg-slate-100 overflow-hidden rounded-lg">
-                            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                        <h3 class="text-2xl font-bold tracking-tight leading-tight group-hover:underline uppercase mt-2">The Dyson Ring: First Solar Panels Deploy Around the Moon</h3>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="overflow-hidden rounded-xl mb-6 aspect-video bg-slate-800">
+                            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <span class="text-blue-600 text-[10px] font-black uppercase tracking-widest">Bio-Tech</span>
-                        <h3 class="text-2xl font-black tracking-tight leading-tight group-hover:underline">Synthetic Neurons Successfully Grafted to Human Cortex</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed">The breakthrough could lead to a permanent cure for degenerative neural conditions by 2030.</p>
-                    </article>
+                        <h3 class="text-2xl font-bold tracking-tight leading-tight group-hover:underline uppercase mt-2">Synthetic Neurons Successfully Grafted to Human Cortex</h3>
+                    </div>
                 </div>
             </div>
 
-            <!-- Sidebar -->
+            <!-- Right Column: Sidebar -->
             <aside class="space-y-12">
-                <div>
-                    <h4 class="border-b-2 border-slate-900 pb-2 text-xs font-black uppercase tracking-widest mb-6">Trending Terminal</h4>
-                    <div class="space-y-6">
-                        <div class="flex gap-4 items-start group cursor-pointer">
-                            <span class="text-4xl font-black text-slate-100 group-hover:text-blue-100 transition-colors">01</span>
-                            <div>
-                                <h5 class="font-bold text-sm leading-tight group-hover:text-blue-600 transition-colors">Market Pulse: Quantum Chip Stocks Surge 400%</h5>
-                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">2 hours ago</p>
-                            </div>
+                <div class="bg-highlight p-8 rounded-2xl border border-white_5">
+                    <h4 class="border-b-2 border-primary pb-2 text-xs font-black uppercase tracking-widest mb-6">Trending Terminal</h4>
+                    <div class="space-y-8">
+                        <div class="flex gap-6 group cursor-pointer">
+                            <span class="text-4xl font-black text-secondary opacity-30 group-hover:text-blue-600 group-hover:opacity-100 transition-all">01</span>
+                            <p class="text-sm font-bold leading-snug">The Ethics of Algorithmic Governance in Neo-Tokyo</p>
                         </div>
-                        <div class="flex gap-4 items-start group cursor-pointer">
-                            <span class="text-4xl font-black text-slate-100 group-hover:text-blue-100 transition-colors">02</span>
-                            <div>
-                                <h5 class="font-bold text-sm leading-tight group-hover:text-blue-600 transition-colors">Autonomous Grid: AI Takes Over Power Distribution in EU</h5>
-                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">5 hours ago</p>
-                            </div>
+                        <div class="flex gap-6 group cursor-pointer">
+                            <span class="text-4xl font-black text-secondary opacity-30 group-hover:text-blue-600 group-hover:opacity-100 transition-all">02</span>
+                            <p class="text-sm font-bold leading-snug">Liquid Metal Battery: Storage Problem Solved?</p>
                         </div>
-                        <div class="flex gap-4 items-start group cursor-pointer">
-                            <span class="text-4xl font-black text-slate-100 group-hover:text-blue-100 transition-colors">03</span>
-                            <div>
-                                <h5 class="font-bold text-sm leading-tight group-hover:text-blue-600 transition-colors">Ocean Cleanup: Nano-Bots Clear Great Pacific Patch</h5>
-                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">8 hours ago</p>
-                            </div>
+                        <div class="flex gap-6 group cursor-pointer">
+                            <span class="text-4xl font-black text-secondary opacity-30 group-hover:text-blue-600 group-hover:opacity-100 transition-all">03</span>
+                            <p class="text-sm font-bold leading-snug">Interstellar Web: Laser Relay Reaches Alpha Centauri</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                <div class="p-8 rounded-2xl bg-primary text-white">
                     <h4 class="text-xs font-black uppercase tracking-widest mb-4">Newsletter</h4>
-                    <p class="text-xs text-slate-500 mb-6">Join 2.4M subscribers for daily quantum insights.</p>
-                    <input type="email" placeholder="terminal@id.io" class="w-full bg-white border border-slate-200 p-3 rounded text-sm mb-4 outline-none focus:border-blue-600">
-                    <button class="w-full bg-blue-600 text-white font-black text-[10px] uppercase tracking-widest py-3 rounded hover:bg-blue-700 transition-colors">Subscribe</button>
+                    <p class="text-sm opacity-90 mb-6">Receive the morning data-stream directly to your neural link.</p>
+                    <input type="email" placeholder="terminal@id.io" class="w-full bg-white_10 border border-white_20 p-3 rounded text-sm mb-4 outline-none focus:border-white text-white placeholder:text-white_50">
+                    <button class="w-full bg-white text-blue-600 font-black text-[10px] uppercase tracking-widest py-3 rounded hover:bg-slate-100 transition-colors">Subscribe</button>
                 </div>
             </aside>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-20 mt-24">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 pb-16">
-            <div class="col-span-1 md:col-span-2">
-                <div class="text-3xl font-black tracking-tighter uppercase italic mb-6 text-primary">QUANTUM<span class="text-blue-600">NEWS</span></div>
-                <p class="text-slate-400 max-w-md text-sm leading-relaxed">Reporting from the edge of tomorrow. We translate complex breakthroughs into human experience.</p>
-            </div>
-            <div>
-                <h5 class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-6">Network</h5>
-                <ul class="space-y-3 text-xs font-bold list-none p-0">
-                    <li><a href="#" class="hover:text-blue-600">Quantum Intelligence</a></li>
-                    <li><a href="#" class="hover:text-blue-600">Space Terminal</a></li>
-                    <li><a href="#" class="hover:text-blue-600">Bio Nexus</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-6">Connect</h5>
-                <ul class="space-y-3 text-xs font-bold list-none p-0">
-                    <li><a href="#" class="hover:text-blue-600">Neural Link</a></li>
-                    <li><a href="#" class="hover:text-blue-600">Secure Comms</a></li>
-                    <li><a href="#" class="hover:text-blue-600">Terminal Access</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container mx-auto px-6 pt-12 flex justify-between items-center text-[10px] font-bold text-slate-600 uppercase tracking-widest">
-            <p>&copy; 2026 Quantum News Network</p>
-            <p>Verification Code: QN-9982-X</p>
+    <footer class="border-t border-white_5 py-12 mt-12 bg-surface">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="text-2xl font-black tracking-tighter uppercase italic text-primary mb-4">QUANTUM<span class="text-blue-600">NEWS</span></div>
+            <p class="text-xs text-secondary uppercase tracking-[0.3em]">&copy; 2026 Interstellar News Network. No Rights Reserved.</p>
         </div>
     </footer>
-
-    <style>
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .animate-marquee {
-            display: inline-block;
-            animation: marquee 30s linear infinite;
-        }
-    </style>
-    <script>
-        // Theme initialization and management is now handled 
-        // automatically by Starlight.initTheme() in starlight.js
-    </script>
 </body>
 </html>
