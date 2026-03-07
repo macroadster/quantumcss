@@ -316,6 +316,10 @@
     box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
   }
 
+  html.blog :where([data-role='quote']) {
+    margin-top: -0.15rem;
+  }
+
   html.blog :where(article pre) {
     overflow-x: auto;
     margin: 0;
@@ -330,6 +334,61 @@
   html.blog :where(article code) {
     font-family: var(--q-font-mono);
     font-size: 0.9em;
+  }
+
+  html.blog :where([data-role='code-window']) {
+    gap: 1.1rem;
+  }
+
+  html.blog :where([data-role='code-shell']) {
+    overflow: hidden;
+    border-radius: var(--q-template-card-radius);
+    border: 1px solid rgb(255 255 255 / 0.06);
+    background: rgb(255 255 255 / 0.03);
+    box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
+  }
+
+  html.blog :where([data-role='code-bar']) {
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.06);
+    background: rgb(255 255 255 / 0.025);
+  }
+
+  html.blog :where([data-role='code-bar'] span) {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+  }
+
+  html.blog :where([data-role='code-bar'] span:nth-child(1)) {
+    background: #f87171;
+  }
+
+  html.blog :where([data-role='code-bar'] span:nth-child(2)) {
+    background: #fbbf24;
+  }
+
+  html.blog :where([data-role='code-bar'] span:nth-child(3)) {
+    background: #4ade80;
+  }
+
+  html.blog :where([data-role='code-bar'] strong) {
+    justify-self: end;
+    color: var(--q-text-muted);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  html.blog :where([data-role='code-shell'] pre) {
+    border: 0;
+    box-shadow: none;
+    background: transparent;
   }
 
   html.blog :where([data-role='tags']) {
@@ -574,6 +633,16 @@
     background: #fff;
     border-color: #e2e8f0;
     box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.06);
+  }
+
+  html.blog[data-theme='light'] :where([data-role='code-shell']) {
+    background: #fff;
+    border-color: #e2e8f0;
+  }
+
+  html.blog[data-theme='light'] :where([data-role='code-bar']) {
+    background: #f8fafc;
+    border-color: #e2e8f0;
   }
 
   html.blog[data-theme='light'] :where([data-role='tags'] a, [data-role='recommendations'] a) {
