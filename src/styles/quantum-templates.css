@@ -1,8 +1,8 @@
 @layer templates {
   html.blog {
     --q-template-max-width: 75rem;
-    --q-template-content-width: 44rem;
-    --q-template-sidebar-width: 19rem;
+    --q-template-content-width: 43.25rem;
+    --q-template-sidebar-width: 18.5rem;
     --q-template-shell-gap: clamp(2.25rem, 4vw, 3.5rem);
     --q-template-page-pad: clamp(1.1rem, 2vw, 1.75rem);
     --q-template-card-radius: 1.2rem;
@@ -49,7 +49,7 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 1rem;
-    min-height: 5.4rem;
+    min-height: 5.15rem;
     padding: 1rem var(--q-template-page-pad);
     border-bottom: 1px solid rgb(255 255 255 / 0.08);
   }
@@ -120,6 +120,7 @@
     font-size: 0.72rem;
     font-weight: 800;
     box-shadow: 0 0.7rem 1.6rem rgb(0 212 255 / 0.14);
+    opacity: 0.98;
   }
 
   html.blog :where(main) {
@@ -144,7 +145,7 @@
 
   html.blog :where(article > header) {
     display: grid;
-    gap: 1.35rem;
+    gap: 1.15rem;
   }
 
   html.blog :where(article header p:first-child, article header time:first-child, [data-role='eyebrow']) {
@@ -160,11 +161,24 @@
   }
 
   html.blog :where([data-role='meta']) {
-    padding: 0.35rem 0.6rem;
+    gap: 0.45rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: var(--q-text-muted);
+  }
+
+  html.blog :where([data-role='meta'] strong) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.2rem;
+    padding: 0.18rem 0.45rem;
     border-radius: 999px;
     background: rgb(0 212 255 / 0.08);
     border: 1px solid rgb(0 212 255 / 0.14);
     color: var(--q-color-starlight-blue);
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
   }
 
   html.blog :where([data-role='meta'] span) {
@@ -175,7 +189,7 @@
     max-width: 12ch;
     margin: 0;
     color: var(--q-text-primary);
-    font-size: clamp(2.8rem, 5.3vw, 4.35rem);
+    font-size: clamp(2.7rem, 5vw, 4.15rem);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -0.045em;
@@ -192,7 +206,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding-top: 0.2rem;
+    padding-top: 0.05rem;
   }
 
   html.blog :where([data-role='author'] img) {
@@ -346,6 +360,7 @@
     border: 1px solid rgb(255 255 255 / 0.06);
     background: rgb(255 255 255 / 0.03);
     box-shadow: 0 1rem 1.8rem rgb(15 23 42 / 0.08);
+    max-width: 39rem;
   }
 
   html.blog :where([data-role='code-bar']) {
@@ -389,6 +404,7 @@
     border: 0;
     box-shadow: none;
     background: transparent;
+    padding: 0.95rem 1.1rem 1.15rem;
   }
 
   html.blog :where([data-role='tags']) {
@@ -396,7 +412,7 @@
     align-items: center;
     gap: 0.75rem;
     flex-wrap: wrap;
-    padding-top: 1.1rem;
+    padding-top: 0.8rem;
   }
 
   html.blog :where([data-role='tags'] > p) {
@@ -564,7 +580,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0 var(--q-template-page-pad) 2.5rem;
+    padding: 0 var(--q-template-page-pad) 1.4rem;
     color: var(--q-text-muted);
     font-size: 0.72rem;
     border-top: 1px solid rgb(255 255 255 / 0.08);
@@ -624,6 +640,10 @@
   }
 
   html.blog[data-theme='light'] :where([data-role='meta']) {
+    color: #94a3b8;
+  }
+
+  html.blog[data-theme='light'] :where([data-role='meta'] strong) {
     color: #38bdf8;
     background: rgb(56 189 248 / 0.1);
     border-color: rgb(56 189 248 / 0.12);
