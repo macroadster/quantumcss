@@ -89,6 +89,24 @@ test.describe('Semantic Template Transformer', () => {
       template: 'blog',
       htmlMarker: '<html lang="en" class="blog">',
       cssMarker: 'html.blog body'
+    },
+    {
+      source: '../examples/admin-panel.html',
+      template: 'admin',
+      htmlMarker: '<html lang="en" class="admin">',
+      cssMarker: 'html.admin body'
+    },
+    {
+      source: '../examples/analytics-dashboard.html',
+      template: 'analytics',
+      htmlMarker: '<html lang="en" class="analytics">',
+      cssMarker: 'html.analytics body'
+    },
+    {
+      source: '../examples/video-streaming.html',
+      template: 'video',
+      htmlMarker: '<html lang="en" class="video">',
+      cssMarker: 'html.video body'
     }
   ]) {
     test(`detects and emits the ${fixture.template} semantic adapter`, async () => {

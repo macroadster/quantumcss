@@ -534,6 +534,9 @@ function detectTemplate(document) {
   if (findByClass(body, 'chat-app') || findByClass(body, 'chat-sidebar')) return 'chat';
   if (findByClass(body, 'music-app')) return 'music';
   if (findByClass(body, 'starlight-navbar') && findFirst(body, (node) => node.tagName === 'article')) return 'blog';
+  if (findByClass(body, 'video-app')) return 'video';
+  if (findByClass(body, 'app-layout') && findByClass(body, 'admin-logo')) return 'admin';
+  if (findByClass(body, 'app-layout') && findByClass(body, 'header') && findFirst(body, (node) => node.tagName === 'canvas')) return 'analytics';
   return null;
 }
 
@@ -555,7 +558,7 @@ function transformTemplate(source, options = {}) {
     };
   }
 
-  if (['blog', 'chat', 'music'].includes(template)) {
+  if (['blog', 'chat', 'music', 'admin', 'analytics', 'video'].includes(template)) {
     return buildFixtureTemplate(template, options);
   }
 
