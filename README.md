@@ -65,7 +65,7 @@ QuantumCSS includes a powerful CLI for project orchestration:
 - **`npx quantumcss semantic <input> [htmlOut] [cssOut]`** - Rewrite a supported legacy template into semantic HTML plus a scoped CSS file.
 
 ### Semantic Template Conversion
-The semantic transformer is designed for legacy QuantumCSS templates that still rely on structural classes. The current adapter supports the mail template family and can run standalone or from the build pipeline.
+The semantic transformer is designed for legacy QuantumCSS templates that still rely on structural classes. The current supported families are `mail`, `chat`, `music`, and `blog`, and the converter can run standalone or from the build pipeline.
 
 ```json
 {
@@ -74,6 +74,11 @@ The semantic transformer is designed for legacy QuantumCSS templates that still 
       "input": "examples/email-template.html",
       "htmlOutput": "examples/email-template.semantic.html",
       "cssOutput": "examples/email-template.mail.css"
+    },
+    {
+      "input": "examples/chat-messaging.html",
+      "htmlOutput": "examples/chat-messaging.semantic.html",
+      "cssOutput": "examples/chat-messaging.chat.css"
     }
   ]
 }

@@ -70,4 +70,35 @@ test.describe('Semantic Template Transformer', () => {
     fs.rmSync(path.join(path.resolve(__dirname, '..'), 'out'), { recursive: true, force: true });
     fs.rmSync(tempDir, { recursive: true, force: true });
   });
+
+  for (const fixture of [
+    {
+      source: '../examples/chat-messaging.html',
+      template: 'chat',
+      htmlMarker: '<html lang="en" class="chat">',
+      cssMarker: 'html.chat body'
+    },
+    {
+      source: '../examples/music-streaming.html',
+      template: 'music',
+      htmlMarker: '<html lang="en" class="music">',
+      cssMarker: 'html.music body'
+    },
+    {
+      source: '../examples/blog-template.html',
+      template: 'blog',
+      htmlMarker: '<html lang="en" class="blog">',
+      cssMarker: 'html.blog body'
+    }
+  ]) {
+    test(`detects and emits the ${fixture.template} semantic adapter`, async () => {
+      const source = fs.readFileSync(path.resolve(__dirname, fixture.source), 'utf8');
+      const { template, html, css } = transformTemplate(source, { cssHref: `${fixture.template}.css` });
+
+      expect(template).toBe(fixture.template);
+      expect(html).toContain(fixture.htmlMarker);
+      expect(html).toContain(`href="${fixture.template}.css"`);
+      expect(css).toContain(fixture.cssMarker);
+    });
+  }
 });

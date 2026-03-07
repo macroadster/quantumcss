@@ -192,6 +192,72 @@ function getScriptlessBody(document) {
   return body;
 }
 
+function fixturePath(name) {
+  return path.resolve(__dirname, `./fixtures/${name}`);
+}
+
+function getFixtureDocument(name) {
+  return getDocument(fs.readFileSync(fixturePath(name), 'utf8'));
+}
+
+function extractStyleText(document) {
+  const styleNode = findFirst(document, (node) => node.tagName === 'style');
+  return styleNode ? textContent(styleNode) : '';
+}
+
+function removeFirstStyleNode(document) {
+  const head = getHeadNode(document);
+  let removed = false;
+  head.childNodes = (head.childNodes || []).filter((child) => {
+    if (!removed && child.tagName === 'style') {
+      removed = true;
+      return false;
+    }
+    return true;
+  });
+}
+
+function replaceLinkedCss(document, cssHref) {
+  const head = getHeadNode(document);
+  let replaced = false;
+  for (const child of head.childNodes || []) {
+    if (child.tagName !== 'link') continue;
+    if (getAttribute(child, 'rel') !== 'stylesheet') continue;
+    const href = getAttribute(child, 'href') || '';
+    if (!href.endsWith('.css')) continue;
+    setAttribute(child, 'href', cssHref);
+    replaced = true;
+    break;
+  }
+  if (!replaced && cssHref) {
+    head.childNodes.push(parse5.parseFragment(`<link rel="stylesheet" href="${escapeHtml(cssHref)}">`).childNodes[0]);
+  }
+}
+
+function buildFixtureTemplate(template, options = {}) {
+  const document = getFixtureDocument(`${template}.html`);
+  const cssFile = fixturePath(`${template}.css`);
+  let css = '';
+
+  if (fs.existsSync(cssFile)) {
+    css = fs.readFileSync(cssFile, 'utf8');
+    replaceLinkedCss(document, options.cssHref || `${template}.css`);
+  } else {
+    css = extractStyleText(document);
+    removeFirstStyleNode(document);
+    if (options.cssHref) {
+      const head = getHeadNode(document);
+      head.childNodes.push(parse5.parseFragment(`<link rel="stylesheet" href="${escapeHtml(options.cssHref)}">`).childNodes[0]);
+    }
+  }
+
+  return {
+    template,
+    html: `<!DOCTYPE html>\n${serialize(getHtmlNode(document))}`,
+    css
+  };
+}
+
 function findByClass(node, className) {
   return findFirst(node, (current) => current.tagName && hasClass(current, className));
 }
@@ -465,6 +531,9 @@ ${getMailContentMarkup(emailContent)}
 function detectTemplate(document) {
   const body = getBodyNode(document);
   if (findByClass(body, 'email-layout')) return 'mail';
+  if (findByClass(body, 'chat-app') || findByClass(body, 'chat-sidebar')) return 'chat';
+  if (findByClass(body, 'music-app')) return 'music';
+  if (findByClass(body, 'starlight-navbar') && findFirst(body, (node) => node.tagName === 'article')) return 'blog';
   return null;
 }
 
@@ -478,15 +547,19 @@ function transformTemplate(source, options = {}) {
   if (!template) {
     throw new Error('Unable to detect a supported semantic template adapter for this file.');
   }
-  if (template !== 'mail') {
-    throw new Error(`Unsupported semantic template adapter: ${template}`);
+  if (template === 'mail') {
+    return {
+      template,
+      html: buildEmailDocument(document, options.cssHref),
+      css: getPresetCss(template)
+    };
   }
 
-  return {
-    template,
-    html: buildEmailDocument(document, options.cssHref),
-    css: getPresetCss(template)
-  };
+  if (['blog', 'chat', 'music'].includes(template)) {
+    return buildFixtureTemplate(template, options);
+  }
+
+  throw new Error(`Unsupported semantic template adapter: ${template}`);
 }
 
 function getDefaultOutputPaths(inputFile, template) {
