@@ -1,7 +1,7 @@
 @layer templates {
   html.blog {
     --q-template-max-width: 75rem;
-    --q-template-content-width: 42rem;
+    --q-template-content-width: 44rem;
     --q-template-sidebar-width: 19rem;
     --q-template-shell-gap: clamp(2.25rem, 4vw, 3.5rem);
     --q-template-page-pad: clamp(1.1rem, 2vw, 1.75rem);
@@ -126,7 +126,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(17rem, var(--q-template-sidebar-width));
     gap: var(--q-template-shell-gap);
-    padding: 3.5rem var(--q-template-page-pad) 5rem;
+    padding: 3.75rem var(--q-template-page-pad) 5rem;
     align-items: start;
   }
 
@@ -172,12 +172,12 @@
   }
 
   html.blog :where(article h1) {
-    max-width: 10ch;
+    max-width: 12ch;
     margin: 0;
     color: var(--q-text-primary);
-    font-size: clamp(3rem, 5.8vw, 4.8rem);
+    font-size: clamp(2.8rem, 5.3vw, 4.35rem);
     font-weight: 900;
-    line-height: 0.98;
+    line-height: 1;
     letter-spacing: -0.045em;
     text-transform: uppercase;
     font-style: italic;
@@ -256,14 +256,14 @@
 
   html.blog :where([data-role='lede'] p) {
     color: var(--q-text-primary);
-    font-size: 1.55rem;
-    font-weight: 500;
-    line-height: 1.5;
-    max-width: 34ch;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.65;
+    max-width: 42ch;
   }
 
   html.blog :where(article section + section) {
-    margin-top: 0.75rem;
+    margin-top: 1rem;
   }
 
   html.blog :where(article h2) {
@@ -305,12 +305,12 @@
 
   html.blog :where(article blockquote) {
     margin: 0;
-    padding: 1.25rem 1.4rem;
+    padding: 1.1rem 1.3rem;
     border: 1px solid rgb(255 255 255 / 0.06);
     border-radius: var(--q-template-card-radius);
     background: rgb(255 255 255 / 0.04);
     color: var(--q-text-primary);
-    font-size: 1.02rem;
+    font-size: 0.98rem;
     font-style: normal;
     line-height: 1.7;
     box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
@@ -337,7 +337,7 @@
   }
 
   html.blog :where([data-role='code-window']) {
-    gap: 1.1rem;
+    gap: 0.95rem;
   }
 
   html.blog :where([data-role='code-shell']) {
@@ -345,7 +345,7 @@
     border-radius: var(--q-template-card-radius);
     border: 1px solid rgb(255 255 255 / 0.06);
     background: rgb(255 255 255 / 0.03);
-    box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
+    box-shadow: 0 1rem 1.8rem rgb(15 23 42 / 0.08);
   }
 
   html.blog :where([data-role='code-bar']) {
@@ -396,7 +396,7 @@
     align-items: center;
     gap: 0.75rem;
     flex-wrap: wrap;
-    padding-top: 0.75rem;
+    padding-top: 1.1rem;
   }
 
   html.blog :where([data-role='tags'] > p) {
