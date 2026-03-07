@@ -17,6 +17,7 @@
     min-height: 100vh;
     background: transparent;
     color: inherit;
+    overflow-x: hidden;
   }
 
   html.blog body::before {
@@ -48,7 +49,8 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 1rem;
-    padding: 1.25rem var(--q-template-page-pad) 1rem;
+    min-height: 5.4rem;
+    padding: 1rem var(--q-template-page-pad);
     border-bottom: 1px solid rgb(255 255 255 / 0.08);
   }
 
@@ -56,9 +58,9 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    color: var(--q-text-primary);
+    color: var(--q-color-starlight-peach);
     letter-spacing: 0.01em;
     text-transform: none;
   }
@@ -109,8 +111,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.2rem;
-    padding: 0.55rem 1rem;
+    min-height: 2.5rem;
+    padding: 0.65rem 1rem;
     border-radius: 0.75rem;
     border: 1px solid rgb(255 255 255 / 0.05);
     background: linear-gradient(90deg, rgb(255 179 138 / 0.9), rgb(0 212 255 / 0.9));
@@ -124,7 +126,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(17rem, var(--q-template-sidebar-width));
     gap: var(--q-template-shell-gap);
-    padding: 3rem var(--q-template-page-pad) 5rem;
+    padding: 3.5rem var(--q-template-page-pad) 5rem;
     align-items: start;
   }
 
@@ -142,7 +144,7 @@
 
   html.blog :where(article > header) {
     display: grid;
-    gap: 1rem;
+    gap: 1.35rem;
   }
 
   html.blog :where(article header p:first-child, article header time:first-child, [data-role='eyebrow']) {
@@ -157,19 +159,70 @@
     text-transform: uppercase;
   }
 
-  html.blog :where(article h1) {
-    max-width: 11ch;
-    margin: 0;
-    color: var(--q-text-primary);
-    font-size: clamp(2.75rem, 5.4vw, 4.15rem);
-    font-weight: 900;
-    line-height: 1.01;
-    letter-spacing: -0.045em;
-    text-transform: none;
-    font-style: normal;
+  html.blog :where([data-role='meta']) {
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: rgb(0 212 255 / 0.08);
+    border: 1px solid rgb(0 212 255 / 0.14);
+    color: var(--q-color-starlight-blue);
   }
 
-  html.blog :where(article header > p:last-child, [data-role='lede']) {
+  html.blog :where([data-role='meta'] span) {
+    color: var(--q-text-muted);
+  }
+
+  html.blog :where(article h1) {
+    max-width: 10ch;
+    margin: 0;
+    color: var(--q-text-primary);
+    font-size: clamp(3rem, 5.8vw, 4.8rem);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+  html.blog :where(article h1 em) {
+    font-style: inherit;
+    color: color-mix(in srgb, var(--q-color-starlight-peach), var(--q-color-starlight-blue) 55%);
+  }
+
+  html.blog :where([data-role='author']) {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.2rem;
+  }
+
+  html.blog :where([data-role='author'] img) {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 999px;
+    border: 1px solid rgb(0 212 255 / 0.2);
+  }
+
+  html.blog :where([data-role='author'] > div) {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  html.blog :where([data-role='author'] > div p:first-child) {
+    color: var(--q-text-primary);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  html.blog :where([data-role='author'] > div p:last-child) {
+    color: var(--q-text-secondary);
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  html.blog :where(article header > p:last-child) {
     max-width: 48ch;
     color: var(--q-text-secondary);
     font-size: 1.05rem;
@@ -195,6 +248,18 @@
   html.blog :where(article section) {
     display: grid;
     gap: 0.95rem;
+  }
+
+  html.blog :where([data-role='lede']) {
+    padding-top: 0.15rem;
+  }
+
+  html.blog :where([data-role='lede'] p) {
+    color: var(--q-text-primary);
+    font-size: 1.55rem;
+    font-weight: 500;
+    line-height: 1.5;
+    max-width: 34ch;
   }
 
   html.blog :where(article section + section) {
@@ -251,14 +316,6 @@
     box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
   }
 
-  html.blog :where(article > section:first-of-type > p:first-of-type) {
-    color: var(--q-text-primary);
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 1.5;
-    max-width: 34ch;
-  }
-
   html.blog :where(article pre) {
     overflow-x: auto;
     margin: 0;
@@ -275,6 +332,49 @@
     font-size: 0.9em;
   }
 
+  html.blog :where([data-role='tags']) {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 0.75rem;
+  }
+
+  html.blog :where([data-role='tags'] > p) {
+    color: var(--q-text-muted);
+    font-size: 0.78rem;
+    margin: 0;
+  }
+
+  html.blog :where([data-role='tags'] > ul) {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  html.blog :where([data-role='tags'] li) {
+    list-style: none;
+  }
+
+  html.blog :where([data-role='tags'] a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.85rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.55rem;
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.06);
+    color: var(--q-text-secondary);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
   html.blog :where(main > aside > section, [data-role='panel']) {
     padding: 1.35rem 1.2rem;
     border-radius: var(--q-template-card-radius);
@@ -286,13 +386,13 @@
   html.blog :where(aside h2, aside h3) {
     margin: 0 0 0.45rem;
     color: var(--q-text-primary);
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 800;
   }
 
   html.blog :where(aside p, aside li) {
     color: var(--q-text-secondary);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     line-height: 1.65;
   }
 
@@ -305,6 +405,20 @@
   html.blog :where(aside form) {
     display: grid;
     gap: 0.6rem;
+  }
+
+  html.blog :where([data-role='panel'] button) {
+    width: 100%;
+    margin-top: 0.65rem;
+    background: transparent;
+    border: 1px solid rgb(96 165 250 / 0.28);
+    color: var(--q-color-primary);
+    box-shadow: none;
+  }
+
+  html.blog :where([data-tone='glass']) {
+    background: rgb(255 255 255 / 0.06);
+    box-shadow: 0 1rem 2rem rgb(0 212 255 / 0.1);
   }
 
   html.blog :where(aside label) {
@@ -338,6 +452,52 @@
     font-size: 0.75rem;
     font-weight: 800;
     box-shadow: 0 0.9rem 1.8rem rgb(0 212 255 / 0.12);
+  }
+
+  html.blog :where([data-role='recommendations']) {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  html.blog :where([data-role='recommendations'] h2) {
+    color: var(--q-text-muted);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  html.blog :where([data-role='recommendations'] ul) {
+    display: grid;
+    gap: 0.7rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  html.blog :where([data-role='recommendations'] li) {
+    list-style: none;
+  }
+
+  html.blog :where([data-role='recommendations'] a) {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.95rem 1rem;
+    border-radius: 0.95rem;
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.06);
+    color: inherit;
+  }
+
+  html.blog :where([data-role='recommendations'] strong) {
+    color: var(--q-text-primary);
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  html.blog :where([data-role='recommendations'] span) {
+    color: var(--q-text-muted);
+    font-size: 0.68rem;
   }
 
   html.blog :where(footer) {
@@ -392,6 +552,10 @@
     color: #0f172a;
   }
 
+  html.blog[data-theme='light'] :where(article h1 em) {
+    color: color-mix(in srgb, #fb923c, #38bdf8 55%);
+  }
+
   html.blog[data-theme='light'] :where(article p, article li, article header > p:last-child, aside p, aside li) {
     color: #64748b;
   }
@@ -400,10 +564,25 @@
     color: #94a3b8;
   }
 
+  html.blog[data-theme='light'] :where([data-role='meta']) {
+    color: #38bdf8;
+    background: rgb(56 189 248 / 0.1);
+    border-color: rgb(56 189 248 / 0.12);
+  }
+
   html.blog[data-theme='light'] :where(article figure, article blockquote, article pre, main > aside > section, [data-role='panel'], input, textarea, select) {
     background: #fff;
     border-color: #e2e8f0;
     box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.06);
+  }
+
+  html.blog[data-theme='light'] :where([data-role='tags'] a, [data-role='recommendations'] a) {
+    background: #fff;
+    border-color: #e2e8f0;
+  }
+
+  html.blog[data-theme='light'] :where([data-role='panel'] button) {
+    border-color: rgb(96 165 250 / 0.4);
   }
 
   html.blog[data-theme='light'] :where(article figure) {

@@ -8,117 +8,127 @@
   <script src="../src/starlight.js"></script>
 </head>
 <body>
-  <nav>
-    <strong>Starlight Journal</strong>
+  <nav data-role="site-nav">
+    <strong>StarlightBlog</strong>
     <ul>
       <li><a href="#" aria-current="page">Home</a></li>
-      <li><a href="#">Essays</a></li>
-      <li><a href="#">Archive</a></li>
+      <li><a href="#">Articles</a></li>
+      <li><a href="#">About</a></li>
     </ul>
-    <button type="button" id="theme-btn">Toggle Theme</button>
+    <button type="button" id="theme-btn">Subscribe</button>
   </nav>
 
   <main>
     <article>
       <header>
-        <p>Design Systems • March 6, 2026</p>
-        <h1>Can a Blog Template Run on Almost Pure HTML?</h1>
-        <p>
-          This page is a proof of concept for template-scoped semantic styling.
-          The root class chooses the visual system, while raw HTML elements inherit
-          layout, hierarchy, and atmosphere with minimal author input.
-        </p>
+        <p data-role="meta">Technology <span>•</span> March 6, 2026 <span>•</span> 5 min read</p>
+        <h1>The Future of <em>UI Design</em></h1>
+        <div data-role="author">
+          <img src="images/eric.png" alt="Eric Yang">
+          <div>
+            <p>Eric Yang</p>
+            <p>Frontend Architect</p>
+          </div>
+        </div>
       </header>
 
-      <figure>
-        <img src="images/starlight.jpg" alt="Abstract starlight visual">
+      <figure data-role="feature">
+        <img src="images/starlight.jpg" alt="Starlight aesthetics">
       </figure>
+
+      <section data-role="lede">
+        <p>
+          Glassmorphism, neon glows, and deep gradients are making a comeback.
+          Powered by modern CSS, they create an immersive experience.
+        </p>
+      </section>
 
       <section>
         <h2>The Constraint</h2>
         <p>
-          Utility CSS works, but it bloats HTML. If a template can infer the
-          difference between navigation, article body, supporting panels, and
-          footer chrome, we can preserve expressiveness while cutting token cost.
+          The "Starlight" aesthetic combines the ethereal beauty of space with
+          the precision of modern interface design.
         </p>
-        <p>
-          The tradeoff is explicitness. A semantic template only succeeds if its
-          assumptions are narrow, stable, and documented.
-        </p>
-      </section>
-
-      <section>
-        <h2>What the Template Infers</h2>
-        <ul>
-          <li>The first top-level `nav` becomes a sticky glass header.</li>
-          <li>The main region becomes a two-column editorial shell.</li>
-          <li>The article header gets hero typography and lede spacing.</li>
-          <li>Sidebar sections become compact panels without extra classes.</li>
-        </ul>
       </section>
 
       <section>
         <blockquote>
-          The real test is not whether this looks good. It is whether the visual
-          language stays predictable once the markup stops being hand-tuned.
+          "Design is not just what it looks like and feels like. Design is how it
+          works... in zero gravity."
         </blockquote>
       </section>
 
       <section>
-        <h2>Where It Starts to Need Hooks</h2>
-        <p>
-          Hero sections, promoted cards, media galleries, and mixed commerce
-          blocks still benefit from explicit roles. Semantic defaults get you
-          most of the way, but not all the way.
-        </p>
+        <h2>Code Interface</h2>
         <pre><code>&lt;html class="blog"&gt;
   &lt;body&gt;
-    &lt;nav&gt;...&lt;/nav&gt;
+    &lt;nav data-role="site-nav"&gt;...&lt;/nav&gt;
     &lt;main&gt;
-      &lt;article&gt;...&lt;/article&gt;
+      &lt;article&gt;
+        &lt;header&gt;...&lt;/header&gt;
+        &lt;figure data-role="feature"&gt;...&lt;/figure&gt;
+      &lt;/article&gt;
       &lt;aside&gt;...&lt;/aside&gt;
     &lt;/main&gt;
-    &lt;footer&gt;...&lt;/footer&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
+      </section>
+
+      <section data-role="tags">
+        <p>Tags:</p>
+        <ul>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">QuantumCSS</a></li>
+        </ul>
       </section>
     </article>
 
     <aside>
-      <section>
-        <h2>About</h2>
+      <section data-role="panel">
+        <h2>About the Author</h2>
         <p>
-          The semantic template layer composes existing Quantum tokens and
-          components instead of replacing them.
+          Eric is a frontend wizard obsessed with making the web feel more organic
+          and alive.
         </p>
+        <button type="button">Follow</button>
       </section>
 
-      <section>
+      <section data-role="panel" data-tone="glass">
         <h2>Newsletter</h2>
+        <p>Get the latest design trends delivered to your inbox.</p>
         <form>
           <label for="email">Email</label>
-          <input id="email" type="email" placeholder="you@example.com">
+          <input id="email" type="email" placeholder="your@email.com">
           <button type="submit">Subscribe</button>
         </form>
       </section>
 
-      <section>
-        <h2>Signals</h2>
+      <section data-role="recommendations">
+        <h2>Recommended</h2>
         <ul>
-          <li>Class-light authoring</li>
-          <li>Template-rooted layout</li>
-          <li>Semantic typography</li>
-          <li>Escape hatches still available</li>
+          <li>
+            <a href="#">
+              <strong>Glassmorphism in 2026</strong>
+              <span>Feb 1 • 4 min read</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <strong>Modern CSS Variables</strong>
+              <span>Jan 28 • 8 min read</span>
+            </a>
+          </li>
         </ul>
       </section>
     </aside>
   </main>
 
   <footer>
-    <p>Semantic Blog POC for QuantumCSS</p>
+    <p>© 2026 StarlightBlog. Powered by QuantumCSS.</p>
     <nav>
-      <a href="#">RSS</a>
-      <a href="#">GitHub</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
     </nav>
   </footer>
 </body>
