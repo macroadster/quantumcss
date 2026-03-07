@@ -91,10 +91,10 @@ html.mail body > nav > ul button[aria-current="page"] {
 /* NAV BADGE - replaces .nav-badge */
 html.mail body > nav > ul button em {
   margin-left: auto;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-style: normal;
-  background: rgba(0, 212, 255, 0.2);
-  color: #00d4ff;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
   padding: 0.125rem 0.5rem;
   border-radius: 999px;
   font-weight: 600;
@@ -198,20 +198,27 @@ html.mail body > nav > footer > span > small {
 html.mail body > nav > footer > button,
 html.mail body > aside header button,
 html.mail body > main button[aria-label] {
-  background: transparent;
-  border: none;
-  color: #64748b;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.625rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
 }
 
 /* ICON BUTTON HOVER - replaces .icon-btn:hover */
 html.mail body > nav > footer > button:hover,
 html.mail body > aside header button:hover,
 html.mail body > main button[aria-label]:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   color: #f1f5f9;
 }
 
@@ -429,6 +436,12 @@ html.mail body > main > header > div:last-child {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+/* HEADER TIMESTAMP - replaces .text-sm.text-slate-400 */
+html.mail body > main > header > div:last-child > span {
+  font-size: 0.875rem;
+  color: #94a3b8;
 }
 
 /* HEADER ACTION GROUP - replaces .email-actions */
