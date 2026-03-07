@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="blog">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum News - Tech Insights</title>
+  <link rel="stylesheet" href="../dist/quantum.min.css">
+  <link rel="stylesheet" href="blog-template-refactored.css">
+  <script src="../src/starlight.js" defer></script>
+</head>
+<body class="antialiased">
+  
+  <!-- Navigation (reusing the same skeleton) -->
+  <nav>
+    <div>
+      <a href="/">
+        <div aria-hidden="true"></div>
+        <strong>QuantumNews</strong>
+      </a>
+      
+      <button aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul>
+        <li><a href="#">Latest</a></li>
+        <li><a href="#">Hardware</a></li>
+        <li><a href="#">Software</a></li>
+        <li>
+          <button id="theme-btn" aria-label="Toggle Theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-2 0V3a1 1 0 011-1zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          </button>
+        </li>
+        <li><button data-variant="primary">Get Updates</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <article>
+      <!-- Header -->
+      <header>
+        <p>
+          <mark data-type="primary">Hardware</mark>
+          <span>•</span>
+          <time datetime="2026-03-06">March 6, 2026</time>
+          <span>•</span>
+          <span>8 min read</span>
+        </p>
+        
+        <h1>The Rise of <strong>Neural Silicon</strong></h1>
+
+        <address>
+          <img src="images/eric.png" alt="Sarah Chen">
+          <div>
+            <strong>Sarah Chen</strong>
+            <span>Hardware Specialist</span>
+          </div>
+        </address>
+      </header>
+
+      <!-- Featured Image -->
+      <figure data-variant="featured">
+        <img src="images/windbreaker.jpg" alt="Neural Architecture">
+      </figure>
+
+      <!-- Content -->
+      <section class="prose">
+        <p class="lead">
+          The boundary between biological neural networks and synthetic silicon is blurring. New architectures are mimicking the human brain's efficiency.
+        </p>
+        
+        <div>
+          <h2>Efficiency in Zero Gravity</h2>
+          <p>
+            As we move computing into orbital platforms, the thermal constraints of traditional CPUs are becoming a bottleneck. Neural silicon offers a 100x efficiency gain.
+          </p>
+        </div>
+
+        <blockquote>
+          "The future of silicon isn't more transistors; it's more synapses. We are building the brain of the next century."
+        </blockquote>
+
+        <div>
+          <h2>Architecture Config</h2>
+          <figure data-type="code">
+            <figcaption>
+              <div>
+                <span></span><span></span><span></span>
+              </div>
+              <strong>neural.config.yaml</strong>
+            </figcaption>
+            <pre><code>architecture:
+  type: synaptic
+  layers: 512
+  optimization: low-thermal
+  voltage: 0.45v</code></pre>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Tags -->
+      <footer>
+        <span>Filed under:</span>
+        <ul>
+          <li><a href="#" data-type="secondary">AI</a></li>
+          <li><a href="#" data-type="secondary">Semiconductors</a></li>
+          <li><a href="#" data-type="secondary">SpaceTech</a></li>
+        </ul>
+      </footer>
+    </article>
+
+    <!-- Sidebar -->
+    <aside>
+      <!-- Author Card -->
+      <section data-variant="card">
+        <h3>Expert Commentary</h3>
+        <p>
+          Sarah Chen has spent 15 years designing low-power chips for deep-space exploration.
+        </p>
+        <button data-variant="outline">View Portfolio</button>
+      </section>
+
+      <!-- Newsletter -->
+      <section data-variant="glass">
+        <h3>Pulse Newsletter</h3>
+        <p>Bi-weekly deep dives into the hardware that powers the future.</p>
+        <form>
+          <input type="email" placeholder="sarah@silicon.io">
+          <button data-variant="primary">Join Pulse</button>
+        </form>
+      </section>
+
+      <!-- Categories Card (New) -->
+      <section data-variant="card">
+        <h3>Categories</h3>
+        <nav>
+          <ul>
+            <li><a href="#"><span>Neural Nets</span> <mark>12</mark></a></li>
+            <li><a href="#"><span>Quantum Chips</span> <mark>8</mark></a></li>
+            <li><a href="#"><span>Orbital Tech</span> <mark>24</mark></a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <!-- Community Card (New) -->
+      <section data-variant="glass">
+        <h3>Join the Community</h3>
+        <p>Connect with 5,000+ hardware engineers on our private Discord.</p>
+        <button data-variant="outline">Discord Invite</button>
+      </section>
+
+      <!-- Recommended -->
+      <section>
+        <h6>Trending Now</h6>
+        <nav>
+          <a href="#">
+            <h4>The Return of Analog Computing</h4>
+            <time>Mar 4 • 12 min read</time>
+          </a>
+          <a href="#">
+            <h4>Graphene as a Superconductor</h4>
+            <time>Mar 1 • 6 min read</time>
+          </a>
+        </nav>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <p>© 2026 QuantumNews. All Rights Reserved.</p>
+      <nav>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Legal</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
