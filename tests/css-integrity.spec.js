@@ -138,4 +138,19 @@ test.describe('QuantumCSS Integrity Tests', () => {
     const theme = await html.getAttribute('data-theme');
     expect(theme).toBe('light');
   });
+
+  test('semantic blog template should style semantic structure from root class', async ({ page }) => {
+    await page.goto(`file://${path.resolve(__dirname, '../examples/semantic-blog.html')}`);
+
+    const html = page.locator('html');
+    await expect(html).toHaveClass(/blog/);
+
+    const main = page.locator('main');
+    const columns = await main.evaluate((el) => window.getComputedStyle(el).gridTemplateColumns);
+    expect(columns).not.toBe('none');
+
+    const nav = page.locator('body > nav');
+    const navPosition = await nav.evaluate((el) => window.getComputedStyle(el).position);
+    expect(navPosition).toBe('sticky');
+  });
 });

@@ -22,6 +22,7 @@ class QuantumCSSBuilder {
     this.cssFiles = [
       'quantum-base.css',
       'quantum-components.css',
+      'quantum-templates.css',
       'quantum-animations.css',
       'starlight.css'
     ];
