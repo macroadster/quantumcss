@@ -1,16 +1,15 @@
 @layer templates {
   html.blog {
-    --q-template-max-width: 76rem;
-    --q-template-content-width: 46rem;
-    --q-template-sidebar-width: 20rem;
-    --q-template-shell-gap: clamp(2rem, 4vw, 4rem);
-    --q-template-section-gap: clamp(3rem, 7vw, 6rem);
-    --q-template-page-pad: clamp(1.25rem, 3vw, 2rem);
-    --q-template-nav-height: 5rem;
+    --q-template-max-width: 75rem;
+    --q-template-content-width: 42rem;
+    --q-template-sidebar-width: 19rem;
+    --q-template-shell-gap: clamp(2.25rem, 4vw, 3.5rem);
+    --q-template-page-pad: clamp(1.1rem, 2vw, 1.75rem);
+    --q-template-card-radius: 1.2rem;
     background:
-      radial-gradient(circle at top left, rgb(0 212 255 / 0.18), transparent 30%),
-      radial-gradient(circle at top right, rgb(255 126 95 / 0.18), transparent 25%),
-      linear-gradient(180deg, color-mix(in srgb, var(--q-bg-primary), black 10%), var(--q-bg-primary));
+      radial-gradient(circle at 12% 0%, rgb(0 212 255 / 0.08), transparent 28%),
+      radial-gradient(circle at 88% 10%, rgb(255 179 138 / 0.08), transparent 20%),
+      var(--q-bg-primary);
     color: var(--q-text-primary);
   }
 
@@ -26,11 +25,11 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(circle at 20% 20%, rgb(255 255 255 / 0.1) 0 1px, transparent 1px),
-      radial-gradient(circle at 80% 30%, rgb(255 255 255 / 0.14) 0 1.5px, transparent 1.5px),
-      radial-gradient(circle at 40% 75%, rgb(255 255 255 / 0.09) 0 1px, transparent 1px);
+      radial-gradient(circle at 10% 22%, rgb(255 255 255 / 0.08) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 82% 16%, rgb(255 255 255 / 0.12) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 36% 74%, rgb(255 255 255 / 0.08) 0 1px, transparent 1.5px);
     background-size: 18rem 18rem, 24rem 24rem, 20rem 20rem;
-    opacity: 0.65;
+    opacity: 0.45;
     z-index: 0;
   }
 
@@ -45,35 +44,39 @@
   }
 
   html.blog :where(body > nav) {
-    min-height: var(--q-template-nav-height);
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
     gap: 1rem;
-    padding: 1rem var(--q-template-page-pad);
-    margin-top: 1rem;
-    position: sticky;
-    top: 0.75rem;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: color-mix(in srgb, var(--q-color-bg), transparent 14%);
-    border: 1px solid var(--q-color-border);
-    border-radius: calc(var(--q-radius-3xl) + 0.25rem);
-    box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 0.24);
+    padding: 1.25rem var(--q-template-page-pad) 1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
   }
 
   html.blog :where(nav > a:first-child, nav > strong:first-child, nav > span:first-child) {
-    font-size: 1rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: var(--q-text-primary);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  html.blog :where(nav > a:first-child, nav > strong:first-child, nav > span:first-child)::before {
+    content: '';
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+    box-shadow: 0 0 0.9rem rgb(0 212 255 / 0.18);
   }
 
   html.blog :where(nav > ul, nav > ol) {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 0.25rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -86,97 +89,99 @@
   html.blog :where(nav a) {
     display: inline-flex;
     align-items: center;
-    min-height: 2.75rem;
-    padding: 0.65rem 1rem;
+    min-height: 2rem;
+    padding: 0.45rem 0.7rem;
     color: var(--q-text-secondary);
-    border-radius: var(--q-radius-full);
-    font-size: 0.95rem;
-    font-weight: 600;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-decoration: none;
-    transition: color var(--q-transition-base), background-color var(--q-transition-base), transform var(--q-transition-base);
+    transition: color var(--q-transition-base), background-color var(--q-transition-base);
   }
 
   html.blog :where(nav a:hover, nav a[aria-current='page']) {
-    color: var(--q-text-primary);
-    background: rgb(255 255 255 / 0.06);
+    color: var(--q-color-starlight-blue);
+    background: rgb(255 255 255 / 0.05);
   }
 
   html.blog :where(nav button, nav [data-role='cta']) {
+    justify-self: end;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.75rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: var(--q-radius-full);
-    border: 1px solid rgb(0 212 255 / 0.25);
-    background: linear-gradient(135deg, rgb(0 212 255 / 0.18), rgb(255 126 95 / 0.18));
-    color: var(--q-text-primary);
-    font-weight: 700;
-    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.03) inset, 0 0.75rem 2rem rgb(0 212 255 / 0.16);
+    min-height: 2.2rem;
+    padding: 0.55rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(255 255 255 / 0.05);
+    background: linear-gradient(90deg, rgb(255 179 138 / 0.9), rgb(0 212 255 / 0.9));
+    color: #092135;
+    font-size: 0.72rem;
+    font-weight: 800;
+    box-shadow: 0 0.7rem 1.6rem rgb(0 212 255 / 0.14);
   }
 
   html.blog :where(main) {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, var(--q-template-sidebar-width));
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, var(--q-template-sidebar-width));
     gap: var(--q-template-shell-gap);
-    padding: 4rem var(--q-template-page-pad) 5rem;
+    padding: 3rem var(--q-template-page-pad) 5rem;
     align-items: start;
   }
 
   html.blog :where(main > article) {
+    display: grid;
+    gap: 2.4rem;
     max-width: var(--q-template-content-width);
   }
 
-  html.blog :where(main > article, main > aside) {
+  html.blog :where(main > aside) {
     display: grid;
-    gap: 1.5rem;
+    gap: 1rem;
+    padding-top: 2.75rem;
   }
 
   html.blog :where(article > header) {
     display: grid;
-    gap: 1.25rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
   }
 
   html.blog :where(article header p:first-child, article header time:first-child, [data-role='eyebrow']) {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
     width: fit-content;
-    padding: 0.45rem 0.85rem;
-    border-radius: var(--q-radius-full);
-    border: 1px solid rgb(0 212 255 / 0.2);
-    background: rgb(0 212 255 / 0.08);
-    color: var(--q-color-starlight-blue);
-    font-size: 0.75rem;
+    color: var(--q-text-muted);
+    font-size: 0.66rem;
     font-weight: 800;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
   html.blog :where(article h1) {
-    font-size: clamp(3rem, 8vw, 5.75rem);
-    line-height: 0.95;
-    letter-spacing: -0.05em;
-    text-transform: uppercase;
-    font-style: italic;
+    max-width: 11ch;
+    margin: 0;
+    color: var(--q-text-primary);
+    font-size: clamp(2.75rem, 5.4vw, 4.15rem);
     font-weight: 900;
-    max-width: 12ch;
+    line-height: 1.01;
+    letter-spacing: -0.045em;
+    text-transform: none;
+    font-style: normal;
   }
 
   html.blog :where(article header > p:last-child, [data-role='lede']) {
-    font-size: clamp(1.125rem, 2vw, 1.35rem);
-    line-height: 1.8;
+    max-width: 48ch;
     color: var(--q-text-secondary);
-    max-width: 58ch;
+    font-size: 1.05rem;
+    line-height: 1.82;
   }
 
   html.blog :where(article figure) {
-    margin: 1rem 0 0;
-    padding: 0.4rem;
-    border-radius: calc(var(--q-radius-3xl) + 0.25rem);
-    background: linear-gradient(135deg, rgb(0 212 255 / 0.2), rgb(255 126 95 / 0.14));
-    box-shadow: 0 2rem 4rem rgb(0 0 0 / 0.28);
+    margin: 0;
+    padding: 0.35rem;
+    border-radius: calc(var(--q-template-card-radius) + 0.3rem);
+    background: linear-gradient(135deg, rgb(255 179 138 / 0.3), rgb(0 212 255 / 0.24));
+    box-shadow: 0 1.5rem 3rem rgb(15 23 42 / 0.12);
   }
 
   html.blog :where(article figure img) {
@@ -184,115 +189,139 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-radius: var(--q-radius-3xl);
+    border-radius: var(--q-template-card-radius);
   }
 
   html.blog :where(article section) {
     display: grid;
-    gap: 1.25rem;
-    padding-block: 0.5rem;
+    gap: 0.95rem;
   }
 
   html.blog :where(article section + section) {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
   }
 
   html.blog :where(article h2) {
-    font-size: clamp(1.75rem, 4vw, 2.35rem);
-    line-height: 1.05;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    font-style: italic;
-    font-weight: 900;
-    max-width: 18ch;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    color: var(--q-text-primary);
+    font-size: clamp(1.9rem, 3vw, 2.4rem);
+    font-weight: 850;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    text-transform: none;
+    font-style: normal;
+    max-width: 16ch;
+  }
+
+  html.blog :where(article h2)::before {
+    content: '';
+    width: 0.35rem;
+    height: 2.2rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--q-color-starlight-blue), var(--q-color-starlight-peach));
+    box-shadow: 0 0 1rem rgb(0 212 255 / 0.28);
+    flex: none;
   }
 
   html.blog :where(article p, article li) {
     color: var(--q-text-secondary);
     font-size: 1.02rem;
-    line-height: 1.85;
+    line-height: 1.8;
   }
 
   html.blog :where(article ul, article ol) {
     display: grid;
-    gap: 0.9rem;
-    padding-left: 1.25rem;
+    gap: 0.65rem;
+    padding-left: 1.1rem;
   }
 
   html.blog :where(article blockquote) {
     margin: 0;
-    padding: 1.5rem 1.5rem 1.5rem 1.25rem;
-    border-left: 3px solid var(--q-color-starlight-blue);
-    border-radius: 0 var(--q-radius-2xl) var(--q-radius-2xl) 0;
-    background: color-mix(in srgb, var(--q-color-surface), var(--q-color-starlight-blue) 8%);
+    padding: 1.25rem 1.4rem;
+    border: 1px solid rgb(255 255 255 / 0.06);
+    border-radius: var(--q-template-card-radius);
+    background: rgb(255 255 255 / 0.04);
     color: var(--q-text-primary);
-    font-size: 1.2rem;
+    font-size: 1.02rem;
+    font-style: normal;
     line-height: 1.7;
-    font-style: italic;
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.03);
+    box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
+  }
+
+  html.blog :where(article > section:first-of-type > p:first-of-type) {
+    color: var(--q-text-primary);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.5;
+    max-width: 34ch;
   }
 
   html.blog :where(article pre) {
     overflow-x: auto;
-    padding: 1.25rem 1.5rem;
-    border-radius: var(--q-radius-2xl);
-    background: color-mix(in srgb, var(--q-color-bg), black 8%);
-    border: 1px solid var(--q-color-border);
+    margin: 0;
+    padding: 1.1rem 1.25rem;
+    border-radius: var(--q-template-card-radius);
+    border: 1px solid rgb(255 255 255 / 0.06);
+    background: rgb(255 255 255 / 0.03);
     color: var(--q-text-primary);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+    box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
   }
 
   html.blog :where(article code) {
     font-family: var(--q-font-mono);
-    font-size: 0.92em;
+    font-size: 0.9em;
   }
 
   html.blog :where(main > aside > section, [data-role='panel']) {
-    padding: 1.5rem;
-    border-radius: var(--q-radius-3xl);
-    background: color-mix(in srgb, var(--q-color-surface), white 2%);
-    border: 1px solid var(--q-color-border);
-    box-shadow: 0 1.5rem 3rem rgb(0 0 0 / 0.2);
+    padding: 1.35rem 1.2rem;
+    border-radius: var(--q-template-card-radius);
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.08);
+    box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
   }
 
   html.blog :where(aside h2, aside h3) {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.45rem;
     color: var(--q-text-primary);
+    font-size: 0.95rem;
+    font-weight: 800;
   }
 
   html.blog :where(aside p, aside li) {
     color: var(--q-text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.78rem;
+    line-height: 1.65;
   }
 
   html.blog :where(aside ul, aside ol) {
     display: grid;
-    gap: 0.9rem;
+    gap: 0.5rem;
     padding-left: 1rem;
   }
 
   html.blog :where(aside form) {
     display: grid;
-    gap: 0.85rem;
+    gap: 0.6rem;
   }
 
   html.blog :where(aside label) {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
     color: var(--q-text-muted);
-    font-weight: 700;
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   html.blog :where(input, textarea, select) {
     width: 100%;
-    min-height: 3rem;
-    padding: 0.85rem 1rem;
-    border-radius: var(--q-radius-xl);
-    border: 1px solid var(--q-color-border);
-    background: rgb(255 255 255 / 0.04);
+    min-height: 2.8rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(255 255 255 / 0.06);
+    background: rgb(255 255 255 / 0.06);
     color: var(--q-text-primary);
   }
 
@@ -300,14 +329,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 3rem;
-    padding: 0.85rem 1.15rem;
-    border-radius: var(--q-radius-xl);
+    min-height: 2.8rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
     border: 0;
-    background: var(--q-color-starlight-blue);
-    color: #03111f;
+    background: linear-gradient(90deg, rgb(255 179 138 / 0.92), rgb(0 212 255 / 0.92));
+    color: #092135;
+    font-size: 0.75rem;
     font-weight: 800;
-    box-shadow: 0 1rem 2rem rgb(0 212 255 / 0.18);
+    box-shadow: 0 0.9rem 1.8rem rgb(0 212 255 / 0.12);
   }
 
   html.blog :where(footer) {
@@ -315,9 +345,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0 var(--q-template-page-pad) 3rem;
+    padding: 0 var(--q-template-page-pad) 2.5rem;
     color: var(--q-text-muted);
-    font-size: 0.95rem;
+    font-size: 0.72rem;
+    border-top: 1px solid rgb(255 255 255 / 0.08);
   }
 
   html.blog :where(footer nav, footer ul) {
@@ -325,45 +356,58 @@
     margin: 0;
     padding: 0;
     border: 0;
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    min-height: auto;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.55rem;
+    background: transparent;
+    box-shadow: none;
   }
 
   html.blog[data-theme='light'] {
     background:
-      radial-gradient(circle at top left, rgb(37 99 235 / 0.12), transparent 28%),
-      radial-gradient(circle at top right, rgb(251 146 60 / 0.12), transparent 24%),
-      linear-gradient(180deg, #f8fafc, #eff6ff);
+      radial-gradient(circle at 12% 0%, rgb(59 130 246 / 0.08), transparent 30%),
+      radial-gradient(circle at 88% 10%, rgb(251 146 60 / 0.08), transparent 22%),
+      #f8fafc;
     color: #0f172a;
   }
 
   html.blog[data-theme='light'] body::before {
-    opacity: 0.3;
-    filter: saturate(0.6);
+    opacity: 0.16;
   }
 
-  html.blog[data-theme='light'] :where(body > nav) {
-    background: rgb(255 255 255 / 0.74);
+  html.blog[data-theme='light'] :where(body > nav, footer) {
     border-color: rgb(15 23 42 / 0.08);
-    box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.08);
+  }
+
+  html.blog[data-theme='light'] :where(nav > a:first-child, nav > strong:first-child, nav > span:first-child) {
+    color: #fb923c;
   }
 
   html.blog[data-theme='light'] :where(nav a:hover, nav a[aria-current='page']) {
-    background: rgb(15 23 42 / 0.05);
+    color: #38bdf8;
+    background: rgb(15 23 42 / 0.04);
   }
 
-  html.blog[data-theme='light'] :where(article blockquote, main > aside > section, [data-role='panel'], article pre, input, textarea, select) {
-    border-color: rgb(15 23 42 / 0.08);
+  html.blog[data-theme='light'] :where(article h1, article h2, aside h2, aside h3) {
+    color: #0f172a;
   }
 
-  html.blog[data-theme='light'] :where(article blockquote) {
-    background: rgb(255 255 255 / 0.8);
+  html.blog[data-theme='light'] :where(article p, article li, article header > p:last-child, aside p, aside li) {
+    color: #64748b;
+  }
+
+  html.blog[data-theme='light'] :where(article header p:first-child, article header time:first-child, [data-role='eyebrow'], aside label, footer) {
+    color: #94a3b8;
+  }
+
+  html.blog[data-theme='light'] :where(article figure, article blockquote, article pre, main > aside > section, [data-role='panel'], input, textarea, select) {
+    background: #fff;
+    border-color: #e2e8f0;
+    box-shadow: 0 1rem 2rem rgb(15 23 42 / 0.06);
+  }
+
+  html.blog[data-theme='light'] :where(article figure) {
+    background: linear-gradient(135deg, rgb(251 146 60 / 0.3), rgb(56 189 248 / 0.2));
   }
 
   @media (max-width: 960px) {
@@ -375,26 +419,33 @@
       max-width: none;
     }
 
-    html.blog :where(footer) {
-      flex-direction: column;
-      align-items: flex-start;
+    html.blog :where(main > aside) {
+      padding-top: 0;
     }
   }
 
   @media (max-width: 720px) {
     html.blog :where(body > nav) {
-      flex-wrap: wrap;
-      justify-content: center;
+      grid-template-columns: 1fr;
+      justify-items: start;
     }
 
     html.blog :where(nav > ul, nav > ol) {
-      width: 100%;
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: wrap;
+    }
+
+    html.blog :where(nav button, nav [data-role='cta']) {
+      justify-self: start;
     }
 
     html.blog :where(article h1) {
       max-width: none;
+    }
+
+    html.blog :where(footer) {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 }
