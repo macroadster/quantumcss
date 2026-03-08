@@ -22,6 +22,7 @@
     "generate": "node src/cli.js",
     "semantic": "node src/cli.js semantic",
     "generate:watch": "node src/cli.js --watch",
+    "harvest:icons": "node scripts/harvest-icons.js",
     "release": "node scripts/release.js"
   },
   "repository": {
