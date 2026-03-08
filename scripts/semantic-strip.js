@@ -313,15 +313,56 @@ function processTemplate(inputPath, outputDir) {
     }
   }
   
+  // Build full HTML document
+  function getHeadContent(node) {
+    if (!node) return '';
+    if (node.nodeName === 'head') {
+      return node.childNodes
+        .filter(n => n.nodeName === '#text' || (n.nodeName === 'meta') || (n.nodeName === 'link') || (n.nodeName === 'title') || (n.nodeName === 'style'))
+        .map(n => parse5.serialize({ ...node, childNodes: [n] }))
+        .join('\n');
+    }
+    if (node.childNodes) {
+      for (const child of node.childNodes) {
+        const result = getHeadContent(child);
+        if (result) return result;
+      }
+    }
+    return '';
+  }
+  
+  const headContent = getHeadContent(document);
+  
+  // Reconstruct full HTML
+  const fullHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+${headContent.replace(/<head>|<\/head>/g, '').split('\n').map(l => '    ' + l).join('\n')}
+    <style>
+/* Scoped styles for ${templateName} */
+${Array.from(results.css.values()).map(rule => {
+  const props = Object.entries(rule.props).map(([k, v]) => `  ${k}: ${v};`).join('\n');
+  return `/* Replaces .${rule.replaced} */\n${rule.selector} {\n${props}\n}`;
+}).join('\n\n')}
+    </style>
+</head>
+<body>
+${formatHTML(results.html)}
+</body>
+</html>`;
+
+  const outputHTML = path.join(outputDir, `${templateName}-semantic.html`);
+  const outputCSS = path.join(outputDir, `${templateName}-semantic.css`);
+  
+  fs.writeFileSync(outputHTML, fullHTML);
+  
   const cssContent = Array.from(results.css.values()).map(rule => {
     const props = Object.entries(rule.props).map(([k, v]) => `  ${k}: ${v};`).join('\n');
     return `/* Replaces .${rule.replaced} */\n${rule.selector} {\n${props}\n}`;
   }).join('\n\n');
   
-  const outputHTML = path.join(outputDir, `${templateName}-semantic.html`);
-  const outputCSS = path.join(outputDir, `${templateName}-semantic.css`);
-  
-  fs.writeFileSync(outputHTML, results.html);
   fs.writeFileSync(outputCSS, cssContent);
   
   console.log(`  -> HTML: ${outputHTML}`);
@@ -329,6 +370,25 @@ function processTemplate(inputPath, outputDir) {
   console.log(`  -> ${results.css.size} unique CSS rules`);
   
   return { html: outputHTML, css: outputCSS, rules: results.css.size };
+}
+
+function formatHTML(html) {
+  // Simple indentation formatter
+  let indent = 0;
+  const lines = [];
+  const tokens = html.split(/(<[^>]+>)/g).filter(Boolean);
+  
+  for (const token of tokens) {
+    if (token.match(/^<\/\w/)) {
+      indent--;
+    }
+    lines.push('  '.repeat(Math.max(0, indent)) + token);
+    if (token.match(/^<\w+[^>]*>$/) && !token.match(/^<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)\b/i)) {
+      indent++;
+    }
+  }
+  
+  return lines.join('\n').replace(/^\s+$/gm, '').trim();
 }
 
 if (require.main === module) {
