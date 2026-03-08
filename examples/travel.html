@@ -24,6 +24,38 @@
             }
             html[data-theme="light"] body { background: var(--q-light-bg) !important; }
 
+            /* Hero Glow */
+            .hero-glow {
+                position: absolute;
+                top: -10%;
+                right: -10%;
+                width: 60%;
+                height: 60%;
+                background: radial-gradient(
+                    circle,
+                    rgba(0, 212, 255, 0.15) 0%,
+                    transparent 70%
+                );
+                filter: blur(100px);
+                z-index: -1;
+                transition: opacity 0.5s ease;
+            }
+            html[data-theme="light"] .hero-glow { opacity: 0; }
+
+            /* Theme Toggle Styling */
+            .theme-toggle {
+                cursor: pointer;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
+                transition: background 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            .theme-toggle:hover { background: rgba(255, 255, 255, 0.1); }
+
             /* Light mode overrides */
             html[data-theme="light"] .glass {
                 background: var(--q-glass-bg) !important;
