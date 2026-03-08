@@ -1,0 +1,1032 @@
+
+        /* ============================================
+           MUSIC STREAMING STRUCTURAL STYLES
+           Replaces all template structural classes
+           with semantic HTML + scoped selectors
+           ============================================ */
+
+        /* LAYOUT - replaces .music-app */
+        html.music body {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 1fr 100px;
+            height: 100vh;
+            background: var(--bg-primary, #08081a);
+            overflow: hidden;
+        }
+
+        /* SIDEBAR - replaces .music-sidebar */
+        html.music body > aside:first-child {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* LOGO - replaces .music-logo */
+        html.music body > aside:first-child > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        /* LOGO ICON - replaces .music-logo-icon */
+        html.music body > aside:first-child > div:first-child > div:first-child {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        html.music body > aside:first-child > div:first-child > div:first-child svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(0, 212, 255, 0.6); }
+        }
+
+        /* NAV SECTIONS */
+        html.music body > aside:first-child > nav:first-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        /* NAV ITEMS - replaces .nav-item */
+        html.music body > aside:first-child nav button,
+        html.music body > aside:first-child nav > div {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary, #94a3b8);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9375rem;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* NAV ITEM SVG ICONS */
+        html.music body > aside:first-child nav button svg,
+        html.music body > aside:first-child nav > div svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        html.music body > aside:first-child nav button:hover,
+        html.music body > aside:first-child nav > div:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* ACTIVE NAV ITEM - replaces .nav-item.active */
+        html.music body > aside:first-child nav button[aria-current="page"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* NAV SECTION TITLE - replaces .nav-title */
+        html.music body > aside:first-child > nav:first-of-type + nav > h3,
+        html.music body > aside:first-child > nav:nth-of-type(2) > h3 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted, #64748b);
+            padding: 0.75rem 1rem 0.5rem;
+        }
+
+        /* PLAYLIST NAV ITEMS */
+        html.music body > aside:first-child > nav:nth-of-type(2) button,
+        html.music body > aside:first-child > nav:nth-of-type(2) > div {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary, #94a3b8);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* PLAYLIST NAV SVG ICONS */
+        html.music body > aside:first-child > nav:nth-of-type(2) button svg,
+        html.music body > aside:first-child > nav:nth-of-type(2) > div svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        html.music body > aside:first-child > nav:nth-of-type(2) button:hover,
+        html.music body > aside:first-child > nav:nth-of-type(2) > div:hover {
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* LIKED SONGS ICON */
+        html.music body > aside:first-child > nav:nth-of-type(2) > div:first-child svg {
+            color: #ec4899;
+        }
+
+        /* SCROLLABLE PLAYLIST AREA */
+        html.music body > aside:first-child > section:first-of-type {
+            flex: 1;
+            overflow-y: auto;
+            margin: 1rem 0;
+        }
+
+        /* PLAYLIST ITEMS */
+        html.music body > aside:first-child > section:first-of-type > div {
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary, #94a3b8);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        html.music body > aside:first-child > section:first-of-type > div:hover {
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* CREATE PLAYLIST BUTTON - replaces .create-playlist-btn */
+        html.music body > aside:first-child > button:first-of-type {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(59, 130, 246, 0.15));
+            border: 1px solid rgba(0, 212, 255, 0.6);
+            border-radius: 0.75rem;
+            color: var(--color-starlight, #00d4ff);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        html.music body > aside:first-child > button:first-of-type svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        html.music body > aside:first-child > button:first-of-type:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(59, 130, 246, 0.25));
+            transform: translateY(-2px);
+        }
+
+        /* MAIN CONTENT - replaces .main-content */
+        html.music body > main {
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* HEADER - replaces .music-header */
+        html.music body > main > header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* NAV ARROWS */
+        html.music body > main > header > div:first-child {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        html.music body > main > header > div:first-child button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: var(--text-primary, #f1f5f9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > header > div:first-child button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        html.music body > main > header > div:first-child button:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* USER MENU */
+        html.music body > main > header > div:last-child {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* UPGRADE BUTTON */
+        html.music body > main > header > div:last-child > button {
+            padding: 0.625rem 1.25rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 9999px;
+            color: var(--text-primary, #f1f5f9);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > header > div:last-child > button:hover {
+            border-color: var(--color-starlight, #00d4ff);
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* USER AVATAR */
+        html.music body > main > header > div:last-child > figure[data-initials] {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* BACKGROUND GRADIENT - replaces .bg-gradient */
+        html.music body > main > div:first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.2) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* HERO SECTION */
+        html.music body > main > section:first-of-type {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 3rem;
+        }
+
+        /* HERO CONTENT */
+        html.music body > main > section:first-of-type > div {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-end;
+        }
+
+        /* HERO IMAGE */
+        html.music body > main > section:first-of-type > div > div:first-child {
+            width: 232px;
+            height: 232px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        html.music body > main > section:first-of-type > div > div:first-child img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* HERO INFO */
+        html.music body > section:first-of-type > div > div:last-child {
+            flex: 1;
+            padding-bottom: 0.5rem;
+        }
+
+        /* HERO TYPE */
+        html.music body > main > section:first-of-type > div > div:last-child > div:first-child {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 0.5rem;
+        }
+
+        /* HERO TITLE */
+        html.music body > main > section:first-of-type > div > div:last-child > h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        /* HERO META */
+        html.music body > main > section:first-of-type > div > div:last-child > div:last-child {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        html.music body > main > section:first-of-type > div > div:last-child > div:last-child img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        html.music body > main > section:first-of-type > div > div:last-child > div:last-child .artist-name {
+            color: var(--text-primary, #f1f5f9);
+            font-weight: 600;
+        }
+
+        /* ACTION BAR */
+        html.music body > main > div:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* PLAY BUTTON - replaces .play-btn */
+        html.music body > main > div:nth-of-type(2) > button:first-child {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        html.music body > main > div:nth-of-type(2) > button:first-child:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 212, 255, 0.5);
+        }
+
+        /* PLAY BUTTON SVG */
+        html.music body > main > div:nth-of-type(2) > button:first-child svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+            margin-left: 3px;
+        }
+
+        /* ACTION ICONS */
+        html.music body > main > div:nth-of-type(2) > button:nth-child(2),
+        html.music body > main > div:nth-of-type(2) > button:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: var(--text-muted, #64748b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > div:nth-of-type(2) > button:nth-child(2):hover,
+        html.music body > main > div:nth-of-type(2) > button:nth-child(3):hover {
+            color: var(--text-primary, #f1f5f9);
+            transform: scale(1.1);
+        }
+
+        /* ACTION BUTTON SVG SIZES */
+        html.music body > main > div:nth-of-type(2) > button:nth-child(2) svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        html.music body > main > div:nth-of-type(2) > button:nth-child(3) svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* LIKED STATE */
+        html.music body > main > div:nth-of-type(2) > button[data-liked="true"] {
+            color: #ec4899;
+        }
+
+        /* TRACK LIST SECTION */
+        html.music body > main > section:nth-of-type(2) {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* TRACK HEADER */
+        html.music body > main > section:nth-of-type(2) > header {
+            display: grid;
+            grid-template-columns: 50px 1fr 1fr 100px 60px;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted, #64748b);
+        }
+
+        /* TRACK ROW */
+        html.music body > main > section:nth-of-type(2) > article {
+            display: grid;
+            grid-template-columns: 50px 1fr 1fr 100px 60px;
+            padding: 0.875rem 1rem;
+            border-radius: 0.5rem;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ACTIVE TRACK - replaces .track-row.active */
+        html.music body > main > section:nth-of-type(2) > article[data-active="true"] {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* TRACK NUMBER */
+        html.music body > main > section:nth-of-type(2) > article > div:first-child {
+            font-size: 1rem;
+            color: var(--text-muted, #64748b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* TRACK NUMBER HOVER/ACTIVE STATES */
+        html.music body > main > section:nth-of-type(2) > article:hover > div:first-child span {
+            display: none;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:hover > div:first-child::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 8px solid var(--text-primary, #f1f5f9);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article[data-active="true"] > div:first-child {
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* TRACK INFO */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* TRACK IMAGE */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:first-child {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:first-child img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* TRACK DETAILS */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:last-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* TRACK TITLE */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:last-child > div:first-child {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article[data-active="true"] > div:nth-child(2) > div:last-child > div:first-child {
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* EXPLICIT BADGE */
+        html.music body > main > section:nth-of-type(2) > article .explicit-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: var(--text-muted, #64748b);
+            border-radius: 2px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            color: var(--bg-primary, #08081a);
+            margin-left: 0.5rem;
+        }
+
+        /* ARTIST NAME IN TRACK */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:last-child > div:last-child {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* TRACK ALBUM */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(3) {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* TRACK DATE */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(4) {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* TRACK RIGHT SIDE */
+        html.music body > main > section:nth-of-type(2) > article > div:last-child {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* LIKE BUTTON */
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > button:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:hover > div:last-child > button:first-child {
+            opacity: 1;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > button:first-child svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted, #64748b);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > button:first-child:hover svg {
+            color: #ec4899;
+            transform: scale(1.2);
+        }
+
+        /* DURATION */
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > span {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+            text-align: right;
+        }
+
+        /* PLAYER BAR - replaces .player-bar */
+        html.music body > footer {
+            grid-column: 1 / -1;
+            background: linear-gradient(180deg, rgba(20, 20, 35, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1rem 1.5rem;
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* NOW PLAYING - replaces .now-playing */
+        html.music body > footer > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* NOW PLAYING IMAGE */
+        html.music body > footer > div:first-child > div:first-child {
+            width: 56px;
+            height: 56px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        html.music body > footer > div:first-child > div:first-child img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* NOW PLAYING INFO */
+        html.music body > footer > div:first-child > div:last-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        html.music body > footer > div:first-child > div:last-child > div:first-child {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 0.25rem;
+        }
+
+        html.music body > footer > div:first-child > div:last-child > div:last-child {
+            font-size: 0.8125rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* NOW PLAYING LIKE */
+        html.music body > footer > div:first-child > button {
+            margin-left: auto;
+            background: transparent;
+            border: none;
+            color: var(--color-starlight, #00d4ff);
+            cursor: pointer;
+        }
+
+        /* PLAYER CONTROLS - replaces .player-controls */
+        html.music body > footer > div:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* CONTROL BUTTONS */
+        html.music body > footer > div:nth-child(2) > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* CONTROL BUTTON BASE */
+        html.music body > footer > div:nth-child(2) > div:first-child > button {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary, #94a3b8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        html.music body > footer > div:nth-child(2) > div:first-child > button:hover {
+            color: var(--text-primary, #f1f5f9);
+            transform: scale(1.1);
+        }
+
+        /* CONTROL BUTTON SVG */
+        html.music body > footer > div:nth-child(2) > div:first-child > button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* PLAY BUTTON */
+        html.music body > footer > div:nth-child(2) > div:first-child > button[data-play="true"] {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--text-primary, #f1f5f9);
+            color: var(--bg-primary, #08081a);
+        }
+
+        /* PROGRESS BAR */
+        html.music body > footer > div:nth-child(2) > div:last-child {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* TIME */
+        html.music body > footer > div:nth-child(2) > div:last-child > span:first-child,
+        html.music body > footer > div:nth-child(2) > div:last-child > span:last-child {
+            font-size: 0.75rem;
+            color: var(--text-muted, #64748b);
+            min-width: 35px;
+            text-align: center;
+        }
+
+        /* PROGRESS TRACK - replaces .progress-track */
+        html.music body > footer > div:nth-child(2) > div:last-child > div {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* PROGRESS FILL - replaces .progress-fill */
+        html.music body > footer > div:nth-child(2) > div:last-child > div > .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 35%;
+            background: linear-gradient(90deg, var(--color-starlight, #00d4ff), #3b82f6);
+            border-radius: 2px;
+        }
+
+        /* PROGRESS HANDLE - replaces .progress-handle */
+        html.music body > footer > div:nth-child(2) > div:last-child > div > .progress-handle {
+            position: absolute;
+            left: 35%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--text-primary, #f1f5f9);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        html.music body > footer > div:nth-child(2) > div:last-child > div:hover > .progress-handle {
+            opacity: 1;
+        }
+
+        /* VOLUME CONTROLS - replaces .volume-controls */
+        html.music body > footer > div:last-child {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* THEME TOGGLE */
+        html.music body > footer > div:last-child > button:last-child {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary, #94a3b8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        html.music body > footer > div:last-child > button:last-child:hover {
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* FOOTER BUTTON SVG */
+        html.music body > footer > div:last-child > button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* VOLUME SLIDER */
+        html.music body > footer > div:last-child > .volume-slider {
+            width: 100px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        html.music body > footer > div:last-child > .volume-slider > .volume-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 70%;
+            background: var(--text-secondary, #94a3b8);
+            border-radius: 2px;
+        }
+
+        html.music body > footer > div:last-child > .volume-slider:hover > .volume-fill {
+            background: var(--color-starlight, #00d4ff);
+        }
+
+        html.music body > footer > div:last-child > div:first-child > div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 70%;
+            background: var(--text-secondary, #94a3b8);
+            border-radius: 2px;
+        }
+
+        /* SUN/MOON ICONS */
+        html.music .sun-icon { display: none; }
+        html.music[data-theme="light"] .sun-icon { display: inline; }
+        html.music[data-theme="light"] .moon-icon { display: none; }
+
+        /* ============================================
+           LIGHT MODE OVERRIDES
+           ============================================ */
+        html.music[data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+        }
+
+        html.music[data-theme="light"] body > aside:first-child {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-right-color: #e2e8f0;
+        }
+
+        html.music[data-theme="light"] body > footer {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-top-color: #e2e8f0;
+        }
+
+        html.music[data-theme="light"] body > main > header button {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        html.music[data-theme="light"] body > main > header button:first-of-type {
+            border-color: rgba(0, 0, 0, 0.2);
+            color: var(--text-primary);
+        }
+
+        html.music[data-theme="light"] body > main > section:nth-of-type(2) > article:hover {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        html.music[data-theme="light"] body > main > section:nth-of-type(2) > article[data-active="true"] {
+            background: rgba(0, 212, 255, 0.08);
+        }
+
+        /* SCROLLBAR */
+        html.music ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        html.music ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html.music ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+
+        html.music ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        html.music[data-theme="light"] ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        html.music body > main > section:nth-of-type(2) > article {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:nth-child(2) { animation-delay: 0.05s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(3) { animation-delay: 0.1s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(4) { animation-delay: 0.15s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(5) { animation-delay: 0.2s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(6) { animation-delay: 0.25s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(7) { animation-delay: 0.3s; }
+
+        /* ============================================
+           RESPONSIVE BREAKPOINTS
+           ============================================ */
+        @media (max-width: 1024px) {
+            html.music body {
+                grid-template-columns: 80px 1fr;
+            }
+
+            html.music body > aside:first-child {
+                padding: 1rem;
+            }
+
+            html.music body > aside:first-child > div:first-child span,
+            html.music body > aside:first-child nav button span,
+            html.music body > aside:first-child nav > div span,
+            html.music body > aside:first-child > button:first-of-type span,
+            html.music body > aside:first-child > nav h3 {
+                display: none;
+            }
+
+            html.music body > aside:first-child nav button,
+            html.music body > aside:first-child nav > div {
+                justify-content: center;
+                padding: 0.75rem;
+            }
+
+            /* Ensure icons are visible in collapsed sidebar */
+            html.music body > aside:first-child nav button svg,
+            html.music body > aside:first-child nav > div svg,
+            html.music body > aside:first-child > button:first-of-type svg {
+                display: block;
+                width: 20px;
+                height: 20px;
+            }
+
+            html.music body > aside:first-child > div:first-child > div:first-child {
+                width: 40px;
+                height: 40px;
+            }
+
+            html.music body > main > section:first-of-type > div > div:first-child {
+                width: 160px;
+                height: 160px;
+            }
+
+            /* Hide hero section image on smaller screens if needed */
+            @media (max-width: 640px) {
+                html.music body > main > section:first-of-type > div > div:first-child {
+                    width: 120px;
+                    height: 120px;
+                }
+
+                html.music body > main > section:first-of-type > div > div:last-child > h1 {
+                    font-size: 1.75rem;
+                }
+            }
+
+            /* Hide track columns on mobile */
+            html.music body > main > section:nth-of-type(2) > header > div:nth-child(3),
+            html.music body > main > section:nth-of-type(2) > header > div:nth-child(4),
+            html.music body > main > section:nth-of-type(2) > article > div:nth-child(3),
+            html.music body > main > section:nth-of-type(2) > article > div:nth-child(4) {
+                display: none;
+            }
+
+            html.music body > main > section:nth-of-type(2) > header {
+                grid-template-columns: 40px 1fr 60px 40px;
+            }
+
+            html.music body > main > section:nth-of-type(2) > article {
+                grid-template-columns: 40px 1fr 60px 40px;
+            }
+
+            html.music body > footer {
+                grid-template-columns: 1fr;
+                padding: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            html.music body > footer > div:first-child {
+                justify-content: center;
+            }
+
+            html.music body > footer > div:last-child {
+                display: none;
+            }
+        }
+    

@@ -962,38 +962,40 @@ html[data-theme="light"] .tab-button.active {
   display: inline-flex;
   align-items: center;
   gap: var(--q-space-2);
-  padding: var(--q-space-1) var(--q-space-3);
+  padding: 0.6rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 500;
+  white-space: nowrap;
   border-radius: 9999px;
-  background-color: var(--q-glass-bg);
-  border: 1px solid var(--q-glass-border);
-  color: var(--q-text-primary);
-  transition: all var(--q-duration-150) var(--q-ease-in-out);
+  background-color: var(--q-card-bg);
+  border: 1px solid var(--q-card-border);
+  color: var(--q-text-secondary);
+  transition: all 0.2s;
   cursor: pointer;
 }
 
 .chip:hover {
-  background-color: var(--q-card-bg);
-  border-color: var(--q-color-primary);
+  background-color: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--q-color-starlight-blue);
 }
 
 .chip.active {
-  background-color: var(--q-color-primary);
-  border-color: var(--q-color-primary);
-  color: white;
+  background-color: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--q-color-starlight-blue);
 }
 
 /* Chip variants */
 .chip-primary {
-  background-color: color-mix(in srgb, var(--q-color-primary), transparent 90%);
-  border-color: var(--q-color-primary);
-  color: var(--q-color-primary);
+  background-color: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--q-color-starlight-blue);
 }
 
 .chip-primary:hover,
 .chip-primary.active {
-  background-color: var(--q-color-primary);
+  background-color: var(--q-color-starlight-blue);
   color: white;
 }
 

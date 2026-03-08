@@ -1,0 +1,33 @@
+/* Replaces .btn-starlight */
+html.travel nav button.btn-starlight {
+  width: 100%;
+}
+
+/* Replaces .glass */
+html.travel section form.glass {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  margin: 0 auto;
+}
+
+/* Replaces .btn-starlight */
+html.travel section button.btn-starlight {
+  height: auto;
+}
+
+/* Replaces .grid-cols-1 */
+html.travel div.grid-cols-1 {
+  display: grid;
+}
+
+/* Replaces .starlight-card */
+html.travel article article.starlight-card {
+  overflow: hidden;
+}
+
+/* Replaces .btn-outline */
+html.travel article button.btn-outline {
+  border-radius: 9999px;
+}

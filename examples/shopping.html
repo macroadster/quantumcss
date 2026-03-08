@@ -274,35 +274,35 @@
                 <div class="container">
                     <div class="section-label">Browse by category</div>
                     <div class="categories-scroll">
-                        <button class="cat-pill active">
-                            <span class="cat-pill-icon">✨</span> All
+                        <button class="chip chip-primary">
+                            <span>✨</span> All
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">👗</span> Dresses
+                        <button class="chip">
+                            <span>👗</span> Dresses
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">👟</span> Sneakers
+                        <button class="chip">
+                            <span>👟</span> Sneakers
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">🧥</span> Outerwear
+                        <button class="chip">
+                            <span>🧥</span> Outerwear
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">👜</span> Bags
+                        <button class="chip">
+                            <span>👜</span> Bags
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">💍</span> Jewellery
+                        <button class="chip">
+                            <span>💍</span> Jewellery
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">🧢</span> Accessories
+                        <button class="chip">
+                            <span>🧢</span> Accessories
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">🩱</span> Swimwear
+                        <button class="chip">
+                            <span>🩱</span> Swimwear
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">🎽</span> Activewear
+                        <button class="chip">
+                            <span>🎽</span> Activewear
                         </button>
-                        <button class="cat-pill">
-                            <span class="cat-pill-icon">🕶️</span> Eyewear
+                        <button class="chip">
+                            <span>🕶️</span> Eyewear
                         </button>
                     </div>
                 </div>
@@ -896,12 +896,12 @@
                 .join("");
 
             /* ── Category filter ── */
-            document.querySelectorAll(".cat-pill").forEach((btn) => {
+            document.querySelectorAll(".chip").forEach((btn) => {
                 btn.addEventListener("click", () => {
                     document
-                        .querySelectorAll(".cat-pill")
-                        .forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
+                        .querySelectorAll(".chip")
+                        .forEach((b) => b.classList.remove("chip-primary"));
+                    btn.classList.add("chip-primary");
                 });
             });
 

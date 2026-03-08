@@ -1,0 +1,19 @@
+/* Replaces .container */
+html.shopping div.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+/* Replaces .nav-links */
+html.shopping ul.nav-links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Replaces .badge-count */
+html.shopping nav span.badge-count {
+  position: absolute;
+}

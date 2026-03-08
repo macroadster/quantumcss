@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" class="music"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlight Music - Stream Your Universe</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <link rel="stylesheet" href="../src/styles/quantum-components.css">
+    <script src="../src/starlight.js"></script>
+    
+<link rel="stylesheet" href="music-streaming.music.css"></head>
+<body>
+    <!-- Sidebar -->
+    <aside>
+        <!-- Logo -->
+        <div>
+            <div>
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path>
+                </svg>
+            </div>
+            <span class="text-xl font-bold text-gradient-starlight">Starlight</span>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav aria-label="Main navigation">
+            <button aria-current="page">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                </svg>
+                <span>Home</span>
+            </button>
+            <button>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <span>Search</span>
+            </button>
+            <button>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                </svg>
+                <span>Your Library</span>
+            </button>
+        </nav>
+
+        <!-- Playlists Navigation -->
+        <nav aria-label="Playlists">
+            <h3>Playlists</h3>
+            <div>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                </svg>
+                <span>Create Playlist</span>
+            </div>
+            <div>
+                <svg fill="currentColor" viewBox="0 0 24 24" style="color: #ec4899;">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+                <span>Liked Songs</span>
+            </div>
+        </nav>
+
+        <!-- Playlist Items -->
+        <section aria-label="Your playlists">
+            <div>Cosmic Vibes</div>
+            <div>Deep Focus</div>
+            <div>Starlight Lounge</div>
+            <div>Nebula Nights</div>
+            <div>Quantum Beats</div>
+            <div>Galaxy Groove</div>
+        </section>
+
+        <!-- Create Playlist Button -->
+        <button>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+            </svg>
+            <span>Create New Playlist</span>
+        </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Background Gradient -->
+        <div></div>
+
+        <!-- Header -->
+        <header>
+            <div>
+                <button aria-label="Go back">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                    </svg>
+                </button>
+                <button aria-label="Go forward">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div>
+                <button>Upgrade to Premium</button>
+                <figure data-initials="JD" style="width: 32px; height: 32px; font-size: 0.75rem;"></figure>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section>
+            <div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&amp;h=400&amp;fit=crop" alt="Album Cover">
+                </div>
+                <div>
+                    <div>Playlist</div>
+                    <h1>Cosmic Vibes</h1>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=50&amp;h=50&amp;fit=crop" alt="Creator">
+                        <span class="artist-name">Starlight Music</span>
+                        <span>•</span>
+                        <span>2,847,392 likes</span>
+                        <span>•</span>
+                        <span>50 songs, 3 hr 25 min</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Bar -->
+        <div>
+            <button>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"></path>
+                </svg>
+            </button>
+            <button data-liked="true">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+            </button>
+            <button>
+                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Track List -->
+        <section aria-label="Tracks">
+            <header>
+                <div>#</div>
+                <div>Title</div>
+                <div>Album</div>
+                <div>Date added</div>
+                <div></div>
+            </header>
+
+            <!-- Track 1 -->
+            <article data-active="true">
+                <div><span>1</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=100&amp;h=100&amp;fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Starlight Dreams <span class="explicit-badge">E</span></div>
+                        <div>Cosmic Collective</div>
+                    </div>
+                </div>
+                <div>Nebula Nights</div>
+                <div>2 days ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </button>
+                    <span>3:45</span>
+                </div>
+            </article>
+
+            <!-- Track 2 -->
+            <article>
+                <div><span>2</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=100&amp;h=100&amp;fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Quantum Leap</div>
+                        <div>The Nebulas</div>
+                    </div>
+                </div>
+                <div>Galactic Journey</div>
+                <div>5 days ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </button>
+                    <span>4:12</span>
+                </div>
+            </article>
+
+            <!-- Track 3 -->
+            <article>
+                <div><span>3</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100&amp;h=100&amp;fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Midnight in Orbit <span class="explicit-badge">E</span></div>
+                        <div>Lunar Echoes</div>
+                    </div>
+                </div>
+                <div>Space Cadet</div>
+                <div>1 week ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </button>
+                    <span>3:28</span>
+                </div>
+            </article>
+
+            <!-- Track 4 -->
+            <article>
+                <div><span>4</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=100&amp;h=100&amp;fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Solar Flare</div>
+                        <div>Stellar Drift</div>
+                    </div>
+                </div>
+                <div>Sun Sessions</div>
+                <div>2 weeks ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </button>
+                    <span>3:56</span>
+                </div>
+            </article>
+
+            <!-- Track 5 -->
+            <article>
+                <div><span>5</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=100&amp;h=100&amp;fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Aurora Borealis</div>
+                        <div>Northern Lights</div>
+                    </div>
+                </div>
+                <div>Polaris</div>
+                <div>3 weeks ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </button>
+                    <span>4:33</span>
+                </div>
+            </article>
+
+            <!-- Track 6 -->
+            <article>
+                <div><span>6</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=100&amp;h=100&amp;fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Black Hole Sun <span class="explicit-badge">E</span></div>
+                        <div>Event Horizon</div>
+                    </div>
+                </div>
+                <div>Singularity</div>
+                <div>1 month ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </button>
+                    <span>5:01</span>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Player Bar -->
+    <footer>
+        <!-- Now Playing -->
+        <div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=100&amp;h=100&amp;fit=crop" alt="Now Playing">
+            </div>
+            <div>
+                <div>Starlight Dreams</div>
+                <div>Cosmic Collective</div>
+            </div>
+            <button aria-label="Like">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Player Controls -->
+        <div>
+            <div>
+                <button aria-label="Shuffle">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10.59 9.17L5.41 3.99 4 5.41l5.18 5.17 1.41-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"></path>
+                    </svg>
+                </button>
+                <button aria-label="Previous">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"></path>
+                    </svg>
+                </button>
+                <button data-play="true" aria-label="Play/Pause">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+                    </svg>
+                </button>
+                <button aria-label="Next">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                    </svg>
+                </button>
+                <button aria-label="Repeat">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div>
+                <span>1:24</span>
+                <div>
+                    <div class="progress-fill"></div>
+                    <div class="progress-handle"></div>
+                </div>
+                <span>3:45</span>
+            </div>
+        </div>
+
+        <!-- Volume Controls -->
+        <div>
+            <button aria-label="Queue">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"></path>
+                </svg>
+            </button>
+            <button aria-label="Devices">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>
+                </svg>
+            </button>
+            <div class="volume-slider">
+                <div class="volume-fill"></div>
+            </div>
+            <button aria-label="Toggle theme" onclick="toggleTheme()">
+                <svg class="sun-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                </svg>
+                <svg class="moon-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // Track row click handler
+        document.querySelectorAll('section[aria-label="Tracks"] article').forEach(row => {
+            row.addEventListener('click', function() {
+                document.querySelectorAll('section[aria-label="Tracks"] article[data-active]').forEach(r => r.removeAttribute('data-active'));
+                this.setAttribute('data-active', 'true');
+            });
+        });
+
+        // Play button toggle
+        const playBtn = document.querySelector('button[data-play="true"]');
+        let isPlaying = true;
+        
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                isPlaying = !isPlaying;
+                this.setAttribute('data-play', isPlaying);
+                this.innerHTML = isPlaying 
+                    ? '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>'
+                    : '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+            });
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+    </script>
+
+
+</body></html>
