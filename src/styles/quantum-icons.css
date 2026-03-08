@@ -1,6 +1,9 @@
 /* Quantum Icons - Generated Library */
 
-.q-icon {
+.q-icon,
+[class^="q-icon-"],
+[class*=" q-icon-"],
+[class*="q-icon-"] {
   display: inline-block;
   vertical-align: middle;
   width: 1.25em;

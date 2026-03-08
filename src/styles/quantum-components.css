@@ -1299,6 +1299,64 @@ html[data-theme="light"] .time-picker-input {
   border-color: #e2e8f0;
 }
 
+/* ============================================================================
+   ADVANCED SEARCH
+   Search inputs with icons and integrated styles
+   ============================================================================ */
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-box i, 
+.search-box .q-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--q-text-muted, #64748b);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.search-input-premium {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 1rem 0 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: var(--q-text-primary, #f1f5f9);
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+}
+
+.search-input-premium:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--q-color-primary, #00d4ff);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--q-color-primary, #00d4ff), transparent 85%);
+}
+
+.search-input-premium::placeholder {
+  color: var(--q-text-muted, #64748b);
+  opacity: 0.7;
+}
+
+/* Light mode overrides for search */
+html[data-theme="light"] .search-input-premium {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #0f172a;
+}
+
+html[data-theme="light"] .search-input-premium:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
 /* Toggle Switch */
 .toggle {
   position: relative;
@@ -1688,23 +1746,29 @@ html[data-theme="light"] .list-divider {
   overflow-x: hidden;
 }
 
-/* Top navigation bar */
+/* Top Header Bar */
 .top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
   padding: 1rem 1.5rem;
   background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
+  margin-bottom: 2rem;
 }
 
-/* Top navigation actions container */
 .top-nav-actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+html[data-theme="light"] .top-nav {
+  background: var(--q-light-card-bg, #ffffff);
+  border-color: var(--q-light-card-border, #e2e8f0);
 }
 
 /* Page header with actions */
@@ -1715,15 +1779,34 @@ html[data-theme="light"] .list-divider {
   margin-bottom: 2rem;
 }
 
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--q-text-primary, #f1f5f9);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: var(--q-text-muted, #64748b);
+  margin: 0;
+}
+
+.page-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+html[data-theme="light"] .page-title {
+  color: #0f172a;
+}
+
 /* Light mode overrides for layout */
 html[data-theme="light"] .sidebar {
   background: linear-gradient(180deg, var(--q-light-card-bg) 0%, var(--q-light-bg) 100%);
   border-right-color: var(--q-light-card-border);
-}
-
-html[data-theme="light"] .top-nav {
-  background: var(--q-light-card-bg);
-  border-color: var(--q-light-card-border);
 }
 
 /* Responsive layout adjustments */
@@ -1754,6 +1837,61 @@ html[data-theme="light"] .top-nav {
     align-items: flex-start;
     gap: 1rem;
   }
+}
+
+/* ============================================================================
+   BREADCRUMBS
+   Navigation trails for complex applications
+   ============================================================================ */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--q-space-2, 0.5rem);
+  font-size: 0.875rem;
+  color: var(--q-text-muted, #64748b);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--q-space-2, 0.5rem);
+}
+
+.breadcrumb-link {
+  color: var(--q-text-secondary, #94a3b8);
+  text-decoration: none;
+  transition: color var(--q-duration-150, 0.2s);
+}
+
+.breadcrumb-link:hover {
+  color: var(--q-color-primary, #00d4ff);
+}
+
+.breadcrumb-separator {
+  color: var(--q-text-muted, #64748b);
+  opacity: 0.6;
+}
+
+.breadcrumb-current {
+  color: var(--q-text-primary, #f1f5f9);
+  font-weight: 500;
+}
+
+/* Light mode overrides for breadcrumbs */
+html[data-theme="light"] .breadcrumb-link {
+  color: #64748b;
+}
+
+html[data-theme="light"] .breadcrumb-link:hover {
+  color: #2563eb;
+}
+
+html[data-theme="light"] .breadcrumb-current {
+  color: #0f172a;
 }
 
 /* ============================================================================
@@ -1794,6 +1932,7 @@ html[data-theme="light"] .top-nav {
   background: transparent;
   width: 100%;
   text-align: left;
+  position: relative;
 }
 
 .nav-item:hover {
@@ -1806,10 +1945,24 @@ html[data-theme="light"] .top-nav {
   color: var(--q-color-starlight, #00d4ff);
 }
 
-/* Constrain nav item icons - prevent oversized icons */
-.nav-item svg {
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem; /* Align with sidebar edge */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background: var(--q-color-starlight, #00d4ff);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Constrain nav item icons */
+.nav-item i, .nav-item .q-icon, .nav-item svg {
   width: 1.125rem;
   height: 1.125rem;
+  font-size: 1.125rem;
+}
   max-width: 1.125rem;
   max-height: 1.125rem;
   flex-shrink: 0;
@@ -1855,6 +2008,88 @@ html[data-theme="light"] .nav-section-title {
 }
 
 /* ============================================================================
+   QUICK ACTIONS
+   Prominent action cards for dashboard navigation
+   ============================================================================ */
+
+.quick-action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.quick-action-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.quick-action-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-4px);
+  border-color: var(--q-color-primary, #00d4ff);
+  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.5);
+}
+
+.quick-action-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--q-color-primary, #00d4ff);
+  transition: all 0.3s ease;
+}
+
+.quick-action-icon i, .quick-action-icon .q-icon, .quick-action-icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 1.75rem;
+}
+
+.quick-action-card:hover .quick-action-icon {
+  background: var(--q-color-primary, #00d4ff);
+  color: white;
+  transform: scale(1.1);
+}
+
+.quick-action-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--q-text-primary, #f1f5f9);
+}
+
+.quick-action-desc {
+  font-size: 0.8125rem;
+  color: var(--q-text-muted, #64748b);
+  line-height: 1.4;
+}
+
+/* Light mode overrides for quick actions */
+html[data-theme="light"] .quick-action-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .quick-action-card:hover {
+  background: #f8fafc;
+}
+
+html[data-theme="light"] .quick-action-icon {
+  background: #f1f5f9;
+}
+
+/* ============================================================================
    STAT CARDS
    Dashboard metric cards with icons and values
    ============================================================================ */
@@ -1862,7 +2097,7 @@ html[data-theme="light"] .nav-section-title {
 /* Stats grid layout */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -1897,6 +2132,12 @@ html[data-theme="light"] .nav-section-title {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.stat-icon i, .stat-icon .q-icon, .stat-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.5rem;
 }
 
 /* Icon color variants */
@@ -1950,6 +2191,12 @@ html[data-theme="light"] .nav-section-title {
   border-radius: 0.375rem;
 }
 
+.stat-trend i, .stat-trend .q-icon, .stat-trend svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  font-size: 0.75rem;
+}
+
 .stat-trend-up {
   background: rgba(16, 185, 129, 0.15);
   color: #34d399;
@@ -1958,6 +2205,73 @@ html[data-theme="light"] .nav-section-title {
 .stat-trend-down {
   background: rgba(239, 68, 68, 0.15);
   color: #f87171;
+}
+
+/* ============================================================================
+   ACTIVITY FEED
+   Timeline of recent events and updates
+   ============================================================================ */
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.activity-icon i, .activity-icon .q-icon, .activity-icon svg {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-text {
+  font-size: 0.875rem;
+  color: var(--q-text-primary, #f1f5f9);
+  margin-bottom: 0.25rem;
+}
+
+.activity-text span {
+  color: var(--q-color-starlight, #00d4ff);
+  font-weight: 500;
+}
+
+.activity-time {
+  font-size: 0.75rem;
+  color: var(--q-text-muted, #64748b);
+}
+
+/* Light mode overrides for activity feed */
+html[data-theme="light"] .activity-item {
+  border-bottom-color: #f1f5f9;
+}
+
+html[data-theme="light"] .activity-text {
+  color: #0f172a;
 }
 
 /* Light mode overrides for stat cards */
@@ -1990,19 +2304,6 @@ html[data-theme="light"] .stat-icon-red {
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* Responsive stats grid */
-@media (max-width: 1280px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ============================================================================
    ICON BUTTONS
    Square and circular icon buttons
@@ -2024,6 +2325,12 @@ html[data-theme="light"] .stat-icon-red {
   position: relative;
 }
 
+.icon-btn i, .icon-btn .q-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 1.25rem;
+}
+
 .icon-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   color: var(--q-text-primary, #f1f5f9);
@@ -2041,11 +2348,23 @@ html[data-theme="light"] .stat-icon-red {
   border-radius: 0.5rem;
 }
 
+.icon-btn-sm i, .icon-btn-sm .q-icon {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+}
+
 /* Large icon button */
 .icon-btn-lg {
   width: 48px;
   height: 48px;
   border-radius: 0.75rem;
+}
+
+.icon-btn-lg i, .icon-btn-lg .q-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.5rem;
 }
 
 /* Action buttons container */
@@ -2069,10 +2388,23 @@ html[data-theme="light"] .stat-icon-red {
   transition: all 0.2s ease;
 }
 
+.action-btn i, .action-btn .q-icon {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+}
+
 .action-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   color: var(--q-text-primary, #f1f5f9);
 }
+
+/* ICON SIZING UTILITIES */
+.icon-xs { width: 0.75rem !important; height: 0.75rem !important; font-size: 0.75rem !important; }
+.icon-sm { width: 1rem !important; height: 1rem !important; font-size: 1rem !important; }
+.icon-md { width: 1.25rem !important; height: 1.25rem !important; font-size: 1.25rem !important; }
+.icon-lg { width: 1.5rem !important; height: 1.5rem !important; font-size: 1.5rem !important; }
+.icon-xl { width: 2rem !important; height: 2rem !important; font-size: 2rem !important; }
 
 /* Delete action button */
 .action-btn-delete:hover {
@@ -2247,52 +2579,46 @@ html[data-theme="light"] .user-email {
 .status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.875rem;
-  border-radius: 9999px;
+  justify-content: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.375rem;
   font-size: 0.75rem;
   font-weight: 500;
 }
 
-.status-badge::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
 /* Status variants */
 .status-active {
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(52, 211, 153, 0.12);
   color: #34d399;
 }
 
-.status-active::before {
-  background: #34d399;
-}
-
 .status-pending {
-  background: rgba(245, 158, 11, 0.15);
+  background: rgba(251, 191, 36, 0.12);
   color: #fbbf24;
 }
 
-.status-pending::before {
-  background: #fbbf24;
-}
-
 .status-inactive {
-  background: rgba(239, 68, 68, 0.15);
+  background: rgba(248, 113, 113, 0.12);
   color: #f87171;
 }
 
-.status-inactive::before {
-  background: #f87171;
+/* Simplified status for tables */
+.status-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+.status-active-dot { background-color: #34d399; }
+.status-pending-dot { background-color: #fbbf24; }
+.status-inactive-dot { background-color: #f87171; }
 
 /* Role badge */
 .role-badge {
   display: inline-flex;
-  padding: 0.25rem 0.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.75rem;
   border-radius: 0.375rem;
   font-size: 0.75rem;
   font-weight: 500;
@@ -2329,7 +2655,8 @@ html[data-theme="light"] .user-email {
 .label {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  justify-content: center;
+  padding: 0.3rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -2353,17 +2680,17 @@ html[data-theme="light"] .user-email {
 
 /* Light mode overrides for badges */
 html[data-theme="light"] .status-active {
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(5, 150, 105, 0.1);
   color: #059669;
 }
 
 html[data-theme="light"] .status-pending {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(217, 119, 6, 0.1);
   color: #d97706;
 }
 
 html[data-theme="light"] .status-inactive {
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(220, 38, 38, 0.1);
   color: #dc2626;
 }
 
@@ -2468,6 +2795,34 @@ html[data-theme="light"] .filter-select {
 /* Offline status indicator */
 .offline-indicator {
   background: #64748b;
+}
+
+/* Status dot variants */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--q-text-muted, #64748b);
+}
+
+.status-dot-online { 
+  background-color: #10b981; 
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.status-dot-offline { 
+  background-color: #64748b; 
+}
+
+.status-dot-away { 
+  background-color: #f59e0b; 
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.status-dot-busy { 
+  background-color: #ef4444; 
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 /* Notification dot */
