@@ -6,6 +6,7 @@ const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 const { generateCSS } = require('../src/generator');
 const { runConfiguredTransforms } = require('../src/semantic/transformer');
+const { processTemplate } = require('./semantic-strip');
 
 class QuantumCSSBuilder {
   constructor(config = {}) {
@@ -85,6 +86,41 @@ class QuantumCSSBuilder {
     console.log(`📦 Gzipped Size: ${(gzipped.length / 1024).toFixed(2)} KB\n`);
   }
 
+  runSemanticStrip() {
+    const configPath = path.resolve(this.config.configPath);
+    if (!fs.existsSync(configPath)) return [];
+    delete require.cache[configPath];
+    const fileConfig = require(configPath);
+    
+    const semanticStripConfig = fileConfig.semanticStrip;
+    if (!semanticStripConfig || !Array.isArray(semanticStripConfig.templates)) {
+      return [];
+    }
+
+    const baseDir = path.dirname(configPath);
+    const results = [];
+
+    for (const template of semanticStripConfig.templates) {
+      const inputPath = path.resolve(baseDir, template.input);
+      const outputDir = path.resolve(baseDir, template.output);
+      
+      if (!fs.existsSync(inputPath)) {
+        console.log(`⚠ Template not found: ${inputPath}`);
+        continue;
+      }
+
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
+
+      const result = processTemplate(inputPath, outputDir);
+      console.log(`🎯 Semantic strip: ${template.input} -> ${template.output}`);
+      results.push(result);
+    }
+
+    return results;
+  }
+
   runSemanticTransforms() {
     const configPath = path.resolve(this.config.configPath);
     if (!fs.existsSync(configPath)) return [];
@@ -114,6 +150,10 @@ async function main() {
   const builder = new QuantumCSSBuilder(config);
   await builder.buildCSS();
   builder.runSemanticTransforms();
+  
+  if (config.semantic) {
+    builder.runSemanticStrip();
+  }
 }
 
 if (require.main === module) {

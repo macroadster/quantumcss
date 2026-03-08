@@ -27,7 +27,8 @@ html.travel article article.starlight-card {
   overflow: hidden;
 }
 
-/* Replaces .btn-outline */
-html.travel article button.btn-outline {
-  border-radius: 9999px;
+/* Replaces .glass */
+html.travel section div.glass {
+  position: relative;
+  overflow: hidden;
 }

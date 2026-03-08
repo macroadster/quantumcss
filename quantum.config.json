@@ -113,5 +113,11 @@
     "starlight-form": "card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start",
     "starlight-dialog": "dialog-base modal-fixed theme-glass-dark starlight-dialog-bg ani-scale-in"
   },
+  "semanticStrip": {
+    "templates": [
+      { "input": "examples/travel.html", "output": "examples/research/travel" },
+      { "input": "examples/shopping.html", "output": "examples/research/shopping" }
+    ]
+  },
   "darkMode": "media"
 }
