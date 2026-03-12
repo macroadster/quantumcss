@@ -1,0 +1,116 @@
+{
+  "mail": {
+    "components": {
+      "sidebar": {
+        "selector": ".email-sidebar",
+        "targetTag": "nav",
+        "stripClasses": true,
+        "removeAttributes": ["style"],
+        "rules": [
+          { "selector": ".compose-btn", "tag": "button", "addClass": "compose", "keepAttributes": ["onclick"] },
+          { "selector": ".nav-item", "tag": "a", "stripClasses": true, "removeAttributes": ["style"] },
+          { "selector": ".nav-section-title", "tag": "h6", "stripClasses": true, "removeAttributes": ["style"] },
+          { "selector": ".user-profile-section", "tag": "footer", "stripClasses": true },
+          { "selector": ".user-cell", "tag": "span", "stripClasses": true, "removeAttributes": ["style"] },
+          { "selector": ".user-name", "tag": "strong", "stripClasses": true },
+          { "selector": ".user-email", "tag": "small", "stripClasses": true, "removeAttributes": ["style"] },
+          { "selector": ".avatar", "tag": "figure", "keepAttributes": ["data-initials"] }
+        ]
+      },
+      "list": {
+        "selector": ".email-list",
+        "targetTag": "aside",
+        "stripClasses": true,
+        "rules": [
+          { "selector": ".top-bar", "tag": "header", "stripClasses": true },
+          { "selector": ".email-item", "tag": "article", "stripClasses": true },
+          { "selector": ".email-meta", "tag": "div", "stripClasses": true },
+          { "selector": ".email-sender", "tag": "span", "stripClasses": true },
+          { "selector": ".email-subject", "tag": "h4", "stripClasses": true },
+          { "selector": ".email-preview", "tag": "p", "stripClasses": true },
+          { "selector": ".email-time", "tag": "time", "stripClasses": true },
+          { "selector": ".label", "tag": "mark", "stripClasses": true, "keepAttributes": ["data-label"] }
+        ]
+      }
+    }
+  },
+  "travel": {
+    "components": {
+      "navbar": {
+        "selector": ".starlight-navbar",
+        "targetTag": "header",
+        "stripClasses": true,
+        "rules": [
+          { "selector": ".nav-menu-mobile", "tag": "nav", "stripClasses": true },
+          { "selector": ".nav-list", "tag": "ul", "stripClasses": true },
+          { "selector": ".nav-link", "tag": "a", "stripClasses": true }
+        ]
+      },
+      "hero": {
+        "selector": ".starlight-hero",
+        "targetTag": "section",
+        "stripClasses": true,
+        "removeAttributes": ["style"],
+        "rules": [
+          { "selector": ".glass", "tag": "form", "stripClasses": true, "removeAttributes": ["style"] }
+        ]
+      },
+      "destinations": {
+        "selector": "[data-section=\"destinations\"]",
+        "targetTag": "section",
+        "stripClasses": true,
+        "rules": [
+          { "selector": ".starlight-card", "tag": "article", "stripClasses": true }
+        ]
+      },
+      "newsletter": {
+        "selector": "[data-section=\"newsletter\"]",
+        "targetTag": "section",
+        "stripClasses": true,
+        "rules": [
+          { "selector": ".glass", "tag": "div", "stripClasses": true }
+        ]
+      },
+      "footer": {
+        "selector": ".starlight-footer",
+        "targetTag": "footer",
+        "stripClasses": true
+      }
+    }
+  },
+  "news": {
+    "components": {
+      "navbar": {
+        "selector": ".starlight-navbar",
+        "targetTag": "header",
+        "stripClasses": true
+      },
+      "ticker": {
+        "selector": ".bg-blue-600",
+        "targetTag": "aside",
+        "stripClasses": true,
+        "rules": [
+          { "selector": ".animate-marquee", "tag": "div", "stripClasses": true }
+        ]
+      },
+      "feed": {
+        "selector": ".news-grid",
+        "targetTag": "main",
+        "stripClasses": true,
+        "rules": [
+          { "selector": ".featured-card", "tag": "article", "stripClasses": true },
+          { "selector": ".featured-overlay", "tag": "div", "stripClasses": true }
+        ]
+      },
+      "sidebar": {
+        "selector": "aside",
+        "targetTag": "aside",
+        "stripClasses": true,
+        "rules": [
+          { "selector": ".bg-highlight", "tag": "section", "stripClasses": true },
+          { "selector": ".bg-accent", "tag": "section", "stripClasses": true }
+        ]
+      }
+    }
+  }
+}
