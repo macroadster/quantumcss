@@ -1,0 +1,565 @@
+/* ADMIN TEMPLATE - Semantic CSS Preset */
+
+/* APP LAYOUT - replaces .app-layout */
+html.admin div {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+  background: var(--bg-primary, #08081a);
+}
+
+/* SIDEBAR - replaces .sidebar */
+html.admin aside {
+  background: linear-gradient(180deg, rgba(8, 8, 26, 0.98) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+/* ADMIN LOGO - replaces .admin-logo */
+html.admin aside > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ADMIN LOGO ICON - replaces .admin-logo-icon */
+html.admin aside > div:first-child > div:first-child {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* NAV SECTION - replaces .nav-section */
+html.admin aside section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* NAV SECTION TITLE - replaces .nav-section-title */
+html.admin aside section > div:first-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #64748b);
+  padding: 0.5rem 0;
+}
+
+/* NAV - replaces nav inside sidebar */
+html.admin aside section nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* NAV ITEM - replaces .nav-item */
+html.admin aside section button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+html.admin aside section button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #f1f5f9);
+}
+
+html.admin aside section button.active {
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* NAV BADGE - replaces .nav-badge */
+html.admin aside section button span:last-of-type {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+}
+
+/* THEME TOGGLE WRAPPER */
+html.admin aside > div:last-child {
+  margin-top: auto;
+}
+
+/* THEME BUTTON - replaces .theme-btn */
+html.admin aside button:last-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: var(--text-primary, #f1f5f9);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+html.admin aside button:last-child:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* MAIN CONTENT - replaces .main-content */
+html.admin main {
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* TOP NAV - replaces .top-nav */
+html.admin main > header:first-of-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* BREADCRUMB - replaces .breadcrumb */
+html.admin main > header:first-of-type nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* BREADCRUMB ITEM - replaces .breadcrumb-item */
+html.admin main > header:first-of-type nav > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* BREADCRUMB LINK - replaces .breadcrumb-link */
+html.admin main > header:first-of-type nav a {
+  color: var(--text-muted, #64748b);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+html.admin main > header:first-of-type nav a:hover {
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* BREADCRUMB SEPARATOR - replaces .breadcrumb-separator */
+html.admin main > header:first-of-type nav span {
+  color: var(--text-muted, #64748b);
+}
+
+/* BREADCRUMB CURRENT - replaces .breadcrumb-current */
+html.admin main > header:first-of-type nav > div:last-child {
+  color: var(--text-primary, #f1f5f9);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* TOP NAV ACTIONS - replaces .top-nav-actions */
+html.admin main > header:first-of-type > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* SEARCH BOX - replaces .search-box */
+html.admin main > header:first-of-type > div:last-child > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* SEARCH INPUT - replaces .search-input-premium */
+html.admin main > header:first-of-type input {
+  padding: 0.625rem 1rem 0.625rem 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: var(--text-primary, #f1f5f9);
+  font-size: 0.875rem;
+  outline: none;
+  width: 100%;
+  max-width: 280px;
+  transition: all 0.2s;
+}
+
+html.admin main > header:first-of-type input:focus {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ICON BUTTON - replaces .icon-btn */
+html.admin main > header:first-of-type > div:last-child button {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary, #94a3b8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s;
+}
+
+html.admin main > header:first-of-type > div:last-child button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* NOTIFICATION DOT - replaces .notification-dot */
+html.admin main > header:first-of-type > div:last-child button span {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+}
+
+/* PAGE HEADER - replaces .page-header */
+html.admin main > header:nth-of-type(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* PAGE TITLE - replaces .page-title */
+html.admin main h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+  margin-bottom: 0.5rem;
+}
+
+/* PAGE SUBTITLE - replaces .page-subtitle */
+html.admin main > header:nth-of-type(2) > div > p {
+  font-size: 0.9375rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* PAGE ACTIONS - replaces .page-actions */
+html.admin main > header:nth-of-type(2) > div:last-child {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* STATS GRID - replaces .stats-grid */
+html.admin main > section:nth-of-type(1) {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* STAT CARD - replaces .stat-card */
+html.admin main article {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* STAT HEADER - replaces .stat-header */
+html.admin article > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* STAT ICON - replaces .stat-icon */
+html.admin article > div:first-child > div:first-child {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html.admin article > div:first-child > div:first-child.stat-icon-blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+html.admin article > div:first-child > div:first-child.stat-icon-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+html.admin article > div:first-child > div:first-child.stat-icon-orange {
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+
+html.admin article > div:first-child > div:first-child.stat-icon-purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+/* STAT VALUE - replaces .stat-value */
+html.admin article > div:nth-child(2) {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* STAT LABEL - replaces .stat-label */
+html.admin article > div:last-child {
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* TABLE CONTAINER - replaces .table-container */
+html.admin main > section:nth-of-type(2) {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* TABLE HEADER - replaces .table-header */
+html.admin section > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* TABLE TITLE - replaces .table-title */
+html.admin section header h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* TABLE FILTERS - replaces .table-filters */
+html.admin section header > div:last-child {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* FILTER SELECT - replaces .filter-select */
+html.admin section header select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+/* TABLE - replaces table */
+html.admin section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* TABLE HEAD - replaces th */
+html.admin section table th {
+  text-align: left;
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #64748b);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* TABLE CELL - replaces td */
+html.admin section table td {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #94a3b8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* TABLE ROW - replaces tr */
+html.admin section table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* USER CELL - replaces .user-cell */
+html.admin section table td > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* AVATAR - replaces .avatar */
+html.admin section table td > div:first-child > div:first-child {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: white;
+}
+
+/* USER INFO - replaces .user-info */
+html.admin section table td > div:first-child > div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+/* USER NAME - replaces .user-name */
+html.admin section table td > div:first-child > div:last-child > div:first-child {
+  font-weight: 600;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* USER EMAIL - replaces .user-email */
+html.admin section table td > div:last-child > div:last-child {
+  font-size: 0.8125rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* ROLE BADGE - replaces .role-badge */
+html.admin section table td span:first-of-type {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+html.admin section table td span.role-admin {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+/* STATUS BADGE - replaces .status-badge */
+html.admin section table td span:last-of-type {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+html.admin section table td span.status-active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+/* ACTION BUTTONS - replaces .action-buttons */
+html.admin section table td > div:last-child {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ACTION BTN - replaces .action-btn */
+html.admin section table td > div:last-child button {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.375rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted, #64748b);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+html.admin section table td > div:last-child button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1280px) {
+  html.admin main > section:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  html.admin > div {
+    grid-template-columns: 80px 1fr;
+  }
+  
+  html.admin aside {
+    padding: 1rem;
+  }
+  
+  html.admin aside > div:first-child > div:last-child,
+  html.admin aside section > div:first-child,
+  html.admin aside section button span,
+  html.admin aside button:last-child span {
+    display: none;
+  }
+  
+  html.admin aside section button {
+    justify-content: center;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  html.admin > div {
+    grid-template-columns: 1fr;
+  }
+  
+  html.admin aside {
+    display: none;
+  }
+  
+  html.admin main > header:first-of-type {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  html.admin main > section:first-of-type {
+    grid-template-columns: 1fr;
+  }
+  
+  html.admin section {
+    overflow-x: auto;
+  }
+  
+  html.admin section table {
+    min-width: 800px;
+  }
+}

@@ -1,0 +1,278 @@
+/* GAMING TEMPLATE - Semantic CSS Preset */
+
+/* HERO SECTION - replaces .hero-section */
+html.gaming section:first-of-type {
+  background: linear-gradient(rgba(10, 10, 26, 0.4), rgba(10, 10, 26, 0.9)), 
+              url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* HERO CONTENT */
+html.gaming section:first-of-type > div {
+  max-width: 900px;
+  padding: 2rem;
+}
+
+/* HERO BADGE */
+html.gaming section:first-of-type > div > span:first-child {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--color-starlight, #00d4ff);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+/* HERO TITLE */
+html.gaming section:first-of-type h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  html.gaming section:first-of-type h1 {
+    font-size: 6rem;
+  }
+}
+
+/* HERO SUBTITLE */
+html.gaming section:first-of-type > div > p {
+  font-size: 1.25rem;
+  opacity: 0.7;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* HERO BUTTONS */
+html.gaming section:first-of-type > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* CATEGORIES SECTION - replaces .categories-section */
+html.gaming section:nth-of-type(2) {
+  padding: 4rem 0;
+}
+
+/* CATEGORIES GRID */
+html.gaming section:nth-of-type(2) > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* CATEGORY CARD */
+html.gaming section:nth-of-type(2) > div > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+html.gaming section:nth-of-type(2) > div > a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 212, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+/* FEATURED SECTION - replaces .featured-section */
+html.gaming section:nth-of-type(3) {
+  padding: 4rem 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* SECTION HEADER */
+html.gaming section:nth-of-type(3) > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+/* SECTION TITLE */
+html.gaming section:nth-of-type(3) > div:first-child h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+/* GAME GRID */
+html.gaming section:nth-of-type(3) > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* GAME CARD */
+html.gaming section:nth-of-type(3) article {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+html.gaming section:nth-of-type(3) article:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* GAME CARD IMAGE */
+html.gaming section:nth-of-type(3) article > div:first-child {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+html.gaming section:nth-of-type(3) article > div:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+}
+
+/* GAME CARD BADGE */
+html.gaming section:nth-of-type(3) article > div:first-child > span {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* GAME CARD CONTENT */
+html.gaming section:nth-of-type(3) article > div:last-child {
+  padding: 1.5rem;
+}
+
+/* GAME CARD TITLE */
+html.gaming section:nth-of-type(3) article h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* GAME CARD DESCRIPTION */
+html.gaming section:nth-of-type(3) article p {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #94a3b8);
+  margin-bottom: 1rem;
+}
+
+/* GAME CARD META */
+html.gaming section:nth-of-type(3) article > div:last-child > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* GAME CARD PRICE */
+html.gaming section:nth-of-type(3) article > div:last-child > div > span:first-child {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* GAME CARD BUTTON */
+html.gaming section:nth-of-type(3) article > div:last-child > div > button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* FOOTER - replaces .starlight-footer */
+html.gaming footer {
+  padding: 4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 4rem;
+}
+
+/* FOOTER CONTENT */
+html.gaming footer > div {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+}
+
+/* FOOTER SECTION */
+html.gaming footer > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* FOOTER TITLE */
+html.gaming footer h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+/* FOOTER LINKS */
+html.gaming footer a {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #94a3b8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+html.gaming footer a:hover {
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* FOOTER BOTTOM */
+html.gaming footer > div:last-child {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

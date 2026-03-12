@@ -1,73 +1,61 @@
 <main>
             
             <!-- Left Column: News Feed -->
-            <div class="space-y-12">
+            <div>
                 <!-- Featured Article -->
                 <article>
                     <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Quantum Compute">
                     <div>
-                        <span class="bg-blue-600 text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest mb-4 inline-block">Exclusive</span>
-                        <h2 class="text-5xl font-black leading-tight mb-4 tracking-tighter uppercase italic">Inside the First <br>Stable Qubit Lattice</h2>
-                        <p class="text-lg opacity-90 max-w-xl">Deep dive into the breakthrough that ended the quantum decoherence era, paving the way for instantaneous planetary compute.</p>
+                        <span>Exclusive</span>
+                        <h2>Inside the First <br>Stable Qubit Lattice</h2>
+                        <p>Deep dive into the breakthrough that ended the quantum decoherence era, paving the way for instantaneous planetary compute.</p>
                     </div>
                 </article>
 
                 <!-- Secondary Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div class="group cursor-pointer">
-                        <div class="overflow-hidden rounded-xl mb-6 aspect-video bg-slate-800">
-                            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&amp;fit=crop&amp;w=800&amp;q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div>
+                    <div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&amp;fit=crop&amp;w=800&amp;q=80">
                         </div>
-                        <span class="text-blue-600 text-[10px] font-black uppercase tracking-widest">Space-X</span>
-                        <h3 class="text-2xl font-bold tracking-tight leading-tight group-hover:underline uppercase mt-2">The Dyson Ring: First Solar Panels Deploy Around the Moon</h3>
+                        <span>Space-X</span>
+                        <h3>The Dyson Ring: First Solar Panels Deploy Around the Moon</h3>
                     </div>
-                    <div class="group cursor-pointer">
-                        <div class="overflow-hidden rounded-xl mb-6 aspect-video bg-slate-800">
-                            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&amp;fit=crop&amp;w=800&amp;q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&amp;fit=crop&amp;w=800&amp;q=80">
                         </div>
-                        <span class="text-blue-600 text-[10px] font-black uppercase tracking-widest">Bio-Tech</span>
-                        <h3 class="text-2xl font-bold tracking-tight leading-tight group-hover:underline uppercase mt-2">Synthetic Neurons Successfully Grafted to Human Cortex</h3>
+                        <span>Bio-Tech</span>
+                        <h3>Synthetic Neurons Successfully Grafted to Human Cortex</h3>
                     </div>
                 </div>
             </div>
 
             <!-- Right Column: Sidebar -->
-            <aside class="space-y-12">
-                <div class="bg-highlight p-8 rounded-2xl border border-white_5">
-                    <h4 class="border-b-2 border-accent pb-2 text-xs font-black uppercase tracking-widest mb-6">Trending Terminal</h4>
-                    <div class="space-y-8">
-                        <div class="flex gap-6 group cursor-pointer">
-                            <span class="text-4xl font-black text-secondary opacity-30 group-hover:text-blue-600 group-hover:opacity-100 transition-all">01</span>
-                            <p class="text-sm font-bold leading-snug">The Ethics of Algorithmic Governance in Neo-Tokyo</p>
+            <aside>
+                <div>
+                    <h4>Trending Terminal</h4>
+                    <div>
+                        <div>
+                            <span>01</span>
+                            <p>The Ethics of Algorithmic Governance in Neo-Tokyo</p>
                         </div>
-                        <div class="flex gap-6 group cursor-pointer">
-                            <span class="text-4xl font-black text-secondary opacity-30 group-hover:text-blue-600 group-hover:opacity-100 transition-all">02</span>
-                            <p class="text-sm font-bold leading-snug">Liquid Metal Battery: Storage Problem Solved?</p>
+                        <div>
+                            <span>02</span>
+                            <p>Liquid Metal Battery: Storage Problem Solved?</p>
                         </div>
-                        <div class="flex gap-6 group cursor-pointer">
-                            <span class="text-4xl font-black text-secondary opacity-30 group-hover:text-blue-600 group-hover:opacity-100 transition-all">03</span>
-                            <p class="text-sm font-bold leading-snug">Interstellar Web: Laser Relay Reaches Alpha Centauri</p>
+                        <div>
+                            <span>03</span>
+                            <p>Interstellar Web: Laser Relay Reaches Alpha Centauri</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-8 rounded-2xl bg-accent text-white">
-                    <h4 class="text-xs font-black uppercase tracking-widest mb-4">Newsletter</h4>
-                    <p class="text-sm opacity-90 mb-6">Receive the morning data-stream directly to your neural link.</p>
-                    <input type="email" placeholder="terminal@id.io" class="w-full bg-white_10 border border-white_20 p-3 rounded text-sm mb-4 outline-none focus:border-white text-white placeholder:text-white_50">
-                    <button class="w-full bg-white text-blue-600 font-black text-[10px] uppercase tracking-widest py-3 rounded hover:bg-slate-100 transition-colors">Subscribe</button>
+                <div>
+                    <h4>Newsletter</h4>
+                    <p>Receive the morning data-stream directly to your neural link.</p>
+                    <input type="email" placeholder="terminal@id.io">
+                    <button>Subscribe</button>
                 </div>
             </aside>
         </main>
-
-/* CSS Snippet Suggestion */
-/* Scope: html.news main */
-html.news main {
-  /* Styles from .news-grid */
-}
-html.news main article {
-  /* Styles from .featured-card */
-}
-html.news main div {
-  /* Styles from .featured-overlay */
-}

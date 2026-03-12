@@ -40,6 +40,8 @@
         "selector": ".starlight-navbar",
         "targetTag": "header",
         "stripClasses": true,
+        "aggressiveStrip": true,
+        "keepClasses": ["q-icon", "sun-icon", "moon-icon", "hamburger-left"],
         "rules": [
           { "selector": ".nav-menu-mobile", "tag": "nav", "stripClasses": true },
           { "selector": ".nav-list", "tag": "ul", "stripClasses": true },
@@ -50,6 +52,7 @@
         "selector": ".starlight-hero",
         "targetTag": "section",
         "stripClasses": true,
+        "aggressiveStrip": true,
         "removeAttributes": ["style"],
         "rules": [
           { "selector": ".glass", "tag": "form", "stripClasses": true, "removeAttributes": ["style"] }
@@ -59,6 +62,7 @@
         "selector": "[data-section=\"destinations\"]",
         "targetTag": "section",
         "stripClasses": true,
+        "aggressiveStrip": true,
         "rules": [
           { "selector": ".starlight-card", "tag": "article", "stripClasses": true }
         ]
@@ -67,6 +71,7 @@
         "selector": "[data-section=\"newsletter\"]",
         "targetTag": "section",
         "stripClasses": true,
+        "aggressiveStrip": true,
         "rules": [
           { "selector": ".glass", "tag": "div", "stripClasses": true }
         ]
@@ -74,7 +79,8 @@
       "footer": {
         "selector": ".starlight-footer",
         "targetTag": "footer",
-        "stripClasses": true
+        "stripClasses": true,
+        "aggressiveStrip": true
       }
     }
   },
@@ -83,12 +89,15 @@
       "navbar": {
         "selector": ".starlight-navbar",
         "targetTag": "header",
-        "stripClasses": true
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "keepClasses": ["q-icon", "sun-icon", "moon-icon", "hamburger-left"]
       },
       "ticker": {
         "selector": ".bg-blue-600",
         "targetTag": "aside",
         "stripClasses": true,
+        "aggressiveStrip": true,
         "rules": [
           { "selector": ".animate-marquee", "tag": "div", "stripClasses": true }
         ]
@@ -97,6 +106,7 @@
         "selector": ".news-grid",
         "targetTag": "main",
         "stripClasses": true,
+        "aggressiveStrip": true,
         "rules": [
           { "selector": ".featured-card", "tag": "article", "stripClasses": true },
           { "selector": ".featured-overlay", "tag": "div", "stripClasses": true }
@@ -106,9 +116,285 @@
         "selector": "aside",
         "targetTag": "aside",
         "stripClasses": true,
+        "aggressiveStrip": true,
         "rules": [
           { "selector": ".bg-highlight", "tag": "section", "stripClasses": true },
           { "selector": ".bg-accent", "tag": "section", "stripClasses": true }
+        ]
+      }
+    }
+  },
+  "video": {
+    "components": {
+      "app": {
+        "selector": ".video-app",
+        "targetTag": "div",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".logo", "tag": "div", "stripClasses": true },
+          { "selector": ".search-bar", "tag": "form", "stripClasses": true },
+          { "selector": ".header-actions", "tag": "div", "stripClasses": true },
+          { "selector": ".sidebar", "tag": "nav", "stripClasses": true },
+          { "selector": ".nav-section", "tag": "section", "stripClasses": true },
+          { "selector": ".nav-item", "tag": "a", "stripClasses": true },
+          { "selector": ".video-feed", "tag": "main", "stripClasses": true },
+          { "selector": ".category-tabs", "tag": "div", "stripClasses": true },
+          { "selector": ".chip", "tag": "button", "stripClasses": true },
+          { "selector": ".video-grid", "tag": "div", "stripClasses": true },
+          { "selector": ".video-card", "tag": "article", "stripClasses": true },
+          { "selector": ".shorts-grid", "tag": "div", "stripClasses": true }
+        ]
+      }
+    }
+  },
+  "admin": {
+    "components": {
+      "layout": {
+        "selector": ".app-layout",
+        "targetTag": "div",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".sidebar", "tag": "aside", "stripClasses": true },
+          { "selector": ".admin-logo", "tag": "div", "stripClasses": true },
+          { "selector": ".nav-section", "tag": "section", "stripClasses": true },
+          { "selector": ".nav-item", "tag": "button", "stripClasses": true },
+          { "selector": ".main-content", "tag": "main", "stripClasses": true },
+          { "selector": ".top-nav", "tag": "header", "stripClasses": true },
+          { "selector": ".breadcrumb", "tag": "nav", "stripClasses": true },
+          { "selector": ".page-header", "tag": "header", "stripClasses": true },
+          { "selector": ".stats-grid", "tag": "section", "stripClasses": true },
+          { "selector": ".stat-card", "tag": "article", "stripClasses": true },
+          { "selector": ".table-container", "tag": "section", "stripClasses": true }
+        ]
+      }
+    }
+  },
+  "analytics": {
+    "components": {
+      "layout": {
+        "selector": ".app-layout",
+        "targetTag": "div",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".sidebar", "tag": "aside", "stripClasses": true },
+          { "selector": ".logo", "tag": "div", "stripClasses": true },
+          { "selector": ".nav-section", "tag": "section", "stripClasses": true },
+          { "selector": ".nav-item", "tag": "button", "stripClasses": true },
+          { "selector": ".main-content", "tag": "main", "stripClasses": true },
+          { "selector": ".page-header", "tag": "header", "stripClasses": true },
+          { "selector": ".stats-grid", "tag": "section", "stripClasses": true },
+          { "selector": ".stat-card", "tag": "article", "stripClasses": true },
+          { "selector": ".charts-section", "tag": "section", "stripClasses": true },
+          { "selector": ".chart-card", "tag": "article", "stripClasses": true }
+        ]
+      }
+    }
+  },
+  "blog": {
+    "components": {
+      "navbar": {
+        "selector": ".starlight-navbar",
+        "targetTag": "nav",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "keepClasses": ["q-icon", "sun-icon", "moon-icon", "hamburger-left"],
+        "rules": [
+          { "selector": ".nav-menu-mobile", "tag": "div", "stripClasses": true },
+          { "selector": ".nav-list", "tag": "ul", "stripClasses": true },
+          { "selector": ".nav-link", "tag": "a", "stripClasses": true }
+        ]
+      },
+      "article": {
+        "selector": "article",
+        "targetTag": "article",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": "header", "tag": "header", "stripClasses": true }
+        ]
+      },
+      "sidebar": {
+        "selector": "aside",
+        "targetTag": "aside",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".starlight-card", "tag": "section", "stripClasses": true }
+        ]
+      },
+      "footer": {
+        "selector": ".starlight-footer",
+        "targetTag": "footer",
+        "stripClasses": true,
+        "aggressiveStrip": true
+      }
+    }
+  },
+  "chat": {
+    "components": {
+      "app": {
+        "selector": ".chat-app",
+        "targetTag": "div",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".chat-sidebar", "tag": "aside", "stripClasses": true },
+          { "selector": ".sidebar-header", "tag": "header", "stripClasses": true },
+          { "selector": ".conversation-list", "tag": "div", "stripClasses": true },
+          { "selector": ".conversation-item", "tag": "article", "stripClasses": true },
+          { "selector": ".chat-main", "tag": "main", "stripClasses": true },
+          { "selector": ".chat-header", "tag": "header", "stripClasses": true },
+          { "selector": ".messages-container", "tag": "div", "stripClasses": true },
+          { "selector": ".message", "tag": "article", "stripClasses": true },
+          { "selector": ".chat-input-container", "tag": "footer", "stripClasses": true }
+        ]
+      }
+    }
+  },
+  "gaming": {
+    "components": {
+      "hero": {
+        "selector": ".hero-section",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".hero-content", "tag": "div", "stripClasses": true }
+        ]
+      },
+      "featured": {
+        "selector": ".featured-section",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".game-grid", "tag": "div", "stripClasses": true },
+          { "selector": ".game-card", "tag": "article", "stripClasses": true }
+        ]
+      },
+      "categories": {
+        "selector": ".categories-section",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true
+      },
+      "footer": {
+        "selector": ".starlight-footer",
+        "targetTag": "footer",
+        "stripClasses": true,
+        "aggressiveStrip": true
+      }
+    }
+  },
+  "music": {
+    "components": {
+      "app": {
+        "selector": ".music-app",
+        "targetTag": "div",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".music-sidebar", "tag": "aside", "stripClasses": true },
+          { "selector": ".music-logo", "tag": "div", "stripClasses": true },
+          { "selector": ".main-content", "tag": "main", "stripClasses": true },
+          { "selector": ".now-playing-bar", "tag": "footer", "stripClasses": true }
+        ]
+      }
+    }
+  },
+  "portfolio": {
+    "components": {
+      "navbar": {
+        "selector": ".starlight-navbar",
+        "targetTag": "nav",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "keepClasses": ["q-icon", "sun-icon", "moon-icon"],
+        "rules": [
+          { "selector": ".nav-list", "tag": "ul", "stripClasses": true },
+          { "selector": ".nav-link", "tag": "a", "stripClasses": true }
+        ]
+      },
+      "hero": {
+        "selector": ".hero-ai",
+        "targetTag": "header",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".hero-content", "tag": "div", "stripClasses": true }
+        ]
+      },
+      "capabilities": {
+        "selector": ".resume-section",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".mission-grid", "tag": "div", "stripClasses": true },
+          { "selector": ".card-premium", "tag": "article", "stripClasses": true },
+          { "selector": ".starlight-timeline", "tag": "div", "stripClasses": true },
+          { "selector": ".timeline-item", "tag": "article", "stripClasses": true }
+        ]
+      },
+      "footer": {
+        "selector": "footer",
+        "targetTag": "footer",
+        "stripClasses": true,
+        "aggressiveStrip": true
+      }
+    }
+  },
+  "shopping": {
+    "components": {
+      "navbar": {
+        "selector": ".starlight-navbar",
+        "targetTag": "nav",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "keepClasses": ["q-icon", "sun-icon", "moon-icon", "icon-btn", "badge-count"],
+        "rules": [
+          { "selector": ".nav-links", "tag": "ul", "stripClasses": true }
+        ]
+      },
+      "hero": {
+        "selector": ".hero",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".hero-content", "tag": "div", "stripClasses": true }
+        ]
+      },
+      "categories": {
+        "selector": ".categories-section",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".chip", "tag": "button", "stripClasses": true }
+        ]
+      },
+      "products": {
+        "selector": ".products-section",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".product-grid", "tag": "div", "stripClasses": true },
+          { "selector": ".product-card", "tag": "article", "stripClasses": true }
+        ]
+      },
+      "featured": {
+        "selector": ".featured-section",
+        "targetTag": "section",
+        "stripClasses": true,
+        "aggressiveStrip": true,
+        "rules": [
+          { "selector": ".featured-grid", "tag": "div", "stripClasses": true },
+          { "selector": ".featured-card", "tag": "article", "stripClasses": true }
         ]
       }
     }

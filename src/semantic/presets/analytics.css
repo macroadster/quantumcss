@@ -1,0 +1,465 @@
+/* ANALYTICS TEMPLATE - Semantic CSS Preset */
+
+/* APP LAYOUT - replaces .app-layout */
+html.analytics > div {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+  background: var(--bg-primary, #08081a);
+}
+
+/* SIDEBAR - replaces .sidebar */
+html.analytics aside {
+  background: linear-gradient(180deg, rgba(8, 8, 26, 0.98) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+/* LOGO - replaces .logo */
+html.analytics aside > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+/* LOGO ICON - replaces .logo-icon */
+html.analytics aside > div:first-child > div:first-child {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* NAV SECTION - replaces .nav-section */
+html.analytics aside section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* NAV SECTION TITLE - replaces .nav-section-title */
+html.analytics aside section > div:first-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #64748b);
+  padding: 0.5rem 0;
+}
+
+/* NAV - replaces nav */
+html.analytics aside section nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* NAV ITEM - replaces .nav-item */
+html.analytics aside button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+html.analytics aside button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #f1f5f9);
+}
+
+html.analytics aside button.active {
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* MAIN CONTENT - replaces .main-content */
+html.analytics main {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* PAGE HEADER - replaces .page-header */
+html.analytics main > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* PAGE TITLE - replaces .page-title */
+html.analytics main h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* PAGE SUBTITLE - replaces .page-subtitle */
+html.analytics main > header > div > p {
+  font-size: 0.9375rem;
+  color: var(--text-muted, #64748b);
+  margin-top: 0.25rem;
+}
+
+/* PAGE ACTIONS - replaces .page-actions */
+html.analytics main > header > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* DATE SELECTOR - replaces .date-selector */
+html.analytics main > header button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+html.analytics main > header button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* STATS GRID - replaces .stats-grid */
+html.analytics main > section:first-of-type {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* STAT CARD - replaces .stat-card */
+html.analytics main > section:first-of-type article {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* STAT HEADER */
+html.analytics main > section:first-of-type article > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* STAT ICON */
+html.analytics main > section:first-of-type article > div:first-child > div:first-child {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* STAT TREND */
+html.analytics main > section:first-of-type article > div:first-child > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+html.analytics main > section:first-of-type article > div:first-child > div:last-child.stat-trend-up {
+  color: #10b981;
+}
+
+html.analytics main > section:first-of-type article > div:first-child > div:last-child.stat-trend-down {
+  color: #ef4444;
+}
+
+/* STAT VALUE */
+html.analytics main > section:first-of-type article > div:nth-child(2) {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* STAT LABEL */
+html.analytics main > section:first-of-type article > div:last-child {
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* CHARTS SECTION - replaces .charts-section */
+html.analytics main > section:nth-of-type(2) {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+/* CHART CARD - replaces .chart-card */
+html.analytics main > section:nth-of-type(2) article {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+/* CHART HEADER */
+html.analytics main > section:nth-of-type(2) article > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* CHART TITLE */
+html.analytics main > section:nth-of-type(2) article header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* CHART TABS */
+html.analytics main > section:nth-of-type(2) article header > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* CHART TAB */
+html.analytics main > section:nth-of-type(2) article header button {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted, #64748b);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+}
+
+html.analytics main > section:nth-of-type(2) article header button:hover {
+  color: var(--text-primary, #f1f5f9);
+}
+
+html.analytics main > section:nth-of-type(2) article header button.active {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* CHART CONTAINER */
+html.analytics main > section:nth-of-type(2) article > div:nth-of-type(2) {
+  position: relative;
+  height: 280px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* BOTTOM SECTION - replaces .bottom-section */
+html.analytics main > section:nth-of-type(3) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+/* ACTIVITY FEED / TOP PRODUCTS */
+html.analytics main > section:nth-of-type(3) > article {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+/* DONUT LEGEND */
+html.analytics main > section:nth-of-type(2) article > div:last-child {
+  margin-top: 1.5rem;
+}
+
+/* LEGEND ITEM */
+html.analytics main > section:nth-of-type(2) article > div:last-child > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html.analytics main > section:nth-of-type(2) article > div:last-child > div:last-child {
+  border-bottom: none;
+}
+
+/* LEGEND INFO */
+html.analytics main > section:nth-of-type(2) article > div:last-child > div > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* LEGEND DOT */
+html.analytics main > section:nth-of-type(2) article > div:last-child > div > div:first-child > div {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* LEGEND LABEL */
+html.analytics main > section:nth-of-type(2) article > div:last-child > div > div:first-child span {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #94a3b8);
+}
+
+/* LEGEND VALUE */
+html.analytics main > section:nth-of-type(2) article > div:last-child > div > span:last-child {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* PRODUCT ROW */
+html.analytics main > section:nth-of-type(3) article > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html.analytics main > section:nth-of-type(3) article > div:last-child {
+  border-bottom: none;
+}
+
+/* PRODUCT RANK */
+html.analytics main > section:nth-of-type(3) article > div > div:first-child {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted, #64748b);
+}
+
+html.analytics main > section:nth-of-type(3) article > div > div:first-child.top {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* PRODUCT INFO */
+html.analytics main > section:nth-of-type(3) article > div > div:nth-child(2) {
+  flex: 1;
+}
+
+/* PRODUCT NAME */
+html.analytics main > section:nth-of-type(3) article > div > div:nth-child(2) > div:first-child {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary, #f1f5f9);
+  margin-bottom: 0.125rem;
+}
+
+/* PRODUCT CATEGORY */
+html.analytics main > section:nth-of-type(3) article > div > div:nth-child(2) > div:last-child {
+  font-size: 0.75rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* PRODUCT REVENUE */
+html.analytics main > section:nth-of-type(3) article > div > span:last-child {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary, #f1f5f9);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1280px) {
+  html.analytics main > section:nth-of-type(2) {
+    grid-template-columns: 1fr;
+  }
+  
+  html.analytics main > section:nth-of-type(3) {
+    grid-template-columns: 1fr;
+  }
+  
+  html.analytics main > section:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  html.analytics > div {
+    grid-template-columns: 80px 1fr;
+  }
+  
+  html.analytics aside {
+    padding: 1rem;
+  }
+  
+  html.analytics aside > div:first-child {
+    justify-content: center;
+  }
+  
+  html.analytics aside > div:first-child span,
+  html.analytics aside section > div:first-child,
+  html.analytics aside button span {
+    display: none;
+  }
+  
+  html.analytics aside button {
+    justify-content: center;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  html.analytics > div {
+    grid-template-columns: 1fr;
+  }
+  
+  html.analytics aside {
+    display: none;
+  }
+  
+  html.analytics main {
+    padding: 1rem;
+  }
+  
+  html.analytics main > header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  html.analytics main > section:first-of-type {
+    grid-template-columns: 1fr;
+  }
+}

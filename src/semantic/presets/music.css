@@ -1,0 +1,401 @@
+/* MUSIC TEMPLATE - Semantic CSS Preset */
+
+/* APP LAYOUT - replaces .music-app */
+html.music > div {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: 1fr 100px;
+  height: 100vh;
+  background: var(--bg-primary, #08081a);
+  overflow: hidden;
+}
+
+/* SIDEBAR - replaces .music-sidebar */
+html.music > div > aside {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* MUSIC LOGO - replaces .music-logo */
+html.music aside > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+/* MUSIC LOGO ICON */
+html.music aside > div:first-child > div:first-child {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6, #8b5cf6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+}
+
+/* NAV SECTION */
+html.music aside > section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* NAV SECTION TITLE */
+html.music aside section > div:first-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #64748b);
+  padding: 0.5rem 0;
+}
+
+/* NAV BUTTON */
+html.music aside section button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+html.music aside section button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #f1f5f9);
+}
+
+html.music aside section button.active {
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* CREATE PLAYLIST BUTTON */
+html.music aside > button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(0, 212, 255, 0.6);
+  border-radius: 0.75rem;
+  color: var(--color-starlight, #00d4ff);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+html.music aside > button:hover {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(59, 130, 246, 0.25));
+  transform: translateY(-2px);
+}
+
+/* MAIN CONTENT - replaces .main-content */
+html.music > div > main {
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+/* HERO SECTION */
+html.music main > section:first-of-type {
+  margin-bottom: 3rem;
+}
+
+/* HERO TITLE */
+html.music main > section:first-of-type h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+/* HERO SUBTITLE */
+html.music main > section:first-of-type p {
+  font-size: 1.125rem;
+  color: var(--text-secondary, #94a3b8);
+}
+
+/* QUICK PLAYLISTS */
+html.music main > section:nth-of-type(2) {
+  margin-bottom: 3rem;
+}
+
+/* SECTION HEADER */
+html.music main > section:nth-of-type(2) > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+html.music main > section:nth-of-type(2) h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* SEE ALL LINK */
+html.music main > section:nth-of-type(2) > div:first-child a {
+  color: var(--color-starlight, #00d4ff);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* PLAYLIST GRID */
+html.music main > section:nth-of-type(2) > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+/* PLAYLIST CARD */
+html.music main > section:nth-of-type(2) article {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+html.music main > section:nth-of-type(2) article:hover {
+  transform: scale(1.02);
+}
+
+/* PLAYLIST COVER */
+html.music main > section:nth-of-type(2) article > div:first-child {
+  aspect-ratio: 1;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+html.music main > section:nth-of-type(2) article > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* PLAYLIST INFO */
+html.music main > section:nth-of-type(2) article > div:last-child h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.music main > section:nth-of-type(2) article > div:last-child p {
+  font-size: 0.8125rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* NOW PLAYING BAR - replaces .now-playing-bar */
+html.music > div > footer {
+  grid-column: 1 / -1;
+  background: rgba(15, 23, 42, 0.98);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* NOW PLAYING INFO */
+html.music footer > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 30%;
+}
+
+/* TRACK COVER */
+html.music footer > div:first-child > div:first-child {
+  width: 56px;
+  height: 56px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+}
+
+html.music footer > div:first-child > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TRACK INFO */
+html.music footer > div:first-child > div:last-child {
+  overflow: hidden;
+}
+
+html.music footer > div:first-child > div:last-child h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.music footer > div:first-child > div:last-child p {
+  font-size: 0.8125rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* PLAYER CONTROLS */
+html.music footer > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 40%;
+}
+
+/* CONTROL BUTTONS */
+html.music footer > div:nth-child(2) > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+html.music footer > div:nth-child(2) > div:first-child button {
+  background: none;
+  border: none;
+  color: var(--text-primary, #f1f5f9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+html.music footer > div:nth-child(2) > div:first-child button:hover {
+  color: var(--color-starlight, #00d4ff);
+}
+
+/* PLAY BUTTON */
+html.music footer > div:nth-child(2) > div:first-child button:last-child {
+  width: 40px;
+  height: 40px;
+  background: var(--text-primary, #f1f5f9);
+  border-radius: 50%;
+  color: var(--bg-primary, #0a0a0a);
+}
+
+/* PROGRESS BAR */
+html.music footer > div:nth-child(2) > div:last-child {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+html.music footer > div:nth-child(2) > div:last-child span {
+  font-size: 0.6875rem;
+  color: var(--text-muted, #64748b);
+  min-width: 40px;
+}
+
+html.music footer > div:nth-child(2) > div:last-child > div {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  position: relative;
+}
+
+html.music footer > div:nth-child(2) > div:last-child > div::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  background: var(--text-primary, #f1f5f9);
+  border-radius: 2px;
+}
+
+/* VOLUME CONTROLS */
+html.music footer > div:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 30%;
+}
+
+html.music footer > div:last-child button {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #94a3b8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* VOLUME SLIDER */
+html.music footer > div:last-child > div {
+  width: 100px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  position: relative;
+}
+
+html.music footer > div:last-child > div::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 70%;
+  background: var(--text-secondary, #94a3b8);
+  border-radius: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  html.music > div {
+    grid-template-columns: 80px 1fr;
+  }
+  
+  html.music aside > div:first-child > div:last-child,
+  html.music aside section > div,
+  html.music aside section button span,
+  html.music aside > button span {
+    display: none;
+  }
+  
+  html.music aside > button {
+    justify-content: center;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  html.music > div {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  
+  html.music aside {
+    display: none;
+  }
+}
