@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Nebula Voyage | Starlight Travel</title>
+        <link rel="stylesheet" href="../dist/quantum.min.css" />
+        <script src="../src/starlight.js"></script>
+        <style>
+            /* Theme variables */
+            body {
+                background: radial-gradient(
+                    circle at top right,
+                    var(--q-color-starlight-deep),
+                    #000
+                );
+                overflow-x: hidden;
+                transition: background-color 0.5s ease, color 0.5s ease;
+            }
+            html[data-theme="dark"] { color: var(--q-text-primary); }
+            html[data-theme="light"] {
+                background: var(--q-light-bg) !important;
+                color: var(--q-light-text);
+            }
+            html[data-theme="light"] body { background: var(--q-light-bg) !important; }
+
+            /* Hero Glow */
+            .hero-glow {
+                position: absolute;
+                top: -10%;
+                right: -10%;
+                width: 60%;
+                height: 60%;
+                background: radial-gradient(
+                    circle,
+                    rgba(0, 212, 255, 0.15) 0%,
+                    transparent 70%
+                );
+                filter: blur(100px);
+                z-index: -1;
+                transition: opacity 0.5s ease;
+            }
+            html[data-theme="light"] .hero-glow { opacity: 0; }
+
+            /* Theme Toggle Styling */
+            .theme-toggle {
+                cursor: pointer;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 50%;
+                transition: background 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            .theme-toggle:hover { background: rgba(255, 255, 255, 0.1); }
+
+            /* Light mode overrides */
+            html[data-theme="light"] .glass {
+                background: var(--q-glass-bg) !important;
+                border-color: var(--q-glass-border) !important;
+                color: var(--q-light-text) !important;
+            }
+            html[data-theme="light"] .starlight-card p,
+            html[data-theme="light"] header p,
+            html[data-theme="light"] section p { color: var(--q-light-text-muted); }
+            html[data-theme="light"] .btn-outline:hover {
+                background-color: var(--q-light-text);
+                color: white;
+            }
+            html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator { filter: none; }
+            html[data-theme="light"] input[type="date"] { color-scheme: light; }
+            html[data-theme="light"] input { color: var(--q-light-text) !important; }
+            html[data-theme="light"] input::placeholder { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .text-starlight-blue { color: var(--q-color-primary) !important; }
+            html[data-theme="light"] .starlight-navbar {
+                background: var(--q-light-card-bg) !important;
+                border-bottom-color: var(--q-light-card-border) !important;
+            }
+            html[data-theme="light"] .starlight-navbar a { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .starlight-navbar a:hover { color: var(--q-color-primary) !important; }
+            html[data-theme="light"] .text-gradient-starlight {
+                background: none;
+                -webkit-text-fill-color: var(--q-light-text);
+                color: var(--q-light-text);
+            }
+            html[data-theme="light"] .glass input { color: var(--q-light-text) !important; }
+            html[data-theme="light"] .glass input::placeholder { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .glass .btn-starlight { background: var(--q-light-text); color: white; }
+            html[data-theme="light"] .starlight-card {
+                background: var(--q-light-card-bg) !important;
+                border-color: var(--q-light-card-border) !important;
+            }
+            html[data-theme="light"] .starlight-card h3 { color: var(--q-light-text) !important; }
+            html[data-theme="light"] .starlight-card .text-slate-400 { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .btn-outline {
+                border-color: var(--q-light-text) !important;
+                color: var(--q-light-text) !important;
+            }
+            html[data-theme="light"] .btn-outline:hover {
+                background-color: var(--q-light-text) !important;
+                color: white !important;
+            }
+            html[data-theme="light"] .starlight-footer {
+                background: var(--q-light-bg) !important;
+                border-top-color: var(--q-light-card-border) !important;
+            }
+            html[data-theme="light"] .starlight-footer a { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .starlight-footer a:hover { color: var(--q-color-primary) !important; }
+            html[data-theme="light"] .starlight-footer p { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .badge-primary {
+                background-color: rgba(37, 99, 235, 0.1) !important;
+                color: var(--q-color-primary) !important;
+            }
+            html[data-theme="light"] .border-white_10 { border-color: var(--q-light-card-border) !important; }
+            html[data-theme="light"] .text-white { color: var(--q-light-text) !important; }
+            html[data-theme="light"] .text-white_10 { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .text-slate-400 { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .text-slate-500 { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .bg-white_5 { background: var(--q-glass-bg) !important; }
+            html[data-theme="light"] h1 { color: var(--q-light-text) !important; }
+            html[data-theme="light"] h2 { color: var(--q-light-text) !important; }
+            html[data-theme="light"] h3 { color: var(--q-light-text) !important; }
+            html[data-theme="light"] .bg-gray-800,
+            html[data-theme="light"] .bg-gray-700,
+            html[data-theme="light"] .bg-gray-900 { background-color: var(--q-light-card-bg) !important; }
+            html[data-theme="light"] .starlight-card .absolute .badge,
+            html[data-theme="light"] .starlight-card .absolute h3 { color: white !important; }
+            html[data-theme="light"] .bg-gradient-to-br {
+                background: linear-gradient(to bottom right, var(--q-color-primary-100), transparent) !important;
+            }
+        </style>
+    </head>
+    <body class="text-primary">
+        <div class="hero-glow"></div>
+
+        <!-- Navigation -->
+        <header class="starlight-navbar">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <button class="md:hidden hamburger-left" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 class="text-3xl font-black tracking-tighter text-gradient-starlight uppercase">NEBULA</h1>
+                <nav class="hidden md:flex space-x-12 text-[11px] font-black uppercase tracking-[0.2em]">
+                    <a href="#" class="hover:text-starlight-blue transition-colors">Destinations</a>
+                    <a href="#" class="hover:text-starlight-blue transition-colors">Cruises</a>
+                    <a href="#" class="hover:text-starlight-blue transition-colors">Excursions</a>
+                    <a href="#" class="hover:text-starlight-blue transition-colors">Concierge</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                        <i class="q-icon q-icon-sun w-6 h-6 sun-icon"></i>
+                        <i class="q-icon q-icon-moon w-6 h-6 moon-icon"></i>
+                    </button>
+                    <button class="btn-starlight px-8 h-12 text-[10px] font-black uppercase tracking-widest">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <nav class="nav-menu-mobile">
+                <ul class="nav-list vertical">
+                    <li><a href="#" class="nav-link">Destinations</a></li>
+                    <li><a href="#" class="nav-link">Cruises</a></li>
+                    <li><a href="#" class="nav-link">Excursions</a></li>
+                    <li><a href="#" class="nav-link">Concierge</a></li>
+                    <li class="pt-4 border-t border-white_5">
+                        <button class="btn-starlight w-full py-3">Book Now</button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="starlight-hero">
+            <div class="max-w-5xl mx-auto">
+                <span class="badge badge-primary mb-8 animate-fade-in px-4 py-1.5 font-black tracking-[0.2em] text-[10px]">New Frontier: Titan IX</span>
+                <h1 class="text-6xl font-black mb-10 leading-none uppercase italic tracking-tighter text-center">
+                    Travel Beyond <br />
+                    <span class="text-gradient-starlight">The Horizon</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-4xl mx-auto mb-16 font-medium leading-relaxed">
+                    Experience the ethereal beauty of the outer rim with our exclusive Starlight-class lunar retreats and nebula cruises.
+                </p>
+
+                <!-- Search Form -->
+                <form class="glass p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] max-w-5xl mx-auto flex flex-col md:flex-row gap-6 md:gap-12 items-stretch shadow-2xl">
+                    <div class="flex-1 flex flex-col items-start px-4 md:px-6">
+                        <label class="text-[10px] text-starlight-blue mb-3 font-black uppercase tracking-[0.3em]">Destination</label>
+                        <input type="text" class="w-full bg-transparent border-none text-white focus:outline-none text-xl md:text-2xl font-black p-0 placeholder:text-white_10" placeholder="Where to?">
+                    </div>
+                    <div class="border-l border-white_10 hidden md:block"></div>
+                    <div class="flex-1 flex flex-col items-start px-4 md:px-6">
+                        <label class="text-[10px] text-starlight-blue mb-3 font-black uppercase tracking-[0.3em]">Departure</label>
+                        <input type="date" class="w-full bg-transparent border-none text-white focus:outline-none text-xl md:text-2xl font-black p-0" id="departure-date">
+                    </div>
+                    <button type="submit" class="btn-starlight px-8 md:px-16 py-4 md:py-6 h-auto md:h-full text-base md:text-lg font-black uppercase tracking-widest shadow-2xl hover:glow-blue">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Featured Destinations -->
+        <section class="container mx-auto px-6 py-16" data-section="destinations">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <span class="text-orange-600 font-black uppercase text-[10px] tracking-[0.3em] mb-3 block">Recommended Sights</span>
+                    <h2 class="text-5xl font-black mb-3 uppercase italic tracking-tighter">Popular Sectors</h2>
+                    <p class="text-slate-400 text-lg font-medium">Curated experiences from our master explorers.</p>
+                </div>
+                <a href="#" class="text-starlight-blue text-sm font-black uppercase tracking-widest hover:underline pb-2 border-b border-starlight-blue_30">View All Clusters</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <!-- Card 1 -->
+                <article class="starlight-card group overflow-hidden p-0 hover:border-starlight-blue_30 transition-all duration-500">
+                    <div class="h-80 bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80" alt="Saturn" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black_90 via-black_20 to-transparent z-10"></div>
+                        <div class="absolute bottom-8 left-8 z-20">
+                            <span class="badge badge-primary bg-blue-600_20 text-white border-none px-3 py-1 text-[9px] font-black uppercase tracking-widest mb-3 shadow-lg backdrop-blur-md">Orbit Sector</span>
+                            <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">The Cassini</h3>
+                        </div>
+                    </div>
+                    <div class="p-10 flex flex-col flex-1">
+                        <p class="text-slate-400 font-medium leading-loose mb-10 flex-1">Experience the majestic silence of the rings from our gold-plated observation deck. Artificial gravity enabled.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-starlight-blue font-black text-xl italic tracking-tighter">4.2 ETH <span class="text-[10px] text-slate-500 uppercase not-italic tracking-widest ml-2">/ night</span></span>
+                            <button class="btn btn-outline px-8 h-12 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="starlight-card group overflow-hidden p-0 hover:border-starlight-blue_30 transition-all duration-500">
+                    <div class="h-80 bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Nebula" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black_90 via-black_20 to-transparent z-10"></div>
+                        <div class="absolute bottom-8 left-8 z-20">
+                            <span class="badge badge-primary bg-blue-600_20 text-white border-none px-3 py-1 text-[9px] font-black uppercase tracking-widest mb-3 shadow-lg backdrop-blur-md">Deep Space</span>
+                            <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Orion Station</h3>
+                        </div>
+                    </div>
+                    <div class="p-10 flex flex-col flex-1">
+                        <p class="text-slate-400 font-medium leading-loose mb-10 flex-1">Luxury accommodations at the edge of known space. Zero-gravity spa and stellar dining.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-starlight-blue font-black text-xl italic tracking-tighter">6.8 ETH <span class="text-[10px] text-slate-500 uppercase not-italic tracking-widest ml-2">/ night</span></span>
+                            <button class="btn btn-outline px-8 h-12 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="starlight-card group overflow-hidden p-0 hover:border-starlight-blue_30 transition-all duration-500">
+                    <div class="h-80 bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=80" alt="Galaxy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black_90 via-black_20 to-transparent z-10"></div>
+                        <div class="absolute bottom-8 left-8 z-20">
+                            <span class="badge badge-primary bg-blue-600_20 text-white border-none px-3 py-1 text-[9px] font-black uppercase tracking-widest mb-3 shadow-lg backdrop-blur-md">Exoplanet</span>
+                            <h3 class="text-3xl font-black text-white uppercase italic tracking-tighter">Kepler Resort</h3>
+                        </div>
+                    </div>
+                    <div class="p-10 flex flex-col flex-1">
+                        <p class="text-slate-400 font-medium leading-loose mb-10 flex-1">First Earth-like exoplanet resort. Atmosphere synth and artificial sunlight.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-starlight-blue font-black text-xl italic tracking-tighter">12.5 ETH <span class="text-[10px] text-slate-500 uppercase not-italic tracking-widest ml-2">/ night</span></span>
+                            <button class="btn btn-outline px-8 h-12 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">Details</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="container mx-auto px-6 py-16" data-section="newsletter">
+            <div class="glass p-16 rounded-[3rem] text-center glow-blue relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-starlight-blue_5 to-transparent"></div>
+                <h2 class="text-5xl font-black mb-6 uppercase italic tracking-tighter relative z-10">Join the Voyager Network</h2>
+                <p class="text-slate-400 text-xl font-medium mb-12 max-w-2xl mx-auto leading-relaxed relative z-10">Get early access to maiden voyages and exclusive stellar discounts directly in your comms link.</p>
+                <div class="flex flex-col md:flex-row gap-6 max-w-xl mx-auto relative z-10 items-center">
+                    <input type="email" class="input-starlight h-16 flex-1 bg-white_5 border-white_10 text-white px-8 placeholder:text-white_20" placeholder="explorer@nebula.io">
+                    <button type="submit" class="btn-starlight px-10 h-16 text-[10px] font-black uppercase tracking-widest">Subscribe</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="starlight-footer border-t border-white_10 mt-16">
+            <div class="container mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-black mb-4 uppercase italic text-gradient-starlight">Nebula</h3>
+                        <p class="text-slate-400 font-medium">Pioneering cosmic travel since 2089. Your journey to the stars begins here.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-black uppercase text-[10px] tracking-[0.2em] mb-4">Destinations</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Andromeda</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Orion</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Pleiades</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Milky Way</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-black uppercase text-[10px] tracking-[0.2em] mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">About</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Careers</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Press</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-black uppercase text-[10px] tracking-[0.2em] mb-4">Support</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Contact</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">FAQ</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Privacy</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors font-medium">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white_10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-slate-500 text-sm font-medium">© 2089 Nebula Travel. All rights reserved.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors">
+                            <i class="q-icon q-icon-twitter w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors">
+                            <i class="q-icon q-icon-instagram w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-starlight-blue transition-colors">
+                            <i class="q-icon q-icon-github w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Theme toggle
+            const themeBtn = document.getElementById('theme-btn');
+            themeBtn?.addEventListener('click', () => {
+                const html = document.documentElement;
+                const current = html.getAttribute('data-theme');
+                html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+            });
+        </script>
+    </body>
+</html>

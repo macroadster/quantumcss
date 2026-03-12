@@ -16,10 +16,13 @@
   "scripts": {
     "build": "node scripts/build.js --minify",
     "build:dev": "node scripts/build.js",
+    "build:semantic": "node scripts/build.js --minify --semantic",
     "watch": "node scripts/build.js --watch",
     "docs": "node scripts/build.js --docs",
     "generate": "node src/cli.js",
+    "semantic": "node src/cli.js semantic",
     "generate:watch": "node src/cli.js --watch",
+    "harvest:icons": "node scripts/harvest-icons.js",
     "release": "node scripts/release.js"
   },
   "repository": {
@@ -45,8 +48,12 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.27",
     "chokidar": "^5.0.0",
-    "glob": "^13.0.0"
+    "cssnano": "^7.1.3",
+    "glob": "^13.0.0",
+    "parse5": "^8.0.0",
+    "postcss": "^8.5.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

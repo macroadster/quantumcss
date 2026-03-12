@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en" class="music">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlight Music - Stream Your Universe</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <link rel="stylesheet" href="../src/styles/quantum-components.css">
+    <script src="../src/starlight.js"></script>
+    <style>
+        /* ============================================
+           MUSIC STREAMING STRUCTURAL STYLES
+           Replaces all template structural classes
+           with semantic HTML + scoped selectors
+           ============================================ */
+
+        /* LAYOUT - replaces .music-app */
+        html.music body {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 1fr 100px;
+            height: 100vh;
+            background: var(--bg-primary, #08081a);
+            overflow: hidden;
+        }
+
+        /* SIDEBAR - replaces .music-sidebar */
+        html.music body > aside:first-child {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* LOGO - replaces .music-logo */
+        html.music body > aside:first-child > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        /* LOGO ICON - replaces .music-logo-icon */
+        html.music body > aside:first-child > div:first-child > div:first-child {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        html.music body > aside:first-child > div:first-child > div:first-child svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(0, 212, 255, 0.6); }
+        }
+
+        /* NAV SECTIONS */
+        html.music body > aside:first-child > nav:first-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        /* NAV ITEMS - replaces .nav-item */
+        html.music body > aside:first-child nav button,
+        html.music body > aside:first-child nav > div {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary, #94a3b8);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9375rem;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* NAV ITEM SVG ICONS */
+        html.music body > aside:first-child nav button svg,
+        html.music body > aside:first-child nav > div svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        html.music body > aside:first-child nav button:hover,
+        html.music body > aside:first-child nav > div:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* ACTIVE NAV ITEM - replaces .nav-item.active */
+        html.music body > aside:first-child nav button[aria-current="page"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* NAV SECTION TITLE - replaces .nav-title */
+        html.music body > aside:first-child > nav:first-of-type + nav > h3,
+        html.music body > aside:first-child > nav:nth-of-type(2) > h3 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted, #64748b);
+            padding: 0.75rem 1rem 0.5rem;
+        }
+
+        /* PLAYLIST NAV ITEMS */
+        html.music body > aside:first-child > nav:nth-of-type(2) button,
+        html.music body > aside:first-child > nav:nth-of-type(2) > div {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary, #94a3b8);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* PLAYLIST NAV SVG ICONS */
+        html.music body > aside:first-child > nav:nth-of-type(2) button svg,
+        html.music body > aside:first-child > nav:nth-of-type(2) > div svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        html.music body > aside:first-child > nav:nth-of-type(2) button:hover,
+        html.music body > aside:first-child > nav:nth-of-type(2) > div:hover {
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* LIKED SONGS ICON */
+        html.music body > aside:first-child > nav:nth-of-type(2) > div:first-child svg {
+            color: #ec4899;
+        }
+
+        /* SCROLLABLE PLAYLIST AREA */
+        html.music body > aside:first-child > section:first-of-type {
+            flex: 1;
+            overflow-y: auto;
+            margin: 1rem 0;
+        }
+
+        /* PLAYLIST ITEMS */
+        html.music body > aside:first-child > section:first-of-type > div {
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary, #94a3b8);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        html.music body > aside:first-child > section:first-of-type > div:hover {
+            color: var(--text-primary, #f1f5f9);
+        }
+
+        /* CREATE PLAYLIST BUTTON - replaces .create-playlist-btn */
+        html.music body > aside:first-child > button:first-of-type {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(59, 130, 246, 0.15));
+            border: 1px solid rgba(0, 212, 255, 0.6);
+            border-radius: 0.75rem;
+            color: var(--color-starlight, #00d4ff);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        html.music body > aside:first-child > button:first-of-type svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        html.music body > aside:first-child > button:first-of-type:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(59, 130, 246, 0.25));
+            transform: translateY(-2px);
+        }
+
+        /* MAIN CONTENT - replaces .main-content */
+        html.music body > main {
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* HEADER - replaces .music-header */
+        html.music body > main > header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* NAV ARROWS */
+        html.music body > main > header > div:first-child {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        html.music body > main > header > div:first-child button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: var(--text-primary, #f1f5f9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > header > div:first-child button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        html.music body > main > header > div:first-child button:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* USER MENU */
+        html.music body > main > header > div:last-child {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* UPGRADE BUTTON */
+        html.music body > main > header > div:last-child > button {
+            padding: 0.625rem 1.25rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 9999px;
+            color: var(--text-primary, #f1f5f9);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > header > div:last-child > button:hover {
+            border-color: var(--color-starlight, #00d4ff);
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* USER AVATAR */
+        html.music body > main > header > div:last-child > figure[data-initials] {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* BACKGROUND GRADIENT - replaces .bg-gradient */
+        html.music body > main > div:first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.2) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* HERO SECTION */
+        html.music body > main > section:first-of-type {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 3rem;
+        }
+
+        /* HERO CONTENT */
+        html.music body > main > section:first-of-type > div {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-end;
+        }
+
+        /* HERO IMAGE */
+        html.music body > main > section:first-of-type > div > div:first-child {
+            width: 232px;
+            height: 232px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        html.music body > main > section:first-of-type > div > div:first-child img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* HERO INFO */
+        html.music body > section:first-of-type > div > div:last-child {
+            flex: 1;
+            padding-bottom: 0.5rem;
+        }
+
+        /* HERO TYPE */
+        html.music body > main > section:first-of-type > div > div:last-child > div:first-child {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 0.5rem;
+        }
+
+        /* HERO TITLE */
+        html.music body > main > section:first-of-type > div > div:last-child > h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        /* HERO META */
+        html.music body > main > section:first-of-type > div > div:last-child > div:last-child {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        html.music body > main > section:first-of-type > div > div:last-child > div:last-child img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        html.music body > main > section:first-of-type > div > div:last-child > div:last-child .artist-name {
+            color: var(--text-primary, #f1f5f9);
+            font-weight: 600;
+        }
+
+        /* ACTION BAR */
+        html.music body > main > div:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* PLAY BUTTON - replaces .play-btn */
+        html.music body > main > div:nth-of-type(2) > button:first-child {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-starlight, #00d4ff), #3b82f6);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        html.music body > main > div:nth-of-type(2) > button:first-child:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 212, 255, 0.5);
+        }
+
+        /* PLAY BUTTON SVG */
+        html.music body > main > div:nth-of-type(2) > button:first-child svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+            margin-left: 3px;
+        }
+
+        /* ACTION ICONS */
+        html.music body > main > div:nth-of-type(2) > button:nth-child(2),
+        html.music body > main > div:nth-of-type(2) > button:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: var(--text-muted, #64748b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > div:nth-of-type(2) > button:nth-child(2):hover,
+        html.music body > main > div:nth-of-type(2) > button:nth-child(3):hover {
+            color: var(--text-primary, #f1f5f9);
+            transform: scale(1.1);
+        }
+
+        /* ACTION BUTTON SVG SIZES */
+        html.music body > main > div:nth-of-type(2) > button:nth-child(2) svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        html.music body > main > div:nth-of-type(2) > button:nth-child(3) svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* LIKED STATE */
+        html.music body > main > div:nth-of-type(2) > button[data-liked="true"] {
+            color: #ec4899;
+        }
+
+        /* TRACK LIST SECTION */
+        html.music body > main > section:nth-of-type(2) {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* TRACK HEADER */
+        html.music body > main > section:nth-of-type(2) > header {
+            display: grid;
+            grid-template-columns: 50px 1fr 1fr 100px 60px;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted, #64748b);
+        }
+
+        /* TRACK ROW */
+        html.music body > main > section:nth-of-type(2) > article {
+            display: grid;
+            grid-template-columns: 50px 1fr 1fr 100px 60px;
+            padding: 0.875rem 1rem;
+            border-radius: 0.5rem;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ACTIVE TRACK - replaces .track-row.active */
+        html.music body > main > section:nth-of-type(2) > article[data-active="true"] {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* TRACK NUMBER */
+        html.music body > main > section:nth-of-type(2) > article > div:first-child {
+            font-size: 1rem;
+            color: var(--text-muted, #64748b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* TRACK NUMBER HOVER/ACTIVE STATES */
+        html.music body > main > section:nth-of-type(2) > article:hover > div:first-child span {
+            display: none;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:hover > div:first-child::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 8px solid var(--text-primary, #f1f5f9);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article[data-active="true"] > div:first-child {
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* TRACK INFO */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* TRACK IMAGE */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:first-child {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:first-child img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* TRACK DETAILS */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:last-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* TRACK TITLE */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:last-child > div:first-child {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article[data-active="true"] > div:nth-child(2) > div:last-child > div:first-child {
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* EXPLICIT BADGE */
+        html.music body > main > section:nth-of-type(2) > article .explicit-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: var(--text-muted, #64748b);
+            border-radius: 2px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            color: var(--bg-primary, #08081a);
+            margin-left: 0.5rem;
+        }
+
+        /* ARTIST NAME IN TRACK */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(2) > div:last-child > div:last-child {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* TRACK ALBUM */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(3) {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* TRACK DATE */
+        html.music body > main > section:nth-of-type(2) > article > div:nth-child(4) {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* TRACK RIGHT SIDE */
+        html.music body > main > section:nth-of-type(2) > article > div:last-child {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* LIKE BUTTON */
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > button:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:hover > div:last-child > button:first-child {
+            opacity: 1;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > button:first-child svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted, #64748b);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > button:first-child:hover svg {
+            color: #ec4899;
+            transform: scale(1.2);
+        }
+
+        /* DURATION */
+        html.music body > main > section:nth-of-type(2) > article > div:last-child > span {
+            font-size: 0.875rem;
+            color: var(--text-secondary, #94a3b8);
+            text-align: right;
+        }
+
+        /* PLAYER BAR - replaces .player-bar */
+        html.music body > footer {
+            grid-column: 1 / -1;
+            background: linear-gradient(180deg, rgba(20, 20, 35, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1rem 1.5rem;
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* NOW PLAYING - replaces .now-playing */
+        html.music body > footer > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* NOW PLAYING IMAGE */
+        html.music body > footer > div:first-child > div:first-child {
+            width: 56px;
+            height: 56px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        html.music body > footer > div:first-child > div:first-child img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* NOW PLAYING INFO */
+        html.music body > footer > div:first-child > div:last-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        html.music body > footer > div:first-child > div:last-child > div:first-child {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-primary, #f1f5f9);
+            margin-bottom: 0.25rem;
+        }
+
+        html.music body > footer > div:first-child > div:last-child > div:last-child {
+            font-size: 0.8125rem;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        /* NOW PLAYING LIKE */
+        html.music body > footer > div:first-child > button {
+            margin-left: auto;
+            background: transparent;
+            border: none;
+            color: var(--color-starlight, #00d4ff);
+            cursor: pointer;
+        }
+
+        /* PLAYER CONTROLS - replaces .player-controls */
+        html.music body > footer > div:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* CONTROL BUTTONS */
+        html.music body > footer > div:nth-child(2) > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* CONTROL BUTTON BASE */
+        html.music body > footer > div:nth-child(2) > div:first-child > button {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary, #94a3b8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        html.music body > footer > div:nth-child(2) > div:first-child > button:hover {
+            color: var(--text-primary, #f1f5f9);
+            transform: scale(1.1);
+        }
+
+        /* CONTROL BUTTON SVG */
+        html.music body > footer > div:nth-child(2) > div:first-child > button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* PLAY BUTTON */
+        html.music body > footer > div:nth-child(2) > div:first-child > button[data-play="true"] {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--text-primary, #f1f5f9);
+            color: var(--bg-primary, #08081a);
+        }
+
+        /* PROGRESS BAR */
+        html.music body > footer > div:nth-child(2) > div:last-child {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* TIME */
+        html.music body > footer > div:nth-child(2) > div:last-child > span:first-child,
+        html.music body > footer > div:nth-child(2) > div:last-child > span:last-child {
+            font-size: 0.75rem;
+            color: var(--text-muted, #64748b);
+            min-width: 35px;
+            text-align: center;
+        }
+
+        /* PROGRESS TRACK - replaces .progress-track */
+        html.music body > footer > div:nth-child(2) > div:last-child > div {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* PROGRESS FILL - replaces .progress-fill */
+        html.music body > footer > div:nth-child(2) > div:last-child > div > .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 35%;
+            background: linear-gradient(90deg, var(--color-starlight, #00d4ff), #3b82f6);
+            border-radius: 2px;
+        }
+
+        /* PROGRESS HANDLE - replaces .progress-handle */
+        html.music body > footer > div:nth-child(2) > div:last-child > div > .progress-handle {
+            position: absolute;
+            left: 35%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--text-primary, #f1f5f9);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        html.music body > footer > div:nth-child(2) > div:last-child > div:hover > .progress-handle {
+            opacity: 1;
+        }
+
+        /* VOLUME CONTROLS - replaces .volume-controls */
+        html.music body > footer > div:last-child {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* THEME TOGGLE */
+        html.music body > footer > div:last-child > button:last-child {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary, #94a3b8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        html.music body > footer > div:last-child > button:last-child:hover {
+            color: var(--color-starlight, #00d4ff);
+        }
+
+        /* FOOTER BUTTON SVG */
+        html.music body > footer > div:last-child > button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* VOLUME SLIDER */
+        html.music body > footer > div:last-child > .volume-slider {
+            width: 100px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        html.music body > footer > div:last-child > .volume-slider > .volume-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 70%;
+            background: var(--text-secondary, #94a3b8);
+            border-radius: 2px;
+        }
+
+        html.music body > footer > div:last-child > .volume-slider:hover > .volume-fill {
+            background: var(--color-starlight, #00d4ff);
+        }
+
+        html.music body > footer > div:last-child > div:first-child > div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 70%;
+            background: var(--text-secondary, #94a3b8);
+            border-radius: 2px;
+        }
+
+        /* SUN/MOON ICONS */
+        html.music .sun-icon { display: none; }
+        html.music[data-theme="light"] .sun-icon { display: inline; }
+        html.music[data-theme="light"] .moon-icon { display: none; }
+
+        /* ============================================
+           LIGHT MODE OVERRIDES
+           ============================================ */
+        html.music[data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+        }
+
+        html.music[data-theme="light"] body > aside:first-child {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-right-color: #e2e8f0;
+        }
+
+        html.music[data-theme="light"] body > footer {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-top-color: #e2e8f0;
+        }
+
+        html.music[data-theme="light"] body > main > header button {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        html.music[data-theme="light"] body > main > header button:first-of-type {
+            border-color: rgba(0, 0, 0, 0.2);
+            color: var(--text-primary);
+        }
+
+        html.music[data-theme="light"] body > main > section:nth-of-type(2) > article:hover {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        html.music[data-theme="light"] body > main > section:nth-of-type(2) > article[data-active="true"] {
+            background: rgba(0, 212, 255, 0.08);
+        }
+
+        /* SCROLLBAR */
+        html.music ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        html.music ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html.music ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+
+        html.music ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        html.music[data-theme="light"] ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        html.music body > main > section:nth-of-type(2) > article {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        html.music body > main > section:nth-of-type(2) > article:nth-child(2) { animation-delay: 0.05s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(3) { animation-delay: 0.1s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(4) { animation-delay: 0.15s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(5) { animation-delay: 0.2s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(6) { animation-delay: 0.25s; }
+        html.music body > main > section:nth-of-type(2) > article:nth-child(7) { animation-delay: 0.3s; }
+
+        /* ============================================
+           RESPONSIVE BREAKPOINTS
+           ============================================ */
+        @media (max-width: 1024px) {
+            html.music body {
+                grid-template-columns: 80px 1fr;
+            }
+
+            html.music body > aside:first-child {
+                padding: 1rem;
+            }
+
+            html.music body > aside:first-child > div:first-child span,
+            html.music body > aside:first-child nav button span,
+            html.music body > aside:first-child nav > div span,
+            html.music body > aside:first-child > button:first-of-type span,
+            html.music body > aside:first-child > nav h3 {
+                display: none;
+            }
+
+            html.music body > aside:first-child nav button,
+            html.music body > aside:first-child nav > div {
+                justify-content: center;
+                padding: 0.75rem;
+            }
+
+            /* Ensure icons are visible in collapsed sidebar */
+            html.music body > aside:first-child nav button svg,
+            html.music body > aside:first-child nav > div svg,
+            html.music body > aside:first-child > button:first-of-type svg {
+                display: block;
+                width: 20px;
+                height: 20px;
+            }
+
+            html.music body > aside:first-child > div:first-child > div:first-child {
+                width: 40px;
+                height: 40px;
+            }
+
+            html.music body > main > section:first-of-type > div > div:first-child {
+                width: 160px;
+                height: 160px;
+            }
+
+            /* Hide hero section image on smaller screens if needed */
+            @media (max-width: 640px) {
+                html.music body > main > section:first-of-type > div > div:first-child {
+                    width: 120px;
+                    height: 120px;
+                }
+
+                html.music body > main > section:first-of-type > div > div:last-child > h1 {
+                    font-size: 1.75rem;
+                }
+            }
+
+            /* Hide track columns on mobile */
+            html.music body > main > section:nth-of-type(2) > header > div:nth-child(3),
+            html.music body > main > section:nth-of-type(2) > header > div:nth-child(4),
+            html.music body > main > section:nth-of-type(2) > article > div:nth-child(3),
+            html.music body > main > section:nth-of-type(2) > article > div:nth-child(4) {
+                display: none;
+            }
+
+            html.music body > main > section:nth-of-type(2) > header {
+                grid-template-columns: 40px 1fr 60px 40px;
+            }
+
+            html.music body > main > section:nth-of-type(2) > article {
+                grid-template-columns: 40px 1fr 60px 40px;
+            }
+
+            html.music body > footer {
+                grid-template-columns: 1fr;
+                padding: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            html.music body > footer > div:first-child {
+                justify-content: center;
+            }
+
+            html.music body > footer > div:last-child {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside>
+        <!-- Logo -->
+        <div>
+            <div>
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+            </div>
+            <span class="text-xl font-bold text-gradient-starlight">Starlight</span>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav aria-label="Main navigation">
+            <button aria-current="page">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                <span>Home</span>
+            </button>
+            <button>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <span>Search</span>
+            </button>
+            <button>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <span>Your Library</span>
+            </button>
+        </nav>
+
+        <!-- Playlists Navigation -->
+        <nav aria-label="Playlists">
+            <h3>Playlists</h3>
+            <div>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+                <span>Create Playlist</span>
+            </div>
+            <div>
+                <svg fill="currentColor" viewBox="0 0 24 24" style="color: #ec4899;">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>Liked Songs</span>
+            </div>
+        </nav>
+
+        <!-- Playlist Items -->
+        <section aria-label="Your playlists">
+            <div>Cosmic Vibes</div>
+            <div>Deep Focus</div>
+            <div>Starlight Lounge</div>
+            <div>Nebula Nights</div>
+            <div>Quantum Beats</div>
+            <div>Galaxy Groove</div>
+        </section>
+
+        <!-- Create Playlist Button -->
+        <button>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+            <span>Create New Playlist</span>
+        </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Background Gradient -->
+        <div></div>
+
+        <!-- Header -->
+        <header>
+            <div>
+                <button aria-label="Go back">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button aria-label="Go forward">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+            </div>
+            <div>
+                <button>Upgrade to Premium</button>
+                <figure data-initials="JD" style="width: 32px; height: 32px; font-size: 0.75rem;"></figure>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section>
+            <div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop" alt="Album Cover">
+                </div>
+                <div>
+                    <div>Playlist</div>
+                    <h1>Cosmic Vibes</h1>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=50&h=50&fit=crop" alt="Creator">
+                        <span class="artist-name">Starlight Music</span>
+                        <span>•</span>
+                        <span>2,847,392 likes</span>
+                        <span>•</span>
+                        <span>50 songs, 3 hr 25 min</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Bar -->
+        <div>
+            <button>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+            <button data-liked="true">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </button>
+            <button>
+                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Track List -->
+        <section aria-label="Tracks">
+            <header>
+                <div>#</div>
+                <div>Title</div>
+                <div>Album</div>
+                <div>Date added</div>
+                <div></div>
+            </header>
+
+            <!-- Track 1 -->
+            <article data-active="true">
+                <div><span>1</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=100&h=100&fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Starlight Dreams <span class="explicit-badge">E</span></div>
+                        <div>Cosmic Collective</div>
+                    </div>
+                </div>
+                <div>Nebula Nights</div>
+                <div>2 days ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                    <span>3:45</span>
+                </div>
+            </article>
+
+            <!-- Track 2 -->
+            <article>
+                <div><span>2</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=100&h=100&fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Quantum Leap</div>
+                        <div>The Nebulas</div>
+                    </div>
+                </div>
+                <div>Galactic Journey</div>
+                <div>5 days ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                    <span>4:12</span>
+                </div>
+            </article>
+
+            <!-- Track 3 -->
+            <article>
+                <div><span>3</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100&h=100&fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Midnight in Orbit <span class="explicit-badge">E</span></div>
+                        <div>Lunar Echoes</div>
+                    </div>
+                </div>
+                <div>Space Cadet</div>
+                <div>1 week ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                    <span>3:28</span>
+                </div>
+            </article>
+
+            <!-- Track 4 -->
+            <article>
+                <div><span>4</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=100&h=100&fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Solar Flare</div>
+                        <div>Stellar Drift</div>
+                    </div>
+                </div>
+                <div>Sun Sessions</div>
+                <div>2 weeks ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                    <span>3:56</span>
+                </div>
+            </article>
+
+            <!-- Track 5 -->
+            <article>
+                <div><span>5</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=100&h=100&fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Aurora Borealis</div>
+                        <div>Northern Lights</div>
+                    </div>
+                </div>
+                <div>Polaris</div>
+                <div>3 weeks ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                    <span>4:33</span>
+                </div>
+            </article>
+
+            <!-- Track 6 -->
+            <article>
+                <div><span>6</span></div>
+                <div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=100&h=100&fit=crop" alt="Track">
+                    </div>
+                    <div>
+                        <div>Black Hole Sun <span class="explicit-badge">E</span></div>
+                        <div>Event Horizon</div>
+                    </div>
+                </div>
+                <div>Singularity</div>
+                <div>1 month ago</div>
+                <div>
+                    <button aria-label="Like">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                    <span>5:01</span>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Player Bar -->
+    <footer>
+        <!-- Now Playing -->
+        <div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=100&h=100&fit=crop" alt="Now Playing">
+            </div>
+            <div>
+                <div>Starlight Dreams</div>
+                <div>Cosmic Collective</div>
+            </div>
+            <button aria-label="Like">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Player Controls -->
+        <div>
+            <div>
+                <button aria-label="Shuffle">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10.59 9.17L5.41 3.99 4 5.41l5.18 5.17 1.41-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+                    </svg>
+                </button>
+                <button aria-label="Previous">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                    </svg>
+                </button>
+                <button data-play="true" aria-label="Play/Pause">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    </svg>
+                </button>
+                <button aria-label="Next">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                    </svg>
+                </button>
+                <button aria-label="Repeat">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+                    </svg>
+                </button>
+            </div>
+            <div>
+                <span>1:24</span>
+                <div>
+                    <div class="progress-fill"></div>
+                    <div class="progress-handle"></div>
+                </div>
+                <span>3:45</span>
+            </div>
+        </div>
+
+        <!-- Volume Controls -->
+        <div>
+            <button aria-label="Queue">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/>
+                </svg>
+            </button>
+            <button aria-label="Devices">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                </svg>
+            </button>
+            <div class="volume-slider">
+                <div class="volume-fill"></div>
+            </div>
+            <button aria-label="Toggle theme" onclick="toggleTheme()">
+                <svg class="sun-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+                </svg>
+                <svg class="moon-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                </svg>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // Track row click handler
+        document.querySelectorAll('section[aria-label="Tracks"] article').forEach(row => {
+            row.addEventListener('click', function() {
+                document.querySelectorAll('section[aria-label="Tracks"] article[data-active]').forEach(r => r.removeAttribute('data-active'));
+                this.setAttribute('data-active', 'true');
+            });
+        });
+
+        // Play button toggle
+        const playBtn = document.querySelector('button[data-play="true"]');
+        let isPlaying = true;
+        
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                isPlaying = !isPlaying;
+                this.setAttribute('data-play', isPlaying);
+                this.innerHTML = isPlaying 
+                    ? '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>'
+                    : '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+            });
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+    </script>
+</body>
+</html>

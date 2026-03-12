@@ -68,8 +68,8 @@
 </head>
 <body class="p-8">
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
-        <svg class="w-6 h-6 sun-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-        <svg class="w-6 h-6 moon-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <i class="q-icon q-icon-sun w-6 h-6 sun-icon"></i>
+        <i class="q-icon q-icon-moon w-6 h-6 moon-icon"></i>
     </button>
     
     <div class="max-w-6xl mx-auto">
@@ -842,9 +842,7 @@
                     <div class="token-name">ani-orbit</div>
                 </div>
                 <div class="ani-card p-12 rounded-2xl flex flex-col items-center justify-center gap-4">
-                    <svg width="60" height="60" viewBox="0 0 100 100" class="text-starlight">
-                        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="4" fill="none" class="ani-svg-draw" />
-                    </svg>
+                    <i class="q-icon q-icon-ani-svg-draw w-[60px] h-[60px] text-starlight"></i>
                     <div class="token-name">ani-svg-draw</div>
                 </div>
             </div>
@@ -1048,7 +1046,7 @@
                     <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Interactive Search (.starlight-search)</div>
                     <div class="p-12 flex flex-col items-center gap-6">
                         <div class="starlight-search has-icon">
-                            <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <i class="q-icon q-icon-search"></i>
                             <input type="text" class="input-starlight search-input" placeholder="Search the cosmos...">
                         </div>
                         <p class="text-sm text-muted">A glassmorphic search bar with integrated iconography.</p>
@@ -1064,7 +1062,7 @@
                                 <span class="stat-label">Core Stability</span>
                                 <span class="stat-value">98.4%</span>
                                 <div class="stat-trend up">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                    <i class="q-icon q-icon-trend-up w-4 h-4"></i>
                                     2.1%
                                 </div>
                             </div>
@@ -1080,7 +1078,7 @@
                                 <span class="stat-label">Latency</span>
                                 <span class="stat-value">12ms</span>
                                 <div class="stat-trend down">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <i class="q-icon q-icon-trend-down w-4 h-4"></i>
                                     0.4%
                                 </div>
                             </div>
@@ -1169,7 +1167,7 @@
                             <div class="accordion-item accordion-starlight active">
                                 <div class="accordion-header">
                                     <span>Cosmic Manifestation</span>
-                                    <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    <i class="q-icon q-icon-chevron-down accordion-icon w-5 h-5"></i>
                                 </div>
                                 <div class="accordion-content">
                                     <p>The universe began as a singularity of infinite density and heat, expanding rapidly in a cosmic event known as the Big Bang.</p>
@@ -1178,7 +1176,7 @@
                             <div class="accordion-item accordion-starlight">
                                 <div class="accordion-header">
                                     <span>Neural Synchronization</span>
-                                    <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    <i class="q-icon q-icon-chevron-down accordion-icon w-5 h-5"></i>
                                 </div>
                                 <div class="accordion-content">
                                     <p>Advanced neural interfaces allow for near-instantaneous data transfer between organic consciousness and digital mesh networks.</p>
@@ -1282,7 +1280,7 @@
     <div class="dialog-overlay hidden" id="systemDialog">
         <div class="starlight-dialog">
             <button class="dialog-close" onclick="toggleDialog(false)">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <i class="q-icon q-icon-close w-4 h-4"></i>
             </button>
             <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">System Override</h3>
             <p class="mb-6 opacity-70">You are about to bypass safety protocols. This action is irreversible.</p>
@@ -1301,7 +1299,7 @@
     <div class="designer-panel" id="designerPanel">
         <div class="designer-header" onclick="document.getElementById('designerPanel').classList.toggle('minimized')">
             <div class="designer-title">Theme Designer</div>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <i class="q-icon q-icon-chevron-down w-4 h-4"></i>
         </div>
         
         <div class="control-group">

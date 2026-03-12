@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NOVA — Quantum Shop</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Quantum CSS Framework -->
+        <link rel="stylesheet" href="../dist/quantum.min.css" />
+
+        <!-- Custom Nova Shop Styles -->
+        <link rel="stylesheet" href="nova-shop.css" />
+
+        <!-- Starlight UI -->
+        <script src="../src/starlight.js"></script>
+    </head>
+    <body>
+        <!-- ── Starfield ── -->
+        <div class="stars-bg" id="stars"></div>
+
+        <div class="site-wrapper">
+            <!-- ══════════ NAVBAR ══════════ -->
+            <nav class="starlight-navbar">
+                <div
+                    class="container mx-auto px-6 h-20 flex items-center justify-between"
+                >
+                    <!-- Brand -->
+                    <a href="#" class="nav-brand text-gradient-starlight"
+                        >NOVA</a
+                    >
+
+                    <!-- Nav links -->
+                    <ul class="hidden md:flex items-center gap-8 nav-links">
+                        <li><a href="#">New In</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">Sale</a></li>
+                        <li><a href="#">Brands</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+
+                    <!-- Actions -->
+                    <div class="flex items-center gap-3">
+                        <div class="search-bar-wrap">
+                            <span class="search-icon-pos">
+                                <i class="q-icon q-icon-search w-3.5 h-3.5"></i>
+                            </span>
+                            <input
+                                class="search-bar-input"
+                                type="search"
+                                placeholder="Search products…"
+                            />
+                        </div>
+
+                        <button
+                            class="icon-btn theme-toggle"
+                            id="themeToggle"
+                            title="Toggle Theme"
+                        >
+                            <i class="q-icon q-icon-sun hidden sun-icon"></i>
+                            <i class="q-icon q-icon-moon hidden moon-icon"></i>
+                        </button>
+
+                        <button class="icon-btn">
+                            <i class="q-icon q-icon-heart"></i>
+                        </button>
+
+                        <button class="icon-btn" style="position: relative">
+                            <i class="q-icon q-icon-shopping-bag"></i>
+                            <span class="badge-count absolute -top-1 -right-1"
+                                >3</span
+                            >
+                        </button>
+
+                        <button class="icon-btn">
+                            <i class="q-icon q-icon-user"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- ══════════ HERO ══════════ -->
+            <section class="hero">
+                <div class="hero-glow"></div>
+                <div class="hero-content">
+                    <div class="hero-eyebrow ani-slide-up">
+                        <span></span>
+                        New Collection — Summer 2025
+                    </div>
+                    <h1 class="ani-slide-up ani-stagger-1">
+                        Dress the
+                        <span class="text-gradient-starlight">Future.</span
+                        ><br />
+                        Own the Moment.
+                    </h1>
+                    <p class="hero-sub ani-slide-up ani-stagger-2">
+                        Curated fashion from tomorrow's most iconic labels.
+                        Pieces that define who you are before the world catches
+                        up.
+                    </p>
+                    <div
+                        class="flex flex-wrap justify-center gap-4 ani-slide-up ani-stagger-3"
+                    >
+                        <button
+                            class="btn-starlight"
+                            style="
+                                padding: 0.75rem 2rem;
+                                font-size: 0.95rem;
+                                border-radius: 9999px;
+                            "
+                        >
+                            Shop Now
+                            <i class="q-icon q-icon-chevron-right w-3.5 h-3.5"></i>
+                        </button>
+                        <button class="btn-outline-glow">
+                            Explore Collections
+                        </button>
+                    </div>
+                    <div class="hero-stats ani-slide-up ani-stagger-4">
+                        <div>
+                            <div class="hero-stat-value">12K+</div>
+                            <div class="hero-stat-label">Happy Customers</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-value">340+</div>
+                            <div class="hero-stat-label">Brands</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-value">4.9★</div>
+                            <div class="hero-stat-label">Avg. Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════ TRUST BAR ══════════ -->
+            <div class="trust-section">
+                <div class="container">
+                    <div class="flex flex-wrap justify-around gap-8">
+                        <div class="trust-item">
+                            <span class="trust-icon">🚀</span>
+                            <div>
+                                <div class="trust-text-title">
+                                    Express Shipping
+                                </div>
+                                <div class="trust-text-sub">
+                                    Free on orders over $75
+                                </div>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">🔄</span>
+                            <div>
+                                <div class="trust-text-title">Free Returns</div>
+                                <div class="trust-text-sub">
+                                    Within 30 days, no hassle
+                                </div>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">🔐</span>
+                            <div>
+                                <div class="trust-text-title">
+                                    Secure Payment
+                                </div>
+                                <div class="trust-text-sub">
+                                    256-bit SSL encryption
+                                </div>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-icon">🌍</span>
+                            <div>
+                                <div class="trust-text-title">
+                                    Ships Worldwide
+                                </div>
+                                <div class="trust-text-sub">
+                                    Over 120 countries
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══════════ CATEGORIES ══════════ -->
+            <section class="categories-section">
+                <div class="container">
+                    <div class="section-label">Browse by category</div>
+                    <div class="categories-scroll">
+                        <button class="chip chip-primary">
+                            <span>✨</span> All
+                        </button>
+                        <button class="chip">
+                            <span>👗</span> Dresses
+                        </button>
+                        <button class="chip">
+                            <span>👟</span> Sneakers
+                        </button>
+                        <button class="chip">
+                            <span>🧥</span> Outerwear
+                        </button>
+                        <button class="chip">
+                            <span>👜</span> Bags
+                        </button>
+                        <button class="chip">
+                            <span>💍</span> Jewellery
+                        </button>
+                        <button class="chip">
+                            <span>🧢</span> Accessories
+                        </button>
+                        <button class="chip">
+                            <span>🩱</span> Swimwear
+                        </button>
+                        <button class="chip">
+                            <span>🎽</span> Activewear
+                        </button>
+                        <button class="chip">
+                            <span>🕶️</span> Eyewear
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════ TRENDING MARQUEE ══════════ -->
+            <div class="trending-section">
+                <div class="marquee-track" id="marquee">
+                    <!-- items duplicated in JS -->
+                </div>
+            </div>
+
+            <!-- ══════════ PRODUCTS ══════════ -->
+            <section class="products-section">
+                <div class="container">
+                    <div class="section-header">
+                        <div>
+                            <div class="section-label">Hand-picked for you</div>
+                            <h2 class="section-title">New Arrivals</h2>
+                        </div>
+                        <a href="#" class="view-all-link">
+                            View all
+                            <i class="q-icon q-icon-chevron-right w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+
+                    <div class="product-grid" id="productGrid"></div>
+                </div>
+            </section>
+
+            <!-- ══════════ FEATURED BANNERS ══════════ -->
+            <section class="featured-section">
+                <div class="container">
+                    <div class="section-label" style="margin-bottom: 1.25rem">
+                        Spotlight
+                    </div>
+                    <div class="featured-grid">
+                        <div class="featured-card">
+                            <div class="featured-card-bg featured-bg-1">
+                                <div class="featured-glow-1"></div>
+                                <div
+                                    class="featured-float-icon"
+                                    style="top: 30%; left: 60%"
+                                >
+                                    👟
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <div class="featured-eyebrow">
+                                    New Drop — Limited Edition
+                                </div>
+                                <h3 class="featured-title">
+                                    Future-Sole<br />Sneaker Series
+                                </h3>
+                                <p class="featured-desc">
+                                    Ultra-light composites. Cosmic colourways.
+                                    Zero-break-in comfort.
+                                </p>
+                                <button
+                                    class="btn-starlight"
+                                    style="border-radius: 9999px"
+                                >
+                                    Shop Kicks →
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="featured-card">
+                            <div class="featured-card-bg featured-bg-2">
+                                <div class="featured-glow-2"></div>
+                                <div
+                                    class="featured-float-icon"
+                                    style="top: 25%; left: 55%"
+                                >
+                                    💫
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <div
+                                    class="featured-eyebrow"
+                                    style="
+                                        color: var(--q-color-starlight-peach);
+                                    "
+                                >
+                                    Up to 60% Off
+                                </div>
+                                <h3 class="featured-title">
+                                    Summer<br />Edit Sale
+                                </h3>
+                                <p class="featured-desc">
+                                    The season's most wanted pieces, now at
+                                    their best prices.
+                                </p>
+                                <button
+                                    class="btn-starlight"
+                                    style="
+                                        background: linear-gradient(
+                                            135deg,
+                                            #ff7e5f,
+                                            #ffb38a
+                                        );
+                                        border-radius: 9999px;
+                                    "
+                                >
+                                    Grab a Deal →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════ BESTSELLERS ══════════ -->
+            <section class="products-section" style="padding-top: 0">
+                <div class="container">
+                    <div class="section-header">
+                        <div>
+                            <div class="section-label">
+                                Community favourites
+                            </div>
+                            <h2 class="section-title">Best Sellers</h2>
+                        </div>
+                        <a href="#" class="view-all-link"
+                            >View all
+                            <i class="q-icon q-icon-chevron-right w-3.5 h-3.5"></i></a>
+                    </div>
+                    <div class="product-grid" id="bestsellersGrid"></div>
+                </div>
+            </section>
+
+            <!-- ══════════ TESTIMONIALS ══════════ -->
+            <section class="testimonials-section">
+                <div class="container">
+                    <div class="section-header">
+                        <div>
+                            <div class="section-label">What they say</div>
+                            <h2 class="section-title">Loved by thousands</h2>
+                        </div>
+                    </div>
+                    <div class="testimonials-grid" id="testimonialsGrid"></div>
+                </div>
+            </section>
+
+            <!-- ══════════ NEWSLETTER ══════════ -->
+            <section class="newsletter-section">
+                <div class="container">
+                    <div class="newsletter-card">
+                        <div class="newsletter-bg-glow"></div>
+                        <div
+                            class="hero-eyebrow"
+                            style="display: inline-flex; margin-bottom: 1.25rem"
+                        >
+                            <span></span> Exclusive Access
+                        </div>
+                        <h2 class="newsletter-title">
+                            Stay ahead of the<br /><span
+                                class="text-gradient-starlight"
+                                >curve.</span
+                            >
+                        </h2>
+                        <p class="newsletter-sub">
+                            Early access, secret drops, and 10% off your first
+                            order.
+                        </p>
+                        <div class="newsletter-form">
+                            <input
+                                class="newsletter-input"
+                                type="email"
+                                placeholder="your@email.com"
+                            />
+                            <button
+                                class="btn-starlight"
+                                style="
+                                    border-radius: 9999px;
+                                    padding: 0.65rem 1.75rem;
+                                "
+                            >
+                                Subscribe →
+                            </button>
+                        </div>
+                        <p
+                            style="
+                                font-size: 0.72rem;
+                                color: var(--q-text-muted);
+                                margin-top: 1rem;
+                            "
+                        >
+                            No spam ever. Unsubscribe anytime.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════ FOOTER ══════════ -->
+            <footer class="starlight-footer">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div>
+                            <div class="footer-brand text-gradient-starlight">
+                                NOVA
+                            </div>
+                            <p class="footer-desc">
+                                The destination for forward-thinking fashion. We
+                                curate the best from the world's most exciting
+                                brands — so you never have to compromise.
+                            </p>
+                            <div
+                                class="footer-socials"
+                                style="margin-top: 1.25rem"
+                            >
+                                <a class="social-btn" href="#">𝕏</a>
+                                <a class="social-btn" href="#">ig</a>
+                                <a class="social-btn" href="#">in</a>
+                                <a class="social-btn" href="#">yt</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="footer-col-title">Shop</div>
+                            <ul class="footer-links">
+                                <li><a href="#">New Arrivals</a></li>
+                                <li><a href="#">Best Sellers</a></li>
+                                <li><a href="#">Sale</a></li>
+                                <li><a href="#">Brands</a></li>
+                                <li><a href="#">Collections</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="footer-col-title">Help</div>
+                            <ul class="footer-links">
+                                <li><a href="#">Shipping & Returns</a></li>
+                                <li><a href="#">Size Guide</a></li>
+                                <li><a href="#">Track Order</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="footer-col-title">Company</div>
+                            <ul class="footer-links">
+                                <li><a href="#">About NOVA</a></li>
+                                <li><a href="#">Sustainability</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Press</a></li>
+                                <li><a href="#">Affiliates</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="footer-divider" />
+                    <div class="footer-bottom">
+                        <span
+                            >© 2025 NOVA Commerce Inc. All rights
+                            reserved.</span
+                        >
+                        <span style="display: flex; gap: 1.5rem">
+                            <a
+                                href="#"
+                                style="color: inherit; text-decoration: none"
+                                >Privacy</a
+                            >
+                            <a
+                                href="#"
+                                style="color: inherit; text-decoration: none"
+                                >Terms</a
+                            >
+                            <a
+                                href="#"
+                                style="color: inherit; text-decoration: none"
+                                >Cookies</a
+                            >
+                        </span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- /.site-wrapper -->
+
+        <!-- Floating cart -->
+        <div class="floating-cta">
+            <button class="floating-cart-btn">🛒 Cart (3)</button>
+        </div>
+
+        <script>
+            /* ── Stars ── */
+            const starsEl = document.getElementById("stars");
+            for (let i = 0; i < 120; i++) {
+                const s = document.createElement("div");
+                s.className = "star";
+                const size = Math.random() * 2.5 + 0.5;
+                s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random() * 100}%; top:${Math.random() * 100}%;
+      --d:${2 + Math.random() * 5}s;
+      animation-delay:${Math.random() * 5}s;
+    `;
+                starsEl.appendChild(s);
+            }
+
+            /* ── Product data ── */
+            const products = [
+                {
+                    name: "Aurora Silk Dress",
+                    brand: "Lumière",
+                    price: 289,
+                    original: null,
+                    rating: 4.8,
+                    reviews: 214,
+                    emoji: "👗",
+                    bg: "linear-gradient(135deg,#1a0a3e,#0d1f3e)",
+                    colors: ["#00d4ff", "#ff7e5f", "#1e293b"],
+                    badges: ["new"],
+                },
+                {
+                    name: "Nebula Runner Pro",
+                    brand: "Voidwear",
+                    price: 179,
+                    original: 229,
+                    rating: 4.9,
+                    reviews: 847,
+                    emoji: "👟",
+                    bg: "linear-gradient(135deg,#0d2b1a,#1a1052)",
+                    colors: ["#10b981", "#3b82f6", "#f59e0b"],
+                    badges: ["sale", "hot"],
+                },
+                {
+                    name: "Quantum Puffer Vest",
+                    brand: "Arctis",
+                    price: 195,
+                    original: null,
+                    rating: 4.7,
+                    reviews: 133,
+                    emoji: "🦺",
+                    bg: "linear-gradient(135deg,#1f0a0a,#2d1a0a)",
+                    colors: ["#ef4444", "#f59e0b", "#1e293b"],
+                    badges: ["new"],
+                },
+                {
+                    name: "Starmap Tote Bag",
+                    brand: "Cosmo",
+                    price: 145,
+                    original: 195,
+                    rating: 4.8,
+                    reviews: 529,
+                    emoji: "👜",
+                    bg: "linear-gradient(135deg,#080a2d,#1a0a3e)",
+                    colors: ["#8b5cf6", "#ec4899", "#f1f5f9"],
+                    badges: ["sale"],
+                },
+                {
+                    name: "Photon Blazer",
+                    brand: "Lumière",
+                    price: 349,
+                    original: null,
+                    rating: 4.6,
+                    reviews: 88,
+                    emoji: "🧥",
+                    bg: "linear-gradient(135deg,#0a1f1a,#0d1f3e)",
+                    colors: ["#00d4ff", "#1e293b"],
+                    badges: ["new"],
+                },
+                {
+                    name: "Crystal Drop Earrings",
+                    brand: "Stellaris",
+                    price: 89,
+                    original: 120,
+                    rating: 4.9,
+                    reviews: 302,
+                    emoji: "💎",
+                    bg: "linear-gradient(135deg,#1a0a2d,#0a1a1f)",
+                    colors: ["#e2e8f0", "#fbbf24", "#ec4899"],
+                    badges: ["sale"],
+                },
+                {
+                    name: "Void Linen Pants",
+                    brand: "Voidwear",
+                    price: 165,
+                    original: null,
+                    rating: 4.5,
+                    reviews: 176,
+                    emoji: "👖",
+                    bg: "linear-gradient(135deg,#0d1a0d,#1a1a0a)",
+                    colors: ["#1e293b", "#f1f5f9", "#78716c"],
+                    badges: [],
+                },
+                {
+                    name: "Orbital Sunglasses",
+                    brand: "Eclipse",
+                    price: 215,
+                    original: 269,
+                    rating: 4.8,
+                    reviews: 441,
+                    emoji: "🕶️",
+                    bg: "linear-gradient(135deg,#1a0a0a,#1a1052)",
+                    colors: ["#000", "#fbbf24", "#ec4899"],
+                    badges: ["hot", "sale"],
+                },
+            ];
+
+            const bestsellers = [
+                {
+                    name: "Supernova Hoodie",
+                    brand: "Voidwear",
+                    price: 139,
+                    original: null,
+                    rating: 4.9,
+                    reviews: 1203,
+                    emoji: "🌟",
+                    bg: "linear-gradient(135deg,#0a0a2d,#2d0a1a)",
+                    colors: ["#8b5cf6", "#00d4ff", "#f87171"],
+                    badges: ["hot"],
+                },
+                {
+                    name: "Eclipse Trench Coat",
+                    brand: "Arctis",
+                    price: 495,
+                    original: 629,
+                    rating: 4.8,
+                    reviews: 389,
+                    emoji: "🌑",
+                    bg: "linear-gradient(135deg,#0a0a0a,#1a0a2d)",
+                    colors: ["#000", "#1e293b", "#ffb38a"],
+                    badges: ["sale"],
+                },
+                {
+                    name: "Prism Mini Skirt",
+                    brand: "Lumière",
+                    price: 115,
+                    original: null,
+                    rating: 4.7,
+                    reviews: 672,
+                    emoji: "🌈",
+                    bg: "linear-gradient(135deg,#1a0a3e,#0a2d1a)",
+                    colors: ["#ec4899", "#f59e0b", "#00d4ff"],
+                    badges: ["new"],
+                },
+                {
+                    name: "Gravity Belt",
+                    brand: "Cosmo",
+                    price: 79,
+                    original: 99,
+                    rating: 4.6,
+                    reviews: 218,
+                    emoji: "⚡",
+                    bg: "linear-gradient(135deg,#1f1a0a,#0a1a2d)",
+                    colors: ["#f59e0b", "#1e293b", "#f87171"],
+                    badges: ["sale"],
+                },
+            ];
+
+            function buildCard(p) {
+                const badgeHtml = p.badges
+                    .map((b) => {
+                        let variant = "secondary";
+                        if (b === "new") variant = "primary";
+                        if (b === "sale") variant = "error";
+                        if (b === "hot") variant = "warning";
+                        return `<span class="badge badge-${variant}">${b}</span>`;
+                    })
+                    .join("");
+
+                const colorHtml = p.colors
+                    .map(
+                        (c, i) =>
+                            `<span class="color-swatch ${i === 0 ? "active" : ""}" style="background:${c}" title="${c}"></span>`,
+                    )
+                    .join("");
+                const pct = p.original
+                    ? Math.round((1 - p.price / p.original) * 100)
+                    : 0;
+
+                return `
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <div class="product-img-placeholder" style="background:${p.bg}">
+            ${p.emoji}
+          </div>
+          <div class="product-badge-wrap">${badgeHtml}</div>
+          <div class="product-quick-add">
+            <button class="btn-quick-add">+ Add to Cart</button>
+            <button class="btn-wishlist">♡</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">${p.brand}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-rating">
+            <span class="stars">${"★".repeat(Math.floor(p.rating))}${"☆".repeat(5 - Math.floor(p.rating))}</span>
+            <span class="rating-count">(${p.reviews.toLocaleString()})</span>
+          </div>
+          <div class="product-price-row">
+            <span class="price-current">$${p.price}</span>
+            ${p.original ? `<span class="price-original">$${p.original}</span><span class="price-discount">−${pct}%</span>` : ""}
+          </div>
+          <div class="product-colors">${colorHtml}</div>
+        </div>
+      </div>
+    `;
+            }
+
+            document.getElementById("productGrid").innerHTML = products
+                .map(buildCard)
+                .join("");
+            document.getElementById("bestsellersGrid").innerHTML = bestsellers
+                .map(buildCard)
+                .join("");
+
+            /* ── Testimonials ── */
+            const testimonials = [
+                {
+                    text: "NOVA is genuinely the only store I trust for cutting-edge pieces. The curation is unreal — every drop feels like it was made for me.",
+                    name: "Aria M.",
+                    handle: "@aria.makes",
+                    initials: "AM",
+                    stars: 5,
+                },
+                {
+                    text: "Delivery was faster than I expected, and the packaging feels like opening a gift. Even my friends are jealous of the unboxing experience.",
+                    name: "Jordan K.",
+                    handle: "@jkvisuals",
+                    initials: "JK",
+                    stars: 5,
+                },
+                {
+                    text: "I've been shopping fashion for 10 years and NOVA just changed the game. The Nebula Runner is the most comfortable sneaker I've ever owned.",
+                    name: "Priya S.",
+                    handle: "@priyastyle_",
+                    initials: "PS",
+                    stars: 5,
+                },
+            ];
+
+            document.getElementById("testimonialsGrid").innerHTML = testimonials
+                .map(
+                    (t) => `
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">${t.text}</p>
+      <div class="testimonial-author">
+        <div class="t-avatar">${t.initials}</div>
+        <div>
+          <div class="t-name">${t.name}</div>
+          <div class="t-handle">${t.handle} · ${"★".repeat(t.stars)}</div>
+        </div>
+      </div>
+    </div>
+  `,
+                )
+                .join("");
+
+            /* ── Marquee ── */
+            const trendingItems = [
+                "Nebula Runner",
+                "Aurora Dress",
+                "Eclipse Trench",
+                "Prism Skirt",
+                "Void Pants",
+                "Crystal Drops",
+                "Supernova Hoodie",
+                "Photon Blazer",
+                "Orbital Shades",
+                "Starmap Tote",
+            ];
+            const marquee = document.getElementById("marquee");
+            const all = [...trendingItems, ...trendingItems];
+            marquee.innerHTML = all
+                .map(
+                    (item, i) => `
+    <div class="marquee-item">
+      <span class="marquee-dot"></span>
+      Trending: <span>${item}</span>
+    </div>
+  `,
+                )
+                .join("");
+
+            /* ── Category filter ── */
+            document.querySelectorAll(".chip").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    document
+                        .querySelectorAll(".chip")
+                        .forEach((b) => b.classList.remove("chip-primary"));
+                    btn.classList.add("chip-primary");
+                });
+            });
+
+            /* ── Wishlist toggle ── */
+            document.addEventListener("click", (e) => {
+                if (e.target.classList.contains("btn-wishlist")) {
+                    e.target.textContent =
+                        e.target.textContent === "♡" ? "♥" : "♡";
+                    e.target.style.color =
+                        e.target.textContent === "♥" ? "#f87171" : "";
+                }
+            });
+        </script>
+    </body>
+</html>

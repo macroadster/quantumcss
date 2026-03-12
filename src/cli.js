@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const { generateCSS } = require('./generator');
+const { writeTransformedTemplate } = require('./semantic/transformer');
 const { defaultTheme, utilityMaps } = require('./defaults');
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +21,7 @@ Commands:
   init                Generate a default ${CONFIG_FILE}
   scaffold <type>     Generate a template (gaming, blog, travel, etc.)
   manifest [output]   Generate an AI-optimized design system catalog
+  semantic <input>    Rewrite a supported template to semantic HTML + scoped CSS
 
 Options:
   -w, --watch         Same as the 'watch' command
@@ -155,6 +157,27 @@ function scaffold(template, targetPath = 'index.html') {
   console.log(`👉 Run 'quantumcss' to generate the required CSS.`);
 }
 
+function semantic(inputPath, htmlOutput, cssOutput, template) {
+  if (!inputPath) {
+    console.error('❌ Error: Please specify an input HTML file.');
+    process.exit(1);
+  }
+
+  try {
+    const result = writeTransformedTemplate(path.resolve(inputPath), {
+      template,
+      htmlOutput: htmlOutput ? path.resolve(htmlOutput) : undefined,
+      cssOutput: cssOutput ? path.resolve(cssOutput) : undefined
+    });
+    console.log(`✅ Semantic template generated (${result.template})`);
+    console.log(`📄 HTML: ${result.htmlOutput}`);
+    console.log(`🎨 CSS: ${result.cssOutput}`);
+  } catch (err) {
+    console.error(`❌ Error generating semantic template: ${err.message}`);
+    process.exit(1);
+  }
+}
+
 function main() {
   const args = process.argv.slice(2);
   const command = args[0];
@@ -176,6 +199,10 @@ function main() {
     
     case 'manifest':
       manifest(args[1]);
+      break;
+
+    case 'semantic':
+      semantic(args[1], args[2], args[3], args[4]);
       break;
     
     case 'scaffold':

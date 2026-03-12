@@ -184,6 +184,10 @@ body {
   line-height: inherit;
 }
 
+ul, ol {
+  list-style: none;
+}
+
 input, textarea, select, button {
   font-family: inherit;
   font-size: inherit;

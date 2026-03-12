@@ -1,0 +1,567 @@
+/* LAYOUT - replaces .email-layout */
+html.mail body {
+  display: grid;
+  grid-template-columns: 280px 380px 1fr;
+  min-height: 100vh;
+  background: var(--bg-starlight-deep, #08081a);
+}
+
+/* SIDEBAR NAV - replaces .email-sidebar */
+html.mail body > nav {
+  background: linear-gradient(180deg, rgba(8, 8, 26, 0.98) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+/* BRAND HEADER - replaces .flex.items-center.gap-3.mb-8 */
+html.mail body > nav > header > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* COMPOSE CTA - replaces .compose-btn */
+html.mail body > nav > button:first-of-type {
+  background: linear-gradient(135deg, #00d4ff 0%, #3b82f6 100%);
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* COMPOSE CTA HOVER - replaces .compose-btn:hover */
+html.mail body > nav > button:first-of-type:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+
+/* PRIMARY NAV LIST - replaces .space-y-1.mb-6 */
+html.mail body > nav > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* NAV ITEM - replaces .nav-item */
+html.mail body > nav > ul button,
+html.mail body > nav > section button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
+  text-align: left;
+}
+
+/* NAV ITEM HOVER - replaces .nav-item:hover */
+html.mail body > nav > ul button:hover,
+html.mail body > nav > section button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f1f5f9;
+}
+
+/* ACTIVE NAV ITEM - replaces .nav-item.active */
+html.mail body > nav > ul button[aria-current="page"] {
+  background: rgba(0, 212, 255, 0.1);
+  color: #00d4ff;
+}
+
+/* NAV BADGE - replaces .nav-badge */
+html.mail body > nav > ul button em {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-style: normal;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* LABEL GROUP - replaces .pt-6.border-t.border-white_10 */
+html.mail body > nav > section {
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* LABEL TITLE - replaces .nav-section-title */
+html.mail body > nav > section h6 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  padding-left: 0.75rem;
+  margin: 0 0 0.5rem;
+}
+
+/* LABEL LIST - replaces .space-y-1 */
+html.mail body > nav > section > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* LABEL DOT - replaces .w-3.h-3.rounded-full.bg-* */
+html.mail body > nav > section b {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: var(--c, #3b82f6);
+  flex-shrink: 0;
+}
+
+/* USER FOOTER - replaces .user-profile-section */
+html.mail body > nav > footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* AVATAR INITIALS - replaces .avatar.avatar-lg */
+html.mail body > nav figure[data-initials],
+html.mail body > main figure[data-initials] {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #00d4ff 0%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* AVATAR TEXT - replaces avatar inner text */
+html.mail body > nav figure[data-initials]::before,
+html.mail body > main figure[data-initials]::before {
+  content: attr(data-initials);
+}
+
+/* USER META - replaces .user-name and .user-email */
+html.mail body > nav > footer > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+/* USER NAME - replaces .user-name */
+html.mail body > nav > footer > span > strong {
+  font-size: 0.875rem;
+  color: #f1f5f9;
+}
+
+/* USER EMAIL - replaces .user-email */
+html.mail body > nav > footer > span > small {
+  font-size: 0.75rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ICON BUTTON - replaces .icon-btn */
+html.mail body > nav > footer > button,
+html.mail body > aside header button,
+html.mail body > main button[aria-label] {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.625rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ICON BUTTON HOVER - replaces .icon-btn:hover */
+html.mail body > nav > footer > button:hover,
+html.mail body > aside header button:hover,
+html.mail body > main button[aria-label]:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+/* EMAIL LIST COLUMN - replaces .email-list */
+html.mail body > aside {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+  max-height: 100vh;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* LIST HEADER - replaces .top-bar */
+html.mail body > aside > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 8, 26, 0.5);
+}
+
+/* LIST HEADER TITLE - replaces .text-lg.font-semibold */
+html.mail body > aside > header h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+/* LIST HEADER ACTIONS - replaces .flex.gap-2 */
+html.mail body > aside > header > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* SEARCH WRAP - replaces .px-4.py-3 */
+html.mail body > aside > div:first-of-type {
+  padding: 0.75rem 1rem;
+}
+
+/* SEARCH INPUT - replaces .search-input */
+html.mail body > aside input[type="text"],
+html.mail body > aside input[type="search"] {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem 0.625rem 3rem;
+  color: #f1f5f9;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* SEARCH INPUT FOCUS - replaces search focus state */
+html.mail body > aside input[type="text"]:focus,
+html.mail body > aside input[type="search"]:focus {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* SEARCH INPUT PLACEHOLDER - replaces search placeholder */
+html.mail body > aside input::placeholder {
+  color: #64748b;
+}
+
+/* ITEM LIST - replaces email item stack */
+html.mail body > aside > section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* EMAIL ITEM - replaces .email-item */
+html.mail body > aside article {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* EMAIL ITEM HOVER - replaces .email-item:hover */
+html.mail body > aside article:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* EMAIL ITEM UNREAD - replaces .email-item.unread */
+html.mail body > aside article[data-unread="true"] {
+  background: rgba(0, 212, 255, 0.04);
+}
+
+/* EMAIL ITEM ACTIVE - replaces .email-item.active */
+html.mail body > aside article[data-selected="true"] {
+  background: rgba(0, 212, 255, 0.08);
+  border-left: 3px solid #00d4ff;
+}
+
+/* EMAIL META ROW - replaces .email-meta */
+html.mail body > aside article > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+/* EMAIL SENDER - replaces .email-sender */
+html.mail body > aside article > div:first-child > span:first-child {
+  font-size: 0.875rem;
+  color: #f1f5f9;
+}
+
+/* EMAIL TIME - replaces .email-time */
+html.mail body > aside article > div:first-child > span:last-child {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* EMAIL SUBJECT - replaces .email-subject */
+html.mail body > aside article > div:nth-child(2) {
+  font-size: 0.8125rem;
+  color: #f1f5f9;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* EMAIL PREVIEW - replaces .email-preview */
+html.mail body > aside article > div:nth-child(3) {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* EMAIL LABEL ROW - replaces .mt-2 */
+html.mail body > aside article > div:nth-child(4) {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* EMAIL LABEL - replaces .label */
+html.mail body > aside mark[data-label] {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  font-style: normal;
+}
+
+/* EMAIL LABEL PERSONAL - replaces .label-personal */
+html.mail body > aside mark[data-label="personal"] {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+/* EMAIL LABEL IMPORTANT - replaces .label-important */
+html.mail body > aside mark[data-label="important"] {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+/* MAIL CONTENT PANEL - replaces .email-content */
+html.mail body > main {
+  overflow-y: auto;
+  max-height: 100vh;
+  padding: 2rem;
+}
+
+/* MOBILE BACK BUTTON - replaces mobile back button layout */
+html.mail body > main > button:first-child {
+  display: none;
+}
+
+/* MAIL HEADER - replaces .email-header */
+html.mail body > main > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* SENDER ROW - replaces .email-sender-info */
+html.mail body > main > header > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* SENDER NAME - replaces .sender-details h3 */
+html.mail body > main > header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 0.25rem;
+}
+
+/* SENDER SUBTITLE - replaces .sender-details p */
+html.mail body > main > header p {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* HEADER META - replaces .flex.items-center.gap-4 */
+html.mail body > main > header > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* HEADER TIMESTAMP - replaces .text-sm.text-slate-400 */
+html.mail body > main > header > div:last-child > span {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+/* HEADER ACTION GROUP - replaces .email-actions */
+html.mail body > main > header > div:last-child > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* CONTENT SUBJECT - replaces .email-subject */
+html.mail body > main > h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+/* MESSAGE BODY - replaces .email-body */
+html.mail body > main > section:first-of-type {
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-size: 0.9375rem;
+}
+
+/* MESSAGE PARAGRAPHS - replaces .email-body p */
+html.mail body > main > section:first-of-type p {
+  margin-bottom: 1rem;
+}
+
+/* ATTACHMENTS BLOCK - replaces .mt-8.pt-6.border-t */
+html.mail body > main > section:nth-of-type(2) {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ATTACHMENTS TITLE - replaces attachments heading */
+html.mail body > main > section:nth-of-type(2) > h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #64748b;
+}
+
+/* ATTACHMENT ROW - replaces .flex.gap-4 */
+html.mail body > main > section:nth-of-type(2) > div {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ATTACHMENT ITEM - replaces attachment card */
+html.mail body > main > section:nth-of-type(2) > div > div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* ATTACHMENT ITEM HOVER - replaces attachment hover */
+html.mail body > main > section:nth-of-type(2) > div > div:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ACTION CTA ROW - replaces .mt-8.flex.flex-wrap.gap-3 */
+html.mail body > main > div:last-child {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* MOBILE LAYOUT - replaces responsive email layout */
+@media (max-width: 1024px) {
+  html.mail body {
+    grid-template-columns: 240px 320px 1fr;
+  }
+}
+
+/* TABLET LAYOUT - replaces responsive email layout */
+@media (max-width: 768px) {
+  html.mail body {
+    grid-template-columns: 320px 1fr;
+  }
+
+  html.mail body > nav {
+    display: none;
+  }
+
+  html.mail body > main {
+    position: fixed;
+    inset: 0;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg-starlight-deep, #08081a);
+  }
+
+  html.mail body > main[data-mobile-visible="true"] {
+    transform: translateX(0);
+  }
+
+  html.mail body > main > button:first-child {
+    display: inline-flex;
+  }
+}
+
+/* PHONE LAYOUT - replaces narrow screen email layout */
+@media (max-width: 640px) {
+  html.mail body {
+    grid-template-columns: 1fr;
+  }
+
+  html.mail body > aside {
+    max-height: none;
+  }
+
+  html.mail body > main {
+    padding: 1.5rem;
+  }
+}

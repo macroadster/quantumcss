@@ -62,6 +62,29 @@ QuantumCSS includes a powerful CLI for project orchestration:
 - **`npx quantumcss build [output]`** - Generate the JIT CSS bundle (default: `dist/quantum.css`).
 - **`npx quantumcss watch [output]`** - Automatically rebuild when your HTML or config changes.
 - **`npx quantumcss scaffold <type>`** - Generate a starter template (`gaming`, `blog`, `travel`, etc.).
+- **`npx quantumcss semantic <input> [htmlOut] [cssOut]`** - Rewrite a supported legacy template into semantic HTML plus a scoped CSS file.
+
+### Semantic Template Conversion
+The semantic transformer is designed for legacy QuantumCSS templates that still rely on structural classes. The current supported families are `mail`, `chat`, `music`, `blog`, `admin`, `analytics`, and `video`, and the converter can run standalone or from the build pipeline.
+
+```json
+{
+  "semanticTemplates": [
+    {
+      "input": "examples/email-template.html",
+      "htmlOutput": "examples/email-template.semantic.html",
+      "cssOutput": "examples/email-template.mail.css"
+    },
+    {
+      "input": "examples/chat-messaging.html",
+      "htmlOutput": "examples/chat-messaging.semantic.html",
+      "cssOutput": "examples/chat-messaging.chat.css"
+    }
+  ]
+}
+```
+
+When `semanticTemplates` is present in `quantum.config.json`, `node scripts/build.js --semantic` will generate those outputs after the CSS bundle finishes.
 
 ## ⚙️ Configuration
 

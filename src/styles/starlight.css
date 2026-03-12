@@ -751,10 +751,26 @@ html[data-theme="light"] .starlight-search {
   background-color: #fff;
   border: 1px solid #cbd5e1;
 }
-
-.search-container.has-icon .search-input,
 .starlight-search.has-icon .search-input {
   padding-left: 3rem !important;
+}
+
+.starlight-search .q-icon {
+  position: absolute;
+  left: 1.125rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--q-text-muted);
+  pointer-events: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  z-index: 10;
+  background-color: var(--q-text-muted);
+}
+
+html[data-theme="light"] .starlight-search .q-icon {
+  color: #64748b;
+  background-color: #64748b;
 }
 
 .search-icon {
@@ -772,7 +788,6 @@ html[data-theme="light"] .starlight-search {
 html[data-theme="light"] .search-icon {
   color: #64748b;
 }
-
 /* 12. Gallery Widget */
 .starlight-gallery {
   display: grid;

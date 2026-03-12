@@ -391,16 +391,16 @@
             
             <main class="video-feed">
                 <div class="category-tabs">
-                    <button class="category-tab active">All</button>
-                    <button class="category-tab">Gaming</button>
-                    <button class="category-tab">Music</button>
-                    <button class="category-tab">Technology</button>
-                    <button class="category-tab">Programming</button>
-                    <button class="category-tab">Design</button>
-                    <button class="category-tab">Science</button>
-                    <button class="category-tab">Comedy</button>
-                    <button class="category-tab">News</button>
-                    <button class="category-tab">Sports</button>
+                    <button class="chip chip-primary">All</button>
+                    <button class="chip">Gaming</button>
+                    <button class="chip">Music</button>
+                    <button class="chip">Technology</button>
+                    <button class="chip">Programming</button>
+                    <button class="chip">Design</button>
+                    <button class="chip">Science</button>
+                    <button class="chip">Comedy</button>
+                    <button class="chip">News</button>
+                    <button class="chip">Sports</button>
                 </div>
                 
                 <section class="featured-section">
@@ -574,10 +574,10 @@
     
     <script>
         
-        document.querySelectorAll('.category-tab').forEach(tab => {
+        document.querySelectorAll('.chip').forEach(tab => {
             tab.addEventListener('click', function() {
-                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+                document.querySelectorAll('.chip').forEach(t => t.classList.remove('chip-primary'));
+                this.classList.add('chip-primary');
             });
         });
     </script>
