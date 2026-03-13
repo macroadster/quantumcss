@@ -5,7 +5,6 @@ const postcss = require('postcss');
 const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 const { generateCSS } = require('../src/generator');
-const { runConfiguredTransforms } = require('../src/semantic/transformer');
 const { processTemplate } = require('./semantic-strip');
 
 class QuantumCSSBuilder {
