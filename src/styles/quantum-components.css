@@ -1963,10 +1963,6 @@ html[data-theme="light"] .breadcrumb-current {
   height: 1.125rem;
   font-size: 1.125rem;
 }
-  max-width: 1.125rem;
-  max-height: 1.125rem;
-  flex-shrink: 0;
-}
 
 /* Sidebar scrollbar styling to prevent layout shift */
 .sidebar::-webkit-scrollbar {
