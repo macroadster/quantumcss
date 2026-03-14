@@ -755,22 +755,26 @@ html[data-theme="light"] .starlight-search {
   padding-left: 3rem !important;
 }
 
-.starlight-search .q-icon {
-  position: absolute;
-  left: 1.125rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--q-text-muted);
+.starlight-search .q-icon-search,
+.starlight-search [class^="q-icon-"],
+.starlight-search [class*=" q-icon-"] {
+  position: absolute !important;
+  left: 1.125rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: var(--q-text-muted) !important;
   pointer-events: none;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
   z-index: 10;
-  background-color: var(--q-text-muted);
+  background-color: var(--q-text-muted) !important;
 }
 
-html[data-theme="light"] .starlight-search .q-icon {
-  color: #64748b;
-  background-color: #64748b;
+html[data-theme="light"] .starlight-search .q-icon-search,
+html[data-theme="light"] .starlight-search [class^="q-icon-"],
+html[data-theme="light"] .starlight-search [class*=" q-icon-"] {
+  color: #64748b !important;
+  background-color: #64748b !important;
 }
 
 .search-icon {
