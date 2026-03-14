@@ -1182,6 +1182,11 @@ html[data-theme="light"] .range-starlight {
   background: rgb(0 0 0 / 10%);
 }
 
+html[data-theme="light"] .range-starlight:-webkit-slider-thumb {
+  background: var(--q-color-starlight-blue);
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
+}
+
 .range-starlight:-webkit-slider-thumb {
   appearance: none;
   width: 18px;
@@ -1222,6 +1227,11 @@ html[data-theme="light"] .range-starlight {
 html[data-theme="light"] .toggle-starlight .toggle-slider {
   background: rgb(0 0 0 / 10%);
   border-color: rgb(0 0 0 / 15%);
+}
+
+html[data-theme="light"] .toggle-starlight input:checked + .toggle-slider {
+  background: var(--q-color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
 }
 
 html[data-theme="light"] .bg-starlight,
