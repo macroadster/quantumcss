@@ -1183,7 +1183,7 @@ html[data-theme="light"] .range-starlight {
 }
 
 html[data-theme="light"] .range-starlight:-webkit-slider-thumb {
-  background: var(--q-color-starlight-blue);
+  background: var(--q-color-starlight-blue) !important;
   box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
 
@@ -1191,7 +1191,7 @@ html[data-theme="light"] .range-starlight:-webkit-slider-thumb {
   appearance: none;
   width: 18px;
   height: 18px;
-  background: var(--q-color-starlight-blue);
+  background: var(--q-color-starlight-blue) !important;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 0 10px var(--q-color-starlight-glow);
