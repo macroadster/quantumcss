@@ -488,7 +488,7 @@ html[data-theme="light"] .dropdown-content {
 }
 
 .dropdown-item:hover {
-  background-color: #f3f4f6;
+  background-color: var(--q-color-primary);
   color: #1e293b;
 }
 
@@ -497,7 +497,7 @@ html[data-theme="light"] .dropdown-item {
 }
 
 html[data-theme="light"] .dropdown-item:hover {
-  background-color: #f3f4f6;
+  background-color: var(--q-color-starlight-blue);
   color: #1e293b;
 }
 

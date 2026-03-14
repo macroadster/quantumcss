@@ -512,7 +512,7 @@ html[data-theme="light"] .dialog-content {
 }
 
 .dropdown-item:hover {
-  background-color: rgba(0, 212, 255, 0.8);
+  background-color: var(--q-color-primary);
   color: black;
 }
 
@@ -982,7 +982,7 @@ html[data-theme="light"] .nav-link {
 }
 
 html[data-theme="light"] .nav-link:hover {
-  color: #1e293b;
+  color: var(--q-color-starlight-blue);
 }
 
 .hamburger {
