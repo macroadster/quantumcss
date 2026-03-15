@@ -31,8 +31,6 @@ html[data-theme="light"] a:hover {
   border: 1px solid var(--q-color-border);
   border-radius: var(--q-radius-2xl);
   padding: var(--q-space-10);
-  backdrop-filter: var(--q-glass-blur);
-  -webkit-backdrop-filter: var(--q-glass-blur);
   position: relative;
   transition: border-color var(--q-duration-base) var(--q-ease-in-out), 
               transform var(--q-duration-base) var(--q-ease-in-out), 

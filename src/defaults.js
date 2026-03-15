@@ -163,8 +163,8 @@ const utilityMaps = {
     value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px', 'solid']
   },
   'theme-glass-dark': {
-    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width', 'border-style'],
-    value: ['rgba(255, 255, 255, 0.05)', 'blur(16px)', 'blur(16px)', 'rgba(255, 255, 255, 0.1)', '1px', 'solid']
+    property: ['background-color', 'border-color', 'border-width', 'border-style'],
+    value: ['rgba(255, 255, 255, 0.05)', 'rgba(255, 255, 255, 0.1)', '1px', 'solid']
   },
   'starlight-dialog-bg': { 
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter'], 
