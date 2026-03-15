@@ -36,7 +36,7 @@ function updateBuildJsBanner(version) {
 }
 
 function updatePortfolioTimeline(version) {
-  const portfolioPath = path.join(rootDir, 'examples', 'portfolio-resume.html');
+  const portfolioPath = path.join(rootDir, 'examples', 'portfolio.html');
   let content = fs.readFileSync(portfolioPath, 'utf8');
   
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 
@@ -59,7 +59,7 @@ function updatePortfolioTimeline(version) {
   content = content.replace(timelineStart, `<div class="starlight-timeline">${newEntry}`);
   
   fs.writeFileSync(portfolioPath, content);
-  console.log(`✓ Added v${version} entry to portfolio-resume.html timeline`);
+  console.log(`✓ Added v${version} entry to portfolio.html timeline`);
 }
 
 function release() {
