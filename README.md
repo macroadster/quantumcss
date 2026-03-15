@@ -2,7 +2,7 @@
 
 ![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.10.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Bundle Size](https://img.shields.io/badge/bundle%20size-18%20KB%20(gzipped)-brightgreen)
+![Bundle Size](https://img.shields.io/badge/bundle%20size-29%20KB%20(gzipped)-brightgreen)
 
 A modern, performance-optimized utility-first CSS framework with semantic naming, recursive component presets, and advanced cosmic effects.
 
@@ -21,7 +21,7 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 - **Unified Naming Standard** - Consistent `--q-` prefix for all CSS variables (e.g., `--q-color-primary`).
 - **Attribute-Driven Styling** - No more monolithic class strings! Use dedicated attributes for environment and interactivity.
 - **Zero-Escape CSS** - 100% clean CSS output without risky backslash escapes.
-- **TypeScript Support** - Full type definitions
+- **TypeScript-Ready** - Developed with TypeScript for internal type safety
 - **Zero Configuration** - Works out of the box
 
 ## 🎨 Advanced Utilities
@@ -62,29 +62,7 @@ QuantumCSS includes a powerful CLI for project orchestration:
 - **`npx quantumcss build [output]`** - Generate the JIT CSS bundle (default: `dist/quantum.css`).
 - **`npx quantumcss watch [output]`** - Automatically rebuild when your HTML or config changes.
 - **`npx quantumcss scaffold <type>`** - Generate a starter template (`gaming`, `blog`, `travel`, etc.).
-- **`npx quantumcss semantic <input> [htmlOut] [cssOut]`** - Rewrite a supported legacy template into semantic HTML plus a scoped CSS file.
-
-### Semantic Template Conversion
-The semantic transformer is designed for legacy QuantumCSS templates that still rely on structural classes. The current supported families are `mail`, `chat`, `music`, `blog`, `admin`, `analytics`, and `video`, and the converter can run standalone or from the build pipeline.
-
-```json
-{
-  "semanticTemplates": [
-    {
-      "input": "examples/email-template.html",
-      "htmlOutput": "examples/email-template.semantic.html",
-      "cssOutput": "examples/email-template.mail.css"
-    },
-    {
-      "input": "examples/chat-messaging.html",
-      "htmlOutput": "examples/chat-messaging.semantic.html",
-      "cssOutput": "examples/chat-messaging.chat.css"
-    }
-  ]
-}
-```
-
-When `semanticTemplates` is present in `quantum.config.json`, `node scripts/build.js --semantic` will generate those outputs after the CSS bundle finishes.
+- **`npx quantumcss manifest [output]`** - Generate an AI-optimized design system manifest.
 
 ## ⚙️ Configuration
 
@@ -164,7 +142,7 @@ QuantumCSS automatically optimizes contrast for accessibility when the user enab
 - **Motion Sensitivity**: Automatically scales down or disables complex animations when `prefers-reduced-motion` is detected.
 
 ### Optimized Payload
-- **Gzipped Bundle**: ~24 KB (Full library + JIT utilities)
+- **Gzipped Bundle**: ~29 KB (Full library + JIT utilities)
 - **Zero Runtime**: No heavy JavaScript required for layout or styling.
 - **JIT Tree-Shaking**: Only the utilities you actually use are included in your final production build.
 

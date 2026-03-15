@@ -113,21 +113,5 @@
     "starlight-form": "card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start",
     "starlight-dialog": "dialog-base modal-fixed theme-glass-dark starlight-dialog-bg ani-scale-in"
   },
-  "semanticStrip": {
-    "templates": [
-      { "input": "examples/travel.html", "output": "examples/research/travel" },
-      { "input": "examples/shopping.html", "output": "examples/research/shopping" },
-      { "input": "examples/video-streaming.html", "output": "examples/research/video" },
-      { "input": "examples/music-streaming.html", "output": "examples/research/music" },
-      { "input": "examples/email-client.html", "output": "examples/research/email" },
-      { "input": "examples/chat-messaging.html", "output": "examples/research/chat" },
-      { "input": "examples/blog.html", "output": "examples/research/blog" },
-      { "input": "examples/analytics-dashboard.html", "output": "examples/research/analytics" },
-      { "input": "examples/admin-panel.html", "output": "examples/research/admin" },
-      { "input": "examples/gaming-portal.html", "output": "examples/research/gaming" },
-      { "input": "examples/news.html", "output": "examples/research/news" },
-      { "input": "examples/portfolio.html", "output": "examples/research/portfolio" }
-    ]
-  },
   "darkMode": "media"
 }
