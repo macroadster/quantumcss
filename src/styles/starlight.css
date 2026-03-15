@@ -1174,9 +1174,9 @@ html[data-theme="light"] .select-starlight {
 .range-starlight {
   appearance: none;
   width: 100%;
-  height: 6px;
+  height: 4px;
   background: var(--q-color-border-strong);
-  border-radius: 3px;
+  border-radius: 2px;
   outline: none;
 }
 
@@ -1191,8 +1191,8 @@ html[data-theme="light"] .range-starlight:-webkit-slider-thumb {
 
 .range-starlight:-webkit-slider-thumb {
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   background: var(--q-color-starlight-blue) !important;
   border-radius: 50%;
   cursor: pointer;
