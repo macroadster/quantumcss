@@ -117,7 +117,6 @@ html[data-theme="light"] .card {
 
 .card:hover {
   box-shadow: var(--q-shadow-lg);
-  transform: translateY(-2px);
 }
 
 .card-premium {
@@ -234,7 +233,12 @@ html[data-theme="light"] .input:disabled {
 }
 
 /* Badge Component */
-.badge {
+.badge,
+.badge-primary,
+.badge-secondary,
+.badge-success,
+.badge-warning,
+.badge-error {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.75rem;

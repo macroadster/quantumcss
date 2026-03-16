@@ -4,6 +4,8 @@
     --primary: #f8fafc;
     --secondary: #94a3b8;
     --accent: #00d4ff;
+    --highlight: rgba(0, 212, 255, 0.1);
+    --accent-glow: rgba(0, 212, 255, 0.35);
 }
 
 body {
@@ -202,17 +204,9 @@ header > div:first-child {
     color: var(--secondary);
 }
 
-.badge-primary {
-    background-color: var(--accent);
-    color: #000;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-weight: 600;
-}
-
 h1 {
     font-size: 3rem; /* text-5xl */
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1.25; /* leading-tight */
     letter-spacing: -0.05em; /* tracking-tighter */
     margin: 0;
@@ -298,7 +292,7 @@ article p {
 
 h2 {
     font-size: 1.875rem;
-    font-weight: 900;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -346,16 +340,52 @@ h2 span {
     gap: 1.5rem;
 }
 
+.nav-menu-mobile ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-menu-mobile li {
+    width: 100%;
+}
+
 .nav-menu-mobile a {
+    display: block;
+    width: 100%;
     color: var(--primary);
     text-decoration: none;
     font-weight: 500;
     font-size: 1.125rem;
-    transition: color 0.3s;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav-menu-mobile a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.4s ease-in-out;
+    transform: translateX(-50%);
 }
 
 .nav-menu-mobile a:hover {
+    background: var(--highlight);
     color: var(--accent);
+}
+
+.nav-menu-mobile a:hover::after {
+    width: 80%;
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .nav-menu-mobile li:last-child {
@@ -370,24 +400,6 @@ h2 span {
 /* Toggle logic - assuming 'active' class */
 .nav-menu-mobile.active {
     display: block;
-}
-
-/* Buttons */
-button:not(.btn-outline), .btn-starlight {
-    background-color: var(--accent);
-    color: #000;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, opacity 0.2s;
-}
-
-button:not(.btn-outline):hover, .btn-starlight:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
 }
 
 .starlight-navbar .right button {
@@ -459,20 +471,6 @@ article > div:last-of-type span {
     margin-right: 0.5rem;
 }
 
-.badge-secondary {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--primary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    text-decoration: none;
-    transition: background 0.3s;
-}
-
-.badge-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
 /* Sidebar Styles */
 aside {
     display: flex;
@@ -540,7 +538,6 @@ input[type="email"] {
 }
 
 aside button:not(.btn-outline) {
-    background: var(--accent);
     color: #000;
     border: none;
     padding: 0.75rem;
