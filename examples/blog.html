@@ -5,201 +5,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Starlight Blog Template</title>
   <link rel="stylesheet" href="../dist/quantum.min.css">
+  <link rel="stylesheet" href="blog.css">
   <script src="../src/starlight.js"></script>
-  <style>
-    /* Theme Toggle Styling */
-    .theme-toggle {
-        cursor: pointer;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        transition: background 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .theme-toggle:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    html[data-theme="light"] .theme-toggle:hover {
-        background: rgba(0, 0, 0, 0.05);
-    }
-
-    .sun-icon { display: none; }
-    html[data-theme="light"] .sun-icon { display: block; }
-    html[data-theme="light"] .moon-icon { display: none; }
-
-    html[data-theme="light"] {
-        background-color: #f8fafc;
-        color: #1e293b;
-    }
-
-    html[data-theme="light"] .text-primary,
-    html[data-theme="light"] h1,
-    html[data-theme="light"] h2,
-    html[data-theme="light"] h3,
-    html[data-theme="light"] h4 {
-        color: #0f172a !important;
-    }
-
-    html[data-theme="light"] .text-secondary,
-    html[data-theme="light"] .text-muted,
-    html[data-theme="light"] .text-slate-300,
-    html[data-theme="light"] .prose,
-    html[data-theme="light"] .prose p {
-        color: #475569 !important;
-    }
-
-    html[data-theme="light"] .glass {
-        background: rgba(255, 255, 255, 0.8) !important;
-        border-color: rgba(0, 0, 0, 0.1) !important;
-    }
-
-    html[data-theme="light"] .starlight-card {
-        background: white;
-        border-color: #e2e8f0;
-    }
-
-    html[data-theme="light"] .code-window {
-        background: #f1f5f9;
-        border-color: #e2e8f0;
-    }
-
-    html[data-theme="light"] .code-window pre {
-        color: #1e293b;
-    }
-    body { background: transparent !important; }
-    nav, main, footer, section { position: relative; z-index: 1; }
-  </style>
 </head>
-<body class="bg-starlight-deep text-primary font-sans antialiased min-h-screen relative overflow-x-hidden">
+<body>
+
+  <!-- ── Starfield ── -->
+  <div class="stars-bg" id="stars"></div>
   
-  <!-- Ambient Background Glows -->
-  <div class="starlight-stars">
-    <div class="star" style="top: 10%; left: 20%; --duration: 3s;"></div>
-    <div class="star" style="top: 30%; left: 80%; --duration: 4s;"></div>
-    <div class="star" style="top: 70%; left: 40%; --duration: 5s;"></div>
-    <div class="star" style="top: 50%; left: 10%; --duration: 3s;"></div>
-    <div class="star" style="top: 90%; left: 90%; --duration: 4s;"></div>
-  </div>
-
-  <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-n1 pointer-events-none">
-    <div class="absolute top-0 left-0 w-full h-full bg-gradient-radial from-primary opacity-10"></div>
-  </div>
-
   <!-- Navigation -->
   <nav class="starlight-navbar">
-    <div class="container mx-auto px-6 h-24 flex items-center justify-between">
-      <div class="md:hidden hamburger-left">
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+    <div class="container">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="flex items-center gap-4">
-        <div class="w-8 h-8 rounded-full bg-starlight animate-pulse"></div>
-        <span class="text-xl font-bold text-gradient-starlight">
+      <div class="left">
+        <div class="logo"></div>
+        <span class="banner">
           StarlightBlog
         </span>
       </div>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#" class="text-sm font-medium hover:text-primary transition-colors">Home</a>
-        <a href="#" class="text-sm font-medium hover:text-primary transition-colors">Articles</a>
-        <a href="#" class="text-sm font-medium hover:text-primary transition-colors">About</a>
-        <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
-            <i class="q-icon-sun sun-icon"></i>
-            <i class="q-icon-moon moon-icon"></i>
+      <div class="right">
+        <a href="#">Home</a>
+        <a href="#">Articles</a>
+        <a href="#">About</a>
+        <div class="theme-toggle" title="Toggle Theme">
+            <i class="q-icon-sun"></i>
+            <i class="q-icon-moon"></i>
         </div>
-        <button class="btn-starlight btn-sm">Subscribe</button>
       </div>
     </div>
 
     <!-- Mobile Menu -->
     <div class="nav-menu-mobile">
-      <ul class="nav-list vertical">
-        <li><a href="#" class="nav-link">Home</a></li>
-        <li><a href="#" class="nav-link">Articles</a></li>
-        <li><a href="#" class="nav-link">About</a></li>
-        <li class="pt-4 border-t border-white_5">
-          <button class="btn-starlight w-full py-3">Subscribe</button>
-        </li>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Articles</a></li>
+        <li><a href="#">About</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <main class="container mx-auto px-6 py-24">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+  <main>
+    <div>
       
       <!-- Article Column -->
-      <article class="lg:col-span-8 space-y-16">
+      <article>
         
         <!-- Header -->
-        <header class="space-y-8">
-          <div class="flex items-center gap-4 text-sm text-secondary">
-            <span class="badge badge-primary">Technology</span>
+        <header>
+          <div>
+            <span class="badge-primary">Technology</span>
             <span>•</span>
             <time datetime="2026-02-01">February 1, 2026</time>
             <span>•</span>
             <span>5 min read</span>
           </div>
           
-          <h1 class="text-5xl md:text-7xl font-black leading-tight text-primary uppercase italic tracking-tighter">
-            The Future of <span class="text-gradient-starlight">UI Design</span>
+          <h1>
+            The Future of <span class="text-gradient">UI Design</span>
           </h1>
 
-          <div class="flex items-center gap-4 pt-4">
-            <img src="images/eric.png" alt="Eric Yang" class="w-12 h-12 rounded-full border border-accent_30">
+          <div>
+            <img src="images/eric.png" class="avatar" alt="Eric Yang">
             <div>
-              <p class="font-bold text-primary uppercase text-xs tracking-widest">Eric Yang</p>
-              <p class="text-xs text-secondary font-medium">Frontend Architect</p>
+              <p>Eric Yang</p>
+              <p>Frontend Architect</p>
             </div>
           </div>
         </header>
 
         <!-- Featured Image -->
-        <div class="rounded-2xl overflow-hidden glass p-1 group">
-          <div class="aspect-video bg-black_40 rounded-xl relative overflow-hidden">
+        <div>
+          <div>
             <img src="images/starlight.jpg" alt="Starlight Aesthetics" class="w-full h-full object-cover">
           </div>
         </div>
 
         <!-- Content -->
-        <div class="prose max-w-none text-slate-300 text-lg leading-relaxed space-y-10">
-          <p class="text-2xl text-primary font-medium">
-            Glassmorphism, neon glows, and deep gradients are making a comeback. Powered by modern CSS, they create an immersive experience.
-          </p>
+        <p>
+          Glassmorphism, neon glows, and deep gradients are making a comeback. Powered by modern CSS, they create an immersive experience.
+        </p>
           
-          <div class="space-y-6">
-            <h2 class="text-3xl font-black text-primary uppercase italic tracking-tighter flex items-center gap-4">
-              <span class="w-2 h-10 bg-starlight rounded-full shadow-[0_0_15px_rgba(0,212,255,0.5)]"></span>
-              The Starlight Paradigm
-            </h2>
-            <p>
-              The "Starlight" aesthetic combines the ethereal beauty of space with the precision of modern interface design.
-            </p>
-          </div>
+        <h2>
+          <span class="accent-bar"></span>
+          The Starlight Paradigm
+        </h2>
+        <p>
+          The "Starlight" aesthetic combines the ethereal beauty of space with the precision of modern interface design.
+        </p>
 
-          <div class="glass p-8 rounded-2xl   border-accent bg-accent_5 italic text-xl text-primary">
-            "Design is not just what it looks like and feels like. Design is how it works... in zero gravity."
-          </div>
+        <div class="blue-card">
+          "Design is not just what it looks like and feels like. Design is how it works... in zero gravity."
+        </div>
 
-          <div class="space-y-6">
-            <h2 class="text-3xl font-black text-primary uppercase italic tracking-tighter">Code Interface</h2>
-            <div class="code-window">
-              <div class="code-window-header">
-                <div class="code-window-controls">
-                  <div class="code-window-dot bg-red-500"></div>
-                  <div class="code-window-dot bg-yellow-500"></div>
-                  <div class="code-window-dot bg-green-500"></div>
-                </div>
-                <span class="code-window-title">quantum.config.json</span>
+        <div>
+          <h2>Code Interface</h2>
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="code-window-controls">
+                <div class="code-window-dot bg-red-500"></div>
+                <div class="code-window-dot bg-yellow-500"></div>
+                <div class="code-window-dot bg-green-500"></div>
               </div>
-              <pre class="p-8 text-sm overflow-x-auto bg-white_5"><code>{
+              <span class="code-window-title">quantum.config.json</span>
+            </div>
+            <pre>
+              <code>
+{
   "theme": {
     "extend": {
       "colors": {
@@ -207,55 +123,56 @@
       }
     }
   }
-}</code></pre>
-            </div>
+}
+              </code>
+            </pre>
           </div>
         </div>
 
         <!-- Tags -->
-        <div class="flex flex-wrap gap-2 pt-8 mt-12">
-          <span class="text-muted text-sm mr-2">Tags:</span>
-          <a href="#" class="badge badge-secondary hover:bg-white_10 transition-colors">CSS</a>
-          <a href="#" class="badge badge-secondary hover:bg-white_10 transition-colors">Design</a>
-          <a href="#" class="badge badge-secondary hover:bg-white_10 transition-colors">QuantumCSS</a>
+        <div>
+          <span>Tags:</span>
+          <a href="#" class="badge-secondary">CSS</a>
+          <a href="#" class="badge-secondary">Design</a>
+          <a href="#" class="badge-secondary">QuantumCSS</a>
         </div>
 
       </article>
 
       <!-- Sidebar -->
-      <aside class="lg:col-span-4 space-y-8">
+      <aside>
         
         <!-- Author Card -->
-        <div class="starlight-card">
-          <h3 class="text-lg font-bold mb-4 text-white">About the Author</h3>
-          <p class="text-secondary text-sm mb-4">
+        <div class="card">
+          <h3>About the Author</h3>
+          <p>
             Eric is a frontend wizard obsessed with making the web feel more organic and alive.
           </p>
-          <button class="btn btn-outline w-full h-12 text-sm">Follow</button>
+          <button>Follow</button>
         </div>
 
         <!-- Newsletter -->
-        <div class="glass p-6 rounded-2xl glow-blue border border-white_5">
-          <h3 class="text-lg font-bold mb-2 text-primary">Join the Newsletter</h3>
-          <p class="text-secondary text-sm mb-4">Get the latest design trends delivered to your inbox.</p>
-          <form class="space-y-3">
-            <input type="email" placeholder="your@email.com" class="input-starlight w-full bg-black_20 border-white_10">
-            <button class="btn-starlight w-full">Subscribe</button>
+        <div class="glass">
+          <h3>Join the Newsletter</h3>
+          <p>Get the latest design trends delivered to your inbox.</p>
+          <form>
+            <input type="email" placeholder="your@email.com">
+            <button>Subscribe</button>
           </form>
         </div>
 
         <!-- Recommended -->
-        <div class="space-y-4">
-          <h3 class="text-xs font-bold text-muted uppercase tracking-wider">Recommended</h3>
+        <div class="card">
+          <h3>Recommended</h3>
           
-          <a href="#" class="block glass p-4 rounded-xl hover:bg-white_5 transition-colors group">
-            <h4 class="font-bold text-primary group-hover:text-primary transition-colors">Glassmorphism in 2026</h4>
-            <p class="text-xs text-muted mt-1">Feb 1 • 4 min read</p>
+          <a href="#">
+            <h4>Glassmorphism in 2026</h4>
+            <p>Feb 1 • 4 min read</p>
           </a>
           
-          <a href="#" class="block glass p-4 rounded-xl hover:bg-white_5 transition-colors group">
-            <h4 class="font-bold text-primary group-hover:text-primary transition-colors">Modern CSS Variables</h4>
-            <p class="text-xs text-muted mt-1">Jan 28 • 8 min read</p>
+          <a href="#">
+            <h4>Modern CSS Variables</h4>
+            <p>Jan 28 • 8 min read</p>
           </a>
         </div>
 
@@ -265,24 +182,33 @@
   </main>
 
   <!-- Footer -->
-  <footer class="starlight-footer">
-    <div class="container mx-auto px-6 py-12">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-muted text-sm">
-          © 2026 StarlightBlog. Powered by QuantumCSS.
-        </div>
-        <div class="flex gap-6">
-          <a href="#" class="text-muted hover:text-primary transition-colors">Privacy</a>
-          <a href="#" class="text-muted hover:text-primary transition-colors">Terms</a>
-        </div>
+  <footer>
+    <div>
+      <div class="left">
+        © 2026 StarlightBlog. Powered by QuantumCSS.
+      </div>
+      <div class="right">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Theme initialization is handled automatically by starlight.js
-    // Custom template logic can go here
+    /* ── Stars ── */
+    const starsEl = document.getElementById("stars");
+    for (let i = 0; i < 120; i++) {
+        const s = document.createElement("div");
+        s.className = "star";
+        const size = Math.random() * 2.5 + 0.5;
+        s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random() * 100}%; top:${Math.random() * 100}%;
+      --d:${2 + Math.random() * 5}s;
+      animation-delay:${Math.random() * 5}s;
+    `;
+        starsEl.appendChild(s);
+    }
   </script>
-
 </body>
 </html>

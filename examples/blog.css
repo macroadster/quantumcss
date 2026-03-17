@@ -1,0 +1,287 @@
+/* Global Styles & Reset */
+:root {
+    --starlight-deep: #020617;
+    --primary: #f8fafc;
+    --secondary: #94a3b8;
+    --accent: #00d4ff;
+    --highlight: rgba(0, 212, 255, 0.1);
+    --accent-glow: rgba(0, 212, 255, 0.35);
+}
+
+body {
+    background-color: var(--starlight-deep) !important;
+    color: var(--primary);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100-vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Main Content Layout */
+main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+}
+
+main > div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+    main > div {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    
+    article {
+        grid-column: span 8 / span 8;
+    }
+    
+    aside {
+        grid-column: span 4 / span 4;
+    }
+}
+
+/* Article Styles */
+article {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* Standard content gap (40px) */
+}
+
+/* Major section transitions (Header and Featured Image) */
+article > header, 
+article > div:nth-child(2) {
+    margin-bottom: 1.5rem; /* Adds to the 2.5rem gap to create a 4rem (64px) gap */
+}
+
+/* Article Tags section transition */
+article > div:last-of-type {
+    margin-top: 1.5rem; /* Creates the larger 4rem gap before tags */
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Consistent 32px gap for header elements */
+}
+
+header > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--secondary);
+}
+
+header > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+header > div:last-child p:first-child {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+header > div:last-child p:last-child {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Featured Image */
+article > div:nth-child(2) {
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    padding: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+article > div:nth-child(2) > div {
+    aspect-ratio: 16 / 9;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+article > div:nth-child(2) img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Content Body */
+article > p:first-of-type {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+article p {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #cbd5e1;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Tags */
+article > div:last-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 2rem;
+    margin-top: 3rem;
+}
+
+article > div:last-of-type span {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-right: 0.5rem;
+}
+
+aside > div:last-child h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+}
+
+aside > div:last-child a {
+    display: block;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.3s;
+}
+
+aside > div:last-child a:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+aside > div:last-child h4 {
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0;
+}
+
+aside > div:last-child a p {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0.25rem 0 0;
+}
+
+/* Theme Toggle (Re-used from original) */
+.theme-toggle {
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="light"] .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.q-icon-sun { display: none; }
+html[data-theme="light"] .q-icon-sun { display: block; }
+html[data-theme="light"] .q-icon-moon { display: none; }
+
+html[data-theme="light"] {
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+html[data-theme="light"] body {
+    background-color: #f8fafc !important;
+    color: #1e293b;
+}
+
+html[data-theme="light"] .starlight-navbar {
+    background: rgba(248, 250, 252, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .nav-menu-mobile {
+    background: rgba(248, 250, 252, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4 {
+    color: #0f172a !important;
+}
+
+html[data-theme="light"] article p,
+html[data-theme="light"] .card p,
+html[data-theme="light"] .glass p,
+html[data-theme="light"] .blue-card {
+    color: #1e293b !important;
+}
+
+html[data-theme="light"] .glass {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light"] .card {
+    background: white;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] aside > div:last-child a {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="light"] aside > div:last-child a:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .code-window {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .code-window pre {
+    color: #1e293b;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}
