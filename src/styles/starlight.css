@@ -947,7 +947,7 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
   overflow: visible !important;
 }
 
-.search-container:focus-within, .starlight-search:focus-within {
+.starlight-search:focus-within {
   box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
   border-color: var(--q-color-starlight-blue);
   outline: none;
@@ -989,7 +989,6 @@ input[type="email"] {
   border: none;
 }
 
-html[data-theme="light"] .search-container,
 html[data-theme="light"] .starlight-search {
   background-color: #fff;
   border: 1px solid #cbd5e1;
@@ -2410,7 +2409,6 @@ html[data-theme="light"] .starlight-layout {
 aside {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .card {

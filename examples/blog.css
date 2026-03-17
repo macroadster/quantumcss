@@ -159,6 +159,10 @@ article > div:last-of-type span {
     margin-right: 0.5rem;
 }
 
+aside {
+    gap: 2rem;
+}
+
 aside > div:last-child h3 {
     font-size: 0.75rem;
     text-transform: uppercase;
