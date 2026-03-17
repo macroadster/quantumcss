@@ -1,0 +1,439 @@
+:root {
+    --side-padding: 1.5rem;
+    --max-width: 1200px;
+    --color-starlight: #00d4ff;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   GLOBAL & THEME
+   ========================================================================== */
+
+body {
+    background: radial-gradient(circle at top right, #1a1a3a, #0a0a1a 40%), #050505;
+    color: #f1f5f9;
+    margin: 0;
+    font-family: var(--q-font-sans, sans-serif);
+    min-height: 100vh;
+}
+
+html[data-theme="light"] body {
+    background: #f8fafc !important;
+    color: #1e293b;
+}
+
+/* Use Core Text Gradient Logic */
+brand-text, brand-logo, footer-logo {
+    display: inline-block;
+    background: linear-gradient(to right, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: inherit;
+}
+
+html[data-theme="light"] brand-text, 
+html[data-theme="light"] brand-logo, 
+html[data-theme="light"] footer-logo {
+    background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.theme-toggle {
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.theme-toggle:hover { background: rgba(255, 255, 255, 0.1); }
+html[data-theme="light"] .theme-toggle:hover { background: rgba(0, 0, 0, 0.05); }
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+
+gaming-nav {
+    display: block;
+    background: rgba(8, 8, 26, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem var(--side-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+brand-logo {
+    font-size: 1.875rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    cursor: pointer;
+}
+
+nav-actions { display: flex; align-items: center; gap: 2rem; }
+
+nav-menu.desktop { display: flex; align-items: center; gap: 2rem; }
+
+nav-links { display: flex; gap: 2rem; }
+nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+nav-links a:hover { color: var(--color-starlight); }
+
+theme-controls { display: flex; align-items: center; gap: 1rem; }
+
+.btn-play {
+    background: linear-gradient(to right, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+    color: #000;
+    padding: 0.625rem 2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transition: transform 0.2s;
+}
+.btn-play:hover { transform: scale(1.05); }
+
+html[data-theme="light"] .btn-play {
+    background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
+}
+
+/* Mobile Navigation */
+nav-menu.mobile { display: none; align-items: center; gap: 1rem; }
+
+.hamburger {
+    display: flex; flex-direction: column; gap: 4px; cursor: pointer;
+}
+.hamburger span { width: 24px; height: 2px; background: white; transition: 0.3s; }
+
+mobile-dropdown {
+    display: none;
+    padding: 1.5rem var(--side-padding);
+    background: rgba(8, 8, 26, 0.98);
+    flex-direction: column;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+mobile-dropdown.active { display: flex; }
+mobile-dropdown a { color: #f1f5f9; text-decoration: none; font-size: 1.125rem; font-weight: 500; }
+
+@media (max-width: 768px) {
+    nav-menu.desktop { display: none; }
+    nav-menu.mobile { display: flex; }
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+hero-section {
+    display: flex;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(10, 10, 26, 0.4), rgba(10, 10, 26, 0.9)), 
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+hero-content { max-width: 800px; padding: 0 var(--side-padding); }
+
+trending-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--color-starlight);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+hero-title {
+    display: block;
+    font-size: 4.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+}
+
+hero-description {
+    display: block;
+    font-size: 1.25rem;
+    color: #94a3b8;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+hero-actions { display: flex; gap: 1.5rem; justify-content: center; }
+hero-actions button {
+    padding: 1rem 3rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-buy { background: white; color: #000; border: none; }
+.btn-buy:hover { background: var(--color-starlight); }
+
+.btn-trailer {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+.btn-trailer:hover { background: rgba(255, 255, 255, 0.1); }
+
+@media (max-width: 768px) {
+    hero-title { font-size: 3rem; }
+    hero-actions { flex-direction: column; }
+}
+
+/* ==========================================================================
+   FEATURED GAMES
+   ========================================================================== */
+
+featured-games {
+    display: block;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 6rem var(--side-padding);
+}
+
+section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+}
+
+sub-title {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-starlight);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+main-title {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.view-all {
+    color: var(--color-starlight);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-starlight);
+    padding-bottom: 4px;
+}
+
+game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+game-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+game-card:hover { transform: translateY(-8px); border-color: var(--color-starlight); }
+
+game-image {
+    display: block; height: 200px; background-size: cover; background-position: center; transition: 0.5s;
+}
+game-card:hover game-image { transform: scale(1.05); }
+
+game-details { display: block; padding: 1.5rem; }
+
+game-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+game-title { font-size: 1.25rem; font-weight: 700; }
+game-price { color: var(--color-starlight); font-weight: 700; }
+
+game-desc { display: block; font-size: 0.875rem; color: #94a3b8; margin-bottom: 1rem; }
+
+game-tags { display: flex; gap: 0.5rem; }
+tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   FAQ & CTA
+   ========================================================================== */
+
+faq-section {
+    display: block;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-padding) 8rem;
+}
+
+faq-header { display: block; text-align: center; margin-bottom: 3rem; }
+
+accordion-list { display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto; }
+
+cta-section {
+    display: block;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-padding) 8rem;
+}
+
+cta-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    padding: 4rem;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.1);
+}
+
+cta-title { display: block; font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; }
+cta-description { display: block; font-size: 1.125rem; color: #94a3b8; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+cta-form { display: flex; gap: 1rem; justify-content: center; }
+cta-form input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    outline: none;
+}
+cta-form button {
+    background: linear-gradient(to right, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+    color: #000;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transition: 0.3s;
+}
+cta-form button:hover { transform: scale(1.05); }
+
+html[data-theme="light"] cta-form button {
+    background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
+}
+
+@media (max-width: 768px) {
+    cta-form { flex-direction: column; }
+    cta-form input { max-width: none; }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer {
+    background: #050505;
+    padding: 5rem var(--side-padding);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+footer-container { display: block; max-width: var(--max-width); margin: 0 auto; }
+
+footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+footer-column h5 { font-size: 1.125rem; font-weight: 700; margin: 0 0 1.5rem; }
+footer-column nav { display: flex; flex-direction: column; gap: 1rem; }
+footer-column nav a { color: #64748b; text-decoration: none; transition: 0.2s; }
+footer-column nav a:hover { color: white; }
+
+footer-logo {
+    display: block; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.05em;
+    margin-bottom: 1.5rem;
+}
+
+footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+social-links { display: flex; gap: 2rem; }
+social-links a { color: #64748b; text-decoration: none; }
+social-links a:hover { color: var(--color-starlight); }
+
+@media (max-width: 1024px) {
+    footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+    footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES
+   ========================================================================== */
+
+html[data-theme="light"] gaming-nav { background: #fff; border-bottom-color: #e2e8f0; }
+html[data-theme="light"] nav-links a { color: #64748b; }
+html[data-theme="light"] nav-links a:hover { color: #2563eb; }
+
+html[data-theme="light"] hero-section {
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95)), 
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
+}
+html[data-theme="light"] hero-description { color: #64748b; }
+html[data-theme="light"] .btn-trailer { color: #1e293b; border-color: #e2e8f0; }
+
+html[data-theme="light"] game-card { background: #fff; border-color: #e2e8f0; }
+html[data-theme="light"] game-desc { color: #64748b; }
+html[data-theme="light"] tag { background: #f1f5f9; color: #64748b; }
+
+html[data-theme="light"] cta-card { background: #fff; border-color: #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+html[data-theme="light"] cta-description { color: #64748b; }
+html[data-theme="light"] cta-form input { background: #f1f5f9; border-color: #e2e8f0; color: #1e293b; }
+
+html[data-theme="light"] footer { background: #fff; border-top-color: #e2e8f0; }
+html[data-theme="light"] footer-column nav a { color: #64748b; }
+html[data-theme="light"] footer-column nav a:hover { color: #1e293b; }

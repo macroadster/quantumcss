@@ -1,471 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameVault - Ultra Gaming Experience</title>
-    <link rel="stylesheet" href="../dist/quantum.min.css">
-    <style>
-        body {
-            background: radial-gradient(circle at top right, #1a1a3a, #0a0a1a 40%), #050505;
-            color: var(--q-text-primary);
-            min-height: 100vh;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GameVault - Ultra Gaming Experience</title>
+        <link rel="stylesheet" href="../dist/quantum.min.css" />
+        <link rel="stylesheet" href="../src/styles/quantum-components.css" />
+        <link rel="stylesheet" href="gaming-portal.css" />
+    </head>
+    <body>
+        <!-- Navigation -->
+        <gaming-nav>
+            <nav-container>
+                <brand-logo>GAMEVAULT</brand-logo>
 
-        html[data-theme="light"] {
-            background: var(--q-light-bg);
-            color: var(--q-light-text);
-        }
+                <nav-actions>
+                    <nav-menu class="desktop">
+                        <nav-links>
+                            <a href="#">Store</a>
+                            <a href="#">Games</a>
+                            <a href="#">News</a>
+                            <a href="#">Community</a>
+                        </nav-links>
 
-        html[data-theme="light"] body {
-            background: var(--q-light-bg) !important;
-        }
+                        <theme-controls>
+                            <div class="theme-toggle" onclick="toggleTheme()">
+                                <i class="q-icon-sun sun-icon"></i>
+                                <i class="q-icon-moon moon-icon"></i>
+                            </div>
+                            <button class="btn-play">Play Now</button>
+                        </theme-controls>
+                    </nav-menu>
 
-        .hero-section {
-            background: linear-gradient(rgba(10, 10, 26, 0.4), rgba(10, 10, 26, 0.9)), 
-                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        html[data-theme="light"] .hero-section {
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95)), 
-                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .game-card-img {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Theme Toggle Styling */
-        .theme-toggle {
-            cursor: pointer;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        html[data-theme="light"] .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        html[data-theme="light"] .glass {
-            background: var(--q-light-card-bg) !important;
-            border-color: var(--q-light-card-border) !important;
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .badge-secondary {
-            background-color: var(--q-glass-bg);
-            color: var(--q-light-text-muted);
-            border-color: var(--q-light-card-border);
-        }
-
-        html[data-theme="light"] .starlight-card p {
-            color: var(--q-light-text-muted);
-        }
-
-        html[data-theme="light"] footer {
-            background-color: var(--q-light-bg);
-            border-top-color: var(--q-light-card-border);
-        }
-
-        html[data-theme="light"] footer .text-gradient {
-            background: none;
-            -webkit-text-fill-color: var(--q-light-text);
-            color: var(--q-light-text);
-        }
-
-        html[data-theme="light"] footer p, 
-        html[data-theme="light"] footer a {
-            color: var(--q-light-text-muted);
-        }
-
-        html[data-theme="light"] footer a:hover {
-            color: var(--q-color-primary);
-        }
-
-        html[data-theme="light"] .starlight-nav {
-            background: var(--q-light-card-bg) !important;
-            border-bottom-color: var(--q-light-card-border) !important;
-        }
-
-        html[data-theme="light"] .starlight-nav .text-gradient {
-            background: none;
-            -webkit-text-fill-color: var(--q-light-text);
-            color: var(--q-light-text);
-        }
-
-        html[data-theme="light"] .nav-link {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .nav-link:hover {
-            color: var(--q-color-primary) !important;
-        }
-
-        html[data-theme="light"] .hero-section h1 {
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .hero-section p {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .hero-section .badge-primary {
-            background-color: rgba(37, 99, 235, 0.1) !important;
-            color: var(--q-color-primary) !important;
-        }
-
-        html[data-theme="light"] .glass {
-            background: var(--q-light-card-bg) !important;
-            border-color: var(--q-light-card-border) !important;
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .glass.text-white {
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .starlight-card {
-            background: var(--q-light-card-bg) !important;
-            border-color: var(--q-light-card-border) !important;
-        }
-
-        html[data-theme="light"] .starlight-card h4 {
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .starlight-card p {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .text-gray-300 {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .text-gray-400 {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .text-gray-500 {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .text-gray-600 {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .bg-white {
-            background-color: var(--q-light-card-bg) !important;
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .text-black {
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .text-starlight {
-            color: var(--q-color-primary) !important;
-        }
-
-        html[data-theme="light"] .border-white_5 {
-            border-color: var(--q-light-card-border) !important;
-        }
-
-        html[data-theme="light"] .border-starlight {
-            border-color: var(--q-color-primary) !important;
-        }
-
-        html[data-theme="light"] .border-opacity-20 {
-            border-color: var(--q-light-card-border) !important;
-        }
-
-        html[data-theme="light"] a.text-starlight {
-            color: var(--q-color-primary) !important;
-        }
-
-        html[data-theme="light"] .accordion-starlight {
-            background: var(--q-light-card-bg) !important;
-            border-color: var(--q-light-card-border) !important;
-        }
-
-        html[data-theme="light"] .accordion-header {
-            color: var(--q-light-text) !important;
-        }
-
-        html[data-theme="light"] .accordion-content p {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] input.glass {
-            background: var(--q-light-card-bg) !important;
-            color: var(--q-light-text) !important;
-            border-color: var(--q-light-card-border) !important;
-        }
-
-        html[data-theme="light"] input.glass::placeholder {
-            color: var(--q-light-text-muted) !important;
-        }
-
-        html[data-theme="light"] .bg-black {
-            background-color: var(--q-light-bg) !important;
-        }
-    </style>
-</head>
-<body class="font-sans">
-    <!-- Navigation -->
-    <nav class="starlight-nav">
-        <div class="p-4 md:px-8 flex justify-between items-center w-full">
-            <div class="text-3xl font-bold tracking-tighter text-gradient cursor-pointer">GAMEVAULT</div>
-            
-            <div class="flex items-center gap-8">
-                <!-- Desktop Menu -->
-                <div class="nav-desktop">
-                    <ul class="nav-list mr-8">
-                        <li><a href="#" class="nav-link">Store</a></li>
-                        <li><a href="#" class="nav-link">Games</a></li>
-                        <li><a href="#" class="nav-link">News</a></li>
-                        <li><a href="#" class="nav-link">Community</a></li>
-                    </ul>
-                    
-                    <div class="flex items-center gap-4">
-                        <div id="theme-btn" class="theme-toggle" title="Toggle Theme">
+                    <nav-menu class="mobile">
+                        <div class="theme-toggle" onclick="toggleTheme()">
                             <i class="q-icon-sun sun-icon"></i>
                             <i class="q-icon-moon moon-icon"></i>
                         </div>
-                        <button class="bg-starlight text-black px-8 py-2.5 rounded-full font-bold glow-blue hover:scale-105 transition border-none">Play Now</button>
+                        <div class="hamburger" onclick="toggleMobileMenu()">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </nav-menu>
+                </nav-actions>
+            </nav-container>
+
+            <!-- Mobile Dropdown -->
+            <mobile-dropdown id="mobile-menu">
+                <a href="#">Store</a>
+                <a href="#">Games</a>
+                <a href="#">News</a>
+                <a href="#">Community</a>
+                <button class="btn-play">Play Now</button>
+            </mobile-dropdown>
+        </gaming-nav>
+
+        <!-- Hero Section -->
+        <hero-section>
+            <hero-content class="animate-slide-up">
+                <trending-badge>Trending Now</trending-badge>
+                <hero-title>CYBERPUNK <brand-text>2077</brand-text></hero-title>
+                <hero-description>
+                    Step into Night City, an obsessed megalopolis where you play
+                    as V, a mercenary outlaw going after a one-of-a-kind
+                    implant.
+                </hero-description>
+                <hero-actions>
+                    <button class="btn-buy">Buy Now - $59.99</button>
+                    <button class="btn-trailer">Watch Trailer</button>
+                </hero-actions>
+            </hero-content>
+        </hero-section>
+
+        <!-- Main Content -->
+        <main>
+            <featured-games>
+                <section-header>
+                    <header-info>
+                        <sub-title>Editor's Choice</sub-title>
+                        <main-title>Featured Games</main-title>
+                    </header-info>
+                    <a href="#" class="view-all">View All Games →</a>
+                </section-header>
+
+                <game-grid>
+                    <!-- Game Card 1 -->
+                    <game-card>
+                        <game-image style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80');"></game-image>
+                        <game-details>
+                            <game-header>
+                                <game-title>Retro Pulse</game-title>
+                                <game-price>$19.99</game-price>
+                            </game-header>
+                            <game-desc>A high-octane synthwave racer with neon visuals.</game-desc>
+                            <game-tags>
+                                <tag>Action</tag>
+                                <tag>Indie</tag>
+                            </game-tags>
+                        </game-details>
+                    </game-card>
+
+                    <!-- Game Card 2 -->
+                    <game-card>
+                        <game-image style="background-image: url('https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&w=800&q=80');"></game-image>
+                        <game-details>
+                            <game-header>
+                                <game-title>Star Frontier</game-title>
+                                <game-price>Free</game-price>
+                            </game-header>
+                            <game-desc>Explore the outer reaches of the galaxy in this MMO.</game-desc>
+                            <game-tags>
+                                <tag>MMO</tag>
+                                <tag>Sci-Fi</tag>
+                            </game-tags>
+                        </game-details>
+                    </game-card>
+
+                    <!-- Game Card 3 -->
+                    <game-card>
+                        <game-image style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80');"></game-image>
+                        <game-details>
+                            <game-header>
+                                <game-title>Quest Lore</game-title>
+                                <game-price>$44.99</game-price>
+                            </game-header>
+                            <game-desc>An epic open-world RPG with branching storylines.</game-desc>
+                            <game-tags>
+                                <tag>RPG</tag>
+                                <tag>Adventure</tag>
+                            </game-tags>
+                        </game-details>
+                    </game-card>
+                </game-grid>
+            </featured-games>
+
+            <!-- FAQ Section -->
+            <faq-section>
+                <faq-header>
+                    <sub-title>Support Center</sub-title>
+                    <main-title>Frequently Asked Questions</main-title>
+                </faq-header>
+
+                <accordion-list data-accordion>
+                    <div class="accordion-item accordion-starlight active">
+                        <div class="accordion-header">
+                            <span>What are the minimum system requirements?</span>
+                            <i class="q-icon-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>For the best experience, we recommend an NVIDIA RTX 3060 or equivalent, 16GB RAM, and an i7 processor.</p>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Mobile Actions -->
-                <div class="flex items-center gap-4 md:hidden hamburger-left">
-                    <div id="theme-btn-mobile" class="theme-toggle" title="Toggle Theme">
-                        <i class="q-icon-sun sun-icon"></i>
-                        <i class="q-icon-moon moon-icon"></i>
+                    <div class="accordion-item accordion-starlight">
+                        <div class="accordion-header">
+                            <span>How do I claim my pre-order bonuses?</span>
+                            <i class="q-icon-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Pre-order bonuses are automatically linked to your GameVault account.</p>
+                        </div>
                     </div>
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div class="accordion-item accordion-starlight">
+                        <div class="accordion-header">
+                            <span>Is cross-platform play supported?</span>
+                            <i class="q-icon-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes! Most of our multiplayer titles support cross-play between PC, PlayStation, and Xbox.</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </accordion-list>
+            </faq-section>
 
-        <!-- Mobile Menu -->
-        <div class="nav-menu-mobile">
-            <ul class="nav-list vertical">
-                <li><a href="#" class="nav-link">Store</a></li>
-                <li><a href="#" class="nav-link">Games</a></li>
-                <li><a href="#" class="nav-link">News</a></li>
-                <li><a href="#" class="nav-link">Community</a></li>
-                <li class="pt-4 border-t border-white_5">
-                    <button class="bg-starlight text-black w-full py-3 rounded-xl font-bold glow-blue border-none">Play Now</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
+            <!-- CTA Section -->
+            <cta-section>
+                <cta-card>
+                    <cta-title>Join the <brand-text>Elite</brand-text></cta-title>
+                    <cta-description>Get exclusive access to beta tests, early drops, and a community of over 10 million gamers.</cta-description>
+                    <cta-form>
+                        <input type="email" placeholder="Enter your email..." />
+                        <button>Sign Up Free</button>
+                    </cta-form>
+                </cta-card>
+            </cta-section>
+        </main>
 
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="max-w-[1200px] mx-auto px-6 animate-slide-up">
-            <span class="badge badge-primary mb-6">Trending Now</span>
-            <h1 class="text-7xl font-bold tracking-tighter mb-6">CYBERPUNK <span class="text-gradient">2077</span></h1>
-            <p class="text-xl text-gray-300 mb-10 max-w-prose mx-auto">
-                Step into Night City, an obsessed megalopolis where you play as V, a mercenary outlaw going after a one-of-a-kind implant.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <button class="bg-white text-black px-12 py-4 rounded-full font-bold hover:bg-starlight transition shadow-lg border-none">Buy Now - $59.99</button>
-                <button class="glass text-white px-12 py-4 rounded-full font-bold hover:bg-opacity-20 transition border-2 border-solid border-opacity-20">Watch Trailer</button>
-            </div>
-        </div>
-    </header>
+        <!-- Footer -->
+        <footer>
+            <footer-container>
+                <footer-grid>
+                    <footer-column class="brand">
+                        <footer-logo>GAMEVAULT</footer-logo>
+                        <p>The ultimate destination for gamers worldwide. Play, connect, and grow.</p>
+                    </footer-column>
+                    <footer-column>
+                        <h5>Platform</h5>
+                        <nav>
+                            <a href="#">Download</a>
+                            <a href="#">Web Player</a>
+                            <a href="#">Mobile App</a>
+                        </nav>
+                    </footer-column>
+                    <footer-column>
+                        <h5>Company</h5>
+                        <nav>
+                            <a href="#">About Us</a>
+                            <a href="#">Careers</a>
+                            <a href="#">Contact</a>
+                        </nav>
+                    </footer-column>
+                    <footer-column>
+                        <h5>Support</h5>
+                        <nav>
+                            <a href="#">Help Center</a>
+                            <a href="#">Safety</a>
+                            <a href="#">Privacy</a>
+                        </nav>
+                    </footer-column>
+                </footer-grid>
+                
+                <footer-bottom>
+                    <copyright>&copy; 2026 GameVault Interactive. All rights reserved.</copyright>
+                    <social-links>
+                        <a href="#">Twitter</a>
+                        <a href="#">Discord</a>
+                        <a href="#">Twitch</a>
+                    </social-links>
+                </footer-bottom>
+            </footer-container>
+        </footer>
 
-    <!-- Featured Games -->
-    <main class="max-w-[1200px] mx-auto py-24 px-6">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <h2 class="text-sm font-bold text-starlight uppercase tracking-widest mb-2">Editor's Choice</h2>
-                <h3 class="text-4xl font-bold tracking-tight">Featured Games</h3>
-            </div>
-            <a href="#" class="text-starlight font-bold border-b border-starlight pb-1 hover:text-white transition">View All Games →</a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Game Card 1 -->
-            <div class="starlight-card group cursor-pointer overflow-hidden p-0">
-                <div class="game-card-img group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80');"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="text-xl font-bold">Retro Pulse</h4>
-                        <span class="text-starlight font-bold">$19.99</span>
-                    </div>
-                    <p class="text-sm text-gray-400 mb-4">A high-octane synthwave racer with neon visuals.</p>
-                    <div class="flex gap-2">
-                        <span class="badge badge-secondary text-2xs">Action</span>
-                        <span class="badge badge-secondary text-2xs">Indie</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Game Card 2 -->
-            <div class="starlight-card group cursor-pointer overflow-hidden p-0">
-                <div class="game-card-img group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&w=800&q=80');"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="text-xl font-bold">Star Frontier</h4>
-                        <span class="text-starlight font-bold">Free</span>
-                    </div>
-                    <p class="text-sm text-gray-400 mb-4">Explore the outer reaches of the galaxy in this MMO.</p>
-                    <div class="flex gap-2">
-                        <span class="badge badge-secondary text-2xs">MMO</span>
-                        <span class="badge badge-secondary text-2xs">Sci-Fi</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Game Card 3 -->
-            <div class="starlight-card group cursor-pointer overflow-hidden p-0">
-                <div class="game-card-img group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80');"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="text-xl font-bold">Quest Lore</h4>
-                        <span class="text-starlight font-bold">$44.99</span>
-                    </div>
-                    <p class="text-sm text-gray-400 mb-4">An epic open-world RPG with branching storylines.</p>
-                    <div class="flex gap-2">
-                        <span class="badge badge-secondary text-2xs">RPG</span>
-                        <span class="badge badge-secondary text-2xs">Adventure</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- FAQ Section -->
-    <section class="max-w-[1200px] mx-auto px-6 mb-32">
-        <div class="mb-12 text-center">
-            <h2 class="text-sm font-bold text-starlight uppercase tracking-widest mb-2">Support Center</h2>
-            <h3 class="text-4xl font-bold tracking-tight">Frequently Asked Questions</h3>
-        </div>
-
-        <div class="max-w-144 mx-auto flex flex-col gap-4" data-accordion>
-            <!-- Accordion 1 -->
-            <div class="accordion-item accordion-starlight active">
-                <div class="accordion-header">
-                    <span>What are the minimum system requirements?</span>
-                    <i class="q-icon-chevron-down accordion-icon"></i>
-                </div>
-                <div class="accordion-content">
-                    <p>For the best experience, we recommend an NVIDIA RTX 3060 or equivalent, 16GB RAM, and an i7 processor. However, most titles are optimized to run on mid-range hardware with adjusted settings.</p>
-                </div>
-            </div>
-
-            <!-- Accordion 2 -->
-            <div class="accordion-item accordion-starlight">
-                <div class="accordion-header">
-                    <span>How do I claim my pre-order bonuses?</span>
-                    <i class="q-icon-chevron-down accordion-icon"></i>
-                </div>
-                <div class="accordion-content">
-                    <p>Pre-order bonuses are automatically linked to your GameVault account. Once the game launches, you can find your rewards in the "Inventory" tab of the game launcher.</p>
-                </div>
-            </div>
-
-            <!-- Accordion 3 -->
-            <div class="accordion-item accordion-starlight">
-                <div class="accordion-header">
-                    <span>Is cross-platform play supported?</span>
-                    <i class="q-icon-chevron-down accordion-icon"></i>
-                </div>
-                <div class="accordion-content">
-                    <p>Yes! Most of our multiplayer titles support cross-play between PC, PlayStation, and Xbox. You can manage your cross-play preferences in the social settings menu.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="max-w-[1200px] mx-auto px-6 mb-32">
-        <div class="glass p-16 rounded-3xl border text-center glow-blue">
-            <h2 class="text-5xl font-bold mb-6 tracking-tight">Join the <span class="text-gradient">Elite</span></h2>
-            <p class="text-lg text-gray-400 mb-10 max-w-prose mx-auto">Get exclusive access to beta tests, early drops, and a community of over 10 million gamers.</p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <input type="email" class="glass px-8 py-4 rounded-xl outline-none focus:border-starlight transition md:w-96 text-white" placeholder="Enter your email...">
-                <button class="bg-starlight text-black px-12 py-4 rounded-xl font-bold glow-blue hover:scale-105 transition border-none">Sign Up Free</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black py-20 px-6 border-t border-white_5">
-        <div class="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
-            <div class="col-span-2 md:col-span-1">
-                <div class="text-2xl font-bold tracking-tighter text-gradient mb-6">GAMEVAULT</div>
-                <p class="text-gray-500 text-sm">The ultimate destination for gamers worldwide. Play, connect, and grow.</p>
-            </div>
-            <div>
-                <h5 class="font-bold mb-6">Platform</h5>
-                <ul class="flex flex-col gap-4 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Download</a></li>
-                    <li><a href="#" class="hover:text-white transition">Web Player</a></li>
-                    <li><a href="#" class="hover:text-white transition">Mobile App</a></li>
-                    <li><a href="#" class="hover:text-white transition">Pro Features</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold mb-6">Company</h5>
-                <ul class="flex flex-col gap-4 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                    <li><a href="#" class="hover:text-white transition">Careers</a></li>
-                    <li><a href="#" class="hover:text-white transition">Press</a></li>
-                    <li><a href="#" class="hover:text-white transition">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold mb-6">Support</h5>
-                <ul class="flex flex-col gap-4 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Help Center</a></li>
-                    <li><a href="#" class="hover:text-white transition">Safety</a></li>
-                    <li><a href="#" class="hover:text-white transition">Terms</a></li>
-                    <li><a href="#" class="hover:text-white transition">Privacy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-[1200px] mx-auto pt-8 border-t border-white_5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-gray-600 text-xs">&copy; 2026 GameVault Interactive. All rights reserved.</p>
-            <div class="flex gap-6">
-                <a href="#" class="text-gray-600 hover:text-starlight transition">Twitter</a>
-                <a href="#" class="text-gray-600 hover:text-starlight transition">Discord</a>
-                <a href="#" class="text-gray-600 hover:text-starlight transition">Twitch</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../src/starlight.js"></script>
-    <script>
-        // Theme initialization and management is now handled 
-        // automatically by Starlight.initTheme() in starlight.js
-    </script>
-</body>
+        <script src="../src/starlight.js"></script>
+        <script>
+            function toggleMobileMenu() {
+                document.getElementById('mobile-menu').classList.toggle('active');
+                document.querySelector('.hamburger').classList.toggle('active');
+            }
+            function toggleTheme() {
+                const html = document.documentElement;
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            }
+        </script>
+    </body>
 </html>
