@@ -20,7 +20,7 @@ Always check for a high-level **Starlight Preset** before writing atomic utiliti
 
 ### 4. Color Palette
 QuantumCSS uses a specific "Starlight" palette. Prefer these tokens:
-- `text-gradient-starlight` (Primary branding)
+- `text-gradient` (Primary branding)
 - `bg-starlight-deep` (Main background)
 - `starlight-blue`, `starlight-peach`, `starlight-orange` (Accents)
 

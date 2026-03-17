@@ -146,7 +146,7 @@ Complete z-index utilities available: `auto, 0, 10, 20, 30, 40, 50, 100, 200, 30
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
-    <h3 class="text-2xl font-bold mb-4 text-gradient-starlight">Confirm Action</h3>
+    <h3 class="text-2xl font-bold mb-4 text-gradient">Confirm Action</h3>
     <p class="mb-6 opacity-70">Are you sure you want to proceed?</p>
     <div class="flex gap-4">
       <button class="btn-starlight flex-1">Confirm</button>

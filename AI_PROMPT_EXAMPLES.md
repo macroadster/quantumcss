@@ -43,7 +43,7 @@ Use the built-in navigation components and include all necessary JavaScript for 
 <nav class="starlight-nav">
   <div class="container mx-auto px-8">
     <div class="flex justify-between items-center py-4">
-      <div class="font-bold text-xl text-gradient-starlight">Logo</div>
+      <div class="font-bold text-xl text-gradient">Logo</div>
       <div class="nav-desktop">
         <ul class="nav-list">
           <li><a href="#" class="nav-link">Home</a></li>

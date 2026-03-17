@@ -95,12 +95,22 @@ h1 {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+html[data-theme="light"] .starlight-navbar .logo {
+  background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
+}
+
 .starlight-navbar .banner {
     font-size: 1.25rem;
     font-weight: 700;
     background: linear-gradient(to right,var(--q-color-starlight-peach),var(--q-color-starlight-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+html[data-theme="light"] .starlight-navbar .banner {
+  background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 .starlight-navbar .right {
@@ -1496,7 +1506,7 @@ html[data-theme="light"] .btn-primary:hover {
   background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
 }
 
-html[data-theme="light"] .text-gradient-starlight {
+html[data-theme="light"] .text-gradient {
   background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -1576,6 +1586,10 @@ h2 .accent-bar {
   background: linear-gradient(135deg,var(--q-color-starlight-peach) 0,var(--q-color-starlight-blue) 100%);
   border-radius: 9999px;
   box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+html[data-theme="light"] h2 .accent-bar {
+  background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
 }
 
 /* 17. Skeleton Loading (Starlight Variant) */
@@ -1663,7 +1677,7 @@ html[data-theme="light"] * {
     border-color: SelectedItem !important;
   }
 
-  .text-gradient-starlight, .bg-starlight {
+  .text-gradient, .bg-starlight {
     background: none !important;
     -webkit-text-fill-color: CanvasText !important;
     color: CanvasText !important;
