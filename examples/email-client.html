@@ -1,670 +1,428 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starlight Mail - Modern Email Client</title>
-    <link rel="stylesheet" href="../dist/quantum.min.css">
-    <link rel="stylesheet" href="../src/styles/quantum-components.css">
-    <script src="../src/starlight.js"></script>
-    <style>
-        /* Email Client Layout */
-        .email-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            min-height: 100vh;
-        }
-
-        .email-sidebar {
-            background: linear-gradient(180deg, rgba(8, 8, 26, 0.98) 0%, rgba(15, 23, 42, 0.98) 100%);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem;
-        }
-
-        .email-main {
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            overflow: hidden;
-        }
-
-        .email-list {
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            overflow-y: auto;
-            max-height: 100vh;
-        }
-
-        .email-content {
-            overflow-y: auto;
-            max-height: 100vh;
-            padding: 2rem;
-        }
-
-        /* Email List Items */
-        .email-item {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .email-item:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .email-item.active {
-            background: rgba(0, 212, 255, 0.08);
-            border-left: 3px solid var(--color-starlight, #00d4ff);
-        }
-
-        .email-item.unread {
-            background: rgba(0, 212, 255, 0.04);
-        }
-
-        .email-item.unread .email-sender,
-        .email-item.unread .email-subject {
-            font-weight: 600;
-        }
-
-        .email-sender {
-            font-size: 0.875rem;
-            color: #f1f5f9;
-            margin-bottom: 0.25rem;
-        }
-
-        .email-preview {
-            font-size: 0.8125rem;
-            color: #94a3b8;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .email-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.25rem;
-        }
-
-        .email-time {
-            font-size: 0.75rem;
-            color: #64748b;
-        }
-
-        /* Compose Button */
-        .compose-btn {
-            background: linear-gradient(135deg, #00d4ff 0%, #3b82f6 100%);
-            color: white;
-            border: none;
-            padding: 0.875rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .compose-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
-        }
-
-        /* Email Header */
-        .email-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .email-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        /* Avatar sizes for email */
-        .avatar-lg {
-            width: 48px;
-            height: 48px;
-            font-size: 1rem;
-        }
-
-        /* User Profile section */
-        .user-profile-section {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            margin-top: auto;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Sun/Moon icons */
-        .sun-icon { display: none; }
-        html[data-theme="light"] .sun-icon { display: block; }
-        html[data-theme="light"] .moon-icon { display: none; }
-
-        /* Light Mode Overrides */
-        html[data-theme="light"] {
-            background-color: #f8fafc;
-            color: #1e293b;
-        }
-
-        html[data-theme="light"] .email-sidebar {
-            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
-            border-right-color: #e2e8f0;
-        }
-
-        html[data-theme="light"] .email-list {
-            background: #ffffff;
-            border-right-color: #e2e8f0;
-        }
-
-        html[data-theme="light"] .email-content {
-            background: #f8fafc;
-        }
-
-        html[data-theme="light"] .email-item {
-            border-bottom-color: #f1f5f9;
-        }
-
-        html[data-theme="light"] .email-item:hover {
-            background: #f8fafc;
-        }
-
-        html[data-theme="light"] .email-item.active {
-            background: rgba(0, 212, 255, 0.08);
-        }
-
-        html[data-theme="light"] .email-item.unread {
-            background: rgba(59, 130, 246, 0.04);
-        }
-
-        html[data-theme="light"] .email-sender {
-            color: #0f172a;
-        }
-
-        html[data-theme="light"] .email-preview {
-            color: #64748b;
-        }
-
-        html[data-theme="light"] .email-time {
-            color: #94a3b8;
-        }
-
-        html[data-theme="light"] .user-profile-section {
-            background: #f1f5f9;
-            border-color: #e2e8f0;
-        }
-
-        html[data-theme="light"] .user-name {
-            color: #0f172a;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .email-layout {
-                grid-template-columns: 240px 1fr;
-            }
-            
-            .email-main {
-                grid-template-columns: 320px 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .email-layout {
-                grid-template-columns: 1fr;
-            }
-            
-            .email-sidebar {
-                display: none;
-            }
-            
-            .email-main {
-                grid-template-columns: 1fr;
-            }
-            
-            .email-list {
-                border-right: none;
-            }
-            
-            .email-content {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                z-index: 100;
-                background: #08081a;
-                transform: translateX(100%);
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                display: block; /* Always block, use transform to hide */
-            }
-
-            html[data-theme="light"] .email-content {
-                background: #f8fafc;
-            }
-            
-            .email-content.mobile-visible {
-                transform: translateX(0);
-            }
-        }
-
-        /* Header area */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(8, 8, 26, 0.5);
-        }
-
-        html[data-theme="light"] .top-bar {
-            background: #ffffff;
-            border-bottom-color: #e2e8f0;
-        }
-
-        .email-subject {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        html[data-theme="light"] .email-subject {
-            color: #0f172a;
-        }
-
-        .email-body {
-            color: #cbd5e1;
-            line-height: 1.7;
-            font-size: 0.9375rem;
-        }
-
-        html[data-theme="light"] .email-body {
-            color: #475569;
-        }
-
-        .email-body p {
-            margin-bottom: 1rem;
-        }
-
-        .email-sender-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .sender-details h3 {
-            font-weight: 600;
-            color: #f1f5f9;
-            margin-bottom: 0.25rem;
-        }
-
-        html[data-theme="light"] .sender-details h3 {
-            color: #0f172a;
-        }
-
-        .sender-details p {
-            font-size: 0.875rem;
-            color: #64748b;
-        }
-    </style>
-</head>
-<body class="bg-starlight-deep text-primary font-sans antialiased">
-    <div class="email-layout">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Starlight Mail - Modern Email Client</title>
+        <link rel="stylesheet" href="../dist/quantum.min.css" />
+        <link rel="stylesheet" href="../src/styles/quantum-components.css" />
+        <link rel="stylesheet" href="email-client.css" />
+        <script src="../src/starlight.js"></script>
+    </head>
+    <body class="email-client">
         <!-- Sidebar -->
-        <aside class="email-sidebar">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-starlight to-blue-500 flex items-center justify-center">
+        <email-sidebar>
+            <logo-section>
+                <logo>
                     <i class="q-icon-mail text-white"></i>
-                </div>
-                <span class="text-xl font-bold text-gradient">Starlight Mail</span>
-            </div>
+                </logo>
+                <brand>Starlight Mail</brand>
+            </logo-section>
 
-            <button class="compose-btn">
-                <i class="q-icon-plus"></i>
-                Compose
-            </button>
+            <compose-section>
+                <button class="compose-btn">
+                    <i class="q-icon-plus"></i>
+                    Compose
+                </button>
+            </compose-section>
 
-            <nav class="space-y-1 mb-6">
-                <button class="nav-item active" style="width: 100%;">
-                    <i class="q-icon-inbox"></i>
-                    <span>Inbox</span>
-                    <span class="nav-badge">12</span>
-                </button>
-                <button class="nav-item" style="width: 100%;">
-                    <i class="q-icon-star"></i>
-                    <span>Starred</span>
-                </button>
-                <button class="nav-item" style="width: 100%;">
-                    <i class="q-icon-send"></i>
-                    <span>Sent</span>
-                </button>
-                <button class="nav-item" style="width: 100%;">
-                    <i class="q-icon-edit"></i>
-                    <span>Drafts</span>
-                    <span class="nav-badge">3</span>
-                </button>
-                <button class="nav-item" style="width: 100%;">
-                    <i class="q-icon-trash"></i>
-                    <span>Trash</span>
-                </button>
-            </nav>
+            <sidebar-scrollable>
+                <nav>
+                    <button class="active">
+                        <i class="q-icon-inbox"></i>
+                        <span>Inbox</span>
+                        <span class="nav-badge">12</span>
+                    </button>
+                    <button>
+                        <i class="q-icon-star"></i>
+                        <span>Starred</span>
+                    </button>
+                    <button>
+                        <i class="q-icon-send"></i>
+                        <span>Sent</span>
+                    </button>
+                    <button>
+                        <i class="q-icon-edit"></i>
+                        <span>Drafts</span>
+                        <span class="nav-badge">3</span>
+                    </button>
+                    <button>
+                        <i class="q-icon-trash"></i>
+                        <span>Trash</span>
+                    </button>
+                </nav>
 
-            <div class="pt-6 border-t border-white_10">
-                <h3 class="nav-section-title" style="padding-left: 0.75rem;">Labels</h3>
-                <nav class="space-y-1">
-                    <button class="nav-item" style="width: 100%;">
-                        <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                <div class="divider"></div>
+
+                <h3>Labels</h3>
+                <nav class="labels-nav">
+                    <button>
+                        <span class="dot blue-dot"></span>
                         <span>Work</span>
                     </button>
-                    <button class="nav-item" style="width: 100%;">
-                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    <button>
+                        <span class="dot green-dot"></span>
                         <span>Personal</span>
                     </button>
-                    <button class="nav-item" style="width: 100%;">
-                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                    <button>
+                        <span class="dot red-dot"></span>
                         <span>Important</span>
                     </button>
                 </nav>
-            </div>
+            </sidebar-scrollable>
 
             <div class="user-profile-section">
-                <div class="user-cell" style="flex: 1; min-width: 0;">
-                    <div class="avatar avatar-lg">JD</div>
-                    <div class="user-info" style="min-width: 0;">
-                        <div class="user-name">John Doe</div>
-                        <div class="user-email" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">john.doe@starlight.dev</div>
-                    </div>
-                </div>
-                <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme" style="flex-shrink: 0;">
+                <user-cell>
+                    <user-avatar class="lg">JD</user-avatar>
+                    <user-info>
+                        <user-name>John Doe</user-name>
+                        <user-email>john.doe@starlight.dev</user-email>
+                    </user-info>
+                </user-cell>
+                <button
+                    class="icon-btn"
+                    onclick="toggleTheme()"
+                    title="Toggle Theme"
+                >
                     <i class="q-icon-sun sun-icon"></i>
                     <i class="q-icon-moon moon-icon"></i>
                 </button>
             </div>
-        </aside>
+        </email-sidebar>
 
         <!-- Main Content -->
-        <div class="email-main">
+        <main class="email-main">
             <!-- Email List -->
-            <div class="email-list">
+            <email-list>
                 <div class="top-bar">
-                    <h2 class="text-lg font-semibold">Inbox</h2>
-                    <div class="flex gap-2">
+                    <h2>Inbox</h2>
+                    <actions>
                         <button class="icon-btn" title="Refresh">
                             <i class="q-icon-refresh"></i>
                         </button>
                         <button class="icon-btn" title="More">
                             <i class="q-icon-more-vertical"></i>
                         </button>
-                    </div>
+                    </actions>
                 </div>
 
-                <div class="px-4 py-3">
+                <div class="search-container">
                     <div class="starlight-search has-icon">
                         <i class="q-icon-search"></i>
-                        <input type="text" class="search-input bg-transparent border-none w-full h-full pl-12 outline-none text-sm text-white" placeholder="Search emails...">
+                        <input
+                            type="text"
+                            class="input-starlight search-input"
+                            placeholder="Search emails..."
+                        />
                     </div>
                 </div>
 
-                <div class="email-item unread active">
-                    <div class="email-meta">
-                        <span class="email-sender">Sarah Chen</span>
-                        <span class="email-time">10:30 AM</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Project Update: Q4 Roadmap</div>
-                    <div class="email-preview">Hi team, I wanted to share the latest updates on our Q4 roadmap and discuss the timeline for...</div>
-                    <div class="mt-2">
-                        <span class="label label-work">Work</span>
-                    </div>
-                </div>
+                <email-items>
+                    <email-item class="unread active">
+                        <email-meta>
+                            <email-sender>Sarah Chen</email-sender>
+                            <email-time>10:30 AM</email-time>
+                        </email-meta>
+                        <email-subject>Project Update: Q4 Roadmap</email-subject>
+                        <email-preview>
+                            Hi team, I wanted to share the latest updates on our Q4
+                            roadmap and discuss the timeline for...
+                        </email-preview>
+                        <email-labels>
+                            <email-label class="work">Work</email-label>
+                        </email-labels>
+                    </email-item>
 
-                <div class="email-item unread">
-                    <div class="email-meta">
-                        <span class="email-sender">Alex Rivera</span>
-                        <span class="email-time">9:45 AM</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Design System Meeting - Tomorrow</div>
-                    <div class="email-preview">Hey everyone, just a reminder about our design system meeting scheduled for tomorrow at 2 PM...</div>
-                    <div class="mt-2">
-                        <span class="label label-work">Work</span>
-                        <span class="label label-important">Important</span>
-                    </div>
-                </div>
+                    <email-item class="unread">
+                        <email-meta>
+                            <email-sender>Alex Rivera</email-sender>
+                            <email-time>9:45 AM</email-time>
+                        </email-meta>
+                        <email-subject>Design System Meeting - Tomorrow</email-subject>
+                        <email-preview>
+                            Hey everyone, just a reminder about our design system
+                            meeting scheduled for tomorrow at 2 PM...
+                        </email-preview>
+                        <email-labels>
+                            <email-label class="work">Work</email-label>
+                            <email-label class="important">Important</email-label>
+                        </email-labels>
+                    </email-item>
 
-                <div class="email-item">
-                    <div class="email-meta">
-                        <span class="email-sender">Mom</span>
-                        <span class="email-time">Yesterday</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Weekend Plans?</div>
-                    <div class="email-preview">Hi sweetie! Are you coming over for dinner this weekend? Dad is making his famous lasagna...</div>
-                    <div class="mt-2">
-                        <span class="label label-personal">Personal</span>
-                    </div>
-                </div>
+                    <email-item>
+                        <email-meta>
+                            <email-sender>Mom</email-sender>
+                            <email-time>Yesterday</email-time>
+                        </email-meta>
+                        <email-subject>Weekend Plans?</email-subject>
+                        <email-preview>
+                            Hi sweetie! Are you coming over for dinner this weekend?
+                            Dad is making his famous lasagna...
+                        </email-preview>
+                        <email-labels>
+                            <email-label class="personal">Personal</email-label>
+                        </email-labels>
+                    </email-item>
 
-                <div class="email-item unread">
-                    <div class="email-meta">
-                        <span class="email-sender">GitHub</span>
-                        <span class="email-time">Yesterday</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Security alert for your repository</div>
-                    <div class="email-preview">We noticed a new sign-in to your GitHub account from a device we don't recognize...</div>
-                </div>
+                    <email-item class="unread">
+                        <email-meta>
+                            <email-sender>GitHub</email-sender>
+                            <email-time>Yesterday</email-time>
+                        </email-meta>
+                        <email-subject>Security alert for your repository</email-subject>
+                        <email-preview>
+                            We noticed a new sign-in to your GitHub account from a
+                            device we don't recognize...
+                        </email-preview>
+                    </email-item>
 
-                <div class="email-item">
-                    <div class="email-meta">
-                        <span class="email-sender">Marketing Team</span>
-                        <span class="email-time">Yesterday</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Campaign Performance Report</div>
-                    <div class="email-preview">Please find attached the performance report for last month's marketing campaign. The results show...</div>
-                    <div class="mt-2">
-                        <span class="label label-work">Work</span>
-                    </div>
-                </div>
+                    <email-item>
+                        <email-meta>
+                            <email-sender>Marketing Team</email-sender>
+                            <email-time>Yesterday</email-time>
+                        </email-meta>
+                        <email-subject>Campaign Performance Report</email-subject>
+                        <email-preview>
+                            Please find attached the performance report for last
+                            month's marketing campaign. The results show...
+                        </email-preview>
+                        <email-labels>
+                            <email-label class="work">Work</email-label>
+                        </email-labels>
+                    </email-item>
 
-                <div class="email-item">
-                    <div class="email-meta">
-                        <span class="email-sender">Spotify</span>
-                        <span class="email-time">2 days ago</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Your 2024 Wrapped is here!</div>
-                    <div class="email-preview">Discover your year in music. From your most-played songs to the artists that defined your year...</div>
-                </div>
+                    <email-item>
+                        <email-meta>
+                            <email-sender>Spotify</email-sender>
+                            <email-time>2 days ago</email-time>
+                        </email-meta>
+                        <email-subject>Your 2024 Wrapped is here!</email-subject>
+                        <email-preview>
+                            Discover your year in music. From your most-played songs
+                            to the artists that defined your year...
+                        </email-preview>
+                    </email-item>
 
-                <div class="email-item">
-                    <div class="email-meta">
-                        <span class="email-sender">David Kim</span>
-                        <span class="email-time">2 days ago</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Re: Code Review Feedback</div>
-                    <div class="email-preview">Thanks for the quick review! I've addressed all the comments and pushed the changes to the PR...</div>
-                    <div class="mt-2">
-                        <span class="label label-work">Work</span>
-                    </div>
-                </div>
+                    <email-item>
+                        <email-meta>
+                            <email-sender>David Kim</email-sender>
+                            <email-time>2 days ago</email-time>
+                        </email-meta>
+                        <email-subject>Re: Code Review Feedback</email-subject>
+                        <email-preview>
+                            Thanks for the quick review! I've addressed all the
+                            comments and pushed the changes to the PR...
+                        </email-preview>
+                        <email-labels>
+                            <email-label class="work">Work</email-label>
+                        </email-labels>
+                    </email-item>
 
-                <div class="email-item">
-                    <div class="email-meta">
-                        <span class="email-sender">Netflix</span>
-                        <span class="email-time">3 days ago</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">New on Netflix this week</div>
-                    <div class="email-preview">Check out the latest releases and returning favorites now streaming on Netflix...</div>
-                </div>
+                    <email-item>
+                        <email-meta>
+                            <email-sender>Netflix</email-sender>
+                            <email-time>3 days ago</email-time>
+                        </email-meta>
+                        <email-subject>New on Netflix this week</email-subject>
+                        <email-preview>
+                            Check out the latest releases and returning favorites
+                            now streaming on Netflix...
+                        </email-preview>
+                    </email-item>
 
-                <div class="email-item">
-                    <div class="email-meta">
-                        <span class="email-sender">Emily Watson</span>
-                        <span class="email-time">3 days ago</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Lunch next week?</div>
-                    <div class="email-preview">Hey! It's been a while since we caught up. Are you free for lunch next Tuesday?</div>
-                    <div class="mt-2">
-                        <span class="label label-personal">Personal</span>
-                    </div>
-                </div>
+                    <email-item>
+                        <email-meta>
+                            <email-sender>Emily Watson</email-sender>
+                            <email-time>3 days ago</email-time>
+                        </email-meta>
+                        <email-subject>Lunch next week?</email-subject>
+                        <email-preview>
+                            Hey! It's been a while since we caught up. Are you free
+                            for lunch next Tuesday?
+                        </email-preview>
+                        <email-labels>
+                            <email-label class="personal">Personal</email-label>
+                        </email-labels>
+                    </email-item>
 
-                <div class="email-item">
-                    <div class="email-meta">
-                        <span class="email-sender">AWS Notifications</span>
-                        <span class="email-time">4 days ago</span>
-                    </div>
-                    <div class="email-subject text-sm mb-1">Monthly billing statement</div>
-                    <div class="email-preview">Your AWS bill for November 2024 is now available. Total amount: $127.43...</div>
-                    <div class="mt-2">
-                        <span class="label label-work">Work</span>
-                    </div>
-                </div>
-            </div>
+                    <email-item>
+                        <email-meta>
+                            <email-sender>AWS Notifications</email-sender>
+                            <email-time>4 days ago</email-time>
+                        </email-meta>
+                        <email-subject>Monthly billing statement</email-subject>
+                        <email-preview>
+                            Your AWS bill for November 2024 is now available. Total
+                            amount: $127.43...
+                        </email-preview>
+                        <email-labels>
+                            <email-label class="work">Work</email-label>
+                        </email-labels>
+                    </email-item>
+                </email-items>
+            </email-list>
 
             <!-- Email Content -->
-            <div class="email-content" id="email-content">
-                <button class="md:hidden mb-6 flex items-center gap-2 text-starlight font-bold" onclick="closeEmail()">
-                    <i class="q-icon-chevron-left-long"></i>
-                    Back to Inbox
-                </button>
-                <div class="email-header">
-                    <div class="email-sender-info">
-                        <div class="avatar avatar-lg">SC</div>
-                        <div class="sender-details">
+            <email-content id="email-content">
+                <content-top-bar>
+                    <button class="mobile-back" onclick="closeEmail()">
+                        <i class="q-icon-chevron-left-long"></i>
+                        Back to Inbox
+                    </button>
+                    <user-cell>
+                        <user-avatar class="sm">SC</user-avatar>
+                        <sender-details>
                             <h3>Sarah Chen</h3>
-                            <p>sarah.chen@company.com · To: john.doe@starlight.dev</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <span class="text-sm text-slate-400">Today, 10:30 AM</span>
-                <div class="email-actions">
-                    <button class="icon-btn" title="Reply">
-                        <i class="q-icon-reply"></i>
-                    </button>
-                    <button class="icon-btn" title="Forward">
-                        <i class="q-icon-forward"></i>
-                    </button>
-                    <button class="icon-btn" title="Star">
-                        <i class="q-icon-star"></i>
-                    </button>
-                    <button class="icon-btn" title="More">
-                        <i class="q-icon-more-horizontal"></i>
-                    </button>
-                </div>
-                    </div>
-                </div>
-
-                <h1 class="email-subject">Project Update: Q4 Roadmap</h1>
-
-                <div class="email-body">
-                    <p>Hi John,</p>
-                    
-                    <p>I hope this email finds you well. I wanted to share the latest updates on our Q4 roadmap and discuss the timeline for the upcoming features we've been planning.</p>
-                    
-                    <p>First, I'm excited to announce that we've completed the initial phase of the Starlight UI component library. The feedback from the beta testing group has been overwhelmingly positive, with users praising the intuitive design and smooth animations.</p>
-                    
-                    <p>Key highlights from this quarter:</p>
-                    <ul style="margin: 1rem 0; padding-left: 1.5rem; color: inherit;">
-                        <li style="margin-bottom: 0.5rem;">Completed 15 new component designs</li>
-                        <li style="margin-bottom: 0.5rem;">Achieved 40% faster load times on dashboard views</li>
-                        <li style="margin-bottom: 0.5rem;">Reduced bundle size by 25% through tree-shaking optimizations</li>
-                        <li>Implemented dark mode with system preference detection</li>
-                    </ul>
-                    
-                    <p>I've attached the detailed roadmap document for your review. Please let me know if you have any questions or if you'd like to schedule a meeting to discuss the implementation details.</p>
-                    
-                    <p>Looking forward to hearing your thoughts!</p>
-                    
-                    <p>Best regards,<br>
-                    Sarah Chen<br>
-                    Senior Product Manager<br>
-                    <span style="color: var(--color-starlight, #00d4ff);">Starlight Technologies</span></p>
-                </div>
-
-                <div class="mt-8 pt-6 border-t border-white_10">
-                    <h3 class="text-sm font-semibold mb-4 text-slate-400">Attachments (2)</h3>
-                    <div class="flex gap-4">
-                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white_5   cursor-pointer hover:bg-white_10 transition-colors">
-                            <div class="w-10 h-10 rounded-lg bg-red-500_20 flex items-center justify-center">
-                                <i class="q-icon-file text-red-400"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-medium">Q4_Roadmap_2024.pdf</div>
-                                <div class="text-xs text-slate-500">2.4 MB</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white_5   cursor-pointer hover:bg-white_10 transition-colors">
-                            <div class="w-10 h-10 rounded-lg bg-green-500_20 flex items-center justify-center">
-                                <i class="q-icon-file text-green-400"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-medium">Budget_Summary.xlsx</div>
-                                <div class="text-xs text-slate-500">856 KB</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <button class="btn-starlight flex items-center gap-2">
-                        <i class="q-icon-reply"></i>
-                        Reply
-                    </button>
-                    <button class="btn-secondary flex items-center gap-2">
-                        <i class="q-icon-forward"></i>
-                        Forward
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Theme toggle functionality
-
-        // Check for saved theme preference
-
-        // Email item click handler
-        document.querySelectorAll('.email-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.email-item').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-                this.classList.remove('unread');
+                            <p>
+                                sarah.chen@company.com · To:
+                                john.doe@starlight.dev
+                            </p>
+                        </sender-details>
+                    </user-cell>
+                    <email-time-full>Today, 10:30 AM</email-time-full>
+                </content-top-bar>
                 
-                // Mobile view toggle
-                if (window.innerWidth <= 768) {
-                    document.getElementById('email-content').classList.add('mobile-visible');
-                }
-            });
-        });
+                <email-header>
+                    <h1 class="email-subject">Project Update: Q4 Roadmap</h1>
+                    <div class="spacer"></div>
+                    <actions>
+                        <button class="icon-btn" title="Reply">
+                            <i class="q-icon-reply"></i>
+                        </button>
+                        <button class="icon-btn" title="Forward">
+                            <i class="q-icon-forward"></i>
+                        </button>
+                        <button class="icon-btn" title="Star">
+                            <i class="q-icon-star"></i>
+                        </button>
+                        <button class="icon-btn" title="More">
+                            <i class="q-icon-more-vertical"></i>
+                        </button>
+                    </actions>
+                </email-header>
 
-        function closeEmail() {
-            document.getElementById('email-content').classList.remove('mobile-visible');
-        }
+                <email-view>
+                    <email-body>
+                        <p>Hi John,</p>
 
-        // Folder click handler
-        document.querySelectorAll('.folder-item').forEach(folder => {
-            folder.addEventListener('click', function() {
-                document.querySelectorAll('.folder-item').forEach(f => f.classList.remove('active'));
-                this.classList.add('active');
+                        <p>
+                            I hope this email finds you well. I wanted to share the
+                            latest updates on our Q4 roadmap and discuss the
+                            timeline for the upcoming features we've been planning.
+                        </p>
+
+                        <p>
+                            First, I'm excited to announce that we've completed the
+                            initial phase of the Starlight UI component library. The
+                            feedback from the beta testing group has been
+                            overwhelmingly positive, with users praising the
+                            intuitive design and smooth animations.
+                        </p>
+
+                        <p>Key highlights from this quarter:</p>
+                        <ul>
+                            <li>
+                                Completed 15 new component designs
+                            </li>
+                            <li>
+                                Achieved 40% faster load times on dashboard views
+                            </li>
+                            <li>
+                                Reduced bundle size by 25% through tree-shaking
+                                optimizations
+                            </li>
+                            <li>
+                                Implemented dark mode with system preference
+                                detection
+                            </li>
+                        </ul>
+
+                        <p>
+                            I've attached the detailed roadmap document for your
+                            review. Please let me know if you have any questions or
+                            if you'd like to schedule a meeting to discuss the
+                            implementation details.
+                        </p>
+
+                        <p>Looking forward to hearing your thoughts!</p>
+
+                        <p>
+                            Best regards,<br />
+                            Sarah Chen<br />
+                            Senior Product Manager<br />
+                            <span class="starlight-brand"
+                                >Starlight Technologies</span>
+                        </p>
+                    </email-body>
+
+                    <attachments>
+                        <h3>
+                            Attachments (2)
+                        </h3>
+                        <div class="attachments-list">
+                            <attachment-card>
+                                <file-icon class="pdf">
+                                    <i class="q-icon-file"></i>
+                                </file-icon>
+                                <file-info>
+                                    <file-name>
+                                        Q4_Roadmap_2024.pdf
+                                    </file-name>
+                                    <file-size>2.4 MB</file-size>
+                                </file-info>
+                            </attachment-card>
+                            <attachment-card>
+                                <file-icon class="excel">
+                                    <i class="q-icon-file"></i>
+                                </file-icon>
+                                <file-info>
+                                    <file-name>
+                                        Budget_Summary.xlsx
+                                    </file-name>
+                                    <file-size>856 KB</file-size>
+                                </file-info>
+                            </attachment-card>
+                        </div>
+                    </attachments>
+
+                    <actions class="content-footer">
+                        <button class="btn-starlight">
+                            <i class="q-icon-reply"></i>
+                            Reply
+                        </button>
+                        <button class="btn-secondary">
+                            <i class="q-icon-forward"></i>
+                            Forward
+                        </button>
+                    </actions>
+                </email-view>
+            </email-content>
+        </main>
+
+        <script>
+            // Email item click handler
+            document.querySelectorAll("email-item").forEach((item) => {
+                item.addEventListener("click", function () {
+                    document
+                        .querySelectorAll("email-item")
+                        .forEach((i) => i.classList.remove("active"));
+                    this.classList.add("active");
+                    this.classList.remove("unread");
+
+                    // Mobile view toggle
+                    if (window.innerWidth <= 768) {
+                        document
+                            .getElementById("email-content")
+                            .classList.add("mobile-visible");
+                    }
+                });
             });
-        });
-    </script>
-</body>
+
+            function closeEmail() {
+                document
+                    .getElementById("email-content")
+                    .classList.remove("mobile-visible");
+            }
+        </script>
+    </body>
 </html>

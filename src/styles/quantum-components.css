@@ -2922,3 +2922,44 @@ html[data-theme="light"] .page-btn.active {
   border-color: rgba(59, 130, 246, 0.3);
   color: #2563eb;
 }
+/* ==========================================================================
+   STARLIGHT BRANDED COMPONENTS 
+   (Migrated from email-client.css)
+   ========================================================================== */
+
+/* User / Avatar Components */
+user-cell { display: flex; align-items: center; gap: 0.75rem; flex: 1; min-width: 0; }
+user-avatar { 
+    width: 2.5rem; height: 2.5rem; border-radius: 50%; 
+    background: var(--q-color-border-strong, #1e293b); color: #f1f5f9;
+    display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0; 
+}
+user-avatar.sm { width: 2.25rem; height: 2.25rem; font-size: 0.875rem; }
+user-avatar.lg { width: 3rem; height: 3rem; font-size: 1.125rem; }
+html[data-theme="light"] user-avatar { background: #e2e8f0; color: #64748b; }
+
+user-info { display: flex; flex-direction: column; min-width: 0; }
+user-name { font-size: 0.875rem; font-weight: 600; }
+user-email { font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html[data-theme="light"] user-name { color: #0f172a; }
+
+/* Branded Labels */
+email-label { padding: 0.25rem 0.5rem; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 600; }
+email-label.work { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
+email-label.personal { background: rgba(34, 197, 94, 0.1); color: #4ade80; }
+email-label.important { background: rgba(239, 68, 68, 0.1); color: #f87171; }
+
+/* Branded Attachment Cards */
+attachment-card {
+    display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 0.75rem; background: rgba(255, 255, 255, 0.05); cursor: pointer; transition: background 0.2s ease; min-width: 240px;
+}
+attachment-card:hover { background: rgba(255, 255, 255, 0.1); }
+html[data-theme="light"] attachment-card { background: #ffffff; border: 1px solid #e2e8f0; }
+
+file-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; }
+file-icon.pdf { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
+file-icon.excel { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; }
+
+file-info { display: flex; flex-direction: column; }
+file-name { font-size: 0.875rem; font-weight: 500; }
+file-size { font-size: 0.75rem; color: #64748b; }
