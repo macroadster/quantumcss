@@ -76,10 +76,6 @@
             transition: all 0.3s;
         }
         .theme-toggle-btn:hover { border-color: var(--q-color-starlight-blue); transform: scale(1.1); }
-        
-        .sun-icon { display: none; }
-        html[data-theme="light"] .sun-icon { display: block; }
-        html[data-theme="light"] .moon-icon { display: none; }
     </style>
 </head>
 <body>
@@ -97,6 +93,7 @@
             </div>
             <div class="flex items-center gap-4">
                 <div class="theme-toggle-btn" onclick="toggleTheme()">
+                    <i class="q-icon-display"></i>
                     <i class="q-icon-sun sun-icon"></i>
                     <i class="q-icon-moon moon-icon"></i>
                 </div>

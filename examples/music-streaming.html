@@ -634,10 +634,6 @@
             color: var(--color-starlight, #00d4ff);
         }
 
-        .sun-icon { display: none; }
-        html[data-theme="light"] .sun-icon { display: inline; }
-        html[data-theme="light"] .moon-icon { display: none; }
-
         /* Light Mode */
         html[data-theme="light"] {
             --bg-primary: #f8fafc;
@@ -1142,6 +1138,7 @@
                     <div class="volume-fill"></div>
                 </div>
                 <button class="theme-toggle-player" onclick="toggleTheme()">
+                    <i class="q-icon-display"></i>
                     <i class="q-icon-sun sun-icon"></i>
                     <i class="q-icon-moon moon-icon"></i>
                 </button>

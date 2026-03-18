@@ -2462,18 +2462,6 @@ html[data-theme="light"] .action-btn:hover {
 }
 
 /* Sun/moon icon visibility */
-.sun-icon {
-  display: none;
-}
-
-html[data-theme="light"] .sun-icon {
-  display: inline;
-}
-
-html[data-theme="light"] .moon-icon {
-  display: none;
-}
-
 /* Light mode overrides for theme toggle */
 html[data-theme="light"] .theme-btn {
   background: #f1f5f9;

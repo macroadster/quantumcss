@@ -56,10 +56,6 @@
         .theme-toggle:hover {
             background: var(--q-highlight-bg);
         }
-
-        .sun-icon { display: none; }
-        html[data-theme="light"] .sun-icon { display: inline; }
-        html[data-theme="light"] .moon-icon { display: none; }
     </style>
 </head>
 <body class="bg-surface">
@@ -77,6 +73,7 @@
 
             <div class="flex items-center gap-6 shrink-0">
                 <div id="theme-btn" class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                    <i class="q-icon-display"></i>
                     <i class="q-icon-sun sun-icon"></i>
                     <i class="q-icon-moon moon-icon"></i>
                 </div>

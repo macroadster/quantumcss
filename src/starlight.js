@@ -439,7 +439,7 @@ const Starlight = {
       iconSelector: {
         light: '.sun-icon, [data-theme-icon="light"]',
         dark: '.moon-icon, [data-theme-icon="dark"]',
-        auto: '.system-icon, [data-theme-icon="auto"]'
+        auto: '.q-icon-display, [data-theme-icon="auto"]'
       },
       autoDetect: true
     };
@@ -457,25 +457,30 @@ const Starlight = {
      * @param {string} effectiveTheme - The actual theme being displayed
      */
     const updateIcons = (theme, effectiveTheme) => {
-      const hasAutoIcon = document.querySelector(config.iconSelector.auto) !== null;
+      const autoIconSelector = config.iconSelector.auto;
+      const hasAutoIcon = autoIconSelector && document.querySelector(autoIconSelector) !== null;
       
+      if (theme === 'auto' && hasAutoIcon) {
+        // Auto mode with auto icon: show only auto icon
+        document.querySelectorAll(autoIconSelector).forEach(icon => {
+          icon.classList.remove('hidden');
+        });
+        // Hide light/dark icons
+        const lightSelector = config.iconSelector.light;
+        const darkSelector = config.iconSelector.dark;
+        document.querySelectorAll(`${lightSelector}, ${darkSelector}`).forEach(icon => {
+          icon.classList.add('hidden');
+        });
+        return;
+      }
+      
+      // Otherwise use normal theme-based visibility
       config.themes.forEach(t => {
         const selector = config.iconSelector[t];
         if (selector) {
           document.querySelectorAll(selector).forEach(icon => {
-            if (theme === 'auto') {
-              // In auto mode, show system icon if it exists, otherwise show the effective theme icon
-              const isAutoIcon = t === 'auto';
-              const isEffectiveIcon = t === effectiveTheme;
-              
-              if (hasAutoIcon) {
-                icon.classList.toggle('hidden', !isAutoIcon);
-              } else {
-                icon.classList.toggle('hidden', !isEffectiveIcon);
-              }
-            } else {
-              icon.classList.toggle('hidden', t !== theme);
-            }
+            const isEffective = theme === 'auto' ? t === effectiveTheme : t === theme;
+            icon.classList.toggle('hidden', !isEffective);
           });
         }
       });

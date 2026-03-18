@@ -67,9 +67,6 @@
         .theme-btn { width: 100%; display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: var(--q-color-surface); border: 1px solid var(--q-color-border); border-radius: 0.75rem; color: var(--q-text-primary, #f1f5f9); cursor: pointer; transition: all 0.2s ease; }
         .theme-btn:hover { background: var(--q-highlight-bg); }
         .theme-label { font-size: 0.875rem; font-weight: 500; }
-        .sun-icon { display: none; }
-        html[data-theme="light"] .sun-icon { display: inline; }
-        html[data-theme="light"] .moon-icon { display: none; }
         html[data-theme="light"] { --bg-primary: var(--q-light-bg); --text-primary: var(--q-light-text); --text-secondary: var(--q-light-text-muted); --text-muted: var(--q-light-text-muted); }
         html[data-theme="light"] .message.received .message-bubble { background: #fff; border: 1px solid #e2e8f0; color: #0f172a; }
         html[data-theme="light"] .message.sent .message-bubble { background: var(--q-color-primary); color: #fff; }
@@ -152,6 +149,7 @@
             </div>
             <div class="theme-toggle-wrapper">
                 <button class="theme-btn" onclick="toggleTheme()">
+                    <i class="q-icon-display"></i>
                     <i class="q-icon-sun sun-icon"></i>
                     <i class="q-icon-moon moon-icon"></i>
                     <span class="theme-label">Toggle Theme</span>

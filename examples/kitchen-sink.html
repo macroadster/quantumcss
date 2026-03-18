@@ -29,9 +29,6 @@
         .theme-toggle:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
         html[data-theme="light"] .theme-toggle { background: rgba(0, 0, 0, 0.02); border-color: rgba(0, 0, 0, 0.1); color: #0f172a; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
         html[data-theme="light"] .theme-toggle:hover { background: #f8fafc; }
-        .sun-icon { display: none; }
-        html[data-theme="light"] .sun-icon { display: block; }
-        html[data-theme="light"] .moon-icon { display: none; }
 
         /* Theme Designer Panel */
         .designer-panel {
@@ -68,6 +65,7 @@
 </head>
 <body class="p-8">
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <i class="q-icon-display"></i>
         <i class="q-icon-sun sun-icon"></i>
         <i class="q-icon-moon moon-icon"></i>
     </button>

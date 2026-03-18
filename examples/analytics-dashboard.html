@@ -251,11 +251,6 @@
             color: var(--text-primary, #f1f5f9);
         }
 
-        /* Sun/Moon icons */
-        .sun-icon { display: none; }
-        html[data-theme="light"] .sun-icon { display: inline; }
-        html[data-theme="light"] .moon-icon { display: none; }
-
         /* Light Mode Overrides */
         html[data-theme="light"] {
             --bg-primary: #f8fafc;
@@ -402,6 +397,7 @@
 
             <div class="theme-toggle-wrapper">
                 <button class="theme-btn" onclick="toggleTheme()">
+                    <i class="q-icon-display"></i>
                     <i class="q-icon-sun sun-icon"></i>
                     <i class="q-icon-moon moon-icon"></i>
                     <span class="theme-label">Toggle Theme</span>
