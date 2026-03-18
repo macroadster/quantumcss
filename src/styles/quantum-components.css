@@ -2999,19 +2999,38 @@ html[data-theme="light"] .nav-logo {
 }
 
 /* Starlight logo mark - circular gradient icon */
-.nav-logo-mark {
-  width: 32px;
-  height: 32px;
+.nav-logo-mark,
+.nav-logo > i {
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
   display: grid;
   place-items: center;
   flex-shrink: 0;
   animation: pulse 2s ease-in-out infinite;
 }
 
-html[data-theme="light"] .nav-logo-mark {
+.nav-logo-mark {
   background: linear-gradient(135deg, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+}
+
+.nav-logo > i {
+  background: linear-gradient(135deg, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[data-theme="light"] .nav-logo > i {
+  background: linear-gradient(135deg, var(--q-color-starlight-blue), var(--q-color-starlight-peach));
+}
+
+html[data-theme="light"] .nav-logo-mark {
+  background: linear-gradient(135deg, var(--q-color-starlight-blue), var(--q-color-starlight-peach));
+}
+
+html[data-theme="light"] .nav-logo > i {
+  background: linear-gradient(135deg, var(--q-color-starlight-blue), var(--q-color-starlight-peach));
 }
 
 /* Desktop nav links */
@@ -3191,7 +3210,8 @@ html[data-theme="light"] .nav-dropdown-panel a::before {
 }
 
 html[data-theme="light"] .nav-profile {
-  background: linear-gradient(135deg, var(--q-color-starlight-blue), var(--q-color-starlight-peach));
+  background: linear-gradient(135deg, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+  color: var(--q-light-text, #1e293b);
 }
 
 /* Hamburger button */

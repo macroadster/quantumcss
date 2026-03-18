@@ -14,40 +14,31 @@
   <div class="stars-bg" id="stars"></div>
   
   <!-- Navigation -->
-  <nav class="starlight-navbar">
+  <header class="nav-header">
     <div class="container">
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="left">
-        <div class="logo"></div>
-        <span class="banner">
-          StarlightBlog
+      <label class="nav-hamburger" for="nav-toggle">
+        <span class="nav-hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
         </span>
-      </div>
-      <div class="right">
+      </label>
+      <a href="#" class="nav-logo">
+        <i class="q-icon-starlight"></i>
+        <span class="text-gradient font-bold">StarlightBlog</span>
+      </a>
+      <nav class="nav-links">
         <a href="#">Home</a>
         <a href="#">Articles</a>
         <a href="#">About</a>
-        <div class="theme-toggle" title="Toggle Theme" onclick="toggleTheme()">
-            <i class="q-icon-display"></i>
-            <i class="q-icon-sun sun-icon"></i>
-            <i class="q-icon-moon moon-icon"></i>
-        </div>
+      </nav>
+      <div class="theme-toggle" title="Toggle Theme" onclick="toggleTheme()">
+        <i class="q-icon-display"></i>
+        <i class="q-icon-sun sun-icon"></i>
+        <i class="q-icon-moon moon-icon"></i>
       </div>
     </div>
-
-    <!-- Mobile Menu -->
-    <div class="nav-menu-mobile">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Articles</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </div>
-  </nav>
+  </header>
 
   <!-- Main Content -->
   <main>

@@ -8,6 +8,21 @@
     --accent-glow: rgba(0, 212, 255, 0.35);
 }
 
+.container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-header {
+    padding: 0;
+    gap: 0;
+}
+
 body {
     background-color: var(--starlight-deep) !important;
     color: var(--primary);
@@ -64,13 +79,13 @@ article > div:last-of-type {
     margin-top: 1.5rem; /* Creates the larger 4rem gap before tags */
 }
 
-header {
+article > header {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* Consistent 32px gap for header elements */
+    gap: 2rem;
 }
 
-header > div:first-child {
+article > header > div:first-child {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -78,14 +93,14 @@ header > div:first-child {
     color: var(--secondary);
 }
 
-header > div:last-child {
+article > header > div:last-child {
     display: flex;
     align-items: center;
     gap: 1rem;
     padding-top: 1rem;
 }
 
-header > div:last-child p:first-child {
+article > header > div:last-child p:first-child {
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.75rem;
@@ -93,7 +108,7 @@ header > div:last-child p:first-child {
     margin: 0;
 }
 
-header > div:last-child p:last-child {
+article > header > div:last-child p:last-child {
     font-size: 0.75rem;
     color: var(--secondary);
     font-weight: 500;
@@ -229,13 +244,8 @@ html[data-theme="light"] body {
     color: #1e293b;
 }
 
-html[data-theme="light"] .starlight-navbar {
-    background: rgba(248, 250, 252, 0.8);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-html[data-theme="light"] .nav-menu-mobile {
-    background: rgba(248, 250, 252, 0.95);
+html[data-theme="light"] .nav-header {
+    background: rgba(248, 250, 252, 0.9);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
