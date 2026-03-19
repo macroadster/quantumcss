@@ -3389,8 +3389,21 @@ html[data-theme="light"] .nav-drawer-inner a:hover {
     order: 1;
   }
 
-  .theme-toggle {
+  .theme-toggle,
+  .nav-header > .flex.items-center {
     order: 3;
     margin-left: auto;
+  }
+
+  .nav-header > .flex.items-center {
+    flex-direction: row !important;
+  }
+  
+  .nav-header > .flex.items-center .theme-toggle {
+    order: 1;
+  }
+  
+  .nav-header > .flex.items-center > .btn-starlight {
+    order: 2;
   }
 }
