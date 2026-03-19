@@ -195,7 +195,7 @@ const utilityMaps = {
     'starlight-navbar': 'nav-header border-b border-white_10',
     'starlight-hero': 'container mx-auto px-6 py-16 md:py-24 text-center relative overflow-hidden',
     'starlight-footer': 'border-t border-white_10 py-12 mt-20 bg-black_20 backdrop-blur-md',
-    'aside-nav': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10',
+    'aside-nav': 'flex flex-col h-full backdrop-blur-xl border-r border-white_10',
     'starlight-sidebar-nav': 'aside-nav p-6',
     'nav-reverse': { property: 'flex-direction', value: 'row-reverse' },
     'nav-center': { property: 'display', value: 'grid' },

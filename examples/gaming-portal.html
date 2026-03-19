@@ -10,7 +10,15 @@
     </head>
     <body>
         <!-- Navigation -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
         <header class="nav-header">
+            <label class="nav-hamburger" for="nav-toggle">
+                <span class="nav-hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </label>
             <a href="#" class="nav-brand text-gradient">GAMEVAULT</a>
             <nav class="nav-links">
                 <a href="#">Store</a>
@@ -27,6 +35,16 @@
                 <button class="btn-starlight" style="border-radius: 9999px; padding: 0.5rem 1.5rem;">Play Now</button>
             </div>
         </header>
+
+        <!-- Mobile Drawer -->
+        <div class="nav-drawer">
+            <div class="nav-drawer-inner">
+                <a href="#">Store</a>
+                <a href="#">Games</a>
+                <a href="#">News</a>
+                <a href="#">Community</a>
+            </div>
+        </div>
 
         <!-- Hero Section -->
         <hero-section>
