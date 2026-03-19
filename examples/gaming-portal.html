@@ -10,51 +10,23 @@
     </head>
     <body>
         <!-- Navigation -->
-        <gaming-nav>
-            <nav-container>
-                <brand-logo>GAMEVAULT</brand-logo>
-
-                <nav-actions>
-                    <nav-menu class="desktop">
-                        <nav-links>
-                            <a href="#">Store</a>
-                            <a href="#">Games</a>
-                            <a href="#">News</a>
-                            <a href="#">Community</a>
-                        </nav-links>
-
-                        <theme-controls>
-                            <div class="theme-toggle" onclick="toggleTheme()">
-                                <i class="q-icon-display"></i>
-                                <i class="q-icon-sun sun-icon"></i>
-                                <i class="q-icon-moon moon-icon"></i>
-                            </div>
-                            <button class="btn-play">Play Now</button>
-                        </theme-controls>
-                    </nav-menu>
-
-                    <nav-menu class="mobile">
-                        <div class="theme-toggle" onclick="toggleTheme()">
-                            <i class="q-icon-display"></i>
-                            <i class="q-icon-sun sun-icon"></i>
-                            <i class="q-icon-moon moon-icon"></i>
-                        </div>
-                        <div class="hamburger" onclick="toggleMobileMenu()">
-                            <span></span><span></span><span></span>
-                        </div>
-                    </nav-menu>
-                </nav-actions>
-            </nav-container>
-
-            <!-- Mobile Dropdown -->
-            <mobile-dropdown id="mobile-menu">
+        <header class="nav-header">
+            <a href="#" class="nav-brand text-gradient">GAMEVAULT</a>
+            <nav class="nav-links">
                 <a href="#">Store</a>
                 <a href="#">Games</a>
                 <a href="#">News</a>
                 <a href="#">Community</a>
-                <button class="btn-play">Play Now</button>
-            </mobile-dropdown>
-        </gaming-nav>
+            </nav>
+            <div class="flex items-center gap-4">
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <i class="q-icon-display"></i>
+                    <i class="q-icon-sun sun-icon"></i>
+                    <i class="q-icon-moon moon-icon"></i>
+                </div>
+                <button class="btn-starlight" style="border-radius: 9999px; padding: 0.5rem 1.5rem;">Play Now</button>
+            </div>
+        </header>
 
         <!-- Hero Section -->
         <hero-section>

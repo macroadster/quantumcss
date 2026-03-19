@@ -2981,6 +2981,15 @@ html[data-theme="light"] .nav-header {
   border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
+/* Brand */
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -.03em;
+  color: var(--q-text-primary, #f1f5f9);
+}
+
 /* Logo */
 .nav-logo {
   flex-shrink: 0;
