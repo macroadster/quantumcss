@@ -81,26 +81,28 @@
 <body>
     <div class="starlight-stars"></div>
 
-    <nav class="starlight-navbar">
-        <div class="nav-container">
-            <div class="text-xl font-bold text-gradient">GEMINI.CLI</div>
-            <div class="nav-desktop">
-                <ul class="nav-list">
-                    <li><a href="#core" class="nav-link">Core</a></li>
-                    <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
-                    <li><a href="#evolution" class="nav-link">Evolution</a></li>
-                </ul>
+<header class="nav-header">
+    <a href="/" class="nav-logo" aria-label="Starlight OS">
+        <i class="q-icon-starlight"></i>
+        <span class="text-gradient font-bold">Starlight OS</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#">Fleet</a>
+        <details class="nav-dropdown">
+            <summary>Stations</summary>
+            <div class="nav-dropdown-panel">
+                <a href="#">Alpha Base</a>
+                <a href="#">Delta Outpost</a>
+                <a href="#">Omega Point</a>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="theme-toggle-btn" onclick="toggleTheme()">
-                    <i class="q-icon-display"></i>
-                    <i class="q-icon-sun sun-icon"></i>
-                    <i class="q-icon-moon moon-icon"></i>
-                </div>
-                <button class="btn-starlight px-6 py-2 text-[10px]">Initialize Sync</button>
-            </div>
-        </div>
+        </details>
+        <a href="#">Resources</a>
     </nav>
+    <a href="/profile" class="nav-profile" aria-label="Your profile">JD</a>
+    <label for="nav-demo-toggle" class="nav-hamburger" aria-label="Toggle menu">
+        <span class="nav-hamburger-icon"><span></span><span></span><span></span></span>
+    </label>
+</header>
 
     <header class="hero-ai" id="core">
         <div class="hero-content">
