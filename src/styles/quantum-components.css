@@ -3131,9 +3131,8 @@ html[data-theme="light"] .nav-dropdown[open] > summary {
   top: calc(100% + .5rem);
   left: 0;
   min-width: 180px;
-  background-color: hsla(0,0%,100%,.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  isolation: isolate;
+  background-color: rgb(15,15,25);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: .625rem;
   padding: .4rem;
@@ -3304,6 +3303,8 @@ html[data-theme="light"] .nav-hamburger:hover .nav-hamburger-icon span {
   max-height: 0;
   transition: max-height .3s ease;
   background-color: hsla(0,0%,100%,.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
