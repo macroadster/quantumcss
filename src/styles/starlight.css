@@ -3139,3 +3139,47 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
 #sidebar-toggle { display: none; }
 .aside-overlay { display: none; }
 
+/* Navigation API Aliases (css-qo1) */
+/* starlight-nav/starlight-navbar → nav-header (alias for backward compatibility) */
+.starlight-nav,
+.starlight-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: color-mix(in srgb, var(--q-color-bg), transparent 10%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--q-color-border);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  min-width: 100%;
+}
+
+/* starlight-nav.vertical/starlight-sidebar-nav → aside-nav (alias for backward compatibility) */
+.starlight-nav.vertical,
+.starlight-sidebar-nav {
+  flex-direction: column;
+  height: 100%;
+  width: 280px !important;
+  min-width: 280px !important;
+  border-bottom: none;
+  border-right: 1px solid var(--q-color-border-strong);
+  padding: 2.5rem 1.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: color-mix(in srgb, var(--q-color-bg), transparent 10%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+html[data-theme="light"] .starlight-nav.vertical,
+html[data-theme="light"] .starlight-sidebar-nav {
+  background: rgb(255 255 255 / 98%);
+  border-right-color: rgb(0 0 0 / 8%);
+}
+

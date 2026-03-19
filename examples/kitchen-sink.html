@@ -1470,7 +1470,7 @@
             document.getElementById('blurVal').innerText = b + 'px';
             root.style.setProperty('--q-glass-blur', 'blur(' + b + 'px)');
             // Update all elements with inline glass overrides
-            document.querySelectorAll('.glass, .starlight-card, .starlight-nav').forEach(el => {
+            document.querySelectorAll('.glass, .starlight-card, .nav-header').forEach(el => {
                 el.style.backdropFilter = 'blur(' + b + 'px)';
                 el.style.webkitBackdropFilter = 'blur(' + b + 'px)';
             });
