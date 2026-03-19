@@ -84,24 +84,21 @@
 <header class="nav-header">
     <a href="/" class="nav-logo" aria-label="Starlight OS">
         <i class="q-icon-starlight"></i>
-        <span class="text-gradient font-bold">Starlight OS</span>
+        <span class="text-gradient font-bold">GEMINI.CLI</span>
     </a>
     <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#">Fleet</a>
-        <details class="nav-dropdown">
-            <summary>Stations</summary>
-            <div class="nav-dropdown-panel">
-                <a href="#">Alpha Base</a>
-                <a href="#">Delta Outpost</a>
-                <a href="#">Omega Point</a>
-            </div>
-        </details>
-        <a href="#">Resources</a>
+        <a href="#core" class="nav-link">Core</a>
+        <a href="#capabilities" class="nav-link">Capabilities</a>
+        <a href="#evolution" class="nav-link">Evolution</a>
     </nav>
-    <a href="/profile" class="nav-profile" aria-label="Your profile">JD</a>
-    <label for="nav-demo-toggle" class="nav-hamburger" aria-label="Toggle menu">
-        <span class="nav-hamburger-icon"><span></span><span></span><span></span></span>
-    </label>
+    <div class="flex items-center gap-4">
+        <div class="theme-toggle-btn" onclick="toggleTheme()">
+            <i class="q-icon-display"></i>
+            <i class="q-icon-sun sun-icon"></i>
+            <i class="q-icon-moon moon-icon"></i>
+        </div>
+        <button class="btn-starlight px-6 py-2 text-[10px]">Initialize Sync</button>
+    </div>
 </header>
 
     <header class="hero-ai" id="core">
