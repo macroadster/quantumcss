@@ -74,12 +74,18 @@
             html[data-theme="light"] input { color: var(--q-light-text) !important; }
             html[data-theme="light"] input::placeholder { color: var(--q-light-text-muted) !important; }
             html[data-theme="light"] .text-starlight-blue { color: var(--q-color-primary) !important; }
-            html[data-theme="light"] .starlight-navbar {
+            html[data-theme="light"] .nav-header {
                 background: var(--q-light-card-bg) !important;
                 border-bottom-color: var(--q-light-card-border) !important;
             }
-            html[data-theme="light"] .starlight-navbar a { color: var(--q-light-text-muted) !important; }
-            html[data-theme="light"] .starlight-navbar a:hover { color: var(--q-color-primary) !important; }
+            .nav-header { padding: 0; }
+            .nav-header .nav-links { flex: none; }
+            .nav-header .btn-starlight { display: none; }
+            @media (min-width: 768px) {
+                .nav-header .btn-starlight { display: block; }
+            }
+            html[data-theme="light"] .nav-header a { color: var(--q-light-text-muted) !important; }
+            html[data-theme="light"] .nav-header a:hover { color: var(--q-color-primary) !important; }
             html[data-theme="light"] .text-gradient {
                 background: none;
                 -webkit-text-fill-color: var(--q-light-text);
@@ -136,20 +142,18 @@
         <div class="hero-glow"></div>
 
         <!-- Navigation -->
-        <header class="starlight-navbar">
-            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <button class="md:hidden hamburger-left" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <header class="nav-header">
+            <div class="container mx-auto px-6 flex items-center justify-between w-full">
                 <h1 class="text-3xl font-black tracking-tighter text-gradient uppercase">NEBULA</h1>
-                <nav class="hidden md:flex space-x-12 text-[11px] font-black uppercase tracking-[0.2em]">
+                
+                <nav class="nav-links space-x-12 text-[11px] font-black uppercase tracking-[0.2em] flex-1 justify-center">
                     <a href="#" class="hover:text-starlight-blue transition-colors">Destinations</a>
                     <a href="#" class="hover:text-starlight-blue transition-colors">Cruises</a>
                     <a href="#" class="hover:text-starlight-blue transition-colors">Excursions</a>
                     <a href="#" class="hover:text-starlight-blue transition-colors">Concierge</a>
                 </nav>
+
                 <div class="flex items-center gap-4">
                     <button id="theme-btn" class="theme-toggle" title="Toggle Theme">
                         <i class="q-icon-display"></i>
@@ -157,22 +161,25 @@
                         <i class="q-icon-moon moon-icon"></i>
                     </button>
                     <button class="btn-starlight px-8 h-12 text-[10px] font-black uppercase tracking-widest">Book Now</button>
+                    <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle menu">
+                        <span class="nav-hamburger-icon"><span></span><span></span><span></span></span>
+                    </label>
                 </div>
             </div>
-
-            <!-- Mobile Menu -->
-            <nav class="nav-menu-mobile">
-                <ul class="nav-list vertical">
-                    <li><a href="#" class="nav-link">Destinations</a></li>
-                    <li><a href="#" class="nav-link">Cruises</a></li>
-                    <li><a href="#" class="nav-link">Excursions</a></li>
-                    <li><a href="#" class="nav-link">Concierge</a></li>
-                    <li class="pt-4 border-t border-white_5">
-                        <button class="btn-starlight w-full py-3">Book Now</button>
-                    </li>
-                </ul>
-            </nav>
         </header>
+
+        <!-- Mobile Drawer -->
+        <div class="nav-drawer">
+            <div class="nav-drawer-inner">
+                <a href="#">Destinations</a>
+                <a href="#">Cruises</a>
+                <a href="#">Excursions</a>
+                <a href="#">Concierge</a>
+                <div class="pt-4 border-t border-white_5">
+                    <button class="btn-starlight w-full py-3">Book Now</button>
+                </div>
+            </div>
+        </div>
 
         <!-- Hero Section -->
         <section class="starlight-hero">

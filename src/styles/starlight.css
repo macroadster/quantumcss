@@ -2985,14 +2985,15 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     min-width: 64px;
   }
   
-  .aside-nav .aside-nav-brand span,
+  .aside-nav .aside-nav-brand,
   .aside-nav .aside-nav-label,
   .aside-nav .aside-nav-item span:not(.aside-nav-badge),
   .aside-nav .aside-nav-group > summary span,
   .aside-nav .aside-nav-group > summary > svg:not(.aside-nav-item-icon):not(.aside-nav-chevron),
   .aside-nav .aside-nav-chevron,
   .aside-nav .aside-nav-sub,
-  .aside-nav .aside-nav-user-info {
+  .aside-nav .aside-nav-user-info,
+  .aside-nav .aside-nav-user-action {
     display: none;
   }
   
@@ -3071,7 +3072,70 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
 
 @media (max-width: 768px) {
   .aside-nav {
-    display: none;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 280px;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 32px rgba(0,0,0,0.4);
+    z-index: 200;
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+    display: flex; /* Override display: none to allow transform */
   }
+
+  /* Restore visibility of labels and text in mobile drawer */
+  .aside-nav .aside-nav-brand,
+  .aside-nav .aside-nav-label,
+  .aside-nav .aside-nav-item span:not(.aside-nav-badge),
+  .aside-nav .aside-nav-user-info {
+    display: flex;
+  }
+  
+  .aside-nav .aside-nav-header {
+    padding: 1.5rem 1.25rem 1rem;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: .75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .aside-nav .aside-nav-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .aside-nav .aside-nav-item {
+    justify-content: flex-start;
+    padding: .5rem .65rem;
+  }
+
+  .aside-nav .aside-nav-user {
+    justify-content: flex-start;
+  }
+
+  /* show sidebar when checked */
+  #sidebar-toggle:checked ~ .app-layout .aside-nav {
+    transform: translateX(0);
+  }
+
+  /* dim overlay */
+  .aside-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 199;
+    pointer-events: none;
+    transition: background .28s cubic-bezier(.4,0,.2,1);
+  }
+  #sidebar-toggle:checked ~ .app-layout .aside-overlay {
+    background: rgba(0,0,0,.6);
+    pointer-events: auto;
+  }
+  .aside-overlay { cursor: pointer; }
 }
+
+/* Base hidden state for toggle */
+#sidebar-toggle { display: none; }
+.aside-overlay { display: none; }
 

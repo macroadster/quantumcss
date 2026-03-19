@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starlight Admin - Management Panel</title>
     <link rel="stylesheet" href="../dist/quantum.min.css">
-    <link rel="stylesheet" href="../src/styles/quantum-components.css">
     <script src="../src/starlight.js"></script>
     <style>
         /* Data Table custom styling */
@@ -90,6 +89,31 @@
             margin-top: 2rem;
         }
 
+        /* Mobile Menu Toggle button */
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            flex-shrink: 0;
+            display: none;
+            z-index: 300;
+        }
+        .menu-btn span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--text-secondary, #94a3b8);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
         /* Light Mode Overrides */
         html[data-theme="light"] .table-container,
         html[data-theme="light"] .quick-action-card {
@@ -131,6 +155,14 @@
         }
 
         @media (max-width: 768px) {
+            .menu-btn {
+                display: flex;
+            }
+
+            #sidebar-toggle:checked ~ .app-layout .menu-btn {
+                display: none;
+            }
+
             .top-nav-actions .starlight-search {
                 display: none;
             }
@@ -171,18 +203,20 @@
     </style>
 </head>
 <body>
+    <input type="checkbox" id="sidebar-toggle" />
     <div class="app-layout">
+        <label for="sidebar-toggle" class="aside-overlay" aria-hidden="true"></label>
         <!-- Sidebar -->
         <aside class="aside-nav" aria-label="Sidebar navigation">
-            <div class="aside-nav-header">
-                <a href="/" class="nav-logo" aria-label="Admin Panel">
+            <label for="sidebar-toggle" class="aside-nav-header" style="cursor: pointer;">
+                <div class="aside-nav-icon">
                     <i class="q-icon-starlight"></i>
-                </a>
+                </div>
                 <div class="aside-nav-brand">
                     <span><strong class="text-gradient">Starlight</strong>
                     Admin Panel</span>
                 </div>
-            </div>
+            </label>
             <nav class="aside-nav-inner">
                 <div class="aside-nav-section">
                     <span class="aside-nav-label">Main</span>
@@ -257,13 +291,18 @@
         <main class="main-content" style="padding: 2rem;">
             <!-- Top Navigation -->
             <div class="top-nav">
-                <nav class="breadcrumb">
-                    <div class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></div>
-                    <div class="breadcrumb-separator">/</div>
-                    <div class="breadcrumb-item"><a href="#" class="breadcrumb-link">Users</a></div>
-                    <div class="breadcrumb-separator">/</div>
-                    <div class="breadcrumb-item breadcrumb-current">All Users</div>
-                </nav>
+                <div class="flex items-center gap-4">
+                    <label for="sidebar-toggle" class="menu-btn" aria-label="Toggle sidebar">
+                        <span></span><span></span><span></span>
+                    </label>
+                    <nav class="breadcrumb">
+                        <div class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></div>
+                        <div class="breadcrumb-separator">/</div>
+                        <div class="breadcrumb-item"><a href="#" class="breadcrumb-link">Users</a></div>
+                        <div class="breadcrumb-separator">/</div>
+                        <div class="breadcrumb-item breadcrumb-current">All Users</div>
+                    </nav>
+                </div>
                 <div class="top-nav-actions">
                     <div class="starlight-search has-icon max-w-xs">
                         <i class="q-icon-search"></i>
