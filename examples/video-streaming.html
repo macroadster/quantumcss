@@ -547,6 +547,8 @@
         }
         html[data-theme="light"] ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
         html[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2); }
+        
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -569,7 +571,7 @@
                     <span class="q-icon q-icon-notification"></span>
                     <span class="notification-dot"></span>
                 </button>
-                <button class="icon-btn" onclick="toggleTheme()"><span class="q-icon q-icon-sun"></span></button>
+                <button class="icon-btn theme-toggle"><span class="q-icon q-icon-moon sun-icon hidden"></span><span class="q-icon q-icon-sun moon-icon hidden"></span><span class="q-icon q-icon-display auto-icon"></span></button>
                 <div class="user-avatar">U</div>
             </div>
         </header>
