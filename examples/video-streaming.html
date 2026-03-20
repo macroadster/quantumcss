@@ -90,11 +90,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 0.75rem 1.5rem;
-            background: rgba(5, 5, 16, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
         .logo {
             display: flex;
@@ -225,9 +224,7 @@
         .sidebar {
             padding: 0.75rem;
             overflow-y: auto;
-            background: rgba(5, 5, 16, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 8, 26, 0.98) 100%);
             border-right: 1px solid rgba(255, 255, 255, 0.06);
         }
         .nav-item {
@@ -537,16 +534,15 @@
             .shorts-grid { grid-template-columns: repeat(2, 1fr); }
         }
         ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(180deg, rgba(0, 212, 255, 0.3), rgba(139, 92, 246, 0.3));
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, rgba(0, 212, 255, 0.5), rgba(139, 92, 246, 0.5));
+            background: rgba(255, 255, 255, 0.2);
         }
-        html[data-theme="light"] ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
-        html[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2); }
+        html[data-theme="light"] ::-webkit-scrollbar-thumb { background: #cbd5e1; }
         
         .hidden { display: none !important; }
     </style>
