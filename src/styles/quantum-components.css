@@ -1305,64 +1305,6 @@ html[data-theme="light"] .time-picker-input {
   border-color: #e2e8f0;
 }
 
-/* ============================================================================
-   ADVANCED SEARCH
-   Search inputs with icons and integrated styles
-   ============================================================================ */
-
-.search-box {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.search-box i, 
-.search-box .q-icon {
-  position: absolute;
-  left: 1rem;
-  color: var(--q-text-muted, #64748b);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.search-input-premium {
-  width: 100%;
-  height: 2.75rem;
-  padding: 0 1rem 0 3rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  color: var(--q-text-primary, #f1f5f9);
-  font-size: 0.875rem;
-  outline: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: inherit;
-}
-
-.search-input-premium:focus {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--q-color-primary, #00d4ff);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--q-color-primary, #00d4ff), transparent 85%);
-}
-
-.search-input-premium::placeholder {
-  color: var(--q-text-muted, #64748b);
-  opacity: 0.7;
-}
-
-/* Light mode overrides for search */
-html[data-theme="light"] .search-input-premium {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  color: #0f172a;
-}
-
-html[data-theme="light"] .search-input-premium:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
-
 /* Toggle Switch */
 .toggle {
   position: relative;
@@ -1517,6 +1459,112 @@ html[data-theme="light"] .table td {
 
 html[data-theme="light"] .table tbody tr:hover {
   background-color: #f1f5f9;
+}
+
+/* Premium Table Component */
+.table-premium-container {
+  background: var(--q-card-bg);
+  border: 1px solid var(--q-card-border);
+  border-radius: var(--q-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--q-shadow-md);
+}
+
+.table-premium-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--q-space-5) var(--q-space-6);
+  border-bottom: 1px solid var(--q-card-border);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.table-premium-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--q-text-primary);
+}
+
+.table-premium-filters {
+  display: flex;
+  gap: var(--q-space-3);
+}
+
+.table-premium {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-premium th {
+  text-align: left;
+  padding: var(--q-space-4) var(--q-space-6);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--q-text-muted);
+  border-bottom: 1px solid var(--q-card-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-premium td {
+  padding: var(--q-space-4) var(--q-space-6);
+  font-size: 0.875rem;
+  color: var(--q-text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-premium tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-premium tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-premium-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--q-space-4) var(--q-space-6);
+  border-top: 1px solid var(--q-card-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-premium-info {
+  font-size: 0.875rem;
+  color: var(--q-text-muted);
+}
+
+/* Light Mode Overrides for Premium Table */
+html[data-theme="light"] .table-premium-container {
+  background: var(--q-light-card-bg);
+  border-color: var(--q-light-card-border);
+}
+
+html[data-theme="light"] .table-premium-header {
+  background: #fcfcfd;
+  border-bottom-color: var(--q-light-card-border);
+}
+
+html[data-theme="light"] .table-premium th {
+  background: #f8fafc;
+  border-bottom-color: var(--q-light-card-border);
+  color: #64748b;
+}
+
+html[data-theme="light"] .table-premium td {
+  border-bottom-color: #f1f5f9;
+  color: #334155;
+}
+
+html[data-theme="light"] .table-premium tbody tr:hover td {
+  background: #f8fafc;
+}
+
+html[data-theme="light"] .table-premium-footer {
+  background: #f8fafc;
+  border-top-color: var(--q-light-card-border);
 }
 
 /* ============================================================================

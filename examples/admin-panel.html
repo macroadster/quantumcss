@@ -7,83 +7,6 @@
     <link rel="stylesheet" href="../dist/quantum.min.css">
     <script src="../src/starlight.js"></script>
     <style>
-        /* Data Table custom styling */
-        .table-container {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .table-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-primary, #f1f5f9);
-        }
-
-        .table-filters {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        /* Table overrides */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            text-align: left;
-            padding: 1rem 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted, #64748b);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.02);
-            list-style: none;
-        }
-
-        td {
-            padding: 1rem 1.5rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary, #94a3b8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            list-style: none;
-        }
-
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Table Footer */
-        .table-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .table-info {
-            font-size: 0.875rem;
-            color: var(--text-muted, #64748b);
-        }
-
         /* Quick Actions Panel */
         .quick-actions {
             margin-top: 2rem;
@@ -115,7 +38,6 @@
         }
 
         /* Light Mode Overrides */
-        html[data-theme="light"] .table-container,
         html[data-theme="light"] .quick-action-card {
             background: #ffffff;
             border-color: #e2e8f0;
@@ -123,24 +45,6 @@
 
         html[data-theme="light"] .quick-action-card:hover {
             background: #f8fafc;
-        }
-
-        html[data-theme="light"] th {
-            background: #f8fafc;
-            border-bottom-color: #e2e8f0;
-        }
-
-        html[data-theme="light"] td {
-            border-bottom-color: #f1f5f9;
-        }
-
-        html[data-theme="light"] tr:hover td {
-            background: #f8fafc;
-        }
-
-        html[data-theme="light"] .table-footer {
-            background: #f8fafc;
-            border-top-color: #e2e8f0;
         }
 
         /* Responsive */
@@ -382,17 +286,21 @@
             </div>
 
             <!-- Data Table -->
-            <div class="table-container">
-                <div class="table-header">
-                    <h2 class="table-title">All Users</h2>
-                    <div class="table-filters">
-                        <select class="filter-select">
+            <div class="table-premium-container">
+                <div class="table-premium-header">
+                    <div class="table-premium-title">All Users</div>
+                    <div class="table-premium-filters">
+                        <div class="search has-icon" style="width: 240px;">
+                            <i class="q-icon-search"></i>
+                            <input type="text" class="search-input" placeholder="Search users...">
+                        </div>
+                        <select class="btn btn-secondary btn-sm" style="appearance: auto;">
                             <option>All Roles</option>
                             <option>Admin</option>
                             <option>Moderator</option>
                             <option>User</option>
                         </select>
-                        <select class="filter-select">
+                        <select class="btn btn-secondary btn-sm" style="appearance: auto;">
                             <option>All Status</option>
                             <option>Active</option>
                             <option>Pending</option>
@@ -401,191 +309,193 @@
                     </div>
                 </div>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Last Active</th>
-                            <th>Joined</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="user-cell">
-                                    <div class="avatar">SC</div>
-                                    <div class="user-info">
-                                        <div class="user-name">Sarah Chen</div>
-                                        <div class="user-email">sarah.chen@example.com</div>
+                <div class="overflow-x-auto">
+                    <table class="table-premium">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Last Active</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="avatar">SC</div>
+                                        <div class="user-info">
+                                            <div class="user-name">Sarah Chen</div>
+                                            <div class="user-email">sarah.chen@example.com</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td><span class="role-badge role-admin">Admin</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>2 minutes ago</td>
-                            <td>Jan 15, 2024</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">
-                                        <i class="q-icon-edit"></i>
-                                    </button>
-                                    <button class="action-btn">
-                                        <i class="q-icon-eye-fill"></i>
-                                    </button>
-                                    <button class="action-btn action-btn-delete">
-                                        <i class="q-icon-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="user-cell">
-                                    <div class="avatar" style="background: linear-gradient(135deg, #10b981, #34d399);">MR</div>
-                                    <div class="user-info">
-                                        <div class="user-name">Michael Rodriguez</div>
-                                        <div class="user-email">m.rodriguez@example.com</div>
+                                </td>
+                                <td><span class="role-badge role-admin">Admin</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>2 minutes ago</td>
+                                <td>Jan 15, 2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">
+                                            <i class="q-icon-edit"></i>
+                                        </button>
+                                        <button class="action-btn">
+                                            <i class="q-icon-eye-fill"></i>
+                                        </button>
+                                        <button class="action-btn action-btn-delete">
+                                            <i class="q-icon-trash"></i>
+                                        </button>
                                     </div>
-                                </div>
-                            </td>
-                            <td><span class="role-badge role-moderator">Moderator</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>15 minutes ago</td>
-                            <td>Dec 3, 2023</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">
-                                        <i class="q-icon-edit"></i>
-                                    </button>
-                                    <button class="action-btn">
-                                        <i class="q-icon-eye-fill"></i>
-                                    </button>
-                                    <button class="action-btn action-btn-delete">
-                                        <i class="q-icon-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="user-cell">
-                                    <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">EJ</div>
-                                    <div class="user-info">
-                                        <div class="user-name">Emily Johnson</div>
-                                        <div class="user-email">emily.j@example.com</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="avatar" style="background: linear-gradient(135deg, #10b981, #34d399);">MR</div>
+                                        <div class="user-info">
+                                            <div class="user-name">Michael Rodriguez</div>
+                                            <div class="user-email">m.rodriguez@example.com</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td><span class="role-badge">User</span></td>
-                            <td><span class="status-badge status-pending">Pending</span></td>
-                            <td>Never</td>
-                            <td>Feb 6, 2024</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">
-                                        <i class="q-icon-edit"></i>
-                                    </button>
-                                    <button class="action-btn">
-                                        <i class="q-icon-eye-fill"></i>
-                                    </button>
-                                    <button class="action-btn action-btn-delete">
-                                        <i class="q-icon-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="user-cell">
-                                    <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">DW</div>
-                                    <div class="user-info">
-                                        <div class="user-name">David Williams</div>
-                                        <div class="user-email">david.w@example.com</div>
+                                </td>
+                                <td><span class="role-badge role-moderator">Moderator</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>15 minutes ago</td>
+                                <td>Dec 3, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">
+                                            <i class="q-icon-edit"></i>
+                                        </button>
+                                        <button class="action-btn">
+                                            <i class="q-icon-eye-fill"></i>
+                                        </button>
+                                        <button class="action-btn action-btn-delete">
+                                            <i class="q-icon-trash"></i>
+                                        </button>
                                     </div>
-                                </div>
-                            </td>
-                            <td><span class="role-badge">User</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>1 hour ago</td>
-                            <td>Nov 20, 2023</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">
-                                        <i class="q-icon-edit"></i>
-                                    </button>
-                                    <button class="action-btn">
-                                        <i class="q-icon-eye-fill"></i>
-                                    </button>
-                                    <button class="action-btn action-btn-delete">
-                                        <i class="q-icon-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="user-cell">
-                                    <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #f472b6);">LB</div>
-                                    <div class="user-info">
-                                        <div class="user-name">Lisa Brown</div>
-                                        <div class="user-email">lisa.brown@example.com</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">EJ</div>
+                                        <div class="user-info">
+                                            <div class="user-name">Emily Johnson</div>
+                                            <div class="user-email">emily.j@example.com</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td><span class="role-badge role-admin">Admin</span></td>
-                            <td><span class="status-badge status-inactive">Inactive</span></td>
-                            <td>3 days ago</td>
-                            <td>Oct 8, 2023</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">
-                                        <i class="q-icon-edit"></i>
-                                    </button>
-                                    <button class="action-btn">
-                                        <i class="q-icon-eye-fill"></i>
-                                    </button>
-                                    <button class="action-btn action-btn-delete">
-                                        <i class="q-icon-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="user-cell">
-                                    <div class="avatar" style="background: linear-gradient(135deg, #06b6d4, #22d3ee);">JT</div>
-                                    <div class="user-info">
-                                        <div class="user-name">James Taylor</div>
-                                        <div class="user-email">james.t@example.com</div>
+                                </td>
+                                <td><span class="role-badge">User</span></td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>Never</td>
+                                <td>Feb 6, 2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">
+                                            <i class="q-icon-edit"></i>
+                                        </button>
+                                        <button class="action-btn">
+                                            <i class="q-icon-eye-fill"></i>
+                                        </button>
+                                        <button class="action-btn action-btn-delete">
+                                            <i class="q-icon-trash"></i>
+                                        </button>
                                     </div>
-                                </div>
-                            </td>
-                            <td><span class="role-badge">User</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>5 hours ago</td>
-                            <td>Jan 28, 2024</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">
-                                        <i class="q-icon-edit"></i>
-                                    </button>
-                                    <button class="action-btn">
-                                        <i class="q-icon-eye-fill"></i>
-                                    </button>
-                                    <button class="action-btn action-btn-delete">
-                                        <i class="q-icon-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">DW</div>
+                                        <div class="user-info">
+                                            <div class="user-name">David Williams</div>
+                                            <div class="user-email">david.w@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge">User</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>1 hour ago</td>
+                                <td>Nov 20, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">
+                                            <i class="q-icon-edit"></i>
+                                        </button>
+                                        <button class="action-btn">
+                                            <i class="q-icon-eye-fill"></i>
+                                        </button>
+                                        <button class="action-btn action-btn-delete">
+                                            <i class="q-icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #f472b6);">LB</div>
+                                        <div class="user-info">
+                                            <div class="user-name">Lisa Brown</div>
+                                            <div class="user-email">lisa.brown@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge role-admin">Admin</span></td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>3 days ago</td>
+                                <td>Oct 8, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">
+                                            <i class="q-icon-edit"></i>
+                                        </button>
+                                        <button class="action-btn">
+                                            <i class="q-icon-eye-fill"></i>
+                                        </button>
+                                        <button class="action-btn action-btn-delete">
+                                            <i class="q-icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="avatar" style="background: linear-gradient(135deg, #06b6d4, #22d3ee);">JT</div>
+                                        <div class="user-info">
+                                            <div class="user-name">James Taylor</div>
+                                            <div class="user-email">james.t@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge">User</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>5 hours ago</td>
+                                <td>Jan 28, 2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">
+                                            <i class="q-icon-edit"></i>
+                                        </button>
+                                        <button class="action-btn">
+                                            <i class="q-icon-eye-fill"></i>
+                                        </button>
+                                        <button class="action-btn action-btn-delete">
+                                            <i class="q-icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <div class="table-footer">
-                    <div class="table-info">Showing 1-6 of 2,847 users</div>
+                <div class="table-premium-footer">
+                    <div class="table-premium-info">Showing 1-6 of 2,847 users</div>
                     <div class="pagination">
                         <button class="page-btn" disabled>
                             <i class="q-icon-chevron-left"></i>

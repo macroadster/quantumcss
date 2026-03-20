@@ -1725,10 +1725,15 @@ html[data-theme="light"] .blue-card {
 }
 
 /* H2 Accent Bar */
-h2 {
+h2.has-accent,
+h2:has(.accent-bar) {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+h2.text-center {
+    justify-content: center;
 }
 
 h2 .accent-bar {
