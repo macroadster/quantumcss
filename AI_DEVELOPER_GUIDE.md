@@ -107,7 +107,7 @@ Complete z-index utilities available: `auto, 0, 10, 20, 30, 40, 50, 100, 200, 30
 
 #### Forms
 ```html
-<div class="starlight-form">
+<div class="form">
   <div class="mb-4">
     <label class="block text-sm font-semibold mb-2">Email Address</label>
     <input type="email" class="input-starlight w-full" placeholder="you@example.com">
@@ -140,7 +140,7 @@ Complete z-index utilities available: `auto, 0, 10, 20, 30, 40, 50, 100, 200, 30
 ```html
 <!-- Dialog Overlay -->
 <div class="dialog-overlay">
-  <div class="starlight-dialog">
+  <div class="dialog">
     <button class="dialog-close">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -188,7 +188,7 @@ Complete z-index utilities available: `auto, 0, 10, 20, 30, 40, 50, 100, 200, 30
 #### Accordion
 ```html
 <div class="accordion-group">
-  <div class="accordion-item accordion-starlight active">
+  <div class="accordion-item accordion active">
     <div class="accordion-header">
       <span>Section Title</span>
       <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

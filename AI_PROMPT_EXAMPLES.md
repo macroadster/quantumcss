@@ -142,7 +142,7 @@ Use the starlight input classes and include proper spacing with the complete spa
 
 ### Expected Output:
 ```html
-<form class="starlight-form max-w-2xl mx-auto">
+<form class="form max-w-2xl mx-auto">
   <div class="mb-6">
     <label class="block text-sm font-semibold mb-2">Full Name</label>
     <input type="text" class="input-starlight w-full" placeholder="Enter your name">

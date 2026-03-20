@@ -166,7 +166,7 @@ const utilityMaps = {
     property: ['background-color', 'border-color', 'border-width', 'border-style'],
     value: ['rgba(255, 255, 255, 0.05)', 'rgba(255, 255, 255, 0.1)', '1px', 'solid']
   },
-  'starlight-dialog-bg': { 
+  'dialog-bg': { 
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter'], 
     value: ['rgba(8, 8, 26, 0.05) !important', 'blur(24px) !important', 'blur(24px) !important'] 
   },
@@ -200,11 +200,11 @@ const utilityMaps = {
     'nav-reverse': { property: 'flex-direction', value: 'row-reverse' },
     'nav-center': { property: 'display', value: 'grid' },
     'hamburger-left': { property: 'order', value: '-1' },
-    'starlight-search': 'search-container theme-glass-dark rounded-xl',
-    'starlight-dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
-    'starlight-gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
-    'starlight-form': 'card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
-    'starlight-dialog': 'dialog-base modal-fixed theme-glass-dark starlight-dialog-bg ani-scale-in',
+    'search': 'search-container theme-glass-dark rounded-xl',
+    'dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
+    'gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
+    'form': 'card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
+    'dialog': 'dialog-base modal-fixed theme-glass-dark dialog-bg ani-scale-in',
     'starlight-sidebar': 'flex flex-col h-screen w-72 fixed left-0 top-0 bg-black_40 backdrop-blur-xl border-r border-white_10 p-6 z-40',
     'starlight-feed-card': 'flex flex-col bg-white_03 backdrop-blur-md border border-white_10 rounded-2xl p-6 transition-all duration-300 ease',
     'starlight-auth-form': 'flex flex-col max-w-md mx-auto bg-white_05 backdrop-blur-xl border border-white_10 rounded-2xl p-10 shadow-2xl',
@@ -265,9 +265,9 @@ const utilityMaps = {
     'starlight-breadcrumb-separator': 'text-white_40',
     'starlight-breadcrumb-current': 'font-medium',
 
-    'starlight-gallery-grid': 'grid gap-4',
-    'starlight-gallery-item': 'relative aspect-video rounded-lg overflow-hidden',
-    'starlight-gallery-overlay': 'absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black_80 to-transparent opacity-0 transition-opacity',
+    'gallery-grid': 'grid gap-4',
+    'gallery-item': 'relative aspect-video rounded-lg overflow-hidden',
+    'gallery-overlay': 'absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black_80 to-transparent opacity-0 transition-opacity',
 
     'starlight-progress': 'flex items-center gap-3',
     'starlight-progress-bar': 'flex-1 h-2 bg-white_10 rounded-full overflow-hidden',

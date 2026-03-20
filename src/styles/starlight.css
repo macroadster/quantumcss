@@ -620,7 +620,7 @@ html[data-theme="light"] .star {
     position: relative;
 }
 
-.starlight-dialog {
+.dialog {
     background-color: rgb(10 10 20 / 98%);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -638,28 +638,28 @@ html[data-theme="light"] .star {
 
 /* Custom scrollbar for dialogs */
 .dialog-content::-webkit-scrollbar,
-.starlight-dialog::-webkit-scrollbar {
+.dialog::-webkit-scrollbar {
     width: 8px;
 }
 
 .dialog-content::-webkit-scrollbar-track,
-.starlight-dialog::-webkit-scrollbar-track {
+.dialog::-webkit-scrollbar-track {
     background: var(--q-color-border);
     border-radius: 4px;
 }
 
 .dialog-content::-webkit-scrollbar-thumb,
-.starlight-dialog::-webkit-scrollbar-thumb {
+.dialog::-webkit-scrollbar-thumb {
     background: var(--q-color-starlight-blue, #3b82f6);
     border-radius: 4px;
 }
 
 html[data-theme="light"] .dialog-content::-webkit-scrollbar-track,
-html[data-theme="light"] .starlight-dialog::-webkit-scrollbar-track {
+html[data-theme="light"] .dialog::-webkit-scrollbar-track {
     background: rgb(0 0 0 / 5%);
 }
 
-html[data-theme="light"] .starlight-dialog {
+html[data-theme="light"] .dialog {
     background-color: rgba(248, 250, 252, 0.9);
     border-color: rgba(0, 0, 0, 0.1);
     color: #1e293b;
@@ -953,7 +953,7 @@ html[data-theme="light"] .code-window-title {
 }
 
 /* 10. Starlight Accordion */
-.accordion-starlight.accordion-item {
+.accordion.accordion-item {
     background: rgb(255 255 255 / 2%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -964,7 +964,7 @@ html[data-theme="light"] .code-window-title {
     position: relative;
 }
 
-.accordion-starlight.accordion-item:hover {
+.accordion.accordion-item:hover {
     border-color: color-mix(
         in srgb,
         var(--q-color-starlight-blue),
@@ -975,7 +975,7 @@ html[data-theme="light"] .code-window-title {
         color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%);
 }
 
-.accordion-starlight.accordion-item.active {
+.accordion.accordion-item.active {
     border-color: var(--q-color-starlight-blue);
     background: color-mix(
         in srgb,
@@ -989,7 +989,7 @@ html[data-theme="light"] .code-window-title {
             color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%);
 }
 
-.accordion-starlight .accordion-header {
+.accordion .accordion-header {
     background: transparent !important;
     padding: var(--q-space-6) var(--q-space-8);
     color: white;
@@ -998,7 +998,7 @@ html[data-theme="light"] .code-window-title {
     font-size: 1.125rem;
 }
 
-.accordion-starlight.active .accordion-header {
+.accordion.active .accordion-header {
     background: linear-gradient(
         to right,
         color-mix(in srgb, var(--q-color-starlight-peach), transparent 55%),
@@ -1008,7 +1008,7 @@ html[data-theme="light"] .code-window-title {
         color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%);
 }
 
-.accordion-starlight .accordion-content {
+.accordion .accordion-content {
     background: linear-gradient(
         to bottom,
         rgb(0 0 0 / 30%),
@@ -1020,37 +1020,37 @@ html[data-theme="light"] .code-window-title {
     padding: 0;
 }
 
-.accordion-starlight.active .accordion-content {
+.accordion.active .accordion-content {
     padding: var(--q-space-6) var(--q-space-8);
 }
 
-.accordion-starlight .accordion-icon {
+.accordion .accordion-icon {
     color: var(--q-color-starlight-blue);
     filter: drop-shadow(0 0 5px rgb(0 212 255 / 50%));
 }
 
-html[data-theme="light"] .accordion-starlight.accordion-item {
+html[data-theme="light"] .accordion.accordion-item {
     background: white;
     border-color: #e2e8f0;
 }
 
-html[data-theme="light"] .accordion-starlight.accordion-item.active {
+html[data-theme="light"] .accordion.accordion-item.active {
     border-color: var(--q-color-starlight-blue);
     background: #f8fafc;
 }
 
-html[data-theme="light"] .accordion-starlight .accordion-header {
+html[data-theme="light"] .accordion .accordion-header {
     color: #1e293b;
 }
 
-html[data-theme="light"] .accordion-starlight .accordion-content {
+html[data-theme="light"] .accordion .accordion-content {
     background: #f1f5f9 !important;
     color: #475569 !important;
 }
 
 /* 11. Search Input with Icon */
 .search-container,
-.starlight-search {
+.search {
     position: relative;
     display: block;
     width: 100%;
@@ -1059,7 +1059,7 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
     overflow: visible !important;
 }
 
-.starlight-search:focus-within {
+.search:focus-within {
     box-shadow:
         0 0 0 2px var(--q-color-starlight-deep),
         0 0 0 4px var(--q-color-starlight-blue);
@@ -1068,7 +1068,7 @@ html[data-theme="light"] .accordion-starlight .accordion-content {
 }
 
 html[data-theme="light"] .search-container:focus-within,
-html[data-theme="light"] .starlight-search:focus-within {
+html[data-theme="light"] .search:focus-within {
     box-shadow:
         0 0 0 2px var(--q-light-bg),
         0 0 0 4px rgb(59 130 246 / 40%);
@@ -1076,7 +1076,7 @@ html[data-theme="light"] .starlight-search:focus-within {
 }
 
 .search-container input:focus,
-.starlight-search input:focus {
+.search input:focus {
     box-shadow: none !important;
     outline: none !important;
 }
@@ -1106,17 +1106,17 @@ input[type="email"] {
     border: none;
 }
 
-html[data-theme="light"] .starlight-search {
+html[data-theme="light"] .search {
     background-color: #fff;
     border: 1px solid #cbd5e1;
 }
-.starlight-search.has-icon .search-input {
+.search.has-icon .search-input {
     padding-left: 3rem !important;
 }
 
-.starlight-search .q-icon-search,
-.starlight-search [class^="q-icon-"],
-.starlight-search [class*=" q-icon-"] {
+.search .q-icon-search,
+.search [class^="q-icon-"],
+.search [class*=" q-icon-"] {
     position: absolute !important;
     left: 1.125rem !important;
     top: 50% !important;
@@ -1129,9 +1129,9 @@ html[data-theme="light"] .starlight-search {
     background-color: var(--q-text-muted) !important;
 }
 
-html[data-theme="light"] .starlight-search .q-icon-search,
-html[data-theme="light"] .starlight-search [class^="q-icon-"],
-html[data-theme="light"] .starlight-search [class*=" q-icon-"] {
+html[data-theme="light"] .search .q-icon-search,
+html[data-theme="light"] .search [class^="q-icon-"],
+html[data-theme="light"] .search [class*=" q-icon-"] {
     color: #64748b !important;
     background-color: #64748b !important;
 }
@@ -1152,7 +1152,7 @@ html[data-theme="light"] .search-icon {
     color: #64748b;
 }
 /* 12. Gallery Widget */
-.starlight-gallery {
+.gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: var(--q-space-4);
@@ -1840,7 +1840,7 @@ html[data-theme="light"] * {
     }
 
     .starlight-card:hover,
-    .accordion-starlight.accordion-item:hover {
+    .accordion.accordion-item:hover {
         border-color: SelectedItem !important;
     }
 
@@ -2451,30 +2451,30 @@ html[data-theme="light"] .btn-starlight:focus-visible {
 }
 
 /* Gallery (enhanced) */
-.starlight-gallery-grid {
+.gallery-grid {
     display: grid;
     gap: 1rem;
 }
 
-.starlight-gallery-item {
+.gallery-item {
     position: relative;
     aspect-ratio: 16 / 9;
     border-radius: var(--q-radius-lg);
     overflow: hidden;
 }
 
-.starlight-gallery-item img {
+.gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-.starlight-gallery-item:hover img {
+.gallery-item:hover img {
     transform: scale(1.05);
 }
 
-.starlight-gallery-overlay {
+.gallery-overlay {
     position: absolute;
     inset: 0;
     display: flex;
@@ -2486,7 +2486,7 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     color: white !important;
 }
 
-.starlight-gallery-item:hover .starlight-gallery-overlay {
+.gallery-item:hover .gallery-overlay {
     opacity: 1;
 }
 

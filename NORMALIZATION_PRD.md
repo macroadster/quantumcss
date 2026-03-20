@@ -98,7 +98,7 @@ The public API must stop using `starlight-` and `q-` as component prefixes.
 | `.starlight-avatar` | `.avatar` |
 | `.starlight-avatar-lg` | `.avatar.avatar-lg` |
 | `.starlight-notification-dot` | `.notification-dot` |
-| `.starlight-search` | `.search-field` or `.search-input-group` |
+| `.search` | `.search-field` or `.search-input-group` |
 | `.q-icon-search` | `.icon-search` |
 | `.q-icon-display` | `.icon-display` |
 
