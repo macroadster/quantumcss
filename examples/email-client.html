@@ -10,6 +10,9 @@
         <script src="../src/starlight.js"></script>
     </head>
     <body class="email-client">
+        <input type="checkbox" id="sidebar-toggle" style="display: none;" />
+        <label for="sidebar-toggle" class="sidebar-overlay"></label>
+
         <!-- Sidebar -->
         <email-sidebar>
             <logo-section>
@@ -101,9 +104,9 @@
                         <button class="icon-btn" title="Refresh">
                             <i class="q-icon-refresh"></i>
                         </button>
-                        <button class="icon-btn" title="More">
-                            <i class="q-icon-more-vertical"></i>
-                        </button>
+                        <label for="sidebar-toggle" class="icon-btn nav-toggle list-toggle" title="Menu">
+                            <i class="q-icon-menu"></i>
+                        </label>
                     </actions>
                 </div>
 
@@ -296,9 +299,9 @@
                         <button class="icon-btn" title="Star">
                             <i class="q-icon-star"></i>
                         </button>
-                        <button class="icon-btn" title="More">
-                            <i class="q-icon-more-vertical"></i>
-                        </button>
+                        <label for="sidebar-toggle" class="icon-btn nav-toggle content-toggle" title="Menu">
+                            <i class="q-icon-menu"></i>
+                        </label>
                     </actions>
                 </email-header>
 
