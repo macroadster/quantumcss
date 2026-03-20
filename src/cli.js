@@ -115,12 +115,12 @@ function build(outputPath = 'dist/quantum.css') {
 function scaffold(template, targetPath = 'index.html') {
   const templatesDir = path.resolve(__dirname, '../examples');
   const templateMap = {
-    gaming: 'gaming-template.html',
-    blog: 'blog-template.html',
-    travel: 'travel/index.html',
-    shopping: 'shopping/index.html',
+    gaming: 'gaming-portal.html',
+    blog: 'blog.html',
+    travel: 'travel.html',
+    shopping: 'shopping.html',
     starlight: 'starlight.html',
-    news: 'news-template.html',
+    news: 'news.html',
     docs: 'kitchen-sink.html'
   };
 
