@@ -2787,6 +2787,20 @@ html[data-theme="light"] .filter-select {
   background: #64748b;
 }
 
+/* Generic dot component */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--q-text-muted, #64748b);
+}
+
+.blue-dot { background-color: #3b82f6; box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+.green-dot { background-color: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+.red-dot { background-color: #ef4444; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+
 /* Status dot variants */
 .status-dot {
   width: 8px;
