@@ -136,6 +136,62 @@
             html[data-theme="light"] .bg-gradient-to-br {
                 background: linear-gradient(to bottom right, var(--q-color-primary-100), transparent) !important;
             }
+            
+            /* Date Picker Starlight Theme */
+            #departure-picker .date-picker-dropdown {
+                background: rgba(8, 8, 26, 0.95);
+                border-color: rgba(0, 212, 255, 0.2);
+                backdrop-filter: blur(20px);
+            }
+            #departure-picker .date-picker-title {
+                color: var(--q-color-starlight-blue);
+            }
+            #departure-picker .date-picker-nav-btn {
+                color: rgba(255, 255, 255, 0.7);
+            }
+            #departure-picker .date-picker-nav-btn:hover {
+                color: var(--q-color-starlight-blue);
+                background: rgba(0, 212, 255, 0.1);
+            }
+            #departure-picker .date-picker-day {
+                color: rgba(255, 255, 255, 0.8);
+            }
+            #departure-picker .date-picker-day:hover {
+                background: rgba(0, 212, 255, 0.2);
+                color: var(--q-color-starlight-blue);
+            }
+            #departure-picker .date-picker-day.today {
+                color: var(--q-color-starlight-blue);
+                font-weight: bold;
+            }
+            #departure-picker .date-picker-day.selected {
+                background: var(--q-color-starlight-blue);
+                color: #000;
+            }
+            #departure-picker .date-picker-day.disabled {
+                color: rgba(255, 255, 255, 0.3);
+            }
+            #departure-picker .date-picker-day.other-month {
+                color: rgba(255, 255, 255, 0.2);
+            }
+            html[data-theme="light"] #departure-picker .date-picker-dropdown {
+                background: rgba(255, 255, 255, 0.98);
+                border-color: #e2e8f0;
+            }
+            html[data-theme="light"] #departure-picker .date-picker-day {
+                color: var(--q-light-text);
+            }
+            html[data-theme="light"] #departure-picker .date-picker-day:hover {
+                background: rgba(59, 130, 246, 0.1);
+                color: var(--q-color-primary);
+            }
+            html[data-theme="light"] #departure-picker .date-picker-day.today {
+                color: var(--q-color-primary);
+            }
+            html[data-theme="light"] #departure-picker .date-picker-day.selected {
+                background: var(--q-color-primary);
+                color: white;
+            }
         </style>
     </head>
     <body class="text-primary">
@@ -182,7 +238,7 @@
         </div>
 
         <!-- Hero Section -->
-        <section class="starlight-hero">
+        <section class="starlight-hero" style="overflow: visible;">
             <div class="max-w-5xl mx-auto">
                 <span class="badge badge-primary mb-8 animate-fade-in px-4 py-1.5 font-black tracking-[0.2em] text-[10px]">New Frontier: Titan IX</span>
                 <h1 class="text-6xl font-black mb-10 leading-none uppercase italic tracking-tighter text-center">
@@ -194,17 +250,20 @@
                 </p>
 
                 <!-- Search Form -->
-                <form class="glass p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] max-w-5xl mx-auto flex flex-col md:flex-row gap-6 md:gap-12 items-stretch shadow-2xl">
-                    <div class="flex-1 flex flex-col items-start px-4 md:px-6">
+                <form class="glass p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] max-w-5xl mx-auto flex flex-col md:flex-row gap-6 md:gap-12 items-center shadow-2xl" style="overflow: visible;">
+                    <div class="flex-1 flex flex-col items-start px-4 md:px-6 py-2">
                         <label class="text-[10px] text-starlight-blue mb-3 font-black uppercase tracking-[0.3em]">Destination</label>
-                        <input type="text" class="w-full bg-transparent border-none text-white focus:outline-none text-xl md:text-2xl font-black p-0 placeholder:text-white_10" placeholder="Where to?">
+                        <input type="text" class="w-full bg-transparent border-none text-white focus:outline-none text-xl md:text-2xl font-black p-0" placeholder="Where to?" style="color: rgba(255,255,255,0.4);">
                     </div>
-                    <div class="border-l border-white_10 hidden md:block"></div>
-                    <div class="flex-1 flex flex-col items-start px-4 md:px-6">
+                    <div class="border-l border-white_10 hidden md:block self-stretch"></div>
+                    <div class="flex-1 flex flex-col items-start px-4 md:px-6 py-2 relative" style="overflow: visible;">
                         <label class="text-[10px] text-starlight-blue mb-3 font-black uppercase tracking-[0.3em]">Departure</label>
-                        <input type="date" class="w-full bg-transparent border-none text-white focus:outline-none text-xl md:text-2xl font-black p-0" id="departure-date">
+                        <div class="date-picker w-full" id="departure-picker" style="overflow: visible;">
+                            <input type="text" class="date-picker-input bg-transparent border-none text-white focus:outline-none text-xl md:text-2xl font-black p-0 w-full cursor-pointer" id="departure-date" placeholder="Select date" readonly>
+                            <div class="date-picker-dropdown" id="departure-calendar" style="position: absolute; top: 100%; margin-top: 0.5rem; overflow: visible;"></div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn-starlight px-8 md:px-16 py-4 md:py-6 h-auto md:h-full text-base md:text-lg font-black uppercase tracking-widest shadow-2xl hover:glow-blue">Search</button>
+                    <button type="submit" class="btn-starlight px-8 md:px-16 py-4 md:py-6 text-base md:text-lg font-black uppercase tracking-widest shadow-2xl hover:glow-blue shrink-0">Search</button>
                 </form>
             </div>
         </section>
@@ -354,6 +413,102 @@
                 const current = html.getAttribute('data-theme');
                 html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
             });
+
+            // Date Picker for Departure
+            (function() {
+                const picker = document.getElementById('departure-picker');
+                const input = document.getElementById('departure-date');
+                const calendar = document.getElementById('departure-calendar');
+                
+                if (!picker || !input || !calendar) return;
+                
+                let currentDate = new Date();
+                let viewDate = new Date();
+                
+                const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 
+                               'July', 'August', 'September', 'October', 'November', 'December'];
+                
+                function renderCalendar(date) {
+                    const year = date.getFullYear();
+                    const month = date.getMonth();
+                    const firstDay = new Date(year, month, 1).getDay();
+                    const daysInMonth = new Date(year, month + 1, 0).getDate();
+                    const today = new Date();
+                    
+                    let html = `
+                        <div class="date-picker-header">
+                            <span class="date-picker-title">${MONTHS[month]} ${year}</span>
+                            <div class="date-picker-nav">
+                                <button class="date-picker-nav-btn" data-action="prev">&lt;</button>
+                                <button class="date-picker-nav-btn" data-action="next">&gt;</button>
+                            </div>
+                        </div>
+                        <div class="date-picker-grid">
+                            ${DAYS.map(d => `<div class="date-picker-weekday">${d}</div>`).join('')}
+                    `;
+                    
+                    for (let i = 0; i < firstDay; i++) {
+                        html += '<div class="date-picker-day other-month"></div>';
+                    }
+                    
+                    for (let day = 1; day <= daysInMonth; day++) {
+                        const dayDate = new Date(year, month, day);
+                        const isToday = dayDate.toDateString() === today.toDateString();
+                        const isSelected = dayDate.toDateString() === currentDate.toDateString();
+                        const isPast = dayDate < today && !isToday;
+                        
+                        let classes = 'date-picker-day';
+                        if (isToday) classes += ' today';
+                        if (isSelected) classes += ' selected';
+                        if (isPast) classes += ' disabled';
+                        
+                        html += `<div class="${classes}" data-date="${dayDate.toISOString()}">${day}</div>`;
+                    }
+                    
+                    html += '</div>';
+                    calendar.innerHTML = html;
+                }
+                
+                function selectDate(dateStr) {
+                    const date = new Date(dateStr);
+                    currentDate = date;
+                    input.value = date.toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric', 
+                        year: 'numeric' 
+                    });
+                    picker.classList.remove('active');
+                }
+                
+                function changeMonth(delta) {
+                    viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + delta, 1);
+                    renderCalendar(viewDate);
+                }
+                
+                input.addEventListener('click', () => {
+                    picker.classList.toggle('active');
+                    renderCalendar(viewDate);
+                });
+                
+                calendar.addEventListener('click', (e) => {
+                    const target = e.target;
+                    
+                    if (target.dataset.action === 'prev') {
+                        changeMonth(-1);
+                    } else if (target.dataset.action === 'next') {
+                        changeMonth(1);
+                    } else if (target.dataset.date && !target.classList.contains('disabled')) {
+                        selectDate(target.dataset.date);
+                    }
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (!picker.contains(e.target)) {
+                        picker.classList.remove('active');
+                    }
+                });
+            })();
         </script>
     </body>
 </html>
