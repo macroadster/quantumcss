@@ -62,6 +62,19 @@ function updatePortfolioTimeline(version) {
   console.log(`✓ Added v${version} entry to portfolio.html timeline`);
 }
 
+function updateIndexVersion(version) {
+  const indexPath = path.join(rootDir, 'examples', 'index.html');
+  let content = fs.readFileSync(indexPath, 'utf8');
+  
+  const oldVersion = /QuantumCSS v[\d.]+/;
+  const newVersion = `QuantumCSS v${version}`;
+  
+  content = content.replace(oldVersion, newVersion);
+  
+  fs.writeFileSync(indexPath, content);
+  console.log(`✓ Updated examples/index.html version to v${version}`);
+}
+
 function release() {
   console.log('🚀 Running QuantumCSS Release...\n');
   
@@ -73,6 +86,7 @@ function release() {
   updateReadmeBadge(version);
   updateBuildJsBanner(version);
   updatePortfolioTimeline(version);
+  updateIndexVersion(version);
   
   console.log(`\n✅ Release v${version} complete!`);
 }
