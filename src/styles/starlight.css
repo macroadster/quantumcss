@@ -226,12 +226,12 @@ html[data-theme="light"] .starlight-navbar .banner {
 }
 
 .nav-list.vertical .nav-link:hover {
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
     color: var(--q-color-starlight);
 }
 
 .nav-list.vertical .nav-link.active {
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
     color: var(--q-color-starlight);
     border-left: 3px solid var(--q-color-starlight);
 }
@@ -245,17 +245,17 @@ html[data-theme="light"] .nav-list.vertical .nav-link.active {
 .nav-links > a:hover,
 .nav-dropdown summary:hover {
     color: var(--q-color-starlight);
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
 }
 
 .nav-dropdown[open] > summary {
     color: var(--q-color-starlight);
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
 }
 
 .nav-dropdown-panel a:hover {
     color: var(--q-color-starlight);
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
 }
 
 .nav-link::after {
@@ -980,7 +980,7 @@ html[data-theme="light"] .code-window-title {
     background: color-mix(
         in srgb,
         var(--q-color-starlight-blue),
-        transparent 97%
+        transparent 85%
     );
     box-shadow:
         0 0 30px
@@ -2833,7 +2833,7 @@ html[data-theme="light"] .aside-nav-label {
 }
 
 .aside-nav-item:hover {
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
     color: var(--q-color-starlight);
 }
 
@@ -2847,7 +2847,7 @@ html[data-theme="light"] .aside-nav-item:hover {
 }
 
 .aside-nav-item.active {
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
     color: var(--q-color-starlight);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
@@ -2937,7 +2937,7 @@ html[data-theme="light"] .aside-nav-badge {
 }
 
 .aside-nav-group > summary:hover {
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
     color: var(--q-color-starlight);
 }
 
@@ -2951,7 +2951,7 @@ html[data-theme="light"] .aside-nav-group > summary:hover {
 }
 
 .aside-nav-group[open] > summary {
-    background: color-mix(in srgb, var(--q-color-starlight), transparent 97%);
+    background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
     color: var(--q-color-starlight);
 }
 

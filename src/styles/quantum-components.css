@@ -907,7 +907,8 @@ html[data-theme="light"] .accordion-content {
 }
 
 .tab-button:hover {
-  background-color: rgb(255 255 255 / 5%);
+  background-color: color-mix(in srgb,var(--q-color-starlight),transparent 85%);
+  border-radius: 7px;
   color: var(--q-text-primary);
 }
 
