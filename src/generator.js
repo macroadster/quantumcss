@@ -258,6 +258,7 @@ function generateCSS(configPath) {
 
       if (prefix === 'text') {
         if (theme.fontSize[valKey]) { property = ['font-size', 'line-height']; value = [theme.fontSize[valKey], (valKey.includes('xl') || parseInt(valKey) >= 3) ? '1.2' : '1.5']; }
+        else if (['primary', 'secondary', 'muted'].includes(valKey)) { property = 'color'; value = `var(--q-text-${valKey}) !important`; }
         else { const color = resolveColor(valKey); if (color) { property = 'color'; value = `${color} !important`; } }
       } else if (prefix === 'bg') {
         if (cParts[1] === 'gradient' && cParts[2] === 'to') {
