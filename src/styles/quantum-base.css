@@ -87,7 +87,7 @@
   --q-color-starlight-peach: #ffb38a;
   --q-color-starlight-orange: #ff7e5f;
   --q-color-starlight-deep: #08081a;
-  --q-color-starlight-glow: rgb(0 212 255 / 35%);
+  --q-color-starlight-glow: color-mix(in srgb, var(--q-color-starlight-blue), transparent 65%);
   
   /* Semantic Background Colors */
   --q-bg-primary: var(--q-color-starlight-deep);
@@ -208,7 +208,7 @@ button:focus,
 input:active,
 button:active {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15), 0 0 20px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%), 0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
 }
 
 textarea {

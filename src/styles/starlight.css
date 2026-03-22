@@ -836,7 +836,7 @@ html[data-theme="light"] .select-starlight:focus {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%);
     transition: all 0.3s ease;
     border-radius: 1rem;
     padding: 1.5rem;
@@ -844,7 +844,7 @@ html[data-theme="light"] .select-starlight:focus {
 
 .glass:hover {
     border-color: var(--q-color-starlight-blue);
-    box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%);
 }
 
 html[data-theme="light"] .glass {
@@ -857,20 +857,20 @@ html[data-theme="light"] .glass:hover {
     border-color: var(--q-color-starlight-blue);
     box-shadow:
         0 8px 32px 0 rgba(31, 38, 135, 0.1),
-        0 0 15px rgba(0, 212, 255, 0.15);
+        0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
 }
 
 /* Glass Blue Glow variant */
 .glow-blue {
     box-shadow:
-        0 0 30px rgba(0, 212, 255, 0.35),
-        0 0 60px rgba(0, 212, 255, 0.15);
+        0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 65%),
+        0 0 60px color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
 }
 
 .glow-blue:hover {
     box-shadow:
-        0 0 40px rgba(0, 212, 255, 0.5),
-        0 0 80px rgba(0, 212, 255, 0.2);
+        0 0 40px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%),
+        0 0 80px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%);
 }
 
 /* 9. Code Interface Window */
@@ -1700,7 +1700,7 @@ html[data-theme="light"] .text-glass {
 
 /* Blue Card - Accent variant */
 .blue-card {
-    background: rgba(0, 212, 255, 0.05);
+    background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 2rem;
@@ -1712,7 +1712,7 @@ html[data-theme="light"] .text-glass {
 }
 
 html[data-theme="light"] .blue-card {
-    background: rgba(0, 212, 255, 0.1);
+    background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%);
 }
 
 /* Avatar - circular image */
@@ -1720,7 +1720,7 @@ html[data-theme="light"] .blue-card {
     width: 3rem;
     height: 3rem;
     border-radius: 9999px;
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    border: 1px solid color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
     object-fit: cover;
 }
 
@@ -1745,7 +1745,7 @@ h2 .accent-bar {
         var(--q-color-starlight-blue) 100%
     );
     border-radius: 9999px;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%);
 }
 
 html[data-theme="light"] h2 .accent-bar {

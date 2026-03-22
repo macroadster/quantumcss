@@ -982,21 +982,21 @@ html[data-theme="light"] .tab-button.active {
 }
 
 .chip:hover {
-  background-color: rgba(0, 212, 255, 0.1);
-  border-color: rgba(0, 212, 255, 0.3);
+  background-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
   color: var(--q-color-starlight-blue);
 }
 
 .chip.active {
-  background-color: rgba(0, 212, 255, 0.1);
-  border-color: rgba(0, 212, 255, 0.3);
+  background-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
   color: var(--q-color-starlight-blue);
 }
 
 /* Chip variants */
 .chip-primary {
-  background-color: rgba(0, 212, 255, 0.1);
-  border-color: rgba(0, 212, 255, 0.3);
+  background-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
   color: var(--q-color-starlight-blue);
 }
 
@@ -1996,7 +1996,7 @@ html[data-theme="light"] .breadcrumb-current {
 }
 
 .nav-item.active {
-  background: rgba(0, 212, 255, 0.12);
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 88%);
   color: var(--q-color-starlight, #00d4ff);
 }
 
@@ -2666,7 +2666,7 @@ html[data-theme="light"] .user-email {
 }
 
 .role-admin {
-  background: rgba(0, 212, 255, 0.15);
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
   color: var(--q-color-starlight, #00d4ff);
 }
 
@@ -2739,7 +2739,7 @@ html[data-theme="light"] .role-badge {
 }
 
 html[data-theme="light"] .role-admin {
-  background: rgba(0, 212, 255, 0.1);
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%);
   color: #0284c7;
 }
 
@@ -2948,8 +2948,8 @@ html[data-theme="light"] .notification-badge {
 }
 
 .page-btn.active {
-  background: rgba(0, 212, 255, 0.15);
-  border-color: rgba(0, 212, 255, 0.3);
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
   color: var(--q-color-starlight, #00d4ff);
 }
 

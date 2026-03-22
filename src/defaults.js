@@ -156,7 +156,7 @@ const utilityMaps = {
   },
   'theme-starlight': {
     property: ['background', 'color', 'border-color', 'box-shadow'],
-    value: ['linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)', '#000', 'transparent', '0 0 30px rgba(0, 212, 255, 0.2)']
+    value: ['linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)', '#000', 'transparent', '0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%)']
   },
   'theme-glass': {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-color', 'border-width', 'border-style'],
@@ -170,13 +170,13 @@ const utilityMaps = {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter'], 
     value: ['rgba(8, 8, 26, 0.05) !important', 'blur(24px) !important', 'blur(24px) !important'] 
   },
-  'glow-blue': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
-  'glow-starlight': { property: 'box-shadow', value: '0 0 30px rgba(0, 212, 255, 0.25)' },
+  'glow-blue': { property: 'box-shadow', value: '0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%)' },
+  'glow-starlight': { property: 'box-shadow', value: '0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%)' },
   'glow-peach': { property: 'box-shadow', value: '0 0 30px rgba(255, 179, 138, 0.25)' },
   'glow-orange': { property: 'box-shadow', value: '0 0 30px rgba(255, 126, 95, 0.25)' },
   'focus-glow': {
     property: ['outline', 'box-shadow'],
-    value: ['none !important', '0 0 0 4px rgba(0, 212, 255, 0.4), 0 0 35px rgba(0, 212, 255, 0.7) !important'],
+    value: ['none !important', '0 0 0 4px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%), 0 0 35px color-mix(in srgb, var(--q-color-starlight-blue), transparent 30%) !important'],
     variant: 'focus'
   },
   'btn-starlight': 'btn-base theme-starlight px-6',
