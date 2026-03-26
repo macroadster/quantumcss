@@ -589,6 +589,12 @@ textarea {
 .font-extrabold { font-weight: 800; }
 .font-black { font-weight: 900; }
 
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .text-left { text-align: left; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }

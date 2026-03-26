@@ -524,6 +524,9 @@
             font-weight: 600;
             color: var(--text-primary, #f1f5f9);
             margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .now-playing-artist {
@@ -783,6 +786,12 @@
             
             .player-bar {
                 grid-template-columns: 200px 1fr 200px;
+            }
+            
+            .now-playing-title {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
