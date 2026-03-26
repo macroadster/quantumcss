@@ -3382,6 +3382,12 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-sub,
     .aside-nav .aside-nav-user-info {
         display: flex;
+        flex-direction: column;
+    }
+
+    .aside-nav .aside-nav-brand strong,
+    .aside-nav .aside-nav-brand span {
+        display: block;
     }
 
     .aside-nav .aside-nav-group[open] > .aside-nav-sub {
@@ -3410,6 +3416,11 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         align-items: center;
         gap: 0.75rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .aside-nav .aside-nav-header .aside-nav-brand {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .aside-nav .aside-nav-icon {
