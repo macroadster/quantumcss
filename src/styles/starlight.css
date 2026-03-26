@@ -3052,6 +3052,13 @@ html[data-theme="light"] .aside-nav-user:hover {
     flex-shrink: 0;
 }
 
+.aside-nav-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    overflow: hidden;
+}
+
 .aside-nav-user-info strong {
     display: block;
     font-size: 0.825rem;
@@ -3370,6 +3377,7 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-sub,
     .aside-nav .aside-nav-user-info {
         display: flex;
+        flex-direction: column;
     }
 
     .aside-nav .aside-nav-chevron {
