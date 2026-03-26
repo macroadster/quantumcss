@@ -117,6 +117,25 @@
   --q-transition-slow: 400ms ease-in-out;
 }
 
+/* Mobile Spacing (smaller values for narrow screens) */
+@media (max-width: 640px) {
+  :root {
+    --q-space-1: 0.125rem;
+    --q-space-2: 0.25rem;
+    --q-space-3: 0.5rem;
+    --q-space-4: 0.5rem;
+    --q-space-5: 0.75rem;
+    --q-space-6: 1rem;
+    --q-space-8: 1.5rem;
+    --q-space-10: 1.75rem;
+    --q-space-12: 2rem;
+    --q-space-16: 3rem;
+    --q-space-20: 3.5rem;
+    --q-space-24: 4rem;
+    --q-space-32: 6rem;
+  }
+}
+
 /* High Contrast (Accessibility) Mode Support */
 @media (prefers-contrast: more) {
   :root {
@@ -222,19 +241,25 @@ textarea {
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--q-space-8);
-  padding-right: var(--q-space-8);
+  padding-left: var(--q-space-4);
+  padding-right: var(--q-space-4);
 }
 
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--q-space-8);
+  gap: var(--q-space-6);
 }
 
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
+    padding-left: var(--q-space-8);
+    padding-right: var(--q-space-8);
+  }
+  
+  .grid-3 {
+    gap: var(--q-space-8);
   }
 }
 
