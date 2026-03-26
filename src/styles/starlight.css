@@ -3264,11 +3264,6 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         display: flex !important;
     }
 
-    /* Center logo in icon-only mode */
-    .aside-nav .aside-nav-header.nav-logo {
-        justify-content: center;
-    }
-
     .aside-nav .aside-nav-header {
         justify-content: center;
     }
@@ -3423,6 +3418,7 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
 
     .aside-nav .aside-nav-header {
         order: -1;
+        justify-content: flex-start;
     }
 
     /* Restore visibility in mobile drawer - override 1280px rules */
