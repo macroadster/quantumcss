@@ -3241,17 +3241,23 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
 
     /* Ensure icons are visible */
     .aside-nav .aside-nav-item-icon,
-    .aside-nav summary > svg.aside-nav-item-icon {
+    .aside-nav summary > svg.aside-nav-item-icon,
+    .aside-nav .aside-nav-user-avatar,
+    .aside-nav .aside-nav-user-action {
         display: flex !important;
     }
 
-    .aside-nav .aside-nav-header {
+    .aside-nav .aside-nav-user {
         padding: 1rem 0;
         justify-content: center;
         border-bottom: none;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: 0.5rem;
+    }
+
+    .aside-nav .aside-nav-user-action {
+        display: flex;
     }
 
     .aside-nav .aside-nav-icon {
