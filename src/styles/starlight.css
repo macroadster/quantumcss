@@ -3377,7 +3377,6 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-sub,
     .aside-nav .aside-nav-user-info {
         display: flex;
-        flex-direction: column;
     }
 
     .aside-nav .aside-nav-chevron {
