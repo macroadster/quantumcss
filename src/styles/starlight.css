@@ -3351,6 +3351,7 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-footer {
         padding: 0.5rem;
         border-top: none;
+        justify-content: center;
     }
 
     .aside-nav .aside-nav-user {
@@ -3488,6 +3489,10 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     }
 
     .aside-nav .aside-nav-user-action {
+        justify-content: flex-start;
+    }
+
+    .aside-nav .aside-nav-footer {
         justify-content: flex-start;
     }
 
