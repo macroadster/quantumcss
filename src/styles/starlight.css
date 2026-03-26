@@ -3227,6 +3227,20 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         display: none;
     }
 
+    /* Hide text labels in icon-only mode */
+    .aside-nav-label,
+    .aside-nav .nav-logo span,
+    .aside-nav .aside-nav-brand,
+    .aside-nav .aside-nav-user-info {
+        display: none;
+    }
+
+    /* Ensure icons are visible */
+    .aside-nav .aside-nav-item-icon,
+    .aside-nav summary > svg {
+        display: flex;
+    }
+
     .aside-nav .aside-nav-header {
         padding: 1rem 0;
         justify-content: center;
