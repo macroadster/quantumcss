@@ -3227,6 +3227,11 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         display: none;
     }
 
+    .aside-nav .aside-nav-group[open] > summary span,
+    .aside-nav .aside-nav-group[open] > .aside-nav-sub {
+        display: flex;
+    }
+
     .aside-nav .aside-nav-header {
         padding: 1rem 0;
         justify-content: center;
@@ -3360,8 +3365,15 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-brand,
     .aside-nav .aside-nav-label,
     .aside-nav .aside-nav-item span:not(.aside-nav-badge),
+    .aside-nav .aside-nav-group > summary span,
+    .aside-nav .aside-nav-group > summary svg,
+    .aside-nav .aside-nav-sub,
     .aside-nav .aside-nav-user-info {
         display: flex;
+    }
+
+    .aside-nav .aside-nav-chevron {
+        display: inline-flex;
     }
 
     .aside-nav .aside-nav-header {
