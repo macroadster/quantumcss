@@ -3054,6 +3054,19 @@ html[data-theme="light"] .aside-nav-user:hover {
     overflow: hidden;
 }
 
+.aside-nav-user-action {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 7px;
+    transition: background 0.12s;
+    cursor: pointer;
+}
+
+.aside-nav-user-action:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
 .aside-nav-user-info strong {
     display: block;
     font-size: 0.825rem;
@@ -3266,9 +3279,13 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         padding: 1rem 0;
         justify-content: center;
         border-bottom: none;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         gap: 0.5rem;
+    }
+
+    .aside-nav .aside-nav-user-action {
+        justify-content: center;
     }
 
     .aside-nav .aside-nav-user > .ml-auto {
