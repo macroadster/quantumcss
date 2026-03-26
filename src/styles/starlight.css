@@ -3366,6 +3366,11 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         z-index: 200;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
+        flex-direction: column;
+    }
+
+    .aside-nav .aside-nav-header {
+        order: -1;
     }
 
     /* Restore visibility of labels and text in mobile drawer */
