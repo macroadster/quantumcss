@@ -3429,7 +3429,9 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-user-info,
     .aside-nav .aside-nav-item span:not(.aside-nav-badge),
     .aside-nav details > summary > span,
-    .aside-nav details > summary > svg:not(.aside-nav-item-icon) {
+    .aside-nav details > summary > svg:not(.aside-nav-item-icon),
+    .aside-nav .aside-nav-user-avatar,
+    .aside-nav .aside-nav-user-action {
         display: flex !important;
     }
 
@@ -3482,6 +3484,11 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     }
 
     .aside-nav .aside-nav-user {
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+
+    .aside-nav .aside-nav-user-action {
         justify-content: flex-start;
     }
 
