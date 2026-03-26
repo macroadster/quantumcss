@@ -29,33 +29,11 @@
             position: relative;
         }
 
-        .sidebar-toggle-btn {
-            display: none;
-        }
-
-        .music-menu-toggle {
-            display: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            margin-right: 0.75rem;
-        }
-
         .sidebar-overlay {
             display: none;
         }
 
         @media (max-width: 768px) {
-            .sidebar-toggle-btn {
-                display: flex;
-                position: fixed;
-                top: 1rem;
-                left: 1rem;
-                z-index: 201;
-                cursor: pointer;
-                padding: 0.5rem;
-                background: rgba(255,255,255,0.1);
-                border-radius: 8px;
-            }
             .music-sidebar {
                 position: fixed;
                 left: 0;
@@ -83,7 +61,7 @@
                 opacity: 1;
                 pointer-events: auto;
             }
-            .music-menu-toggle {
+            .sidebar-toggle {
                 display: flex;
             }
         }
@@ -863,9 +841,6 @@
     <input type="checkbox" id="music-sidebar-toggle" class="hidden">
     <div class="music-app">
         <label for="music-sidebar-toggle" class="sidebar-overlay"></label>
-        <label for="music-sidebar-toggle" class="sidebar-toggle-btn">
-            <i class="q-icon-menu"></i>
-        </label>
         <!-- Sidebar -->
         <aside class="music-sidebar">
             <div class="music-logo">
@@ -939,9 +914,6 @@
 
             <!-- Header -->
             <header class="music-header">
-                <label for="music-sidebar-toggle" class="music-menu-toggle">
-                    <i class="q-icon-menu"></i>
-                </label>
                 <div class="nav-arrows">
                     <button class="nav-arrow">
                         <i class="q-icon-chevron-left-fill"></i>
