@@ -3376,6 +3376,12 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         display: inline-flex;
     }
 
+    .aside-nav .aside-nav-badge {
+        display: flex;
+        align-self: center;
+        margin-left: auto;
+    }
+
     .aside-nav .aside-nav-header {
         padding: 1.5rem 1.25rem 1rem;
         justify-content: flex-start;
