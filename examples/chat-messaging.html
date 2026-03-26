@@ -89,13 +89,18 @@
                 cursor: pointer;
                 padding: 0.5rem;
                 z-index: 10;
-                margin-right: 0.5rem;
             }
             .sidebar-header { 
                 padding: 1.25rem; 
                 border-bottom: 1px solid var(--q-color-border);
                 display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .sidebar-header-top {
+                display: flex;
                 align-items: center;
+                justify-content: space-between;
             }
             #chat-sidebar-toggle:checked ~ .chat-app .chat-sidebar {
                 transform: translateX(0);
@@ -107,11 +112,11 @@
 <body>
     <input type="checkbox" id="chat-sidebar-toggle" class="hidden">
     <div class="chat-app">
-        <label for="chat-sidebar-toggle" class="chat-sidebar-toggle">
-            <i class="q-icon-menu"></i>
-        </label>
         <aside class="chat-sidebar">
             <div class="sidebar-header">
+                <label for="chat-sidebar-toggle" class="chat-sidebar-toggle">
+                    <i class="q-icon-menu"></i>
+                </label>
                 <div class="user-cell" style="margin-bottom: 1rem;">
                     <div class="avatar avatar-lg" style="position: relative;">
                         JD

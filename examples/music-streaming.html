@@ -31,12 +31,6 @@
 
         .sidebar-toggle-btn {
             display: none;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 10;
         }
 
         .music-menu-toggle {
@@ -53,6 +47,14 @@
         @media (max-width: 768px) {
             .sidebar-toggle-btn {
                 display: flex;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 201;
+                cursor: pointer;
+                padding: 0.5rem;
+                background: rgba(255,255,255,0.1);
+                border-radius: 8px;
             }
             .music-sidebar {
                 position: fixed;
@@ -861,11 +863,11 @@
     <input type="checkbox" id="music-sidebar-toggle" class="hidden">
     <div class="music-app">
         <label for="music-sidebar-toggle" class="sidebar-overlay"></label>
+        <label for="music-sidebar-toggle" class="sidebar-toggle-btn">
+            <i class="q-icon-menu"></i>
+        </label>
         <!-- Sidebar -->
         <aside class="music-sidebar">
-            <label for="music-sidebar-toggle" class="sidebar-toggle-btn">
-                <i class="q-icon-menu"></i>
-            </label>
             <div class="music-logo">
                 <div class="music-logo-icon">
                     <i class="q-icon-music text-white"></i>
@@ -983,9 +985,9 @@
                 <button class="action-icon liked">
                     <i class="q-icon-heart-fill w-8 h-8"></i>
                 </button>
-                <button class="action-icon">
+                <label for="music-sidebar-toggle" class="action-icon" style="cursor: pointer;">
                     <i class="q-icon-more-horizontal-fill w-7 h-7"></i>
-                </button>
+                </label>
             </div>
 
             <!-- Track List -->
