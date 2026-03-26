@@ -3383,12 +3383,16 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-label,
     .aside-nav .nav-logo span,
     .aside-nav .aside-nav-brand,
-    .aside-nav .aside-nav-brand *,
     .aside-nav .aside-nav-user-info,
     .aside-nav .aside-nav-item span:not(.aside-nav-badge),
     .aside-nav details > summary > span,
     .aside-nav details > summary > svg:not(.aside-nav-item-icon) {
         display: flex !important;
+    }
+
+    .aside-nav .aside-nav-brand strong,
+    .aside-nav .aside-nav-brand span {
+        display: block !important;
     }
 
     .aside-nav details > *:not(summary) {
