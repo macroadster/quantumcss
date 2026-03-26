@@ -3225,6 +3225,10 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         display: none;
     }
 
+    .aside-nav .aside-nav-item-icon {
+        display: flex;
+    }
+
     .aside-nav .aside-nav-group[open] > summary span,
     .aside-nav .aside-nav-group[open] > .aside-nav-sub {
         display: flex;
