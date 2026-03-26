@@ -3214,28 +3214,16 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         min-width: 64px;
     }
 
-    .aside-nav .aside-nav-brand,
-    .aside-nav .aside-nav-label,
-    .aside-nav .aside-nav-item span:not(.aside-nav-badge),
-    .aside-nav .aside-nav-group > summary span,
-    .aside-nav .aside-nav-chevron,
-    .aside-nav .aside-nav-sub,
-    .aside-nav .aside-nav-user-info,
-    .aside-nav .aside-nav-user-action {
+    .aside-nav details > *:not(summary) {
         display: none;
     }
 
-    .aside-nav .aside-nav-item-icon {
-        display: flex;
-    }
-
-    .aside-nav .aside-nav-group > summary {
+    .aside-nav details > summary {
         justify-content: center;
         padding: 0.625rem;
     }
 
-    .aside-nav .aside-nav-group[open] > summary span,
-    .aside-nav .aside-nav-group[open] > .aside-nav-sub {
+    .aside-nav details[open] > *:not(summary) {
         display: none;
     }
 
@@ -3373,32 +3361,26 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         order: -1;
     }
 
-    /* Restore visibility of labels and text in mobile drawer */
-    .aside-nav .aside-nav-brand,
-    .aside-nav .aside-nav-label,
-    .aside-nav .aside-nav-item span:not(.aside-nav-badge),
-    .aside-nav .aside-nav-group > summary span,
-    .aside-nav .aside-nav-group > summary svg,
-    .aside-nav .aside-nav-sub,
-    .aside-nav .aside-nav-user-info {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .aside-nav .aside-nav-brand strong,
-    .aside-nav .aside-nav-brand span {
-        display: block;
-    }
-
-    .aside-nav .aside-nav-group[open] > .aside-nav-sub {
+    /* Restore visibility in mobile drawer */
+    .aside-nav details > summary > span,
+    .aside-nav details > summary > svg,
+    .aside-nav details > *:not(summary):not(.aside-nav-sub) {
         display: flex;
     }
 
-    .aside-nav .aside-nav-group[open] > summary span {
+    .aside-nav details > *:not(summary) {
         display: flex;
     }
 
-    .aside-nav .aside-nav-chevron {
+    .aside-nav details[open] > .aside-nav-sub {
+        display: flex;
+    }
+
+    .aside-nav details[open] > summary > span {
+        display: flex;
+    }
+
+    .aside-nav details summary svg {
         display: inline-flex;
     }
 
