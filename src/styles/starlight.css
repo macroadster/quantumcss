@@ -2701,6 +2701,10 @@ footer .right a:hover {
     -webkit-backdrop-filter: blur(16px);
 }
 
+.aside-nav-trigger {
+    display: none;
+}
+
 html[data-theme="light"] .aside-nav {
     background: rgba(255, 255, 255, 0.95);
     border-right-color: rgba(0, 0, 0, 0.08);
@@ -2714,6 +2718,11 @@ html[data-theme="light"] .aside-nav {
     align-items: center;
     gap: 0.75rem;
     flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    background: hsla(0, 0%, 100%, 0.05);
+    backdrop-filter: blur(8px);
+    z-index: 10;
 }
 
 html[data-theme="light"] .aside-nav-header {
@@ -3300,6 +3309,40 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
 }
 
 @media (max-width: 768px) {
+    .aside-nav-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 0.75rem;
+        z-index: 201;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .aside-nav-trigger-icon {
+        width: 20px;
+        height: 14px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .aside-nav-trigger-icon span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: var(--q-text-primary);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    #sidebar-toggle-mobile:checked ~ .aside-nav {
+        transform: translateX(0);
+    }
+
     .aside-nav {
         position: fixed;
         top: 0;
@@ -3310,7 +3353,7 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         box-shadow: 4px 0 32px rgba(0, 0, 0, 0.4);
         z-index: 200;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex; /* Override display: none to allow transform */
+        display: flex;
     }
 
     /* Restore visibility of labels and text in mobile drawer */
@@ -3345,7 +3388,8 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     }
 
     /* show sidebar when checked */
-    #sidebar-toggle:checked ~ .app-layout .aside-nav {
+    #sidebar-toggle:checked ~ .app-layout .aside-nav,
+    #sidebar-toggle-mobile:checked ~ .aside-nav {
         transform: translateX(0);
     }
 
@@ -3359,7 +3403,8 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         pointer-events: none;
         transition: background 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    #sidebar-toggle:checked ~ .app-layout .aside-overlay {
+    #sidebar-toggle:checked ~ .app-layout .aside-overlay,
+    #sidebar-toggle-mobile:checked ~ .aside-overlay {
         background: rgba(0, 0, 0, 0.6);
         pointer-events: auto;
     }
@@ -3369,7 +3414,8 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
 }
 
 /* Base hidden state for toggle */
-#sidebar-toggle {
+#sidebar-toggle,
+#sidebar-toggle-mobile {
     display: none;
 }
 .aside-overlay {

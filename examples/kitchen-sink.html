@@ -1069,7 +1069,11 @@
                 <!-- Vertical Navigation -->
                 <div class="starlight-card p-0">
                     <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Vertical Sidebar (.aside-nav)</div>
-                    <div class="flex h-[400px] overflow-hidden">
+                    <div class="flex h-[400px] overflow-hidden relative">
+                        <input type="checkbox" id="sidebar-toggle-mobile" class="hidden">
+                        <label for="sidebar-toggle-mobile" class="aside-nav-trigger">
+                            <span class="aside-nav-trigger-icon"><span></span><span></span><span></span></span>
+                        </label>
                         <aside class="aside-nav" aria-label="Sidebar navigation">
                             <div class="aside-nav-header">
                                 <a href="/" class="nav-logo" aria-label="Starlight OS">
