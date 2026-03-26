@@ -13,6 +13,7 @@
             height: 100vh;
             background: var(--q-color-bg, #08081a);
             overflow: hidden;
+            position: relative;
         }
         .chat-sidebar {
             background: linear-gradient(180deg, color-mix(in srgb, var(--q-color-bg), white 2%) 0%, var(--q-color-bg) 100%);
@@ -73,7 +74,7 @@
         html[data-theme="light"] .message.sent .message-bubble { background: var(--q-color-primary); color: #fff; }
         @media (max-width: 768px) { 
             .chat-app { grid-template-columns: 1fr; } 
-            .chat-sidebar { 
+            .chat-sidebar {
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -85,12 +86,16 @@
             }
             .chat-sidebar-toggle {
                 display: flex;
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
                 cursor: pointer;
                 padding: 0.5rem;
                 z-index: 10;
+                margin-right: 0.5rem;
+            }
+            .sidebar-header { 
+                padding: 1.25rem; 
+                border-bottom: 1px solid var(--q-color-border);
+                display: flex;
+                align-items: center;
             }
             #chat-sidebar-toggle:checked ~ .chat-app .chat-sidebar {
                 transform: translateX(0);

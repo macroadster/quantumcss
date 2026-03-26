@@ -39,6 +39,13 @@
             z-index: 10;
         }
 
+        .music-menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 0.75rem;
+        }
+
         .sidebar-overlay {
             display: none;
         }
@@ -73,6 +80,9 @@
             #music-sidebar-toggle:checked ~ .music-app .sidebar-overlay {
                 opacity: 1;
                 pointer-events: auto;
+            }
+            .music-menu-toggle {
+                display: flex;
             }
         }
 
@@ -927,6 +937,9 @@
 
             <!-- Header -->
             <header class="music-header">
+                <label for="music-sidebar-toggle" class="music-menu-toggle">
+                    <i class="q-icon-menu"></i>
+                </label>
                 <div class="nav-arrows">
                     <button class="nav-arrow">
                         <i class="q-icon-chevron-left-fill"></i>
