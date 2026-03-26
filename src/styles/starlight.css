@@ -533,7 +533,7 @@ html[data-theme="light"] .radio-starlight {
     padding: 0.5rem 0.75rem;
     background-color: rgb(10 10 30 / 98%);
     backdrop-filter: blur(12px);
-    border: 1px solid rgb(0 212 255 / 30%);
+    border: 1px solid color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
     border-radius: 0.5rem;
     color: #f1f5f9;
     font-size: 0.75rem;
@@ -1026,7 +1026,7 @@ html[data-theme="light"] .code-window-title {
 
 .accordion .accordion-icon {
     color: var(--q-color-starlight-blue);
-    filter: drop-shadow(0 0 5px rgb(0 212 255 / 50%));
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%));
 }
 
 html[data-theme="light"] .accordion.accordion-item {
@@ -1668,8 +1668,8 @@ html[data-theme="light"] .dialog-content .bg-black_40 {
 /* 18. Semantic Typography Utilities */
 .text-glow {
     text-shadow:
-        0 0 10px rgb(0 212 255 / 50%),
-        0 0 20px rgb(0 212 255 / 60%);
+        0 0 10px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%),
+        0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 40%);
 }
 
 .text-glass {
@@ -1679,7 +1679,7 @@ html[data-theme="light"] .dialog-content .bg-black_40 {
 }
 
 html[data-theme="light"] .text-glow {
-    text-shadow: 0 0 8px rgb(0 212 255 / 30%);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
 }
 
 html[data-theme="light"] .text-glass {
@@ -1808,8 +1808,8 @@ html[data-theme="light"] .starlight-loading {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(0 212 255 / 30%);
-    box-shadow: 0 0 10px rgb(0 212 255 / 60%);
+    background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--q-color-starlight-blue), transparent 40%);
 }
 
 html[data-theme="light"] ::-webkit-scrollbar-track {
@@ -1916,7 +1916,7 @@ form button:not([class]),
     padding: 0.75rem 1.5rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 0 20px rgb(0 212 255 / 30%);
+    box-shadow: 0 0 20px var(--q-color-starlight-glow);
     text-decoration: none;
 }
 
@@ -1924,7 +1924,7 @@ form button:not([class]):hover,
 .btn-starlight:hover {
     transform: translateY(-2px);
     filter: brightness(1.1);
-    box-shadow: 0 0 30px rgb(0 212 255 / 50%);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%);
 }
 
 form button:not([class]):active,
@@ -1937,7 +1937,7 @@ form button:not([class]):focus-visible,
 .btn-starlight:focus-visible {
     outline: 2px solid white;
     outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgb(0 212 255 / 30%);
+    box-shadow: 0 0 0 4px var(--q-color-starlight-glow);
 }
 
 html[data-theme="light"] form button:not([class]):focus-visible,
@@ -2146,7 +2146,7 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: var(--q-radius-lg);
-    background: rgb(0 212 255 / 15%);
+    background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
     color: var(--q-color-starlight-blue);
 }
 
@@ -2420,7 +2420,7 @@ html[data-theme="light"] .btn-starlight:focus-visible {
 }
 
 .starlight-chart-tab.active {
-    background: rgb(0 212 255 / 15%);
+    background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
     color: var(--q-color-starlight-blue);
 }
 

@@ -35,7 +35,7 @@ const defaultTheme = {
     starlight: {
       blue: '#00d4ff', peach: '#ffb38a', orange: '#ff7e5f', deep: '#08081a',
     },
-    accent: '#00d4ff',
+    accent: 'var(--q-color-primary)',
     transparent: 'transparent',
   },
   spacing: {

@@ -971,8 +971,8 @@ html[data-theme="dark"] {
   --q-card-border: color-mix(in srgb, #fff, transparent 88%);
   --q-card-shadow: 0 25px 50px -12px rgb(0 0 0 / 60%);
   
-  --q-btn-primary-bg: #00d4ff;
-  --q-btn-primary-hover-bg: #00b8e6;
+  --q-btn-primary-bg: var(--q-color-starlight-blue);
+  --q-btn-primary-hover-bg: color-mix(in srgb, var(--q-color-starlight-blue), black 10%);
   --q-btn-primary-color: #fff;
   
   --q-input-bg: color-mix(in srgb, #fff, transparent 92%);

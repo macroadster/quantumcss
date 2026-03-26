@@ -377,7 +377,7 @@ function generateCSS(configPath) {
           property = 'border-style'; value = valKey;
         }
       } else if (prefix === 'focus-glow') {
-        const color = resolveColor(valKey) || resolveColor('primary') || '#00d4ff';
+        const color = resolveColor(valKey) || resolveColor('primary') || 'var(--q-color-primary)';
         const rgba = getRGBA(color);
         const glowColor = withOpacity(rgba, 0.7);
         const ringColor = withOpacity(rgba, 0.4);

@@ -7,8 +7,8 @@
 }
 
 @keyframes cosmic-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgb(0 212 255 / 20%), 0 0 40px rgb(0 212 255 / 10%); }
-  50% { box-shadow: 0 0 40px rgb(0 212 255 / 50%), 0 0 80px rgb(0 212 255 / 20%); }
+  0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%), 0 0 40px color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%); }
+  50% { box-shadow: 0 0 40px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%), 0 0 80px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%); }
 }
 
 @keyframes star-twinkle {

@@ -45,6 +45,8 @@
             display: flex; justify-content: space-between; align-items: center; 
             margin-bottom: 1.5rem; cursor: pointer;
         }
+        .designer-header i { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .designer-panel.minimized .designer-header i { transform: rotate(180deg); }
         .designer-title { font-weight: 900; font-size: 0.75rem; text-transform: uppercase; tracking-widest; opacity: 0.8; }
         .control-group { margin-bottom: 1.25rem; }
         .control-label { display: flex; justify-content: space-between; font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; opacity: 0.6; }

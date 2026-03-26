@@ -253,9 +253,9 @@ html[data-theme="light"] .input:disabled {
 }
 
 .badge-primary {
-  background-color: rgb(0 212 255 / 15%);
-  color: #00d4ff;
-  border-color: rgb(0 212 255 / 30%);
+  background-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
+  color: var(--q-color-starlight-blue);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
 }
 
 .badge-secondary {
