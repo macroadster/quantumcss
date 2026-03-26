@@ -3243,8 +3243,14 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
     .aside-nav .aside-nav-item-icon,
     .aside-nav summary > svg.aside-nav-item-icon,
     .aside-nav .aside-nav-user-avatar,
-    .aside-nav .aside-nav-user-action {
+    .aside-nav .aside-nav-user-action,
+    .aside-nav .nav-logo i {
         display: flex !important;
+    }
+
+    /* Center logo in icon-only mode */
+    .aside-nav .aside-nav-header.nav-logo {
+        justify-content: center;
     }
 
     .aside-nav .aside-nav-user {
@@ -3254,6 +3260,11 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         flex-direction: row;
         align-items: center;
         gap: 0.5rem;
+    }
+
+    .aside-nav .aside-nav-user > .ml-auto {
+        margin-left: 0;
+        margin-inline-start: auto;
     }
 
     .aside-nav .aside-nav-user-action {
