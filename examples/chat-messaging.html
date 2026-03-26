@@ -67,14 +67,44 @@
         .theme-btn { width: 100%; display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: var(--q-color-surface); border: 1px solid var(--q-color-border); border-radius: 0.75rem; color: var(--q-text-primary, #f1f5f9); cursor: pointer; transition: all 0.2s ease; }
         .theme-btn:hover { background: var(--q-highlight-bg); }
         .theme-label { font-size: 0.875rem; font-weight: 500; }
+        .chat-sidebar-toggle { display: none; }
         html[data-theme="light"] { --bg-primary: var(--q-light-bg); --text-primary: var(--q-light-text); --text-secondary: var(--q-light-text-muted); --text-muted: var(--q-light-text-muted); }
         html[data-theme="light"] .message.received .message-bubble { background: #fff; border: 1px solid #e2e8f0; color: #0f172a; }
         html[data-theme="light"] .message.sent .message-bubble { background: var(--q-color-primary); color: #fff; }
-        @media (max-width: 768px) { .chat-app { grid-template-columns: 1fr; } .chat-sidebar { display: none; } .message { max-width: 85%; } }
+        @media (max-width: 768px) { 
+            .chat-app { grid-template-columns: 1fr; } 
+            .chat-sidebar { 
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 300px;
+                transform: translateX(-100%);
+                z-index: 200;
+                transition: transform 0.3s ease;
+            }
+            .chat-sidebar-toggle {
+                display: flex;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                z-index: 10;
+            }
+            #chat-sidebar-toggle:checked ~ .chat-app .chat-sidebar {
+                transform: translateX(0);
+            }
+            .message { max-width: 85%; } 
+        }
     </style>
 </head>
 <body>
+    <input type="checkbox" id="chat-sidebar-toggle" class="hidden">
     <div class="chat-app">
+        <label for="chat-sidebar-toggle" class="chat-sidebar-toggle">
+            <i class="q-icon-menu"></i>
+        </label>
         <aside class="chat-sidebar">
             <div class="sidebar-header">
                 <div class="user-cell" style="margin-bottom: 1rem;">

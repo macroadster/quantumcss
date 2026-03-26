@@ -26,6 +26,54 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            position: relative;
+        }
+
+        .sidebar-toggle-btn {
+            display: none;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 10;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-toggle-btn {
+                display: flex;
+            }
+            .music-sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 260px;
+                transform: translateX(-100%);
+                z-index: 200;
+                transition: transform 0.3s ease;
+            }
+            #music-sidebar-toggle:checked ~ .music-app .music-sidebar {
+                transform: translateX(0);
+            }
+            .sidebar-overlay {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 199;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            #music-sidebar-toggle:checked ~ .music-app .sidebar-overlay {
+                opacity: 1;
+                pointer-events: auto;
+            }
         }
 
         .music-logo {
@@ -800,9 +848,14 @@
     </style>
 </head>
 <body>
+    <input type="checkbox" id="music-sidebar-toggle" class="hidden">
     <div class="music-app">
+        <label for="music-sidebar-toggle" class="sidebar-overlay"></label>
         <!-- Sidebar -->
         <aside class="music-sidebar">
+            <label for="music-sidebar-toggle" class="sidebar-toggle-btn">
+                <i class="q-icon-menu"></i>
+            </label>
             <div class="music-logo">
                 <div class="music-logo-icon">
                     <i class="q-icon-music text-white"></i>
