@@ -2601,6 +2601,18 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     gap: 0.75rem;
 }
 
+@media (max-width: 768px) {
+    .starlight-page-actions {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 0.25rem;
+    }
+    .starlight-page-actions::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 /* ============================================
    STARLIGHT LAYOUT - Zero-Boilerplate Atmospheric
    ============================================ */

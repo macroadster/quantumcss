@@ -335,6 +335,7 @@ email-header {
     align-items: center;
     padding: 0 var(--side-padding);
     flex-shrink: 0;
+    gap: 1rem;
 }
 html[data-theme="light"] email-header {
     background: #f8fafc;
@@ -347,9 +348,18 @@ email-header .email-subject {
     font-weight: 700;
     color: #f1f5f9;
     margin: 0;
+    flex: 1;
+    min-width: 0;
 }
 html[data-theme="light"] email-header .email-subject {
     color: #0f172a;
+}
+
+email-header actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
 }
 
 email-view {

@@ -1883,6 +1883,18 @@ html[data-theme="light"] .top-nav {
   gap: 0.75rem;
 }
 
+@media (max-width: 768px) {
+  .page-actions {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+  .page-actions::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 html[data-theme="light"] .page-title {
   color: #0f172a;
 }
