@@ -350,6 +350,7 @@ email-header .email-subject {
     margin: 0;
     flex: 1;
     min-width: 0;
+    align-self: center;
 }
 html[data-theme="light"] email-header .email-subject {
     color: #0f172a;
