@@ -360,6 +360,7 @@ email-header actions {
     align-items: center;
     gap: 0.25rem;
     flex-shrink: 0;
+    margin-left: auto;
 }
 
 email-view {
@@ -634,6 +635,7 @@ html[data-theme="light"] .nav-toggle i {
         order: 2;
         display: flex;
         gap: 0.25rem;
+        margin-left: auto;
     }
 }
     
@@ -656,5 +658,6 @@ html[data-theme="light"] .nav-toggle i {
         order: 2;
         display: flex;
         gap: 0.25rem;
+        margin-left: auto;
     }
 }
