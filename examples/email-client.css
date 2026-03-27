@@ -351,6 +351,7 @@ email-header .email-subject {
     flex: 1;
     min-width: 0;
     align-self: center;
+    line-height: 1.2;
 }
 html[data-theme="light"] email-header .email-subject {
     color: #0f172a;
@@ -628,6 +629,7 @@ html[data-theme="light"] .nav-toggle i {
         order: 1;
         flex: 1 1 100%;
         width: 100%;
+        align-self: center;
     }
     email-header .spacer {
         display: none;
