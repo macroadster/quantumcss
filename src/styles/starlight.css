@@ -3305,6 +3305,15 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         gap: 0.5rem;
     }
 
+    .aside-nav .aside-nav-user + .aside-nav-user-action {
+        margin-top: 0.5rem;
+    }
+
+    .aside-nav.aside-nav-icons .aside-nav-footer {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
     .aside-nav .aside-nav-user-action {
         justify-content: center;
     }
@@ -3375,6 +3384,8 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
         padding: 0.5rem;
         border-top: none;
         justify-content: center;
+        flex-direction: column;
+        gap: 0.75rem;
     }
 
     .aside-nav .aside-nav-user {
