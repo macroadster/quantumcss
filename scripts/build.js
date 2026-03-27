@@ -48,7 +48,7 @@ class QuantumCSSBuilder {
     console.log('\n🚀 Building QuantumCSS...');
     
     let combinedCSS = '/*!\n' +
-      ' * QuantumCSS + Starlight UI v1.11.3 - Advanced Utility-First CSS Framework\n' +
+      ' * QuantumCSS + Starlight UI v1.11.4 - Advanced Utility-First CSS Framework\n' +
       ' * License: MIT\n' +
       ' */\n\n';
 
