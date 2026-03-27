@@ -1790,6 +1790,26 @@ html[data-theme="light"] .list-divider {
   overflow-y: auto;
 }
 
+/* Touch Slide - Horizontal scroll with touch swipe support */
+.touch-slide {
+  display: flex;
+  gap: var(--q-space-2, 0.5rem);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.touch-slide::-webkit-scrollbar {
+  display: none;
+}
+
+.touch-slide > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
 /* ============================================================================
    APP LAYOUT PATTERNS
    Standardized layout components for dashboard and admin applications
