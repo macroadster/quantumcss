@@ -45,17 +45,26 @@ function manifest(outputPath) {
     theme: {
       colors: { ...defaultTheme.colors, ...(userConfig.theme?.extend?.colors || {}) },
       spacing: { ...defaultTheme.spacing, ...(userConfig.theme?.extend?.spacing || {}) },
+      borderRadius: defaultTheme.borderRadius,
       fontSize: defaultTheme.fontSize,
+      fontWeight: defaultTheme.fontWeight,
       shadows: defaultTheme.shadows,
-      maxWidth: defaultTheme.maxWidth
+      maxWidth: defaultTheme.maxWidth,
+      duration: defaultTheme.duration,
+      easing: defaultTheme.easing,
+      transition: defaultTheme.transition,
+      semantic: defaultTheme.semantic,
+      light: defaultTheme.light
     },
     utilityMaps: Object.keys(utilityMaps),
     componentPresets: {
-      ...utilityMaps, // Default semantic presets are in utilityMaps
+      ...utilityMaps,
       ...(userConfig.componentPresets || {})
     },
-    variants: ['sm', 'md', 'lg', 'xl', '2xl', 'dark', 'light', 'hover', 'focus', 'active', 'group-hover'],
-    instructions: "Always use ':' for variants (e.g., md:flex). Prefer 'Attribute Mode' for complex layouts using sm=\"...\" md=\"...\" attributes."
+    plugins: userConfig.plugins || [],
+    presets: userConfig.presets || [],
+    darkMode: userConfig.darkMode || 'media',
+    instructions: "Use ':' for variants (e.g., md:flex). Use Attribute Mode with sm='...' md='...' attributes."
   };
 
   const json = JSON.stringify(manifestData, null, 2);
@@ -77,16 +86,99 @@ function init() {
     theme: {
       extend: {
         colors: {
-          primary: defaultTheme.colors.blue[500],
-          secondary: defaultTheme.colors.slate[600],
-          starlight: defaultTheme.colors.starlight.blue
+          primary: {
+            50: "#eff6ff", 100: "#dbeafe", 200: "#bfdbfe", 300: "#93c5fd", 400: "#60a5fa",
+            500: "#3b82f6", 600: "#2563eb", 700: "#1d4ed8", 800: "#1e40af", 900: "#1e3a8a"
+          },
+          secondary: {
+            50: "#f8fafc", 100: "#f1f5f9", 200: "#e2e8f0", 300: "#cbd5e1", 400: "#94a3b8",
+            500: "#64748b", 600: "#475569", 700: "#334155", 800: "#1e293b", 900: "#0f172a"
+          },
+          success: "#10b981",
+          warning: "#f59e0b",
+          error: "#ef4444",
+          neutral: "#6b7280",
+          starlight: {
+            blue: "#00d4ff",
+            peach: "#ffb38a",
+            orange: "#ff7e5f",
+            deep: "#08081a"
+          }
+        },
+        fontFamily: {
+          sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+          serif: ["Georgia", "Cambria", "serif"],
+          mono: ["SF Mono", "Monaco", "Cascadia Code", "monospace"]
+        },
+        spacing: {
+          px: "1px",
+          0: "0px",
+          1: "0.25rem",
+          2: "0.5rem",
+          3: "0.75rem",
+          4: "1rem",
+          5: "1.25rem",
+          6: "1.5rem",
+          8: "2rem",
+          10: "2.5rem",
+          12: "3rem",
+          16: "4rem",
+          24: "6rem",
+          32: "8rem"
+        },
+        borderRadius: {
+          none: "0px",
+          sm: "0.125rem",
+          md: "0.375rem",
+          lg: "0.5rem",
+          xl: "0.75rem",
+          "2xl": "1rem",
+          "3xl": "1.5rem",
+          full: "9999px"
+        },
+        boxShadow: {
+          sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+          md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+          lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+          xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+          "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)"
+        },
+        animation: {
+          spin: "spin 1s linear infinite",
+          ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
+          pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+          bounce: "bounce 1s infinite",
+          "fade-in": "fadeIn 0.5s ease-in-out",
+          "slide-up": "slideUp 0.3s ease-out",
+          "slide-down": "slideDown 0.3s ease-out"
         }
       }
     },
-    content: ["./**/*.html"],
+    content: [
+      "./src/**/*.{html,js,ts,jsx,tsx}",
+      "./examples/**/*.html",
+      "./index.html"
+    ],
+    plugins: [
+      "container-queries",
+      "logical-properties",
+      "component-utilities",
+      "dark-mode",
+      "accessibility"
+    ],
+    presets: [
+      "modern-css"
+    ],
     componentPresets: {
-      "btn-action": "btn-base theme-starlight px-8 py-3 focus-glow",
-      "card-premium": "card-base theme-glass-dark p-10 shadow-2xl"
+      "btn-primary": "btn-starlight px-6 py-2 shadow-md hover:scale-105 active:scale-95",
+      "btn-secondary": "btn-base theme-glass px-6 py-2 shadow-md hover:bg-white_10 active:scale-95",
+      "card-premium": "card-base theme-glass p-8 shadow-xl",
+      "starlight-nav": "nav-base theme-glass-dark",
+      "search": "search-container theme-glass-dark rounded-xl",
+      "dashboard": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+      "gallery": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4",
+      "form": "card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start",
+      "dialog": "dialog-base modal-fixed theme-glass-dark dialog-bg ani-scale-in"
     },
     darkMode: "media"
   };
