@@ -641,26 +641,3 @@ html[data-theme="light"] .nav-toggle i {
         margin-left: auto;
     }
 }
-    
-    email-header {
-        flex-wrap: wrap;
-        padding: 0.75rem;
-        min-height: 50px;
-        gap: 0.5rem;
-    }
-    email-header .email-subject {
-        font-size: 1rem;
-        order: 1;
-        flex: 1 1 100%;
-        width: 100%;
-    }
-    email-header .spacer {
-        display: none;
-    }
-    email-header actions {
-        order: 2;
-        display: flex;
-        gap: 0.25rem;
-        margin-left: auto;
-    }
-}
