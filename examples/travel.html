@@ -40,6 +40,12 @@
                 z-index: -1;
                 transition: opacity 0.5s ease;
             }
+            @media (max-width: 768px) {
+                .hero-glow {
+                    width: 100%;
+                    right: -50%;
+                }
+            }
             html[data-theme="light"] .hero-glow { opacity: 0; }
 
             /* Theme Toggle Styling */
@@ -83,6 +89,16 @@
             .nav-header .btn-starlight { display: none; }
             @media (min-width: 768px) {
                 .nav-header .btn-starlight { display: block; }
+            }
+            
+            @media (max-width: 768px) {
+                .starlight-hero h1 { font-size: 2.5rem; }
+                .starlight-hero p { font-size: 1rem; padding: 0 1rem; }
+                .starlight-hero form { padding: 1.5rem; }
+                .starlight-hero form input { font-size: 1rem !important; }
+                .starlight-hero form button { width: 100%; }
+                .container { padding-left: 1rem; padding-right: 1rem; }
+                .starlight-footer .container > div { grid-template-columns: 1fr; }
             }
             html[data-theme="light"] .nav-header a { color: var(--q-light-text-muted) !important; }
             html[data-theme="light"] .nav-header a:hover { color: var(--q-color-primary) !important; }

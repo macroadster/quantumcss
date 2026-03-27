@@ -579,4 +579,21 @@ html[data-theme="light"] .nav-toggle i {
     content-top-bar .mobile-back {
         display: flex;
     }
+    
+    content-top-bar {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    content-top-bar .mobile-back {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    content-top-bar user-cell {
+        flex: 1;
+        min-width: 150px;
+    }
+    content-top-bar email-time-full {
+        font-size: 0.75rem;
+    }
 }

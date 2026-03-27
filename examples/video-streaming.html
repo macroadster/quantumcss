@@ -236,6 +236,23 @@
                 border: 2px solid rgba(0, 212, 255, 0.3);
                 box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
             }
+            .mobile-menu-btn {
+                display: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: var(--text-primary, #f1f5f9);
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+            }
+            .mobile-menu-btn:hover {
+                background: rgba(0, 212, 255, 0.1);
+                border-color: rgba(0, 212, 255, 0.3);
+            }
 
             .main-content {
                 display: grid;
@@ -628,6 +645,9 @@
                 .search-bar {
                     display: none;
                 }
+                .mobile-menu-btn {
+                    display: flex;
+                }
                 .video-grid {
                     grid-template-columns: 1fr;
                 }
@@ -675,6 +695,9 @@
         <div class="stars"></div>
         <div class="video-app">
             <header>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span class="q-icon q-icon-menu"></span>
+                </button>
                 <div class="logo">
                     <div class="logo-icon">
                         <span class="q-icon q-icon-play-fill"></span>

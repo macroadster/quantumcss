@@ -26,17 +26,28 @@ html[data-theme="light"] a:hover {
 }
 
 h1 {
-    font-size: 3rem; /* text-5xl */
+    font-size: 2rem;
     font-weight: 700;
-    line-height: 1.25; /* leading-tight */
-    letter-spacing: -0.05em; /* tracking-tighter */
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     margin: 0;
-    white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+    h1 {
+        font-size: 2.5rem;
+    }
 }
 
 @media (min-width: 768px) {
     h1 {
-        font-size: 4rem; /* text-7xl */
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 3.5rem;
     }
 }
 

@@ -12,6 +12,22 @@
                 background: transparent !important;
             }
 
+            @media (max-width: 640px) {
+                .hero .flex {
+                    flex-direction: column;
+                    gap: 0.75rem !important;
+                    align-items: stretch;
+                }
+                .hero .flex button,
+                .hero .flex a {
+                    width: 100%;
+                    justify-content: center;
+                }
+                header.hero .pt-8 { padding-top: 2rem; }
+                header.hero h1 { font-size: 2.5rem; }
+                header.hero .pb-12 { padding-bottom: 2rem; }
+            }
+
             /* Theme Toggle specific local style */
             .theme-toggle {
                 position: fixed;

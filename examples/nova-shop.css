@@ -977,6 +977,7 @@ html[data-theme="light"] .search-bar-input {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
   .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
   .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
