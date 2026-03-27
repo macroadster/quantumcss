@@ -252,7 +252,7 @@
                     padding: 0.75rem 0;
                 }
                 .sidebar .nav-item span:last-child,
-                .sidebar .nav-section-title {
+                .sidebar .nav-title {
                     display: none;
                 }
             }
@@ -580,6 +580,9 @@
             html[data-theme="light"] .nav-item:hover,
             html[data-theme="light"] .nav-item.active {
                 background: rgba(0, 212, 255, 0.1);
+            }
+            html[data-theme="light"] .nav-item .q-icon {
+                filter: brightness(0.2);
             }
             html[data-theme="light"] .category-tab {
                 background: rgba(255, 255, 255, 0.8);

@@ -91,6 +91,12 @@
                 .nav-header .btn-starlight { display: block; }
             }
             
+            @media (max-width: 900px) {
+                .nav-header .nav-links {
+                    gap: 1.5rem !important;
+                }
+            }
+            
             @media (max-width: 768px) {
                 .starlight-hero h1 { font-size: 2.5rem; }
                 .starlight-hero p { font-size: 1rem; padding: 0 1rem; }
@@ -207,6 +213,11 @@
             html[data-theme="light"] #departure-picker .date-picker-day.selected {
                 background: var(--q-color-primary);
                 color: white;
+            }
+            html[data-theme="light"] .date-picker-input,
+            html[data-theme="light"] input[placeholder="Where to?"] {
+                background: white;
+                color: #1e293b;
             }
         </style>
     </head>
