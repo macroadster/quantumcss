@@ -66,9 +66,30 @@
         @media (min-width: 768px) {
             .nav-header .btn-secondary { display: block; }
         }
-        @media (max-width: 900px) {
+
+        /* Responsive Nav Tweak for Medium Screens */
+        @media (min-width: 640px) and (max-width: 1024px) {
+            .nav-header .nav-links a {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.3rem;
+                letter-spacing: -0.02em;
+            }
             .nav-header .nav-links {
-                gap: 0.75rem !important;
+                gap: 0;
+            }
+            .nav-header .text-2xl, .nav-header .sm\:text-4xl {
+                font-size: 1.5rem !important; /* Scale logo down for md range */
+            }
+            .nav-header .px-6 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            .nav-header .gap-4 {
+                gap: 0.5rem !important;
+            }
+            .nav-header .btn-secondary {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
             }
         }
     </style>
@@ -77,17 +98,17 @@
     <!-- Navigation -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
     <header class="nav-header">
-        <div class="container mx-auto px-6 flex items-center justify-between w-full h-full">
+        <div class="mx-auto px-6 flex items-center justify-between w-full h-full">
             <div class="text-2xl sm:text-4xl font-bold tracking-tighter uppercase italic text-primary shrink-0">QUANTUM<span class="text-blue-600">NEWS</span></div>
             
-            <nav class="nav-links space-x-12 text-xs font-black uppercase tracking-widest justify-center">
+            <nav class="nav-links flex-1 justify-center">
                 <a href="#" class="transition-colors">Neural Mesh</a>
                 <a href="#" class="transition-colors">Bio-Tech</a>
                 <a href="#" class="transition-colors">Space-X</a>
                 <a href="#" class="transition-colors">Quantum Compute</a>
             </nav>
 
-            <div class="flex items-center gap-6 shrink-0">
+            <div class="flex items-center gap-4">
                 <div id="theme-btn" class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
                     <i class="q-icon-display"></i>
                     <i class="q-icon-sun sun-icon"></i>
