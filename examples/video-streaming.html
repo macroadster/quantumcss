@@ -666,7 +666,7 @@
                 .sidebar-overlay {
                     display: block;
                     position: fixed;
-                    top: 0;
+                    top: 60px;
                     left: 0;
                     right: 0;
                     bottom: 0;
@@ -682,6 +682,19 @@
                     pointer-events: auto;
                     top: 60px;
                     bottom: 0;
+                }
+            }
+
+            @media (min-width: 769px) {
+                .sidebar {
+                    position: relative;
+                    transform: none;
+                    z-index: auto;
+                    display: block;
+                    pointer-events: auto;
+                }
+                .sidebar-overlay {
+                    display: none;
                 }
             }
             ::-webkit-scrollbar {
