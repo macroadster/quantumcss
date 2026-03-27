@@ -324,9 +324,15 @@
             }
             
             .page-header {
-                flex-direction: row;
-                align-items: center;
-                gap: 1.5rem;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .page-header > div:first-child {
+                flex: 1 1 100%;
+            }
+            .page-actions {
+                justify-content: flex-start;
             }
         }
 

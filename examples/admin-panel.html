@@ -77,6 +77,18 @@
                 justify-content: flex-end;
             }
             
+            .top-nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .top-nav > div:first-child {
+                flex: 1 1 100%;
+                min-width: 0;
+            }
+            .breadcrumb {
+                flex-wrap: wrap;
+            }
+            
             .app-layout {
                 grid-template-columns: 1fr;
             }
@@ -87,12 +99,6 @@
             
             table {
                 min-width: 800px;
-            }
-            
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
             }
         }
 
