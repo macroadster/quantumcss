@@ -58,11 +58,32 @@ npm install @howssatoshi/quantumcss
 ### Command Line Interface
 QuantumCSS includes a powerful CLI for project orchestration:
 
-- **`npx quantumcss init`** - Generate a default `quantum.config.json`.
-- **`npx quantumcss build [output]`** - Generate the JIT CSS bundle (default: `dist/quantum.css`).
-- **`npx quantumcss watch [output]`** - Automatically rebuild when your HTML or config changes.
-- **`npx quantumcss scaffold <type>`** - Generate a starter template (`gaming`, `blog`, `travel`, etc.).
-- **`npx quantumcss manifest [output]`** - Generate an AI-optimized design system manifest.
+```bash
+# Using npx (recommended)
+npx quantumcss <command>
+
+# Or run directly
+node src/cli.js <command>
+```
+
+**Commands:**
+
+- **`init`** - Generate a default `quantum.config.json` with full theme structure (colors, spacing, plugins, presets, componentPresets).
+- **`build [output]`** - Generate the JIT CSS bundle (default: `dist/quantum.css`).
+- **`watch [output]`** - Automatically rebuild when your HTML or config changes.
+- **`scaffold <type> [file]`** - Generate a starter template (`gaming`, `blog`, `travel`, `shopping`, `starlight`, `news`, `docs`).
+- **`manifest [output]`** - Generate an AI-optimized design system manifest (colors, spacing, utilities, componentPresets). Use this when starting new projects so AI agents understand available tokens.
+
+```bash
+# Examples
+npx quantumcss init                           # Create quantum.config.json
+npx quantumcss build                          # Build dist/quantum.css
+npx quantumcss build custom.css               # Custom output path
+npx quantumcss watch                         # Watch for changes
+npx quantumcss scaffold blog index.html     # Scaffold blog template
+npx quantumcss manifest design-system.json   # Generate manifest file
+npx quantumcss manifest                      # Output manifest to stdout
+```
 
 ## ⚙️ Configuration
 
