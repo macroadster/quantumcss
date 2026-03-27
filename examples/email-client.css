@@ -341,7 +341,7 @@ html[data-theme="light"] email-header {
     background: #f8fafc;
 }
 email-header .spacer {
-    flex: 1;
+    flex: 0;
 }
 email-header .email-subject {
     font-size: 1.25rem;
