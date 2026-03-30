@@ -173,7 +173,6 @@ function init() {
       "btn-primary": "btn-starlight px-6 py-2 shadow-md hover:scale-105 active:scale-95",
       "btn-secondary": "btn-base theme-glass px-6 py-2 shadow-md hover:bg-white_10 active:scale-95",
       "card-premium": "card-base theme-glass p-8 shadow-xl",
-      "starlight-nav": "nav-base theme-glass-dark",
       "search": "search-container theme-glass-dark rounded-xl",
       "dashboard": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
       "gallery": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4",

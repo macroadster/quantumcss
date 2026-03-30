@@ -94,7 +94,7 @@ const iconLibrary = {
 function generateCSS() {
   let css = `/* Quantum Icons - Generated Library */
 
-.q-icon {
+.icon {
   display: inline-block;
   vertical-align: middle;
   width: 1.25em;
@@ -116,7 +116,7 @@ function generateCSS() {
     const svg = iconLibrary[name];
     const encodedSvg = encodeURIComponent(svg);
 
-    css += `.q-icon-${name} {
+    css += `.icon-${name} {
   mask-image: url("data:image/svg+xml,${encodedSvg}");
   -webkit-mask-image: url("data:image/svg+xml,${encodedSvg}");
 }

@@ -2084,7 +2084,7 @@ html[data-theme="light"] .breadcrumb-current {
 }
 
 /* Constrain nav item icons */
-.nav-item i, .nav-item .q-icon, .nav-item svg {
+.nav-item i, .nav-item .icon, .nav-item svg {
   width: 1.125rem;
   height: 1.125rem;
   font-size: 1.125rem;
@@ -2173,7 +2173,7 @@ html[data-theme="light"] .nav-section-title {
   transition: all 0.3s ease;
 }
 
-.quick-action-icon i, .quick-action-icon .q-icon, .quick-action-icon svg {
+.quick-action-icon i, .quick-action-icon .icon, .quick-action-icon svg {
   width: 1.75rem;
   height: 1.75rem;
   font-size: 1.75rem;
@@ -2256,7 +2256,7 @@ html[data-theme="light"] .quick-action-icon {
   justify-content: center;
 }
 
-.stat-icon i, .stat-icon .q-icon, .stat-icon svg {
+.stat-icon i, .stat-icon .icon, .stat-icon svg {
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;
@@ -2313,7 +2313,7 @@ html[data-theme="light"] .quick-action-icon {
   border-radius: 0.375rem;
 }
 
-.stat-trend i, .stat-trend .q-icon, .stat-trend svg {
+.stat-trend i, .stat-trend .icon, .stat-trend svg {
   width: 0.75rem;
   height: 0.75rem;
   font-size: 0.75rem;
@@ -2361,7 +2361,7 @@ html[data-theme="light"] .quick-action-icon {
   flex-shrink: 0;
 }
 
-.activity-icon i, .activity-icon .q-icon, .activity-icon svg {
+.activity-icon i, .activity-icon .icon, .activity-icon svg {
   width: 1rem;
   height: 1rem;
   font-size: 1rem;
@@ -2447,7 +2447,7 @@ html[data-theme="light"] .stat-icon-red {
   position: relative;
 }
 
-.icon-btn i, .icon-btn .q-icon {
+.icon-btn i, .icon-btn .icon {
   width: 1.25rem;
   height: 1.25rem;
   font-size: 1.25rem;
@@ -2470,7 +2470,7 @@ html[data-theme="light"] .stat-icon-red {
   border-radius: 0.5rem;
 }
 
-.icon-btn-sm i, .icon-btn-sm .q-icon {
+.icon-btn-sm i, .icon-btn-sm .icon {
   width: 1rem;
   height: 1rem;
   font-size: 1rem;
@@ -2483,7 +2483,7 @@ html[data-theme="light"] .stat-icon-red {
   border-radius: 0.75rem;
 }
 
-.icon-btn-lg i, .icon-btn-lg .q-icon {
+.icon-btn-lg i, .icon-btn-lg .icon {
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;
@@ -2510,7 +2510,7 @@ html[data-theme="light"] .stat-icon-red {
   transition: all 0.2s ease;
 }
 
-.action-btn i, .action-btn .q-icon {
+.action-btn i, .action-btn .icon {
   width: 1rem;
   height: 1rem;
   font-size: 1rem;

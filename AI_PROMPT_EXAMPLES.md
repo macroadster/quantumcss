@@ -40,7 +40,7 @@ Use the built-in navigation components and include all necessary JavaScript for 
 
 ### Expected Output:
 ```html
-<nav class="starlight-nav">
+<header class="nav-header">
   <div class="container mx-auto px-8">
     <div class="flex justify-between items-center py-4">
       <div class="font-bold text-xl text-gradient">Logo</div>
@@ -69,7 +69,7 @@ Use the built-in navigation components and include all necessary JavaScript for 
       <li><a href="#" class="nav-link">Services</a></li>
     </ul>
   </div>
-</nav>
+</header>
 ```
 
 ## Layout Generation

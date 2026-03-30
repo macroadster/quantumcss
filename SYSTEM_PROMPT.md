@@ -14,7 +14,7 @@ For complex layouts, prefer **Attribute Mode** over the `class` attribute. This 
 
 ### 3. Semantic Preset Priority
 Always check for a high-level **Starlight Preset** before writing atomic utilities.
-- Use `starlight-navbar` instead of manual nav/glass/sticky strings.
+- Use `nav-header` instead of manual nav/glass/sticky strings.
 - Use `starlight-card` for glassmorphic containers.
 - Use `btn-starlight` for primary interactive elements.
 

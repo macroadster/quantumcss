@@ -30,7 +30,7 @@ This creates several problems:
 
 The repo already shows that normalization has partially started:
 
-- [`src/defaults.js`](/Users/eric/sandbox/css/src/defaults.js) still exports `starlight-*` presets such as `starlight-nav`, `starlight-navbar`, `starlight-sidebar-nav`, `starlight-avatar*`, and `starlight-table-*`.
+- [`src/defaults.js`](/Users/eric/sandbox/css/src/defaults.js) still exports `starlight-*` presets such as `starlight-avatar*`, and `starlight-table-*`.
 - [`src/styles/quantum-components.css`](/Users/eric/sandbox/css/src/styles/quantum-components.css) already contains unprefixed primitives such as `.nav-header`, `.avatar`, `.status-dot`, `.notification-dot`, `.tab-list`, `.tab-button`, and `.icon-btn`.
 - [`examples/blog.html`](/Users/eric/sandbox/css/examples/blog.html) and [`examples/admin-panel.html`](/Users/eric/sandbox/css/examples/admin-panel.html) already use `.nav-header` and `.aside-nav`.
 - [`examples/chat-messaging.html`](/Users/eric/sandbox/css/examples/chat-messaging.html), [`examples/video-streaming.html`](/Users/eric/sandbox/css/examples/video-streaming.html), and [`examples/analytics-dashboard.html`](/Users/eric/sandbox/css/examples/analytics-dashboard.html) introduce new one-off component names for tabs, dots, cards, and list rows instead of reusing shared primitives.
@@ -62,10 +62,10 @@ The public navigation API must become role-based instead of brand-based.
 
 | Current pattern | Canonical component | Notes |
 | --- | --- | --- |
-| `.starlight-nav` | `.nav-header` | Horizontal/global header navigation |
-| `.starlight-navbar` | `.nav-header` | Same role, no separate public component needed |
-| `.starlight-nav.vertical` | `.aside-nav` | Vertical/sidebar navigation |
-| `.starlight-sidebar-nav` | `.aside-nav` | Alias during migration, then deprecate |
+| `.starlight-nav` | `.nav-header` | (REMOVED) Horizontal/global header navigation |
+| `.starlight-navbar` | `.nav-header` | (REMOVED) Same role, no separate public component needed |
+| `.starlight-nav.vertical` | `.aside-nav` | (REMOVED) Vertical/sidebar navigation |
+| `.starlight-sidebar-nav` | `.aside-nav` | (REMOVED) Alias during migration, then deprecate |
 | `.starlight-sidebar` used as nav shell | `.aside-nav` or layout wrapper | Split layout shell from nav semantics |
 
 #### Requirement
@@ -99,8 +99,8 @@ The public API must stop using `starlight-` and `q-` as component prefixes.
 | `.starlight-avatar-lg` | `.avatar.avatar-lg` |
 | `.starlight-notification-dot` | `.notification-dot` |
 | `.search` | `.search-field` or `.search-input-group` |
-| `.q-icon-search` | `.icon-search` |
-| `.q-icon-display` | `.icon-display` |
+| `.icon-search` | `.icon-search` |
+| `.icon-display` | `.icon-display` |
 
 #### Requirement
 

@@ -126,7 +126,7 @@ const Starlight = {
     // Fallback for legacy hamburger (backward compatibility)
     const legacyToggles = document.querySelectorAll('.hamburger:not([data-nav-toggle])');
     legacyToggles.forEach(toggle => {
-      const nav = toggle.closest('nav') || toggle.closest('.starlight-nav') || toggle.parentElement;
+      const nav = toggle.closest('nav') || toggle.closest('.nav-header') || toggle.closest('.nav-glass') || toggle.parentElement;
       if (!nav) return;
 
       let menu = nav.querySelector('.nav-menu-mobile');
@@ -141,7 +141,7 @@ const Starlight = {
           menu.classList.toggle('active', isActive);
           
           // Allow nav to wrap when menu is open so full-width menu stacks below
-          const parentNav = menu.closest('.starlight-nav') || menu.closest('.nav-glass');
+          const parentNav = menu.closest('.nav-header') || menu.closest('.nav-glass');
           if (parentNav) {
             parentNav.style.flexFlow = isActive ? 'row wrap' : 'nowrap';
           }
@@ -439,7 +439,7 @@ const Starlight = {
       iconSelector: {
         light: '.sun-icon, [data-theme-icon="light"]',
         dark: '.moon-icon, [data-theme-icon="dark"]',
-        auto: '.q-icon-display, [data-theme-icon="auto"]'
+        auto: '.icon-display, [data-theme-icon="auto"]'
       },
       autoDetect: true
     };

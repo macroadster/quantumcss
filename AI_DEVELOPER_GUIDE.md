@@ -26,7 +26,7 @@ html[data-theme="light"] .component { ... }
 ### 2. Class Naming Conventions
 - **Utilities**: `.property-value` (e.g., `.text-center`, `.bg-primary`)
 - **Components**: `.component-name` (e.g., `.starlight-card`, `.btn-primary`)
-- **Modifiers**: `.component-modifier` (e.g., `.btn-large`, `.starlight-nav.vertical`)
+- **Modifiers**: `.component-modifier` (e.g., `.btn-large`, `.nav-header.nav-reverse`)
 
 ### 3. Spacing System
 Complete spacing scale available: `0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32`
@@ -60,7 +60,7 @@ Complete z-index utilities available: `auto, 0, 10, 20, 30, 40, 50, 100, 200, 30
 #### Navigation
 ```html
 <!-- Horizontal Navigation -->
-<nav class="starlight-nav">
+<header class="nav-header">
   <div class="nav-desktop">
     <ul class="nav-list">
       <li><a href="#" class="nav-link">Home</a></li>
@@ -78,15 +78,15 @@ Complete z-index utilities available: `auto, 0, 10, 20, 30, 40, 50, 100, 200, 30
   <div class="hamburger">
     <span></span><span></span><span></span>
   </div>
-</nav>
+</header>
 
 <!-- Vertical Sidebar -->
-<nav class="starlight-nav vertical">
+<aside class="aside-nav">
   <div class="nav-list vertical">
     <li><a href="#" class="nav-link">Dashboard</a></li>
     <li><a href="#" class="nav-link">Analytics</a></li>
   </div>
-</nav>
+</aside>
 ```
 
 #### Cards

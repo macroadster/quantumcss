@@ -118,7 +118,7 @@ QuantumCSS separates structural logic from aesthetic themes for maximum reusabil
 
 Starlight UI provides "Organism-level" presets that compose multiple utilities into functional semantic blocks. Perfect for rapid prototyping and AI generation.
 
-- `starlight-nav` - Complete sticky glassmorphic navigation bar
+- `nav-header` - Complete sticky glassmorphic navigation bar
 - `search` - Search container with integrated icon and padding
 - `dashboard` - Responsive 3-column dashboard grid
 - `gallery` - Optimized grid for image/media galleries

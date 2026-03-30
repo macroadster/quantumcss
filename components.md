@@ -1,5 +1,5 @@
 3. Created 50 bead tasks for these components, including:
-   - Layout components (app-layout, starlight-navbar, sidebar, main-content)
+   - Layout components (app-layout, sidebar, main-content)
    - Navigation components (chat-tabs, chat-tab, nav-menu-mobile, category-tabs)
    - UI cards and containers (email-list, email-item, stats-grid, starlight-card, token-grid)
    - Form and input components (search-bar, video-search-input, input-starlight)
