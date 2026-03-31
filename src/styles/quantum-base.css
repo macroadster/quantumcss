@@ -289,7 +289,7 @@ textarea {
 .inline-flex { display: inline-flex; }
 .grid { display: grid; }
 .inline-grid { display: inline-grid; }
-.hidden { display: none !important; }
+.hidden { display: none; }
 
 /* Flexbox Utilities */
 .flex-row { flex-direction: row; }

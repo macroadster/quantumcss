@@ -26,13 +26,24 @@
 }
 
 .btn-primary {
-  background-color: var(--q-color-primary);
-  color: white;
-  border: 0;
+  background: linear-gradient(
+    135deg,
+    var(--q-color-starlight-peach) 0%,
+    var(--q-color-starlight-blue) 100%
+  );
+  color: #000 !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 0 20px var(--q-color-starlight-glow);
+  cursor: pointer;
 }
 
 .btn-primary:hover {
-  background-color: var(--q-color-primary-600);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%);
   border: 0;
 }
 

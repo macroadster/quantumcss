@@ -51,8 +51,8 @@ h1 {
     }
 }
 
-/* 1. Starlight Card */
-.starlight-card {
+/* Starlight Card - Enhanced base .card with starlight appearance */
+.card {
     background: var(--q-color-surface);
     border: 1px solid var(--q-color-border);
     border-radius: var(--q-radius-2xl);
@@ -64,7 +64,7 @@ h1 {
         background-color var(--q-duration-base) var(--q-ease-in-out);
 }
 
-.starlight-card:hover {
+.card:hover {
     background-color: var(--q-color-surface-elevated);
 }
 
@@ -475,7 +475,7 @@ html[data-theme="light"] .nav-glass:hover {
     background-color: rgba(255, 255, 255, 0.98);
 }
 
-html[data-theme="light"] .starlight-card {
+html[data-theme="light"] .card {
     background: var(--q-light-card-bg);
     border-color: var(--q-light-card-border);
     color: #334155;
@@ -792,10 +792,10 @@ html[data-theme="light"] .dropdown-item:hover {
     color: black;
 }
 
-/* 7. Input & Glass Fixes */
-.input-starlight,
-.textarea-starlight,
-.select-starlight {
+/* 7. Input - Enhanced with starlight glass appearance */
+.input,
+.textarea,
+.select {
     background-color: rgb(255 255 255 / 4%);
     border: 1px solid rgb(255 255 255 / 15%);
     border-radius: 0.75rem;
@@ -804,27 +804,27 @@ html[data-theme="light"] .dropdown-item:hover {
     padding: 0.75rem 1.25rem;
 }
 
-.select-starlight:hover {
+.select:hover {
     background-color: rgb(255 255 255 / 8%);
     border-color: var(--q-color-starlight-blue);
 }
 
-textarea.input-starlight,
-.textarea-starlight {
+textarea.input,
+.textarea {
     min-height: 120px;
     display: block;
 }
 
-html[data-theme="light"] .input-starlight,
-html[data-theme="light"] .textarea-starlight,
-html[data-theme="light"] .select-starlight {
+html[data-theme="light"] .input,
+html[data-theme="light"] .textarea,
+html[data-theme="light"] .select {
     background-color: #fff;
     border-color: #cbd5e1;
 }
 
-.input-starlight:focus,
-.textarea-starlight:focus,
-.select-starlight:focus {
+.input:focus,
+.textarea:focus,
+.select:focus {
     outline: none;
     box-shadow:
         0 0 0 2px var(--q-color-starlight-deep),
@@ -1869,7 +1869,6 @@ button:not([class]) {
 }
 
 .card button:not([class]),
-.starlight-card button:not([class]),
 .glass button:not([class]) {
     width: 100%;
 }
@@ -1893,7 +1892,7 @@ html[data-theme="light"] button:not([class]):hover {
 }
 
 form button:not([class]),
-.btn-starlight {
+.btn {
     background: linear-gradient(
         135deg,
         var(--q-color-starlight-peach) 0%,
@@ -1914,27 +1913,27 @@ form button:not([class]),
 }
 
 form button:not([class]):hover,
-.btn-starlight:hover {
+.btn:hover {
     transform: translateY(-2px);
     filter: brightness(1.1);
     box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%);
 }
 
 form button:not([class]):active,
-.btn-starlight:active {
+.btn:active {
     transform: translateY(0) scale(0.95);
     filter: brightness(0.9);
 }
 
 form button:not([class]):focus-visible,
-.btn-starlight:focus-visible {
+.btn:focus-visible {
     outline: 2px solid white;
     outline-offset: 2px;
     box-shadow: 0 0 0 4px var(--q-color-starlight-glow);
 }
 
 html[data-theme="light"] form button:not([class]):focus-visible,
-html[data-theme="light"] .btn-starlight:focus-visible {
+html[data-theme="light"] .btn:focus-visible {
     outline-color: var(--q-color-starlight-blue);
 }
 
@@ -2109,8 +2108,8 @@ html[data-theme="light"] .btn-starlight:focus-visible {
    UI COMPONENT PRESETS - Reusable Elements
    ============================================ */
 
-/* Stat Card - for dashboard metrics */
-.starlight-stat {
+/* Stat Card - Enhanced base .stat-card with starlight appearance */
+.stat-card {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -2121,18 +2120,18 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     transition: all 0.3s ease;
 }
 
-.starlight-stat:hover {
+.stat-card:hover {
     background: var(--q-color-border);
     border-color: rgb(255 255 255 / 12%);
 }
 
-.starlight-stat-header {
+.stat-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.starlight-stat-icon {
+.stat-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2143,24 +2142,24 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     color: var(--q-color-starlight-blue);
 }
 
-.starlight-stat-icon-green {
+.stat-icon-green {
     background: rgb(16 185 129 / 15%);
     color: #10b981;
 }
-.starlight-stat-icon-orange {
+.stat-icon-orange {
     background: rgb(245 158 11 / 15%);
     color: #f59e0b;
 }
-.starlight-stat-icon-purple {
+.stat-icon-purple {
     background: rgb(139 92 246 / 15%);
     color: #8b5cf6;
 }
-.starlight-stat-icon-pink {
+.stat-icon-pink {
     background: rgb(236 72 153 / 15%);
     color: #ec4899;
 }
 
-.starlight-stat-trend {
+.stat-trend {
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -2168,28 +2167,28 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     font-weight: 600;
 }
 
-.starlight-stat-trend-up {
+.stat-trend-up {
     color: #10b981;
 }
-.starlight-stat-trend-down {
+.stat-trend-down {
     color: #ef4444;
 }
 
-.starlight-stat-value {
+.stat-value {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--q-color-starlight-blue);
 }
 
-.starlight-stat-label {
+.stat-label {
     font-size: 0.875rem;
     color: rgb(255 255 255 / 60%);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-/* Avatar - user/channel images */
-.starlight-avatar {
+/* Avatar - Enhanced base .avatar with starlight appearance */
+.avatar {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2200,38 +2199,38 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     flex-shrink: 0;
 }
 
-.starlight-avatar-sm {
+.avatar-sm {
     width: 2rem;
     height: 2rem;
     font-size: 0.625rem;
 }
 
-.starlight-avatar-md {
+.avatar-md {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 0.75rem;
 }
 
-.starlight-avatar-lg {
+.avatar-lg {
     width: 3rem;
     height: 3rem;
     font-size: 0.875rem;
 }
 
-.starlight-avatar-xl {
+.avatar-xl {
     width: 4rem;
     height: 4rem;
     font-size: 1.125rem;
 }
 
-.starlight-avatar img {
+.avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.starlight-avatar-online::after {
+.avatar-online::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -2421,29 +2420,29 @@ html[data-theme="light"] .btn-starlight:focus-visible {
     padding: 1.25rem;
 }
 
-/* Breadcrumb */
-.starlight-breadcrumb {
+/* Breadcrumb - Enhanced base .breadcrumb with starlight appearance */
+.breadcrumb {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.875rem;
 }
 
-.starlight-breadcrumb-item {
+.breadcrumb-item {
     color: rgb(255 255 255 / 60%);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.starlight-breadcrumb-item:hover {
+.breadcrumb-item:hover {
     color: var(--q-color-starlight-blue);
 }
 
-.starlight-breadcrumb-separator {
+.breadcrumb-separator {
     color: rgb(255 255 255 / 40%);
 }
 
-.starlight-breadcrumb-current {
+.breadcrumb-current {
     color: inherit;
     font-weight: 500;
 }
