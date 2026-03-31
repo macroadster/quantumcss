@@ -358,7 +358,7 @@ When generating QuantumCSS code, always:
 
 ## 📚 Reference Examples
 
-See the `/examples` directory for complete implementations:
+See the `examples` directory for complete implementations:
 - `kitchen-sink.html` - Comprehensive component showcase
 - `starlight.html` - Premium component demonstrations
 - `index.html` - Main landing page with theme switching
