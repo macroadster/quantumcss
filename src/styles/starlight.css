@@ -637,8 +637,6 @@ html[data-theme="light"] .star {
     border: 1px solid var(--q-color-border-strong);
     border-radius: 1.5rem;
     padding: 3rem;
-    width: 100%;
-    max-width: 600px;
     max-height: 85vh;
     overflow-y: auto;
     margin: auto;
