@@ -540,7 +540,7 @@ const utilityMaps = {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-width', 'border-style', 'border-color'], 
     value: ['rgba(255, 255, 255, 0.03)', 'blur(16px)', 'blur(16px)', '1px', 'solid', 'rgba(255, 255, 255, 0.1)'] 
   },
-  'bg-starlight': { property: 'background', value: 'linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)' },
+  'bg-starlight': { property: 'background', value: 'var(--q-gradient-primary)' },
   'text-gradient': {
     property: ['background', '-webkit-background-clip', '-webkit-text-fill-color', 'display'], 
     value: ['linear-gradient(to right, var(--q-color-starlight-peach), var(--q-color-starlight-blue))', 'text', 'transparent', 'inline-block'] 

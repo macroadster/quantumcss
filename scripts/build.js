@@ -22,8 +22,7 @@ class QuantumCSSBuilder {
       'quantum-base.css',
       'quantum-icons.css',
       'quantum-components.css',
-      'quantum-animations.css',
-      'starlight.css'
+      'quantum-animations.css'
     ];
   }
 

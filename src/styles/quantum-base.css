@@ -88,6 +88,7 @@
   --q-color-starlight-orange: #ff7e5f;
   --q-color-starlight-deep: #08081a;
   --q-color-starlight-glow: color-mix(in srgb, var(--q-color-starlight-blue), transparent 65%);
+  --q-gradient-primary: linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%);
   
   /* Semantic Background Colors */
   --q-bg-primary: var(--q-color-starlight-deep);
@@ -962,6 +963,7 @@ html[data-theme="light"] {
   
   --q-btn-primary-bg: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%);
   --q-btn-primary-hover-bg: linear-gradient(135deg, var(--q-color-starlight-peach) 50%, var(--q-color-starlight-blue) 110%);
+  --q-gradient-primary: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%);
   --q-btn-primary-color: #fff;
   
   --q-input-bg: #fff;
@@ -1102,4 +1104,354 @@ button:active,
 input:active, 
 .active-scale:active {
   transform: scale(0.96);
+}
+
+/* ============================================================================
+   STARLIGHT BASE ELEMENTS (Merged from starlight.css)
+   ============================================================================ */
+
+/* Links */
+a {
+  color: var(--q-color-starlight-blue);
+  text-decoration: none;
+  transition: all var(--q-transition-base);
+  position: relative;
+}
+
+a:hover {
+  color: var(--q-color-starlight-peach);
+  text-shadow: 0 0 8px rgb(255 179 138 / 40%);
+}
+
+a:active {
+  transform: scale(0.98);
+}
+
+html[data-theme="light"] a {
+  color: #2563eb;
+}
+
+html[data-theme="light"] a:hover {
+  color: #1d4ed8;
+}
+
+/* h1 Typography */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Pre and Code */
+pre {
+  padding: 2rem;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 0;
+}
+
+code {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+html[data-theme="light"] pre {
+  background: #f1f5f9;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+input[type="text"],
+input[type="email"] {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: var(--q-text-primary);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+html[data-theme="light"] input[type="text"],
+html[data-theme="light"] input[type="email"] {
+  background: #fff;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+/* Button without class */
+button:not([class]) {
+  background-color: rgb(255 255 255 / 8%);
+  color: var(--q-text-primary) !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+}
+
+.card button:not([class]),
+.glass button:not([class]) {
+  width: 100%;
+}
+
+button:not([class]):hover {
+  background-color: rgb(255 255 255 / 12%);
+  transform: translateY(-1px);
+}
+
+button:not([class]):active {
+  transform: translateY(0) scale(0.98);
+}
+
+html[data-theme="light"] button:not([class]) {
+  background-color: rgb(0 0 0 / 5%);
+  color: #1e293b !important;
+}
+
+html[data-theme="light"] button:not([class]):hover {
+  background-color: rgb(0 0 0 / 8%);
+}
+
+/* Form button without class (primary gradient) */
+form button:not([class]) {
+  background: linear-gradient(
+    135deg,
+    var(--q-color-starlight-peach) 0%,
+    var(--q-color-starlight-blue) 100%
+  );
+  color: #000 !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px var(--q-color-starlight-glow);
+  text-decoration: none;
+}
+
+form button:not([class]):hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%);
+}
+
+form button:not([class]):active {
+  transform: translateY(0) scale(0.95);
+  filter: brightness(0.9);
+}
+
+form button:not([class]):focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--q-color-starlight-glow);
+}
+
+html[data-theme="light"] form button:not([class]):focus-visible {
+  outline-color: var(--q-color-starlight-blue);
+}
+
+html[data-theme="light"] form button:not([class]) {
+  background: linear-gradient(
+    135deg,
+    var(--q-color-starlight-peach) 40%,
+    var(--q-color-starlight-blue) 100%
+  ) !important;
+}
+
+/* Aside */
+aside {
+  display: flex;
+  flex-direction: column;
+}
+
+aside h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+aside p {
+  font-size: 0.875rem;
+  color: var(--q-text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--q-card-border);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+footer > div {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  footer > div {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+footer .left {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+footer .right {
+  display: flex;
+  gap: 1.5rem;
+}
+
+footer .right a {
+  font-size: 0.875rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer .right a:hover {
+  color: var(--q-color-primary);
+}
+
+/* Scrollbar overrides (starlight version) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(255 255 255 / 2%);
+  backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--q-color-border-strong);
+  border: 1px solid var(--q-card-border);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--q-color-starlight-blue), transparent 40%);
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-track {
+  background: rgb(0 0 0 / 3%);
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgb(0 0 0 / 10%);
+  border-color: rgb(0 0 0 / 5%);
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--q-color-starlight-blue);
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--q-color-border-strong) transparent;
+}
+
+html[data-theme="light"] * {
+  scrollbar-color: rgb(0 0 0 / 10%) transparent;
+}
+
+/* Form row utility */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Starlight Layout */
+.starlight-layout {
+  background: transparent !important;
+  min-height: 100vh;
+}
+
+.starlight-layout > :not(.starlight-stars) {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-theme="light"] .starlight-layout {
+  background: var(--q-light-bg, #f8fafc) !important;
+}
+
+/* High Contrast forced-colors support */
+@media (forced-colors: active) {
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid SelectedItem !important;
+    outline-offset: 2px;
+  }
+
+  .card:hover,
+  .accordion-item:hover {
+    border-color: SelectedItem !important;
+  }
+
+  .text-gradient,
+  .bg-starlight {
+    background: none !important;
+    -webkit-text-fill-color: CanvasText !important;
+    color: CanvasText !important;
+    text-decoration: underline;
+  }
 }
