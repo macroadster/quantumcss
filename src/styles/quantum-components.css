@@ -4485,6 +4485,14 @@ html[data-theme="light"] .stat-label {
   font-weight: 500;
 }
 
+html[data-theme="light"] .breadcrumb-item {
+  color: #64748b;
+}
+
+html[data-theme="light"] .breadcrumb-separator {
+  color: #94a3b8;
+}
+
 /* Timeline Component */
 .starlight-timeline {
   position: relative;
@@ -4720,6 +4728,40 @@ html[data-theme="light"] .nav-glass {
 
 html[data-theme="light"] .nav-glass:hover {
   background-color: rgba(255, 255, 255, 0.98);
+}
+
+/* Nav Menu Mobile - Light mode */
+html[data-theme="light"] .nav-menu-mobile {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="light"] .nav-menu-mobile a {
+  color: #1e293b;
+}
+
+html[data-theme="light"] .nav-menu-mobile a:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #2563eb;
+}
+
+html[data-theme="light"] .nav-menu-mobile li:last-child {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Layout Presets - Light mode */
+html[data-theme="light"] .email-nav,
+html[data-theme="light"] .music-nav,
+html[data-theme="light"] .chat-sidebar,
+html[data-theme="light"] .admin-sidebar,
+html[data-theme="light"] .analytics-sidebar {
+  background: rgba(255, 255, 255, 0.95);
+  border-right-color: rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="light"] .music-footer {
+  background: rgba(255, 255, 255, 0.95);
+  border-top-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Nav Container */
