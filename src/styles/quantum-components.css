@@ -1506,7 +1506,7 @@ html[data-theme="light"] .table td {
 }
 
 html[data-theme="light"] .table tbody tr:hover {
-  background-color: #f1f5f9;
+  background-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%);
 }
 
 /* Premium Table Component */
@@ -1612,7 +1612,7 @@ html[data-theme="light"] .table-premium td {
 }
 
 html[data-theme="light"] .table-premium tbody tr:hover td {
-  background: #f8fafc;
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 96%);
 }
 
 html[data-theme="light"] .table-premium-footer {
@@ -6033,6 +6033,10 @@ html[data-theme="light"] .starlight-table th {
 }
 
 .starlight-table tr:hover td { background: rgb(255 255 255 / 3%); }
+
+html[data-theme="light"] .starlight-table tr:hover td { 
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 96%); 
+}
 
 .starlight-table-footer {
   display: flex;
