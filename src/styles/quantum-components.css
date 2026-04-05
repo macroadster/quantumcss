@@ -944,7 +944,7 @@ html[data-theme="light"] .accordion-content {
 
 .tab-button:hover {
   background-color: color-mix(in srgb,var(--q-color-starlight),transparent 85%);
-  border-radius: 7px;
+  border-radius: 7px 7px 0 0;
   color: var(--q-text-primary);
 }
 
@@ -3653,6 +3653,10 @@ html[data-theme="light"] .glass:hover {
   box-shadow:
     0 8px 32px 0 rgba(31, 38, 135, 0.1),
     0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
+}
+
+html[data-theme="light"] .starlight-card {
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 /* Glass Blue Glow variant */
