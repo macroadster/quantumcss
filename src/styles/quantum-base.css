@@ -953,7 +953,7 @@ html[data-theme="light"] {
   color-scheme: light;
 
   --q-bg-primary: var(--q-light-bg);
-  --q-text-primary: var(--q-light-text);
+  --q-text-primary: color-mix(in srgb, var(--q-color-primary), black 80%);
   --q-text-secondary: var(--q-light-text-muted);
   --q-text-muted: var(--q-light-text-muted);
   
