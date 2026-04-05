@@ -47,8 +47,10 @@ html[data-theme="light"] .btn {
 }
 
 html[data-theme="light"] .btn:hover {
-  background-color: rgb(0 0 0 / 3%);
+  background-color: #fff;
   border-color: #94a3b8;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+  filter: brightness(1.02);
 }
 
 html[data-theme="light"] .btn:active {
