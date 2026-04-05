@@ -128,6 +128,203 @@ html[data-theme="light"] .btn:active {
   font-size: 1.25rem;
 }
 
+/* Glossy/Aqua Button - Neutral/Silver */
+.btn-glossy {
+  position: relative;
+  border: none;
+  border-radius: 1000px;
+  overflow: hidden;
+  padding: 0.5rem 1.25rem;
+  min-width: 4rem;
+  background: linear-gradient(
+    color-mix(in srgb, #a0a0a0, black 30%),
+    #c0c0c0,
+    color-mix(in srgb, #ffffff, white 30%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.2), 
+              0 0.125em 0.125em rgba(0, 0, 0, 0.3), 
+              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.4),
+              inset 0 0.375em 0.5em 0.25em #BBBBBB;
+  color: #000 !important;
+  font-weight: 600;
+}
+
+.btn-glossy::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 33%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%);
+  width: calc(100% - 0.875em);
+  border-radius: 2em 2em 0.5em 0.5em;
+  top: 5%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.btn-glossy::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 33%;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5));
+  width: calc(100% - 1.25em);
+  border-radius: 0.75em;
+  bottom: 10%;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.btn-glossy:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #ffb38a, black 20%),
+    #ffb38a,
+    color-mix(in srgb, #ffb38a, white 30%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.2), 
+              0 0.125em 0.125em rgba(0, 0, 0, 0.3), 
+              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.4),
+              inset 0 0.375em 0.5em 0.25em #BBBBBB !important;
+  transform: none !important;
+  border-radius: 1000px !important;
+  border: none !important;
+}
+
+.btn-glossy:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
+              inset 0 0.5em 1em rgba(0, 0, 0, 0.4),
+              inset 0 0.25em 0.5em rgba(0, 0, 0, 0.2) !important;
+  border-radius: 1000px !important;
+  border: none !important;
+}
+
+/* Glossy/Aqua Button - Primary Color */
+.btn-glossy-primary {
+  position: relative;
+  border: none;
+  border-radius: 1000px;
+  overflow: hidden;
+  padding: 0.5rem 1.25rem;
+  min-width: 4rem;
+  background: linear-gradient(
+    color-mix(in srgb, var(--q-color-primary), black 35%),
+    var(--q-color-primary),
+    color-mix(in srgb, var(--q-color-primary), white 20%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.3), 
+              0 0.125em 0.125em color-mix(in srgb, var(--q-color-primary), black 20%), 
+              inset 0 0.25em 0.5em color-mix(in srgb, var(--q-color-primary), black 50%),
+              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, var(--q-color-primary), white 20%);
+  color: #000 !important;
+  font-weight: 600;
+}
+
+.btn-glossy-primary::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 33%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%);
+  width: calc(100% - 0.875em);
+  border-radius: 2em 2em 0.5em 0.5em;
+  top: 5%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.btn-glossy-primary::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 33%;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5));
+  width: calc(100% - 1.25em);
+  border-radius: 0.75em;
+  bottom: 10%;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.btn-glossy-primary:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #ffb38a, black 20%),
+    #ffb38a,
+    color-mix(in srgb, #ffb38a, white 30%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.2), 
+              0 0.125em 0.125em rgba(0, 0, 0, 0.3), 
+              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.4),
+              inset 0 0.375em 0.5em 0.25em #BBBBBB !important;
+  transform: none !important;
+  border-radius: 1000px !important;
+  border: none !important;
+}
+
+.btn-glossy-primary:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
+              inset 0 0.5em 1em rgba(0, 0, 0, 0.4),
+              inset 0 0.25em 0.5em rgba(0, 0, 0, 0.2) !important;
+  border-radius: 1000px !important;
+  border: none !important;
+}
+
+/* Dark mode - darker neutral variant */
+html[data-theme="dark"] .btn-glossy {
+  background: linear-gradient(
+    color-mix(in srgb, #505050, black 30%),
+    #606060,
+    color-mix(in srgb, #808080, white 20%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.5), 
+              0 0.125em 0.125em rgba(0, 0, 0, 0.6), 
+              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.6),
+              inset 0 0.375em 0.5em 0.25em #707070;
+  color: #fff !important;
+}
+
+html[data-theme="dark"] .btn-glossy:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #ffb38a, black 30%),
+    #ffb38a,
+    color-mix(in srgb, #ffb38a, white 30%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.5), 
+              0 0.125em 0.125em rgba(0, 0, 0, 0.6), 
+              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.5),
+              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, #ffb38a, white 40%);
+}
+
+/* Dark mode - brighter primary for dark backgrounds */
+html[data-theme="dark"] .btn-glossy-primary {
+  background: linear-gradient(
+    color-mix(in srgb, var(--q-color-primary), white 20%),
+    color-mix(in srgb, var(--q-color-primary), white 40%),
+    color-mix(in srgb, var(--q-color-primary), white 60%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.4), 
+              0 0.125em 0.125em color-mix(in srgb, var(--q-color-primary), black 30%), 
+              inset 0 0.25em 0.25em color-mix(in srgb, var(--q-color-primary), white 30%),
+              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, var(--q-color-primary), white 50%);
+}
+
+html[data-theme="dark"] .btn-glossy-primary:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #ffb38a, black 30%),
+    #ffb38a,
+    color-mix(in srgb, #ffb38a, white 30%)
+  );
+  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.5), 
+              0 0.125em 0.125em rgba(0, 0, 0, 0.6), 
+              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.5),
+              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, #ffb38a, white 40%);
+}
+
 /* Glass Utility */
 .glass {
   background: var(--q-glass-bg);
@@ -3443,11 +3640,43 @@ html[data-theme="light"] .nav-dropdown-panel a::before {
   font-weight: 700;
   font-size: .8rem;
   color: var(--q-color-starlight-deep, #0f172a);
+  position: relative;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.3),
+              inset 0 0.125em 0.25em rgba(255, 255, 255, 0.4),
+              inset 0 -0.125em 0.25em rgba(0, 0, 0, 0.2);
+}
+
+.nav-profile::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  top: 5%;
+  width: 80%;
+  height: 35%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.1));
+  border-radius: 50% 50% 40% 40%;
+  pointer-events: none;
+}
+
+.nav-profile::after {
+  content: '';
+  position: absolute;
+  left: 15%;
+  bottom: 15%;
+  width: 70%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
 }
 
 html[data-theme="light"] .nav-profile {
   background: linear-gradient(135deg, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
   color: var(--q-light-text, #1e293b);
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.15),
+              inset 0 0.125em 0.25em rgba(255, 255, 255, 0.5),
+              inset 0 -0.125em 0.25em rgba(0, 0, 0, 0.1);
 }
 
 /* Hamburger button */
@@ -5288,10 +5517,17 @@ html[data-theme="light"] .aside-nav-item.active::before { background: var(--q-co
   padding: 0.1rem 0.4rem;
   border-radius: 999px;
   line-height: 1.5;
+  position: relative;
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.3),
+              inset 0 0.0625em 0.125em rgba(255, 255, 255, 0.4),
+              inset 0 -0.0625em 0.125em rgba(0, 0, 0, 0.2);
 }
 
 html[data-theme="light"] .aside-nav-badge {
   background: linear-gradient(135deg, var(--q-color-starlight-peach), var(--q-color-starlight-blue));
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.1),
+              inset 0 0.0625em 0.125em rgba(255, 255, 255, 0.5),
+              inset 0 -0.0625em 0.125em rgba(0, 0, 0, 0.1);
 }
 
 .aside-nav-group > summary {
@@ -5400,6 +5636,28 @@ html[data-theme="light"] .aside-nav-user:hover { background: rgba(0, 0, 0, 0.05)
   font-weight: 700;
   color: var(--q-color-starlight-deep, #0f172a);
   flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.3),
+              inset 0 0.0625em 0.125em rgba(255, 255, 255, 0.4),
+              inset 0 -0.0625em 0.125em rgba(0, 0, 0, 0.2);
+}
+
+.aside-nav-user-avatar::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  top: 5%;
+  width: 80%;
+  height: 35%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.1));
+  border-radius: 50% 50% 40% 40%;
+  pointer-events: none;
+}
+
+html[data-theme="light"] .aside-nav-user-avatar {
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
+              inset 0 0.0625em 0.125em rgba(255, 255, 255, 0.5),
+              inset 0 -0.0625em 0.125em rgba(0, 0, 0, 0.1);
 }
 
 .aside-nav-user-info {
