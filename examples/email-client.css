@@ -223,6 +223,10 @@ html[data-theme="light"] email-list .top-bar {
     padding: 0 var(--side-padding);
     flex-shrink: 0;
 }
+html[data-theme="light"] .search-container:focus-within {
+    box-shadow: none;
+    border-color: transparent;
+}
 
 email-items {
     flex: 1;
