@@ -101,11 +101,12 @@
   --q-text-muted: rgb(241 245 249 / 45%);
   
   /* Light Mode Palette */
-  --q-light-bg: #f1f5f9;
+  --q-light-bg: #f8fafc;
+  --q-light-bg-gradient: radial-gradient(circle at top left, #f8fafc, #f1f5f9 50%, #e2e8f0 100%);
   --q-light-text: #1e293b;
   --q-light-text-muted: #64748b;
-  --q-light-card-bg: #fff;
-  --q-light-card-border: rgb(0 0 0 / 6%);
+  --q-light-card-bg: rgba(255 255 255 / 70%);
+  --q-light-card-border: rgba(255 255 255 / 40%);
 
   /* Glassmorphism */
   --q-glass-bg: rgb(255 255 255 / 3%);
@@ -1036,7 +1037,7 @@ html[data-theme="dark"] {
 
 /* Force theme colors on body to override template-specific hardcoded styles */
 html[data-theme="light"] body {
-  background-color: var(--q-light-bg) !important;
+  background: var(--q-light-bg-gradient) !important;
   color: var(--q-light-text);
 }
 
@@ -1074,7 +1075,7 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb {
 
 
 html[data-theme="light"] :focus, html[data-theme="light"] :focus-visible {
-  box-shadow: 0 0 0 2px var(--q-light-bg), 0 0 0 4px rgb(59 130 246 / 40%);
+  box-shadow: 0 0 0 2px var(--q-light-bg), 0 0 0 4px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%);
 }
 
 

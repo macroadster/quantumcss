@@ -211,7 +211,9 @@ html[data-theme="light"] .card-footer {
 }
 
 html[data-theme="light"] .input {
-  background-color: white;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-color: rgba(0, 0, 0, 0.1);
   color: #1e293b;
 }
 
@@ -2330,7 +2332,11 @@ html[data-theme="light"] .quick-action-icon {
 .stat-value {
   font-size: 1.875rem;
   font-weight: 700;
-  color: var(--q-text-primary, #f1f5f9);
+  background: var(--q-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   margin-bottom: 0.25rem;
 }
 
@@ -3622,9 +3628,12 @@ html[data-theme="light"] .nav-drawer-inner a:hover {
 
 html[data-theme="light"] .card {
   background: var(--q-light-card-bg);
+  backdrop-filter: blur(10px);
   border-color: var(--q-light-card-border);
   color: #334155;
-  box-shadow: 0 4px 20px rgb(0 0 0 / 2%);
+  box-shadow: 
+    0 10px 40px color-mix(in srgb, var(--q-color-primary), transparent 94%),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
 }
 
 /* Glass - Starlight enhanced version */
@@ -3645,16 +3654,21 @@ html[data-theme="light"] .card {
 }
 
 html[data-theme="light"] .glass {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%));
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 html[data-theme="light"] .glass:hover {
   border-color: var(--q-color-starlight-blue);
   box-shadow:
-    0 8px 32px 0 rgba(31, 38, 135, 0.1),
-    0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%);
+    0 12px 40px 0 rgba(31, 38, 135, 0.1),
+    0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
 html[data-theme="light"] .starlight-card {
@@ -3700,8 +3714,10 @@ textarea.input,
 html[data-theme="light"] .input,
 html[data-theme="light"] .textarea,
 html[data-theme="light"] .select {
-  background-color: #fff;
-  border-color: #cbd5e1;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1e293b;
 }
 
 .input:focus,
@@ -4191,22 +4207,36 @@ html[data-theme="light"] .accordion-content {
   border-radius: var(--q-radius-xl);
   transition: all var(--q-duration-base) var(--q-ease-in-out);
   overflow: visible !important;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Prevent shrinking on active/press */
+.search:active,
+.search-container:active,
+.search-input:active {
+  transform: none !important;
 }
 
 .search:focus-within {
   box-shadow:
     0 0 0 2px var(--q-color-starlight-deep),
-    0 0 0 4px var(--q-color-starlight-blue);
+    0 0 0 4px var(--q-color-starlight-blue),
+    0 0 20px var(--q-color-starlight-glow);
   border-color: var(--q-color-starlight-blue);
+  background: rgba(255, 255, 255, 0.05);
   outline: none;
 }
 
 html[data-theme="light"] .search-container:focus-within,
 html[data-theme="light"] .search:focus-within {
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 97%);
   box-shadow:
     0 0 0 2px var(--q-light-bg),
-    0 0 0 4px rgb(59 130 246 / 40%);
-  border-color: #3b82f6;
+    0 0 0 4px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
+    0 10px 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 92%),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
+  border-color: var(--q-color-starlight-blue);
 }
 
 .search-container input:focus,
@@ -4224,8 +4254,14 @@ html[data-theme="light"] .search:focus-within {
 }
 
 html[data-theme="light"] .search {
-  background-color: #fff;
-  border: 1px solid #cbd5e1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .search.has-icon .search-input {
@@ -4406,7 +4442,11 @@ html[data-theme="light"] .code-window-title {
 .stat-value {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--q-color-starlight-blue);
+  background: var(--q-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .stat-label {
