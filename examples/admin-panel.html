@@ -39,12 +39,15 @@
 
         /* Light Mode Overrides */
         html[data-theme="light"] .quick-action-card {
-            background: #ffffff;
+            background: var(--q-light-card-bg);
+            backdrop-filter: blur(12px);
             border-color: #e2e8f0;
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--q-color-primary), transparent 95%);
         }
 
         html[data-theme="light"] .quick-action-card:hover {
-            background: #f8fafc;
+            background: color-mix(in srgb, var(--q-light-card-bg), white 5%);
+            box-shadow: 0 15px 35px color-mix(in srgb, var(--q-color-primary), transparent 90%);
         }
 
         /* Responsive */

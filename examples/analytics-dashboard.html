@@ -252,13 +252,16 @@
         }
 
         html[data-theme="light"] .chart-card {
-            background: #ffffff;
-            border-color: #e2e8f0;
+            background: var(--q-light-card-bg);
+            backdrop-filter: blur(12px);
+            border-color: var(--q-light-card-border);
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--q-color-primary), transparent 95%);
         }
 
         html[data-theme="light"] .date-selector {
-            background: #ffffff;
-            border-color: #e2e8f0;
+            background: var(--q-light-card-bg);
+            backdrop-filter: blur(8px);
+            border-color: var(--q-light-card-border);
         }
 
         html[data-theme="light"] .header {

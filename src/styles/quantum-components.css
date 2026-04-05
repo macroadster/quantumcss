@@ -1587,11 +1587,16 @@ html[data-theme="light"] .table tbody tr:hover {
 /* Light Mode Overrides for Premium Table */
 html[data-theme="light"] .table-premium-container {
   background: var(--q-light-card-bg);
+  backdrop-filter: blur(16px);
   border-color: var(--q-light-card-border);
+  box-shadow: 
+    0 10px 30px color-mix(in srgb, var(--q-color-primary), transparent 95%),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
 }
 
 html[data-theme="light"] .table-premium-header {
-  background: #fcfcfd;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
   border-bottom-color: var(--q-light-card-border);
 }
 
@@ -2452,11 +2457,18 @@ html[data-theme="light"] .activity-text {
 /* Light mode overrides for stat cards */
 html[data-theme="light"] .stat-card {
   background: var(--q-light-card-bg);
+  backdrop-filter: blur(10px);
   border-color: var(--q-light-card-border);
+  box-shadow: 
+    0 10px 30px color-mix(in srgb, var(--q-color-primary), transparent 95%),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
 }
 
 html[data-theme="light"] .stat-card:hover {
-  background: #f8fafc;
+  background: color-mix(in srgb, var(--q-light-card-bg), white 5%);
+  box-shadow: 
+    0 15px 35px color-mix(in srgb, var(--q-color-primary), transparent 90%),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
 }
 
 html[data-theme="light"] .stat-icon-blue {
@@ -4454,9 +4466,25 @@ html[data-theme="light"] .code-window-title {
   transition: all 0.3s ease;
 }
 
+html[data-theme="light"] .stat-card {
+  background: var(--q-light-card-bg);
+  backdrop-filter: blur(10px);
+  border-color: var(--q-light-card-border);
+  box-shadow: 
+    0 10px 30px color-mix(in srgb, var(--q-color-primary), transparent 95%),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
 .stat-card:hover {
   background: var(--q-color-border);
   border-color: rgb(255 255 255 / 12%);
+}
+
+html[data-theme="light"] .stat-card:hover {
+  background: color-mix(in srgb, var(--q-light-card-bg), white 5%);
+  box-shadow: 
+    0 15px 35px color-mix(in srgb, var(--q-color-primary), transparent 90%),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
 }
 
 .stat-value {
@@ -5958,6 +5986,13 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
   border: 1px solid rgb(255 255 255 / 8%);
   border-radius: var(--q-radius-xl);
   overflow: hidden;
+}
+
+html[data-theme="light"] .starlight-table-container {
+  background: var(--q-light-card-bg);
+  backdrop-filter: blur(16px);
+  border-color: var(--q-light-card-border);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--q-color-primary), transparent 95%);
 }
 
 .starlight-table-header {
