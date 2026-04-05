@@ -1202,7 +1202,8 @@ input[type="email"] {
 
 html[data-theme="light"] input[type="text"],
 html[data-theme="light"] input[type="email"] {
-  background: #fff;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(24px);
   border-color: #cbd5e1;
   color: #1e293b;
 }
