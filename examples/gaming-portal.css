@@ -105,22 +105,13 @@ hero-description {
 
 hero-actions { display: flex; gap: 1.5rem; justify-content: center; }
 hero-actions button {
-    padding: 1rem 3rem;
+    padding: 1.25rem 4rem;
     border-radius: 9999px;
     font-weight: 700;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 1.1rem;
 }
-
-.btn-buy { background: white; color: #000; border: none; }
-.btn-buy:hover { background: var(--color-starlight); }
-
-.btn-trailer {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-}
-.btn-trailer:hover { background: rgba(255, 255, 255, 0.1); }
 
 @media (max-width: 768px) {
     hero-title { font-size: 3rem; }
@@ -337,7 +328,6 @@ html[data-theme="light"] hero-section {
                 url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80');
 }
 html[data-theme="light"] hero-description { color: #64748b; }
-html[data-theme="light"] .btn-trailer { color: #1e293b; border-color: #e2e8f0; }
 
 html[data-theme="light"] game-card { background: #fff; border-color: #e2e8f0; }
 html[data-theme="light"] game-desc { color: #64748b; }

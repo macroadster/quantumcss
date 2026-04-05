@@ -274,55 +274,64 @@ html[data-theme="light"] .btn:active {
   border: none !important;
 }
 
-/* Dark mode - darker neutral variant */
+/* Dark mode - trailer style */
 html[data-theme="dark"] .btn-glossy {
-  background: linear-gradient(
-    color-mix(in srgb, #505050, black 30%),
-    #606060,
-    color-mix(in srgb, #808080, white 20%)
-  );
-  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.5), 
-              0 0.125em 0.125em rgba(0, 0, 0, 0.6), 
-              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.6),
-              inset 0 0.375em 0.5em 0.25em #707070;
+  background: rgba(255, 255, 255, 0.05);
   color: #fff !important;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1000px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+}
+
+html[data-theme="dark"] .btn-glossy::before,
+html[data-theme="dark"] .btn-glossy::after {
+  display: none;
 }
 
 html[data-theme="dark"] .btn-glossy:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #ffb38a, black 30%),
-    #ffb38a,
-    color-mix(in srgb, #ffb38a, white 30%)
-  );
-  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.5), 
-              0 0.125em 0.125em rgba(0, 0, 0, 0.6), 
-              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.5),
-              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, #ffb38a, white 40%);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+  transform: none !important;
+  border-radius: 1000px !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+html[data-theme="dark"] .btn-glossy:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  border-radius: 1000px !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 /* Dark mode - brighter primary for dark backgrounds */
 html[data-theme="dark"] .btn-glossy-primary {
-  background: linear-gradient(
-    color-mix(in srgb, var(--q-color-primary), white 20%),
-    color-mix(in srgb, var(--q-color-primary), white 40%),
-    color-mix(in srgb, var(--q-color-primary), white 60%)
-  );
-  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.4), 
-              0 0.125em 0.125em color-mix(in srgb, var(--q-color-primary), black 30%), 
-              inset 0 0.25em 0.25em color-mix(in srgb, var(--q-color-primary), white 30%),
-              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, var(--q-color-primary), white 50%);
+  background: color-mix(in srgb, var(--q-color-primary), transparent 80%);
+  color: #fff !important;
+  border: 2px solid color-mix(in srgb, var(--q-color-primary), transparent 50%);
+  border-radius: 1000px;
+  box-shadow: 0 0 15px color-mix(in srgb, var(--q-color-primary), transparent 70%);
+  transition: all 0.2s ease;
+}
+
+html[data-theme="dark"] .btn-glossy-primary::before,
+html[data-theme="dark"] .btn-glossy-primary::after {
+  display: none;
 }
 
 html[data-theme="dark"] .btn-glossy-primary:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #ffb38a, black 30%),
-    #ffb38a,
-    color-mix(in srgb, #ffb38a, white 30%)
-  );
-  box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.5), 
-              0 0.125em 0.125em rgba(0, 0, 0, 0.6), 
-              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.5),
-              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, #ffb38a, white 40%);
+  background: color-mix(in srgb, var(--q-color-primary), transparent 60%);
+  box-shadow: 0 0 25px color-mix(in srgb, var(--q-color-primary), transparent 50%);
+  transform: none !important;
+  border-radius: 1000px !important;
+  border: 2px solid color-mix(in srgb, var(--q-color-primary), transparent 30%) !important;
+}
+
+html[data-theme="dark"] .btn-glossy-primary:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--q-color-primary), transparent 60%);
+  border-radius: 1000px !important;
+  border: 2px solid color-mix(in srgb, var(--q-color-primary), transparent 50%) !important;
 }
 
 /* Glass Utility */
