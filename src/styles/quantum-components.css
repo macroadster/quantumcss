@@ -322,9 +322,9 @@ html[data-theme="light"] .input:disabled {
 
 /* Light Mode Overrides for Badges */
 html[data-theme="light"] .badge-primary {
-  background-color: rgb(59 130 246 / 10%);
-  color: #2563eb;
-  border-color: rgb(59 130 246 / 20%);
+  background-color: color-mix(in srgb, var(--q-color-primary), transparent 90%);
+  color: color-mix(in srgb, var(--q-color-primary), black 10%);
+  border-color: color-mix(in srgb, var(--q-color-primary), transparent 80%);
 }
 
 html[data-theme="light"] .badge-secondary {

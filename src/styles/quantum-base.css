@@ -1128,11 +1128,11 @@ a:active {
 }
 
 html[data-theme="light"] a {
-  color: #2563eb;
+  color: color-mix(in srgb, var(--q-color-primary), black 10%);
 }
 
 html[data-theme="light"] a:hover {
-  color: #1d4ed8;
+  color: color-mix(in srgb, var(--q-color-primary), black 25%);
 }
 
 /* h1 Typography */
