@@ -47,7 +47,7 @@ html[data-theme="light"] .btn {
 }
 
 html[data-theme="light"] .btn:hover {
-  background-color: #fff;
+  background-color: var(--q-light-card-bg);
   border-color: #94a3b8;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
   filter: brightness(1.02);
@@ -204,7 +204,7 @@ html[data-theme="light"] .card-footer {
   padding: var(--q-space-2) var(--q-space-3);
   border: 1px solid #d1d5db;
   border-radius: var(--q-radius-md);
-  background-color: white;
+  background-color: var(--q-input-bg, white);
   color: #1e293b;
   font-size: 1rem;
   transition: all var(--q-duration-150) var(--q-ease-in-out);
@@ -402,7 +402,7 @@ html[data-theme="light"] .alert-info {
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--q-color-surface, white);
   color: #1e293b;
   border-radius: var(--q-radius-lg);
   box-shadow: var(--q-shadow-2xl);
@@ -412,7 +412,8 @@ html[data-theme="light"] .alert-info {
 }
 
 html[data-theme="light"] .modal-content {
-  background-color: white;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(16px);
   color: #1e293b;
 }
 
@@ -497,7 +498,7 @@ html[data-theme="light"] .skeleton {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: white;
+  background-color: var(--q-dropdown-bg, white);
   color: #1e293b;
   border: 1px solid #e5e7eb;
   border-radius: var(--q-radius-md);
@@ -511,7 +512,8 @@ html[data-theme="light"] .skeleton {
 }
 
 html[data-theme="light"] .dropdown-content {
-  background-color: white;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(12px);
   color: #1e293b;
 }
 
@@ -699,7 +701,8 @@ html[data-theme="light"] .menu-link.active {
 }
 
 html[data-theme="light"] .menu-dropdown {
-  background-color: white;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(12px);
   border-color: #e2e8f0;
 }
 
@@ -857,7 +860,8 @@ html[data-theme="light"] .menu-divider {
 
 /* Light mode */
 html[data-theme="light"] .toast {
-  background-color: white;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(12px);
   border-color: #e2e8f0;
 }
 
@@ -1328,12 +1332,14 @@ html[data-theme="light"] .chip:hover {
 
 /* Light mode */
 html[data-theme="light"] .date-picker-input {
-  background-color: white;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(8px);
   border-color: #e2e8f0;
 }
 
 html[data-theme="light"] .date-picker-dropdown {
-  background-color: white;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(16px);
   border-color: #e2e8f0;
 }
 
@@ -1342,7 +1348,8 @@ html[data-theme="light"] .date-picker-day:hover {
 }
 
 html[data-theme="light"] .time-picker-input {
-  background-color: white;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(8px);
   border-color: #e2e8f0;
 }
 
@@ -1911,7 +1918,8 @@ html[data-theme="light"] .list-divider {
 }
 
 html[data-theme="light"] .top-nav {
-  background: var(--q-light-card-bg, #ffffff);
+  background: var(--q-light-card-bg);
+  backdrop-filter: blur(12px);
   border-color: var(--q-light-card-border, #e2e8f0);
 }
 
@@ -2239,7 +2247,8 @@ html[data-theme="light"] .nav-section-title {
 
 /* Light mode overrides for quick actions */
 html[data-theme="light"] .quick-action-card {
-  background: #ffffff;
+  background: var(--q-light-card-bg);
+  backdrop-filter: blur(12px);
   border-color: #e2e8f0;
 }
 
@@ -3122,7 +3131,11 @@ attachment-card {
     display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 0.75rem; background: rgba(255, 255, 255, 0.05); cursor: pointer; transition: background 0.2s ease; min-width: 240px;
 }
 attachment-card:hover { background: rgba(255, 255, 255, 0.1); }
-html[data-theme="light"] attachment-card { background: #ffffff; border: 1px solid #e2e8f0; }
+html[data-theme="light"] attachment-card { 
+  background: var(--q-light-card-bg); 
+  backdrop-filter: blur(8px);
+  border: 1px solid #e2e8f0; 
+}
 
 file-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; }
 file-icon.pdf { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
@@ -3157,8 +3170,10 @@ file-size { font-size: 0.75rem; color: #64748b; }
 }
 
 html[data-theme="light"] .nav-header {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom-color: rgba(0, 0, 0, 0.08);
+  background: var(--q-light-card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--q-light-card-border, rgba(0, 0, 0, 0.08));
 }
 
 /* Brand */
@@ -3745,7 +3760,8 @@ html[data-theme="light"] .select {
 }
 
 html[data-theme="light"] .select-starlight {
-  background-color: #fff;
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(8px);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%231e293b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   border: 1px solid #cbd5e1;
   color: #1e293b;
@@ -4003,7 +4019,8 @@ html[data-theme="light"] .dialog::-webkit-scrollbar-track {
 }
 
 html[data-theme="light"] .dialog {
-  background-color: rgba(248, 250, 252, 0.9);
+  background-color: var(--q-light-card-bg);
+  backdrop-filter: blur(24px);
   border-color: rgba(0, 0, 0, 0.1);
   color: #1e293b;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
@@ -4180,7 +4197,8 @@ html[data-theme="light"] .dropdown-item:hover {
 }
 
 html[data-theme="light"] .accordion-item {
-  background: white;
+  background: var(--q-light-card-bg);
+  backdrop-filter: blur(8px);
   border-color: #e2e8f0;
 }
 
@@ -4221,7 +4239,7 @@ html[data-theme="light"] .accordion-content {
 .search:focus-within {
   box-shadow:
     0 0 0 1px var(--q-color-starlight-blue),
-    0 0 25px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
+    inset 0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
   border-color: var(--q-color-starlight-blue);
   background: rgba(255, 255, 255, 0.08);
@@ -4230,14 +4248,13 @@ html[data-theme="light"] .accordion-content {
 
 html[data-theme="light"] .search-container:focus-within,
 html[data-theme="light"] .search:focus-within {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border-color: var(--q-color-starlight-blue);
   box-shadow: 
     0 0 0 1px var(--q-color-starlight-blue),
-    0 10px 40px color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%),
-    0 0 0 4px color-mix(in srgb, var(--q-color-starlight-blue), transparent 92%),
-    inset 0 1px 2px rgba(255, 255, 255, 0.8),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.02);
+    0 8px 30px rgba(0, 0, 0, 0.04),
+    inset 0 0 12px color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px) saturate(190%);
   -webkit-backdrop-filter: blur(20px) saturate(190%);
 }
