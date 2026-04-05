@@ -1,8 +1,8 @@
 # Quantum CSS - Next-Generation Utility Framework
 
-![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.11.4-blue)
+![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.11.5-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Bundle Size](https://img.shields.io/badge/bundle%20size-29%20KB%20(gzipped)-brightgreen)
+![Bundle Size](https://img.shields.io/badge/bundle%20size-33.4%20KB%20(gzipped)-brightgreen)
 
 A modern, performance-optimized utility-first CSS framework with semantic naming, recursive component presets, and advanced cosmic effects.
 
@@ -23,6 +23,26 @@ A modern, performance-optimized utility-first CSS framework with semantic naming
 - **Zero-Escape CSS** - 100% clean CSS output without risky backslash escapes.
 - **TypeScript-Ready** - Developed with TypeScript for internal type safety
 - **Zero Configuration** - Works out of the box
+
+## 🎯 Demo Pages
+
+Check out the live demo templates in the [examples](examples/) folder:
+
+| Template | Description |
+|----------|-------------|
+| [portfolio.html](examples/portfolio.html) | Landing page with timeline |
+| [blog.html](examples/blog.html) | Blog layout |
+| [news.html](examples/news.html) | News portal |
+| [shopping.html](examples/shopping.html) | E-commerce store |
+| [travel.html](examples/travel.html) | Travel agency |
+| [gaming-portal.html](examples/gaming-portal.html) | Gaming site |
+| [admin-panel.html](examples/admin-panel.html) | Admin dashboard |
+| [analytics-dashboard.html](examples/analytics-dashboard.html) | Analytics view |
+| [chat-messaging.html](examples/chat-messaging.html) | Chat app |
+| [email-client.html](examples/email-client.html) | Email inbox |
+| [music-streaming.html](examples/music-streaming.html) | Music player |
+| [video-streaming.html](examples/video-streaming.html) | Video platform |
+| [kitchen-sink.html](examples/kitchen-sink.html) | All components reference |
 
 ## 🎨 Advanced Utilities
 
@@ -163,7 +183,7 @@ QuantumCSS automatically optimizes contrast for accessibility when the user enab
 - **Motion Sensitivity**: Automatically scales down or disables complex animations when `prefers-reduced-motion` is detected.
 
 ### Optimized Payload
-- **Gzipped Bundle**: ~29 KB (Full library + JIT utilities)
+- **Gzipped Bundle**: ~33 KB (Full library + JIT utilities)
 - **Zero Runtime**: No heavy JavaScript required for layout or styling.
 - **JIT Tree-Shaking**: Only the utilities you actually use are included in your final production build.
 
