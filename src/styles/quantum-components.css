@@ -276,12 +276,14 @@ html[data-theme="light"] .btn:active {
 
 /* Dark mode - trailer style */
 html[data-theme="dark"] .btn-glossy {
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   color: #fff !important;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 1000px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
   transition: all 0.2s ease;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 html[data-theme="dark"] .btn-glossy::before,
@@ -290,7 +292,7 @@ html[data-theme="dark"] .btn-glossy::after {
 }
 
 html[data-theme="dark"] .btn-glossy:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
   transform: none !important;
   border-radius: 1000px !important;
@@ -306,12 +308,14 @@ html[data-theme="dark"] .btn-glossy:active {
 
 /* Dark mode - brighter primary for dark backgrounds */
 html[data-theme="dark"] .btn-glossy-primary {
-  background: color-mix(in srgb, var(--q-color-primary), transparent 80%);
+  background: transparent;
   color: #fff !important;
   border: 2px solid color-mix(in srgb, var(--q-color-primary), transparent 50%);
   border-radius: 1000px;
   box-shadow: 0 0 15px color-mix(in srgb, var(--q-color-primary), transparent 70%);
   transition: all 0.2s ease;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 html[data-theme="dark"] .btn-glossy-primary::before,
@@ -320,7 +324,7 @@ html[data-theme="dark"] .btn-glossy-primary::after {
 }
 
 html[data-theme="dark"] .btn-glossy-primary:hover {
-  background: color-mix(in srgb, var(--q-color-primary), transparent 60%);
+  background: transparent;
   box-shadow: 0 0 25px color-mix(in srgb, var(--q-color-primary), transparent 50%);
   transform: none !important;
   border-radius: 1000px !important;
