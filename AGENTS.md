@@ -101,3 +101,27 @@ git push                # Push to remote
 - Always `bd sync` before ending session
 
 <!-- end-bv-agent-instructions -->
+
+---
+
+## Making a Release
+
+```bash
+# 1. Update version in package.json (semver: patch, minor, major)
+vim package.json  # Update "version" field
+
+# 2. Run release script (bumps version, builds, tags)
+npm run release
+
+# 3. Check git log for changes since last release
+git log --oneline -20
+
+# 4. Update portfolio.html release history with new version
+#    Edit examples/portfolio.html, add new timeline-item at top
+
+# 5. Commit the portfolio.html update
+git add examples/portfolio.html && git commit -m "docs: update release history"
+
+# 6. Push tags and commits
+git push && git push --tags
+```
