@@ -25,6 +25,8 @@
             --shell-item-bg: var(--q-surface-1, rgba(255, 255, 255, 0.04));
             --shell-item-bg-hover: var(--q-surface-hover, rgba(255, 255, 255, 0.1));
             --shell-item-border: var(--q-surface-border, rgba(255, 255, 255, 0.08));
+            --shell-item-bg-surface: rgba(255, 255, 255, 0.06);
+            --shell-item-bg-surface-hover: rgba(255, 255, 255, 0.12);
             --shadow-window: 0 30px 80px rgba(0, 5, 18, 0.45);
             --wallpaper:
                 radial-gradient(circle at 18% 18%, rgba(126, 231, 255, 0.18), transparent 24%),
@@ -50,6 +52,8 @@
             --shell-item-bg: var(--q-surface-1, rgba(17, 35, 60, 0.05));
             --shell-item-bg-hover: var(--q-surface-hover, rgba(17, 35, 60, 0.09));
             --shell-item-border: var(--q-surface-border, rgba(17, 35, 60, 0.12));
+            --shell-item-bg-surface: rgba(17, 35, 60, 0.08);
+            --shell-item-bg-surface-hover: rgba(17, 35, 60, 0.14);
             --shadow-window: 0 24px 70px rgba(84, 108, 145, 0.22);
             --wallpaper:
                 radial-gradient(circle at 16% 20%, rgba(0, 119, 255, 0.14), transparent 22%),
@@ -880,7 +884,7 @@
                 radial-gradient(circle at 66% 42%, rgba(255, 213, 137, 0.85) 0 3px, transparent 4px),
                 radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.75) 0 2px, transparent 3px),
                 radial-gradient(circle at 72% 78%, rgba(126, 231, 255, 0.8) 0 2px, transparent 3px),
-                var(--shell-item-bg);
+                var(--shell-item-bg-surface);
         }
 
         .constellation::before {
@@ -905,7 +909,11 @@
             gap: 12px;
             padding: 12px 14px;
             border-radius: 16px;
-            background: var(--shell-item-bg);
+            background: var(--shell-item-bg-surface);
+        }
+
+        .priority-item:hover {
+            background: var(--shell-item-bg-surface-hover);
         }
 
         .priority-item span:last-child {
@@ -933,7 +941,7 @@
             padding: 12px 16px;
             border: 1px solid var(--shell-border);
             border-radius: 28px;
-            background: rgba(8, 18, 32, 0.64);
+            background: var(--shell-panel);
             transform: translateX(-50%);
             box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
         }
