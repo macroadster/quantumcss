@@ -4365,6 +4365,12 @@ html[data-theme="light"] .star {
     border-radius: var(--q-window-radius, 1.75rem);
   }
 
+  .starlight-window-body {
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
   .starlight-window-resize {
     display: none;
   }
