@@ -537,7 +537,10 @@ const Starlight = {
       const minButton = windowEl.querySelector(config.minimizeSelector);
       const maxButton = windowEl.querySelector(config.maximizeSelector);
 
-      windowEl.addEventListener('mousedown', () => focusWindow(windowEl));
+      windowEl.addEventListener('mousedown', (event) => {
+        if (event.target.closest(config.resizeSelector)) return;
+        focusWindow(windowEl);
+      });
 
       if (header) {
         header.addEventListener('pointerdown', (event) => {
@@ -576,7 +579,6 @@ const Starlight = {
           pinWindowToCurrentRect(windowEl);
           const rect = windowEl.getBoundingClientRect();
 
-          focusWindow(windowEl);
           resizeHandle.setPointerCapture(event.pointerId);
           resizeState = {
             windowEl,
