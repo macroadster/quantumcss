@@ -553,7 +553,10 @@ const Starlight = {
           }
           if (windowEl.classList.contains(config.maximizedClass)) return;
 
-          pinWindowToCurrentRect(windowEl);
+          const isAlreadyFloating = windowEl.getAttribute(config.floatingAttr) === 'true';
+          if (isAlreadyFloating) {
+            pinWindowToCurrentRect(windowEl);
+          }
           const hostRect = container.getBoundingClientRect();
           const rect = windowEl.getBoundingClientRect();
 
@@ -576,7 +579,10 @@ const Starlight = {
           if (windowEl.classList.contains(config.maximizedClass)) return;
 
           event.stopPropagation();
-          pinWindowToCurrentRect(windowEl);
+          const isAlreadyFloating = windowEl.getAttribute(config.floatingAttr) === 'true';
+          if (isAlreadyFloating) {
+            pinWindowToCurrentRect(windowEl);
+          }
           const rect = windowEl.getBoundingClientRect();
 
           resizeHandle.setPointerCapture(event.pointerId);
@@ -741,13 +747,12 @@ const Starlight = {
       getWindow(windowId) {
         return container.querySelector(`${config.windowSelector}[data-window="${windowId}"]`);
       },
+
       initializeStaticWindows(metaResolver = null) {
         container.querySelectorAll(config.windowSelector).forEach((windowEl) => {
           if (managedWindows.has(windowEl)) return;
           if (isMobile()) {
             releaseWindowToFlow(windowEl);
-          } else {
-            pinWindowToCurrentRect(windowEl);
           }
           const meta = typeof metaResolver === 'function' ? metaResolver(windowEl) : {};
           registerWindow(windowEl, meta || {});
