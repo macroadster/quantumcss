@@ -133,15 +133,26 @@
         }
 
         .brand-mark {
-            width: 32px;
-            height: 32px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            color: #08111f;
-            background: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
-            box-shadow: 0 0 30px rgba(126, 231, 255, 0.35);
-            font-weight: 800;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #f8fafc;
+            background: linear-gradient(135deg, var(--q-color-starlight-peach, #ffd589), var(--q-color-starlight-blue, #7ee7ff));
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        html[data-theme="light"] .brand-mark {
+            color: #f8fafc;
+            background: linear-gradient(135deg, var(--q-color-starlight-blue, #0077ff), var(--q-color-starlight-peach, #ff9e4a));
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(126, 231, 255, 0.25); }
+            50% { box-shadow: 0 0 30px rgba(126, 231, 255, 0.45); }
         }
 
         .menu-strip,
@@ -1035,10 +1046,42 @@
             .workspace {
                 grid-template-columns: 1fr;
                 height: auto;
+                gap: 12px;
+            }
+
+            .desktop-stage {
+                order: 3;
+                margin-top: 0;
+            }
+
+            .side-stack {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+                gap: 12px;
+                order: 1;
+            }
+
+            .launcher-panel {
+                display: none;
             }
 
             .desktop-rail {
-                display: none;
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                padding: 10px 12px;
+                overflow-x: auto;
+                border-radius: 16px;
+                order: 0;
+            }
+
+            .rail-button {
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                border-radius: 14px;
+                font-size: 0.7rem;
             }
 
             .desktop-icons {
@@ -1049,8 +1092,10 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 12px;
-                padding: 16px;
+                padding: 12px;
                 justify-content: center;
+                margin-top: 0;
+                order: 2;
             }
 
             .desktop-icon {
@@ -1067,9 +1112,11 @@
             .window-stack,
             .window-stack {
                 display: grid;
-                gap: 18px;
+                gap: 14px;
                 height: auto;
                 overflow: visible;
+                margin-top: 12px;
+                order: 3;
             }
 
             .window,
@@ -1104,15 +1151,6 @@
                 overflow-x: auto;
             }
 
-            .launcher-panel {
-                position: relative;
-                top: auto;
-                left: auto;
-                width: 100%;
-                margin-top: 18px;
-                display: block;
-            }
-
             .launcher-search {
                 width: 100%;
                 margin-bottom: 12px;
@@ -1145,7 +1183,7 @@
     <div class="desktop-shell">
         <header class="menu-bar">
             <div class="brand">
-                <div class="brand-mark">Q</div>
+                <div class="brand-mark"><i class="icon-starlight"></i></div>
                 <div>
                     <strong>Quantum Shell</strong>
                 </div>
