@@ -625,6 +625,11 @@ textarea {
 .bg-white { background-color: #fff; color: #0f172a; }
 .bg-black { background-color: #000; color: #fff; }
 
+/* Surface Elevation Utilities */
+.surface-1 { background-color: var(--q-surface-1); border: 1px solid var(--q-surface-border); }
+.surface-2 { background-color: var(--q-surface-2); border: 1px solid var(--q-surface-border); }
+.surface-hover:hover { background-color: var(--q-surface-hover); }
+
 /* Border Utilities */
 .border-0 { border-width: 0; }
 .border { border-width: 1px; }
@@ -961,6 +966,12 @@ html[data-theme="light"] {
   --q-card-bg: color-mix(in srgb, #fff, transparent 5%);
   --q-card-border: color-mix(in srgb, #000, transparent 90%);
   --q-card-shadow: 0 10px 40px rgb(0 0 0 / 10%);
+
+  /* Surface Elevation System */
+  --q-surface-1: color-mix(in srgb, var(--q-bg-primary), var(--q-text-primary) 5%);
+  --q-surface-2: color-mix(in srgb, var(--q-bg-primary), var(--q-text-primary) 10%);
+  --q-surface-hover: color-mix(in srgb, var(--q-bg-primary), var(--q-text-primary) 15%);
+  --q-surface-border: color-mix(in srgb, var(--q-text-primary), transparent 85%);
   
   --q-btn-primary-bg: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%);
   --q-btn-primary-hover-bg: linear-gradient(135deg, var(--q-color-starlight-peach) 50%, var(--q-color-starlight-blue) 110%);
@@ -1004,6 +1015,12 @@ html[data-theme="dark"] {
   --q-card-bg: color-mix(in srgb, #fff, transparent 94%);
   --q-card-border: color-mix(in srgb, #fff, transparent 88%);
   --q-card-shadow: 0 25px 50px -12px rgb(0 0 0 / 60%);
+
+  /* Surface Elevation System */
+  --q-surface-1: color-mix(in srgb, transparent, #fff 4%);
+  --q-surface-2: color-mix(in srgb, transparent, #fff 8%);
+  --q-surface-hover: color-mix(in srgb, transparent, #fff 12%);
+  --q-surface-border: color-mix(in srgb, #fff, transparent 88%);
   
   --q-btn-primary-bg: var(--q-color-starlight-blue);
   --q-btn-primary-hover-bg: color-mix(in srgb, var(--q-color-starlight-blue), black 10%);

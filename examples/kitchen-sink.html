@@ -931,7 +931,7 @@
                     <div class="starlight-card p-6">
                         <div class="mb-4 flex justify-between items-center">
                             <span class="token-name">.btn-primary</span>
-                            <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
+                            <span class="text-[10px] opacity-70 uppercase font-bold">Preset</span>
                         </div>
                         <div class="flex items-center justify-center p-8 bg-black_20 rounded-xl mb-4">
                             <button class="btn-primary">Preset Button</button>
@@ -942,7 +942,7 @@
                     <div class="starlight-card p-6">
                         <div class="mb-4 flex justify-between items-center">
                             <span class="token-name">.btn-glossy</span>
-                            <span class="text-[10px] opacity-50 uppercase font-bold">New</span>
+                            <span class="text-[10px] opacity-70 uppercase font-bold">New</span>
                         </div>
                         <div class="flex items-center justify-center p-8 bg-black_20 rounded-xl mb-4 gap-4">
                             <button class="btn btn-glossy">Neutral</button>
@@ -955,7 +955,7 @@
                     <div class="starlight-card p-6">
                         <div class="mb-4 flex justify-between items-center">
                             <span class="token-name">.card-premium</span>
-                            <span class="text-[10px] opacity-50 uppercase font-bold">Preset</span>
+                            <span class="text-[10px] opacity-70 uppercase font-bold">Preset</span>
                         </div>
                         <div class="flex items-center justify-center p-8 bg-black_20 rounded-xl mb-4">
                             <div class="card-premium"><h4 class="font-bold">Preset Card</h4><p class="text-sm opacity-70">Using card-premium</p></div>
@@ -971,6 +971,14 @@
         <section>
             <h2>Component Utilities</h2>
             <div class="grid grid-cols-1 md__grid-cols-2 gap-8">
+                <div class="starlight-card p-6">
+                    <div class="mb-4 token-name">surface-1 / surface-2</div>
+                    <div class="flex flex-col gap-4 p-4 bg-black_20 rounded-xl">
+                        <div class="surface-1 p-4 rounded-lg">Surface 1 Elevation</div>
+                        <div class="surface-2 p-4 rounded-lg">Surface 2 Elevation</div>
+                        <div class="surface-hover p-4 rounded-lg surface-1 cursor-pointer">Surface Hover (Try Me)</div>
+                    </div>
+                </div>
                 <div class="starlight-card p-6">
                     <div class="mb-4 token-name">glass</div>
                     <div class="flex items-center justify-center p-8 bg-black_20 rounded-xl">
@@ -1005,7 +1013,7 @@
             <div class="grid grid-cols-1 gap-12">
                 <!-- Navigation -->
                 <div class="starlight-card p-0 mb-12">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Navigation Menu (.nav-header)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Navigation Menu (.nav-header)</div>
                     <div class="relative">
                         <input type="checkbox" id="nav-demo-toggle" class="nav-toggle" />
                         <header class="nav-header">
@@ -1046,7 +1054,7 @@
 
                 <!-- Vertical Navigation -->
                 <div class="starlight-card p-0">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Vertical Sidebar (.aside-nav)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Vertical Sidebar (.aside-nav)</div>
                     <div class="flex h-[400px] overflow-hidden relative">
                         <input type="checkbox" id="sidebar-toggle-mobile" class="hidden">
                         <label for="sidebar-toggle-mobile" class="aside-nav-trigger">
@@ -1156,7 +1164,7 @@
 
                 <!-- Search -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Interactive Search (.search)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Interactive Search (.search)</div>
                     <div class="p-12 flex flex-col items-center gap-6">
                         <div class="search has-icon">
                             <i class="icon-search"></i>
@@ -1168,7 +1176,7 @@
 
                 <!-- Dashboard -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dashboard Grid (.dashboard)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Dashboard Grid (.dashboard)</div>
                     <div class="p-8">
                         <div class="dashboard">
                             <div class="starlight-card stat-card light:shadow-lg">
@@ -1201,7 +1209,7 @@
 
                 <!-- Gallery -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Gallery Widget (.gallery)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Gallery Widget (.gallery)</div>
                     <div class="p-8">
                         <div class="gallery">
                             <div class="gallery-item">
@@ -1226,7 +1234,7 @@
 
                 <!-- Premium Table -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Premium Data Table (.table-premium)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Premium Data Table (.table-premium)</div>
                     <div class="p-8">
                         <div class="table-premium-container">
                             <div class="table-premium-header">
@@ -1288,7 +1296,7 @@
 
                 <!-- Form -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Advanced Form (.form)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Advanced Form (.form)</div>
                     <div class="p-8">
                         <div class="form">
                             <div class="flex flex-col gap-4">
@@ -1316,7 +1324,7 @@
 
                 <!-- Dialog -->
                 <div class="starlight-card p-0">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Dialog Window (.dialog)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Dialog Window (.dialog)</div>
                     <div class="p-8">
                         <!-- Inline Preview -->
                         <div class="dialog-base theme-glass relative mx-auto mb-8 shadow-none border-white_10" style="max-width: 500px;">
@@ -1336,7 +1344,7 @@
 
                 <!-- Accordion -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Accordion Group (.accordion)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Accordion Group (.accordion)</div>
                     <div class="p-8">
                         <div class="max-w-2xl mx-auto" data-accordion>
                             <div class="accordion-item accordion active">
@@ -1363,7 +1371,7 @@
 
                 <!-- Tabs -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 border-b border-white_5 bg-white_5 text-[10px] uppercase font-bold tracking-widest opacity-50">Tab Interface (.tab-list)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Tab Interface (.tab-list)</div>
                     <div class="p-8">
                         <div class="max-w-2xl mx-auto">
                             <div class="tab-list mb-4 touch-slide">
