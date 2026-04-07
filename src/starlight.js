@@ -427,6 +427,313 @@ const Starlight = {
   },
 
   /**
+   * Creates a desktop-style window manager for draggable, resizable surfaces.
+   * Windows use shared Starlight classes and can opt into custom behavior
+   * via hooks or per-window metadata.
+   */
+  createWindowManager(options = {}) {
+    const config = {
+      container: options.container || null,
+      windowSelector: options.windowSelector || '.starlight-window',
+      headerSelector: options.headerSelector || '.starlight-window-header',
+      resizeSelector: options.resizeSelector || '[data-window-resize], .starlight-window-resize',
+      closeSelector: options.closeSelector || '[data-window-close]',
+      minimizeSelector: options.minimizeSelector || '[data-window-minimize]',
+      maximizeSelector: options.maximizeSelector || '[data-window-maximize]',
+      focusedClass: options.focusedClass || 'focused',
+      minimizedClass: options.minimizedClass || 'minimized',
+      maximizedClass: options.maximizedClass || 'maximized',
+      draggingClass: options.draggingClass || 'dragging',
+      floatingAttr: options.floatingAttr || 'data-floating',
+      mobileBreakpoint: options.mobileBreakpoint || '(max-width: 860px)',
+      initialZ: typeof options.initialZ === 'number' ? options.initialZ : 20,
+      onFocus: typeof options.onFocus === 'function' ? options.onFocus : null,
+      onClose: typeof options.onClose === 'function' ? options.onClose : null,
+      onMinimize: typeof options.onMinimize === 'function' ? options.onMinimize : null,
+      onMaximize: typeof options.onMaximize === 'function' ? options.onMaximize : null
+    };
+
+    const container = typeof config.container === 'string'
+      ? document.querySelector(config.container)
+      : config.container;
+
+    if (!container) {
+      console.warn('Starlight: createWindowManager requires a valid container.');
+      return null;
+    }
+
+    let topZ = config.initialZ;
+    const managedWindows = new Map();
+    let dragState = null;
+    let resizeState = null;
+
+    const isMobile = () => window.matchMedia(config.mobileBreakpoint).matches;
+
+    const resolveHookResult = (hook, payload) => {
+      if (typeof hook !== 'function') return false;
+      return hook(payload) === true;
+    };
+
+    const focusWindow = (windowEl, trigger = null) => {
+      managedWindows.forEach((meta, element) => {
+        element.classList.toggle(config.focusedClass, element === windowEl);
+      });
+
+      windowEl.classList.remove(config.minimizedClass);
+      windowEl.style.zIndex = String(++topZ);
+
+      const meta = managedWindows.get(windowEl) || {};
+      if (meta.onFocus) {
+        meta.onFocus({ windowEl, meta, trigger, api });
+      }
+      if (config.onFocus) {
+        config.onFocus({ windowEl, meta, trigger, api });
+      }
+    };
+
+    const pinWindowToCurrentRect = (windowEl) => {
+      if (isMobile()) return;
+      if (windowEl.getAttribute(config.floatingAttr) === 'true') return;
+
+      const hostRect = container.getBoundingClientRect();
+      const rect = windowEl.getBoundingClientRect();
+
+      windowEl.style.left = `${rect.left - hostRect.left}px`;
+      windowEl.style.top = `${rect.top - hostRect.top}px`;
+      windowEl.style.width = `${rect.width}px`;
+      windowEl.style.height = `${rect.height}px`;
+      windowEl.style.right = 'auto';
+      windowEl.style.bottom = 'auto';
+      windowEl.style.inset = 'auto';
+      windowEl.setAttribute(config.floatingAttr, 'true');
+    };
+
+    const unregisterWindow = (windowEl) => {
+      managedWindows.delete(windowEl);
+      windowEl.remove();
+    };
+
+    const registerWindow = (windowEl, meta = {}) => {
+      if (!windowEl || managedWindows.has(windowEl)) return windowEl;
+
+      managedWindows.set(windowEl, meta);
+      windowEl.style.zIndex = String(++topZ);
+
+      const header = windowEl.querySelector(config.headerSelector);
+      const resizeHandle = windowEl.querySelector(config.resizeSelector);
+      const closeButton = windowEl.querySelector(config.closeSelector);
+      const minButton = windowEl.querySelector(config.minimizeSelector);
+      const maxButton = windowEl.querySelector(config.maximizeSelector);
+
+      windowEl.addEventListener('mousedown', () => focusWindow(windowEl));
+
+      if (header) {
+        header.addEventListener('pointerdown', (event) => {
+          if (isMobile()) return;
+          if (event.target.closest(config.closeSelector)
+            || event.target.closest(config.minimizeSelector)
+            || event.target.closest(config.maximizeSelector)
+            || event.target.closest('[data-window-toolbar]')) {
+            return;
+          }
+          if (windowEl.classList.contains(config.maximizedClass)) return;
+
+          pinWindowToCurrentRect(windowEl);
+          const hostRect = container.getBoundingClientRect();
+          const rect = windowEl.getBoundingClientRect();
+
+          focusWindow(windowEl);
+          header.setPointerCapture(event.pointerId);
+          dragState = {
+            windowEl,
+            pointerId: event.pointerId,
+            hostRect,
+            offsetX: event.clientX - rect.left,
+            offsetY: event.clientY - rect.top
+          };
+          windowEl.classList.add(config.draggingClass);
+        });
+      }
+
+      if (resizeHandle) {
+        resizeHandle.addEventListener('pointerdown', (event) => {
+          if (isMobile()) return;
+          if (windowEl.classList.contains(config.maximizedClass)) return;
+
+          event.stopPropagation();
+          pinWindowToCurrentRect(windowEl);
+          const rect = windowEl.getBoundingClientRect();
+
+          focusWindow(windowEl);
+          resizeHandle.setPointerCapture(event.pointerId);
+          resizeState = {
+            windowEl,
+            pointerId: event.pointerId,
+            startX: event.clientX,
+            startY: event.clientY,
+            width: rect.width,
+            height: rect.height
+          };
+        });
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const payload = { windowEl, meta, api };
+          if (resolveHookResult(meta.onClose, payload) || resolveHookResult(config.onClose, payload)) {
+            return;
+          }
+          windowEl.classList.add(config.minimizedClass);
+        });
+      }
+
+      if (minButton) {
+        minButton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const payload = { windowEl, meta, api };
+          if (resolveHookResult(meta.onMinimize, payload) || resolveHookResult(config.onMinimize, payload)) {
+            return;
+          }
+          windowEl.classList.add(config.minimizedClass);
+        });
+      }
+
+      if (maxButton) {
+        maxButton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const payload = { windowEl, meta, api };
+          if (resolveHookResult(meta.onMaximize, payload) || resolveHookResult(config.onMaximize, payload)) {
+            return;
+          }
+
+          if (!windowEl.classList.contains(config.maximizedClass)) {
+            windowEl.dataset.prevLeft = windowEl.style.left || '';
+            windowEl.dataset.prevTop = windowEl.style.top || '';
+            windowEl.dataset.prevWidth = windowEl.style.width || '';
+            windowEl.dataset.prevHeight = windowEl.style.height || '';
+            windowEl.classList.add(config.maximizedClass);
+            windowEl.style.left = '0';
+            windowEl.style.top = '0';
+          } else {
+            windowEl.classList.remove(config.maximizedClass);
+            windowEl.style.left = windowEl.dataset.prevLeft;
+            windowEl.style.top = windowEl.dataset.prevTop;
+            windowEl.style.width = windowEl.dataset.prevWidth;
+            windowEl.style.height = windowEl.dataset.prevHeight;
+          }
+
+          focusWindow(windowEl);
+        });
+      }
+
+      return windowEl;
+    };
+
+    const createWindow = ({
+      windowId,
+      title = '',
+      subtitle = '',
+      bodyHTML = '',
+      toolbarHTML = '',
+      width = 640,
+      height = 420,
+      left = 120,
+      top = 80,
+      className = '',
+      meta = {}
+    }) => {
+      const windowEl = document.createElement('section');
+      windowEl.className = `starlight-window ${className}`.trim();
+      if (windowId) {
+        windowEl.dataset.window = windowId;
+      }
+      windowEl.setAttribute(config.floatingAttr, 'true');
+      windowEl.style.left = `${left}px`;
+      windowEl.style.top = `${top}px`;
+      windowEl.style.width = `${width}px`;
+      windowEl.style.height = `${height}px`;
+      windowEl.style.right = 'auto';
+      windowEl.style.bottom = 'auto';
+      windowEl.style.inset = 'auto';
+      windowEl.innerHTML = `
+        <header class="starlight-window-header">
+          <div class="starlight-window-title">
+            <div class="starlight-window-traffic">
+              <button class="starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
+              <button class="starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+              <button class="starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+            </div>
+            <div>
+              <strong>${title}</strong>
+              <span>${subtitle}</span>
+            </div>
+          </div>
+          <div class="starlight-window-toolbar" data-window-toolbar>${toolbarHTML}</div>
+        </header>
+        <div class="starlight-window-body">${bodyHTML}</div>
+        <div class="starlight-window-resize" data-window-resize></div>`;
+
+      container.appendChild(windowEl);
+      registerWindow(windowEl, meta);
+      focusWindow(windowEl);
+      return windowEl;
+    };
+
+    document.addEventListener('pointermove', (event) => {
+      if (dragState) {
+        const maxLeft = dragState.hostRect.width - 260;
+        const maxTop = dragState.hostRect.height - 140;
+        const nextLeft = event.clientX - dragState.hostRect.left - dragState.offsetX;
+        const nextTop = event.clientY - dragState.hostRect.top - dragState.offsetY;
+        dragState.windowEl.style.left = `${Math.max(0, Math.min(maxLeft, nextLeft))}px`;
+        dragState.windowEl.style.top = `${Math.max(0, Math.min(maxTop, nextTop))}px`;
+      }
+
+      if (resizeState) {
+        const nextWidth = Math.max(360, resizeState.width + (event.clientX - resizeState.startX));
+        const nextHeight = Math.max(240, resizeState.height + (event.clientY - resizeState.startY));
+        resizeState.windowEl.style.width = `${nextWidth}px`;
+        resizeState.windowEl.style.height = `${nextHeight}px`;
+      }
+    });
+
+    document.addEventListener('pointerup', () => {
+      if (dragState) {
+        dragState.windowEl.classList.remove(config.draggingClass);
+      }
+      dragState = null;
+      resizeState = null;
+    });
+
+    const api = {
+      config,
+      container,
+      registerWindow,
+      unregisterWindow,
+      focusWindow,
+      pinWindowToCurrentRect,
+      createWindow,
+      getMeta(windowEl) {
+        return managedWindows.get(windowEl);
+      },
+      getWindow(windowId) {
+        return container.querySelector(`${config.windowSelector}[data-window="${windowId}"]`);
+      },
+      initializeStaticWindows(metaResolver = null) {
+        container.querySelectorAll(config.windowSelector).forEach((windowEl) => {
+          if (managedWindows.has(windowEl)) return;
+          pinWindowToCurrentRect(windowEl);
+          const meta = typeof metaResolver === 'function' ? metaResolver(windowEl) : {};
+          registerWindow(windowEl, meta || {});
+        });
+      }
+    };
+
+    return api;
+  },
+
+  /**
    * Initializes theme management using data attributes for AI predictability.
    * Manages theme state via localStorage and html[data-theme] attribute.
    * Configurable via data attributes on theme toggle elements.

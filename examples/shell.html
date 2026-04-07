@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Shell</title>
+    <link rel="stylesheet" href="../dist/quantum.min.css">
+    <style>
+        :root {
+            --shell-font: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+            --mono-font: "SF Mono", "IBM Plex Mono", monospace;
+            --shell-bg: #08111f;
+            --shell-bg-2: #10243c;
+            --shell-panel: rgba(10, 20, 35, 0.68);
+            --shell-panel-strong: rgba(10, 20, 35, 0.88);
+            --shell-border: rgba(157, 212, 255, 0.18);
+            --shell-border-strong: rgba(157, 212, 255, 0.3);
+            --shell-text: #edf6ff;
+            --shell-muted: rgba(237, 246, 255, 0.64);
+            --shell-dim: rgba(237, 246, 255, 0.4);
+            --shell-accent: #7ee7ff;
+            --shell-accent-2: #ffd589;
+            --shell-success: #63f6be;
+            --shell-danger: #ff8f8f;
+            --shell-item-bg: var(--q-surface-1, rgba(255, 255, 255, 0.04));
+            --shell-item-bg-hover: var(--q-surface-hover, rgba(255, 255, 255, 0.1));
+            --shell-item-border: var(--q-surface-border, rgba(255, 255, 255, 0.08));
+            --shadow-window: 0 30px 80px rgba(0, 5, 18, 0.45);
+            --wallpaper:
+                radial-gradient(circle at 18% 18%, rgba(126, 231, 255, 0.18), transparent 24%),
+                radial-gradient(circle at 84% 16%, rgba(255, 213, 137, 0.16), transparent 20%),
+                radial-gradient(circle at 50% 84%, rgba(75, 133, 255, 0.22), transparent 26%),
+                linear-gradient(145deg, #09111d 0%, #0a1730 40%, #10223a 100%);
+        }
+
+        html[data-theme="light"] {
+            --shell-bg: #edf3fb;
+            --shell-bg-2: #d9e8fb;
+            --shell-panel: rgba(255, 255, 255, 0.62);
+            --shell-panel-strong: rgba(255, 255, 255, 0.82);
+            --shell-border: rgba(25, 64, 110, 0.12);
+            --shell-border-strong: rgba(25, 64, 110, 0.22);
+            --shell-text: #11233c;
+            --shell-muted: rgba(17, 35, 60, 0.68);
+            --shell-dim: rgba(17, 35, 60, 0.42);
+            --shell-accent: #0077ff;
+            --shell-accent-2: #ff9e4a;
+            --shell-success: #03946e;
+            --shell-danger: #c84c4c;
+            --shell-item-bg: var(--q-surface-1, rgba(17, 35, 60, 0.05));
+            --shell-item-bg-hover: var(--q-surface-hover, rgba(17, 35, 60, 0.09));
+            --shell-item-border: var(--q-surface-border, rgba(17, 35, 60, 0.12));
+            --shadow-window: 0 24px 70px rgba(84, 108, 145, 0.22);
+            --wallpaper:
+                radial-gradient(circle at 16% 20%, rgba(0, 119, 255, 0.14), transparent 22%),
+                radial-gradient(circle at 82% 18%, rgba(255, 158, 74, 0.18), transparent 18%),
+                radial-gradient(circle at 50% 82%, rgba(129, 171, 255, 0.2), transparent 24%),
+                linear-gradient(155deg, #f4f8fd 0%, #dfecfa 48%, #d4e2f5 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: var(--shell-font);
+            color: var(--shell-text);
+            background: var(--wallpaper);
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .desktop-shell {
+            position: relative;
+            min-height: 100vh;
+            padding: 16px 18px 110px;
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent 18%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02), transparent 16%);
+        }
+
+        .desktop-shell::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 120px 120px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.95));
+            pointer-events: none;
+        }
+
+        .menu-bar,
+        .desktop-rail,
+        .window,
+        .dock,
+        .panel,
+        .desktop-icon {
+            backdrop-filter: blur(22px) saturate(135%);
+            -webkit-backdrop-filter: blur(22px) saturate(135%);
+        }
+
+        .menu-bar {
+            position: relative;
+            z-index: 4;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 16px;
+            border: 1px solid var(--shell-border);
+            border-radius: 22px;
+            background: var(--shell-panel);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: #08111f;
+            background: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
+            box-shadow: 0 0 30px rgba(126, 231, 255, 0.35);
+            font-weight: 800;
+        }
+
+        .menu-strip,
+        .status-strip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .menu-chip,
+        .status-chip,
+        .toolbar-button,
+        .dock-app,
+        .action-button,
+        .desktop-icon {
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+        }
+
+        .menu-chip,
+        .status-chip {
+            padding: 8px 12px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            color: var(--shell-muted);
+            font-size: 0.86rem;
+        }
+
+        .menu-chip.active,
+        .menu-chip:hover,
+        .status-chip:hover {
+            color: var(--shell-text);
+            border-color: var(--shell-border);
+            background: var(--shell-item-bg-hover);
+        }
+
+        .workspace {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 96px minmax(0, 1fr) 330px;
+            gap: 20px;
+            height: calc(100vh - 156px);
+            margin-top: 20px;
+        }
+
+        .desktop-rail {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 14px 12px;
+            border: 1px solid var(--shell-border);
+            border-radius: 28px;
+            background: var(--shell-panel);
+            box-shadow: var(--shadow-window);
+        }
+
+        .rail-button {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 22px;
+            border: 1px solid transparent;
+            background: var(--shell-item-bg);
+            color: var(--shell-text);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .rail-button.active,
+        .rail-button:hover {
+            transform: translateY(-2px);
+            border-color: var(--shell-border-strong);
+            background: var(--shell-item-bg-hover);
+            box-shadow: 0 12px 24px rgba(0, 10, 30, 0.24);
+        }
+
+        .desktop-stage {
+            position: relative;
+            min-width: 0;
+            border-radius: 34px;
+        }
+
+        .desktop-icons {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+            display: grid;
+            gap: 14px;
+        }
+
+        .desktop-icon {
+            width: 92px;
+            padding: 12px 10px;
+            border: 1px solid var(--shell-border);
+            border-radius: 24px;
+            background: var(--shell-item-bg);
+            text-align: center;
+            color: var(--shell-text);
+        }
+
+        .desktop-icon:hover {
+            transform: translateY(-3px);
+            border-color: var(--shell-border-strong);
+            background: var(--shell-item-bg-hover);
+        }
+
+        .desktop-icon strong {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.78rem;
+            line-height: 1.25;
+        }
+
+        .icon-badge {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(126, 231, 255, 0.25), rgba(255, 213, 137, 0.22));
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+
+        .window-stack,
+        .starlight-window-stack {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            --q-window-bg: var(--shell-panel);
+            --q-window-border: var(--shell-border);
+            --q-window-border-focus: var(--shell-border-strong);
+            --q-window-shadow: var(--shadow-window);
+            --q-window-shadow-focus: 0 36px 90px rgba(0, 7, 24, 0.52);
+            --q-window-divider: var(--shell-item-border);
+            --q-window-header-bg: var(--shell-item-bg);
+            --q-window-muted: var(--shell-dim);
+            --q-window-body-padding: 18px;
+        }
+
+        .window,
+        .starlight-window {
+            position: absolute;
+            border: 1px solid var(--shell-border);
+            border-radius: 28px;
+            background: var(--shell-panel);
+            box-shadow: var(--shadow-window);
+            overflow: hidden;
+        }
+
+        .window.focused,
+        .starlight-window.focused {
+            border-color: var(--shell-border-strong);
+            box-shadow: 0 36px 90px rgba(0, 7, 24, 0.52);
+        }
+
+        .window.minimized,
+        .starlight-window.minimized {
+            display: none;
+        }
+
+        .window.maximized,
+        .starlight-window.maximized {
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 0;
+        }
+
+        .window.dragging,
+        .starlight-window.dragging {
+            cursor: grabbing;
+            box-shadow: 0 42px 100px rgba(0, 7, 24, 0.6);
+        }
+
+        .window-primary {
+            inset: 24px 180px 72px 110px;
+            z-index: 3;
+        }
+
+        .window-secondary {
+            top: 110px;
+            right: 28px;
+            width: 310px;
+            height: 340px;
+            z-index: 2;
+        }
+
+        .window-tertiary {
+            left: 70px;
+            bottom: 28px;
+            width: 360px;
+            height: 250px;
+            z-index: 2;
+        }
+
+        .window-header,
+        .starlight-window-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--shell-item-border);
+            background: var(--shell-item-bg);
+            cursor: grab;
+            touch-action: none;
+        }
+
+        .traffic-lights,
+        .starlight-window-traffic {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .traffic-lights button,
+        .starlight-window-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            border: 0;
+        }
+
+        .traffic-close,
+        .starlight-window-control.is-close { background: #ff6f61; }
+        .traffic-min,
+        .starlight-window-control.is-minimize { background: #ffcc5c; }
+        .traffic-max,
+        .starlight-window-control.is-maximize { background: #4cd964; }
+
+        .window-title,
+        .starlight-window-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .window-title strong,
+        .starlight-window-title strong {
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .window-title span,
+        .starlight-window-title span {
+            color: var(--shell-dim);
+            font-size: 0.8rem;
+        }
+
+        .toolbar,
+        .starlight-window-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toolbar-button,
+        .action-button {
+            padding: 9px 12px;
+            border: 1px solid var(--shell-border);
+            border-radius: 14px;
+            color: var(--shell-text);
+            background: var(--shell-item-bg);
+            font-size: 0.82rem;
+        }
+
+        .toolbar-button:hover,
+        .action-button:hover {
+            transform: translateY(-2px);
+            border-color: var(--shell-border-strong);
+            background: var(--shell-item-bg-hover);
+        }
+
+        .action-button.primary {
+            color: #08111f;
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
+            font-weight: 700;
+        }
+
+        .window-body,
+        .starlight-window-body {
+            height: calc(100% - 60px);
+            min-height: 0;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 18px;
+            touch-action: auto;
+        }
+
+        .resize-grip,
+        .starlight-window-resize {
+            position: absolute;
+            right: 12px;
+            bottom: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            cursor: nwse-resize;
+            background:
+                linear-gradient(135deg, transparent 35%, rgba(255, 255, 255, 0.2) 36%, transparent 37%) 0 0 / 100% 100%,
+                linear-gradient(135deg, transparent 58%, rgba(255, 255, 255, 0.34) 59%, transparent 60%) 0 0 / 100% 100%;
+            opacity: 0.7;
+            touch-action: none;
+        }
+
+        .launcher-panel {
+            position: absolute;
+            top: 88px;
+            left: 132px;
+            z-index: 8;
+            width: min(620px, calc(100vw - 220px));
+            padding: 18px;
+            border: 1px solid var(--shell-border);
+            border-radius: 28px;
+            background: var(--shell-panel-strong);
+            box-shadow: 0 30px 80px rgba(0, 7, 24, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(16px) scale(0.98);
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+
+        .launcher-panel.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .launcher-search {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--shell-border);
+            border-radius: 18px;
+            background: var(--shell-item-bg);
+            color: var(--shell-text);
+        }
+
+        .launcher-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .launcher-app {
+            display: grid;
+            gap: 10px;
+            padding: 16px;
+            border: 1px solid var(--shell-item-border);
+            border-radius: 22px;
+            background: var(--shell-item-bg);
+            text-align: left;
+        }
+
+        .launcher-app:hover {
+            transform: translateY(-3px);
+            border-color: var(--shell-border-strong);
+            background: var(--shell-item-bg-hover);
+        }
+
+        .launcher-app strong {
+            font-size: 0.92rem;
+        }
+
+        .launcher-app span {
+            color: var(--shell-muted);
+            font-size: 0.8rem;
+        }
+
+        .launcher-kicker {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 14px;
+            color: var(--shell-muted);
+            font-size: 0.8rem;
+        }
+
+        .launcher-key {
+            padding: 5px 9px;
+            border: 1px solid var(--shell-border);
+            border-radius: 999px;
+            background: var(--shell-item-bg);
+            color: var(--shell-text);
+            font-family: var(--mono-font);
+            font-size: 0.74rem;
+        }
+
+        .app-layout,
+        .mini-terminal,
+        .stack-list,
+        .metrics-column {
+            display: grid;
+            gap: 12px;
+        }
+
+        .app-layout {
+            height: 100%;
+            grid-template-columns: 220px minmax(0, 1fr);
+        }
+
+        .app-sidebar,
+        .app-surface,
+        .terminal-console {
+            border: 1px solid var(--shell-item-border);
+            border-radius: 20px;
+            background: var(--shell-item-bg);
+        }
+
+        .app-sidebar {
+            padding: 14px;
+        }
+
+        .app-surface {
+            padding: 16px;
+            overflow: auto;
+        }
+
+        .app-nav-item,
+        .stack-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: var(--shell-item-bg);
+            color: var(--shell-text);
+        }
+
+        .app-nav-item.active,
+        .app-nav-item:hover,
+        .stack-item:hover {
+            background: var(--shell-item-bg-hover);
+        }
+
+        .terminal-console {
+            height: 100%;
+            padding: 16px;
+            font-family: var(--mono-font);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        .terminal-console strong {
+            color: var(--shell-accent);
+        }
+
+        .app-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .app-stat {
+            padding: 14px;
+            border: 1px solid var(--shell-item-border);
+            border-radius: 18px;
+            background: var(--shell-item-bg);
+        }
+
+        .app-stat span {
+            color: var(--shell-muted);
+            font-size: 0.8rem;
+        }
+
+        .app-stat strong {
+            display: block;
+            margin-top: 6px;
+            font-size: 1.5rem;
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.1fr;
+            gap: 18px;
+            height: 100%;
+        }
+
+        .hero-panel,
+        .monitor-panel,
+        .stream-panel,
+        .panel {
+            border: 1px solid var(--shell-item-border);
+            border-radius: 24px;
+            background: var(--shell-item-bg);
+        }
+
+        .hero-panel {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            gap: 18px;
+            padding: 22px;
+        }
+
+        .eyebrow {
+            color: var(--shell-accent);
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .hero-panel h1 {
+            font-size: clamp(2rem, 4vw, 3.7rem);
+            line-height: 0.98;
+            max-width: 10ch;
+        }
+
+        .hero-panel p {
+            max-width: 56ch;
+            color: var(--shell-muted);
+            font-size: 1rem;
+        }
+
+        .hero-actions,
+        .metrics-row,
+        .signal-list,
+        .composer,
+        .panel-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .metric-card {
+            flex: 1;
+            min-width: 150px;
+            padding: 16px;
+            border-radius: 20px;
+            background: var(--shell-item-bg);
+            border: 1px solid var(--shell-item-border);
+        }
+
+        .metric-card strong {
+            display: block;
+            font-size: 1.6rem;
+            margin-top: 6px;
+        }
+
+        .metric-card span {
+            color: var(--shell-muted);
+            font-size: 0.82rem;
+        }
+
+        .monitor-panel {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            gap: 16px;
+            padding: 18px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .panel-header h2,
+        .panel-header h3 {
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .waveform {
+            position: relative;
+            height: 120px;
+            border-radius: 18px;
+            background:
+                linear-gradient(to top, var(--shell-item-bg), transparent),
+                radial-gradient(circle at 15% 35%, rgba(126, 231, 255, 0.24), transparent 30%);
+            overflow: hidden;
+        }
+
+        .waveform::before,
+        .waveform::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 18px;
+            height: 2px;
+            background:
+                linear-gradient(90deg,
+                    transparent 0%,
+                    var(--shell-accent) 14%,
+                    transparent 22%,
+                    var(--shell-accent-2) 36%,
+                    transparent 44%,
+                    var(--shell-accent) 58%,
+                    transparent 66%,
+                    var(--shell-accent-2) 82%,
+                    transparent 100%);
+            background-size: 220px 2px;
+            animation: sweep 10s linear infinite;
+        }
+
+        .waveform::after {
+            inset: auto 0 42px;
+            opacity: 0.4;
+            animation-duration: 7s;
+        }
+
+        @keyframes sweep {
+            from { transform: translateX(-25%); }
+            to { transform: translateX(25%); }
+        }
+
+        .stat-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--shell-item-border);
+            color: var(--shell-muted);
+            font-size: 0.88rem;
+        }
+
+        .stat-line:last-child {
+            border-bottom: 0;
+        }
+
+        .stat-line strong {
+            color: var(--shell-text);
+            font-weight: 600;
+        }
+
+        .stream-panel {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 14px;
+            min-height: 0;
+            padding: 16px;
+        }
+
+        .signal-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 0;
+        }
+
+        .signal {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border: 1px solid var(--shell-item-border);
+            border-radius: 18px;
+            background: var(--shell-item-bg);
+        }
+
+        .signal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--shell-success);
+            box-shadow: 0 0 20px rgba(99, 246, 190, 0.55);
+        }
+
+        .signal time {
+            color: var(--shell-dim);
+            font-size: 0.76rem;
+        }
+
+        .composer input {
+            flex: 1;
+            min-width: 0;
+            padding: 13px 14px;
+            border: 1px solid var(--shell-border);
+            border-radius: 16px;
+            background: var(--shell-item-bg);
+            color: var(--shell-text);
+        }
+
+        .shell-timeline {
+            display: grid;
+            gap: 12px;
+        }
+
+        .shell-timeline-entry {
+            display: grid;
+            gap: 6px;
+            padding: 14px 16px;
+            border-left: 2px solid rgba(126, 231, 255, 0.35);
+            background: var(--shell-item-bg);
+            border-radius: 0 18px 18px 0;
+        }
+
+        .shell-timeline-entry strong {
+            font-size: 0.92rem;
+        }
+
+        .shell-timeline-entry span,
+        .shell-timeline-entry p,
+        .panel small,
+        .panel p {
+            color: var(--shell-muted);
+        }
+
+        [data-window="timeline"] .starlight-timeline {
+            padding: 0.25rem 0 0.5rem;
+        }
+
+        [data-window="timeline"] .timeline-item {
+            margin-bottom: 1.5rem;
+        }
+
+        [data-window="timeline"] .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        [data-window="timeline"] .timeline-content {
+            background: var(--shell-item-bg);
+            border-color: var(--shell-border);
+            color: var(--shell-text);
+        }
+
+        [data-window="timeline"] .timeline-date {
+            color: var(--shell-accent);
+        }
+
+        .panel {
+            padding: 18px;
+        }
+
+        .constellation {
+            position: relative;
+            height: 124px;
+            border-radius: 18px;
+            background:
+                radial-gradient(circle at 14% 60%, rgba(255, 255, 255, 0.96) 0 2px, transparent 3px),
+                radial-gradient(circle at 38% 28%, rgba(126, 231, 255, 0.9) 0 3px, transparent 4px),
+                radial-gradient(circle at 66% 42%, rgba(255, 213, 137, 0.85) 0 3px, transparent 4px),
+                radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.75) 0 2px, transparent 3px),
+                radial-gradient(circle at 72% 78%, rgba(126, 231, 255, 0.8) 0 2px, transparent 3px),
+                var(--shell-item-bg);
+        }
+
+        .constellation::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, transparent 18%, rgba(126, 231, 255, 0.28) 19%, transparent 20%) 15% 56% / 26% 26% no-repeat,
+                linear-gradient(115deg, transparent 47%, rgba(255, 213, 137, 0.24) 48%, transparent 49%) 44% 31% / 32% 32% no-repeat;
+        }
+
+        .priority-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: var(--shell-item-bg);
+        }
+
+        .priority-item span:last-child {
+            color: var(--shell-dim);
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .side-stack {
+            display: grid;
+            gap: 18px;
+            grid-template-rows: 1.1fr 1fr;
+            min-width: 0;
+        }
+
+        .dock {
+            position: fixed;
+            left: 50%;
+            bottom: 18px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border: 1px solid var(--shell-border);
+            border-radius: 28px;
+            background: rgba(8, 18, 32, 0.64);
+            transform: translateX(-50%);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .dock-app {
+            position: relative;
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            background: var(--shell-item-bg);
+            color: var(--shell-text);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .dock-app::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 6px;
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: transparent;
+            transform: translateX(-50%);
+        }
+
+        .dock-app.active::after {
+            background: var(--shell-accent);
+            box-shadow: 0 0 16px rgba(126, 231, 255, 0.6);
+        }
+
+        .dock-app:hover,
+        .dock-app.active {
+            transform: translateY(-8px) scale(1.05);
+            border-color: var(--shell-border-strong);
+            background: var(--shell-item-bg-hover);
+        }
+
+        .app-glyph {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(126, 231, 255, 0.24), rgba(255, 213, 137, 0.22));
+        }
+
+        .theme-toggle {
+            min-width: 92px;
+        }
+
+        @media (max-width: 1220px) {
+            .workspace {
+                grid-template-columns: 84px minmax(0, 1fr);
+            }
+
+            .side-stack {
+                display: none;
+            }
+
+            .window-primary {
+                inset: 24px 40px 72px 96px;
+            }
+
+            .launcher-panel {
+                left: 96px;
+                width: min(560px, calc(100vw - 140px));
+            }
+        }
+
+        @media (max-width: 860px) {
+            body {
+                overflow: auto;
+            }
+
+            .desktop-shell {
+                min-height: 100vh;
+                padding-bottom: 140px;
+                overflow: hidden;
+            }
+
+            .menu-bar {
+                grid-template-columns: 1fr;
+                justify-items: start;
+            }
+
+            .workspace {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .desktop-rail,
+            .desktop-icons {
+                display: none;
+            }
+
+            .window-stack {
+                display: grid;
+                gap: 18px;
+            }
+
+            .window,
+            .window-primary,
+            .window-secondary,
+            .window-tertiary {
+                position: relative;
+                inset: auto;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+                width: 100%;
+                height: auto;
+                min-height: 280px;
+            }
+
+            .command-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dock {
+                width: calc(100% - 24px);
+                justify-content: center;
+                overflow-x: auto;
+            }
+
+            .launcher-panel {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+                margin-top: 18px;
+            }
+
+            .launcher-grid,
+            .app-stat-grid,
+            .app-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop-shell">
+        <header class="menu-bar">
+            <div class="brand">
+                <div class="brand-mark">Q</div>
+                <div>
+                    <strong>Quantum Shell</strong>
+                </div>
+            </div>
+
+            <nav class="menu-strip" aria-label="Primary menu">
+                <button class="menu-chip active">Overview</button>
+                <button class="menu-chip">Mission Control</button>
+                <button class="menu-chip">Flux Apps</button>
+                <button class="menu-chip">Archive</button>
+            </nav>
+
+            <div class="status-strip">
+                <div class="status-chip">Link stable</div>
+                <div class="status-chip" id="dateLabel">Mon Apr 06</div>
+                <div class="status-chip" id="clockLabel">12:00</div>
+                <button class="status-chip theme-toggle" id="themeToggle" type="button">Light Mode</button>
+            </div>
+        </header>
+
+        <section class="workspace">
+            <aside class="desktop-rail" aria-label="Workspace rail">
+                <button class="rail-button active" type="button">Home</button>
+                <button class="rail-button" type="button">Flow</button>
+                <button class="rail-button" type="button">Pulse</button>
+                <button class="rail-button" type="button">Lab</button>
+                <button class="rail-button" type="button">Vault</button>
+                <button class="rail-button" type="button">Node</button>
+            </aside>
+
+            <main class="desktop-stage">
+                <div class="desktop-icons" aria-label="Desktop shortcuts">
+                    <button class="desktop-icon" type="button" data-open-app="agent-grid">
+                        <span class="icon-badge">AI</span>
+                        <strong>Agent Grid</strong>
+                    </button>
+                    <button class="desktop-icon" type="button" data-open-app="archive-vault">
+                        <span class="icon-badge">FS</span>
+                        <strong>File Stream</strong>
+                    </button>
+                    <button class="desktop-icon" type="button" data-open-app="runtime-terminal">
+                        <span class="icon-badge">RT</span>
+                        <strong>Runtime</strong>
+                    </button>
+                </div>
+
+                <section class="launcher-panel" id="launcherPanel" aria-label="Quick launcher">
+                    <input class="launcher-search" id="launcherSearch" type="text" value="launch agent grid" aria-label="Launcher search">
+                    <div class="launcher-grid">
+                        <button class="launcher-app" type="button" data-open-app="agent-grid">
+                            <span class="icon-badge">AI</span>
+                            <div>
+                                <strong>Agent Grid</strong>
+                                <span>Command clusters, active queues, and mesh health.</span>
+                            </div>
+                        </button>
+                        <button class="launcher-app" type="button" data-open-app="archive-vault">
+                            <span class="icon-badge">AR</span>
+                            <div>
+                                <strong>Archive Vault</strong>
+                                <span>Indexed files, cold storage, and handoff bundles.</span>
+                            </div>
+                        </button>
+                        <button class="launcher-app" type="button" data-open-app="runtime-terminal">
+                            <span class="icon-badge">RT</span>
+                            <div>
+                                <strong>Runtime Terminal</strong>
+                                <span>Live shell surface with queue and deploy output.</span>
+                            </div>
+                        </button>
+                        <button class="launcher-app" type="button" data-open-app="pulse-lab">
+                            <span class="icon-badge">PL</span>
+                            <div>
+                                <strong>Pulse Lab</strong>
+                                <span>Telemetry sweeps, diagnostics, and anomaly watch.</span>
+                            </div>
+                        </button>
+                        <button class="launcher-app" type="button" data-open-app="mission-deck">
+                            <span class="icon-badge">MD</span>
+                            <div>
+                                <strong>Mission Deck</strong>
+                                <span>Launch plans, milestones, and active objectives.</span>
+                            </div>
+                        </button>
+                        <button class="launcher-app" type="button" data-open-app="signal-hub">
+                            <span class="icon-badge">SH</span>
+                            <div>
+                                <strong>Signal Hub</strong>
+                                <span>Outbound routes, acknowledgements, and uplinks.</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="launcher-kicker">
+                        <span>Quick launch opens movable app windows without collapsing the main scene.</span>
+                        <span class="launcher-key">/</span>
+                    </div>
+                </section>
+
+                <div class="window-stack starlight-window-stack">
+                    <section class="window starlight-window window-primary focused" data-window="command-center">
+                        <header class="window-header starlight-window-header">
+                            <div class="window-title starlight-window-title">
+                                <div class="traffic-lights starlight-window-traffic">
+                                    <button class="traffic-close starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                    <button class="traffic-min starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                    <button class="traffic-max starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                                </div>
+                                <div>
+                                    <strong>Command Center</strong>
+                                    <span>Live orchestration layer</span>
+                                </div>
+                            </div>
+                            <div class="toolbar starlight-window-toolbar" data-window-toolbar>
+                                <button class="toolbar-button" id="launcherToggle" type="button">Search</button>
+                                <button class="toolbar-button" type="button" data-open-app="pulse-lab">Automate</button>
+                                <button class="btn-glossy-primary" type="button" data-open-app="agent-grid">Launch Sequence</button>
+                            </div>
+                        </header>
+
+                        <div class="window-body starlight-window-body">
+                            <div class="command-grid">
+                                <article class="hero-panel">
+                                    <div class="eyebrow">Desktop Shell 01</div>
+                                    <div>
+                                        <h1>Run the room, not just the apps.</h1>
+                                        <p>
+                                            Quantum Shell treats the desktop like an active control surface:
+                                            layered windows, rapid launch paths, and a workspace that feels
+                                            composed instead of assembled from dashboard scraps.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <div class="hero-actions">
+                                            <button class="btn-glossy-primary" type="button" data-open-app="mission-deck">Deploy workspace</button>
+                                            <button class="action-button" type="button" data-open-app="signal-hub">Open shell guide</button>
+                                        </div>
+                                        <div class="metrics-row" style="margin-top: 18px;">
+                                            <div class="metric-card">
+                                                <span>Active tasks</span>
+                                                <strong>18</strong>
+                                            </div>
+                                            <div class="metric-card">
+                                                <span>Latency floor</span>
+                                                <strong>12ms</strong>
+                                            </div>
+                                            <div class="metric-card">
+                                                <span>Uplink state</span>
+                                                <strong>99.98%</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <aside class="monitor-panel">
+                                    <div class="panel-header">
+                                        <h2>System Pulse</h2>
+                                        <span class="status-chip">Nominal</span>
+                                    </div>
+                                    <div class="waveform" aria-hidden="true"></div>
+                                    <div>
+                                        <div class="stat-line">
+                                            <span>Render load</span>
+                                            <strong>41%</strong>
+                                        </div>
+                                        <div class="stat-line">
+                                            <span>Window focus map</span>
+                                            <strong>3 layers</strong>
+                                        </div>
+                                        <div class="stat-line">
+                                            <span>Session memory</span>
+                                            <strong>8.4 GB</strong>
+                                        </div>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                        <div class="resize-grip starlight-window-resize" data-resize data-window-resize></div>
+                    </section>
+
+                    <section class="window starlight-window window-secondary" data-window="signal-feed">
+                        <header class="window-header starlight-window-header">
+                            <div class="window-title starlight-window-title">
+                                <div class="traffic-lights starlight-window-traffic">
+                                    <button class="traffic-close starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                    <button class="traffic-min starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                    <button class="traffic-max starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                                </div>
+                                <div>
+                                    <strong>Signal Feed</strong>
+                                    <span>Realtime stream</span>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="window-body starlight-window-body">
+                            <div class="stream-panel">
+                                <div class="panel-header">
+                                    <h3>Inbound</h3>
+                                    <small>4 live channels</small>
+                                </div>
+                                <div class="signal-list">
+                                    <article class="signal">
+                                        <span class="signal-dot"></span>
+                                        <div>
+                                            <strong>Agent mesh synced</strong>
+                                            <p>Workspace state propagated across shell nodes.</p>
+                                        </div>
+                                        <time>Now</time>
+                                    </article>
+                                    <article class="signal">
+                                        <span class="signal-dot" style="background: var(--shell-accent-2); box-shadow: 0 0 18px rgba(255, 213, 137, 0.55);"></span>
+                                        <div>
+                                            <strong>Pending review</strong>
+                                            <p>One visual branch waiting for commit window.</p>
+                                        </div>
+                                        <time>08m</time>
+                                    </article>
+                                    <article class="signal">
+                                        <span class="signal-dot" style="background: var(--shell-danger); box-shadow: 0 0 18px rgba(255, 143, 143, 0.5);"></span>
+                                        <div>
+                                            <strong>Memory sweep</strong>
+                                            <p>Background cache reclaim scheduled for idle cycle.</p>
+                                        </div>
+                                        <time>21m</time>
+                                    </article>
+                                </div>
+                                <div class="composer">
+                                    <input type="text" value="Route shell diagnostics to Mission Control" aria-label="Signal composer">
+                                    <button class="btn-glossy-primary" type="button">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resize-grip starlight-window-resize" data-resize data-window-resize></div>
+                    </section>
+
+                    <section class="window starlight-window window-tertiary" data-window="timeline">
+                        <header class="window-header starlight-window-header">
+                            <div class="window-title starlight-window-title">
+                                <div class="traffic-lights starlight-window-traffic">
+                                    <button class="traffic-close starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                    <button class="traffic-min starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                    <button class="traffic-max starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                                </div>
+                                <div>
+                                    <strong>Launch Timeline</strong>
+                                    <span>Session choreography</span>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="window-body starlight-window-body">
+                            <div class="starlight-timeline">
+                                <article class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date">08:15</span>
+                                        <strong>Grid boot</strong>
+                                        <p>Visual cache rebuilt.</p>
+                                    </div>
+                                </article>
+                                <article class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date">09:02</span>
+                                        <strong>Workspace merge</strong>
+                                        <p>Three app surfaces snapped into current layout.</p>
+                                    </div>
+                                </article>
+                                <article class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date">09:18</span>
+                                        <strong>Dock priority update</strong>
+                                        <p>Terminal, Pulse, and Files pinned to hot state.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="resize-grip starlight-window-resize" data-resize data-window-resize></div>
+                    </section>
+                </div>
+            </main>
+
+            <aside class="side-stack">
+                <section class="panel">
+                    <div class="panel-header">
+                        <h3>Constellation</h3>
+                        <small>Spatial map</small>
+                    </div>
+                    <div class="constellation" aria-hidden="true" style="margin-top: 14px;"></div>
+                    <div class="panel-row" style="margin-top: 14px;">
+                        <span class="status-chip">North wing</span>
+                        <span class="status-chip">12 satellites</span>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-header">
+                        <h3>Priority Queue</h3>
+                        <small>Next actions</small>
+                    </div>
+                    <div class="priority-list">
+                        <div class="priority-item">
+                            <span>Refine shell startup animation</span>
+                            <span>High</span>
+                        </div>
+                        <div class="priority-item">
+                            <span>Sync dock focus with windows</span>
+                            <span>Now</span>
+                        </div>
+                        <div class="priority-item">
+                            <span>Ship visual system handoff</span>
+                            <span>Ready</span>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </section>
+
+        <nav class="dock" aria-label="Dock">
+            <button class="dock-app active" type="button" data-target="command-center" title="Command Center">
+                <span class="app-glyph">CC</span>
+            </button>
+            <button class="dock-app active" type="button" data-target="signal-feed" title="Signal Feed">
+                <span class="app-glyph">SF</span>
+            </button>
+            <button class="dock-app active" type="button" data-target="timeline" title="Launch Timeline">
+                <span class="app-glyph">TL</span>
+            </button>
+            <button class="dock-app" type="button" data-open-app="archive-vault" title="Archive">
+                <span class="app-glyph">AR</span>
+            </button>
+            <button class="dock-app" type="button" data-open-app="pulse-lab" title="Pulse">
+                <span class="app-glyph">PL</span>
+            </button>
+        </nav>
+    </div>
+
+    <script>
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("themeToggle");
+        const clockLabel = document.getElementById("clockLabel");
+        const dateLabel = document.getElementById("dateLabel");
+        const menuChips = Array.from(document.querySelectorAll(".menu-chip"));
+        const railButtons = Array.from(document.querySelectorAll(".rail-button"));
+        const dockApps = Array.from(document.querySelectorAll(".dock-app"));
+        const launcherPanel = document.getElementById("launcherPanel");
+        const launcherToggle = document.getElementById("launcherToggle");
+        const launcherSearch = document.getElementById("launcherSearch");
+        const dynamicWindowHost = document.querySelector(".window-stack");
+
+        let windowSeed = 0;
+        const appWindows = new Map();
+
+        const appCatalog = {
+            "agent-grid": {
+                title: "Agent Grid",
+                glyph: "AI",
+                width: 760,
+                height: 460,
+                markup: `
+                    <div class="app-layout">
+                        <div class="app-sidebar">
+                            <div class="stack-list">
+                                <div class="app-nav-item active"><span>Mesh Control</span><span>12</span></div>
+                                <div class="app-nav-item"><span>Queue Watch</span><span>4</span></div>
+                                <div class="app-nav-item"><span>Escalations</span><span>2</span></div>
+                                <div class="app-nav-item"><span>Approvals</span><span>7</span></div>
+                            </div>
+                        </div>
+                        <div class="app-surface">
+                            <div class="metrics-column">
+                                <div class="app-stat-grid">
+                                    <div class="app-stat"><span>Live agents</span><strong>24</strong></div>
+                                    <div class="app-stat"><span>Blocked tasks</span><strong>03</strong></div>
+                                    <div class="app-stat"><span>Avg handoff</span><strong>1.8m</strong></div>
+                                    <div class="app-stat"><span>Success rate</span><strong>98.6%</strong></div>
+                                </div>
+                                <div class="stack-list">
+                                    <div class="stack-item"><span>Explorer lane has fresh codebase answers.</span><span>Ready</span></div>
+                                    <div class="stack-item"><span>Worker lane waiting on visual approval.</span><span>Hold</span></div>
+                                    <div class="stack-item"><span>Coordinator lane shipping merged shell branch.</span><span>Ship</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            "archive-vault": {
+                title: "Archive Vault",
+                glyph: "AR",
+                width: 700,
+                height: 430,
+                markup: `
+                    <div class="app-layout">
+                        <div class="app-sidebar">
+                            <div class="stack-list">
+                                <div class="app-nav-item active"><span>Recent bundles</span><span>08</span></div>
+                                <div class="app-nav-item"><span>Cold storage</span><span>41</span></div>
+                                <div class="app-nav-item"><span>Shared drops</span><span>13</span></div>
+                            </div>
+                        </div>
+                        <div class="app-surface">
+                            <div class="stack-list">
+                                <div class="stack-item"><span>shell_visual_handoff.fig</span><span>18 MB</span></div>
+                                <div class="stack-item"><span>telemetry_run_042.json</span><span>4 MB</span></div>
+                                <div class="stack-item"><span>launch_deck_v7.md</span><span>Draft</span></div>
+                                <div class="stack-item"><span>agent_graph_snapshot.csv</span><span>Synced</span></div>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            "runtime-terminal": {
+                title: "Runtime Terminal",
+                glyph: "RT",
+                width: 660,
+                height: 390,
+                markup: `
+                    <div class="terminal-console">
+                        <div><strong>quantum@runtime</strong>: shell boot complete</div>
+                        <div>checking agents........ ok</div>
+                        <div>loading mesh profile.... orion-7</div>
+                        <div>launching dock sync..... online</div>
+                        <div>last deploy............. 09:18 PT</div>
+                        <div>&nbsp;</div>
+                        <div><strong>tip</strong> drag this window, maximize it, or keep it stacked for a proper desktop feel.</div>
+                    </div>`
+            },
+            "pulse-lab": {
+                title: "Pulse Lab",
+                glyph: "PL",
+                width: 620,
+                height: 420,
+                markup: `
+                    <div class="app-surface" style="height:100%;">
+                        <div class="metrics-column">
+                            <div class="waveform" aria-hidden="true"></div>
+                            <div class="app-stat-grid">
+                                <div class="app-stat"><span>Render jitter</span><strong>0.2%</strong></div>
+                                <div class="app-stat"><span>Signal drift</span><strong>3.1 ms</strong></div>
+                                <div class="app-stat"><span>Thermal budget</span><strong>67%</strong></div>
+                                <div class="app-stat"><span>Alerts</span><strong>01</strong></div>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            "mission-deck": {
+                title: "Mission Deck",
+                glyph: "MD",
+                width: 640,
+                height: 420,
+                markup: `
+                    <div class="app-surface" style="height:100%;">
+                        <div class="shell-timeline">
+                            <article class="shell-timeline-entry"><strong>Stage 01: establish shell identity</strong><p>Visual system locked and glass parameters approved.</p></article>
+                            <article class="shell-timeline-entry"><strong>Stage 02: upgrade interactivity</strong><p>Window manager, launcher, and utility apps integrated.</p></article>
+                            <article class="shell-timeline-entry"><strong>Stage 03: final review</strong><p>Prepare polished handoff and benchmark against other entries.</p></article>
+                        </div>
+                    </div>`
+            },
+            "signal-hub": {
+                title: "Signal Hub",
+                glyph: "SH",
+                width: 560,
+                height: 360,
+                markup: `
+                    <div class="app-surface" style="height:100%;">
+                        <div class="signal-list">
+                            <article class="signal"><span class="signal-dot"></span><div><strong>Uplink confirmed</strong><p>Mission Control acknowledged shell telemetry.</p></div><time>Now</time></article>
+                            <article class="signal"><span class="signal-dot" style="background: var(--shell-accent-2); box-shadow: 0 0 18px rgba(255, 213, 137, 0.55);"></span><div><strong>Pending route</strong><p>One outbound package waiting for approval seal.</p></div><time>04m</time></article>
+                            <article class="signal"><span class="signal-dot" style="background: var(--shell-danger); box-shadow: 0 0 18px rgba(255, 143, 143, 0.5);"></span><div><strong>Retry issued</strong><p>North wing relay requested a second transmission.</p></div><time>17m</time></article>
+                        </div>
+                    </div>`
+            }
+        };
+
+        function updateClock() {
+            const now = new Date();
+            clockLabel.textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+            dateLabel.textContent = now.toLocaleDateString([], { weekday: "short", month: "short", day: "2-digit" });
+        }
+
+        function updateThemeButton() {
+            themeToggle.textContent = root.getAttribute("data-theme") === "dark" ? "Light Mode" : "Dark Mode";
+        }
+
+        function setActiveDock(trigger = null, staticTarget = null, appKey = null) {
+            dockApps.forEach((app) => {
+                const matchesStatic = staticTarget && app.dataset.target === staticTarget;
+                const matchesApp = appKey && app.dataset.openApp === appKey;
+                app.classList.toggle("active", app === trigger || matchesStatic || matchesApp);
+            });
+        }
+
+        function toggleLauncher(force) {
+            const shouldOpen = typeof force === "boolean" ? force : !launcherPanel.classList.contains("open");
+            launcherPanel.classList.toggle("open", shouldOpen);
+            if (shouldOpen) {
+                launcherSearch.value = "";
+                filterLauncher();
+                launcherSearch.focus();
+            } else {
+                launcherSearch.value = "";
+                filterLauncher();
+            }
+        }
+
+        function filterLauncher() {
+            const value = launcherSearch.value.trim().toLowerCase();
+            launcherPanel.querySelectorAll(".launcher-app").forEach((button) => {
+                button.style.display = button.textContent.toLowerCase().includes(value) ? "" : "none";
+            });
+        }
+
+        const windowManager = Starlight.createWindowManager({
+            container: dynamicWindowHost,
+            windowSelector: ".starlight-window",
+            mobileBreakpoint: "(max-width: 860px)",
+            onFocus({ meta, trigger }) {
+                setActiveDock(trigger, meta?.kind === "static" ? meta.id : null, meta?.kind === "app" ? meta.appKey : null);
+            }
+        });
+
+        function createWindowMeta(kind, id) {
+            return {
+                kind,
+                id,
+                onClose({ windowEl, meta, api }) {
+                    if (meta.kind === "app") {
+                        appWindows.delete(meta.appKey);
+                        api.unregisterWindow(windowEl);
+                    } else {
+                        windowEl.classList.add("minimized");
+                    }
+                    setActiveDock();
+                    return true;
+                },
+                onMinimize({ windowEl }) {
+                    windowEl.classList.add("minimized");
+                    setActiveDock();
+                    return true;
+                }
+            };
+        }
+
+        function createAppWindow(appKey) {
+            if (appWindows.has(appKey)) {
+                const existing = appWindows.get(appKey);
+                existing.classList.remove("minimized");
+                windowManager.focusWindow(existing);
+                return;
+            }
+
+            const app = appCatalog[appKey];
+            if (!app) return;
+
+            windowSeed += 1;
+            const windowEl = windowManager.createWindow({
+                windowId: appKey,
+                title: app.title,
+                subtitle: "Spawned utility surface",
+                bodyHTML: app.markup,
+                toolbarHTML: `
+                    <button class="toolbar-button" type="button">Pin</button>
+                    <button class="toolbar-button" type="button">Route</button>`,
+                width: app.width,
+                height: app.height,
+                left: 130 + (windowSeed % 4) * 34,
+                top: 80 + (windowSeed % 4) * 26,
+                className: "window",
+                meta: {
+                    ...createWindowMeta("app", appKey),
+                    appKey
+                }
+            });
+            appWindows.set(appKey, windowEl);
+        }
+
+        function openActionTarget(target, trigger = null) {
+            toggleLauncher(false);
+            if (appCatalog[target]) {
+                createAppWindow(target);
+                setActiveDock(trigger, null, target);
+                return;
+            }
+            const staticWindow = windowManager.getWindow(target);
+            if (staticWindow) {
+                windowManager.focusWindow(staticWindow, trigger);
+            }
+        }
+
+        function initializeStaticWindows() {
+            windowManager.initializeStaticWindows((windowEl) => createWindowMeta("static", windowEl.dataset.window));
+            const initial = windowManager.getWindow("command-center");
+            if (initial) windowManager.focusWindow(initial);
+        }
+
+        themeToggle.addEventListener("click", () => {
+            const nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            root.setAttribute("data-theme", nextTheme);
+            updateThemeButton();
+        });
+
+        launcherToggle.addEventListener("click", () => toggleLauncher());
+        launcherSearch.addEventListener("input", filterLauncher);
+        launcherSearch.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                const firstVisible = launcherPanel.querySelector('.launcher-app:not([style*="display: none"])');
+                if (firstVisible) firstVisible.click();
+            }
+        });
+
+        document.querySelectorAll("[data-open-app]").forEach((element) => {
+            element.addEventListener("click", () => openActionTarget(element.dataset.openApp, element.closest(".dock-app")));
+        });
+
+        dockApps.forEach((app) => {
+            app.addEventListener("click", () => {
+                if (app.dataset.target) {
+                    openActionTarget(app.dataset.target, app);
+                }
+            });
+        });
+
+        menuChips.forEach((chip) => {
+            chip.addEventListener("click", () => {
+                menuChips.forEach((item) => item.classList.remove("active"));
+                chip.classList.add("active");
+            });
+        });
+
+        railButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                railButtons.forEach((item) => item.classList.remove("active"));
+                button.classList.add("active");
+            });
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "/") {
+                const target = document.activeElement;
+                if (target && ["INPUT", "TEXTAREA"].includes(target.tagName)) return;
+                event.preventDefault();
+                toggleLauncher(true);
+            }
+            if (event.key === "Escape") {
+                toggleLauncher(false);
+            }
+        });
+
+        document.addEventListener("mousedown", (event) => {
+            if (!event.target.closest(".launcher-panel") && !event.target.closest("#launcherToggle")) {
+                toggleLauncher(false);
+            }
+        });
+
+        initializeStaticWindows();
+        updateClock();
+        updateThemeButton();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
