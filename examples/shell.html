@@ -265,7 +265,7 @@
         }
 
         .window-stack,
-        .starlight-window-stack {
+        .window-stack {
             position: relative;
             width: 100%;
             height: 100%;
@@ -281,7 +281,7 @@
         }
 
         .window,
-        .starlight-window {
+        .window {
             position: absolute;
             border: 1px solid var(--shell-border);
             border-radius: 28px;
@@ -291,18 +291,18 @@
         }
 
         .window.focused,
-        .starlight-window.focused {
+        .window.focused {
             border-color: var(--shell-border-strong);
             box-shadow: 0 36px 90px rgba(0, 7, 24, 0.52);
         }
 
         .window.minimized,
-        .starlight-window.minimized {
+        .window.minimized {
             display: none;
         }
 
         .window.maximized,
-        .starlight-window.maximized {
+        .window.maximized {
             inset: 0 !important;
             width: 100% !important;
             height: 100% !important;
@@ -310,7 +310,7 @@
         }
 
         .window.dragging,
-        .starlight-window.dragging {
+        .window.dragging {
             cursor: grabbing;
             box-shadow: 0 42px 100px rgba(0, 7, 24, 0.6);
         }
@@ -337,7 +337,7 @@
         }
 
         .window-header,
-        .starlight-window-header {
+        .window-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -350,14 +350,14 @@
         }
 
         .traffic-lights,
-        .starlight-window-traffic {
+        .window-traffic {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
         .traffic-lights button,
-        .starlight-window-control {
+        .window-control {
             width: 12px;
             height: 12px;
             border-radius: 999px;
@@ -365,14 +365,14 @@
         }
 
         .traffic-close,
-        .starlight-window-control.is-close { background: #ff6f61; }
+        .window-control.is-close { background: #ff6f61; }
         .traffic-min,
-        .starlight-window-control.is-minimize { background: #ffcc5c; }
+        .window-control.is-minimize { background: #ffcc5c; }
         .traffic-max,
-        .starlight-window-control.is-maximize { background: #4cd964; }
+        .window-control.is-maximize { background: #4cd964; }
 
         .window-title,
-        .starlight-window-title {
+        .window-title {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -380,19 +380,19 @@
         }
 
         .window-title strong,
-        .starlight-window-title strong {
+        .window-title strong {
             font-size: 0.95rem;
             letter-spacing: 0.02em;
         }
 
         .window-title span,
-        .starlight-window-title span {
+        .window-title span {
             color: var(--shell-dim);
             font-size: 0.8rem;
         }
 
         .toolbar,
-        .starlight-window-toolbar {
+        .window-toolbar {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -423,7 +423,7 @@
         }
 
         .window-body,
-        .starlight-window-body {
+        .window-body {
             height: calc(100% - 60px);
             min-height: 0;
             overflow: auto;
@@ -433,7 +433,7 @@
         }
 
         .resize-grip,
-        .starlight-window-resize {
+        .window-resize {
             position: absolute;
             right: 12px;
             bottom: 10px;
@@ -844,7 +844,7 @@
             color: var(--shell-muted);
         }
 
-        [data-window="timeline"] .starlight-timeline {
+        [data-window="timeline"] .timeline {
             padding: 0.25rem 0 0.5rem;
         }
 
@@ -1029,13 +1029,35 @@
                 height: auto;
             }
 
-            .desktop-rail,
-            .desktop-icons {
+            .desktop-rail {
                 display: none;
             }
 
+            .desktop-icons {
+                position: relative;
+                top: auto;
+                left: auto;
+                z-index: 1;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                padding: 16px;
+                justify-content: center;
+            }
+
+            .desktop-icon {
+                width: 80px;
+                padding: 10px 8px;
+                border-radius: 20px;
+            }
+
+            .desktop-icon strong {
+                margin-top: 8px;
+                font-size: 0.7rem;
+            }
+
             .window-stack,
-            .starlight-window-stack {
+            .window-stack {
                 display: grid;
                 gap: 18px;
                 height: auto;
@@ -1043,7 +1065,7 @@
             }
 
             .window,
-            .starlight-window,
+            .window,
             .window-primary,
             .window-secondary,
             .window-tertiary {
@@ -1059,7 +1081,7 @@
             }
 
             .window-body,
-            .starlight-window-body {
+            .window-body {
                 height: auto !important;
                 overflow: visible;
             }
@@ -1080,6 +1102,27 @@
                 left: auto;
                 width: 100%;
                 margin-top: 18px;
+                display: block;
+            }
+
+            .launcher-search {
+                width: 100%;
+                margin-bottom: 12px;
+            }
+
+            .launcher-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .launcher-app {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px;
+                border-radius: 12px;
+                text-align: left;
             }
 
             .launcher-grid,
@@ -1193,28 +1236,28 @@
                     </div>
                 </section>
 
-                <div class="window-stack starlight-window-stack">
-                    <section class="window starlight-window window-primary focused" data-window="command-center">
-                        <header class="window-header starlight-window-header">
-                            <div class="window-title starlight-window-title">
-                                <div class="traffic-lights starlight-window-traffic">
-                                    <button class="traffic-close starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
-                                    <button class="traffic-min starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
-                                    <button class="traffic-max starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                <div class="window-stack window-stack">
+                    <section class="window window window-primary focused" data-window="command-center">
+                        <header class="window-header window-header">
+                            <div class="window-title window-title">
+                                <div class="traffic-lights window-traffic">
+                                    <button class="traffic-close window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                    <button class="traffic-min window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                    <button class="traffic-max window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
                                 </div>
                                 <div>
                                     <strong>Command Center</strong>
                                     <span>Live orchestration layer</span>
                                 </div>
                             </div>
-                            <div class="toolbar starlight-window-toolbar" data-window-toolbar>
+                            <div class="toolbar window-toolbar" data-window-toolbar>
                                 <button class="toolbar-button" id="launcherToggle" type="button">Search</button>
                                 <button class="toolbar-button" type="button" data-open-app="pulse-lab">Automate</button>
                                 <button class="btn-glossy-primary" type="button" data-open-app="agent-grid">Launch Sequence</button>
                             </div>
                         </header>
 
-                        <div class="window-body starlight-window-body">
+                        <div class="window-body window-body">
                             <div class="command-grid">
                                 <article class="hero-panel">
                                     <div class="eyebrow">Desktop Shell 01</div>
@@ -1271,16 +1314,16 @@
                                 </aside>
                             </div>
                         </div>
-                        <div class="resize-grip starlight-window-resize" data-resize data-window-resize></div>
+                        <div class="resize-grip window-resize" data-resize data-window-resize></div>
                     </section>
 
-                    <section class="window starlight-window window-secondary" data-window="signal-feed">
-                        <header class="window-header starlight-window-header">
-                            <div class="window-title starlight-window-title">
-                                <div class="traffic-lights starlight-window-traffic">
-                                    <button class="traffic-close starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
-                                    <button class="traffic-min starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
-                                    <button class="traffic-max starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                    <section class="window window window-secondary" data-window="signal-feed">
+                        <header class="window-header window-header">
+                            <div class="window-title window-title">
+                                <div class="traffic-lights window-traffic">
+                                    <button class="traffic-close window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                    <button class="traffic-min window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                    <button class="traffic-max window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
                                 </div>
                                 <div>
                                     <strong>Signal Feed</strong>
@@ -1288,7 +1331,7 @@
                                 </div>
                             </div>
                         </header>
-                        <div class="window-body starlight-window-body">
+                        <div class="window-body window-body">
                             <div class="stream-panel">
                                 <div class="panel-header">
                                     <h3>Inbound</h3>
@@ -1326,16 +1369,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="resize-grip starlight-window-resize" data-resize data-window-resize></div>
+                        <div class="resize-grip window-resize" data-resize data-window-resize></div>
                     </section>
 
-                    <section class="window starlight-window window-tertiary" data-window="timeline">
-                        <header class="window-header starlight-window-header">
-                            <div class="window-title starlight-window-title">
-                                <div class="traffic-lights starlight-window-traffic">
-                                    <button class="traffic-close starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
-                                    <button class="traffic-min starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
-                                    <button class="traffic-max starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                    <section class="window window window-tertiary" data-window="timeline">
+                        <header class="window-header window-header">
+                            <div class="window-title window-title">
+                                <div class="traffic-lights window-traffic">
+                                    <button class="traffic-close window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                    <button class="traffic-min window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                    <button class="traffic-max window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
                                 </div>
                                 <div>
                                     <strong>Launch Timeline</strong>
@@ -1343,8 +1386,8 @@
                                 </div>
                             </div>
                         </header>
-                        <div class="window-body starlight-window-body">
-                            <div class="starlight-timeline">
+                        <div class="window-body window-body">
+                            <div class="timeline">
                                 <article class="timeline-item">
                                     <div class="timeline-dot"></div>
                                     <div class="timeline-content">
@@ -1371,7 +1414,7 @@
                                 </article>
                             </div>
                         </div>
-                        <div class="resize-grip starlight-window-resize" data-resize data-window-resize></div>
+                        <div class="resize-grip window-resize" data-resize data-window-resize></div>
                     </section>
                 </div>
             </main>
@@ -1609,7 +1652,7 @@
 
         const windowManager = Starlight.createWindowManager({
             container: dynamicWindowHost,
-            windowSelector: ".starlight-window",
+            windowSelector: ".window",
             mobileBreakpoint: "(max-width: 860px)",
             onFocus({ meta, trigger }) {
                 setActiveDock(trigger, meta?.kind === "static" ? meta.id : null, meta?.kind === "app" ? meta.appKey : null);

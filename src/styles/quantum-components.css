@@ -4208,13 +4208,13 @@ html[data-theme="light"] .star {
 }
 
 /* Dialog & Overlays */
-.starlight-window-stack {
+.window-stack {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.starlight-window {
+.window {
   position: absolute;
   border: 1px solid var(--q-window-border, var(--q-color-border));
   border-radius: var(--q-window-radius, 1.75rem);
@@ -4229,27 +4229,27 @@ html[data-theme="light"] .star {
   -webkit-backdrop-filter: var(--q-window-backdrop, blur(24px) saturate(135%));
 }
 
-.starlight-window.focused {
+.window.focused {
   border-color: var(--q-window-border-focus, var(--q-color-border-strong));
   box-shadow: var(--q-window-shadow-focus, 0 32px 72px rgb(0 0 0 / 42%));
 }
 
-.starlight-window.minimized {
+.window.minimized {
   display: none;
 }
 
-.starlight-window.maximized {
+.window.maximized {
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   border-radius: 0;
 }
 
-.starlight-window.dragging {
+.window.dragging {
   cursor: grabbing;
 }
 
-.starlight-window-header {
+.window-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4261,32 +4261,32 @@ html[data-theme="light"] .star {
   touch-action: none;
 }
 
-.starlight-window-title {
+.window-title {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
 }
 
-.starlight-window-title strong {
+.window-title strong {
   display: block;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
 }
 
-.starlight-window-title span {
+.window-title span {
   display: block;
   color: var(--q-window-muted, var(--q-text-muted));
   font-size: 0.8rem;
 }
 
-.starlight-window-traffic {
+.window-traffic {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.starlight-window-control {
+.window-control {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 999px;
@@ -4294,25 +4294,25 @@ html[data-theme="light"] .star {
   box-shadow: none !important;
 }
 
-.starlight-window-control.is-close {
+.window-control.is-close {
   background: #ff6f61;
 }
 
-.starlight-window-control.is-minimize {
+.window-control.is-minimize {
   background: #ffcc5c;
 }
 
-.starlight-window-control.is-maximize {
+.window-control.is-maximize {
   background: #4cd964;
 }
 
-.starlight-window-toolbar {
+.window-toolbar {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.starlight-window-body {
+.window-body {
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
@@ -4321,7 +4321,7 @@ html[data-theme="light"] .star {
   touch-action: auto;
 }
 
-.starlight-window-resize {
+.window-resize {
   position: absolute;
   right: 0.75rem;
   bottom: 0.625rem;
@@ -4337,7 +4337,7 @@ html[data-theme="light"] .star {
 }
 
 @media (max-width: 53.75rem) {
-  .starlight-window-stack {
+  .window-stack {
     display: grid;
     gap: 1.125rem;
     height: auto;
@@ -4345,7 +4345,7 @@ html[data-theme="light"] .star {
     align-content: start;
   }
 
-  .starlight-window {
+  .window {
     display: block;
     position: relative !important;
     inset: auto !important;
@@ -4359,14 +4359,14 @@ html[data-theme="light"] .star {
     max-width: 100%;
   }
 
-  .starlight-window.maximized {
+  .window.maximized {
     inset: auto !important;
     width: 100% !important;
     height: auto !important;
     border-radius: var(--q-window-radius, 1.75rem);
   }
 
-  .starlight-window-body {
+  .window-body {
     display: block;
     flex: none;
     height: auto !important;
@@ -4374,9 +4374,29 @@ html[data-theme="light"] .star {
     overflow: visible;
   }
 
-  .starlight-window-resize {
+  .window-resize {
     display: none;
   }
+}
+
+/* Light mode window overrides */
+html[data-theme="light"] .window {
+  --q-window-bg: var(--q-light-card-bg);
+  --q-window-border: var(--q-light-card-border);
+  --q-window-shadow: 0 10px 40px rgb(0 0 0 / 12%);
+  --q-window-header-bg: #fff;
+  --q-window-divider: var(--q-surface-border);
+  --q-window-muted: var(--q-light-text-muted);
+}
+
+html[data-theme="light"] .window-header {
+  background: #fff;
+}
+
+html[data-theme="light"] .window-resize {
+  background:
+    linear-gradient(135deg, transparent 35%, rgb(0 0 0 / 10%) 36%, transparent 37%) 0 0 / 100% 100%,
+    linear-gradient(135deg, transparent 58%, rgb(0 0 0 / 15%) 59%, transparent 60%) 0 0 / 100% 100%;
 }
 
 .dialog-overlay {
@@ -5005,13 +5025,13 @@ html[data-theme="light"] .breadcrumb-separator {
 }
 
 /* Timeline Component */
-.starlight-timeline {
+.timeline {
   position: relative;
   padding: 2rem 0;
   container-type: inline-size;
 }
 
-.starlight-timeline::before {
+.timeline::before {
   content: "";
   position: absolute;
   left: 0;
@@ -5022,7 +5042,7 @@ html[data-theme="light"] .breadcrumb-separator {
 }
 
 @container (min-width: 35rem) {
-  .starlight-timeline::before {
+  .timeline::before {
     left: 50%;
     transform: translateX(-50%);
   }

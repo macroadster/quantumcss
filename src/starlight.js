@@ -434,9 +434,9 @@ const Starlight = {
   createWindowManager(options = {}) {
     const config = {
       container: options.container || null,
-      windowSelector: options.windowSelector || '.starlight-window',
-      headerSelector: options.headerSelector || '.starlight-window-header',
-      resizeSelector: options.resizeSelector || '[data-window-resize], .starlight-window-resize',
+      windowSelector: options.windowSelector || '.window',
+      headerSelector: options.headerSelector || '.window-header',
+      resizeSelector: options.resizeSelector || '[data-window-resize], .window-resize',
       closeSelector: options.closeSelector || '[data-window-close]',
       minimizeSelector: options.minimizeSelector || '[data-window-minimize]',
       maximizeSelector: options.maximizeSelector || '[data-window-maximize]',
@@ -671,7 +671,7 @@ const Starlight = {
         ? top
         : 80 + ((createdWindowCount - 1) % 4) * 24;
       const windowEl = document.createElement('section');
-      windowEl.className = `starlight-window ${className}`.trim();
+      windowEl.className = `window ${className}`.trim();
       if (windowId) {
         windowEl.dataset.window = windowId;
       }
@@ -684,22 +684,22 @@ const Starlight = {
       windowEl.style.bottom = 'auto';
       windowEl.style.inset = 'auto';
       windowEl.innerHTML = `
-        <header class="starlight-window-header">
-          <div class="starlight-window-title">
-            <div class="starlight-window-traffic">
-              <button class="starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
-              <button class="starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
-              <button class="starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+        <header class="window-header">
+          <div class="window-title">
+            <div class="window-traffic">
+              <button class="window-control is-close" type="button" data-window-close aria-label="Close"></button>
+              <button class="window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+              <button class="window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
             </div>
             <div>
               <strong>${title}</strong>
               <span>${subtitle}</span>
             </div>
           </div>
-          <div class="starlight-window-toolbar" data-window-toolbar>${toolbarHTML}</div>
+          <div class="window-toolbar" data-window-toolbar>${toolbarHTML}</div>
         </header>
-        <div class="starlight-window-body">${bodyHTML}</div>
-        <div class="starlight-window-resize" data-window-resize></div>`;
+        <div class="window-body">${bodyHTML}</div>
+        <div class="window-resize" data-window-resize></div>`;
 
       container.appendChild(windowEl);
       registerWindow(windowEl, meta);

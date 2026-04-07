@@ -105,8 +105,8 @@ function updatePortfolioTimeline(version) {
                     </div>
                 </div>`;
   
-  const timelineStart = /<div class="starlight-timeline">/;
-  content = content.replace(timelineStart, `<div class="starlight-timeline">${newEntry}`);
+  const timelineStart = /<div class="timeline">/;
+  content = content.replace(timelineStart, `<div class="timeline">${newEntry}`);
   
   fs.writeFileSync(portfolioPath, content);
   console.log(`✓ Added v${version} entry to portfolio.html timeline`);

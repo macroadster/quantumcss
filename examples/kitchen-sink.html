@@ -1354,9 +1354,9 @@
 
                 <!-- Timeline -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Timeline (.starlight-timeline)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Timeline (.timeline)</div>
                     <div class="p-8">
-                        <div class="starlight-timeline" style="max-width: 52rem; margin: 0 auto;">
+                        <div class="timeline" style="max-width: 52rem; margin: 0 auto;">
                             <article class="timeline-item">
                                 <div class="timeline-dot"></div>
                                 <div class="timeline-content">
@@ -1387,28 +1387,28 @@
 
                 <!-- Window Manager -->
                 <div class="starlight-card p-0 overflow-hidden">
-                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Window Manager (.starlight-window)</div>
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Window Manager (.window)</div>
                     <div class="p-8">
                         <div class="surface-1 rounded-[1.75rem] overflow-hidden kitchen-window-demo-frame" style="height: 420px; padding: 1rem;">
-                            <div class="starlight-window-stack" id="kitchenWindowDemo" style="height: 100%; --q-window-bg: rgba(8, 8, 26, 0.78); --q-window-border: rgba(255, 255, 255, 0.1); --q-window-border-focus: rgba(96, 165, 250, 0.45); --q-window-shadow: 0 20px 45px rgba(0, 0, 0, 0.28); --q-window-shadow-focus: 0 28px 60px rgba(0, 0, 0, 0.34); --q-window-header-bg: rgba(255, 255, 255, 0.04); --q-window-divider: rgba(255, 255, 255, 0.08); --q-window-muted: rgba(241, 245, 249, 0.55);">
-                                <section class="starlight-window focused" data-window="demo-console" style="left: 1rem; top: 1rem; width: min(100%, 540px); height: 240px;">
-                                    <header class="starlight-window-header">
-                                        <div class="starlight-window-title">
-                                            <div class="starlight-window-traffic">
-                                                <button class="starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
-                                                <button class="starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
-                                                <button class="starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                            <div class="window-stack" id="kitchenWindowDemo" style="height: 100%; --q-window-bg: rgba(8, 8, 26, 0.78); --q-window-border: rgba(255, 255, 255, 0.1); --q-window-border-focus: rgba(96, 165, 250, 0.45); --q-window-shadow: 0 20px 45px rgba(0, 0, 0, 0.28); --q-window-shadow-focus: 0 28px 60px rgba(0, 0, 0, 0.34); --q-window-header-bg: rgba(255, 255, 255, 0.04); --q-window-divider: rgba(255, 255, 255, 0.08); --q-window-muted: rgba(241, 245, 249, 0.55);">
+                                <section class="window focused" data-window="demo-console" style="left: 1rem; top: 1rem; width: min(100%, 540px); height: 240px;">
+                                    <header class="window-header">
+                                        <div class="window-title">
+                                            <div class="window-traffic">
+                                                <button class="window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                                <button class="window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                                <button class="window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
                                             </div>
                                             <div>
                                                 <strong>Mission Console</strong>
                                                 <span>Shared helper demo</span>
                                             </div>
                                         </div>
-                                        <div class="starlight-window-toolbar" data-window-toolbar>
+                                        <div class="window-toolbar" data-window-toolbar>
                                             <button class="btn btn-sm">Sync</button>
                                         </div>
                                     </header>
-                                    <div class="starlight-window-body">
+                                    <div class="window-body">
                                         <div class="grid grid-cols-1 md__grid-cols-2 gap-4">
                                             <div class="surface-1 p-4 rounded-xl">
                                                 <div class="text-xs uppercase opacity-60 mb-2">Queue</div>
@@ -1421,16 +1421,16 @@
                                         </div>
                                         <p class="text-sm opacity-70 mt-4">Drag the header, resize from the corner, and maximize to stress-test the shared window manager without the shell-specific desktop chrome.</p>
                                     </div>
-                                    <div class="starlight-window-resize" data-window-resize></div>
+                                    <div class="window-resize" data-window-resize></div>
                                 </section>
 
-                                <section class="starlight-window" data-window="demo-timeline" style="left: 16rem; top: 12rem; width: min(100%, 420px); height: 220px;">
-                                    <header class="starlight-window-header">
-                                        <div class="starlight-window-title">
-                                            <div class="starlight-window-traffic">
-                                                <button class="starlight-window-control is-close" type="button" data-window-close aria-label="Close"></button>
-                                                <button class="starlight-window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
-                                                <button class="starlight-window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
+                                <section class="window" data-window="demo-timeline" style="left: 16rem; top: 12rem; width: min(100%, 420px); height: 220px;">
+                                    <header class="window-header">
+                                        <div class="window-title">
+                                            <div class="window-traffic">
+                                                <button class="window-control is-close" type="button" data-window-close aria-label="Close"></button>
+                                                <button class="window-control is-minimize" type="button" data-window-minimize aria-label="Minimize"></button>
+                                                <button class="window-control is-maximize" type="button" data-window-maximize aria-label="Expand"></button>
                                             </div>
                                             <div>
                                                 <strong>Launch Notes</strong>
@@ -1438,8 +1438,8 @@
                                             </div>
                                         </div>
                                     </header>
-                                    <div class="starlight-window-body">
-                                        <div class="starlight-timeline" style="padding: 0.25rem 0;">
+                                    <div class="window-body">
+                                        <div class="timeline" style="padding: 0.25rem 0;">
                                             <article class="timeline-item">
                                                 <div class="timeline-dot"></div>
                                                 <div class="timeline-content">
@@ -1456,7 +1456,7 @@
                                             </article>
                                         </div>
                                     </div>
-                                    <div class="starlight-window-resize" data-window-resize></div>
+                                    <div class="window-resize" data-window-resize></div>
                                 </section>
                             </div>
                         </div>
