@@ -4340,6 +4340,8 @@ html[data-theme="light"] .star {
   .starlight-window-stack {
     display: grid;
     gap: 1.125rem;
+    height: auto;
+    overflow: visible;
   }
 
   .starlight-window {
@@ -4352,6 +4354,13 @@ html[data-theme="light"] .star {
     width: 100% !important;
     height: auto !important;
     min-height: 0;
+  }
+
+  .starlight-window.maximized {
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: var(--q-window-radius, 1.75rem);
   }
 
   .starlight-window-resize {

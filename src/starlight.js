@@ -463,6 +463,7 @@ const Starlight = {
     }
 
     let topZ = config.initialZ;
+    let createdWindowCount = 0;
     const managedWindows = new Map();
     let dragState = null;
     let resizeState = null;
@@ -638,19 +639,26 @@ const Starlight = {
       toolbarHTML = '',
       width = 640,
       height = 420,
-      left = 120,
-      top = 80,
+      left,
+      top,
       className = '',
       meta = {}
     }) => {
+      createdWindowCount += 1;
+      const resolvedLeft = typeof left === 'number'
+        ? left
+        : 120 + ((createdWindowCount - 1) % 4) * 32;
+      const resolvedTop = typeof top === 'number'
+        ? top
+        : 80 + ((createdWindowCount - 1) % 4) * 24;
       const windowEl = document.createElement('section');
       windowEl.className = `starlight-window ${className}`.trim();
       if (windowId) {
         windowEl.dataset.window = windowId;
       }
       windowEl.setAttribute(config.floatingAttr, 'true');
-      windowEl.style.left = `${left}px`;
-      windowEl.style.top = `${top}px`;
+      windowEl.style.left = `${resolvedLeft}px`;
+      windowEl.style.top = `${resolvedTop}px`;
       windowEl.style.width = `${width}px`;
       windowEl.style.height = `${height}px`;
       windowEl.style.right = 'auto';
