@@ -553,8 +553,8 @@ const Starlight = {
           }
           if (windowEl.classList.contains(config.maximizedClass)) return;
 
-          const isAlreadyFloating = windowEl.getAttribute(config.floatingAttr) === 'true';
-          if (isAlreadyFloating) {
+          const hasPosition = windowEl.style.left || windowEl.style.top;
+          if (!hasPosition) {
             pinWindowToCurrentRect(windowEl);
           }
           const hostRect = container.getBoundingClientRect();
@@ -579,8 +579,8 @@ const Starlight = {
           if (windowEl.classList.contains(config.maximizedClass)) return;
 
           event.stopPropagation();
-          const isAlreadyFloating = windowEl.getAttribute(config.floatingAttr) === 'true';
-          if (isAlreadyFloating) {
+          const hasPosition = windowEl.style.left || windowEl.style.top;
+          if (!hasPosition) {
             pinWindowToCurrentRect(windowEl);
           }
           const rect = windowEl.getBoundingClientRect();
