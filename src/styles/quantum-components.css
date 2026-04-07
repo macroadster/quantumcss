@@ -4346,6 +4346,7 @@ html[data-theme="light"] .star {
   }
 
   .starlight-window {
+    display: block;
     position: relative !important;
     inset: auto !important;
     top: auto !important;
@@ -4366,6 +4367,8 @@ html[data-theme="light"] .star {
   }
 
   .starlight-window-body {
+    display: block;
+    flex: none;
     height: auto !important;
     min-height: 0;
     overflow: visible;

@@ -63,6 +63,16 @@
         html[data-theme="light"] .designer-panel { background: rgba(255, 255, 255, 0.9); border-color: rgba(0, 0, 0, 0.1); color: #000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
         html[data-theme="light"] .designer-slider { background: rgba(0, 0, 0, 0.1); }
         html[data-theme="light"] .theme-glass { background: rgba(0, 0, 0, 0.03) !important; border-color: rgba(0, 0, 0, 0.1) !important; }
+
+        @media (max-width: 640px) {
+            .kitchen-window-demo-frame {
+                height: auto !important;
+            }
+
+            #kitchenWindowDemo {
+                height: auto !important;
+            }
+        }
     </style>
 </head>
 <body class="p-8">
@@ -1379,7 +1389,7 @@
                 <div class="starlight-card p-0 overflow-hidden">
                     <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Window Manager (.starlight-window)</div>
                     <div class="p-8">
-                        <div class="surface-1 rounded-[1.75rem] overflow-hidden" style="height: 420px; padding: 1rem;">
+                        <div class="surface-1 rounded-[1.75rem] overflow-hidden kitchen-window-demo-frame" style="height: 420px; padding: 1rem;">
                             <div class="starlight-window-stack" id="kitchenWindowDemo" style="height: 100%; --q-window-bg: rgba(8, 8, 26, 0.78); --q-window-border: rgba(255, 255, 255, 0.1); --q-window-border-focus: rgba(96, 165, 250, 0.45); --q-window-shadow: 0 20px 45px rgba(0, 0, 0, 0.28); --q-window-shadow-focus: 0 28px 60px rgba(0, 0, 0, 0.34); --q-window-header-bg: rgba(255, 255, 255, 0.04); --q-window-divider: rgba(255, 255, 255, 0.08); --q-window-muted: rgba(241, 245, 249, 0.55);">
                                 <section class="starlight-window focused" data-window="demo-console" style="left: 1rem; top: 1rem; width: min(100%, 540px); height: 240px;">
                                     <header class="starlight-window-header">

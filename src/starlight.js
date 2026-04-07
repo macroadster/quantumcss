@@ -509,6 +509,17 @@ const Starlight = {
       windowEl.setAttribute(config.floatingAttr, 'true');
     };
 
+    const releaseWindowToFlow = (windowEl) => {
+      windowEl.style.left = '';
+      windowEl.style.top = '';
+      windowEl.style.width = '';
+      windowEl.style.height = '';
+      windowEl.style.right = '';
+      windowEl.style.bottom = '';
+      windowEl.style.inset = '';
+      windowEl.setAttribute(config.floatingAttr, 'false');
+    };
+
     const unregisterWindow = (windowEl) => {
       managedWindows.delete(windowEl);
       windowEl.remove();
@@ -731,7 +742,11 @@ const Starlight = {
       initializeStaticWindows(metaResolver = null) {
         container.querySelectorAll(config.windowSelector).forEach((windowEl) => {
           if (managedWindows.has(windowEl)) return;
-          pinWindowToCurrentRect(windowEl);
+          if (isMobile()) {
+            releaseWindowToFlow(windowEl);
+          } else {
+            pinWindowToCurrentRect(windowEl);
+          }
           const meta = typeof metaResolver === 'function' ? metaResolver(windowEl) : {};
           registerWindow(windowEl, meta || {});
         });
