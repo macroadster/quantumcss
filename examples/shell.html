@@ -275,6 +275,11 @@
             margin: 0 auto;
             border-radius: 16px;
             background: linear-gradient(135deg, rgba(126, 231, 255, 0.25), rgba(255, 213, 137, 0.22));
+            color: var(--shell-text);
+        }
+
+        html[data-theme="light"] .desktop-icon i {
+            background: linear-gradient(135deg, rgba(0, 119, 255, 0.22), rgba(255, 158, 74, 0.2));
         }
 
         .window-stack,
@@ -532,6 +537,11 @@
             place-items: center;
             border-radius: 12px;
             background: linear-gradient(135deg, rgba(126, 231, 255, 0.24), rgba(255, 213, 137, 0.22));
+            color: var(--shell-text);
+        }
+
+        html[data-theme="light"] .launcher-app i {
+            background: linear-gradient(135deg, rgba(0, 119, 255, 0.22), rgba(255, 158, 74, 0.2));
         }
 
         .launcher-kicker {
@@ -978,6 +988,19 @@
             font-size: 0.9rem;
         }
 
+        .dock-app i {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(126, 231, 255, 0.22), rgba(255, 213, 137, 0.2));
+        }
+
+        html[data-theme="light"] .dock-app i {
+            background: linear-gradient(135deg, rgba(0, 119, 255, 0.2), rgba(255, 158, 74, 0.18));
+        }
+
         .dock-app::after {
             content: "";
             position: absolute;
@@ -1054,8 +1077,8 @@
 
             .side-stack {
                 display: grid !important;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
                 gap: 12px;
                 order: 1;
             }
