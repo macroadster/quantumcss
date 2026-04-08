@@ -499,13 +499,13 @@ const Starlight = {
       const hostRect = container.getBoundingClientRect();
       const rect = windowEl.getBoundingClientRect();
 
+      windowEl.style.inset = 'auto';
       windowEl.style.left = `${rect.left - hostRect.left}px`;
       windowEl.style.top = `${rect.top - hostRect.top}px`;
       windowEl.style.width = `${rect.width}px`;
       windowEl.style.height = `${rect.height}px`;
       windowEl.style.right = 'auto';
       windowEl.style.bottom = 'auto';
-      windowEl.style.inset = 'auto';
       windowEl.setAttribute(config.floatingAttr, 'true');
     };
 
