@@ -267,7 +267,7 @@
             line-height: 1.25;
         }
 
-        .icon-badge {
+        .desktop-icon i {
             width: 44px;
             height: 44px;
             display: grid;
@@ -275,8 +275,6 @@
             margin: 0 auto;
             border-radius: 16px;
             background: linear-gradient(135deg, rgba(126, 231, 255, 0.25), rgba(255, 213, 137, 0.22));
-            font-weight: 800;
-            letter-spacing: 0.05em;
         }
 
         .window-stack,
@@ -525,6 +523,15 @@
         .launcher-app span {
             color: var(--shell-muted);
             font-size: 0.8rem;
+        }
+
+        .launcher-app i {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(126, 231, 255, 0.24), rgba(255, 213, 137, 0.22));
         }
 
         .launcher-kicker {
@@ -995,14 +1002,7 @@
             background: var(--shell-item-bg-hover);
         }
 
-        .app-glyph {
-            width: 36px;
-            height: 36px;
-            display: grid;
-            place-items: center;
-            border-radius: 14px;
-            background: linear-gradient(135deg, rgba(126, 231, 255, 0.24), rgba(255, 213, 137, 0.22));
-        }
+        .dock-app i {
 
         .theme-toggle {
             min-width: 92px;
@@ -1217,15 +1217,15 @@
             <main class="desktop-stage">
                 <div class="desktop-icons" aria-label="Desktop shortcuts">
                     <button class="desktop-icon" type="button" data-open-app="agent-grid">
-                        <span class="icon-badge">AI</span>
+                        <i class="icon-grid"></i>
                         <strong>Agent Grid</strong>
                     </button>
                     <button class="desktop-icon" type="button" data-open-app="archive-vault">
-                        <span class="icon-badge">FS</span>
+                        <i class="icon-inbox"></i>
                         <strong>File Stream</strong>
                     </button>
                     <button class="desktop-icon" type="button" data-open-app="runtime-terminal">
-                        <span class="icon-badge">RT</span>
+                        <i class="icon-activity"></i>
                         <strong>Runtime</strong>
                     </button>
                 </div>
@@ -1234,42 +1234,42 @@
                     <input class="launcher-search" id="launcherSearch" type="text" value="launch agent grid" aria-label="Launcher search">
                     <div class="launcher-grid">
                         <button class="launcher-app" type="button" data-open-app="agent-grid">
-                            <span class="icon-badge">AI</span>
+                            <i class="icon-grid"></i>
                             <div>
                                 <strong>Agent Grid</strong>
                                 <span>Command clusters, active queues, and mesh health.</span>
                             </div>
                         </button>
                         <button class="launcher-app" type="button" data-open-app="archive-vault">
-                            <span class="icon-badge">AR</span>
+                            <i class="icon-inbox"></i>
                             <div>
                                 <strong>Archive Vault</strong>
                                 <span>Indexed files, cold storage, and handoff bundles.</span>
                             </div>
                         </button>
                         <button class="launcher-app" type="button" data-open-app="runtime-terminal">
-                            <span class="icon-badge">RT</span>
+                            <i class="icon-activity"></i>
                             <div>
                                 <strong>Runtime Terminal</strong>
                                 <span>Live shell surface with queue and deploy output.</span>
                             </div>
                         </button>
                         <button class="launcher-app" type="button" data-open-app="pulse-lab">
-                            <span class="icon-badge">PL</span>
+                            <i class="icon-refresh"></i>
                             <div>
                                 <strong>Pulse Lab</strong>
                                 <span>Telemetry sweeps, diagnostics, and anomaly watch.</span>
                             </div>
                         </button>
                         <button class="launcher-app" type="button" data-open-app="mission-deck">
-                            <span class="icon-badge">MD</span>
+                            <i class="icon-send"></i>
                             <div>
                                 <strong>Mission Deck</strong>
                                 <span>Launch plans, milestones, and active objectives.</span>
                             </div>
                         </button>
                         <button class="launcher-app" type="button" data-open-app="signal-hub">
-                            <span class="icon-badge">SH</span>
+                            <i class="icon-trend-up"></i>
                             <div>
                                 <strong>Signal Hub</strong>
                                 <span>Outbound routes, acknowledgements, and uplinks.</span>
@@ -1503,19 +1503,19 @@
 
         <nav class="dock" aria-label="Dock">
             <button class="dock-app active" type="button" data-target="command-center" title="Command Center">
-                <span class="app-glyph"><i class="icon-globe"></i></span>
+                <i class="icon-globe"></i>
             </button>
             <button class="dock-app active" type="button" data-target="signal-feed" title="Signal Feed">
-                <span class="app-glyph"><i class="icon-activity"></i></span>
+                <i class="icon-activity"></i>
             </button>
             <button class="dock-app active" type="button" data-target="timeline" title="Launch Timeline">
-                <span class="app-glyph"><i class="icon-clock-fill"></i></span>
+                <i class="icon-clock-fill"></i>
             </button>
             <button class="dock-app" type="button" data-open-app="archive-vault" title="Archive">
-                <span class="app-glyph"><i class="icon-inbox"></i></span>
+                <i class="icon-inbox"></i>
             </button>
             <button class="dock-app" type="button" data-open-app="pulse-lab" title="Pulse">
-                <span class="app-glyph"><i class="icon-refresh"></i></span>
+                <i class="icon-refresh"></i>
             </button>
         </nav>
     </div>
