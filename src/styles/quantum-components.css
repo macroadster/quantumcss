@@ -4317,7 +4317,6 @@ html[data-theme="light"] .star {
   min-height: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding: var(--q-window-body-padding, 1.125rem);
   touch-action: auto;
 }
 
