@@ -22,8 +22,8 @@
             --shell-accent-2: #ffd589;
             --shell-success: #63f6be;
             --shell-danger: #ff8f8f;
-            --shell-item-bg: var(--q-surface-1, rgba(255, 255, 255, 0.04));
-            --shell-item-bg-hover: var(--q-surface-hover, rgba(255, 255, 255, 0.1));
+            --shell-item-bg: transparent; 
+            --shell-item-bg-hover: var(--q-surface-1, rgba(255, 255, 255, 0.04));
             --shell-item-border: var(--q-surface-border, rgba(255, 255, 255, 0.08));
             --shell-item-bg-surface: rgba(255, 255, 255, 0.06);
             --shell-item-bg-surface-hover: rgba(255, 255, 255, 0.12);
@@ -36,34 +36,44 @@
         }
 
         html[data-theme="light"] {
-            --shell-bg: #edf3fb;
-            --shell-bg-2: #d9e8fb;
-            --shell-panel: rgba(255, 255, 255, 0.62);
-            --shell-panel-strong: rgba(255, 255, 255, 0.82);
-            --shell-border: rgba(25, 64, 110, 0.12);
-            --shell-border-strong: rgba(25, 64, 110, 0.22);
+            --shell-bg: #f8fafc;
+            --shell-bg-2: #eff6ff;
+            --shell-panel: rgba(255, 255, 255, 0.25);
+            --shell-panel-strong: rgba(255, 255, 255, 0.6);
+            --shell-border: rgba(0, 0, 0, 0.08);
+            --shell-border-strong: color-mix(in srgb, var(--q-color-primary, #0077ff), transparent 75%);
             --shell-text: #11233c;
-            --shell-muted: rgba(17, 35, 60, 0.68);
-            --shell-dim: rgba(17, 35, 60, 0.42);
-            --shell-accent: #0077ff;
+            --shell-muted: rgba(17, 35, 60, 0.6);
+            --shell-dim: rgba(17, 35, 60, 0.4);
+            --shell-accent: var(--q-color-primary, #0077ff);
             --shell-accent-2: #ff9e4a;
-            --shell-success: #03946e;
-            --shell-danger: #c84c4c;
-            --shell-item-bg: var(--q-surface-1, rgba(17, 35, 60, 0.05));
-            --shell-item-bg-hover: var(--q-surface-hover, rgba(17, 35, 60, 0.09));
-            --shell-item-border: var(--q-surface-border, rgba(17, 35, 60, 0.12));
-            --shell-item-bg-surface: rgba(17, 35, 60, 0.08);
-            --shell-item-bg-surface-hover: rgba(17, 35, 60, 0.14);
-            --shadow-window: 0 24px 70px rgba(84, 108, 145, 0.22);
+            --shell-success: #10b981;
+            --shell-danger: #ef4444;
+            --shell-item-bg: transparent;
+            --shell-item-bg-hover: rgba(255, 255, 255, 0.35);
+            --shell-item-border: rgba(0, 0, 0, 0.06);
+            --shell-item-bg-surface: rgba(255, 255, 255, 0.25);
+            --shell-item-bg-surface-hover: color-mix(in srgb, var(--shell-accent), white 75%);
+            --shadow-window: 0 20px 60px rgba(0, 0, 0, 0.1);
             --wallpaper:
-                radial-gradient(circle at 16% 20%, rgba(0, 119, 255, 0.14), transparent 22%),
-                radial-gradient(circle at 82% 18%, rgba(255, 158, 74, 0.18), transparent 18%),
-                radial-gradient(circle at 50% 82%, rgba(129, 171, 255, 0.2), transparent 24%),
-                linear-gradient(155deg, #f4f8fd 0%, #dfecfa 48%, #d4e2f5 100%);
+                radial-gradient(circle at 16% 20%, rgba(59, 130, 246, 0.08), transparent 30%),
+                radial-gradient(circle at 82% 18%, rgba(255, 158, 74, 0.1), transparent 25%),
+                radial-gradient(circle at 50% 82%, rgba(59, 130, 246, 0.12), transparent 35%),
+                linear-gradient(155deg, rgba(248, 250, 252, 0.4) 0%, rgba(239, 246, 255, 0.3) 48%, rgba(226, 232, 240, 0.2) 100%),
+                url('images/starlight.jpg');
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        html[data-theme="light"] body,
+        html[data-theme="dark"] body,
+        html body {
+            background: var(--wallpaper) !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
         }
 
         body {
@@ -71,7 +81,6 @@
             overflow: hidden;
             font-family: var(--shell-font);
             color: var(--shell-text);
-            background: var(--wallpaper);
         }
 
         button {
@@ -251,7 +260,6 @@
         .desktop-icon {
             width: 92px;
             padding: 12px 10px;
-            border: 1px solid var(--shell-border);
             border-radius: 24px;
             background: var(--shell-item-bg);
             text-align: center;
@@ -260,7 +268,7 @@
 
         .desktop-icon:hover {
             transform: translateY(-3px);
-            border-color: var(--shell-border-strong);
+            border: 1px solid var(--shell-border);
             background: var(--shell-item-bg-hover);
         }
 
@@ -283,7 +291,7 @@
         }
 
         html[data-theme="light"] .desktop-icon i {
-            background: linear-gradient(135deg, var(--q-color-starlight-blue, #0077ff), var(--q-color-starlight-peach, #ff9e4a));
+            background: linear-gradient(135deg, var(--q-color-starlight-peach, #ff9e4a) 40%, var(--q-color-starlight-blue, #0077ff) 100%) !important;
         }
 
         .window-stack,
@@ -310,6 +318,8 @@
             background: var(--shell-panel);
             box-shadow: var(--shadow-window);
             overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .window.focused,
@@ -382,18 +392,78 @@
 
         .traffic-lights button,
         .window-control {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 999px;
-            border: 0;
+            border: 0.5px solid rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        .window-control::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 50% 50% 40% 40%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .window-control::after {
+            content: '';
+            font-size: 10px;
+            font-weight: 800;
+            color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 2;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .traffic-lights:hover .window-control::after,
+        .window-traffic:hover .window-control::after,
+        .window-control:hover::after {
+            opacity: 1;
+        }
+
+        .window-control.is-close::after { content: '×'; font-size: 12px; }
+        .window-control.is-minimize::after { content: '−'; }
+        .window-control.is-maximize::after { content: '+'; }
+
         .traffic-close,
-        .window-control.is-close { background: #ff6f61; }
+        .window-control.is-close { 
+            background: linear-gradient(to bottom, #ff6f61, #e65a50); 
+        }
         .traffic-min,
-        .window-control.is-minimize { background: #ffcc5c; }
+        .window-control.is-minimize { 
+            background: linear-gradient(to bottom, #ffcc5c, #e6b850); 
+        }
         .traffic-max,
-        .window-control.is-maximize { background: #4cd964; }
+        .window-control.is-maximize { 
+            background: linear-gradient(to bottom, #4cd964, #3bbd54); 
+        }
+
+        .window-control:hover {
+            filter: brightness(1.1);
+        }
+
+        .window-control:active {
+            transform: translateY(1px) scale(0.95);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
 
         .window-title,
         .window-title {
@@ -424,26 +494,168 @@
 
         .toolbar-button,
         .action-button {
-            padding: 9px 12px;
-            border: 1px solid var(--shell-border);
-            border-radius: 14px;
+            position: relative;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 1000px;
             color: var(--shell-text);
             background: var(--shell-item-bg);
             font-size: 0.82rem;
+            font-weight: 600;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .toolbar-button::before,
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 12px);
+            height: 35%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 100px 100px 20px 20px;
+            pointer-events: none;
+            z-index: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        .toolbar-button::after,
+        .action-button::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 33%;
+            background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+            width: calc(100% - 16px);
+            border-radius: 1000px;
+            bottom: 8%;
+            filter: blur(2px);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Light Mode Aqua Styling */
+        html[data-theme="light"] .toolbar-button,
+        html[data-theme="light"] .action-button {
+            background: linear-gradient(
+                color-mix(in srgb, #a0a0a0, black 30%),
+                #c0c0c0,
+                color-mix(in srgb, #ffffff, white 30%)
+            );
+            color: #000 !important;
+            box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.2), 
+                        0 0.125em 0.125em rgba(0, 0, 0, 0.3), 
+                        inset 0 0.25em 0.25em rgba(0, 0, 0, 0.4),
+                        inset 0 0.375em 0.5em 0.25em #BBBBBB;
+        }
+
+        html[data-theme="light"] .toolbar-button::before,
+        html[data-theme="light"] .action-button::before {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%);
+            width: calc(100% - 0.875em);
+            border-radius: 2em 2em 0.5em 0.5em;
+            height: 33%;
+            top: 5%;
+            opacity: 1;
+        }
+
+        html[data-theme="light"] .toolbar-button::after,
+        html[data-theme="light"] .action-button::after {
+            background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5));
+            width: calc(100% - 1.25em);
+            border-radius: 0.75em;
+            bottom: 10%;
+            filter: blur(3px);
+            opacity: 1;
+            display: block;
+        }
+
+        /* Dark Mode Neon Style (Inherited from library logic) */
+        html[data-theme="dark"] .toolbar-button,
+        html[data-theme="dark"] .action-button {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        html[data-theme="dark"] .toolbar-button::before,
+        html[data-theme="dark"] .toolbar-button::after,
+        html[data-theme="dark"] .action-button::before,
+        html[data-theme="dark"] .action-button::after {
+            display: none;
         }
 
         .toolbar-button:hover,
         .action-button:hover {
-            transform: translateY(-2px);
-            border-color: var(--shell-border-strong);
-            background: var(--shell-item-bg-hover);
+            transform: translateY(-1px);
+            filter: brightness(1.05);
         }
 
+        html[data-theme="dark"] .toolbar-button:hover,
+        html[data-theme="dark"] .action-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        .toolbar-button:active,
+        .action-button:active {
+            transform: translateY(2px);
+        }
+
+        html[data-theme="light"] .toolbar-button:active,
+        html[data-theme="light"] .action-button:active {
+            box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
+                        inset 0 0.5em 1em rgba(0, 0, 0, 0.3),
+                        inset 0 0.25em 0.5em rgba(0, 0, 0, 0.1) !important;
+        }
+
+        html[data-theme="dark"] .toolbar-button:active,
+        html[data-theme="dark"] .action-button:active {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Primary Button Variants */
+        .toolbar-button.primary,
         .action-button.primary {
-            color: #08111f;
-            border-color: transparent;
-            background: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
             font-weight: 700;
+        }
+
+        html[data-theme="light"] .toolbar-button.primary,
+        html[data-theme="light"] .action-button.primary {
+            background: linear-gradient(
+                color-mix(in srgb, var(--shell-accent), black 15%),
+                var(--shell-accent),
+                color-mix(in srgb, var(--shell-accent), white 20%)
+            );
+            box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.2), 
+                        0 0.125em 0.125em rgba(0, 0, 0, 0.3), 
+                        inset 0 0.25em 0.4em color-mix(in srgb, var(--shell-accent), black 40%),
+                        inset 0 0.375em 0.5em 0.2em color-mix(in srgb, var(--shell-accent), white 20%);
+        }
+
+        html[data-theme="dark"] .toolbar-button.primary,
+        html[data-theme="dark"] .action-button.primary {
+            background: transparent;
+            border: 2px solid color-mix(in srgb, var(--shell-accent), transparent 40%);
+            box-shadow: 0 0 15px color-mix(in srgb, var(--shell-accent), transparent 60%);
+            color: #fff;
+        }
+
+        html[data-theme="dark"] .toolbar-button.primary:hover,
+        html[data-theme="dark"] .action-button.primary:hover {
+            background: color-mix(in srgb, var(--shell-accent), transparent 90%);
+            box-shadow: 0 0 25px color-mix(in srgb, var(--shell-accent), transparent 40%);
+        }
+
+        html[data-theme="dark"] .toolbar-button.primary:active,
+        html[data-theme="dark"] .action-button.primary:active {
+            box-shadow: 0 0 10px color-mix(in srgb, var(--shell-accent), transparent 50%);
+            background: color-mix(in srgb, var(--shell-accent), transparent 80%);
         }
 
         .window-body,
@@ -475,11 +687,12 @@
         }
 
         .launcher-panel {
-            position: absolute;
-            top: 88px;
-            left: 132px;
-            z-index: 8;
-            width: min(620px, calc(100vw - 220px));
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px) scale(0.98);
+            z-index: 1000;
+            width: min(620px, calc(100vw - 40px));
             padding: 18px;
             border: 1px solid var(--shell-border);
             border-radius: 28px;
@@ -487,14 +700,15 @@
             box-shadow: 0 30px 80px rgba(0, 7, 24, 0.45);
             opacity: 0;
             pointer-events: none;
-            transform: translateY(16px) scale(0.98);
             transition: opacity 180ms ease, transform 180ms ease;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
         }
 
         .launcher-panel.open {
             opacity: 1;
             pointer-events: auto;
-            transform: translateY(0) scale(1);
+            transform: translateX(-50%) translateY(0) scale(1);
         }
 
         .launcher-search {
@@ -544,12 +758,18 @@
             display: grid;
             place-items: center;
             border-radius: 12px;
-            background: linear-gradient(135deg, rgba(126, 231, 255, 0.24), rgba(255, 213, 137, 0.22));
-            color: var(--shell-text);
+            background: linear-gradient(135deg, var(--shell-accent), var(--shell-accent-2));
+            color: #000;
         }
 
         html[data-theme="light"] .launcher-app i {
-            background: linear-gradient(135deg, rgba(0, 119, 255, 0.22), rgba(255, 158, 74, 0.2));
+            background: linear-gradient(135deg, var(--q-color-starlight-peach, #ff9e4a) 40%, var(--q-color-starlight-blue, #0077ff) 100%) !important;
+            color: #000 !important;
+        }
+
+        html[data-theme="dark"] .launcher-app i {
+            background: linear-gradient(135deg, var(--q-color-starlight-peach, #ffd589), var(--q-color-starlight-blue, #7ee7ff));
+            color: #000;
         }
 
         .launcher-kicker {
@@ -1006,7 +1226,7 @@
         }
 
         html[data-theme="light"] .dock-app i {
-            background: linear-gradient(135deg, var(--q-color-starlight-blue, #0077ff), var(--q-color-starlight-peach, #ff9e4a));
+            background: linear-gradient(135deg, var(--q-color-starlight-peach, #ff9e4a) 40%, var(--q-color-starlight-blue, #0077ff) 100%) !important;
         }
 
 
@@ -1329,8 +1549,7 @@
                             <div class="toolbar window-toolbar" data-window-toolbar>
                                 <button class="toolbar-button" id="launcherToggle" type="button">Search</button>
                                 <button class="toolbar-button" type="button" data-open-app="pulse-lab">Automate</button>
-                                <button class="btn-glossy-primary" type="button" data-open-app="agent-grid">Launch Sequence</button>
-                            </div>
+                                <button class="toolbar-button primary" type="button" data-open-app="agent-grid">Launch Sequence</button>                            </div>
                         </header>
 
                         <div class="window-body window-body">
