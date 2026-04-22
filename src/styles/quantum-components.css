@@ -391,15 +391,16 @@ html[data-theme="light"] .card-footer {
   padding: var(--q-space-2) var(--q-space-3);
   border: 1px solid #d1d5db;
   border-radius: var(--q-radius-md);
-  background-color: var(--q-input-bg, white);
+  background: color-mix(in srgb, var(--q-color-primary), transparent 95%);
   color: #1e293b;
   font-size: 1rem;
   transition: all var(--q-duration-150) var(--q-ease-in-out);
+  backdrop-filter: blur(24px);
 }
 
 html[data-theme="light"] .input {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--q-color-primary), transparent 95%);
+  backdrop-filter: blur(24px);
   border-color: rgba(0, 0, 0, 0.1);
   color: #1e293b;
 }
@@ -1814,7 +1815,7 @@ html[data-theme="light"] .table-premium-header {
 }
 
 html[data-theme="light"] .table-premium th {
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.5);
   border-bottom-color: var(--q-light-card-border);
   color: #64748b;
 }
@@ -1822,6 +1823,7 @@ html[data-theme="light"] .table-premium th {
 html[data-theme="light"] .table-premium td {
   border-bottom-color: #f1f5f9;
   color: #334155;
+  background: hsla(0,0%,100%,.5);
 }
 
 html[data-theme="light"] .table-premium tbody tr:hover td {
@@ -1829,7 +1831,7 @@ html[data-theme="light"] .table-premium tbody tr:hover td {
 }
 
 html[data-theme="light"] .table-premium-footer {
-  background: #f8fafc;
+  background: hsla(0,0%,100%,.5);
   border-top-color: var(--q-light-card-border);
 }
 
@@ -3434,16 +3436,16 @@ file-size { font-size: 0.75rem; color: #64748b; }
   align-items: center;
   padding: 0 2rem;
   gap: 2rem;
-  background: rgba(15, 23, 42, 0.8);
+  background: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 html[data-theme="light"] .nav-header {
-  background: var(--q-light-card-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: transparent;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-bottom-color: var(--q-light-card-border, rgba(0, 0, 0, 0.08));
 }
 
@@ -3749,7 +3751,8 @@ html[data-theme="light"] .nav-profile {
   height: 38px;
   border-radius: .625rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: hsla(0,0%,100%,.05);
+  background: transparent;
+  backdrop-filter: blur(24px);
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -3757,7 +3760,8 @@ html[data-theme="light"] .nav-profile {
 }
 
 html[data-theme="light"] .nav-hamburger {
-  background: rgba(255, 255, 255, 0.9);
+  background: transparent;
+  backdrop-filter: blur(24px);
   border-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -3819,14 +3823,13 @@ html[data-theme="light"] .nav-hamburger:hover .nav-hamburger-icon span {
   overflow: hidden;
   max-height: 0;
   transition: max-height .3s ease;
-  background-color: hsla(0,0%,100%,.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: transparent;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 html[data-theme="light"] .nav-drawer {
-  background: rgba(255, 255, 255, 0.98);
   border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
@@ -3857,13 +3860,13 @@ html[data-theme="light"] .nav-drawer-inner a {
 }
 
 .nav-drawer-inner a:hover {
-  color: var(--q-text-primary, #f1f5f9);
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--q-color-starlight, #f1f5f9);
+  background: color-mix(in srgb,var(--q-color-starlight),transparent 50%);
 }
 
 html[data-theme="light"] .nav-drawer-inner a:hover {
   color: var(--q-light-text, #1e293b);
-  background: rgba(0, 0, 0, 0.05);
+  background: color-mix(in srgb,var(--q-color-starlight),transparent 50%);
 }
 
 .nav-drawer-section-label {
@@ -4032,7 +4035,7 @@ textarea.input,
 html[data-theme="light"] .input,
 html[data-theme="light"] .textarea,
 html[data-theme="light"] .select {
-  background-color: rgba(255, 255, 255, 0.6);
+  background: transparent;
   backdrop-filter: blur(8px);
   border-color: rgba(0, 0, 0, 0.1);
   color: #1e293b;
@@ -4280,7 +4283,7 @@ html[data-theme="light"] .star {
   position: absolute;
   border: 1px solid var(--q-window-border, var(--q-color-border));
   border-radius: var(--q-window-radius, 1.75rem);
-  background: var(--q-window-bg, var(--q-color-surface));
+  background: transparent;
   box-shadow: var(--q-window-shadow, 0 25px 50px -12px rgb(0 0 0 / 35%));
   overflow: hidden;
   display: flex;
