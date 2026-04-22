@@ -629,6 +629,7 @@ textarea {
 .surface-1 { background-color: var(--q-surface-1); border: 1px solid var(--q-surface-border); }
 .surface-2 { background-color: var(--q-surface-2); border: 1px solid var(--q-surface-border); }
 .surface-hover:hover { background-color: var(--q-surface-hover); }
+html[data-theme="light"] .surface-hover:hover { background-color: color-mix(in srgb, var(--q-color-starlight), transparent 90%); }
 
 /* Border Utilities */
 .border-0 { border-width: 0; }
