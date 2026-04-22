@@ -101,11 +101,11 @@
   --q-text-muted: rgb(241 245 249 / 45%);
   
   /* Light Mode Palette */
-  --q-light-bg: transparent;
+  --q-light-bg: hsla(0,0%,100%,.5);
   --q-light-bg-gradient: radial-gradient(circle at top left, #f8fafc, #f1f5f9 50%, #e2e8f0 100%);
   --q-light-text: #1e293b;
   --q-light-text-muted: #64748b;
-  --q-light-card-bg: transparent;
+  --q-light-card-bg: hsla(0,0%,100%,.5);
   --q-light-card-border: rgba(255 255 255 / 40%);
 
   /* Glassmorphism */

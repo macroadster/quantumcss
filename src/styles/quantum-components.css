@@ -2817,14 +2817,13 @@ html[data-theme="light"] .stat-icon-red {
 /* Light mode overrides for icon buttons */
 html[data-theme="light"] .icon-btn,
 html[data-theme="light"] .action-btn {
-  background: #f1f5f9;
   border-color: #e2e8f0;
   color: #64748b;
 }
 
 html[data-theme="light"] .icon-btn:hover,
 html[data-theme="light"] .action-btn:hover {
-  background: #e2e8f0;
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 40%);
   color: #0f172a;
 }
 
@@ -5238,7 +5237,6 @@ html[data-theme="light"] .breadcrumb-separator {
 }
 
 .timeline-content {
-  background: var(--q-color-surface);
   border: 1px solid var(--q-color-border);
   border-radius: var(--q-radius-xl);
   padding: 1.5rem;
@@ -5730,7 +5728,8 @@ html[data-theme="light"] .hamburger span { background: #1e293b; }
 .aside-nav-trigger { display: none; }
 
 html[data-theme="light"] .aside-nav {
-  background: rgba(255, 255, 255, 0.95);
+  background: transparent;
+  backdrop-filter: blur(24px);
   border-right-color: rgba(0, 0, 0, 0.08);
 }
 
