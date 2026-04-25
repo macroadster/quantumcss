@@ -116,8 +116,10 @@ npm run release
 # 3. Check git log for changes since last release
 git log --oneline -20
 
-# 4. Update portfolio.html release history with new version
-#    Edit examples/portfolio.html, add new timeline-item at top
+# 4. Verify portfolio.html release history was updated by release script
+#    The release script auto-adds entry; verify description is accurate.
+#    If description is generic (e.g. "New features and improvements"),
+#    edit examples/portfolio.html to add specific changes from git log.
 
 # 5. Commit the portfolio.html update
 git add examples/portfolio.html && git commit -m "docs: update release history"
