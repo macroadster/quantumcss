@@ -2,12 +2,14 @@
 
 First off, thank you for considering contributing to QuantumCSS! It's people like you that make QuantumCSS such a great tool for the community.
 
-## 🌈 Our Philosophy
+## Our Philosophy
 
-QuantumCSS is designed to be a **modern, performance-optimized, and AI-predictable** utility-first CSS framework. We prioritize:
-1.  **AI Predictability**: Using standard patterns (like data attributes for themes) that AI models can easily understand and generate.
-2.  **Performance**: Minimal runtime, optimized JIT generation, and hardware-accelerated animations.
-3.  **Aesthetics**: The "Starlight" cosmic aesthetic is core to our identity—etheral, glassmorphic, and refined.
+QuantumCSS provides **beautiful UI by default** -- like the SQLite of CSS frameworks. We prioritize:
+
+1.  **Semantic HTML first**: Bare elements (`<button>`, `<input>`, `<nav>`) should look great with zero classes. Every class you add should be a deliberate choice, not a necessity.
+2.  **Token efficiency**: The framework should be shareable and AI-friendly. A card is `<div class="card">`, not 14 utility classes. Less markup means fewer tokens, faster generation, and easier maintenance.
+3.  **Taste by default**: The Starlight design system provides a cohesive, polished aesthetic out of the box. Developers get beauty for free -- like macOS Aqua gave every app gorgeous buttons without effort.
+4.  **Performance**: ~33 KB gzipped, zero runtime JS, GPU-accelerated animations. Small enough to ship everywhere.
 
 ## 🛠️ Development Workflow
 
@@ -24,10 +26,11 @@ We use a **Research -> Strategy -> Execution** lifecycle for all changes.
 
 ## 📏 Engineering Standards
 
-### 1. AI-Predictable Patterns
+### 1. Semantic-First Patterns
+*   **Default styling**: New HTML element styles go in `quantum-base.css`. A bare `<button>` should look good.
+*   **Component classes**: For UI patterns HTML can't express (cards, badges, toasts), add a single semantic class in `quantum-components.css`.
+*   **Utilities as escape hatch**: Utility classes exist for one-off overrides. Don't build components out of utilities.
 *   **Theming**: Always use `html[data-theme="light|dark"]` for theme-specific overrides. Never use body classes.
-*   **Semantic Naming**: Follow the `.property-value` utility naming convention.
-*   **Decoupled Architecture**: Keep structural base classes (e.g., `nav-base`) separate from aesthetic theme classes (e.g., `theme-starlight`).
 
 ### 2. CSS & Variables
 *   **Prefixing**: All CSS variables must use the `--q-` prefix (e.g., `--q-color-primary`).

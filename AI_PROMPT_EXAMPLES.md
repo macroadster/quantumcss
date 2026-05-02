@@ -1,343 +1,272 @@
 # AI Prompt Examples for QuantumCSS
 
-These examples show how to instruct AI models to generate effective QuantumCSS code.
+These examples show how to prompt AI models to generate QuantumCSS code that follows the "beautiful defaults" philosophy: semantic HTML first, component classes second, utility classes only when needed.
 
-## Basic Component Generation
+## The Golden Rule
 
-### Prompt 1: Create a Card Component
+Before adding a class, ask: "Does bare HTML already handle this?" If yes, skip the class.
+
+---
+
+## Example 1: Card Component
+
+### Prompt
 ```
-Create a responsive card component using QuantumCSS. The card should have:
-- A starlight glass effect background
-- A title and description
-- A primary button
-- Proper spacing and typography
-- Theme-aware styling using data attributes
-
-Use semantic classes where available and include hover states.
+Create a card with a title, description, and action button using QuantumCSS.
 ```
 
-### Expected Output:
+### Expected Output
 ```html
-<div class="starlight-card">
-  <h3 class="text-xl font-bold mb-4">Card Title</h3>
-  <p class="text-secondary mb-6">Description text with proper spacing</p>
-  <button class="btn-starlight">Action Button</button>
+<div class="card">
+  <h3>Card Title</h3>
+  <p>Description text with glassmorphism effect.</p>
+  <button>Action</button>
 </div>
 ```
 
-### Prompt 2: Navigation Menu
-```
-Generate a responsive navigation menu using QuantumCSS with:
-- Horizontal layout on desktop
-- Mobile hamburger menu
-- Dropdown submenu for "Services"
-- Starlight theme styling
-- Proper z-index layering
-- Theme switching support
+That's it. The `card` class provides the glass surface, border, shadow, and padding. The `<h3>`, `<p>`, and `<button>` are styled by QuantumCSS defaults. No utility classes needed.
 
-Use the built-in navigation components and include all necessary JavaScript for mobile toggle.
+For a premium look, swap `card` for `starlight-card`:
+```html
+<div class="starlight-card">
+  <h3>Premium Card</h3>
+  <p>Enhanced glassmorphism with cosmic gradient accents.</p>
+  <button class="btn-primary">Get Started</button>
+</div>
 ```
 
-### Expected Output:
+---
+
+## Example 2: Navigation
+
+### Prompt
+```
+Create a navigation header with logo and links using QuantumCSS.
+```
+
+### Expected Output
 ```html
 <header class="nav-header">
-  <div class="container mx-auto px-8">
-    <div class="flex justify-between items-center py-4">
-      <div class="font-bold text-xl text-gradient">Logo</div>
-      <div class="nav-desktop">
-        <ul class="nav-list">
-          <li><a href="#" class="nav-link">Home</a></li>
-          <li>
-            <div class="dropdown">
-              <a href="#" class="nav-link">Services ▾</a>
-              <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Web Design</a>
-                <a href="#" class="dropdown-item">Development</a>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="hamburger">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </div>
-  <div class="nav-menu-mobile">
-    <ul class="nav-list vertical">
-      <li><a href="#" class="nav-link">Home</a></li>
-      <li><a href="#" class="nav-link">Services</a></li>
-    </ul>
-  </div>
+  <span>My App</span>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/features">Features</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/contact">Contact</a>
+  </nav>
 </header>
 ```
 
-## Layout Generation
+One class: `nav-header`. The rest is plain HTML.
 
-### Prompt 3: Dashboard Grid
+---
+
+## Example 3: Dashboard Layout
+
+### Prompt
 ```
-Create a dashboard layout using QuantumCSS with:
-- Responsive grid layout (3 columns on desktop, 1 on mobile)
-- Starlight cards for each widget
-- Statistics cards with gradients
-- Proper spacing using the complete spacing scale
-- Z-index management for overlays
-- Theme switching capability
-
-Include examples of different card types: stats, charts, and user lists.
+Create a dashboard with stat cards using QuantumCSS.
 ```
 
-### Expected Output:
+### Expected Output
 ```html
-<div class="container mx-auto px-8 py-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Stats Card -->
-    <div class="starlight-card">
-      <span class="stat-label">Total Users</span>
-      <span class="stat-value">12,543</span>
-      <div class="stat-trend up">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-        </svg>
-        12.5%
-      </div>
-    </div>
-    
-    <!-- Chart Card -->
-    <div class="starlight-card">
-      <h3 class="text-lg font-bold mb-4">Revenue Chart</h3>
-      <div class="h-32 bg-starlight/20 rounded-lg flex items-center justify-center">
-        <span class="text-muted">Chart visualization</span>
-      </div>
-    </div>
-    
-    <!-- User List Card -->
-    <div class="starlight-card">
-      <h3 class="text-lg font-bold mb-4">Recent Users</h3>
-      <div class="space-y-3">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 bg-starlight rounded-full"></div>
-          <span class="text-sm">John Doe</span>
-        </div>
-      </div>
-    </div>
+<div class="dashboard">
+  <div class="card">
+    <h3>Total Users</h3>
+    <p>12,543</p>
+    <span class="badge badge-success">+12.5%</span>
+  </div>
+
+  <div class="card">
+    <h3>Revenue</h3>
+    <p>$48,210</p>
+    <span class="badge badge-warning">-3.2%</span>
+  </div>
+
+  <div class="card">
+    <h3>Active Orders</h3>
+    <p>1,893</p>
+    <span class="badge">This month</span>
   </div>
 </div>
 ```
 
-## Form Generation
+`dashboard` gives you the responsive 3-column grid. `card` gives you the glass container. `badge` gives you the status indicator. No layout utilities needed.
 
-### Prompt 4: Contact Form
+---
+
+## Example 4: Contact Form
+
+### Prompt
 ```
-Generate a contact form using QuantumCSS with:
-- Starlight form styling
-- All input types: text, email, select, textarea, checkbox
-- Proper validation states
-- Theme-aware styling
-- Responsive layout
-- Submit and cancel buttons
-
-Use the starlight input classes and include proper spacing with the complete spacing scale.
+Create a contact form with name, email, message, and submit button.
 ```
 
-### Expected Output:
+### Expected Output
 ```html
-<form class="form max-w-2xl mx-auto">
-  <div class="mb-6">
-    <label class="block text-sm font-semibold mb-2">Full Name</label>
-    <input type="text" class="input-starlight w-full" placeholder="Enter your name">
-  </div>
-  
-  <div class="mb-6">
-    <label class="block text-sm font-semibold mb-2">Email Address</label>
-    <input type="email" class="input-starlight w-full" placeholder="your@email.com">
-  </div>
-  
-  <div class="mb-6">
-    <label class="block text-sm font-semibold mb-2">Inquiry Type</label>
-    <select class="input-starlight select-starlight w-full">
+<form>
+  <label>Full Name
+    <input type="text" placeholder="Enter your name">
+  </label>
+
+  <label>Email Address
+    <input type="email" placeholder="you@example.com">
+  </label>
+
+  <label>Inquiry Type
+    <select>
       <option>General Question</option>
       <option>Technical Support</option>
       <option>Sales Inquiry</option>
     </select>
-  </div>
-  
-  <div class="mb-6">
-    <label class="block text-sm font-semibold mb-2">Message</label>
-    <textarea class="input-starlight w-full" rows="5" placeholder="Tell us more..."></textarea>
-  </div>
-  
-  <div class="mb-8">
-    <label class="flex items-center gap-3">
-      <input type="checkbox" class="checkbox-starlight">
-      <span class="text-sm">I agree to the terms and conditions</span>
-    </label>
-  </div>
-  
-  <div class="flex gap-4">
-    <button type="submit" class="btn-starlight flex-1">Send Message</button>
-    <button type="button" class="btn-secondary">Cancel</button>
-  </div>
+  </label>
+
+  <label>Message
+    <textarea rows="5" placeholder="Tell us more..."></textarea>
+  </label>
+
+  <button type="submit">Send Message</button>
 </form>
 ```
 
-## Theme Integration
+Zero classes. Every form element inherits Starlight glass styling, focus glow, and transitions automatically.
 
-### Prompt 5: Theme-Specific Component
+---
+
+## Example 5: Alerts and Status
+
+### Prompt
 ```
-Create a custom component with theme-aware styling using QuantumCSS. The component should:
-- Use data attributes for theme switching (not body classes)
-- Have different styles for light and dark themes
-- Include hover states that work in both themes
-- Use CSS custom properties for theme variables
-- Follow the Starlight design system
-
-Create a "feature card" that shows how to properly implement theme switching.
+Create error, warning, and success notifications.
 ```
 
-### Expected Output:
+### Expected Output
 ```html
-<div class="feature-card">
-  <div class="feature-icon">
-    <svg class="w-8 h-8 text-starlight-blue" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M13 7H7v6h6V7z"/>
-      <path fill-rule="evenodd" d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2z" clip-rule="evenodd"/>
-    </svg>
+<div class="alert alert-error">Could not connect to the server.</div>
+<div class="alert alert-warning">Your session expires in 5 minutes.</div>
+<div class="alert alert-success">Changes saved successfully.</div>
+
+<span class="badge badge-error">Failed</span>
+<span class="badge badge-success">Active</span>
+```
+
+---
+
+## Example 6: Dialog / Modal
+
+### Prompt
+```
+Create a confirmation dialog.
+```
+
+### Expected Output
+```html
+<div class="dialog-overlay">
+  <div class="dialog">
+    <h3>Confirm Action</h3>
+    <p>Are you sure you want to proceed?</p>
+    <div>
+      <button class="btn-primary">Confirm</button>
+      <button>Cancel</button>
+    </div>
   </div>
-  <h3 class="feature-title">Advanced Features</h3>
-  <p class="feature-description">Experience the power of QuantumCSS with cutting-edge design patterns and theme integration.</p>
 </div>
 ```
+
+---
+
+## Example 7: Responsive Grid (Layer 3 — Escape Hatch)
+
+When you need a custom layout that isn't covered by `dashboard` or `gallery`, reach for utilities:
+
+### Prompt
+```
+Create a 2-column layout on tablet and 4-column on desktop.
+```
+
+### Expected Output
+```html
+<div class="grid cols-1" md="cols-2" lg="cols-4">
+  <div class="card"><h3>Item 1</h3></div>
+  <div class="card"><h3>Item 2</h3></div>
+  <div class="card"><h3>Item 3</h3></div>
+  <div class="card"><h3>Item 4</h3></div>
+</div>
+```
+
+Note: responsive breakpoints use attributes (`md="cols-2"`) instead of class prefixes (`md:cols-2`).
+
+---
+
+## Example 8: Themed Custom Component
+
+When you need custom theme-aware styling:
 
 ```css
-.feature-card {
-  @apply starlight-card p-6 text-center;
-  transition: all var(--transition-base);
+.pricing-card {
+  /* Extends the built-in card styles */
 }
 
-.feature-icon {
-  @apply w-16 h-16 mx-auto mb-4 bg-starlight/20 rounded-full flex items-center justify-center;
-  transition: all var(--transition-base);
-}
-
-.feature-title {
-  @apply text-xl font-bold mb-3;
-  transition: color var(--transition-base);
-}
-
-.feature-description {
-  @apply text-secondary text-sm leading-relaxed;
-  transition: color var(--transition-base);
-}
-
-html[data-theme="light"] .feature-card {
-  @apply bg-white border-neutral-100 shadow-lg;
-}
-
-html[data-theme="light"] .feature-icon {
-  @apply bg-blue-50;
-}
-
-html[data-theme="light"] .feature-title {
-  @apply text-slate-900;
-}
-
-html[data-theme="light"] .feature-description {
-  @apply text-slate-600;
-}
-
-.feature-card:hover .feature-icon {
-  @apply scale-110;
-  box-shadow: 0 0 20px var(--color-starlight-glow);
-}
-
-html[data-theme="light"] .feature-card:hover .feature-icon {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+html[data-theme="light"] .pricing-card {
+  background: #ffffff;
+  color: #1e293b;
+  border-color: #e2e8f0;
 }
 ```
 
-## Error Handling
+Always use `html[data-theme="..."]` selectors for theme overrides. Never use body classes.
 
-### Prompt 6: Error States
-```
-Create error handling components using QuantumCSS:
-- Error badge with proper colors
-- Alert components with different severity levels
-- Form validation error styling
-- Error icon integration
-- Theme-aware error colors (success, warning, error)
+---
 
-Make sure all error states work correctly in both light and dark themes.
-```
+## Anti-Patterns to Avoid
 
-### Expected Output:
+### Utility soup when a component class exists
 ```html
-<!-- Error Alert -->
-<div class="alert alert-error">
-  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-  </svg>
-  <span>There was an error processing your request</span>
+<!-- Bad: rebuilding a card from scratch -->
+<div class="bg-white/5 rounded-xl border border-white/8 p-6 backdrop-blur-lg shadow-lg">
+  <h3 class="text-xl font-bold mb-4">Title</h3>
+  <p class="text-secondary mb-6">Content</p>
 </div>
 
-<!-- Warning Alert -->
-<div class="alert alert-warning">
-  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-  </svg>
-  <span>Please review your input before continuing</span>
+<!-- Good: use the component class -->
+<div class="card">
+  <h3>Title</h3>
+  <p>Content</p>
 </div>
-
-<!-- Success Alert -->
-<div class="alert alert-success">
-  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-  </svg>
-  <span>Your changes have been saved successfully</span>
-</div>
-
-<!-- Error Badge -->
-<span class="badge badge-error">Failed</span>
-
-<!-- Form Error State -->
-<input type="email" class="input-starlight border-error" placeholder="Enter valid email">
-<p class="text-error text-sm mt-2">Please enter a valid email address</p>
 ```
 
-## Best Practices Prompts
+### Styling bare elements that already look right
+```html
+<!-- Bad: redundant classes on elements QuantumCSS already styles -->
+<button class="btn-base bg-glass border rounded-lg px-4 py-2 cursor-pointer transition">
+  Submit
+</button>
 
-### Prompt 7: Code Review
-```
-Review this QuantumCSS code and suggest improvements:
-1. Check for proper theme switching implementation
-2. Ensure semantic classes are used where available
-3. Verify spacing uses the complete scale
-4. Check z-index layering
-5. Validate component structure
-
-Provide specific recommendations following QuantumCSS best practices.
+<!-- Good: bare button is already styled -->
+<button>Submit</button>
 ```
 
-### Prompt 8: Optimization
-```
-Optimize this QuantumCSS component for:
-1. Performance (minimize redundant utilities)
-2. Maintainability (use semantic classes)
-3. Accessibility (proper contrast and ARIA)
-4. AI generation consistency
-5. Theme switching reliability
+### Class-based breakpoints instead of attributes
+```html
+<!-- Bad: Tailwind-style class prefixes -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
-Focus on making the code more predictable for AI generation.
+<!-- Good: attribute-based variants -->
+<div class="grid cols-1" md="cols-2" lg="cols-3">
 ```
 
-## Key Reminders for AI Models
+---
 
-1. **Always use `html[data-theme]`** for theme-specific styles
-2. **Leverage semantic components** before individual utilities
-3. **Use the complete spacing scale** (0-32 with directional variants)
-4. **Apply proper z-index utilities** for layer management
-5. **Include theme switching** in all interactive components
-6. **Test responsive behavior** at all breakpoints
-7. **Use Starlight components** for premium UI elements
+## Quick Reference: When to Add Classes
 
-These examples serve as templates for generating consistent, high-quality QuantumCSS code across different use cases and component types.
+| Need | Approach |
+|------|----------|
+| A button | `<button>` (no class needed) |
+| A call-to-action button | `<button class="btn-primary">` |
+| A card container | `<div class="card">` |
+| A form | `<form>` with bare `<input>`, `<select>`, etc. |
+| A navigation bar | `<header class="nav-header">` |
+| A status indicator | `<span class="badge badge-success">` |
+| A notification | `<div class="alert alert-warning">` |
+| Custom spacing | `class="mt-4"` (utility escape hatch) |
+| Responsive columns | `md="cols-3"` (attribute variant) |

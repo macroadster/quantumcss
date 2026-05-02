@@ -1,366 +1,299 @@
-# QuantumCSS AI Developer Guide
+# QuantumCSS -- AI Developer Guide
 
-This guide helps AI models and developers generate consistent, high-quality code using the QuantumCSS framework.
+This guide teaches AI models and developers to generate QuantumCSS code that is minimal, semantic, and token-efficient.
 
-## 🤖 AI-Friendly Design System
+## Core Principle: Write Less, Get More
 
-QuantumCSS is optimized for AI code generation with:
-- **Predictable class naming**: Utility-first patterns that follow consistent conventions
-- **Data attribute theming**: Uses `html[data-theme="light|dark"]` instead of body classes
-- **Component compositions**: Semantic high-level classes built from atomic utilities
-- **Comprehensive utility coverage**: All spacing, sizing, and positioning utilities available
+QuantumCSS is designed around **beautiful defaults**. The framework styles semantic HTML elements automatically, so most of your output should be plain markup with very few classes. Resist the urge to add utility classes -- they're the escape hatch, not the primary tool.
 
-## 🎯 Core Principles for AI Generation
+**Priority order when generating markup:**
 
-### 1. Theme System (CRITICAL)
-Always use data attributes for theming, not body classes:
+1. **Use bare HTML elements** -- `<button>`, `<input>`, `<nav>`, `<table>` are already styled
+2. **Use a component class** -- `card`, `badge`, `alert` for patterns HTML doesn't express
+3. **Use a utility class** -- `mt-4`, `text-center`, `grid` only when layers 1-2 aren't enough
 
-```css
-/* ❌ OLD WAY - Do not use */
-body.light-mode .component { ... }
+### Why This Matters
 
-/* ✅ NEW WAY - AI Predictable */
-html[data-theme="light"] .component { ... }
-```
-
-### 2. Class Naming Conventions
-- **Utilities**: `.property-value` (e.g., `.text-center`, `.bg-primary`)
-- **Components**: `.component-name` (e.g., `.starlight-card`, `.btn-primary`)
-- **Modifiers**: `.component-modifier` (e.g., `.btn-large`, `.nav-header.nav-reverse`)
-
-### 3. Spacing System
-Complete spacing scale available: `0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32`
+Token efficiency. Every class you add costs tokens to generate and tokens for the user to read. A card in QuantumCSS:
 
 ```html
-<!-- All directions -->
-<div class="m-4 p-6 gap-8">
+<!-- Good: 18 characters of classes -->
+<div class="card">
+  <h2>Title</h2>
+  <p>Description</p>
+  <button>Action</button>
+</div>
 
-<!-- Directional -->
-<div class="mt-4 mb-6 ml-2 mr-2">
-<div class="px-4 py-2">
-
-<!-- Axes -->
-<div class="mx-auto my-8">
-```
-
-### 4. Z-Index Stack
-Complete z-index utilities available: `auto, 0, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000`
-
-```html
-<div class="z-50"> <!-- Dropdowns -->
-<div class="z-400"> <!-- Dialogs -->
-<div class="z-800"> <!-- Tooltips -->
-<div class="z-1000"> <!-- Navigation -->
-```
-
-## 🧩 Component Library
-
-### Starlight Components (Premium)
-
-#### Navigation
-```html
-<!-- Horizontal Navigation -->
-<header class="nav-header">
-  <div class="nav-desktop">
-    <ul class="nav-list">
-      <li><a href="#" class="nav-link">Home</a></li>
-      <li>
-        <div class="dropdown">
-          <a href="#" class="nav-link">Services ▾</a>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Web Design</a>
-            <a href="#" class="dropdown-item">Development</a>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="hamburger">
-    <span></span><span></span><span></span>
-  </div>
-</header>
-
-<!-- Vertical Sidebar -->
-<aside class="aside-nav">
-  <div class="nav-list vertical">
-    <li><a href="#" class="nav-link">Dashboard</a></li>
-    <li><a href="#" class="nav-link">Analytics</a></li>
-  </div>
-</aside>
-```
-
-#### Cards
-```html
-<!-- Starlight Glass Card -->
-<div class="starlight-card">
-  <h3 class="text-xl font-bold mb-4">Card Title</h3>
-  <p class="text-secondary mb-6">Card content with glassmorphism effect</p>
+<!-- Avoid: utility soup (unless you need specific overrides) -->
+<div class="bg-white/5 rounded-xl border border-white/8 p-6 backdrop-blur-lg shadow-lg">
+  <h2 class="text-xl font-bold mb-4">Title</h2>
+  <p class="text-secondary mb-6">Description</p>
   <button class="btn-starlight">Action</button>
 </div>
-
-<!-- Standard Card -->
-<div class="card p-6 bg-white border border-neutral rounded-lg shadow-lg">
-  <h4 class="font-semibold mb-2">Standard Card</h4>
-  <p class="text-sm text-secondary">Basic card component</p>
-</div>
 ```
 
-#### Forms
+Both render identically. The first is 10x more efficient.
+
+## Layer 1: Semantic HTML Defaults
+
+These elements are styled automatically. Just use them.
+
+### Typography
 ```html
-<div class="form">
-  <div class="mb-4">
-    <label class="block text-sm font-semibold mb-2">Email Address</label>
-    <input type="email" class="input-starlight w-full" placeholder="you@example.com">
-  </div>
-  
-  <div class="mb-4">
-    <label class="block text-sm font-semibold mb-2">Priority</label>
-    <select class="input-starlight select-starlight w-full">
+<h1>Page Title</h1>          <!-- Scaled size, bold, proper margin -->
+<h2>Section Title</h2>
+<p>Body text with comfortable line height and spacing.</p>
+<blockquote>Styled pull quote with accent border.</blockquote>
+<code>Inline code</code>
+<pre><code>Code block with monospace font</code></pre>
+```
+
+### Forms
+```html
+<form>
+  <label>Email
+    <input type="email" placeholder="you@example.com">
+  </label>
+  <label>Message
+    <textarea placeholder="Tell us more..."></textarea>
+  </label>
+  <label>Priority
+    <select>
       <option>High</option>
       <option>Medium</option>
       <option>Low</option>
     </select>
-  </div>
-  
-  <div class="mb-6">
-    <label class="flex items-center gap-3">
-      <input type="checkbox" class="checkbox-starlight">
-      <span>Enable notifications</span>
-    </label>
-  </div>
-  
-  <div class="flex gap-4">
-    <button class="btn-starlight flex-1">Submit</button>
-    <button class="btn-secondary">Cancel</button>
-  </div>
+  </label>
+  <button type="submit">Send</button>
+</form>
+```
+
+All inputs get the Starlight glass styling, focus glow, and transitions automatically.
+
+### Buttons
+```html
+<button>Default Button</button>         <!-- Glass surface, hover lift, active press -->
+```
+
+For call-to-action emphasis, use a variant class:
+```html
+<button class="btn-primary">Get Started</button>  <!-- Gradient, glow -->
+<button class="btn-outline">Learn More</button>    <!-- Border-only -->
+<button class="btn-ghost">Cancel</button>           <!-- Text-only -->
+```
+
+### Tables
+```html
+<table>
+  <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Alice</td><td>Engineer</td><td>Active</td></tr>
+    <tr><td>Bob</td><td>Designer</td><td>Away</td></tr>
+  </tbody>
+</table>
+```
+
+## Layer 2: Component Classes
+
+Use these for UI patterns that HTML doesn't have native elements for.
+
+### Cards
+```html
+<div class="card">              <!-- Glass surface, border, shadow, padding -->
+  <h3>Card Title</h3>
+  <p>Card content</p>
+</div>
+
+<div class="starlight-card">   <!-- Premium: enhanced glassmorphism + glow -->
+  <h3>Premium Card</h3>
+  <p>With cosmic gradient accents</p>
 </div>
 ```
 
-#### Dialogs
+### Navigation
 ```html
-<!-- Dialog Overlay -->
+<header class="nav-header">
+  <span>Logo</span>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</header>
+```
+
+### Badges
+```html
+<span class="badge">Default</span>
+<span class="badge badge-success">Active</span>
+<span class="badge badge-warning">Pending</span>
+<span class="badge badge-error">Failed</span>
+```
+
+### Alerts
+```html
+<div class="alert alert-success">Changes saved successfully.</div>
+<div class="alert alert-warning">Your session expires in 5 minutes.</div>
+<div class="alert alert-error">Could not connect to the server.</div>
+```
+
+### Dialogs
+```html
 <div class="dialog-overlay">
   <div class="dialog">
-    <button class="dialog-close">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-    <h3 class="text-2xl font-bold mb-4 text-gradient">Confirm Action</h3>
-    <p class="mb-6 opacity-70">Are you sure you want to proceed?</p>
-    <div class="flex gap-4">
-      <button class="btn-starlight flex-1">Confirm</button>
-      <button class="btn-secondary flex-1">Cancel</button>
+    <h3>Confirm Action</h3>
+    <p>Are you sure you want to proceed?</p>
+    <div>
+      <button class="btn-primary">Confirm</button>
+      <button>Cancel</button>
     </div>
   </div>
 </div>
 ```
 
-#### Buttons
+### Layout Presets
 ```html
-<!-- Primary Starlight Button -->
-<button class="btn-starlight">Launch Protocol</button>
-
-<!-- Secondary Button -->
-<button class="btn-secondary">Cancel</button>
-
-<!-- Ghost Button -->
-<button class="btn-ghost">Learn More</button>
-
-<!-- Outline Button -->
-<button class="btn-outline">Get Started</button>
-
-<!-- Button Sizes -->
-<button class="btn-starlight btn-sm">Small</button>
-<button class="btn-starlight">Default</button>
-<button class="btn-starlight btn-lg">Large</button>
+<div class="dashboard">...</div>  <!-- 3-column responsive grid -->
+<div class="gallery">...</div>    <!-- 4-column image grid -->
+<div class="search">...</div>     <!-- Search bar with icon -->
 ```
 
-#### Badges
-```html
-<span class="badge badge-primary">Primary</span>
-<span class="badge badge-secondary">Secondary</span>
-<span class="badge badge-success">Success</span>
-<span class="badge badge-warning">Warning</span>
-<span class="badge badge-error">Error</span>
-```
-
-#### Accordion
+### Accordion & Tabs
 ```html
 <div class="accordion-group">
   <div class="accordion-item accordion active">
-    <div class="accordion-header">
-      <span>Section Title</span>
-      <svg class="accordion-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-    </div>
-    <div class="accordion-content">
-      <p>Section content goes here...</p>
-    </div>
+    <div class="accordion-header"><span>Section Title</span></div>
+    <div class="accordion-content"><p>Content here</p></div>
   </div>
 </div>
+
+<div class="tab-list">
+  <button class="tab-button active" data-tab="t1">Overview</button>
+  <button class="tab-button" data-tab="t2">Details</button>
+</div>
+<div class="tab-content">
+  <div class="tab-panel active" id="t1">Overview content</div>
+  <div class="tab-panel" id="t2">Details content</div>
+</div>
 ```
 
-#### Tabs
+### Animations
 ```html
-<div class="tab-list mb-4">
-  <button class="tab-button active" data-tab="tab-1">Overview</button>
-  <button class="tab-button" data-tab="tab-2">Details</button>
-  <button class="tab-button" data-tab="tab-3">Settings</button>
-</div>
-<div class="tab-content glass p-6 rounded-xl">
-  <div class="tab-panel active" id="tab-1">Overview content...</div>
-  <div class="tab-panel" id="tab-2">Details content...</div>
-  <div class="tab-panel" id="tab-3">Settings content...</div>
-</div>
+<div class="ani-float">Floating element</div>
+<div class="ani-nebula">Ethereal background drift</div>
+<div class="ani-twinkle">Sparkling star effect</div>
+<div class="ani-orbit">Orbital path</div>
 ```
 
-### Utility Classes
+## Layer 3: Utility Escape Hatch
 
-#### Colors
+Use utilities sparingly for one-off adjustments. These are generated on demand by the JIT engine.
+
+### Spacing
+Scale: `0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32`
+
 ```html
-<!-- Text Colors -->
-<div class="text-primary">Primary text</div>
-<div class="text-secondary">Secondary text</div>
-<div class="text-success">Success message</div>
-<div class="text-warning">Warning notice</div>
-<div class="text-error">Error message</div>
-
-<!-- Background Colors -->
-<div class="bg-primary">Primary background</div>
-<div class="bg-starlight">Starlight gradient</div>
+<div class="mt-4 px-6 gap-8">  <!-- margin-top, padding-x, gap -->
 ```
 
-#### Typography
+### Layout
 ```html
-<h1 class="text-4xl font-bold">Large Bold Text</h1>
-<p class="text-lg font-medium">Medium large text</p>
-<span class="text-sm text-secondary">Small muted text</span>
+<div class="flex items-center justify-between">...</div>
+<div class="grid grid-cols-3 gap-6">...</div>
+<div class="container mx-auto">...</div>
 ```
 
-#### Layout
+### Colors
 ```html
-<!-- Flexbox -->
-<div class="flex items-center justify-between gap-4">
-  <div>Left content</div>
-  <div>Right content</div>
-</div>
+<span class="text-success">Saved</span>
+<span class="text-error">Error</span>
+<div class="bg-primary">...</div>
+```
 
-<!-- Grid -->
-<div class="grid grid-cols-3 gap-6">
-  <div>Column 1</div>
-  <div>Column 2</div>
-  <div>Column 3</div>
-</div>
+### Typography
+```html
+<span class="text-sm">Small</span>
+<span class="text-xl font-bold">Large bold</span>
+```
 
-<!-- Container -->
-<div class="container mx-auto px-8">
-  <!-- Centered content -->
+### Responsive via Attributes
+Instead of class-based breakpoints, use HTML attributes:
+
+```html
+<div class="grid cols-1" md="cols-2" lg="cols-3">
+  <!-- 1 col on mobile, 2 on tablet, 3 on desktop -->
 </div>
 ```
 
-## 🎨 Theme Development
+Breakpoints: `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px)
 
-### Theme Toggle Implementation
+### Interactive via Attributes
+```html
+<button class="btn-primary" hover="scale-105" active="scale-95">
+  Click Me
+</button>
+```
+
+## Theme System
+
+### Automatic Dark/Light Mode
+QuantumCSS follows `prefers-color-scheme` automatically. For manual control:
+
 ```javascript
-// Use the built-in theme management
 document.documentElement.setAttribute('data-theme', 'light');
 document.documentElement.setAttribute('data-theme', 'dark');
-
-// Or use the convenience function (included in starlight.js)
-toggleTheme();
 ```
 
-### Custom Theme Styles
+### Custom Themes via CSS Variables
+Override any token with the `--q-` prefix:
+
 ```css
-/* Always use data attributes for theme-specific styles */
+:root {
+  --q-color-starlight-blue: #00d4ff;
+  --q-color-starlight-peach: #ffb38a;
+  --q-bg-primary: #08081a;
+}
+```
+
+### Theme-Specific CSS (when needed)
+```css
 html[data-theme="light"] .custom-component {
   background: #ffffff;
   color: #1e293b;
 }
-
-html[data-theme="dark"] .custom-component {
-  background: var(--glass-bg);
-  color: var(--text-primary);
-}
 ```
 
-## ⚡ Performance Tips
+Always use `html[data-theme="..."]` selectors, never body classes.
 
-1. **Use semantic component classes** when possible (`.starlight-card` vs. individual utilities)
-2. **Minimize redundant utilities** - `p-4 px-4 py-4` can be simplified to `p-4`
-3. **Leverage the JIT generator** for custom utilities
-4. **Prefer data attributes** over body classes for better AI predictability
+## Design Token Reference
 
-## 🔄 Responsive Design
+### Colors
+`primary`, `secondary`, `success`, `warning`, `error`, `neutral`
+`starlight-blue` (#00d4ff), `starlight-peach` (#ffb38a), `starlight-orange` (#ff7e5f)
 
-### Breakpoint System
-- **sm**: 640px
-- **md**: 768px  
-- **lg**: 1024px
-- **xl**: 1280px
+### Spacing
+`0` (0px), `1` (4px), `2` (8px), `3` (12px), `4` (16px), `5` (20px), `6` (24px), `8` (32px), `10` (40px), `12` (48px), `16` (64px), `20` (80px), `24` (96px), `32` (128px)
 
-### Responsive Utilities
-```html
-<div class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-  <!-- Responsive grid layout -->
-</div>
+### Border Radius
+`none`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `full`
 
-<div class="hidden md:block">
-  <!-- Hide on mobile, show on desktop -->
-</div>
-```
+### Shadows
+`sm`, `md`, `lg`, `xl`, `2xl`
 
-## 🎭 Animations
+### Z-Index
+`auto, 0, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000`
 
-### Cosmic Animations
-```html
-<div class="ani-float">Floating element</div>
-<div class="ani-cosmic-pulse">Pulsing effect</div>
-<div class="ani-twinkle">Twinkling star</div>
-<div class="ani-nebula">Nebula background</div>
-<div class="ani-orbit">Orbiting element</div>
-```
+## Quick Rules for AI Generation
 
-### Animation Modifiers
-```html
-<div class="ani-float ani-slow">Slow animation</div>
-<div class="ani-float ani-fast">Fast animation</div>
-```
+1. **Start with bare HTML.** Add classes only when the default styling isn't enough.
+2. **Prefer component classes** (`card`, `badge`, `alert`) over utility combinations.
+3. **Use attributes for variants** (`md="cols-3"`) instead of class prefixes (`md:cols-3`).
+4. **Use `html[data-theme]`** for theme-specific styles, never body classes.
+5. **Run `npx quantumcss manifest`** to get the full token catalog for a project.
 
-## 📱 Mobile Development
+## Reference Examples
 
-Always test responsive behavior and use mobile-first approach:
-
-```html
-<!-- Mobile-first design -->
-<div class="w-full md:w-1/2 lg:w-1/3">
-  <!-- Full width on mobile, then adapts -->
-</div>
-
-<!-- Touch-friendly targets -->
-<button class="btn-starlight p-4 min-h-[44px]">
-  <!-- Minimum touch target size -->
-</button>
-```
-
-## 🚀 Quick Start for AI
-
-When generating QuantumCSS code, always:
-
-1. **Check for existing semantic components** before creating custom utility combinations
-2. **Use data attributes** for any theme-specific styles
-3. **Include the complete spacing scale** (0-32) in your utility vocabulary
-4. **Leverage z-index utilities** for proper layer management
-5. **Use Starlight components** for premium UI elements
-6. **Test theme switching** with `html[data-theme]` attributes
-
-## 📚 Reference Examples
-
-See the `examples` directory for complete implementations:
-- `kitchen-sink.html` - Comprehensive component showcase
-- `starlight.html` - Premium component demonstrations
-- `index.html` - Main landing page with theme switching
-
-This guide should be used as the primary reference for AI models generating QuantumCSS code to ensure consistency and best practices.
+See the `examples/` directory for complete implementations:
+- `kitchen-sink.html` -- Full component showcase
+- `starlight.html` -- Premium Starlight components
+- `index.html` -- Landing page with theme switching

@@ -1,7 +1,7 @@
 {
   "name": "@howssatoshi/quantumcss",
   "version": "1.12.0",
-  "description": "Advanced utility-first CSS framework with JIT generation and modern components",
+  "description": "Beautiful UI by default. One CSS file, zero configuration, token-efficient.",
   "main": "dist/quantum.min.css",
   "bin": {
     "quantumcss": "src/cli.js"
@@ -33,12 +33,13 @@
   "homepage": "https://github.com/macroadster/quantumcss#readme",
   "keywords": [
     "css",
-    "utility-first",
     "framework",
+    "semantic",
+    "defaults",
     "responsive",
-    "modern",
-    "jit",
-    "starlight"
+    "glassmorphism",
+    "starlight",
+    "zero-config"
   ],
   "author": "Eric Yang",
   "license": "MIT",

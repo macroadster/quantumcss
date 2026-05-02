@@ -71,8 +71,8 @@ function updateBuildJsBanner(version) {
   const buildPath = path.join(rootDir, 'scripts', 'build.js');
   let content = fs.readFileSync(buildPath, 'utf8');
   
-  const oldBanner = /\* QuantumCSS \+ Starlight UI v[\d.]+ - Advanced/;
-  const newBanner = `* QuantumCSS + Starlight UI v${version} - Advanced`;
+  const oldBanner = /\* QuantumCSS \+ Starlight UI v[\d.]+ - Beautiful UI by Default/;
+  const newBanner = `* QuantumCSS + Starlight UI v${version} - Beautiful UI by Default`;
   
   content = content.replace(oldBanner, newBanner);
   
