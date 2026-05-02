@@ -7,8 +7,14 @@ const breakpoints = { sm: '640px', md: '768px', lg: '1024px', xl: '1280px', '2xl
 
 function generateCSS(configPath) {
   const resolvedPath = path.resolve(configPath);
-  if (fs.existsSync(resolvedPath)) delete require.cache[resolvedPath];
-  const config = fs.existsSync(resolvedPath) ? require(resolvedPath) : { content: [], theme: {} };
+  let config = { content: [], theme: {} };
+  if (fs.existsSync(resolvedPath)) {
+    try {
+      config = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
+    } catch (err) {
+      console.error(`❌ Error parsing config ${resolvedPath}:`, err.message);
+    }
+  }
   
   const theme = JSON.parse(JSON.stringify(defaultTheme || {}));
   const currentUtilityMaps = { ...utilityMaps };
@@ -88,6 +94,8 @@ function generateCSS(configPath) {
               postProcessors.push(result.transformCSS);
             }
           }
+        } else {
+          console.warn(`⚠️  Plugin not found: "${pluginPath}" — skipping`);
         }
       } catch (err) {
         console.error(`❌ Error loading plugin ${pluginPath}:`, err);
@@ -258,8 +266,8 @@ function generateCSS(configPath) {
 
       if (prefix === 'text') {
         if (theme.fontSize[valKey]) { property = ['font-size', 'line-height']; value = [theme.fontSize[valKey], (valKey.includes('xl') || parseInt(valKey) >= 3) ? '1.2' : '1.5']; }
-        else if (['primary', 'secondary', 'muted'].includes(valKey)) { property = 'color'; value = `var(--q-text-${valKey}) !important`; }
-        else { const color = resolveColor(valKey); if (color) { property = 'color'; value = `${color} !important`; } }
+        else if (['primary', 'secondary', 'muted'].includes(valKey)) { property = 'color'; value = `var(--q-text-${valKey})`; }
+        else { const color = resolveColor(valKey); if (color) { property = 'color'; value = color; } }
       } else if (prefix === 'bg') {
         if (cParts[1] === 'gradient' && cParts[2] === 'to') {
           const dirMap = { r: 'to right', l: 'to left', t: 'to top', b: 'to bottom', tr: 'to top right', tl: 'to top left', br: 'to bottom right', bl: 'to bottom left' };
@@ -270,14 +278,14 @@ function generateCSS(configPath) {
             const rules = [
               '  --q-gradient-from-transparent: rgba(0,0,0,0);',
               '  --q-gradient-to-transparent: rgba(0,0,0,0);',
-              `  ${property}: ${value} !important;`,
+              `  ${property}: ${value};`,
               '  --q-gradient-stops: var(--q-gradient-from, var(--q-gradient-from-transparent)), var(--q-gradient-to, var(--q-gradient-to-transparent));'
             ];
             return [{ breakpoint: null, variant: null, customSelector: null, rules }];
           }
         }
         const color = resolveColor(valKey); 
-        if (color) { property = 'background-color'; value = `${color} !important`; } 
+        if (color) { property = 'background-color'; value = color; } 
       } else if (prefix === 'from') {
         const color = resolveColor(valKey);
         if (color) {

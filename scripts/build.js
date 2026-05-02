@@ -5,6 +5,7 @@ const postcss = require('postcss');
 const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 const { generateCSS } = require('../src/generator');
+const pkg = require('../package.json');
 
 class QuantumCSSBuilder {
   constructor(config = {}) {
@@ -47,7 +48,7 @@ class QuantumCSSBuilder {
     console.log('\n🚀 Building QuantumCSS...');
     
     let combinedCSS = '/*!\n' +
-      ' * QuantumCSS + Starlight UI v1.11.8 - Advanced Utility-First CSS Framework\n' +
+      ` * QuantumCSS + Starlight UI v${pkg.version} - Advanced Utility-First CSS Framework\n` +
       ' * License: MIT\n' +
       ' */\n\n';
 

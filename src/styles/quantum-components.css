@@ -572,6 +572,24 @@ html[data-theme="light"] .badge-error {
   color: #60a5fa;
 }
 
+html[data-theme="dark"] .alert-success {
+  background-color: rgb(16 185 129 / 15%);
+  border-color: rgb(16 185 129 / 30%);
+  color: #6ee7b7;
+}
+
+html[data-theme="dark"] .alert-warning {
+  background-color: rgb(245 158 11 / 15%);
+  border-color: rgb(245 158 11 / 30%);
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] .alert-error {
+  background-color: rgb(239 68 68 / 15%);
+  border-color: rgb(239 68 68 / 30%);
+  color: #fca5a5;
+}
+
 html[data-theme="light"] .alert-info {
   background-color: rgb(59 130 246 / 10%);
   border-color: rgb(59 130 246 / 20%);
@@ -674,6 +692,11 @@ html[data-theme="light"] .skeleton {
 .tooltip:hover .tooltip-content {
   opacity: 1;
   visibility: visible;
+}
+
+html[data-theme="light"] .tooltip-content {
+  background-color: var(--q-light-text);
+  color: #fff;
 }
 
 /* Dropdown Component */
@@ -1050,7 +1073,16 @@ html[data-theme="light"] .menu-divider {
 html[data-theme="light"] .toast {
   background-color: var(--q-light-card-bg);
   backdrop-filter: blur(12px);
-  border-color: #e2e8f0;
+  border-color: var(--q-card-border);
+  color: var(--q-light-text);
+}
+
+html[data-theme="light"] .toast-title {
+  color: var(--q-light-text);
+}
+
+html[data-theme="light"] .toast-message {
+  color: var(--q-light-text-muted);
 }
 
 /* Accordion Component */

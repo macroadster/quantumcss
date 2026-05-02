@@ -159,16 +159,8 @@ function init() {
       "./examples/**/*.html",
       "./index.html"
     ],
-    plugins: [
-      "container-queries",
-      "logical-properties",
-      "component-utilities",
-      "dark-mode",
-      "accessibility"
-    ],
-    presets: [
-      "modern-css"
-    ],
+    plugins: [],
+    presets: [],
     componentPresets: {
       "btn-primary": "btn-starlight px-6 py-2 shadow-md hover:scale-105 active:scale-95",
       "btn-secondary": "btn-base theme-glass px-6 py-2 shadow-md hover:bg-white_10 active:scale-95",
