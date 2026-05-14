@@ -419,6 +419,16 @@ html[data-theme="light"] {
   --q-highlight-bg: color-mix(in srgb, var(--q-color-primary), transparent 80%);
   --q-highlight-border: color-mix(in srgb, var(--q-color-primary), transparent 60%);
 
+  /* Light-mode glass tokens — stronger refractive identity while staying delicate */
+  --q-light-glass-bg: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.72),
+    color-mix(in srgb, var(--q-color-starlight-blue), transparent 92%)
+  );
+  --q-light-glass-border: rgba(255, 255, 255, 0.48);
+  --q-light-glass-highlight: rgba(255, 255, 255, 0.28);
+  --q-light-glass-shadow: 0 10px 35px 0 rgba(31, 38, 135, 0.08);
+
   scrollbar-color: var(--q-color-starlight-blue) transparent;
 }
 

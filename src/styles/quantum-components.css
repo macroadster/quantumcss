@@ -411,8 +411,10 @@ textarea.input {
 
 .input:focus {
   outline: none;
-  border-color: var(--q-color-primary);
-  box-shadow: 0 0 0 3px var(--q-color-primary);
+  border-color: color-mix(in srgb, var(--q-color-primary), transparent 50%);
+  box-shadow: 
+    0 0 0 2px var(--q-light-bg),
+    0 0 0 5px color-mix(in srgb, var(--q-color-starlight-blue), transparent 55%);
 }
 
 /* Date & Time Input Specifics */
@@ -4006,25 +4008,30 @@ html[data-theme="light"] .card {
 }
 
 html[data-theme="light"] .glass {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), color-mix(in srgb, var(--q-color-starlight-blue), transparent 95%));
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: var(--q-light-glass-bg);
+  border: 1px solid var(--q-light-glass-border);
+  backdrop-filter: blur(18px) saturate(185%);
+  -webkit-backdrop-filter: blur(18px) saturate(185%);
   box-shadow: 
-    0 8px 32px 0 rgba(31, 38, 135, 0.07),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    var(--q-light-glass-shadow),
+    inset 0 1px 0 0 var(--q-light-glass-highlight),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.03);
 }
 
 html[data-theme="light"] .glass:hover {
-  border-color: var(--q-color-starlight-blue);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 35%);
   box-shadow:
-    0 12px 40px 0 rgba(31, 38, 135, 0.1),
-    0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    0 14px 42px 0 rgba(31, 38, 135, 0.11),
+    0 0 24px color-mix(in srgb, var(--q-color-starlight-blue), transparent 82%),
+    inset 0 1px 0 0 var(--q-light-glass-highlight),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.04);
 }
 
 html[data-theme="light"] .starlight-card {
-  border-color: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.10);
+  box-shadow: 
+    0 10px 32px 0 rgba(31, 38, 135, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
 }
 
 /* Glass Blue Glow variant */
@@ -5395,7 +5402,19 @@ html[data-theme="light"] .btn-starlight:hover,
 html[data-theme="light"] .hover\:btn-starlight:hover,
 html[data-theme="light"] .btn-primary,
 html[data-theme="light"] .btn-primary:hover {
-  background: linear-gradient(135deg, var(--q-color-starlight-peach) 40%, var(--q-color-starlight-blue) 100%) !important;
+  background: linear-gradient(135deg, var(--q-color-starlight-peach) 38%, var(--q-color-starlight-blue) 100%) !important;
+  color: #111827 !important;
+  box-shadow: 
+    0 8px 22px color-mix(in srgb, var(--q-color-starlight-blue), transparent 78%),
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+}
+
+html[data-theme="light"] .btn-primary:active {
+  transform: translateY(1px) scale(0.985);
+  box-shadow: 
+    0 4px 12px color-mix(in srgb, var(--q-color-starlight-blue), transparent 82%),
+    inset 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 html[data-theme="light"] .dialog-content .bg-black_40 {
