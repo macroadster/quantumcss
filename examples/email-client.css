@@ -222,6 +222,9 @@ html[data-theme="light"] email-list .top-bar {
     align-items: center;
     padding: 0 var(--side-padding);
     flex-shrink: 0;
+    border: none;
+    background: none;
+    border-radius: 0;
 }
 html[data-theme="light"] .search-container:focus-within {
     box-shadow: none;

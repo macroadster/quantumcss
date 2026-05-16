@@ -49,7 +49,7 @@ const defaultTheme = {
   },
   spacing: {
     0: '0px', px: '1px', 1: '0.25rem', 2: '0.5rem', 3: '0.75rem', 4: '1rem', 5: '1.25rem',
-    6: '1.5rem', 8: '2rem', 10: '2.5rem', 12: '3rem', 14: '3.5rem', 16: '4rem', 20: '5rem',
+    6: '1.5rem', 8: '2rem', 10: '2.5rem', 11: '2.75rem', 12: '3rem', 14: '3.5rem', 16: '4rem', 20: '5rem',
     24: '6rem', 32: '8rem', 40: '10rem', 48: '12rem', 64: '16rem', 128: '32rem',
   },
   borderRadius: {
@@ -568,8 +568,8 @@ const utilityMaps = {
   'input-starlight': 'input-base theme-glass-dark px-4 border-white_15',
   'textarea-starlight': 'input-base theme-glass-dark p-4 min-h-32 border-white_15',
   'checkbox-starlight': 'btn-base theme-glass-dark w-5 h-5 border-white_20',
-  'search-container': 'relative block w-full h-12',
-    'search-input': 'pl-12 w-full h-12',
+  'search-container': 'relative block w-full h-11',
+    'search-input': 'pl-12 w-full h-11',
     'search-icon': 'absolute left-4 top-1_2 -translate-y-1_2 pointer-events-none z-10 w-5 h-5',
     'nav-glass': 'nav-base theme-glass-dark border-b',
     'starlight-card': 'card-base theme-glass-dark',
