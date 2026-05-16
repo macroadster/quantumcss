@@ -104,6 +104,44 @@ git push                # Push to remote
 
 ---
 
+## CSS Architecture: JIT vs Component CSS
+
+This project has two CSS generation systems. They must **never define the same class**.
+
+### Ownership Rules
+
+| System | File | Owns | Properties |
+|--------|------|------|------------|
+| **JIT aliases** | `src/defaults.js` (string entries) | Layout & sizing | `display`, `flex-*`, `grid-*`, `position`, `width`, `height`, `padding`, `margin`, `overflow`, `gap` |
+| **Component CSS** | `src/styles/quantum-components.css` | Decoration & theming | `background`, `border`, `color`, `box-shadow`, `backdrop-filter`, `border-radius`, `transition`, `animation` |
+
+### Decision Rules
+
+1. **If a class needs decoration** (backgrounds, borders, shadows, transitions, hover states, light-mode overrides) → define it **only in component CSS**. Do not add a JIT alias.
+2. **If a class is purely structural** (flex/grid layout, sizing, spacing, overflow) → define it **only as a JIT alias** in `defaults.js`. Do not add a component CSS rule.
+3. **Never define the same class in both systems.** JIT loads after component CSS in the build, so JIT silently wins cascade conflicts.
+4. **JIT property/value objects** (non-string entries like `flex`, `hidden`, `truncate`) are for atomic utilities only, never for named components.
+
+### Where Things Live
+
+- **Layout presets** (`email-nav`, `layout-email-3col`, `music-footer`, etc.) → JIT aliases in `defaults.js`
+- **Decorated components** (`search`, `search-input`, `nav-glass`, `nav-header`, `glass`, `gallery`, etc.) → Component CSS only
+- **UI widget bases** (`starlight-table-*`, `starlight-chart-*`, `starlight-player-*`) → JIT aliases for base layout, component CSS for variants/states/children only (light mode, hover, th/td styling)
+
+### Build Pipeline
+
+```
+quantum-base.css → quantum-icons.css → quantum-components.css → quantum-animations.css → JIT utilities
+```
+
+JIT output is appended **last**, so it wins all cascade ties. This is why conflicts are dangerous.
+
+### Example HTML
+
+All example files should load **only** `dist/quantum.min.css` (which includes everything). Never load source CSS files (`src/styles/*.css`) alongside the built output — that double-applies rules and creates cascade bugs.
+
+---
+
 ## Making a Release
 
 ```bash

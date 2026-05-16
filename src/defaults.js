@@ -521,23 +521,7 @@ const utilityMaps = {
     property: ['display', 'align-items', 'justify-content', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'border-radius', 'border'],
     value: ['inline-flex', 'center', 'center', '0.75rem', '600', 'uppercase', '0.05em', 'var(--q-radius-sm)', 'none']
   },
-  'form-row': {
-    property: ['display', 'justify-content', 'align-items', 'gap'],
-    value: ['flex', 'space-between', 'center', '1rem']
-  },
-  'dialog-close': {
-    property: ['position', 'top', 'right', 'width', 'height', 'border-radius', 'display', 'align-items', 'justify-content', 'cursor'],
-    value: ['absolute', '1.5rem', '1.5rem', '2rem', '2rem', '50%', 'flex', 'center', 'center', 'pointer']
-  },
-  'glass': {
-    property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter', 'border-width', 'border-style', 'border-color'], 
-    value: ['rgba(255, 255, 255, 0.03)', 'blur(16px)', 'blur(16px)', '1px', 'solid', 'rgba(255, 255, 255, 0.1)'] 
-  },
   'bg-starlight': { property: 'background', value: 'var(--q-gradient-primary)' },
-  'text-gradient': {
-    property: ['background', '-webkit-background-clip', '-webkit-text-fill-color', 'display'], 
-    value: ['linear-gradient(to right, var(--q-color-starlight-peach), var(--q-color-starlight-blue))', 'text', 'transparent', 'inline-block'] 
-  },
   'theme-starlight': {
     property: ['background', 'color', 'border-color', 'box-shadow'],
     value: ['linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%)', '#000', 'transparent', '0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%)']
@@ -554,7 +538,6 @@ const utilityMaps = {
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter'], 
     value: ['rgba(8, 8, 26, 0.05) !important', 'blur(24px) !important', 'blur(24px) !important'] 
   },
-  'glow-blue': { property: 'box-shadow', value: '0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%)' },
   'glow-starlight': { property: 'box-shadow', value: '0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%)' },
   'glow-peach': { property: 'box-shadow', value: '0 0 30px rgba(255, 179, 138, 0.25)' },
   'glow-orange': { property: 'box-shadow', value: '0 0 30px rgba(255, 126, 95, 0.25)' },
@@ -568,22 +551,14 @@ const utilityMaps = {
   'input-starlight': 'input-base theme-glass-dark px-4 border-white_15',
   'textarea-starlight': 'input-base theme-glass-dark p-4 min-h-32 border-white_15',
   'checkbox-starlight': 'btn-base theme-glass-dark w-5 h-5 border-white_20',
-  'search-container': 'relative block w-full h-11',
-    'search-input': 'pl-12 w-full h-11',
-    'search-icon': 'absolute left-4 top-1_2 -translate-y-1_2 pointer-events-none z-10 w-5 h-5',
-    'nav-glass': 'nav-base theme-glass-dark border-b',
-    'starlight-card': 'card-base theme-glass-dark',
+  'starlight-card': 'card-base theme-glass-dark',
     'starlight-card-interactive': 'card-base theme-glass-dark hover:border-white_20 hover:-translate-y-1 transition-all duration-300',
-    'nav-header': 'nav-base theme-glass-dark w-full sticky top-0 z-50 border-b',
     'starlight-hero': 'container mx-auto px-6 py-16 md:py-24 text-center relative overflow-hidden',
     'starlight-footer': 'border-t border-white_10 py-12 mt-20 bg-black_20 backdrop-blur-md',
-    'aside-nav': 'flex flex-col h-full backdrop-blur-xl border-r border-white_10',
     'nav-reverse': { property: 'flex-direction', value: 'row-reverse' },
     'nav-center': { property: 'display', value: 'grid' },
     'hamburger-left': { property: 'order', value: '-1' },
-    'search': 'search-container theme-glass-dark rounded-xl',
     'dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
-    'gallery': 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4',
     'form': 'card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
     'dialog': 'dialog-base modal-fixed theme-glass-dark dialog-bg ani-scale-in',
     'starlight-sidebar': 'flex flex-col h-screen w-72 fixed left-0 top-0 bg-black_40 backdrop-blur-xl border-r border-white_10 p-6 z-40',
@@ -626,10 +601,6 @@ const utilityMaps = {
     'starlight-avatar-lg': 'w-12 h-12 text-base',
     'starlight-avatar-xl': 'w-16 h-16 text-lg',
 
-    'starlight-theme-toggle': 'flex items-center justify-center w-10 h-10 rounded-full bg-white_05 border border-white_10 cursor-pointer transition-all duration-300',
-    'starlight-notification': 'relative flex items-center justify-center w-10 h-10 bg-transparent border-none cursor-pointer',
-    'starlight-notification-dot': 'absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse',
-
     'starlight-table-container': 'bg-white_03 border border-white_08 rounded-xl overflow-hidden',
     'starlight-table-header': 'flex items-center justify-between p-4 border-b border-white_08',
     'starlight-table': 'w-full border-collapse',
@@ -647,9 +618,6 @@ const utilityMaps = {
     'starlight-breadcrumb-current': 'font-medium',
 
     'gallery-grid': 'grid gap-4',
-    'gallery-item': 'relative aspect-video rounded-lg overflow-hidden',
-    'gallery-overlay': 'absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black_80 to-transparent opacity-0 transition-opacity',
-
     'starlight-progress': 'flex items-center gap-3',
     'starlight-progress-bar': 'flex-1 h-2 bg-white_10 rounded-full overflow-hidden',
     'starlight-progress-fill': 'h-full bg-gradient-to-r from-starlight-blue to-starlight-peach rounded-full transition-all duration-500',

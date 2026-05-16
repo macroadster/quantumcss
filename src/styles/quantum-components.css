@@ -6410,171 +6410,10 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
 .aside-overlay { display: none; }
 
 /* ============================================================================
-   LAYOUT PRESETS (Merged from starlight.css)
+   LAYOUT PRESETS — Authoritative source: JIT aliases in src/defaults.js
+   Base rules for email-nav, email-feed, email-content, music-nav, etc.
+   and layout-email-3col, layout-music-2col, etc. live in JIT only.
    ============================================================================ */
-
-/* Email 3-column layout */
-.email-nav {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: rgb(0 0 0 / 40%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid var(--q-color-border-strong);
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.email-feed {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: var(--q-color-border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-right: 1px solid var(--q-color-border-strong);
-  overflow-y: auto;
-}
-
-.email-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-}
-
-/* Music 2-column + footer layout */
-.music-nav {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: rgb(0 0 0 / 40%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid var(--q-color-border-strong);
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.music-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-}
-
-.music-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.5rem;
-  background: rgb(0 0 0 / 40%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid var(--q-color-border-strong);
-}
-
-/* Chat 2-column layout */
-.chat-sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: rgb(0 0 0 / 40%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid var(--q-color-border-strong);
-  overflow: hidden;
-}
-
-.chat-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* Admin 2-column layout */
-.admin-sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: rgb(0 0 0 / 40%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid var(--q-color-border-strong);
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.admin-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-}
-
-/* Analytics 2-column layout */
-.analytics-sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: rgb(0 0 0 / 40%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid var(--q-color-border-strong);
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.analytics-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-}
-
-/* Layout container classes */
-.layout-email-3col {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 280px 320px 1fr;
-  overflow: hidden;
-}
-
-.layout-music-2col {
-  display: grid;
-  height: 100vh;
-  grid-template-rows: 1fr auto;
-  overflow: hidden;
-}
-
-.layout-music-row {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  overflow: hidden;
-}
-
-.layout-chat-2col {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 320px 1fr;
-  overflow: hidden;
-}
-
-.layout-admin-2col {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 260px 1fr;
-  overflow: hidden;
-}
-
-.layout-analytics-2col {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 240px 1fr;
-  overflow: hidden;
-}
 
 /* ============================================================================
    UI COMPONENT PRESETS (Merged from starlight.css)
@@ -6661,13 +6500,7 @@ html[data-theme="light"] .aside-nav.aside-nav-icons .aside-nav-icon {
   50% { opacity: 0.5; }
 }
 
-/* Starlight Table */
-.starlight-table-container {
-  background: rgb(255 255 255 / 3%);
-  border: 1px solid rgb(255 255 255 / 8%);
-  border-radius: var(--q-radius-xl);
-  overflow: hidden;
-}
+/* Starlight Table — base rule in JIT (src/defaults.js) */
 
 html[data-theme="light"] .starlight-table-container {
   background: var(--q-light-card-bg);
@@ -6676,21 +6509,8 @@ html[data-theme="light"] .starlight-table-container {
   box-shadow: 0 10px 30px color-mix(in srgb, var(--q-color-primary), transparent 95%);
 }
 
-.starlight-table-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid rgb(255 255 255 / 8%);
-}
-
 .starlight-table-title { font-size: 1.125rem; font-weight: 600; }
 .starlight-table-filters { display: flex; gap: 0.5rem; }
-
-.starlight-table {
-  width: 100%;
-  border-collapse: collapse;
-}
 
 .starlight-table th,
 .starlight-table td {
@@ -6719,52 +6539,14 @@ html[data-theme="light"] .starlight-table tr:hover td {
   background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 96%); 
 }
 
-.starlight-table-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.875rem 1.25rem;
-  border-top: 1px solid rgb(255 255 255 / 8%);
-  font-size: 0.875rem;
-  color: rgb(255 255 255 / 60%);
-}
-
 html[data-theme="light"] .starlight-table-footer {
   border-top-color: #e2e8f0;
   color: #64748b;
 }
 
-/* Starlight Chart */
-.starlight-chart {
-  background: rgb(255 255 255 / 3%);
-  border: 1px solid rgb(255 255 255 / 8%);
-  border-radius: var(--q-radius-xl);
-  overflow: hidden;
-}
-
-.starlight-chart-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--q-color-border);
-}
+/* Starlight Chart — base rules in JIT (src/defaults.js) */
 
 .starlight-chart-title { font-size: 1rem; font-weight: 600; }
-
-.starlight-chart-tabs { display: flex; gap: 0.25rem; }
-
-.starlight-chart-tab {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  background: transparent;
-  border: none;
-  border-radius: var(--q-radius-md);
-  color: rgb(255 255 255 / 60%);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
 
 html[data-theme="light"] .starlight-chart-tab {
   color: #64748b;
@@ -6779,36 +6561,10 @@ html[data-theme="light"] .starlight-chart-tab {
 
 .starlight-chart-container { padding: 1.25rem; }
 
-/* Gallery Grid */
-.gallery-grid {
-  display: grid;
-  gap: 1rem;
-}
-
+/* Gallery Grid — base rule in JIT */
 .gallery-grid .gallery-item { aspect-ratio: 16 / 9; }
 
-/* Starlight Progress */
-.starlight-progress {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.starlight-progress-bar {
-  flex: 1;
-  height: 0.5rem;
-  background: var(--q-color-border-strong);
-  border-radius: 9999px;
-  overflow: hidden;
-}
-
-.starlight-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--q-color-starlight-blue), var(--q-color-starlight-peach));
-  border-radius: 9999px;
-  transition: width 0.5s ease;
-}
-
+/* Starlight Progress — base rules in JIT */
 .starlight-progress-value {
   font-size: 0.875rem;
   font-weight: 600;
@@ -6816,57 +6572,15 @@ html[data-theme="light"] .starlight-chart-tab {
   text-align: right;
 }
 
-/* Starlight Player */
-.starlight-player-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.starlight-player-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: transparent;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
+/* Starlight Player — base rules in JIT */
 .starlight-player-btn:hover {
   color: var(--q-color-starlight-blue);
   transform: scale(1.1);
 }
 
-.starlight-player-btn-primary {
-  width: 3rem;
-  height: 3rem;
-  background: var(--q-color-starlight-blue);
-  border-radius: 50%;
-  color: #000;
-}
-
 .starlight-player-btn-primary:hover { background: var(--q-color-starlight-peach); }
 
-/* Starlight Page Header */
-.starlight-page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem;
-}
-
-.starlight-page-title { font-size: 1.875rem; font-weight: 700; }
-
-.starlight-page-subtitle {
-  font-size: 0.875rem;
-  color: rgb(255 255 255 / 60%);
-  margin-top: 0.25rem;
-}
-
+/* Starlight Page — base rules in JIT */
 html[data-theme="light"] .starlight-page-subtitle {
   color: #64748b;
 }
