@@ -315,13 +315,16 @@ html[data-theme="dark"] .btn-glossy-primary:active {
 }
 
 
-/* Glass Utility */
+/* Glass Utility — single source of truth (see also hover/light-mode variants below) */
 .glass {
   background: var(--q-glass-bg);
   border: 1px solid var(--q-glass-border);
   backdrop-filter: var(--q-glass-blur);
   -webkit-backdrop-filter: var(--q-glass-blur);
   border-radius: var(--q-radius-xl);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%);
+  transition: all 0.3s ease;
+  padding: 1.5rem;
 }
 
 /* Card Component */
@@ -4000,18 +4003,6 @@ html[data-theme="light"] .card {
   box-shadow: 
     0 10px 40px color-mix(in srgb, var(--q-color-primary), transparent 94%),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
-}
-
-/* Glass - Starlight enhanced version */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%);
-  transition: all 0.3s ease;
-  border-radius: 1rem;
-  padding: 1.5rem;
 }
 
 .glass:hover {

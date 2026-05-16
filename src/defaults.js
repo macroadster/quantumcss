@@ -561,26 +561,37 @@ const utilityMaps = {
     'dashboard': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8',
     'form': 'card-base theme-glass-dark grid grid-cols-1 md:grid-cols-2 gap-8 items-start',
     'dialog': 'dialog-base modal-fixed theme-glass-dark dialog-bg ani-scale-in',
-    'starlight-sidebar': 'flex flex-col h-screen w-72 fixed left-0 top-0 bg-black_40 backdrop-blur-xl border-r border-white_10 p-6 z-40',
+    // Structural bases (layout only)
+    'panel-col': 'flex flex-col h-full',
+    'panel-col-scroll': 'flex flex-col h-full overflow-y-auto',
+    'panel-col-hidden': 'flex flex-col h-full overflow-hidden',
+
+    // Theme mixins (decoration only)
+    'theme-sidebar': 'bg-black_40 backdrop-blur-xl border-r border-white_10',
+    'theme-feed': 'bg-white_05 backdrop-blur-md border-r border-white_10',
+    'theme-bar': 'bg-black_40 backdrop-blur-xl border-t border-white_10',
+
+    // Composed app presets
+    'starlight-sidebar': 'panel-col fixed left-0 top-0 h-screen w-72 theme-sidebar p-6 z-40',
     'starlight-feed-card': 'flex flex-col bg-white_03 backdrop-blur-md border border-white_10 rounded-2xl p-6 transition-all duration-300 ease',
     'starlight-auth-form': 'flex flex-col max-w-md mx-auto bg-white_05 backdrop-blur-xl border border-white_10 rounded-2xl p-10 shadow-2xl',
 
-    'email-nav': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
-    'email-feed': 'flex flex-col h-full bg-white_05 backdrop-blur-md border-r border-white_10 overflow-y-auto',
-    'email-content': 'flex flex-col h-full overflow-y-auto',
-    
-    'music-nav': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
-    'music-content': 'flex flex-col h-full overflow-y-auto',
-    'music-footer': 'flex items-center justify-between px-6 py-4 bg-black_40 backdrop-blur-xl border-t border-white_10',
-    
-    'chat-sidebar': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 overflow-hidden',
-    'chat-content': 'flex flex-col h-full overflow-hidden',
-    
-    'admin-sidebar': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
-    'admin-content': 'flex flex-col h-full overflow-y-auto',
-    
-    'analytics-sidebar': 'flex flex-col h-full bg-black_40 backdrop-blur-xl border-r border-white_10 p-4 overflow-y-auto',
-    'analytics-content': 'flex flex-col h-full overflow-y-auto',
+    'email-nav': 'panel-col-scroll theme-sidebar p-4',
+    'email-feed': 'panel-col-scroll theme-feed',
+    'email-content': 'panel-col-scroll',
+
+    'music-nav': 'panel-col-scroll theme-sidebar p-4',
+    'music-content': 'panel-col-scroll',
+    'music-footer': 'flex items-center justify-between px-6 py-4 theme-bar',
+
+    'chat-sidebar': 'panel-col-hidden theme-sidebar',
+    'chat-content': 'panel-col-hidden',
+
+    'admin-sidebar': 'panel-col-scroll theme-sidebar p-4',
+    'admin-content': 'panel-col-scroll',
+
+    'analytics-sidebar': 'panel-col-scroll theme-sidebar p-4',
+    'analytics-content': 'panel-col-scroll',
 
     'layout-email-3col': 'grid h-screen grid-cols-[280px_320px_1fr] overflow-hidden',
     'layout-music-2col': 'grid h-screen grid-rows-[1fr_auto] overflow-hidden',
