@@ -544,7 +544,7 @@ const utilityMaps = {
   },
   'dialog-bg': { 
     property: ['background-color', 'backdrop-filter', '-webkit-backdrop-filter'], 
-    value: ['rgba(8, 8, 26, 0.05) !important', 'blur(24px) !important', 'blur(24px) !important'] 
+    value: ['rgba(8, 8, 26, 0.05)', 'blur(24px)', 'blur(24px)'] 
   },
   'glow-starlight': { property: 'box-shadow', value: '0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%)' },
   'glow-peach': { property: 'box-shadow', value: '0 0 30px rgba(255, 179, 138, 0.25)' },

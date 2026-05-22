@@ -640,7 +640,7 @@ input[type="email"] {
 /* Button without class */
 button:not([class]) {
   background-color: rgb(255 255 255 / 8%);
-  color: var(--q-text-primary) !important;
+  color: var(--q-text-primary);
   font-weight: 600;
   border: none;
   border-radius: 0.5rem;
@@ -670,7 +670,7 @@ button:not([class]) {
 
   html[data-theme="light"] & {
     background-color: rgb(0 0 0 / 5%);
-    color: #1e293b !important;
+    color: #1e293b;
 
     &:hover {
       background-color: rgb(0 0 0 / 8%);
@@ -685,7 +685,7 @@ form button:not([class]) {
     var(--q-color-starlight-peach) 0%,
     var(--q-color-starlight-blue) 100%
   );
-  color: #000 !important;
+  color: #000;
   font-weight: 700;
   border: none;
   border-radius: 0.5rem;
@@ -720,7 +720,7 @@ form button:not([class]) {
       135deg,
       var(--q-color-starlight-peach) 40%,
       var(--q-color-starlight-blue) 100%
-    ) !important;
+    );
 
     &:focus-visible {
       outline-color: var(--q-color-starlight-blue);
@@ -830,13 +830,13 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: var(--q-color-starlight-blue);
 }
 
-/* Firefox scrollbar support */
-* {
+/* Firefox scrollbar support — :where(*) for zero specificity so components can override */
+:where(*) {
   scrollbar-width: thin;
   scrollbar-color: var(--q-color-border-strong) transparent;
 }
 
-html[data-theme="light"] * {
+:where(html[data-theme="light"] *) {
   scrollbar-color: rgb(0 0 0 / 10%) transparent;
 }
 
@@ -850,7 +850,7 @@ html[data-theme="light"] * {
 
 /* Starlight Layout */
 .starlight-layout {
-  background: transparent !important;
+  background: transparent;
   min-height: 100vh;
 
   & > :not(.starlight-stars) {
@@ -859,7 +859,7 @@ html[data-theme="light"] * {
   }
 
   html[data-theme="light"] & {
-    background: var(--q-light-bg, #f8fafc) !important;
+    background: var(--q-light-bg, #f8fafc);
   }
 }
 
