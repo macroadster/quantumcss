@@ -1,7 +1,7 @@
 /* ── Variables ── */
 :root {
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ── Reset & Base (Custom) ── */
