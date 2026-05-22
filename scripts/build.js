@@ -29,17 +29,28 @@ class QuantumCSSBuilder {
 
   async processCSS(css) {
     console.log('🔧 Processing CSS with PostCSS...');
-    const result = await postcss([
-      autoprefixer,
-      cssnano({
+    const plugins = [autoprefixer];
+
+    if (this.config.minify) {
+      plugins.push(cssnano({
         preset: ['default', {
           discardDuplicates: true,
           mergeRules: true,
           reduceIdents: false,
           zindex: false
         }]
-      })
-    ]).process(css, { from: undefined });
+      }));
+    }
+
+    const mapOutputPath = this.config.outputFile + '.map';
+    const result = await postcss(plugins).process(css, {
+      from: 'src/styles/quantum-combined.css',
+      to: this.config.outputFile,
+      map: { inline: false }
+    });
+
+    fs.writeFileSync(mapOutputPath, result.map.toString());
+    console.log(`🗺️  Source map: ${mapOutputPath}`);
     
     return result.css;
   }
@@ -66,9 +77,7 @@ class QuantumCSSBuilder {
     combinedCSS += '\n/* --- JIT Utilities --- */\n' + jitCSS;
     console.log(`✓ JIT Utilities generated`);
 
-    if (this.config.minify) {
-      combinedCSS = await this.processCSS(combinedCSS);
-    }
+    combinedCSS = await this.processCSS(combinedCSS);
 
     const distDir = path.dirname(this.config.outputFile);
     if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });

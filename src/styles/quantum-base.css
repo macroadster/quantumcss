@@ -7,7 +7,6 @@
 
 /* CSS Custom Properties (Design Tokens) */
 :root {
-  color-scheme: dark;
 
   /* Colors */
   --q-color-primary: #3b82f6;
@@ -205,7 +204,9 @@ body {
   line-height: inherit;
 }
 
-ul, ol {
+nav ul, nav ol,
+[role="tablist"],
+ul[class], ol[class] {
   list-style: none;
 }
 
@@ -222,12 +223,10 @@ input, textarea, select, button {
   transition: box-shadow var(--q-transition-base), border-color var(--q-transition-base), transform var(--q-transition-base);
 }
 
-input:focus, 
-textarea:focus, 
-select:focus, 
-button:focus,
-input:active,
-button:active {
+input:focus-visible, 
+textarea:focus-visible, 
+select:focus-visible, 
+button:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--q-color-starlight-blue), transparent 85%), 0 0 20px color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
 }
@@ -325,6 +324,27 @@ html[data-theme="light"] .surface-hover:hover { background-color: color-mix(in s
   color: var(--q-color-primary-600);
 }
 
+/* Reduced Transparency Support */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .starlight-card,
+  .nav-glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--q-card-bg) !important;
+  }
+
+  footer {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  button:not([class]) {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -399,7 +419,8 @@ html[data-theme="light"] {
   scrollbar-color: var(--q-color-starlight-blue) transparent;
 }
 
-html[data-theme="dark"] {
+html[data-theme="dark"],
+html:not([data-theme]) {
   color-scheme: dark;
 
   --q-bg-primary: var(--q-color-starlight-deep);
@@ -469,22 +490,16 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb {
 
 
 
-:focus, :focus-visible {
+:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
   transition: box-shadow var(--q-transition-fast);
-
-
-
 }
 
 
 
 
-
-
-
-html[data-theme="light"] :focus, html[data-theme="light"] :focus-visible {
+html[data-theme="light"] :focus-visible {
   box-shadow: 0 0 0 2px var(--q-light-bg), 0 0 0 4px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%);
 }
 
