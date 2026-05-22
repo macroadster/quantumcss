@@ -11,10 +11,6 @@
   50% { box-shadow: 0 0 40px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%), 0 0 80px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%); }
 }
 
-@keyframes star-twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
 
 @keyframes orbit {
   from { transform: rotate(0deg) translateX(20px) rotate(0deg); }

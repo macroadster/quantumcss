@@ -464,8 +464,8 @@ const utilityMaps = {
     value: 'all var(--q-ease-in-out) var(--q-duration-150)'
   },
   'transition-colors': {
-    property: 'transition',
-    value: 'color, background-color, border-color, text-decoration-color, fill, stroke var(--q-ease-in-out) var(--q-duration-150)'
+    property: ['transition-property', 'transition-duration', 'transition-timing-function'],
+    value: ['color, background-color, border-color, text-decoration-color, fill, stroke', 'var(--q-duration-150)', 'var(--q-ease-in-out)']
   },
 
   'flex-shrink-0': { property: 'flex-shrink', value: '0' },

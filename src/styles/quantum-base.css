@@ -337,40 +337,6 @@ html[data-theme="light"] .surface-hover:hover { background-color: color-mix(in s
   }
 }
 
-/* --- Restored Core Styles --- */
-
-
-
-/* Nebula Scrollbar */
-
-
-
-::-webkit-scrollbar { width: 8px; }
-
-
-
-
-
-
-
-::-webkit-scrollbar-track { background: transparent; }
-
-
-
-
-
-
-
-::-webkit-scrollbar-thumb { 
-  background: linear-gradient(135deg, var(--q-color-starlight-peach) 0%, var(--q-color-starlight-blue) 100%); 
-  border-radius: 10px;
-  border: 2px solid var(--q-color-starlight-deep);
-
-
-
-}
-
-
 
 html[data-theme="light"] {
   color-scheme: light;
