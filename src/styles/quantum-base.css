@@ -285,8 +285,13 @@ textarea {
 /* Surface Elevation Utilities */
 .surface-1 { background-color: var(--q-surface-1); border: 1px solid var(--q-surface-border); }
 .surface-2 { background-color: var(--q-surface-2); border: 1px solid var(--q-surface-border); }
-.surface-hover:hover { background-color: var(--q-surface-hover); }
-html[data-theme="light"] .surface-hover:hover { background-color: color-mix(in srgb, var(--q-color-starlight), transparent 90%); }
+.surface-hover:hover {
+  background-color: var(--q-surface-hover);
+
+  html[data-theme="light"] & {
+    background-color: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
+  }
+}
 
 /* ====== QUANTUM CSS ENHANCEMENTS ====== */
 
@@ -542,23 +547,23 @@ a {
   text-decoration: none;
   transition: all var(--q-transition-base);
   position: relative;
-}
 
-a:hover {
-  color: var(--q-color-starlight-peach);
-  text-shadow: 0 0 8px rgb(255 179 138 / 40%);
-}
+  &:hover {
+    color: var(--q-color-starlight-peach);
+    text-shadow: 0 0 8px rgb(255 179 138 / 40%);
+  }
 
-a:active {
-  transform: scale(0.98);
-}
+  &:active {
+    transform: scale(0.98);
+  }
 
-html[data-theme="light"] a {
-  color: color-mix(in srgb, var(--q-color-primary), black 10%);
-}
+  html[data-theme="light"] & {
+    color: color-mix(in srgb, var(--q-color-primary), black 10%);
 
-html[data-theme="light"] a:hover {
-  color: color-mix(in srgb, var(--q-color-primary), black 25%);
+    &:hover {
+      color: color-mix(in srgb, var(--q-color-primary), black 25%);
+    }
+  }
 }
 
 /* h1 Typography */
@@ -595,16 +600,16 @@ pre {
   overflow-x: auto;
   background: rgba(255, 255, 255, 0.05);
   margin: 0;
+
+  html[data-theme="light"] & {
+    background: #f1f5f9;
+  }
 }
 
 code {
   font-family:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-}
-
-html[data-theme="light"] pre {
-  background: #f1f5f9;
 }
 
 /* Form */
@@ -623,14 +628,13 @@ input[type="email"] {
   color: var(--q-text-primary);
   width: 100%;
   box-sizing: border-box;
-}
 
-html[data-theme="light"] input[type="text"],
-html[data-theme="light"] input[type="email"] {
-  background-color: var(--q-light-card-bg);
-  backdrop-filter: blur(24px);
-  border-color: #cbd5e1;
-  color: #1e293b;
+  html[data-theme="light"] & {
+    background-color: var(--q-light-card-bg);
+    backdrop-filter: blur(24px);
+    border-color: #cbd5e1;
+    color: #1e293b;
+  }
 }
 
 /* Button without class */
@@ -649,29 +653,29 @@ button:not([class]) {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   text-decoration: none;
-}
 
-.card button:not([class]),
-.glass button:not([class]) {
-  width: 100%;
-}
+  .card &,
+  .glass & {
+    width: 100%;
+  }
 
-button:not([class]):hover {
-  background-color: rgb(255 255 255 / 12%);
-  transform: translateY(-1px);
-}
+  &:hover {
+    background-color: rgb(255 255 255 / 12%);
+    transform: translateY(-1px);
+  }
 
-button:not([class]):active {
-  transform: translateY(0) scale(0.98);
-}
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
 
-html[data-theme="light"] button:not([class]) {
-  background-color: rgb(0 0 0 / 5%);
-  color: #1e293b !important;
-}
+  html[data-theme="light"] & {
+    background-color: rgb(0 0 0 / 5%);
+    color: #1e293b !important;
 
-html[data-theme="light"] button:not([class]):hover {
-  background-color: rgb(0 0 0 / 8%);
+    &:hover {
+      background-color: rgb(0 0 0 / 8%);
+    }
+  }
 }
 
 /* Form button without class (primary gradient) */
@@ -693,35 +697,35 @@ form button:not([class]) {
   transition: all 0.2s ease;
   box-shadow: 0 0 20px var(--q-color-starlight-glow);
   text-decoration: none;
-}
 
-form button:not([class]):hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%);
-}
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 50%);
+  }
 
-form button:not([class]):active {
-  transform: translateY(0) scale(0.95);
-  filter: brightness(0.9);
-}
+  &:active {
+    transform: translateY(0) scale(0.95);
+    filter: brightness(0.9);
+  }
 
-form button:not([class]):focus-visible {
-  outline: 2px solid white;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px var(--q-color-starlight-glow);
-}
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--q-color-starlight-glow);
+  }
 
-html[data-theme="light"] form button:not([class]):focus-visible {
-  outline-color: var(--q-color-starlight-blue);
-}
+  html[data-theme="light"] & {
+    background: linear-gradient(
+      135deg,
+      var(--q-color-starlight-peach) 40%,
+      var(--q-color-starlight-blue) 100%
+    ) !important;
 
-html[data-theme="light"] form button:not([class]) {
-  background: linear-gradient(
-    135deg,
-    var(--q-color-starlight-peach) 40%,
-    var(--q-color-starlight-blue) 100%
-  ) !important;
+    &:focus-visible {
+      outline-color: var(--q-color-starlight-blue);
+    }
+  }
 }
 
 /* Aside */
@@ -848,15 +852,15 @@ html[data-theme="light"] * {
 .starlight-layout {
   background: transparent !important;
   min-height: 100vh;
-}
 
-.starlight-layout > :not(.starlight-stars) {
-  position: relative;
-  z-index: 1;
-}
+  & > :not(.starlight-stars) {
+    position: relative;
+    z-index: 1;
+  }
 
-html[data-theme="light"] .starlight-layout {
-  background: var(--q-light-bg, #f8fafc) !important;
+  html[data-theme="light"] & {
+    background: var(--q-light-bg, #f8fafc) !important;
+  }
 }
 
 /* High Contrast forced-colors support */

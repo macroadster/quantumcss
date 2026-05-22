@@ -20,10 +20,10 @@ class QuantumCSSBuilder {
     };
     
     this.cssFiles = [
-      'quantum-base.css',
-      'quantum-icons.css',
-      'quantum-components.css',
-      'quantum-animations.css'
+      { file: 'quantum-base.css', layer: 'base' },
+      { file: 'quantum-icons.css', layer: 'icons' },
+      { file: 'quantum-components.css', layer: 'components' },
+      { file: 'quantum-animations.css', layer: 'animations' }
     ];
   }
 
@@ -63,18 +63,21 @@ class QuantumCSSBuilder {
       ' * License: MIT\n' +
       ' */\n\n';
 
-    for (const file of this.cssFiles) {
+    // Declare layer order up front for cascade control
+    combinedCSS += '@layer base, icons, components, animations, utilities;\n\n';
+
+    for (const { file, layer } of this.cssFiles) {
       const filePath = path.join(this.config.inputDir, file);
       if (fs.existsSync(filePath)) {
         const content = fs.readFileSync(filePath, 'utf8');
-        combinedCSS += `\n/* --- ${file} --- */\n` + content + '\n';
+        combinedCSS += `\n/* --- ${file} --- */\n@layer ${layer} {\n` + content + '\n}\n';
         console.log(`✓ Loaded static ${file} (${(content.length / 1024).toFixed(2)} KB)`);
       }
     }
 
     console.log('✨ Running JIT Generator...');
     const jitCSS = generateCSS(this.config.configPath);
-    combinedCSS += '\n/* --- JIT Utilities --- */\n' + jitCSS;
+    combinedCSS += '\n/* --- JIT Utilities --- */\n@layer utilities {\n' + jitCSS + '\n}\n';
     console.log(`✓ JIT Utilities generated`);
 
     combinedCSS = await this.processCSS(combinedCSS);
@@ -97,11 +100,31 @@ class QuantumCSSBuilder {
 async function main() {
   const args = process.argv.slice(2);
   const config = {
-    minify: args.includes('--minify')
+    minify: args.includes('--minify'),
+    watch: args.includes('--watch')
   };
   
   const builder = new QuantumCSSBuilder(config);
   await builder.buildCSS();
+
+  if (config.watch) {
+    const chokidar = require('chokidar');
+    const watchPaths = [
+      path.resolve(__dirname, '../src'),
+      path.resolve(__dirname, '../quantum.config.json')
+    ];
+    console.log('👀 Watching for changes...');
+    const watcher = chokidar.watch(watchPaths, { ignoreInitial: true });
+    let building = false;
+    const rebuild = async () => {
+      if (building) return;
+      building = true;
+      try { await builder.buildCSS(); }
+      catch (err) { console.error('Build error:', err.message); }
+      building = false;
+    };
+    watcher.on('change', rebuild).on('add', rebuild).on('unlink', rebuild);
+  }
 }
 
 if (require.main === module) {

@@ -21,7 +21,8 @@
     "generate": "node src/cli.js",
     "generate:watch": "node src/cli.js --watch",
     "harvest:icons": "node scripts/harvest-icons.js",
-    "release": "node scripts/release.js"
+    "release": "node scripts/release.js",
+    "lint:css": "stylelint 'src/styles/**/*.css'"
   },
   "repository": {
     "type": "git",
@@ -44,7 +45,7 @@
   "author": "Eric Yang",
   "license": "MIT",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "autoprefixer": "^10.4.27",
