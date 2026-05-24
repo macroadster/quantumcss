@@ -194,6 +194,23 @@ html[data-theme="light"] .btn:active {
               inset 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
 }
 
+/* Light mode - preserve glossy styles over generic .btn overrides */
+html[data-theme="light"] .btn-glossy:hover {
+  box-shadow: 0 0.45em 0.6em rgba(0, 0, 0, 0.25), 
+              0 0.125em 0.125em rgba(0, 0, 0, 0.3), 
+              inset 0 0.25em 0.25em rgba(0, 0, 0, 0.4),
+              inset 0 0.375em 0.5em 0.25em #BBBBBB;
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .btn-glossy:active {
+  transform: translateY(2px);
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
+              inset 0 0.5em 1em rgba(0, 0, 0, 0.4),
+              inset 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
+}
+
 /* Glossy/Aqua Button - Primary Color */
 .btn-glossy-primary {
   position: relative;
@@ -254,6 +271,23 @@ html[data-theme="light"] .btn:active {
 }
 
 .btn-glossy-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
+              inset 0 0.5em 1em rgba(0, 0, 0, 0.4),
+              inset 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
+}
+
+/* Light mode - preserve glossy-primary styles over generic .btn overrides */
+html[data-theme="light"] .btn-glossy-primary:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0.45em 0.6em rgba(0, 0, 0, 0.35), 
+              0 0.125em 0.125em color-mix(in srgb, var(--q-color-primary), black 20%), 
+              inset 0 0.25em 0.5em color-mix(in srgb, var(--q-color-primary), black 50%),
+              inset 0 0.375em 0.5em 0.25em color-mix(in srgb, var(--q-color-primary), white 20%);
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .btn-glossy-primary:active {
   transform: translateY(2px);
   box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
               inset 0 0.5em 1em rgba(0, 0, 0, 0.4),
