@@ -373,7 +373,16 @@ function generateCSS(configPath) {
       } else if (prefix === 'border') {
         const color = resolveColor(valKey);
         if (color) { property = 'border-color'; value = color; }
-        else if (['l', 'r', 't', 'b'].includes(cParts[1])) {
+        else if (cParts[1] === 'x' || cParts[1] === 'y') {
+          const width = cParts[2] && !isNaN(parseInt(cParts[2], 10)) ? `${cParts[2]}px` : '1px';
+          if (cParts[1] === 'x') {
+            property = ['border-left-width', 'border-right-width', 'border-style'];
+            value = [width, width, 'solid'];
+          } else {
+            property = ['border-top-width', 'border-bottom-width', 'border-style'];
+            value = [width, width, 'solid'];
+          }
+        } else if (['l', 'r', 't', 'b'].includes(cParts[1])) {
           const sideMapSide = { l: 'left', r: 'right', t: 'top', b: 'bottom' };
           const width = cParts[2] ? `${cParts[2]}px` : '1px';
           property = ['border-width', `border-${sideMapSide[cParts[1]]}-width`, 'border-style'];
@@ -383,6 +392,28 @@ function generateCSS(configPath) {
           value = [`${parseInt(valKey)}px`, 'solid']; 
         } else if (['solid', 'dashed', 'dotted', 'double', 'none'].includes(valKey)) {
           property = 'border-style'; value = valKey;
+        }
+      } else if (prefix === 'opacity') {
+        if (theme.opacity && theme.opacity[valKey] !== undefined) {
+          property = 'opacity';
+          value = theme.opacity[valKey];
+        } else if (valKey !== '' && !isNaN(parseInt(valKey, 10))) {
+          const n = parseInt(valKey, 10);
+          property = 'opacity';
+          value = String(n > 1 ? n / 100 : n);
+        }
+      } else if (prefix === 'tracking') {
+        if (theme.letterSpacing && theme.letterSpacing[valKey] !== undefined) {
+          property = 'letter-spacing';
+          value = theme.letterSpacing[valKey];
+        }
+      } else if (prefix === 'leading') {
+        if (theme.lineHeight && theme.lineHeight[valKey] !== undefined) {
+          property = 'line-height';
+          value = theme.lineHeight[valKey];
+        } else if (theme.spacing && theme.spacing[valKey]) {
+          property = 'line-height';
+          value = theme.spacing[valKey];
         }
       } else if (prefix === 'focus-glow') {
         const color = resolveColor(valKey) || resolveColor('primary') || 'var(--q-color-primary)';

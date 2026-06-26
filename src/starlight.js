@@ -3,7 +3,39 @@
  * Standardized components for the QuantumCSS framework
  */
 
+/**
+ * Apply theme before first paint to avoid FOUC.
+ * Call from an inline <script> in <head>, or rely on DOMContentLoaded init.
+ * Honors: localStorage `theme`, then html[data-theme-default], then "dark".
+ * @param {string} [storageKey='theme']
+ */
+function applyThemeBootstrap(storageKey = 'theme') {
+  if (typeof document === 'undefined') return 'dark';
+  const html = document.documentElement;
+  const defaultTheme = html.getAttribute('data-theme-default') || 'dark';
+  let theme = defaultTheme;
+  try {
+    const saved = localStorage.getItem(storageKey);
+    if (saved) theme = saved;
+  } catch (_) { /* private mode */ }
+
+  let effective = theme;
+  if (theme === 'auto') {
+    effective = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  } else if (theme !== 'light' && theme !== 'dark') {
+    effective = defaultTheme === 'light' ? 'light' : 'dark';
+  }
+  html.setAttribute('data-theme', effective);
+  return effective;
+}
+
+// Run immediately when this file is loaded (still helps if placed in <head>)
+if (typeof document !== 'undefined') {
+  applyThemeBootstrap('theme');
+}
+
 const Starlight = {
+  applyThemeBootstrap,
   /**
    * Initializes a randomized star field in the target container.
    * @param {string} selector - CSS selector for the container (default: '.starlight-stars')
@@ -769,8 +801,9 @@ const Starlight = {
    * Configurable via data attributes on theme toggle elements.
    */
   initTheme() {
+    const htmlEl = document.documentElement;
     const config = {
-      defaultTheme: 'dark',
+      defaultTheme: htmlEl.getAttribute('data-theme-default') || 'dark',
       storageKey: 'theme',
       themes: ['light', 'dark', 'auto'],
       iconSelector: {
@@ -780,6 +813,8 @@ const Starlight = {
       },
       autoDetect: true
     };
+    // Re-apply in case storage changed; keeps data-theme-default as fallback
+    applyThemeBootstrap(config.storageKey);
     
     // Override config with global settings if available
     if (window.StarlightConfig && window.StarlightConfig.theme) {

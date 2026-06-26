@@ -59,6 +59,20 @@ const defaultTheme = {
   fontSize: {
     xs: '0.75rem', sm: '0.875rem', base: '1rem', lg: '1.125rem', xl: '1.25rem',
     '2xl': '1.5rem', '3xl': '1.875rem', '4xl': '2.25rem', '5xl': '3rem',
+    '6xl': '3.75rem', '7xl': '4.5rem',
+  },
+  letterSpacing: {
+    tighter: '-0.05em', tight: '-0.025em', normal: '0em',
+    wide: '0.025em', wider: '0.05em', widest: '0.1em',
+  },
+  lineHeight: {
+    none: '1', tight: '1.25', snug: '1.375', normal: '1.5',
+    relaxed: '1.625', loose: '2',
+  },
+  opacity: {
+    0: '0', 5: '0.05', 10: '0.1', 20: '0.2', 25: '0.25', 30: '0.3',
+    40: '0.4', 50: '0.5', 55: '0.55', 60: '0.6', 65: '0.65', 70: '0.7',
+    75: '0.75', 80: '0.8', 90: '0.9', 95: '0.95', 100: '1',
   },
   fontWeight: {
     light: '300', normal: '400', medium: '500', semibold: '600', bold: '700', extrabold: '800', black: '900',
@@ -286,6 +300,41 @@ const utilityMaps = {
   'text-3xl': { property: ['font-size', 'line-height'], value: ['1.875rem', '2.25rem'] },
   'text-4xl': { property: ['font-size', 'line-height'], value: ['2.25rem', '2.5rem'] },
   'text-5xl': { property: ['font-size', 'line-height'], value: ['3rem', '1.2'] },
+  'text-6xl': { property: ['font-size', 'line-height'], value: ['3.75rem', '1'] },
+  'text-7xl': { property: ['font-size', 'line-height'], value: ['4.5rem', '1'] },
+
+  'tracking-tighter': { property: 'letter-spacing', value: '-0.05em' },
+  'tracking-tight': { property: 'letter-spacing', value: '-0.025em' },
+  'tracking-normal': { property: 'letter-spacing', value: '0em' },
+  'tracking-wide': { property: 'letter-spacing', value: '0.025em' },
+  'tracking-wider': { property: 'letter-spacing', value: '0.05em' },
+  'tracking-widest': { property: 'letter-spacing', value: '0.1em' },
+
+  'leading-none': { property: 'line-height', value: '1' },
+  'leading-tight': { property: 'line-height', value: '1.25' },
+  'leading-snug': { property: 'line-height', value: '1.375' },
+  'leading-normal': { property: 'line-height', value: '1.5' },
+  'leading-relaxed': { property: 'line-height', value: '1.625' },
+  'leading-loose': { property: 'line-height', value: '2' },
+
+  'opacity-0': { property: 'opacity', value: '0' },
+  'opacity-25': { property: 'opacity', value: '0.25' },
+  'opacity-50': { property: 'opacity', value: '0.5' },
+  'opacity-55': { property: 'opacity', value: '0.55' },
+  'opacity-60': { property: 'opacity', value: '0.6' },
+  'opacity-65': { property: 'opacity', value: '0.65' },
+  'opacity-70': { property: 'opacity', value: '0.7' },
+  'opacity-75': { property: 'opacity', value: '0.75' },
+  'opacity-80': { property: 'opacity', value: '0.8' },
+  'opacity-90': { property: 'opacity', value: '0.9' },
+  'opacity-100': { property: 'opacity', value: '1' },
+
+  'border-x': { property: ['border-left-width', 'border-right-width', 'border-style'], value: ['1px', '1px', 'solid'] },
+  'border-y': { property: ['border-top-width', 'border-bottom-width', 'border-style'], value: ['1px', '1px', 'solid'] },
+  'border-t': { property: ['border-width', 'border-top-width', 'border-style'], value: ['0', '1px', 'solid'] },
+  'border-b': { property: ['border-width', 'border-bottom-width', 'border-style'], value: ['0', '1px', 'solid'] },
+  'border-l': { property: ['border-width', 'border-left-width', 'border-style'], value: ['0', '1px', 'solid'] },
+  'border-r': { property: ['border-width', 'border-right-width', 'border-style'], value: ['0', '1px', 'solid'] },
 
   'font-light': { property: 'font-weight', value: '300' },
   'font-normal': { property: 'font-weight', value: '400' },

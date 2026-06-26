@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-theme-default="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +7,9 @@
     <title>Aurora — QuantumCSS Showcase</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="../dist/quantum.min.css">
-    <script>
-        // Prevent FOUC: apply saved theme (or dark default) before paint
-        (function () {
-            try {
-                var saved = localStorage.getItem('theme');
-                var theme = saved || 'dark';
-                if (theme === 'auto') {
-                    theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-                }
-                document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
-    </script>
     <script src="../src/starlight.js"></script>
     <style>
-        /* ── Page chrome & cosmic backdrop (QCS-xrt) ── */
-        html[data-theme="dark"] {
-            background: var(--q-color-starlight-deep, #08081a);
-            color: var(--q-text-primary, #f1f5f9);
-        }
+        /* Page-only: cosmic body + hero composition (framework owns tokens/components) */
         body {
             background: radial-gradient(
                 circle at top right,
@@ -36,46 +17,12 @@
                 #000
             );
             overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
         }
-        /* Stars layer sits above body paint but below content */
-        .starlight-stars {
-            z-index: 0;
-            opacity: 1;
+        html[data-theme="light"] body {
+            background: var(--q-light-bg, #f8fafc) !important;
         }
         header, main, section, footer, nav { position: relative; z-index: 1; }
 
-        .aurora-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(100px);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.55;
-        }
-        .aurora-orb-1 {
-            width: 42vw;
-            height: 42vw;
-            top: -12%;
-            right: -8%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.35), transparent 70%);
-        }
-        .aurora-orb-2 {
-            width: 36vw;
-            height: 36vw;
-            bottom: 10%;
-            left: -10%;
-            background: radial-gradient(circle, rgba(255, 179, 138, 0.22), transparent 70%);
-        }
-        .aurora-orb-3 {
-            width: 28vw;
-            height: 28vw;
-            top: 45%;
-            left: 40%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.18), transparent 70%);
-        }
-
-        /* ── Hero layout fallbacks (QCS-vq5) ── */
         .hero-stage {
             min-height: 0;
             display: flex;
@@ -90,17 +37,7 @@
         }
         @media (min-width: 1024px) {
             .hero-stage { min-height: 88vh; }
-            .hero-layout {
-                grid-template-columns: 1fr 1fr;
-                gap: 3rem;
-            }
-        }
-        .hero-kicker {
-            letter-spacing: 0.35em;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--q-color-starlight-blue);
+            .hero-layout { grid-template-columns: 1fr 1fr; }
         }
         .hero-display {
             font-size: clamp(2.75rem, 9vw, 6.5rem);
@@ -109,7 +46,6 @@
             letter-spacing: -0.04em;
             margin: 1rem 0 1.5rem;
         }
-        /* Telemetry KPI row — always 3 columns */
         .telemetry-kpis {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -120,62 +56,6 @@
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
         }
-        .metric-value {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            line-height: 1;
-        }
-        .section-label {
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--q-color-starlight-blue);
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-        .feature-icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            color: var(--q-color-starlight-blue);
-        }
-        .feature-icon i { width: 1.35rem; height: 1.35rem; }
-
-        /* Mask icons need explicit color (currentColor → background-color) */
-        .icon-check-circle-fill,
-        .icon-activity,
-        .icon-starlight,
-        .icon-grid,
-        .icon-display,
-        .icon-settings,
-        .icon-security,
-        .icon-users,
-        .icon-trend-up,
-        .icon-clock-fill,
-        .icon-github,
-        .icon-home-fill,
-        .icon-search,
-        .icon-sun,
-        .icon-moon {
-            color: currentColor;
-            background-color: currentColor;
-        }
-        .hero-checks .icon-check-circle-fill {
-            color: var(--q-color-starlight-blue, #00d4ff);
-            background-color: var(--q-color-starlight-blue, #00d4ff);
-            width: 1.1rem;
-            height: 1.1rem;
-            flex-shrink: 0;
-        }
-
         .code-pane {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 0.8rem;
@@ -186,20 +66,11 @@
         .code-pane .tok-attr { color: #f9a8d4; }
         .code-pane .tok-str { color: #86efac; }
         .code-pane .tok-muted { opacity: 0.45; }
+        html[data-theme="light"] .code-pane .tok-tag { color: #0369a1; }
+        html[data-theme="light"] .code-pane .tok-attr { color: #be185d; }
+        html[data-theme="light"] .code-pane .tok-str { color: #15803d; }
 
-        .price-card.featured {
-            border-color: rgba(0, 212, 255, 0.45);
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.12);
-            transform: scale(1.02);
-        }
-        @media (max-width: 900px) {
-            .price-card.featured { transform: none; }
-            .hero-stage { min-height: auto; padding-top: 6rem; }
-        }
-
-        .float-card {
-            animation: aurora-float 7s ease-in-out infinite;
-        }
+        .float-card { animation: aurora-float 7s ease-in-out infinite; }
         .float-card-delay { animation-delay: -2.5s; }
         @keyframes aurora-float {
             0%, 100% { transform: translateY(0); }
@@ -208,168 +79,27 @@
         @media (prefers-reduced-motion: reduce) {
             .float-card, .float-card-delay { animation: none; }
         }
-
         .nav-header .container { width: 100%; }
-
-        .theme-toggle {
-            cursor: pointer;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            border: 1px solid var(--q-color-border);
-            background: var(--q-color-surface);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-        .theme-toggle:hover {
-            transform: scale(1.06);
-            border-color: var(--q-color-starlight-blue);
-        }
-        .theme-toggle i { width: 1.25rem; height: 1.25rem; }
-
-        /* ── Utility fallbacks (QCS-yid) ── */
         .section-block { padding-block: 6rem; }
-        .text-muted { opacity: 0.7; }
-        .text-muted-sm { opacity: 0.6; }
-        .text-muted-xs { opacity: 0.5; }
-        .text-muted-footer { opacity: 0.55; }
-        .text-muted-soft { opacity: 0.65; }
-        .text-muted-list { opacity: 0.75; }
-
-        /* ── Light mode overrides (QCS-rp5) ── */
-        html[data-theme="light"] {
-            background: var(--q-light-bg, #f8fafc) !important;
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] body {
-            background: var(--q-light-bg, #f8fafc) !important;
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] .starlight-stars {
-            opacity: 0.12;
-        }
-        html[data-theme="light"] .aurora-orb {
-            opacity: 0.12;
-        }
-        html[data-theme="light"] .glass {
-            background: var(--q-glass-bg, rgba(255, 255, 255, 0.72)) !important;
-            border-color: var(--q-glass-border, rgba(15, 23, 42, 0.08)) !important;
-            color: var(--q-light-text, #0f172a) !important;
-        }
-        html[data-theme="light"] .starlight-card {
-            background: var(--q-light-card-bg, #ffffff) !important;
-            border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.1)) !important;
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] .starlight-card h3,
-        html[data-theme="light"] .card-premium h3,
-        html[data-theme="light"] .glass h3 {
-            color: var(--q-light-text, #0f172a) !important;
-        }
-        html[data-theme="light"] .card-premium {
-            background: var(--q-light-card-bg, #ffffff) !important;
-            border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.12)) !important;
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] .card {
-            background: var(--q-light-card-bg, #ffffff);
-            border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.1));
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] .nav-header {
-            background: var(--q-light-card-bg, rgba(255, 255, 255, 0.92)) !important;
-            border-bottom-color: var(--q-light-card-border, rgba(15, 23, 42, 0.1)) !important;
-        }
-        html[data-theme="light"] .nav-header a {
-            color: var(--q-light-text-muted, #475569) !important;
-        }
-        html[data-theme="light"] .nav-header a:hover {
-            color: var(--q-color-primary, #3b82f6) !important;
-        }
-        html[data-theme="light"] .theme-toggle {
-            background: var(--q-light-card-bg, #ffffff);
-            border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.12));
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] .text-gradient {
-            background: linear-gradient(135deg, #0369a1, #7c3aed);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-        html[data-theme="light"] .starlight-card p,
-        html[data-theme="light"] .card-premium p,
-        html[data-theme="light"] .glass p,
-        html[data-theme="light"] header p,
-        html[data-theme="light"] section p,
-        html[data-theme="light"] footer p {
-            color: var(--q-light-text-muted, #475569);
-        }
-        html[data-theme="light"] .feature-icon {
-            background: rgba(3, 105, 161, 0.08);
-            border-color: rgba(3, 105, 161, 0.2);
-            color: #0369a1;
+        .hero-checks .icon-check-circle-fill {
+            color: var(--q-color-starlight-blue, #00d4ff);
+            width: 1.1rem;
+            height: 1.1rem;
+            flex-shrink: 0;
         }
         html[data-theme="light"] .hero-checks .icon-check-circle-fill {
             color: #0369a1;
-            background-color: #0369a1;
         }
-        html[data-theme="light"] .hero-kicker,
-        html[data-theme="light"] .section-label {
-            color: #0369a1;
-        }
-        html[data-theme="light"] .code-pane .tok-tag { color: #0369a1; }
-        html[data-theme="light"] .code-pane .tok-attr { color: #be185d; }
-        html[data-theme="light"] .code-pane .tok-str { color: #15803d; }
-        html[data-theme="light"] .price-card.featured {
-            border-color: rgba(3, 105, 161, 0.35);
-            box-shadow: 0 0 32px rgba(3, 105, 161, 0.1);
-        }
-        html[data-theme="light"] .glass input,
-        html[data-theme="light"] input {
-            color: var(--q-light-text, #0f172a) !important;
-        }
-        html[data-theme="light"] .glass input::placeholder,
-        html[data-theme="light"] input::placeholder {
-            color: var(--q-light-text-muted, #94a3b8) !important;
-        }
-        html[data-theme="light"] .btn-outline {
-            border-color: var(--q-light-text, #0f172a) !important;
-            color: var(--q-light-text, #0f172a) !important;
-        }
-        html[data-theme="light"] .btn-outline:hover {
-            background-color: var(--q-light-text, #0f172a) !important;
-            color: #fff !important;
-        }
-        html[data-theme="light"] .nav-drawer {
-            background: var(--q-light-card-bg, #ffffff);
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] .nav-drawer a {
-            color: var(--q-light-text, #0f172a);
-        }
-        html[data-theme="light"] i[class^="icon-"],
-        html[data-theme="light"] i[class*=" icon-"] {
-            color: inherit;
-            background-color: currentColor;
-        }
-        html[data-theme="light"] .card-premium i,
-        html[data-theme="light"] .glass i,
-        html[data-theme="light"] .starlight-card i,
-        html[data-theme="light"] .card i {
-            opacity: 0.9;
+        @media (max-width: 900px) {
+            .hero-stage { min-height: auto; padding-top: 6rem; }
         }
     </style>
 </head>
 <body>
     <div class="starlight-stars ani-nebula" aria-hidden="true"></div>
-    <div class="aurora-orb aurora-orb-1" aria-hidden="true"></div>
-    <div class="aurora-orb aurora-orb-2" aria-hidden="true"></div>
-    <div class="aurora-orb aurora-orb-3" aria-hidden="true"></div>
+    <div class="starlight-orb starlight-orb-cyan" aria-hidden="true"></div>
+    <div class="starlight-orb starlight-orb-peach" aria-hidden="true"></div>
+    <div class="starlight-orb starlight-orb-violet" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
@@ -416,13 +146,13 @@
                     <div class="animate-slide-up">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="badge badge-primary">QuantumCSS 1.13</span>
-                            <span class="hero-kicker">Beautiful UI by default</span>
+                            <span class="section-label mb-0">Beautiful UI by default</span>
                         </div>
                         <h1 class="hero-display">
                             Ship interfaces<br>
                             that feel <span class="text-gradient">alive</span>
                         </h1>
-                        <p class="text-xl text-muted max-w-xl leading-relaxed mb-8">
+                        <p class="text-xl opacity-70 max-w-xl leading-relaxed mb-8">
                             One CSS file. Zero config. Glass, glow, and semantic defaults that make
                             AI-generated markup look intentional — not generic.
                         </p>
@@ -430,7 +160,7 @@
                             <a href="#cta" class="btn-glossy-primary btn-lg">Get QuantumCSS</a>
                             <a href="#craft" class="btn-glossy btn-lg">See the craft</a>
                         </div>
-                        <div class="hero-checks flex flex-wrap items-center gap-6 text-muted text-sm">
+                        <div class="hero-checks flex flex-wrap items-center gap-6 opacity-70 text-sm">
                             <span class="flex items-center gap-2"><i class="icon-check-circle-fill"></i> ~33 KB gzipped</span>
                             <span class="flex items-center gap-2"><i class="icon-check-circle-fill"></i> Dark &amp; light</span>
                             <span class="flex items-center gap-2"><i class="icon-check-circle-fill"></i> JIT utilities</span>
@@ -446,29 +176,29 @@
                             <div class="telemetry-kpis grid grid-cols-3 gap-4">
                                 <div>
                                     <div class="metric-value text-gradient">98</div>
-                                    <p class="text-xs text-muted-sm mt-1">Lighthouse</p>
+                                    <p class="text-xs opacity-60 mt-1">Lighthouse</p>
                                 </div>
                                 <div>
                                     <div class="metric-value">1.2s</div>
-                                    <p class="text-xs text-muted-sm mt-1">FCP</p>
+                                    <p class="text-xs opacity-60 mt-1">FCP</p>
                                 </div>
                                 <div>
                                     <div class="metric-value">0</div>
-                                    <p class="text-xs text-muted-sm mt-1">Runtime JS*</p>
+                                    <p class="text-xs opacity-60 mt-1">Runtime JS*</p>
                                 </div>
                             </div>
-                            <p class="text-xs text-muted-xs mt-4">*Styling requires zero JS; theme stars are optional.</p>
+                            <p class="text-xs opacity-50 mt-4">*Styling requires zero JS; theme stars are optional.</p>
                         </div>
                         <div class="hero-side-cards grid grid-cols-2 gap-4">
                             <div class="card-premium p-5 float-card float-card-delay">
                                 <i class="icon-activity mb-3" style="color: var(--q-color-starlight-blue); background-color: var(--q-color-starlight-blue)"></i>
                                 <h3 class="text-lg font-bold mb-1">Glass surfaces</h3>
-                                <p class="text-sm text-muted-soft">Hardware blur, depth, and hover lift built in.</p>
+                                <p class="text-sm opacity-65">Hardware blur, depth, and hover lift built in.</p>
                             </div>
                             <div class="glass p-5 float-card">
                                 <i class="icon-starlight mb-3" style="color: var(--q-color-starlight-peach); background-color: var(--q-color-starlight-peach)"></i>
                                 <h3 class="text-lg font-bold mb-1">Starlight tokens</h3>
-                                <p class="text-sm text-muted-soft">Cosmic blues, peach glows, nebula motion.</p>
+                                <p class="text-sm opacity-65">Cosmic blues, peach glows, nebula motion.</p>
                             </div>
                         </div>
                     </div>
@@ -482,19 +212,19 @@
                 <div class="dashboard grid grid-cols-2 md:grid-cols-4 gap-6">
                     <div class="card text-center">
                         <div class="metric-value text-gradient">14+</div>
-                        <p class="text-muted-sm mt-2">Demo templates</p>
+                        <p class="opacity-60 mt-2">Demo templates</p>
                     </div>
                     <div class="card text-center">
                         <div class="metric-value">1</div>
-                        <p class="text-muted-sm mt-2">CSS file to ship</p>
+                        <p class="opacity-60 mt-2">CSS file to ship</p>
                     </div>
                     <div class="card text-center">
                         <div class="metric-value">∞</div>
-                        <p class="text-muted-sm mt-2">Semantic defaults</p>
+                        <p class="opacity-60 mt-2">Semantic defaults</p>
                     </div>
                     <div class="card text-center">
                         <div class="metric-value">AI</div>
-                        <p class="text-muted-sm mt-2">Token-efficient markup</p>
+                        <p class="opacity-60 mt-2">Token-efficient markup</p>
                     </div>
                 </div>
             </div>
@@ -509,7 +239,7 @@
                         Designed for humans.<br>
                         <span class="text-gradient">Optimized for agents.</span>
                     </h2>
-                    <p class="text-lg text-muted leading-relaxed">
+                    <p class="text-lg opacity-70 leading-relaxed">
                         QuantumCSS rewards short, readable HTML. Components carry the decoration;
                         utilities exist as an escape hatch — not the default dialect.
                     </p>
@@ -576,7 +306,7 @@
                     <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">
                         Less class noise.<br>More <span class="text-gradient">signal</span>.
                     </h2>
-                    <p class="text-lg text-muted">Same card. Two philosophies. Guess which one agents prefer.</p>
+                    <p class="text-lg opacity-70">Same card. Two philosophies. Guess which one agents prefer.</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -674,7 +404,7 @@
                     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                         <div>
                             <h3 class="text-xl font-bold">Mission control</h3>
-                            <p class="text-sm text-muted-sm">Dashboard grid using semantic layout tokens</p>
+                            <p class="text-sm opacity-60">Dashboard grid using semantic layout tokens</p>
                         </div>
                         <div class="flex gap-2">
                             <span class="badge badge-primary">Realtime</span>
@@ -684,7 +414,7 @@
                     <div class="dashboard">
                         <div class="card">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="text-muted-sm text-sm">Active agents</span>
+                                <span class="opacity-60 text-sm">Active agents</span>
                                 <i class="icon-users"></i>
                             </div>
                             <div class="metric-value">247</div>
@@ -692,7 +422,7 @@
                         </div>
                         <div class="card">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="text-muted-sm text-sm">Tokens saved</span>
+                                <span class="opacity-60 text-sm">Tokens saved</span>
                                 <i class="icon-trend-up"></i>
                             </div>
                             <div class="metric-value">4.2M</div>
@@ -700,7 +430,7 @@
                         </div>
                         <div class="card">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="text-muted-sm text-sm">Build time</span>
+                                <span class="opacity-60 text-sm">Build time</span>
                                 <i class="icon-clock-fill"></i>
                             </div>
                             <div class="metric-value">820ms</div>
@@ -766,23 +496,23 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
                     <div class="card price-card p-8 flex flex-col">
                         <h3 class="text-lg font-bold mb-1">Orbit</h3>
-                        <p class="text-muted-sm text-sm mb-6">Personal experiments</p>
+                        <p class="opacity-60 text-sm mb-6">Personal experiments</p>
                         <div class="metric-value mb-6">$0</div>
-                        <ul class="text-muted-list text-sm leading-loose mb-8 flex-1">
+                        <ul class="opacity-75 text-sm leading-loose mb-8 flex-1">
                             <li>Full component set</li>
                             <li>Dark &amp; light themes</li>
                             <li>All demo templates</li>
                         </ul>
                         <button type="button" class="btn-outline w-full">Clone repo</button>
                     </div>
-                    <div class="card-premium price-card featured p-8 flex flex-col">
+                    <div class="card-premium is-featured price-card p-8 flex flex-col">
                         <div class="flex items-center justify-between mb-1">
                             <h3 class="text-lg font-bold">Nebula</h3>
                             <span class="badge badge-primary">Popular</span>
                         </div>
-                        <p class="text-muted-sm text-sm mb-6">Product teams &amp; agents</p>
+                        <p class="opacity-60 text-sm mb-6">Product teams &amp; agents</p>
                         <div class="metric-value text-gradient mb-6">$0</div>
-                        <ul class="text-muted-list text-sm leading-loose mb-8 flex-1">
+                        <ul class="opacity-75 text-sm leading-loose mb-8 flex-1">
                             <li>Everything in Orbit</li>
                             <li>JIT + CLI generator</li>
                             <li>Starlight motion kit</li>
@@ -792,9 +522,9 @@
                     </div>
                     <div class="card price-card p-8 flex flex-col">
                         <h3 class="text-lg font-bold mb-1">Quasar</h3>
-                        <p class="text-muted-sm text-sm mb-6">Deep customization</p>
+                        <p class="opacity-60 text-sm mb-6">Deep customization</p>
                         <div class="metric-value mb-6">$0</div>
-                        <ul class="text-muted-list text-sm leading-loose mb-8 flex-1">
+                        <ul class="opacity-75 text-sm leading-loose mb-8 flex-1">
                             <li>Source CSS ownership</li>
                             <li>Token overrides</li>
                             <li>Community support</li>
@@ -814,7 +544,7 @@
                         Paint the void<br>
                         with <span class="text-gradient">intention</span>
                     </h2>
-                    <p class="text-lg text-muted max-w-xl mx-auto mb-10 leading-relaxed">
+                    <p class="text-lg opacity-70 max-w-xl mx-auto mb-10 leading-relaxed">
                         Drop in one stylesheet and stop fighting your CSS. Aurora is a living proof that
                         QuantumCSS can carry a full product narrative without utility noise.
                     </p>
@@ -839,10 +569,10 @@
                 <i class="icon-starlight"></i>
                 <span class="text-gradient font-bold">AURORA</span>
             </a>
-            <p class="text-sm text-muted-footer text-center">
+            <p class="text-sm opacity-55 text-center">
                 Showcase page built with <strong>QuantumCSS</strong> — beautiful UI by default.
             </p>
-            <div class="flex gap-4 text-muted">
+            <div class="flex gap-4 opacity-70">
                 <a href="https://github.com/macroadster/quantumcss" aria-label="GitHub"><i class="icon-github"></i></a>
                 <a href="index.html" aria-label="Examples home"><i class="icon-home-fill"></i></a>
                 <a href="kitchen-sink.html" aria-label="Kitchen sink"><i class="icon-grid"></i></a>

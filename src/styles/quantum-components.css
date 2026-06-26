@@ -6791,3 +6791,172 @@ html[data-theme="light"] .nav-header .banner {
 }
 
 .gallery-item:hover img { transform: scale(1.05); }
+
+/* ── Theme toggle (circular control used across examples) ── */
+.theme-toggle,
+[data-theme-toggle] {
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--q-color-border, rgba(255, 255, 255, 0.12));
+  background: var(--q-color-surface, rgba(255, 255, 255, 0.06));
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    transform var(--q-duration-base, 0.2s) ease,
+    border-color var(--q-duration-base, 0.2s) ease,
+    background-color var(--q-duration-base, 0.2s) ease;
+}
+.theme-toggle:hover,
+[data-theme-toggle]:hover {
+  transform: scale(1.06);
+  border-color: var(--q-color-starlight-blue, #00d4ff);
+}
+.theme-toggle i,
+.theme-toggle .icon,
+[data-theme-toggle] i {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+html[data-theme="light"] .theme-toggle,
+html[data-theme="light"] [data-theme-toggle] {
+  background: var(--q-light-card-bg, #fff);
+  border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.12));
+  color: var(--q-light-text, #0f172a);
+}
+
+/* Light-mode parity: starlight surfaces, nav, stars (shared across showcases) */
+html[data-theme="light"] .starlight-stars {
+  opacity: 0.12;
+  background: transparent;
+}
+html[data-theme="light"] .starlight-card {
+  background: var(--q-light-card-bg, #ffffff);
+  border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.1));
+  color: var(--q-light-text, #0f172a);
+}
+html[data-theme="light"] .starlight-card h3,
+html[data-theme="light"] .card-premium h3 {
+  color: var(--q-light-text, #0f172a);
+}
+html[data-theme="light"] .starlight-card p,
+html[data-theme="light"] .card-premium p,
+html[data-theme="light"] .glass p {
+  color: var(--q-light-text-muted, #475569);
+}
+html[data-theme="light"] .card-premium {
+  background: var(--q-light-card-bg, #ffffff);
+  border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.12));
+  color: var(--q-light-text, #0f172a);
+}
+html[data-theme="light"] .nav-header {
+  background: color-mix(in srgb, var(--q-light-card-bg, #fff) 92%, transparent);
+  border-bottom-color: var(--q-light-card-border, rgba(15, 23, 42, 0.1));
+}
+html[data-theme="light"] .nav-header .nav-links > a,
+html[data-theme="light"] .nav-header .nav-link {
+  color: var(--q-light-text-muted, #475569);
+}
+html[data-theme="light"] .nav-header .nav-links > a:hover,
+html[data-theme="light"] .nav-header .nav-link:hover {
+  color: var(--q-color-primary, #3b82f6);
+}
+html[data-theme="light"] .text-gradient {
+  background: linear-gradient(135deg, #0369a1, #7c3aed) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Starlight marketing atoms (landing / showcase) */
+.section-label,
+.starlight-kicker {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--q-color-starlight-blue, #00d4ff);
+  margin-bottom: 0.75rem;
+}
+.metric-value,
+.starlight-metric {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.feature-icon,
+.starlight-icon-tile {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  background: color-mix(in srgb, var(--q-color-starlight-blue, #00d4ff) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--q-color-starlight-blue, #00d4ff) 28%, transparent);
+  color: var(--q-color-starlight-blue, #00d4ff);
+}
+.feature-icon i,
+.starlight-icon-tile i {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+html[data-theme="light"] .feature-icon,
+html[data-theme="light"] .starlight-icon-tile {
+  background: rgba(3, 105, 161, 0.08);
+  border-color: rgba(3, 105, 161, 0.2);
+  color: #0369a1;
+}
+
+/* Ambient orbs (fixed blurred gradients behind content) */
+.starlight-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+.starlight-orb-cyan {
+  width: 42vw;
+  height: 42vw;
+  top: -12%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.35), transparent 70%);
+}
+.starlight-orb-peach {
+  width: 36vw;
+  height: 36vw;
+  bottom: 10%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(255, 179, 138, 0.22), transparent 70%);
+}
+.starlight-orb-violet {
+  width: 28vw;
+  height: 28vw;
+  top: 45%;
+  left: 40%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.18), transparent 70%);
+}
+html[data-theme="light"] .starlight-orb {
+  opacity: 0.12;
+}
+
+.card-premium.is-featured,
+.price-card-featured {
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue, #00d4ff) 45%, transparent);
+  box-shadow: 0 0 40px color-mix(in srgb, var(--q-color-starlight-blue, #00d4ff) 12%, transparent);
+}
+@media (min-width: 901px) {
+  .card-premium.is-featured,
+  .price-card-featured {
+    transform: scale(1.02);
+  }
+}
