@@ -91,26 +91,51 @@ html[data-theme="light"] .btn:active {
   box-shadow: 0 0 10px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%);
 }
 
+/* Standalone variants — do not require combining with .btn */
 .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: transparent;
-  color: var(--q-color-primary);
-  border-color: var(--q-color-primary);
+  color: var(--q-color-primary, #3b82f6);
+  border: 1px solid var(--q-color-primary, #3b82f6);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .btn-outline:hover {
-  background-color: var(--q-color-primary);
-  color: white;
-  border-color: var(--q-color-primary);
+  background-color: var(--q-color-primary, #3b82f6);
+  color: #fff;
+  border-color: var(--q-color-primary, #3b82f6);
+}
+
+.btn-outline:active {
+  transform: translateY(0) scale(0.97);
 }
 
 .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: transparent;
-  color: var(--q-color-primary);
-  border-color: transparent;
+  color: var(--q-color-primary, #3b82f6);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .btn-ghost:hover {
-  background-color: var(--q-color-primary-100);
+  background-color: var(--q-color-primary-100, #dbeafe);
 }
 
 .btn-sm {
