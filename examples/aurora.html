@@ -209,7 +209,8 @@
         <!-- Metrics strip -->
         <section class="py-12 border-y" style="border-color: var(--q-color-border)">
             <div class="container px-6">
-                <div class="dashboard grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- 4-up strip: do not use .dashboard (alias is lg:grid-cols-3) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <div class="card text-center">
                         <div class="metric-value text-gradient">14+</div>
                         <p class="opacity-60 mt-2">Demo templates</p>
