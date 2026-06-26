@@ -407,6 +407,9 @@
                 font-size: 0.75rem;
                 font-weight: 600;
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                /* Always light text — dark theme vars must not leak in light mode */
+                color: #fff !important;
+                -webkit-text-fill-color: #fff;
             }
             .video-info {
                 display: flex;
@@ -537,6 +540,9 @@
                 padding: 0.25rem 0.5rem;
                 border-radius: 6px;
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                /* Always light text — dark theme vars must not leak in light mode */
+                color: #fff !important;
+                -webkit-text-fill-color: #fff;
             }
             .short-title {
                 font-size: 0.875rem;
@@ -614,6 +620,14 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
+            }
+            /* Thumbnail overlays stay dark chips with white labels in light mode */
+            html[data-theme="light"] .video-duration,
+            html[data-theme="light"] .short-views {
+                background: rgba(15, 23, 42, 0.88);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: #fff !important;
+                -webkit-text-fill-color: #fff;
             }
 
             @media (max-width: 1024px) {
