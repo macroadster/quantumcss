@@ -39,7 +39,10 @@ We use a **Research -> Strategy -> Execution** lifecycle for all changes.
 
 ### 3. Static utilities
 *   Atomic utilities live in `src/styles/quantum-utilities.css`. Maintainers can refresh the catalog with `npm run emit:utils` (`src/generator.js` is emit-only, not the product build).
-*   Ensure that any new utility added is "tree-shakable"—it should only appear in the final CSS if it's used in the scanned content files.
+*   Named UI belongs in `quantum-components.css` only. See `component-owned-classes.json` and `.grok/skills/quantumcss/SKILL.md` for AI usage rules.
+
+### 4. AI agents
+*   Use [`.grok/skills/quantumcss/SKILL.md`](.grok/skills/quantumcss/SKILL.md) as the single agent guide (replaces the old `AI_DEVELOPER_GUIDE.md` / `AI_PROMPT_EXAMPLES.md` / `SYSTEM_PROMPT.md`).
 
 #### Plugins & Extensions
 You can extend QuantumCSS without modifying the core by creating a plugin. A plugin is a JavaScript function that receives the following context:

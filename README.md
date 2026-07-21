@@ -254,6 +254,14 @@ Working examples in the [examples/](examples/) directory:
 - **CSS containment** isolates layout and paint for complex effects
 - **Static catalog** -- predictable utilities; no per-project class scan required
 
+## AI agents
+
+For AI-assisted UI generation, use the project skill:
+
+- [`.grok/skills/quantumcss/SKILL.md`](.grok/skills/quantumcss/SKILL.md) — token-efficient markup rules, components, theming, and guardrails
+
+Load it via `/quantumcss` (Grok) or paste the skill into your agent system prompt. Prefer bare HTML → component classes → utilities.
+
 ## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
