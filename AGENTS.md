@@ -144,6 +144,7 @@ npm run theme        # optional: theme-overlay.css from quantum.config.json
 
 - `src/defaults.js` + `src/generator.js` remain as **emit inputs** for `scripts/emit-static-utilities.js`.
 - They are **not** part of the package build path. Prefer editing static CSS long-term; shrink/remove the JS catalog as presets move fully into CSS.
+- Named UI class names are listed in `src/styles/component-owned-classes.json`. Emit excludes them so they cannot reappear in `quantum-utilities.css`.
 
 ### Example HTML
 

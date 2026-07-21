@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 /**
- * One-shot (or occasional) emitter: freeze finite utility catalog as static CSS.
+ * Maintainer tool: rebuild finite atomic utility catalog as static CSS.
  * Output: src/styles/quantum-utilities.css
  *
- * Sources:
- *  1. All utilityMaps keys (object atomics + string aliases)
- *  2. All class tokens + colon-variants found in examples/
- *  3. Leaves used by string-alias expansion (so dynamics like bg-white_10 resolve)
+ * Emits ONLY atomic utilities (object entries in defaults + example-used atomics).
+ * Named UI components are owned by quantum-components.css — excluded via
+ * src/styles/component-owned-classes.json (see scripts/fix-dual-ownership.js).
  *
  * Does NOT emit a second :root token block (tokens live in quantum-base.css).
  */
@@ -19,6 +18,12 @@ const { generateCSS } = require('../src/generator');
 
 const OUT = path.resolve(__dirname, '../src/styles/quantum-utilities.css');
 const EXAMPLES = path.resolve(__dirname, '../examples');
+const OWNED_PATH = path.resolve(__dirname, '../src/styles/component-owned-classes.json');
+
+function loadOwned() {
+  if (!fs.existsSync(OWNED_PATH)) return new Set();
+  return new Set(JSON.parse(fs.readFileSync(OWNED_PATH, 'utf8')));
+}
 
 function expandAliasLeaves(cls, seen = new Set()) {
   if (seen.has(cls)) return [];
@@ -44,77 +49,88 @@ function collectExampleClasses() {
   return classes;
 }
 
+function baseClassName(token) {
+  // strip variant prefixes like md:, hover:, group-hover:
+  const parts = token.split(':');
+  return parts[parts.length - 1].replace(/^-/, '');
+}
+
 function main() {
+  const owned = loadOwned();
   const classes = new Set();
 
-  // 1. Every catalogued utility / alias
-  for (const key of Object.keys(utilityMaps)) {
-    classes.add(key);
-    // Also force-expand leaves so dynamic tokens inside aliases are generated
-    expandAliasLeaves(key).forEach((c) => classes.add(c));
+  // 1. Object atomics only (not string aliases / named presets)
+  for (const [key, value] of Object.entries(utilityMaps)) {
+    if (typeof value === 'string') {
+      // Still expand leaves so atomics referenced only via aliases exist
+      expandAliasLeaves(key).forEach((c) => {
+        if (!owned.has(c) && typeof utilityMaps[c] !== 'string') classes.add(c);
+      });
+      continue;
+    }
+    if (!owned.has(key)) classes.add(key);
   }
 
-  // 2. Everything used in examples (includes md:, hover:, arbitrary, etc.)
+  // 2. Example classes that are not component-owned named UI
   const exampleClasses = collectExampleClasses();
-  exampleClasses.forEach((c) => classes.add(c));
+  for (const c of exampleClasses) {
+    if (!c) continue;
+    const base = baseClassName(c);
+    if (owned.has(base) || owned.has(c)) continue;
+    // Skip pure component names even if not in owned list (heuristic: long starlight-*)
+    classes.add(c);
+  }
 
-  // Filter out pure component-looking tokens that aren't utilities? Keep all —
-  // generator ignores unknowns.
   const list = [...classes].filter(Boolean).sort();
-  console.log(`📦 Emitting ${list.length} class tokens (${exampleClasses.size} from examples, ${Object.keys(utilityMaps).length} from maps)`);
+  console.log(
+    `📦 Emitting ${list.length} atomic tokens (examples: ${exampleClasses.size}, owned excluded: ${owned.size})`
+  );
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'qcss-emit-'));
   const htmlPath = path.join(tmpDir, 'all.html');
-  // Split into chunks to avoid absurdly long attributes
   const chunkSize = 80;
   let html = '';
   for (let i = 0; i < list.length; i += chunkSize) {
-    const chunk = list.slice(i, i + chunkSize).join(' ');
-    html += `<div class="${chunk}"></div>\n`;
+    html += `<div class="${list.slice(i, i + chunkSize).join(' ')}"></div>\n`;
   }
   fs.writeFileSync(htmlPath, html);
 
   const configPath = path.join(tmpDir, 'quantum.config.json');
   fs.writeFileSync(
     configPath,
-    JSON.stringify(
-      {
-        content: [htmlPath],
-        theme: { extend: {} },
-        plugins: [],
-        componentPresets: {},
-      },
-      null,
-      2
-    )
+    JSON.stringify({ content: [htmlPath], theme: { extend: {} }, plugins: [], componentPresets: {} }, null, 2)
   );
 
   let css = generateCSS(configPath);
-
-  // Strip JIT :root token block — tokens are owned by quantum-base.css
   css = css.replace(/:root\s*\{[\s\S]*?\}\s*\n*/, '');
   css = css.replace(/^\/\* Quantum CSS JIT Output \*\/\s*/m, '');
 
+  // Final safety: strip any rules whose primary class is component-owned
+  // (media-query responsive variants of owned names should not reappear)
+  const ownedList = [...owned];
+  for (const name of ownedList) {
+    const esc = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // Remove simple .name { ... } blocks at top level (best-effort)
+    css = css.replace(new RegExp(`\\.${esc}(?![\\w-])[^{]*\\{[^}]*\\}\\s*`, 'g'), '');
+  }
+
   const header = `/*!
  * QuantumCSS static utilities
- * Finite atomic + preset catalog. Do not dual-define these in component CSS.
+ * Finite atomic utility catalog only. Named UI lives in quantum-components.css.
  * Tokens: quantum-base.css. Named decorated UI: quantum-components.css.
  * Generated by scripts/emit-static-utilities.js — re-run after catalog changes,
  * then prefer hand-edits to this file for ongoing maintenance.
+ * Component-owned class names: see component-owned-classes.json
  */
 
 `;
 
   const finalCss = header + css.trim() + '\n';
   fs.writeFileSync(OUT, finalCss);
-
-  // Cleanup
   fs.rmSync(tmpDir, { recursive: true, force: true });
 
-  const kb = (finalCss.length / 1024).toFixed(1);
-  const rules = (finalCss.match(/\{[^}]+\}/g) || []).length;
   console.log(`✅ Wrote ${OUT}`);
-  console.log(`   Size: ${kb} KB raw, ~${rules} rule blocks`);
+  console.log(`   Size: ${(finalCss.length / 1024).toFixed(1)} KB raw`);
 }
 
 main();
