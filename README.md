@@ -258,9 +258,9 @@ Working examples in the [examples/](examples/) directory:
 
 For AI-assisted UI generation, use the project skill:
 
-- [`.grok/skills/quantumcss/SKILL.md`](.grok/skills/quantumcss/SKILL.md) — token-efficient markup rules, components, theming, and guardrails
+- [`SKILL.md`](SKILL.md) — token-efficient markup rules, components, theming, and guardrails
 
-Load it via `/quantumcss` (Grok) or paste the skill into your agent system prompt. Prefer bare HTML → component classes → utilities.
+Load or paste `SKILL.md` into your agent system prompt. Prefer bare HTML → component classes → utilities.
 
 ## Contributing
 
