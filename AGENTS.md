@@ -104,37 +104,46 @@ git push                # Push to remote
 
 ---
 
-## CSS Architecture: JIT vs Component CSS
+## CSS Architecture: Static-First
 
-This project has two CSS generation systems. They must **never define the same class**.
+The product ships **only static CSS**. There is no content-scan JIT in `npm run build`.
+Tree-shaking class collection is gone — maintain finite static catalogs instead.
 
 ### Ownership Rules
 
-| System | File | Owns | Properties |
-|--------|------|------|------------|
-| **JIT aliases** | `src/defaults.js` (string entries) | Layout & sizing | `display`, `flex-*`, `grid-*`, `position`, `width`, `height`, `padding`, `margin`, `overflow`, `gap` |
-| **Component CSS** | `src/styles/quantum-components.css` | Decoration & theming | `background`, `border`, `color`, `box-shadow`, `backdrop-filter`, `border-radius`, `transition`, `animation` |
+| Layer | File | Owns |
+|-------|------|------|
+| **Tokens** | `src/styles/quantum-base.css` | All `--q-*` design tokens (`:root` only) |
+| **Icons** | `src/styles/quantum-icons.css` | Icon mask utilities |
+| **Components** | `src/styles/quantum-components.css` | Named UI (layout + decoration for that component) |
+| **Animations** | `src/styles/quantum-animations.css` | `@keyframes` and `.ani-*` |
+| **Utilities** | `src/styles/quantum-utilities.css` | Finite atomic + layout-preset catalog |
+| **Theme overlay** | `quantumcss theme` / kitchen-sink knobs | Optional `--q-*` overrides only |
 
 ### Decision Rules
 
-1. **If a class needs decoration** (backgrounds, borders, shadows, transitions, hover states, light-mode overrides) → define it **only in component CSS**. Do not add a JIT alias.
-2. **If a class is purely structural** (flex/grid layout, sizing, spacing, overflow) → define it **only as a JIT alias** in `defaults.js`. Do not add a component CSS rule.
-3. **Never define the same class in both systems.** JIT loads after component CSS in the build, so JIT silently wins cascade conflicts.
-4. **JIT property/value objects** (non-string entries like `flex`, `hidden`, `truncate`) are for atomic utilities only, never for named components.
-
-### Where Things Live
-
-- **Layout presets** (`email-nav`, `layout-email-3col`, `music-footer`, etc.) → JIT aliases in `defaults.js`
-- **Decorated components** (`search`, `search-input`, `nav-glass`, `nav-header`, `glass`, `gallery`, etc.) → Component CSS only
-- **UI widget bases** (`starlight-table-*`, `starlight-chart-*`, `starlight-player-*`) → JIT aliases for base layout, component CSS for variants/states/children only (light mode, hover, th/td styling)
+1. **Named UI components** (buttons, cards, shells, dialogs, search, starlight widgets) → define the **full** class in component CSS (or once in utilities after emit). Prefer components for decorated names.
+2. **Atomic utilities** (`flex`, `p-4`, `text-sm`, `gap-2`) → `quantum-utilities.css` only.
+3. **Never define the same class in two static files.** Utilities layer loads last and wins cascade conflicts.
+4. **Do not reintroduce content-scan JIT** into `scripts/build.js`. Refresh utilities with `npm run emit:utils` only when the catalog sources change, then prefer hand-edits to the CSS.
+5. **Theming** is CSS variables — kitchen-sink Theme Designer and `quantum.config.json` only change tokens, not class collection.
 
 ### Build Pipeline
 
 ```
-quantum-base.css → quantum-icons.css → quantum-components.css → quantum-animations.css → JIT utilities
+quantum-base.css → quantum-icons.css → quantum-components.css → quantum-animations.css → quantum-utilities.css
 ```
 
-JIT output is appended **last**, so it wins all cascade ties. This is why conflicts are dangerous.
+```bash
+npm run build        # static concat + minify → dist/quantum.min.css
+npm run emit:utils   # maintainer: rebuild quantum-utilities.css from defaults + example class inventory
+npm run theme        # optional: theme-overlay.css from quantum.config.json
+```
+
+### Legacy bridge (maintainers only)
+
+- `src/defaults.js` + `src/generator.js` remain as **emit inputs** for `scripts/emit-static-utilities.js`.
+- They are **not** part of the package build path. Prefer editing static CSS long-term; shrink/remove the JS catalog as presets move fully into CSS.
 
 ### Example HTML
 

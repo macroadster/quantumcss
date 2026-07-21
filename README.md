@@ -91,7 +91,7 @@ Then either link the CSS directly:
 <link rel="stylesheet" href="node_modules/@howssatoshi/quantumcss/dist/quantum.min.css">
 ```
 
-Or use the CLI to build a custom bundle with JIT utilities:
+Or use the CLI to emit a theme variable overlay:
 ```bash
 npx quantumcss build
 ```
@@ -177,7 +177,7 @@ These compose the full Starlight design system -- a cosmic, glassmorphic aesthet
 
 ## Utility Escape Hatch
 
-When you need fine-grained control, QuantumCSS includes a JIT utility engine. These are the exception, not the rule:
+When you need fine-grained control, QuantumCSS includes a **finite static utility catalog** (not a content-scan JIT). These are the exception, not the rule:
 
 ```html
 <!-- Override spacing on a specific element -->
@@ -187,23 +187,11 @@ When you need fine-grained control, QuantumCSS includes a JIT utility engine. Th
 <div class="grid grid-cols-2 gap-4">...</div>
 ```
 
-### Attribute-based variants
-
-Instead of cramming variants into class strings, QuantumCSS uses HTML attributes for responsive and interactive states:
-
-```html
-<div class="grid cols-1" md="cols-3" hover="bg-primary" dark="bg-black">
-  <button class="btn-primary" hover="scale-105" active="scale-95">
-    Launch
-  </button>
-</div>
-```
-
-This keeps markup readable and avoids the `class="sm:flex md:grid lg:grid-cols-3 xl:gap-8 hover:bg-blue-500 dark:bg-gray-900"` problem.
+Utilities live in `src/styles/quantum-utilities.css` and ship inside `dist/quantum.min.css`. Prefer semantic component classes first.
 
 ### Available utilities
 
-The JIT engine supports spacing, colors, typography, layout, transforms, gradients, and more. Run `npx quantumcss manifest` to generate a complete catalog of available tokens for your project.
+Spacing, colors, typography, layout, and common responsive/hover variants used by the examples are pre-baked. Run `npx quantumcss manifest` for architecture notes, or browse `quantum-utilities.css` for the catalog.
 
 ## Theming
 
@@ -231,13 +219,14 @@ The default theme is "Starlight" -- a cosmic glassmorphic aesthetic with translu
 ## CLI
 
 ```bash
-npx quantumcss init                         # Create quantum.config.json
-npx quantumcss build                        # Build dist/quantum.css
-npx quantumcss build custom.css             # Custom output path
-npx quantumcss watch                        # Rebuild on file changes
-npx quantumcss scaffold blog index.html     # Generate starter template
-npx quantumcss manifest design-system.json  # Export design tokens for AI
+npx quantumcss init                         # Create theme-only quantum.config.json
+npx quantumcss theme                        # Emit CSS variable overlay (theme-overlay.css)
+npx quantumcss theme custom-theme.css       # Custom overlay path
+npx quantumcss scaffold blog index.html     # Copy a starter template
+npx quantumcss manifest design-system.json  # Architecture notes for AI agents
 ```
+
+The full library is **static**: `npm run build` concatenates the style layers into `dist/quantum.min.css` with no HTML scanning. Theme knobs only change CSS variables.
 
 ## Demo Pages
 
@@ -259,11 +248,11 @@ Working examples in the [examples/](examples/) directory:
 
 ## Performance
 
-- **~33 KB gzipped** -- full library including components, animations, and JIT utilities
+- **~35 KB gzipped** -- full library including components, animations, and static utilities
 - **Zero runtime JavaScript** required for styling
 - **GPU-accelerated animations** with `will-change` and hardware transforms
 - **CSS containment** isolates layout and paint for complex effects
-- **JIT tree-shaking** -- only utilities you use appear in production builds
+- **Static catalog** -- predictable utilities; no per-project class scan required
 
 ## Contributing
 

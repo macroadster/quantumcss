@@ -20,7 +20,7 @@ We use a **Research -> Strategy -> Execution** lifecycle for all changes.
 3.  **Issue Tracking**: We use `bd` (beads) for local issue tracking. Run `bd onboard` to get started.
 4.  **Create a Branch**: Create a feature branch for your changes.
 5.  **Build and Test**: 
-    *   Run `npm run build:dev` to build the library and run the JIT engine.
+    *   Run `npm run build:dev` to build the static library (no class scan).
     *   Run `npm run docs` to generate the "Kitchen Sink" (`examples/kitchen-sink.html`) and verify your changes visually.
     *   Verify your changes across multiple templates in the `/examples` directory.
 
@@ -34,11 +34,11 @@ We use a **Research -> Strategy -> Execution** lifecycle for all changes.
 
 ### 2. CSS & Variables
 *   **Prefixing**: All CSS variables must use the `--q-` prefix (e.g., `--q-color-primary`).
-*   **JIT Rules**: When adding new utilities to `src/defaults.js` or `src/generator.js`, ensure they support opacity variants (using `/`) and breakpoints (using `:`) where applicable.
+*   **JIT Rules**: When adding new utilities to `src/styles/quantum-utilities.css` (or `src/defaults.js` before re-emit), ensure they support opacity variants (using `/`) and breakpoints (using `:`) where applicable.
 *   **Hardware Acceleration**: Any animation that affects layout (like `transform` or `opacity`) should use `will-change` and `translateZ(0)` for GPU acceleration.
 
-### 3. JIT Engine
-*   The JIT engine lives in `src/generator.js`.
+### 3. Static utilities
+*   Atomic utilities live in `src/styles/quantum-utilities.css`. Maintainers can refresh the catalog with `npm run emit:utils` (`src/generator.js` is emit-only, not the product build).
 *   Ensure that any new utility added is "tree-shakable"—it should only appear in the final CSS if it's used in the scanned content files.
 
 #### Plugins & Extensions

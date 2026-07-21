@@ -4,7 +4,6 @@ const zlib = require('zlib');
 const postcss = require('postcss');
 const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
-const { generateCSS } = require('../src/generator');
 const pkg = require('../package.json');
 
 class QuantumCSSBuilder {
@@ -12,18 +11,21 @@ class QuantumCSSBuilder {
     this.config = {
       inputDir: path.resolve(__dirname, '../src/styles'),
       outputFile: path.resolve(__dirname, '../dist/quantum.min.css'),
-      configPath: path.resolve(__dirname, '../quantum.config.json'),
       minify: false,
       watch: false,
       analyze: false,
       ...config
     };
     
+    // Static-only pipeline. Utilities are a finite catalog in quantum-utilities.css
+    // (emit via `node scripts/emit-static-utilities.js` when the catalog changes).
+    // No content-scan JIT in the package build.
     this.cssFiles = [
       { file: 'quantum-base.css', layer: 'base' },
       { file: 'quantum-icons.css', layer: 'icons' },
       { file: 'quantum-components.css', layer: 'components' },
-      { file: 'quantum-animations.css', layer: 'animations' }
+      { file: 'quantum-animations.css', layer: 'animations' },
+      { file: 'quantum-utilities.css', layer: 'utilities' }
     ];
   }
 
@@ -72,13 +74,10 @@ class QuantumCSSBuilder {
         const content = fs.readFileSync(filePath, 'utf8');
         combinedCSS += `\n/* --- ${file} --- */\n@layer ${layer} {\n` + content + '\n}\n';
         console.log(`✓ Loaded static ${file} (${(content.length / 1024).toFixed(2)} KB)`);
+      } else {
+        console.warn(`⚠️  Missing static file: ${file}`);
       }
     }
-
-    console.log('✨ Running JIT Generator...');
-    const jitCSS = generateCSS(this.config.configPath);
-    combinedCSS += '\n/* --- JIT Utilities --- */\n@layer utilities {\n' + jitCSS + '\n}\n';
-    console.log(`✓ JIT Utilities generated`);
 
     combinedCSS = await this.processCSS(combinedCSS);
 
@@ -110,10 +109,9 @@ async function main() {
   if (config.watch) {
     const chokidar = require('chokidar');
     const watchPaths = [
-      path.resolve(__dirname, '../src'),
-      path.resolve(__dirname, '../quantum.config.json')
+      path.resolve(__dirname, '../src/styles')
     ];
-    console.log('👀 Watching for changes...');
+    console.log('👀 Watching static styles for changes...');
     const watcher = chokidar.watch(watchPaths, { ignoreInitial: true });
     let building = false;
     const rebuild = async () => {

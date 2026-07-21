@@ -18,11 +18,13 @@
     "build:dev": "node scripts/build.js",
     "watch": "node scripts/build.js --watch",
     "docs": "node scripts/build.js --docs",
-    "generate": "node src/cli.js",
-    "generate:watch": "node src/cli.js --watch",
+    "emit:utils": "node scripts/emit-static-utilities.js",
+    "theme": "node src/cli.js theme",
+    "generate": "node src/cli.js theme",
     "harvest:icons": "node scripts/harvest-icons.js",
     "release": "node scripts/release.js",
-    "lint:css": "stylelint 'src/styles/**/*.css'"
+    "lint:css": "stylelint 'src/styles/**/*.css'",
+    "test:unit": "node --test tests/static-css.spec.js tests/theme.spec.js"
   },
   "repository": {
     "type": "git",
