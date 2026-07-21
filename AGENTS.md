@@ -117,12 +117,12 @@ Tree-shaking class collection is gone — maintain finite static catalogs instea
 | **Icons** | `src/styles/quantum-icons.css` | Icon mask utilities |
 | **Components** | `src/styles/quantum-components.css` | Named UI (layout + decoration for that component) |
 | **Animations** | `src/styles/quantum-animations.css` | `@keyframes` and `.ani-*` |
-| **Utilities** | `src/styles/quantum-utilities.css` | Finite atomic + layout-preset catalog |
+| **Utilities** | `src/styles/quantum-utilities.css` | Finite atomic utility catalog only |
 | **Theme overlay** | `quantumcss theme` / kitchen-sink knobs | Optional `--q-*` overrides only |
 
 ### Decision Rules
 
-1. **Named UI components** (buttons, cards, shells, dialogs, search, starlight widgets) → define the **full** class in component CSS (or once in utilities after emit). Prefer components for decorated names.
+1. **Named UI components** (buttons, cards, shells, dialogs, search, starlight widgets, layout presets) → define the **full** class in `quantum-components.css` only.
 2. **Atomic utilities** (`flex`, `p-4`, `text-sm`, `gap-2`) → `quantum-utilities.css` only.
 3. **Never define the same class in two static files.** Utilities layer loads last and wins cascade conflicts.
 4. **Do not reintroduce content-scan JIT** into `scripts/build.js`. Refresh utilities with `npm run emit:utils` only when the catalog sources change, then prefer hand-edits to the CSS.

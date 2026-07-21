@@ -52,18 +52,38 @@ bd close <id>         # Complete work
 
 ## Build & Test
 
-_Add your build and test commands here_
-
 ```bash
-# Example:
-# npm install
-# npm test
+npm install
+npm run build          # static layers → dist/quantum.min.css
+npm run build:dev      # unminified build
+npm run test:unit      # static ownership + theme tests
+npm run emit:utils     # maintainer: refresh atomic utility catalog
+npm run theme          # emit theme-overlay.css from quantum.config.json
 ```
 
 ## Architecture Overview
 
-_Add a brief overview of your project architecture_
+**Static-first CSS library** (no content-scan JIT in product build):
+
+```
+quantum-base.css → quantum-icons.css → quantum-components.css
+  → quantum-animations.css → quantum-utilities.css
+  → dist/quantum.min.css
+```
+
+| Layer | Owns |
+|-------|------|
+| base | `--q-*` tokens, element defaults |
+| components | Named UI (full class definitions) |
+| utilities | Finite atomics only |
+| theme CLI | Optional CSS variable overlays |
+
+See **AGENTS.md** (maintainers) and **SKILL.md** (AI consumers).
 
 ## Conventions & Patterns
 
-_Add your project-specific conventions here_
+1. Bare HTML first → component classes → utilities last.
+2. Never define the same class in both components and utilities (`component-owned-classes.json`).
+3. Theme via `--q-*` and `html[data-theme="light|dark"]` only.
+4. Examples load only `dist/quantum.min.css`.
+5. Use `bd` for issue tracking (see beads section above).
