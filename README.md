@@ -74,6 +74,28 @@ This layering matters for AI-assisted development. Compare a card component:
 
 Same visual result. 10x fewer tokens. That efficiency compounds across every page, every component, every prompt.
 
+## Architecture
+
+The product is a **static CSS library** — one file, no HTML class scan, no tree-shaking build step for consumers.
+
+```
+quantum-base.css → quantum-icons.css → quantum-components.css
+  → quantum-animations.css → quantum-utilities.css
+  → dist/quantum.min.css
+```
+
+| Layer | Source | Owns |
+|-------|--------|------|
+| **Tokens & defaults** | `src/styles/quantum-base.css` | `--q-*` design tokens, bare element styles |
+| **Icons** | `src/styles/quantum-icons.css` | Icon mask utilities |
+| **Components** | `src/styles/quantum-components.css` | Named UI (cards, shells, dialogs, Starlight widgets) |
+| **Animations** | `src/styles/quantum-animations.css` | Keyframes and `.ani-*` |
+| **Utilities** | `src/styles/quantum-utilities.css` | Finite atomic escape hatch only |
+
+**Ownership rule:** never define the same class in both components and utilities. Named UI → components; atomics → utilities. The list of component-owned names is in `src/styles/component-owned-classes.json`.
+
+**Theming** is CSS variables only (`--q-*`, `html[data-theme]`). Optional: kitchen-sink Theme Designer knobs or `npx quantumcss theme` for a variable overlay. See [`SKILL.md`](SKILL.md) for AI-oriented usage rules and [`AGENTS.md`](AGENTS.md) for maintainer conventions.
+
 ## Quick Start
 
 ### CDN (no build step)
