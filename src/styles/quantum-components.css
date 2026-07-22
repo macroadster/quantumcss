@@ -433,8 +433,9 @@ html[data-theme="dark"] .btn-glossy-primary:active {
 }
 
 html[data-theme="light"] .card {
-  background-color: var(--q-light-card-bg, white);
-  color: var(--q-light-text, #1e293b);
+  background-color: var(--q-light-card-bg, #fff);
+  color: var(--q-light-text, #1c1917);
+  border-color: var(--q-light-card-border, rgba(28, 25, 23, 0.12));
 }
 
 .card:hover {
@@ -4087,13 +4088,32 @@ html[data-theme="light"] .nav-drawer-inner a:hover {
 }
 
 html[data-theme="light"] .card {
-  background: var(--q-light-card-bg);
-  backdrop-filter: blur(10px);
-  border-color: var(--q-light-card-border);
-  color: #334155;
-  box-shadow: 
-    0 10px 40px color-mix(in srgb, var(--q-color-primary), transparent 94%),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  background: var(--q-light-card-bg, #fff);
+  /* No heavy blur — solid paper surface, readable ink */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--q-light-card-border, rgba(28, 25, 23, 0.12));
+  color: var(--q-light-text, #1c1917);
+  box-shadow: var(--q-card-shadow, 0 8px 28px rgba(28, 25, 23, 0.08));
+}
+
+html[data-theme="light"] .card h1,
+html[data-theme="light"] .card h2,
+html[data-theme="light"] .card h3,
+html[data-theme="light"] .card h4,
+html[data-theme="light"] .card p {
+  color: inherit;
+}
+
+html[data-theme="light"] .card .text-secondary {
+  color: var(--q-light-text-secondary, #44403c);
+}
+
+html[data-theme="light"] .card-premium {
+  background: var(--q-light-card-bg, #fff);
+  border-color: var(--q-light-card-border, rgba(28, 25, 23, 0.14));
+  color: var(--q-light-text, #1c1917);
+  box-shadow: 0 12px 36px rgba(28, 25, 23, 0.1);
 }
 
 .glass:hover {
@@ -6851,30 +6871,33 @@ html[data-theme="light"] .starlight-stars {
 }
 html[data-theme="light"] .starlight-card {
   background: var(--q-light-card-bg, #ffffff);
-  border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.1));
-  color: var(--q-light-text, #0f172a);
+  border-color: var(--q-light-card-border, rgba(28, 25, 23, 0.12));
+  color: var(--q-light-text, #1c1917);
 }
 html[data-theme="light"] .starlight-card h3,
 html[data-theme="light"] .card-premium h3 {
-  color: var(--q-light-text, #0f172a);
+  color: var(--q-light-text, #1c1917);
 }
+/* Body copy in cards uses secondary ink, not muted grey (was washed-out on paper) */
 html[data-theme="light"] .starlight-card p,
 html[data-theme="light"] .card-premium p,
 html[data-theme="light"] .glass p {
-  color: var(--q-light-text-muted, #475569);
+  color: var(--q-light-text-secondary, #44403c);
 }
 html[data-theme="light"] .card-premium {
   background: var(--q-light-card-bg, #ffffff);
-  border-color: var(--q-light-card-border, rgba(15, 23, 42, 0.12));
-  color: var(--q-light-text, #0f172a);
+  border-color: var(--q-light-card-border, rgba(28, 25, 23, 0.12));
+  color: var(--q-light-text, #1c1917);
 }
 html[data-theme="light"] .nav-header {
-  background: color-mix(in srgb, var(--q-light-card-bg, #fff) 92%, transparent);
-  border-bottom-color: var(--q-light-card-border, rgba(15, 23, 42, 0.1));
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom-color: var(--q-light-card-border, rgba(28, 25, 23, 0.12));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 html[data-theme="light"] .nav-header .nav-links > a,
 html[data-theme="light"] .nav-header .nav-link {
-  color: var(--q-light-text-muted, #475569);
+  color: var(--q-light-text-secondary, #44403c);
 }
 html[data-theme="light"] .nav-header .nav-links > a:hover,
 html[data-theme="light"] .nav-header .nav-link:hover {

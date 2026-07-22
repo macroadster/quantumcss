@@ -8,160 +8,203 @@ description: >
   or runs /quantumcss. Prefer this skill over inventing Tailwind-like class soup.
 metadata:
   short-description: "QuantumCSS — semantic HTML + glass components"
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # QuantumCSS Skill
 
-Generate UI with **QuantumCSS**: one static file (`quantum.min.css`, ~35 KB gzipped).
-**Goal:** fewest classes, correct structure, dark/light safe. No JIT, no invented classes.
+One static file (`quantum.min.css`). **Fewest classes, correct trees, readable light/dark.**
+No JIT. No invented classes.
 
 ## Sources of truth
 
-1. **This skill** — policy, workflow, micro-recipes, pitfalls
-2. **Kitchen-sink (markup SSOT)** — `examples/kitchen-sink.html` or  
-   https://macroadster.github.io/quantumcss/examples/kitchen-sink.html  
-   Prefer the **raw HTML file** (repo/raw) over GH Pages text extract when copying DOM.
-3. **CSS source** — `src/styles/quantum-components.css` / `quantum-utilities.css`
-4. **App shells** — `examples/*.html`
-
-If skill and kitchen-sink disagree on child structure, prefer **kitchen-sink**, then verify the class exists in CSS.
+1. **This skill** — policy, micro-recipes, short snippets  
+2. **Kitchen-sink** (full catalog) — `examples/kitchen-sink.html` or  
+   https://raw.githubusercontent.com/macroadster/quantumcss/main/examples/kitchen-sink.html  
+   Prefer **raw HTML**, not GH Pages text extract.  
+3. **CSS** — `src/styles/quantum-components.css` / `quantum-utilities.css`
 
 ---
 
-## 0. Load
+## 0. Load + theme
 
 ```html
-<link rel="stylesheet"
-  href="https://unpkg.com/@howssatoshi/quantumcss@latest/dist/quantum.min.css">
-<!-- optional: tabs, accordion, stars, theme -->
+<link rel="stylesheet" href="https://unpkg.com/@howssatoshi/quantumcss@latest/dist/quantum.min.css">
 <script src="https://unpkg.com/@howssatoshi/quantumcss@latest/src/starlight.js"></script>
 ```
 
-npm: `@howssatoshi/quantumcss` → `dist/quantum.min.css` + `src/starlight.js`.
-
-Link **only** the dist CSS (never `src/styles/*.css` alongside it).
-
-### Theme bootstrap
-
-```html
-<html lang="en" data-theme="dark" data-theme-default="dark">
-<!-- light marketing: -->
-<html lang="en" data-theme="light" data-theme-default="light"
-      data-theme-storage="path">
-<!-- brand-fixed (ignore foreign localStorage): -->
-<html data-theme-default="light" data-theme-locked>
-```
-
-| Attribute | Role |
-|-----------|------|
-| `data-theme` | Active theme on `<html>` only (never `body`) |
-| `data-theme-default` | Fallback when storage empty / invalid |
-| `data-theme-storage` | `path` = per-pathname key; or a custom key string; default `theme` |
-| `data-theme-locked` | Always use `data-theme-default`; skip reading storage on bootstrap |
-
-`starlight.js` auto-inits. Set theme: `document.documentElement.setAttribute('data-theme', 'light')`.
+| Attr on `<html>` | Role |
+|------------------|------|
+| `data-theme` | Active (`light` / `dark`) — never on `body` |
+| `data-theme-default` | Fallback |
+| `data-theme-storage="path"` | Per-pathname localStorage (avoids multi-demo pollution) |
+| `data-theme-locked` | Always use default; ignore storage |
 
 ---
 
-## 1. Priority (non-negotiable)
+## 1. Priority
 
-1. **Bare HTML** — buttons, inputs, forms, tables, headings already styled  
-2. **Named component** — `card`, `nav-header`, kitchen-sink widgets  
-3. **Finite utilities** — spacing/layout only (`mt-4`, `flex`, `md:grid-cols-2`)
+1. Bare HTML  2. Named component  3. Finite utilities last  
 
 ```html
-<!-- GOOD --><div class="card"><h2>Title</h2><button class="btn-primary">Go</button></div>
-<!-- BAD --> <div class="bg-white_5 rounded-xl border p-6 backdrop-blur-lg">…
+<!-- GOOD --><div class="card"><h2>Title</h2><p>Body.</p><button class="btn-primary">Go</button></div>
+<!-- BAD --> <div class="bg-white_5 rounded-xl border p-6 backdrop-blur">…
 ```
 
-Opacity uses **underscores**: `bg-white_5`, not `bg-white/5`.
+Opacity: `bg-white_5` not `bg-white/5`.
+
+### Text hierarchy (critical for light marketing)
+
+| Role | Use |
+|------|-----|
+| Headings + body reading | Bare `h1`–`h3`, bare `p` — **no** `text-secondary` on long copy |
+| Lead / supporting | `text-secondary` (short only) |
+| Captions / meta | `text-muted` or `text-sm text-muted` |
+| Brand accent word | `text-gradient` (uses `--q-color-starlight-*`) |
+
+**Do not** paint entire heroes or card descriptions with `text-secondary` — light pages look washed out.
 
 ---
 
-## 2. Page skeletons
+## 2. Skeletons
 
-### Dark product / cosmic
+### Dark product
 
 ```html
-<!DOCTYPE html>
 <html lang="en" data-theme="dark" data-theme-default="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page</title>
-  <link rel="stylesheet" href="https://unpkg.com/@howssatoshi/quantumcss@latest/dist/quantum.min.css">
-</head>
 <body>
   <div class="starlight-stars ani-nebula" aria-hidden="true"></div>
-  <header class="nav-header">
-    <a href="/" class="nav-logo">
-      <i class="icon-starlight"></i>
-      <span class="text-gradient font-bold">Brand</span>
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#features">Features</a>
-    </nav>
-    <button class="btn-primary">Get started</button>
-  </header>
-  <main class="p-8">
-    <div class="max-w-6xl mx-auto">
-      <h1>Title</h1>
-      <p class="text-secondary">Lead.</p>
-      <div class="card">
-        <h2>Section</h2>
-        <button class="btn-primary">Continue</button>
-      </div>
-    </div>
-  </main>
-  <script src="https://unpkg.com/@howssatoshi/quantumcss@latest/src/starlight.js"></script>
+  <header class="nav-header">…</header>
+  <main class="p-8"><div class="max-w-6xl mx-auto">…</div></main>
 </body>
-</html>
 ```
 
-### Light marketing / hospitality / retail
+### Light marketing (hotel, bakery, retail, editorial)
 
-1. `data-theme="light"` + `data-theme-default="light"` (+ `data-theme-storage="path"` or `data-theme-locked` if needed)  
-2. **Skip** `starlight-stars` / `ani-nebula` unless space-branded  
-3. Prefer bare type + a few cards — do not glass-tile the whole page  
-4. Shift `--q-*` tokens for brand; `.text-gradient` follows `--q-color-starlight-*`  
+```html
+<html lang="en" data-theme="light" data-theme-default="light" data-theme-storage="path">
+<body>
+  <!-- no starlight-stars -->
+  <header class="nav-header">…</header>
+  <main class="p-8"><div class="max-w-6xl mx-auto">…</div></main>
+</body>
+```
+
+Rules: skip starfield; few `card`s; override `--q-color-starlight-*` for brand; solid ink is default (do not force light grey body text).
 
 ---
 
-## 3. Micro-recipes
+## 3. Micro-recipes + mini-snippets
 
-Copy **exact** class trees. Full DOM → kitchen-sink section named below.
+### Buttons
+bare · `btn-primary` · `btn-outline` · `btn-ghost` · `btn-secondary` · `btn-starlight` · `btn btn-glossy` · `btn-sm` / `btn-lg`
 
-| Need | Classes / contract | Kitchen-sink |
-|------|-------------------|--------------|
-| Buttons | bare, `btn-primary`, `btn-outline`, `btn-ghost`, `btn-secondary`, `btn-starlight`, `btn btn-glossy`, `btn-sm`/`btn-lg` | Component Presets |
-| Cards | `card`, `card-premium`, `starlight-card`, `glass`, `surface-1`/`surface-2` | Presets / utilities |
-| Badges | `badge badge-{primary,secondary,success,warning,error}` | Badges |
-| Alerts | `alert alert-{success,warning,error,info}` | (CSS; simple class pair) |
-| Nav | `nav-header` + `nav-logo` + `nav-links` + optional checkbox `nav-toggle` / `nav-hamburger` / `nav-drawer` | Navigation Menu |
-| Sidebar | `aside-nav` tree (`aside-nav-item`, `aside-nav-group`, …) | Vertical Sidebar |
-| Search | `search has-icon` > `icon-search` + `search-input` | Interactive Search |
-| Stats A | `dashboard` > `starlight-card stat-card` > `stat-label` + `stat-value` + `stat-trend` | Dashboard Grid |
-| Stats B | `dashboard` > `starlight-stat` > header/label/value | (alt API; pick one per page) |
-| Table | `table-premium-container` > header + `table.table-premium` | Premium Data Table |
-| Gallery | `gallery` > `gallery-item` > img + `gallery-overlay` | Gallery Widget |
-| Dialog | `dialog-overlay` > `dialog` > `dialog-close` | Dialog Window |
-| Accordion | `data-accordion` > `accordion-item accordion` > `accordion-header` + `accordion-content` | Accordion Group |
-| Tabs | `tab-list` > `tab-button` + `tab-panel` (`data-tab` / id) | Tab Interface |
-| Timeline | `timeline` > `timeline-item` > `timeline-dot` + `timeline-content` | Timeline |
-| Form | bare `<form>` **or** `.form` + `.input` + optional `toggle-starlight` / `range-starlight` | Advanced Form |
-| Layout shells | `layout-admin-2col`, `layout-email-3col`, `layout-chat-2col`, `layout-music-2col`, … | `examples/*` shells |
-| Loading | `skeleton`, `spinner` | Loading States |
-| Motion | `ani-float`, `ani-nebula`, `ani-cosmic-pulse`, `ani-twinkle` | Cosmic Animations |
-| Icons | `icon-*` mask classes (no font file) | Quantum Icons |
+### Cards / surfaces
+`card` · `card-premium` · `starlight-card` · `glass` · `surface-1` / `surface-2`  
+Badges: `badge badge-{primary,secondary,success,warning,error}`  
+Alerts: `alert alert-{success,warning,error,info}`
 
-**Accordion root is `data-accordion` — not `accordion-group`.**
+### Nav (hamburger)
+
+```html
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
+<header class="nav-header">
+  <a href="/" class="nav-logo"><i class="icon-starlight"></i><span class="text-gradient font-bold">Brand</span></a>
+  <nav class="nav-links" aria-label="Primary"><a href="#a">A</a></nav>
+  <button class="btn-primary">CTA</button>
+  <label for="nav-toggle" class="nav-hamburger" aria-label="Menu">
+    <span class="nav-hamburger-icon"><span></span><span></span><span></span></span>
+  </label>
+</header>
+<div class="nav-drawer"><div class="nav-drawer-inner"><a href="#a">A</a></div></div>
+```
+
+### Search
+```html
+<div class="search has-icon"><i class="icon-search"></i>
+  <input type="search" class="search-input" placeholder="Search…"></div>
+```
+
+### Stats (pick **one** API per page)
+```html
+<div class="dashboard">
+  <div class="starlight-card stat-card">
+    <span class="stat-label">Label</span>
+    <span class="stat-value">98</span>
+    <div class="stat-trend up"><i class="icon-trend-up"></i> 2%</div>
+  </div>
+</div>
+```
+
+### Table
+```html
+<div class="table-premium-container">
+  <div class="table-premium-header">
+    <div class="table-premium-title">Title</div>
+    <div class="table-premium-filters"></div>
+  </div>
+  <table class="table-premium">
+    <thead><tr><th>A</th><th>B</th></tr></thead>
+    <tbody><tr><td>1</td><td>2</td></tr></tbody>
+  </table>
+</div>
+```
+
+### Accordion (needs `starlight.js`)
+```html
+<div data-accordion>
+  <div class="accordion-item accordion active">
+    <div class="accordion-header">
+      <span>Question?</span>
+      <i class="icon-chevron-down accordion-icon"></i>
+    </div>
+    <div class="accordion-content"><p>Answer.</p></div>
+  </div>
+</div>
+```
+No `accordion-group`.
+
+### Tabs (needs `starlight.js`)
+`tab-list` > `tab-button` (`data-tab`) + `tab-panel` (`id`)
+
+### Dialog
+`dialog-overlay` > `dialog` > `dialog-close` (+ `hidden` to hide)
+
+### Timeline
+`timeline` > `timeline-item` > `timeline-dot` + `timeline-content`
+
+### Form
+Bare `<form>` **or**:
+```html
+<form class="form">
+  <label>Name <input class="input" type="text"></label>
+  <label>Note <textarea class="input"></textarea></label>
+  <label>Pick <select class="input">…</select></label>
+  <div class="form-row">
+    <div><div class="font-semibold">SMS</div><div class="text-sm text-muted">Optional</div></div>
+    <label class="toggle toggle-starlight">
+      <input type="checkbox" class="toggle-input"><span class="toggle-slider"></span>
+    </label>
+  </div>
+  <button type="submit" class="btn-primary">Send</button>
+</form>
+```
+Put `.input` on text, email, select, and textarea.
+
+### Sidebar / shells
+`aside-nav` (full tree in kitchen-sink) · `layout-admin-2col` · `layout-email-3col` · `layout-chat-2col`
+
+### Icons (common)
+`icon-starlight` `icon-search` `icon-close` `icon-home-fill` `icon-heart` `icon-heart-fill`  
+`icon-sun` `icon-moon` `icon-chevron-down` `icon-chevron-right` `icon-mail` `icon-phone`  
+`icon-calendar` `icon-clock-fill` `icon-cart` `icon-globe` `icon-user` `icon-settings`  
+`icon-check-circle-fill` `icon-trend-up` `icon-trend-down`  
+Full list: kitchen-sink → Quantum Icons (or `quantum-icons.css`).
 
 ### Utilities (escape hatch)
-
-Finite set only: `flex`, `grid`, `grid-cols-1`…`6`, `gap-*`, `p-*`/`m-*` (scale 0–32), `text-sm`…`2xl`, `text-primary`/`secondary`/`muted`, `w-full`, `max-w-6xl`, `hidden`, `md:grid-cols-2`, `hover:scale-105`.  
-Breakpoints: sm 640 · md 768 · lg 1024 · xl 1280 · 2xl 1536.  
-Prefer class form (`md:…`). Do not invent attributes or Tailwind-scale names.
+`flex` `grid` `grid-cols-1`…`6` `gap-*` `p-*`/`m-*` `text-sm`…`2xl` `font-bold`  
+`w-full` `max-w-6xl` `hidden` `md:grid-cols-2` `hover:scale-105`  
+Breakpoints: sm 640 · md 768 · lg 1024 · xl 1280
 
 ---
 
@@ -172,34 +215,21 @@ Prefer class form (`md:…`). Do not invent attributes or Tailwind-scale names.
   --q-color-starlight-blue: #00d4ff;
   --q-color-starlight-peach: #ffb38a;
   --q-color-starlight-orange: #ff7e5f;
-  --q-bg-primary: #08081a;
   --q-color-primary: #3b82f6;
 }
 ```
-
-`.text-gradient` uses starlight peach→blue tokens (override tokens, not the class, for brand color).
-
-Optional: `npx quantumcss theme` → overlay after `quantum.min.css`.
-
-**When Quantum is wrong as primary look:** quiet luxury / print editorial — still use structure components; add small brand CSS; avoid forcing utility soup.
+`.text-gradient` follows starlight peach→blue tokens.  
+Reading text tokens (`--q-light-text*`) stay ink — do not repurpose brand primary as body color.
 
 ---
 
 ## 5. Guardrails
 
-1. One CSS file (+ optional theme overlay)  
-2. No JIT / no invented classes  
-3. Semantic text colors (`text-primary`…), not raw `text-black` on free content  
-4. Interactive: accordion/tabs need `starlight.js`; nav hamburger is CSS-only  
-5. One stats API per page (A **or** B)  
-6. Light brands: no starfield; fewer glass cards  
-
-### Anti-patterns
-
-- Rebuilding `card` / `nav-header` with utility soup  
-- `accordion-group` instead of `data-accordion`  
-- Invented `md="…"` / `hover="…"` attributes  
-- Assuming light theme alone makes UI “airy” without reducing glass density  
+1. One CSS file (+ optional overlay)  
+2. No invented classes  
+3. Light brand: no starfield; bare `p` for body; not every block a glass card  
+4. One stats API per page  
+5. Accordion root = `data-accordion`  
 
 ---
 
@@ -207,34 +237,23 @@ Optional: `npx quantumcss theme` → overlay after `quantum.min.css`.
 
 | Ask | Emit |
 |-----|------|
-| Landing | Skeleton + `nav-header` + `card` + `btn-primary` |
-| Dashboard | `dashboard` + stats A or B |
-| Admin | `aside-nav` or `layout-admin-2col` |
-| Table | `table-premium-*` |
-| FAQ | accordion micro-recipe |
-| Modal | `dialog-overlay` > `dialog` |
-| Timeline | `timeline` + items |
-| Hospitality / light brand | Light skeleton; no stars; custom type OK |
-
----
+| Landing | Light or dark skeleton + nav + cards + bare type |
+| FAQ | Accordion snippet |
+| Table | table-premium snippet |
+| Form | bare form or `.form` + `.input` |
+| Hospitality | Light skeleton; hierarchy table above |
 
 ## 7. Checklist
 
-- [ ] Only `quantum.min.css` (+ optional overlay / starlight.js)?  
-- [ ] Bare HTML first; real component trees second?  
-- [ ] No utility soup for existing components?  
-- [ ] Theme attrs + storage/locked set for brand?  
-- [ ] Light brand: no starfield; not every block a card?  
-- [ ] Stats API consistent?  
-- [ ] Unknown widget → kitchen-sink raw HTML, not invention?  
+- [ ] Only `quantum.min.css` (+ starlight.js if needed)?  
+- [ ] Bare HTML first; real component trees?  
+- [ ] Headings/body = bare type (not all `text-secondary`)?  
+- [ ] Theme attrs + path/locked if light brand?  
+- [ ] No starfield on daylight brands?  
+- [ ] Unknown widget → kitchen-sink raw, not invention?  
 
 ## 8. Workflow
 
-1. CDN/npm link CSS  
-2. Dark **or** light skeleton; theme attributes  
-3. Micro-recipes; open kitchen-sink only for complex DOM  
-4. Utilities last  
-5. Tokens for brand; checklist  
+1. Link CSS  2. Pick skeleton  3. Snippets above  4. Utilities last  5. Tokens  6. Checklist  
 
-**Live catalog:** https://macroadster.github.io/quantumcss/examples/kitchen-sink.html  
-**Raw (better for agents):** https://raw.githubusercontent.com/macroadster/quantumcss/main/examples/kitchen-sink.html
+**Kitchen-sink raw:** https://raw.githubusercontent.com/macroadster/quantumcss/main/examples/kitchen-sink.html
