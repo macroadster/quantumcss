@@ -6880,8 +6880,13 @@ html[data-theme="light"] .nav-header .nav-links > a:hover,
 html[data-theme="light"] .nav-header .nav-link:hover {
   color: var(--q-color-primary, #3b82f6);
 }
+/* Brand tokens only — do not hardcode sky/violet (breaks --q-color-starlight-* overrides) */
 html[data-theme="light"] .text-gradient {
-  background: linear-gradient(135deg, #0369a1, #7c3aed) !important;
+  background: linear-gradient(
+    135deg,
+    var(--q-color-starlight-peach) 40%,
+    var(--q-color-starlight-blue) 100%
+  ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -6925,9 +6930,9 @@ html[data-theme="light"] .text-gradient {
 }
 html[data-theme="light"] .feature-icon,
 html[data-theme="light"] .starlight-icon-tile {
-  background: rgba(3, 105, 161, 0.08);
-  border-color: rgba(3, 105, 161, 0.2);
-  color: #0369a1;
+  background: color-mix(in srgb, var(--q-color-starlight-blue), transparent 90%);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 75%);
+  color: var(--q-color-starlight-blue);
 }
 
 /* Ambient orbs (fixed blurred gradients behind content) */

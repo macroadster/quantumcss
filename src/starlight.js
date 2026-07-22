@@ -4,20 +4,54 @@
  */
 
 /**
+ * Resolve localStorage key for theme preference.
+ * - data-theme-storage="path"|"pathname" → per-path key (avoids multi-demo pollution)
+ * - data-theme-storage="<custom>" → that exact key
+ * - default → "theme"
+ * @param {HTMLElement} [html]
+ * @returns {string}
+ */
+function resolveThemeStorageKey(html) {
+  const el = html || (typeof document !== 'undefined' ? document.documentElement : null);
+  if (!el) return 'theme';
+  const attr = el.getAttribute('data-theme-storage');
+  if (!attr) return 'theme';
+  if (attr === 'path' || attr === 'pathname') {
+    try {
+      return `theme:${typeof location !== 'undefined' ? location.pathname : ''}`;
+    } catch (_) {
+      return 'theme';
+    }
+  }
+  return attr;
+}
+
+/**
  * Apply theme before first paint to avoid FOUC.
  * Call from an inline <script> in <head>, or rely on DOMContentLoaded init.
- * Honors: localStorage `theme`, then html[data-theme-default], then "dark".
- * @param {string} [storageKey='theme']
+ *
+ * Honors (in order):
+ * 1. data-theme-locked → always data-theme-default (ignore storage)
+ * 2. localStorage[storageKey] when set
+ * 3. html[data-theme-default]
+ * 4. "dark"
+ *
+ * @param {string} [storageKey] - Override; otherwise resolveThemeStorageKey()
  */
-function applyThemeBootstrap(storageKey = 'theme') {
+function applyThemeBootstrap(storageKey) {
   if (typeof document === 'undefined') return 'dark';
   const html = document.documentElement;
   const defaultTheme = html.getAttribute('data-theme-default') || 'dark';
+  const key = storageKey || resolveThemeStorageKey(html);
+  const locked = html.hasAttribute('data-theme-locked');
+
   let theme = defaultTheme;
-  try {
-    const saved = localStorage.getItem(storageKey);
-    if (saved) theme = saved;
-  } catch (_) { /* private mode */ }
+  if (!locked) {
+    try {
+      const saved = localStorage.getItem(key);
+      if (saved) theme = saved;
+    } catch (_) { /* private mode */ }
+  }
 
   let effective = theme;
   if (theme === 'auto') {
@@ -31,11 +65,12 @@ function applyThemeBootstrap(storageKey = 'theme') {
 
 // Run immediately when this file is loaded (still helps if placed in <head>)
 if (typeof document !== 'undefined') {
-  applyThemeBootstrap('theme');
+  applyThemeBootstrap();
 }
 
 const Starlight = {
   applyThemeBootstrap,
+  resolveThemeStorageKey,
   /**
    * Initializes a randomized star field in the target container.
    * @param {string} selector - CSS selector for the container (default: '.starlight-stars')
@@ -804,22 +839,22 @@ const Starlight = {
     const htmlEl = document.documentElement;
     const config = {
       defaultTheme: htmlEl.getAttribute('data-theme-default') || 'dark',
-      storageKey: 'theme',
+      storageKey: resolveThemeStorageKey(htmlEl),
       themes: ['light', 'dark', 'auto'],
       iconSelector: {
         light: '.sun-icon, [data-theme-icon="light"]',
         dark: '.moon-icon, [data-theme-icon="dark"]',
         auto: '.icon-display, [data-theme-icon="auto"]'
       },
-      autoDetect: true
+      autoDetect: true,
+      locked: htmlEl.hasAttribute('data-theme-locked')
     };
-    // Re-apply in case storage changed; keeps data-theme-default as fallback
-    applyThemeBootstrap(config.storageKey);
-    
     // Override config with global settings if available
     if (window.StarlightConfig && window.StarlightConfig.theme) {
       Object.assign(config, window.StarlightConfig.theme);
     }
+    // Re-apply after config merge (storage key / locked may change)
+    applyThemeBootstrap(config.storageKey);
 
     const html = document.documentElement;
 
@@ -883,8 +918,8 @@ const Starlight = {
       // Apply to DOM
       html.setAttribute('data-theme', effectiveTheme);
       
-      // Save preference
-      if (save) {
+      // Save preference (skip when brand-locked unless caller forces save)
+      if (save && !config.locked) {
         localStorage.setItem(config.storageKey, theme);
       }
       
