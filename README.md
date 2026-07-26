@@ -266,6 +266,7 @@ Working examples in the [examples/](examples/) directory:
 | [email-client.html](examples/email-client.html) | Email inbox |
 | [music-streaming.html](examples/music-streaming.html) | Music player |
 | [video-streaming.html](examples/video-streaming.html) | Video platform |
+| [login.html](examples/login.html) | Sign-in / auth page |
 | [kitchen-sink.html](examples/kitchen-sink.html) | Full component reference |
 
 ## Performance

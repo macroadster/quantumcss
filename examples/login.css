@@ -1,0 +1,128 @@
+/* Login demo — page-local decoration only.
+   Form/auth layout primitives live in quantum-components.css. */
+
+:root {
+  --q-color-starlight-blue: #5ce1ff;
+  --q-color-starlight-peach: #ffb38a;
+  --q-color-starlight-orange: #ff7e5f;
+}
+
+/* Floating orbit accents */
+.login-orbit {
+  position: absolute;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.login-orbit--a {
+  top: 10%;
+  left: 6%;
+}
+
+.login-orbit--b {
+  bottom: 12%;
+  right: 8%;
+  width: 9rem;
+  height: 9rem;
+  animation-delay: -3s;
+}
+
+.login-orbit-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-left: -0.275rem;
+  border-radius: 50%;
+  background: var(--q-color-starlight-blue);
+  box-shadow: 0 0 16px var(--q-color-starlight-blue);
+}
+
+.login-orbit-dot--peach {
+  background: var(--q-color-starlight-peach);
+  box-shadow: 0 0 16px var(--q-color-starlight-peach);
+}
+
+/* Soft ambient glow behind card */
+.login-glow {
+  position: absolute;
+  inset: auto;
+  width: min(36rem, 90vw);
+  height: 22rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 40%, color-mix(in srgb, var(--q-color-starlight-blue) 28%, transparent), transparent 60%),
+    radial-gradient(circle at 70% 60%, color-mix(in srgb, var(--q-color-starlight-peach) 22%, transparent), transparent 55%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+/* Brand icon: gradient fill on the mask glyph */
+.login-brand-icon {
+  display: block;
+  margin-inline: auto;
+  width: 3rem !important;
+  height: 3rem !important;
+  position: static !important;
+  transform: none !important;
+  left: auto !important;
+  top: auto !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(
+    135deg,
+    var(--q-color-starlight-peach),
+    var(--q-color-starlight-orange),
+    var(--q-color-starlight-blue)
+  ) !important;
+  filter: drop-shadow(
+    0 0 18px color-mix(in srgb, var(--q-color-starlight-blue) 45%, transparent)
+  );
+}
+
+/* Social / CTA icons stay inline (not absolute) */
+.login-demo [class^="icon-"],
+.login-demo [class*=" icon-"] {
+  position: static;
+  transform: none;
+  left: auto;
+  top: auto;
+}
+
+/* Field icons still position via .field-icon component rules */
+.login-demo .field-icon {
+  position: absolute !important;
+  left: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.theme-fab {
+  position: fixed;
+  top: 1.15rem;
+  right: 1.15rem;
+  z-index: 30;
+}
+
+.login-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  min-width: min(22rem, calc(100vw - 2rem));
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="light"] .starlight-stars {
+  opacity: 0.25;
+}
+
+html[data-theme="light"] .login-glow {
+  opacity: 0.45;
+}

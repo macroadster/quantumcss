@@ -7820,6 +7820,152 @@ html[data-theme="light"] .starlight-orb {
   box-shadow: 0 0 30px color-mix(in srgb, var(--q-color-starlight-blue), transparent 80%);
 }
 
+/* ============================================================================
+   AUTH / FORM PRIMITIVES
+   Centered auth shells, icon fields, label rows, text dividers, shine CTA.
+   ============================================================================ */
+
+/* Full-viewport centered auth layout */
+.auth-shell {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Narrow content column inside auth-shell */
+.auth-card {
+  width: 100%;
+  max-width: 26rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Vertical form stack (labels + fields + actions) */
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.form-stack > label,
+.form-stack label:not(.toggle) {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Label row: primary label + trailing action (e.g. Forgot password?) */
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.label-row label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+/* Input field with optional leading icon (mirrors .search.has-icon) */
+.field {
+  position: relative;
+  width: 100%;
+}
+
+.field.has-icon .input {
+  width: 100%;
+  padding-left: 2.85rem;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.field.has-icon .input:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--q-color-starlight-blue) 25%, transparent);
+}
+
+.field-icon {
+  position: absolute !important;
+  left: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.field:focus-within .field-icon {
+  opacity: 1;
+  background-color: var(--q-color-starlight-blue) !important;
+  color: var(--q-color-starlight-blue) !important;
+}
+
+/* Horizontal text divider ("or continue with") */
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.form-divider::before,
+.form-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.12;
+}
+
+/* Shine / sweep hover accent for primary CTAs */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-shine:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px color-mix(in srgb, var(--q-color-starlight-blue) 35%, transparent);
+}
+
+.btn-shine:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover:not(:disabled)::after {
+  transform: translateX(130%);
+}
+
 /* Responsive rules for named components (split from mixed utility media queries) */
 @media (min-width: 768px) {
   .dashboard {

@@ -1332,6 +1332,60 @@
                     </div>
                 </div>
 
+                <!-- Auth form primitives -->
+                <div class="starlight-card p-0 overflow-hidden">
+                    <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Auth Form (.field · .form-stack · .form-divider)</div>
+                    <div class="p-8">
+                        <p class="text-sm text-muted mb-6">Reusable pieces for sign-in pages. Full demo: <a href="login.html" class="font-semibold">login.html</a></p>
+                        <form class="form-stack" onsubmit="return false;" style="max-width: 22rem;">
+                            <div>
+                                <label for="ks-email">Email</label>
+                                <div class="field has-icon">
+                                    <i class="icon-mail field-icon" aria-hidden="true"></i>
+                                    <input class="input" type="email" id="ks-email" placeholder="you@company.com">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="label-row">
+                                    <label for="ks-password">Password</label>
+                                    <a href="#forgot" class="text-sm text-muted">Forgot?</a>
+                                </div>
+                                <div class="field has-icon">
+                                    <i class="icon-security field-icon" aria-hidden="true"></i>
+                                    <input class="input" type="password" id="ks-password" placeholder="••••••••">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    <div class="font-semibold">Remember me</div>
+                                    <div class="text-sm text-muted">Stay signed in</div>
+                                </div>
+                                <label class="toggle toggle-starlight" aria-label="Remember me">
+                                    <input type="checkbox" class="toggle-input" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <button type="button" class="btn-starlight btn-shine w-full gap-2">
+                                <span>Sign in</span>
+                                <i class="icon-chevron-right" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        <div class="form-divider" style="max-width: 22rem;">
+                            <span class="text-sm text-muted">or continue with</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3" style="max-width: 22rem;">
+                            <button type="button" class="btn-outline w-full gap-2">
+                                <i class="icon-github" aria-hidden="true"></i>
+                                GitHub
+                            </button>
+                            <button type="button" class="btn-outline w-full gap-2">
+                                <i class="icon-globe" aria-hidden="true"></i>
+                                Google
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Dialog -->
                 <div class="starlight-card p-0">
                     <div class="p-4 surface-2 text-[10px] uppercase font-bold tracking-widest opacity-70">Dialog Window (.dialog)</div>

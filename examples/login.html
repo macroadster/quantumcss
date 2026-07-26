@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-theme-default="dark" data-theme-storage="path">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in · Starlight</title>
+  <link rel="stylesheet" href="../dist/quantum.min.css">
+  <link rel="stylesheet" href="login.css">
+  <!-- Prevent FOUC: honor data-theme-default before paint -->
+  <script>
+    (function () {
+      try {
+        var d = document.documentElement;
+        var def = d.getAttribute('data-theme-default') || 'dark';
+        var saved = localStorage.getItem('theme');
+        var theme = saved === 'light' || saved === 'dark' ? saved : def;
+        d.setAttribute('data-theme', theme);
+      } catch (_) {}
+    })();
+  </script>
+</head>
+<body class="login-demo">
+  <!-- Cosmic background -->
+  <div class="starlight-stars ani-nebula" aria-hidden="true"></div>
+
+  <!-- Decorative orbits (page-local) -->
+  <div class="login-orbit login-orbit--a ani-orbit ani-slow" aria-hidden="true">
+    <span class="login-orbit-dot"></span>
+  </div>
+  <div class="login-orbit login-orbit--b ani-orbit ani-slower" aria-hidden="true">
+    <span class="login-orbit-dot login-orbit-dot--peach"></span>
+  </div>
+
+  <!-- Theme toggle -->
+  <button
+    type="button"
+    class="theme-fab btn-ghost ani-fade-in"
+    id="theme-toggle"
+    aria-label="Toggle color theme"
+    title="Toggle theme"
+  >
+    <i class="icon-sun" id="theme-icon"></i>
+  </button>
+
+  <main class="auth-shell">
+    <div class="login-glow ani-cosmic-pulse ani-slower" aria-hidden="true"></div>
+
+    <div class="auth-card">
+      <!-- Brand -->
+      <header class="text-center mb-8 ani-slide-up ani-stagger-1">
+        <i class="icon-starlight login-brand-icon ani-float mb-6" aria-hidden="true"></i>
+        <h1 class="text-2xl font-bold mb-2">
+          Welcome <span class="text-gradient">back</span>
+        </h1>
+        <p class="text-secondary">Sign in to continue to your workspace</p>
+      </header>
+
+      <!-- Glass card -->
+      <section class="starlight-card ani-scale-in ani-stagger-2" aria-labelledby="login-title">
+        <h2 id="login-title" class="hidden">Sign in</h2>
+
+        <form id="login-form" class="form-stack" novalidate>
+          <!-- Email -->
+          <div class="ani-slide-up ani-stagger-3">
+            <label for="email">Email</label>
+            <div class="field has-icon">
+              <i class="icon-mail field-icon" aria-hidden="true"></i>
+              <input
+                class="input"
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                placeholder="you@company.com"
+                required
+              >
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="ani-slide-up ani-stagger-4">
+            <div class="label-row">
+              <label for="password">Password</label>
+              <a href="#forgot" class="text-sm text-muted">Forgot password?</a>
+            </div>
+            <div class="field has-icon">
+              <i class="icon-security field-icon" aria-hidden="true"></i>
+              <input
+                class="input"
+                type="password"
+                id="password"
+                name="password"
+                autocomplete="current-password"
+                placeholder="••••••••"
+                required
+                minlength="8"
+              >
+            </div>
+          </div>
+
+          <!-- Remember me -->
+          <div class="form-row ani-slide-up ani-stagger-5">
+            <div>
+              <div class="font-semibold">Remember me</div>
+              <div class="text-sm text-muted">Stay signed in on this device</div>
+            </div>
+            <label class="toggle toggle-starlight" aria-label="Remember me">
+              <input type="checkbox" class="toggle-input" name="remember" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <!-- Submit -->
+          <div class="ani-slide-up ani-stagger-5">
+            <button type="submit" class="btn-starlight btn-shine w-full gap-2">
+              <span>Sign in</span>
+              <i class="icon-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+
+        <!-- Divider -->
+        <div class="form-divider">
+          <span class="text-sm text-muted">or continue with</span>
+        </div>
+
+        <!-- Social -->
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" class="btn-outline w-full gap-2">
+            <i class="icon-github" aria-hidden="true"></i>
+            GitHub
+          </button>
+          <button type="button" class="btn-outline w-full gap-2">
+            <i class="icon-globe" aria-hidden="true"></i>
+            Google
+          </button>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <p class="text-center text-sm text-muted mt-6 ani-fade-in ani-stagger-5">
+        New here?
+        <a href="#signup" class="font-semibold">Create an account</a>
+      </p>
+
+      <!-- Trust cues -->
+      <div class="flex items-center justify-center gap-3 mt-6 ani-fade-in ani-stagger-5">
+        <span class="badge badge-secondary">
+          <i class="icon-security" aria-hidden="true"></i>
+          Encrypted
+        </span>
+        <span class="badge badge-secondary">
+          <i class="icon-check-circle-fill" aria-hidden="true"></i>
+          SSO ready
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Success toast -->
+  <div id="toast" class="alert alert-success login-toast hidden" role="status">
+    <i class="icon-check-circle-fill" aria-hidden="true"></i>
+    <span>Welcome back — redirecting to your workspace…</span>
+  </div>
+
+  <script src="../src/starlight.js"></script>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var icon = document.getElementById('theme-icon');
+      var toggle = document.getElementById('theme-toggle');
+
+      function syncIcon() {
+        var dark = root.getAttribute('data-theme') !== 'light';
+        icon.className = dark ? 'icon-sun' : 'icon-moon';
+      }
+
+      function applyTheme(theme) {
+        if (typeof window.setTheme === 'function') {
+          window.setTheme(theme);
+        } else {
+          root.setAttribute('data-theme', theme);
+          try { localStorage.setItem('theme', theme); } catch (_) {}
+        }
+        syncIcon();
+      }
+
+      // Prefer dark on first visit for this demo page
+      try {
+        if (!localStorage.getItem('theme')) {
+          applyTheme('dark');
+        }
+      } catch (_) {}
+      syncIcon();
+
+      toggle.addEventListener('click', function () {
+        applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+      });
+
+      var form = document.getElementById('login-form');
+      var toast = document.getElementById('toast');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        var btn = form.querySelector('[type="submit"]');
+        var original = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="icon-refresh ani-spin" aria-hidden="true"></i> Signing in…';
+        setTimeout(function () {
+          toast.classList.remove('hidden');
+          toast.classList.add('ani-slide-up');
+          btn.disabled = false;
+          btn.innerHTML = original;
+          setTimeout(function () {
+            toast.classList.add('hidden');
+            toast.classList.remove('ani-slide-up');
+          }, 3000);
+        }, 900);
+      });
+    })();
+  </script>
+</body>
+</html>

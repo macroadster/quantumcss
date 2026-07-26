@@ -191,8 +191,50 @@ Bare `<form>` **or**:
 ```
 Put `.input` on text, email, select, and textarea.
 
+**Icon field / label row / divider**
+```html
+<label for="email">Email</label>
+<div class="field has-icon">
+  <i class="icon-mail field-icon" aria-hidden="true"></i>
+  <input class="input" id="email" type="email" placeholder="you@company.com">
+</div>
+<div class="label-row">
+  <label for="password">Password</label>
+  <a href="#forgot" class="text-sm text-muted">Forgot?</a>
+</div>
+<div class="form-divider"><span class="text-sm text-muted">or continue with</span></div>
+```
+
+### Auth / login
+```html
+<main class="auth-shell">
+  <div class="auth-card">
+    <header class="text-center mb-8">…brand…</header>
+    <section class="starlight-card">
+      <form class="form-stack">
+        <div>
+          <label for="email">Email</label>
+          <div class="field has-icon">
+            <i class="icon-mail field-icon" aria-hidden="true"></i>
+            <input class="input" id="email" type="email" required>
+          </div>
+        </div>
+        <div class="form-row">…toggle…</div>
+        <button type="submit" class="btn-starlight btn-shine w-full">Sign in</button>
+      </form>
+      <div class="form-divider"><span class="text-sm text-muted">or</span></div>
+      <div class="grid grid-cols-2 gap-3">
+        <button type="button" class="btn-outline w-full">GitHub</button>
+        <button type="button" class="btn-outline w-full">Google</button>
+      </div>
+    </section>
+  </div>
+</main>
+```
+Full demo: `examples/login.html`. Classes: `auth-shell` · `auth-card` · `form-stack` · `field has-icon` · `field-icon` · `label-row` · `form-divider` · `btn-shine`.
+
 ### Sidebar / shells
-`aside-nav` (full tree in kitchen-sink) · `layout-admin-2col` · `layout-email-3col` · `layout-chat-2col`
+`aside-nav` (full tree in kitchen-sink) · `layout-admin-2col` · `layout-email-3col` · `layout-chat-2col` · `auth-shell`
 
 ### Icons (common)
 `icon-starlight` `icon-search` `icon-close` `icon-home-fill` `icon-heart` `icon-heart-fill`  
@@ -240,7 +282,8 @@ Reading text tokens (`--q-light-text*`) stay ink — do not repurpose brand prim
 | Landing | Light or dark skeleton + nav + cards + bare type |
 | FAQ | Accordion snippet |
 | Table | table-premium snippet |
-| Form | bare form or `.form` + `.input` |
+| Form | bare form or `.form` + `.input` · icon fields `.field.has-icon` |
+| Login / auth | Dark skeleton + `auth-shell` / `auth-card` + `form-stack` |
 | Hospitality | Light skeleton; hierarchy table above |
 
 ## 7. Checklist
