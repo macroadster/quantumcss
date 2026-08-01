@@ -3856,22 +3856,22 @@ html[data-theme="light"] .nav-dropdown-panel a {
   color: var(--q-text-muted, #64748b);
 }
 
-/* Animated underline (match top-level nav — no hover bubble / bullet) */
+/* Left-aligned underline under label text (panel rows are full-width LTR) */
 .nav-dropdown-panel a::after {
   content: "";
   position: absolute;
   bottom: 2px;
-  left: 50%;
+  left: 0.75rem; /* match horizontal padding */
   width: 0;
   height: 2px;
   background: var(--q-color-starlight-blue);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-50%);
+  transform: none;
   pointer-events: none;
 }
 
 .nav-dropdown-panel a:hover::after {
-  width: 80%;
+  width: calc(100% - 1.5rem);
   box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
 
@@ -4062,17 +4062,17 @@ html[data-theme="light"] .nav-drawer-inner a {
   content: "";
   position: absolute;
   bottom: 2px;
-  left: 50%;
+  left: 0.85rem;
   width: 0;
   height: 2px;
   background: var(--q-color-starlight-blue);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-50%);
+  transform: none;
   pointer-events: none;
 }
 
 .nav-drawer-inner a:hover::after {
-  width: 80%;
+  width: calc(100% - 1.7rem);
   box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
 
@@ -5786,6 +5786,17 @@ html[data-theme="light"] .music-footer {
   background: transparent;
 }
 
+/* Full-width vertical rows: grow underline from left under the label */
+.nav-list.vertical .nav-link::after {
+  left: 1rem;
+  transform: none;
+}
+
+.nav-list.vertical .nav-link:hover::after,
+.nav-list.vertical .nav-link.active::after {
+  width: calc(100% - 2rem);
+}
+
 .nav-list.vertical .nav-link:hover {
   background: transparent;
   color: var(--q-color-starlight);
@@ -6107,18 +6118,18 @@ html[data-theme="light"] .aside-nav-label { color: var(--q-text-muted, #64748b);
   content: "";
   position: absolute;
   bottom: 2px;
-  left: 50%;
+  left: 0.65rem;
   width: 0;
   height: 2px;
   background: var(--q-color-starlight-blue);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-50%);
+  transform: none;
   pointer-events: none;
 }
 
 .aside-nav-item:hover::after,
 .aside-nav-item.active::after {
-  width: 80%;
+  width: calc(100% - 1.3rem);
   box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
 
@@ -6203,18 +6214,18 @@ html[data-theme="light"] .aside-nav-badge {
   content: "";
   position: absolute;
   bottom: 2px;
-  left: 50%;
+  left: 0.65rem;
   width: 0;
   height: 2px;
   background: var(--q-color-starlight-blue);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-50%);
+  transform: none;
   pointer-events: none;
 }
 
 .aside-nav-group > summary:hover::after,
 .aside-nav-group[open] > summary::after {
-  width: 80%;
+  width: calc(100% - 1.3rem);
   box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
 
