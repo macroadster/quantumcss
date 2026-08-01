@@ -497,7 +497,8 @@ html[data-theme="light"] .card-footer {
 }
 
 html[data-theme="light"] .input {
-  background: color-mix(in srgb, var(--q-color-primary), transparent 95%);
+  /* longhand only — shorthand would wipe select chevron background-* */
+  background-color: color-mix(in srgb, var(--q-color-primary), transparent 95%);
   backdrop-filter: blur(24px);
   border-color: rgba(0, 0, 0, 0.1);
   color: #1e293b;
@@ -1679,24 +1680,40 @@ html[data-theme="light"] .time-picker-input {
   display: inline-block;
   width: 3rem;
   height: 1.5rem;
+  min-width: 3rem;
+  flex-shrink: 0;
+  vertical-align: middle;
 }
 
+/*
+ * Full-track hit target (Safari-safe).
+ * Zero-size opacity-0 inputs fail hit-testing / label activation in WebKit.
+ */
 .toggle-input {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   opacity: 0;
-  width: 0;
-  height: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .toggle-slider {
   position: absolute;
   cursor: pointer;
   inset: 0;
+  pointer-events: none; /* input above handles clicks */
   background-color: #cbd5e1;
   transition: all var(--q-duration-150) var(--q-ease-in-out);
   border-radius: var(--q-radius-full);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15),
               inset 0 1px 1px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* keep knob inside track when width is constrained */
 }
 
 .toggle-slider::before {
@@ -4187,7 +4204,8 @@ textarea.input,
 html[data-theme="light"] .input,
 html[data-theme="light"] .textarea,
 html[data-theme="light"] .select {
-  background: transparent;
+  /* longhand only — `background:` shorthand resets select chevrons to tile */
+  background-color: transparent;
   backdrop-filter: blur(8px);
   border-color: rgba(0, 0, 0, 0.1);
   color: #1e293b;
@@ -4203,26 +4221,57 @@ html[data-theme="light"] .select {
   border-color: var(--q-color-starlight-blue);
 }
 
-/* Select Starlight */
+/*
+ * Select chevron — native OS arrows misplace under padded glass fields
+ * (especially Safari). Custom SVG, right-aligned, room for the glyph.
+ * Covers skill recipe `select.input` plus `.select` / `.select-starlight`.
+ *
+ * Use longhands only (never `background:` shorthand) so theme rules that
+ * set background-color cannot wipe position/repeat/size and tile arrows.
+ */
+select.input,
+select.select,
 .select-starlight {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   line-height: normal;
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
-  padding-left: 1.25rem !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1.25rem;
-  padding-right: 3rem !important;
+  background-position: right 0.85rem center;
+  background-size: 1rem 1rem;
+  padding-right: 2.5rem;
+}
+
+/* Starlight-only vertical padding tweak (legacy class) */
+.select-starlight {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+/* Must restate full chevron longhands: equal specificity to light .input */
+html[data-theme="light"] select.input,
+html[data-theme="light"] select.select,
+html[data-theme="light"] .select-starlight {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%231e293b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 1rem 1rem;
 }
 
 html[data-theme="light"] .select-starlight {
   background-color: var(--q-light-card-bg);
   backdrop-filter: blur(8px);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%231e293b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   border: 1px solid #cbd5e1;
   color: #1e293b;
+}
+
+/* Hide IE/legacy native arrow if ever present */
+select.input::-ms-expand,
+select.select::-ms-expand,
+.select-starlight::-ms-expand {
+  display: none;
 }
 
 /* Range Starlight */
@@ -4275,12 +4324,15 @@ html[data-theme="light"] .range-starlight::-webkit-slider-thumb {
 .toggle-starlight {
   width: 3.5rem;
   height: 1.75rem;
+  min-width: 3.5rem;
+  flex-shrink: 0;
 }
 
 .toggle-starlight .toggle-slider::before {
   height: 1.25rem;
   width: 1.25rem;
   top: 0.25rem;
+  bottom: auto;
   left: 0.25rem;
 }
 
@@ -4291,6 +4343,7 @@ html[data-theme="light"] .range-starlight::-webkit-slider-thumb {
   top: 0.35rem;
 }
 
+/* Knob travel fits 3.5rem track: pad 0.25 + knob 1.25 + travel 1.75 = 3.25rem */
 .toggle-starlight input:checked + .toggle-slider::before {
   transform: translateX(1.75rem);
 }
@@ -4303,6 +4356,12 @@ html[data-theme="light"] .range-starlight::-webkit-slider-thumb {
   background: var(--q-color-border-strong);
   border: 1px solid var(--q-color-border-strong);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Checked track — both themes (must beat .toggle-starlight .toggle-slider) */
+.toggle-starlight input:checked + .toggle-slider {
+  background: var(--q-color-starlight-blue);
+  border-color: var(--q-color-starlight-blue);
 }
 
 html[data-theme="light"] .toggle-starlight .toggle-slider {
@@ -7215,7 +7274,8 @@ html[data-theme="light"] .starlight-orb {
   flex-direction: column;
   align-items: stretch;
   padding: var(--q-space-10);
-  overflow: hidden;
+  /* visible: toggles/knobs must not clip when form-row is tight */
+  overflow: visible;
   border-radius: var(--q-radius-lg);
   transition: all 0.3s ease;
   position: relative;
