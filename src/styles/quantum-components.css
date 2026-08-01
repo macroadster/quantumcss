@@ -3847,40 +3847,42 @@ html[data-theme="light"] .nav-dropdown-panel {
   font-weight: 500;
   color: var(--q-text-secondary, rgba(255,255,255,0.6));
   text-decoration: none;
-  transition: color .12s, background .12s;
+  transition: color .15s;
+  position: relative;
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-dropdown-panel a {
   color: var(--q-text-muted, #64748b);
 }
 
+/* Animated underline (match top-level nav — no hover bubble / bullet) */
+.nav-dropdown-panel a::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--q-color-starlight-blue);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.nav-dropdown-panel a:hover::after {
+  width: 80%;
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
+}
+
 .nav-dropdown-panel a:hover {
   color: var(--q-text-primary, #f1f5f9);
-  background: rgba(255, 255, 255, 0.08);
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-dropdown-panel a:hover {
   color: var(--q-light-text, #1e293b);
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.nav-dropdown-panel a::before {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  flex-shrink: 0;
-  transition: background .12s;
-}
-
-html[data-theme="light"] .nav-dropdown-panel a::before {
-  background: rgba(0, 0, 0, 0.15);
-}
-
-.nav-dropdown-panel a:hover::before {
-  background: var(--q-color-starlight-blue);
+  background: transparent;
 }
 
 /* Profile avatar */
@@ -4047,21 +4049,41 @@ html[data-theme="light"] .nav-drawer {
   font-weight: 600;
   color: var(--q-text-secondary, rgba(255,255,255,0.6));
   text-decoration: none;
-  transition: color .12s, background .12s;
+  transition: color .15s;
+  position: relative;
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-drawer-inner a {
   color: var(--q-text-muted, #64748b);
 }
 
+.nav-drawer-inner a::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--q-color-starlight-blue);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.nav-drawer-inner a:hover::after {
+  width: 80%;
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
+}
+
 .nav-drawer-inner a:hover {
   color: var(--q-color-starlight, #f1f5f9);
-  background: color-mix(in srgb,var(--q-color-starlight),transparent 50%);
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-drawer-inner a:hover {
   color: var(--q-light-text, #1e293b);
-  background: color-mix(in srgb,var(--q-color-starlight),transparent 50%);
+  background: transparent;
 }
 
 .nav-drawer-section-label {
@@ -5761,33 +5783,35 @@ html[data-theme="light"] .music-footer {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
+  background: transparent;
 }
 
 .nav-list.vertical .nav-link:hover {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
   color: var(--q-color-starlight);
 }
 
 .nav-list.vertical .nav-link.active {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
   color: var(--q-color-starlight);
-  border-left: 3px solid var(--q-color-starlight);
+  border-left: none;
 }
 
 html[data-theme="light"] .nav-list.vertical .nav-link.active {
-  background: rgba(0, 0, 0, 0.05);
-  border-left-color: var(--q-color-starlight-blue);
+  background: transparent;
 }
 
-/* Top-level nav: accent color on hover/open; underline only (no bubble) */
+/* Top-level + submenu: accent color on hover/open; underline only (no bubble) */
 .nav-links > a:hover,
-.nav-dropdown summary:hover {
+.nav-dropdown summary:hover,
+.nav-dropdown-panel a:hover {
   color: var(--q-color-starlight);
   background: transparent;
 }
 
 html[data-theme="light"] .nav-links > a:hover,
-html[data-theme="light"] .nav-dropdown summary:hover {
+html[data-theme="light"] .nav-dropdown summary:hover,
+html[data-theme="light"] .nav-dropdown-panel a:hover {
   background: transparent;
 }
 
@@ -5800,25 +5824,17 @@ html[data-theme="light"] .nav-dropdown[open] > summary {
   background: transparent;
 }
 
-.nav-dropdown-panel a:hover {
-  color: var(--q-color-starlight);
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
-}
-
-html[data-theme="light"] .nav-dropdown-panel a:hover {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
-}
-
 .nav-link::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: 2px;
   left: 50%;
   width: 0;
   height: 2px;
   background: var(--q-color-starlight-blue);
-  transition: all var(--q-duration-slow) var(--q-ease-in-out);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .nav-link:hover::after,
@@ -6082,45 +6098,51 @@ html[data-theme="light"] .aside-nav-label { color: var(--q-text-muted, #64748b);
   font-weight: 500;
   color: var(--q-text-secondary, rgba(255, 255, 255, 0.6));
   text-decoration: none;
-  transition: background 0.12s, color 0.12s;
+  transition: color 0.15s;
   position: relative;
+  background: transparent;
+}
+
+.aside-nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--q-color-starlight-blue);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.aside-nav-item:hover::after,
+.aside-nav-item.active::after {
+  width: 80%;
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
 
 .aside-nav-item:hover {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
   color: var(--q-color-starlight);
 }
 
 html[data-theme="light"] .aside-nav-item { color: var(--q-light-text-muted, #64748b); }
 
 html[data-theme="light"] .aside-nav-item:hover {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
+  background: transparent;
   color: var(--q-light-text, #1e293b);
 }
 
 .aside-nav-item.active {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
   color: var(--q-color-starlight);
 }
 
 html[data-theme="light"] .aside-nav-item.active {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
+  background: transparent;
   color: var(--q-light-text, #1e293b);
 }
-
-.aside-nav-item.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 20%;
-  bottom: 20%;
-  width: 2.5px;
-  border-radius: 0 2px 2px 0;
-  background: var(--q-color-starlight);
-  margin-left: -0.65rem;
-}
-
-html[data-theme="light"] .aside-nav-item.active::before { background: var(--q-color-starlight); }
 
 .aside-nav-item-icon {
   width: 18px;
@@ -6167,32 +6189,54 @@ html[data-theme="light"] .aside-nav-badge {
   cursor: pointer;
   list-style: none;
   user-select: none;
-  transition: background 0.12s, color 0.12s;
+  transition: color 0.15s;
   outline: none;
+  position: relative;
+  background: transparent;
 }
 
 .aside-nav-group > summary::-webkit-details-marker,
 .aside-nav-group > summary::marker { display: none; }
 
+/* Underline on group summary (chevron is an SVG, so ::after is free) */
+.aside-nav-group > summary::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--q-color-starlight-blue);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.aside-nav-group > summary:hover::after,
+.aside-nav-group[open] > summary::after {
+  width: 80%;
+  box-shadow: 0 0 10px var(--q-color-starlight-glow);
+}
+
 .aside-nav-group > summary:hover {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
   color: var(--q-color-starlight);
 }
 
 html[data-theme="light"] .aside-nav-group > summary { color: var(--q-light-text-muted, #64748b); }
 
 html[data-theme="light"] .aside-nav-group > summary:hover {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
+  background: transparent;
   color: var(--q-light-text, #1e293b);
 }
 
 .aside-nav-group[open] > summary {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
   color: var(--q-color-starlight);
 }
 
 html[data-theme="light"] .aside-nav-group[open] > summary {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
+  background: transparent;
   color: var(--q-light-text, #1e293b);
 }
 
