@@ -312,8 +312,8 @@ html[data-theme="light"] .btn-glossy-primary:active {
 }
 
 /* Dark mode - Translucent glossy
-   No 1px inset rim (reads as a border on the top half of the pill).
-   Soft depth shadows only; specular stays on ::before without a hard edge frame. */
+   Keep border:none (no outline rim) but preserve the aqua-style top specular
+   via ::before/::after and soft depth shadows — not a hard 1px inset line. */
 html[data-theme="dark"] .btn-glossy {
   background: linear-gradient(
     180deg,
@@ -329,33 +329,35 @@ html[data-theme="dark"] .btn-glossy {
   box-shadow:
     0 0.375em 0.5em rgba(0, 0, 0, 0.45),
     0 0.125em 0.125em rgba(0, 0, 0, 0.35),
-    inset 0 0.2em 0.35em rgba(0, 0, 0, 0.28),
+    inset 0 0.15em 0.45em rgba(255, 255, 255, 0.12),
+    inset 0 -0.15em 0.35em rgba(0, 0, 0, 0.35),
     0 0 10px rgba(255, 255, 255, 0.06);
   transition: all 0.2s ease;
 }
 
+/* Same geometry as light mode; only the fill is dimmed for dark glass */
 html[data-theme="dark"] .btn-glossy::before {
-  /* Wider/higher so side gaps don't form a dark U-rim around the top half */
-  width: calc(100% - 0.35em);
-  top: 2%;
-  border-radius: 1000px 1000px 0.75em 0.75em;
+  width: calc(100% - 0.875em);
+  top: 5%;
+  height: 33%;
+  border-radius: 2em 2em 0.5em 0.5em;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(255, 255, 255, 0.08) 55%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(255, 255, 255, 0.14) 100%
   );
 }
 
 html[data-theme="dark"] .btn-glossy::after {
-  background: linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.10));
+  background: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.16));
 }
 
 html[data-theme="dark"] .btn-glossy:hover {
   box-shadow:
     0 0.45em 0.6em rgba(0, 0, 0, 0.5),
     0 0.125em 0.125em rgba(0, 0, 0, 0.35),
-    inset 0 0.2em 0.35em rgba(0, 0, 0, 0.28),
+    inset 0 0.15em 0.45em rgba(255, 255, 255, 0.16),
+    inset 0 -0.15em 0.35em rgba(0, 0, 0, 0.35),
     0 0 18px rgba(255, 255, 255, 0.10);
   filter: brightness(1.12);
   transform: translateY(-1px);
@@ -386,27 +388,28 @@ html[data-theme="dark"] .btn-glossy-primary {
   box-shadow:
     0 0.375em 0.5em rgba(0, 0, 0, 0.45),
     0 0.125em 0.125em color-mix(in srgb, var(--q-color-primary), black 50%),
-    inset 0 0.2em 0.35em color-mix(in srgb, var(--q-color-primary), black 40%),
+    inset 0 0.15em 0.45em color-mix(in srgb, var(--q-color-primary), white 22%),
+    inset 0 -0.15em 0.35em color-mix(in srgb, var(--q-color-primary), black 45%),
     0 0 10px color-mix(in srgb, var(--q-color-primary), transparent 75%);
   transition: all 0.2s ease;
 }
 
 html[data-theme="dark"] .btn-glossy-primary::before {
-  width: calc(100% - 0.35em);
-  top: 2%;
-  border-radius: 1000px 1000px 0.75em 0.75em;
+  width: calc(100% - 0.875em);
+  top: 5%;
+  height: 33%;
+  border-radius: 2em 2em 0.5em 0.5em;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.24) 0%,
-    rgba(255, 255, 255, 0.08) 55%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.14) 100%
   );
 }
 
 html[data-theme="dark"] .btn-glossy-primary::after {
   background: linear-gradient(
-    color-mix(in srgb, var(--q-color-primary), transparent 85%),
-    color-mix(in srgb, var(--q-color-primary), transparent 65%)
+    color-mix(in srgb, var(--q-color-primary), transparent 80%),
+    color-mix(in srgb, var(--q-color-primary), transparent 55%)
   );
 }
 
@@ -414,7 +417,8 @@ html[data-theme="dark"] .btn-glossy-primary:hover {
   box-shadow:
     0 0.45em 0.6em rgba(0, 0, 0, 0.5),
     0 0.125em 0.125em color-mix(in srgb, var(--q-color-primary), black 45%),
-    inset 0 0.2em 0.35em color-mix(in srgb, var(--q-color-primary), black 40%),
+    inset 0 0.15em 0.45em color-mix(in srgb, var(--q-color-primary), white 28%),
+    inset 0 -0.15em 0.35em color-mix(in srgb, var(--q-color-primary), black 45%),
     0 0 20px color-mix(in srgb, var(--q-color-primary), transparent 55%);
   filter: brightness(1.12);
   transform: translateY(-1px);
