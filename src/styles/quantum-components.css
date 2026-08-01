@@ -3713,13 +3713,15 @@ html[data-theme="light"] .nav-logo > i {
   color: var(--q-text-secondary, rgba(255,255,255,0.6));
   text-decoration: none;
   cursor: pointer;
-  transition: color .15s, background .15s;
+  transition: color .15s;
   white-space: nowrap;
   list-style: none;
   user-select: none;
   position: relative;
+  background: transparent;
 }
 
+/* Animated underline (top-level nav only — no hover bubble) */
 .nav-links > a::after {
   content: "";
   position: absolute;
@@ -3732,8 +3734,24 @@ html[data-theme="light"] .nav-logo > i {
   transform: translateX(-50%);
 }
 
+/* Dropdown summary uses ::after for chevron; underline goes on ::before */
+.nav-dropdown summary::before {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--q-color-starlight-blue);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 .nav-links > a:hover::after,
-.nav-links > a.active::after {
+.nav-links > a.active::after,
+.nav-dropdown summary:hover::before,
+.nav-dropdown[open] > summary::before {
   width: 80%;
   box-shadow: 0 0 10px var(--q-color-starlight-glow);
 }
@@ -3741,13 +3759,7 @@ html[data-theme="light"] .nav-logo > i {
 .nav-links > a:hover,
 .nav-dropdown summary:hover {
   color: var(--q-text-primary, #f1f5f9);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-html[data-theme="light"] .nav-links > a:hover,
-html[data-theme="light"] .nav-dropdown summary:hover {
-  color: var(--q-light-text, #1e293b);
-  background: rgba(0, 0, 0, 0.05);
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-links > a,
@@ -3758,7 +3770,7 @@ html[data-theme="light"] .nav-dropdown summary {
 html[data-theme="light"] .nav-links > a:hover,
 html[data-theme="light"] .nav-dropdown summary:hover {
   color: var(--q-light-text, #1e293b);
-  background: rgba(0, 0, 0, 0.05);
+  background: transparent;
 }
 
 /* Dropdown chevron */
@@ -3778,11 +3790,12 @@ html[data-theme="light"] .nav-dropdown summary:hover {
 
 .nav-dropdown[open] > summary {
   color: var(--q-text-primary, #f1f5f9);
-  background: rgba(255, 255, 255, 0.08);
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-dropdown[open] > summary {
   color: var(--q-light-text, #1e293b);
+  background: transparent;
 }
 
 /* Hide native marker */
@@ -5766,25 +5779,25 @@ html[data-theme="light"] .nav-list.vertical .nav-link.active {
   border-left-color: var(--q-color-starlight-blue);
 }
 
-/* Override nav-header/nav-links hover/active to match aside-nav */
+/* Top-level nav: accent color on hover/open; underline only (no bubble) */
 .nav-links > a:hover,
 .nav-dropdown summary:hover {
   color: var(--q-color-starlight);
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-links > a:hover,
 html[data-theme="light"] .nav-dropdown summary:hover {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
+  background: transparent;
 }
 
 .nav-dropdown[open] > summary {
   color: var(--q-color-starlight);
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 85%);
+  background: transparent;
 }
 
 html[data-theme="light"] .nav-dropdown[open] > summary {
-  background: color-mix(in srgb, var(--q-color-starlight), transparent 90%);
+  background: transparent;
 }
 
 .nav-dropdown-panel a:hover {
