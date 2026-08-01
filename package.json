@@ -1,6 +1,6 @@
 {
   "name": "@howssatoshi/quantumcss",
-  "version": "1.16.1",
+  "version": "1.16.2",
   "description": "Beautiful UI by default. One CSS file, zero configuration, token-efficient.",
   "main": "dist/quantum.min.css",
   "bin": {
