@@ -321,7 +321,7 @@ html[data-theme="dark"] .btn-glossy {
     rgba(72, 72, 85, 0.85) 100%
   );
   color: #e8e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: none;
   border-radius: 1000px;
   box-shadow:
     0 0.375em 0.5em rgba(0, 0, 0, 0.45),
@@ -368,7 +368,7 @@ html[data-theme="dark"] .btn-glossy-primary {
     color-mix(in srgb, var(--q-color-primary), black 28%) 100%
   );
   color: #fff;
-  border: 1px solid color-mix(in srgb, var(--q-color-primary), transparent 55%);
+  border: none;
   border-radius: 1000px;
   box-shadow:
     0 0.375em 0.5em rgba(0, 0, 0, 0.45),
