@@ -170,6 +170,8 @@ No `accordion-group`.
 ### Dialog
 `dialog-overlay` > `dialog` > `dialog-close` (+ `hidden` to hide)
 
+Default `.dialog` hugs short copy, grows for forms/tables, and clamps to the viewport (`dvh` + safe-area). Optional: `dialog-sm` · `dialog-lg` · `dialog-full`. Override `--q-dialog-max-width` / `--q-dialog-form-width` if you need a different measure — do not write per-app width media queries.
+
 ### Timeline
 `timeline` > `timeline-item` > `timeline-dot` + `timeline-content`
 

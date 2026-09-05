@@ -4797,41 +4797,118 @@ html[data-theme="light"] .window-resize {
 .dialog-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  z-index: 400;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 400;
+  align-items: safe center;
+  justify-content: safe center;
+  overflow: auto;
+  padding:
+    max(var(--q-dialog-gutter), env(safe-area-inset-top, 0px))
+    max(var(--q-dialog-gutter), env(safe-area-inset-right, 0px))
+    max(var(--q-dialog-gutter), env(safe-area-inset-bottom, 0px))
+    max(var(--q-dialog-gutter), env(safe-area-inset-left, 0px));
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
+.dialog,
 .dialog-content {
-  background-color: rgb(10 10 20 / 98%);
-  backdrop-filter: blur(20px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  min-width: min(var(--q-dialog-min-width), 100%);
+  min-height: 0;
+  max-width: min(var(--q-dialog-max-width), 100%);
+  max-height: min(var(--q-dialog-max-height), 100%);
+  overflow: auto;
+  overscroll-behavior: contain;
+  margin: auto;
+  padding: var(--q-dialog-pad);
+  position: relative;
   border: 1px solid var(--q-color-border-strong);
   border-radius: 1.5rem;
-  padding: 2.5rem;
-  max-width: 90%;
-  width: 600px;
-  max-height: 85vh;
-  overflow-y: auto;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
-  position: relative;
-}
-
-.dialog {
+  color: var(--q-text-primary);
   background-color: rgb(10 10 20 / 98%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--q-color-border-strong);
-  border-radius: 1.5rem;
-  padding: 3rem;
-  max-height: 85vh;
-  overflow-y: auto;
-  margin: auto;
-  position: relative;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 50%);
+  container-type: inline-size;
+  container-name: dialog;
+}
+
+.dialog-content {
+  backdrop-filter: blur(20px);
+}
+
+/* Forms get a definite reading/measure width */
+.dialog:has(:is(form, .form, .form-stack, .field, select, textarea)),
+.dialog-content:has(:is(form, .form, .form-stack, .field, select, textarea)) {
+  width: min(var(--q-dialog-form-width), 100%);
+  max-width: min(var(--q-dialog-form-width), 100%);
+}
+
+/* Tables and dense layouts expand toward the viewport */
+.dialog:has(:is(table, .table-premium, .table-premium-container, .dashboard, pre)),
+.dialog-content:has(:is(table, .table-premium, .table-premium-container, .dashboard, pre)) {
+  width: min(var(--q-dialog-wide-width), 100%);
+  max-width: min(var(--q-dialog-wide-width), 100%);
+}
+
+/* Optional explicit sizes — not required for default auto-sizing */
+.dialog.dialog-sm,
+.dialog-content.dialog-sm {
+  width: min(22rem, 100%);
+  min-width: 0;
+  max-width: min(22rem, 100%);
+}
+
+.dialog.dialog-lg,
+.dialog-content.dialog-lg {
+  width: min(48rem, 100%);
+  max-width: min(48rem, 100%);
+}
+
+.dialog.dialog-full,
+.dialog-content.dialog-full {
+  width: min(80rem, 100%);
+  max-width: 100%;
+  max-height: min(92dvh, 100%);
+}
+
+@media (max-width: 640px) {
+  .dialog,
+  .dialog-content,
+  .dialog.dialog-sm,
+  .dialog.dialog-lg,
+  .dialog.dialog-full,
+  .dialog-content.dialog-sm,
+  .dialog-content.dialog-lg,
+  .dialog-content.dialog-full,
+  .dialog:has(> .dialog-close),
+  .dialog-content:has(> .dialog-close) {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-height: 500px) {
+  .dialog,
+  .dialog-content {
+    --q-dialog-max-height: 92dvh;
+    --q-dialog-pad: 1rem;
+  }
+}
+
+dialog.dialog::backdrop,
+dialog.dialog-content::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* Custom scrollbar for dialogs */
@@ -4867,10 +4944,10 @@ html[data-theme="light"] .dialog {
 
 .dialog-close {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 2rem;
-  height: 2rem;
+  top: var(--q-dialog-pad);
+  right: var(--q-dialog-pad);
+  width: var(--q-dialog-close-size);
+  height: var(--q-dialog-close-size);
   border-radius: 50%;
   background: var(--q-color-border);
   border: 1px solid var(--q-color-border-strong);
@@ -4881,6 +4958,17 @@ html[data-theme="light"] .dialog {
   cursor: pointer;
   transition: all 0.2s;
   padding: 0;
+}
+
+/* Close control sits in the pad corner; keep the title out from under it */
+.dialog:has(> .dialog-close),
+.dialog-content:has(> .dialog-close) {
+  min-width: min(22rem, 100%);
+}
+
+.dialog:has(> .dialog-close) > .dialog-close + *,
+.dialog-content:has(> .dialog-close) > .dialog-close + * {
+  padding-inline-end: calc(var(--q-dialog-close-size) + var(--q-dialog-close-gap));
 }
 
 html[data-theme="light"] .dialog-close {
@@ -7460,8 +7548,8 @@ html[data-theme="light"] .starlight-orb {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: min(90vw, calc(100vw - 2 * var(--q-dialog-gutter)));
+  max-height: min(90dvh, var(--q-dialog-max-height));
   z-index: 2000;
 }
 

@@ -63,13 +63,54 @@ function applyThemeBootstrap(storageKey) {
   return effective;
 }
 
+/**
+ * Tag <html data-os="macos|windows|linux"> so CSS can tune tracking,
+ * smoothing, and native font stacks. Apps may set data-os themselves
+ * or lock it with data-os-locked (screenshot / theme previews).
+ *
+ * @param {HTMLElement} [html]
+ * @returns {string}
+ */
+function applyOsBootstrap(html) {
+  if (typeof document === 'undefined') return 'other';
+  const el = html || document.documentElement;
+  if (el.hasAttribute('data-os-locked')) {
+    return el.getAttribute('data-os') || 'other';
+  }
+  if (el.hasAttribute('data-os')) {
+    return el.getAttribute('data-os');
+  }
+
+  const ua = (typeof navigator !== 'undefined' && navigator.userAgent) || '';
+  const platform =
+    (typeof navigator !== 'undefined' &&
+      ((navigator.userAgentData && navigator.userAgentData.platform) ||
+        navigator.platform)) ||
+    '';
+  const hay = `${platform} ${ua}`;
+
+  let os = 'other';
+  if (/iPhone|iPad|iPod|Macintosh|Mac OS X|MacIntel/.test(hay)) {
+    os = 'macos';
+  } else if (/Win32|Win64|Windows/.test(hay)) {
+    os = 'windows';
+  } else if (/Linux|X11|CrOS|Android/.test(hay)) {
+    os = 'linux';
+  }
+
+  el.setAttribute('data-os', os);
+  return os;
+}
+
 // Run immediately when this file is loaded (still helps if placed in <head>)
 if (typeof document !== 'undefined') {
   applyThemeBootstrap();
+  applyOsBootstrap();
 }
 
 const Starlight = {
   applyThemeBootstrap,
+  applyOsBootstrap,
   resolveThemeStorageKey,
   /**
    * Initializes a randomized star field in the target container.

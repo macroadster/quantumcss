@@ -26,10 +26,14 @@
   --q-color-error: #ef4444;
   --q-color-neutral: #6b7280;
 
-  /* Typography */
-  --q-font-sans: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --q-font-serif: Georgia, Cambria, serif;
-  --q-font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  /* Typography — system-ui first; named faces cover older OS fallbacks */
+  --q-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --q-font-serif: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, Cambria, "Times New Roman", Times, serif;
+  --q-font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Cascadia Mono", "Segoe UI Mono", "Ubuntu Mono", "Noto Sans Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --q-font-size-root: 16px;
+  --q-tracking-body: 0em;
+  --q-tracking-heading: -0.02em;
+  --q-line-height-body: 1.6;
 
   /* Spacing Scale (4px base unit) */
   --q-space-0: 0px;
@@ -47,6 +51,18 @@
   --q-space-20: 5rem;   /* 80px */
   --q-space-24: 6rem;   /* 96px */
   --q-space-32: 8rem;   /* 128px */
+
+  /* Dialog geometry — apps override tokens, not layout rules */
+  --q-dialog-gutter: 1rem;
+  --q-dialog-min-width: 18rem;
+  --q-dialog-max-width: 32rem;
+  --q-dialog-form-width: 36rem;
+  --q-dialog-wide-width: 56rem;
+  --q-dialog-max-height: 85vh;
+  --q-dialog-max-height: 85dvh;
+  --q-dialog-pad: clamp(1.25rem, 4vw, 2.5rem);
+  --q-dialog-close-size: 2rem;
+  --q-dialog-close-gap: 0.75rem;
 
   /* Border Radius */
   --q-radius-none: 0px;
@@ -191,15 +207,68 @@
 
 html {
   scroll-behavior: smooth;
-  line-height: 1.6;
+  line-height: var(--q-line-height-body);
+  letter-spacing: var(--q-tracking-body);
   -webkit-text-size-adjust: 100%;
   font-family: var(--q-font-sans);
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--q-font-size-root);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  font-size-adjust: from-font;
+  /* Let the OS hint; Apple overrides below force antialiasing */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
   background-color: var(--q-bg-primary);
   scrollbar-width: thin;
   scrollbar-color: var(--q-color-starlight-blue) transparent;
+}
+
+/* Apple: SF Pro metrics + antialiased (CSS-only, no UA sniff) */
+@supports (font: -apple-system-body) {
+  :root {
+    --q-font-sans: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --q-font-mono: "SF Mono", ui-monospace, Menlo, Monaco, monospace;
+    --q-tracking-body: -0.011em;
+    --q-tracking-heading: -0.022em;
+    --q-line-height-body: 1.55;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Optional: starlight.js sets html[data-os] for Windows/Linux optical tweaks */
+html[data-os="macos"],
+html[data-os="ios"] {
+  --q-font-sans: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --q-font-mono: "SF Mono", ui-monospace, Menlo, Monaco, monospace;
+  --q-tracking-body: -0.011em;
+  --q-tracking-heading: -0.022em;
+  --q-line-height-body: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[data-os="windows"] {
+  --q-font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --q-font-mono: "Cascadia Code", "Cascadia Mono", "Segoe UI Mono", Consolas, ui-monospace, monospace;
+  --q-tracking-body: 0.004em;
+  --q-tracking-heading: -0.012em;
+  --q-line-height-body: 1.55;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+html[data-os="linux"] {
+  --q-font-sans: "Noto Sans", "Liberation Sans", Ubuntu, Cantarell, system-ui, sans-serif;
+  --q-font-mono: "Ubuntu Mono", "Noto Sans Mono", "Liberation Mono", ui-monospace, monospace;
+  --q-tracking-body: 0.008em;
+  --q-tracking-heading: -0.01em;
+  --q-line-height-body: 1.65;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
 body {
@@ -603,7 +672,7 @@ h1 {
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.025em;
+  letter-spacing: var(--q-tracking-heading);
   margin: 0;
 }
 
@@ -639,9 +708,7 @@ pre {
 }
 
 code {
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  font-family: var(--q-font-mono);
 }
 
 /* Form */

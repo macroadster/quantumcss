@@ -1391,17 +1391,18 @@
                     <div class="p-4 surface-2 text-[10px] uppercase font-bold opacity-70">Dialog Window (.dialog)</div>
                     <div class="p-8">
                         <!-- Inline Preview -->
-                        <div class="dialog-base theme-glass relative mx-auto mb-8 shadow-none border-white_10" style="max-width: 500px;">
+                        <div class="dialog-base theme-glass relative mx-auto mb-8 shadow-none border-white_10">
                             <h3 class="text-xl font-bold mb-4 text-gradient">System Preview</h3>
-                            <p class="mb-6 opacity-70 text-sm">This is an inline preview of the dialog component. It scales to fit its container.</p>
+                            <p class="mb-6 opacity-70 text-sm">Default dialogs hug short copy, grow for forms and tables, and clamp to the viewport. No app-level width rules.</p>
                             <div class="flex gap-4">
                                 <button class="btn-primary flex-1">Action</button>
                                 <button class="btn flex-1">Cancel</button>
                             </div>
                         </div>
                         
-                        <div class="text-center pt-4">
-                            <button class="btn" onclick="toggleDialog(true)">Launch Overlay Dialog</button>
+                        <div class="flex flex-wrap gap-3 justify-center pt-4">
+                            <button class="btn" onclick="toggleDialog(true)">Confirm</button>
+                            <button class="btn" onclick="toggleFormDialog(true)">Form dialog</button>
                         </div>
                     </div>
                 </div>
@@ -1640,16 +1641,38 @@
             <button class="dialog-close" onclick="toggleDialog(false)">
                 <i class="icon-close"></i>
             </button>
-            <h3 class="text-2xl font-bold mb-4 text-gradient">System Override</h3>
-            <p class="mb-6 opacity-70">You are about to bypass safety protocols. This action is irreversible.</p>
-            <div class="bg-black/20 p-4 rounded-lg mb-6 font-mono text-xs border border-white_5">
-                <div class="text-success">> STATUS: AUTHORIZED</div>
-                <div class="text-success">> CORE: ACCESSIBLE</div>
-            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gradient">Delete snapshot?</h3>
+            <p class="mb-6 opacity-70">This cannot be undone.</p>
             <div class="flex gap-4 justify-center">
-                <button class="btn btn-glossy-primary" onclick="toggleDialog(false)">Confirm</button>
-                <button class="btn btn-glossy" onclick="toggleDialog(false)">Abort</button>
+                <button class="btn btn-glossy-primary" onclick="toggleDialog(false)">Delete</button>
+                <button class="btn btn-glossy" onclick="toggleDialog(false)">Cancel</button>
             </div>
+        </div>
+    </div>
+
+    <div class="dialog-overlay hidden" id="formDialog">
+        <div class="dialog">
+            <button class="dialog-close" onclick="toggleFormDialog(false)">
+                <i class="icon-close"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-4 text-gradient">Invite teammate</h3>
+            <p class="mb-6 opacity-70">Forms stretch the dialog to a readable measure automatically.</p>
+            <form class="form-stack" onsubmit="toggleFormDialog(false); return false;">
+                <label for="invite-email">Email
+                    <input class="input" id="invite-email" type="email" placeholder="you@studio.dev" required>
+                </label>
+                <label for="invite-role">Role
+                    <select class="input" id="invite-role">
+                        <option>Editor</option>
+                        <option>Viewer</option>
+                        <option>Admin</option>
+                    </select>
+                </label>
+                <div class="flex gap-4 justify-end">
+                    <button type="button" class="btn" onclick="toggleFormDialog(false)">Cancel</button>
+                    <button type="submit" class="btn-primary">Send invite</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -1745,26 +1768,33 @@
         }
 
         // Dialog Toggle
+        function setOverlayOpen(id, show) {
+            const dialog = document.getElementById(id);
+            if (!dialog) return;
+            dialog.classList.toggle('hidden', !show);
+            const anyOpen = ['systemDialog', 'formDialog'].some((key) => {
+                const el = document.getElementById(key);
+                return el && !el.classList.contains('hidden');
+            });
+            document.body.style.overflow = anyOpen ? 'hidden' : 'auto';
+        }
+
         function toggleDialog(show) {
-            const dialog = document.getElementById('systemDialog');
-            if (show) {
-                dialog.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            } else {
-                dialog.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
+            setOverlayOpen('systemDialog', show);
+        }
+
+        function toggleFormDialog(show) {
+            setOverlayOpen('formDialog', show);
         }
 
         // Close dialog on overlay click
-        const systemDialog = document.getElementById('systemDialog');
-        if (systemDialog) {
-            systemDialog.addEventListener('click', (e) => {
-                if (e.target === systemDialog) {
-                    toggleDialog(false);
-                }
+        ['systemDialog', 'formDialog'].forEach((id) => {
+            const overlay = document.getElementById(id);
+            if (!overlay) return;
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) setOverlayOpen(id, false);
             });
-        }
+        });
 
         const kitchenWindowManager = Starlight.createWindowManager({
             container: '#kitchenWindowDemo',

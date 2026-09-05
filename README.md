@@ -161,7 +161,7 @@ For UI patterns that HTML doesn't natively express, QuantumCSS provides a small 
 | `nav-header` | Sticky glassmorphic navigation bar |
 | `btn-primary` | Gradient call-to-action button |
 | `btn-outline` / `btn-ghost` | Secondary button variants |
-| `dialog` | Centered modal with backdrop |
+| `dialog` | Centered modal; auto-sizes to content and viewport |
 | `accordion` | Collapsible content sections |
 | `tab-list` / `tab-panel` | Tabbed interface |
 | `dashboard` | Responsive 3-column grid |

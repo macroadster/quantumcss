@@ -76,6 +76,28 @@ describe('Static CSS architecture', () => {
     assert.match(css, /--q-space-4:/);
     assert.match(css, /--q-color-starlight-blue:/);
     assert.match(css, /--q-glass-blur:/);
+    assert.match(css, /--q-font-sans:.*Segoe UI/);
+    assert.match(css, /--q-font-sans:.*Noto Sans/);
+    assert.match(css, /--q-dialog-form-width:/);
+    assert.match(css, /@supports \(font: -apple-system-body\)/);
+    assert.match(css, /html\[data-os="windows"\]/);
+    assert.match(css, /html\[data-os="linux"\]/);
+  });
+
+  test('dialog auto-sizes from content and viewport', () => {
+    const css = fs.readFileSync(compPath, 'utf8');
+    assert.match(css, /\.dialog,\s*\n\.dialog-content\s*\{/);
+    assert.match(css, /width:\s*fit-content/);
+    assert.match(css, /--q-dialog-max-height/);
+    assert.match(css, /\.dialog:has\(/);
+    assert.match(css, /--q-dialog-form-width/);
+    assert.match(css, /--q-dialog-wide-width/);
+    assert.match(css, /\.dialog\.dialog-sm/);
+    assert.match(css, /dialog\.dialog::backdrop/);
+    assert.match(css, /env\(safe-area-inset-top/);
+    assert.match(css, /\.dialog-close \+ \*/);
+    assert.match(css, /--q-dialog-close-size/);
+    assert.doesNotMatch(css, /\.dialog-content\s*\{[^}]*width:\s*600px/);
   });
 
   test('build.js is static-only (no generateCSS / content scan)', () => {
