@@ -100,6 +100,23 @@ describe('Static CSS architecture', () => {
     assert.doesNotMatch(css, /\.dialog-content\s*\{[^}]*width:\s*600px/);
   });
 
+
+  test('no garbage top-bar / bottom-section utilities', () => {
+    const css = fs.readFileSync(utilPath, 'utf8');
+    assert.doesNotMatch(css, /\.top-bar\b/);
+    assert.doesNotMatch(css, /top:\s*bar\s*;/);
+    assert.doesNotMatch(css, /\.bottom-section\b/);
+    assert.doesNotMatch(css, /bottom:\s*section\s*;/);
+  });
+
+  test('index example atomics stay in the utility catalog', () => {
+    const css = fs.readFileSync(utilPath, 'utf8');
+    for (const cls of ['bg-gradient-to-br', 'mb-10', 'px-10', 'from-blue-500_60', 'h-14', 'max-w-3xl']) {
+      const esc = cls.replace(/:/g, '\\:');
+      assert.match(css, new RegExp(`\\.${esc}\\b`));
+    }
+  });
+
   test('build.js is static-only (no generateCSS / content scan)', () => {
     const src = fs.readFileSync(buildPath, 'utf8');
     assert.doesNotMatch(src, /generateCSS/);

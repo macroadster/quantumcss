@@ -75,10 +75,13 @@ function generateThemeCSS(configPath) {
     lines.push(`  --q-glass-blur: ${blurVal};`);
   }
 
+  // spacingScale: when !== 1, rewrite --q-space-1…64 as a linear 0.25rem*scale grid.
+  // Base tokens in quantum-base.css are a sparse Tailwind-like set; this emits the
+  // full 1…64 ladder so theme overlays stay predictable for the kitchen-sink designer.
+  // Prefer leaving spacingScale at 1 unless you intentionally re-base the scale.
   const scale = Number(spacingScale) || 1;
   if (scale !== 1) {
     const base = 0.25 * scale;
-    // Match kitchen-sink designer: --q-space-N where N is step index
     for (let i = 1; i <= 64; i++) {
       lines.push(`  --q-space-${i}: ${(base * i).toFixed(4).replace(/\.?0+$/, '')}rem;`);
     }

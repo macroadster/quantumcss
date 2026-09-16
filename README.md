@@ -289,6 +289,23 @@ Load or paste `SKILL.md` into your agent system prompt. Prefer bare HTML → com
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
+
+## For consumers
+
+QuantumCSS ships as **static CSS**. Install the package and link the built file — there is no PostCSS runtime and no HTML content scan.
+
+```html
+<link rel="stylesheet" href="node_modules/@howssatoshi/quantumcss/dist/quantum.min.css">
+```
+
+Optional extras from the same package:
+
+- `quantumcss theme` / `require('@howssatoshi/quantumcss/theme')` — emit a small `:root` variable overlay from `quantum.config.json`
+- `quantumcss scaffold <template>` — copy an example page and the CSS beside it
+- `@howssatoshi/quantumcss/starlight.js` — theme / OS bootstrap helpers
+
+The npm tarball intentionally excludes `examples/` and the legacy JIT generator. Run `npm run test:pack` in this repo to verify the published surface.
+
 ## License
 
 MIT -- see [LICENSE](LICENSE).

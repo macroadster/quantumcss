@@ -26,8 +26,10 @@
     "harvest:icons": "node scripts/harvest-icons.js",
     "release": "node scripts/release.js",
     "lint:css": "stylelint 'src/styles/**/*.css' --ignore-pattern 'src/styles/quantum-utilities.css'",
-    "test:unit": "node --test tests/static-css.spec.js tests/theme.spec.js tests/generator.spec.js",
-    "lint:js": "eslint src/cli.js src/theme.js src/starlight.js scripts/*.js"
+    "test:unit": "node --test tests/static-css.spec.js tests/theme.spec.js tests/generator.spec.js tests/emit-gate.spec.js",
+    "lint:js": "eslint src/cli.js src/theme.js src/starlight.js scripts/*.js",
+    "test:pack": "node scripts/pack-smoke.js",
+    "test:smoke": "playwright test"
   },
   "repository": {
     "type": "git",
@@ -52,7 +54,6 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@playwright/test": "^1.58.2",
