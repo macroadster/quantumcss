@@ -7,6 +7,7 @@
   "auth-shell",
   "badge-base",
   "bg-starlight",
+  "bottom-section",
   "btn-base",
   "btn-secondary",
   "btn-shine",
@@ -15,6 +16,7 @@
   "chat-content",
   "chat-sidebar",
   "checkbox-starlight",
+  "content-top-bar",
   "dashboard",
   "dialog",
   "dialog-base",
@@ -101,6 +103,7 @@
   "theme-glass-dark",
   "theme-sidebar",
   "theme-starlight",
+  "top-bar",
   "top-nav",
   "top-nav-actions"
 ]
