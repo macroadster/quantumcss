@@ -2,7 +2,7 @@
 
 ![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.17.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Bundle Size](https://img.shields.io/badge/gzipped-~35%20KB-brightgreen)
+![Bundle Size](https://img.shields.io/badge/gzipped-~37%20KB-brightgreen)
 
 **Beautiful UI by default.** One `<link>` tag. No class soup. No build step required.
 
@@ -32,7 +32,7 @@ No utility classes. No configuration. That markup renders a polished, dark-mode-
 Think of QuantumCSS as the **SQLite of UI frameworks**:
 
 - **Zero configuration** -- works the moment you include it
-- **Tiny footprint** -- ~35 KB gzipped, ships as a single CSS file
+- **Tiny footprint** -- ~37 KB gzipped, ships as a single CSS file
 - **Sensible defaults** -- beautiful without any classes at all
 - **Batteries included** -- but you never have to think about the batteries
 
@@ -271,7 +271,7 @@ Working examples in the [examples/](examples/) directory:
 
 ## Performance
 
-- **~35 KB gzipped** -- full library including components, animations, and static utilities
+- **~37 KB gzipped** -- full library including components, animations, and static utilities
 - **Zero runtime JavaScript** required for styling
 - **GPU-accelerated animations** with `will-change` and hardware transforms
 - **CSS containment** isolates layout and paint for complex effects

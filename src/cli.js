@@ -134,8 +134,35 @@ function scaffold(template, targetPath = 'index.html') {
   if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
 
   fs.writeFileSync(fullTargetPath, content);
+
+  // Copy the built CSS next to the page so the rewritten href works out of the box
+  const cssSrc = path.resolve(__dirname, '../dist/quantum.min.css');
+  const cssDestDir = path.join(targetDir, 'dist');
+  const cssDest = path.join(cssDestDir, 'quantum.min.css');
+  if (fs.existsSync(cssSrc)) {
+    if (!fs.existsSync(cssDestDir)) fs.mkdirSync(cssDestDir, { recursive: true });
+    fs.copyFileSync(cssSrc, cssDest);
+    console.log(`📦 Copied dist/quantum.min.css → ${path.relative(process.cwd(), cssDest) || 'dist/quantum.min.css'}`);
+  } else {
+    console.warn('⚠️  Package dist/quantum.min.css missing — run npm run build in QuantumCSS, or copy the CSS manually.');
+  }
+
+  // Copy starlight.js when the template references it
+  if (/starlight\.js/.test(content)) {
+    const jsSrc = path.resolve(__dirname, '../src/starlight.js');
+    const jsDest = path.join(targetDir, 'starlight.js');
+    if (fs.existsSync(jsSrc)) {
+      fs.copyFileSync(jsSrc, jsDest);
+      let updated = fs.readFileSync(fullTargetPath, 'utf8');
+      updated = updated.replace(/src="(\.\.\/)*src\/starlight\.js"/, 'src="starlight.js"');
+      updated = updated.replace(/src="(\.\.\/)*starlight\.js"/, 'src="starlight.js"');
+      fs.writeFileSync(fullTargetPath, updated);
+      console.log(`📦 Copied starlight.js → ${path.relative(process.cwd(), jsDest) || 'starlight.js'}`);
+    }
+  }
+
   console.log(`🚀 Scaffolded '${template}' → ${targetPath}`);
-  console.log('👉 Link dist/quantum.min.css (no JIT build required).');
+  console.log('👉 Open the HTML file; dist/quantum.min.css is ready beside it.');
 }
 
 function main() {

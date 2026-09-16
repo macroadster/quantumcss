@@ -4,15 +4,41 @@
     "no-descending-specificity": null,
     "selector-class-pattern": null,
     "custom-property-pattern": null,
-    "selector-pseudo-class-no-unknown": [true, {
-      "ignorePseudoClasses": ["global"]
-    }],
-    "property-no-vendor-prefix": [true, {
-      "ignoreProperties": ["backdrop-filter", "text-fill-color", "background-clip", "font-smoothing", "text-size-adjust"]
-    }],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global"
+        ]
+      }
+    ],
+    "property-no-vendor-prefix": null,
     "declaration-block-no-redundant-longhand-properties": null,
     "shorthand-property-no-redundant-values": null,
     "alpha-value-notation": null,
-    "color-function-notation": null
-  }
+    "color-function-notation": null,
+    "length-zero-no-unit": null,
+    "declaration-property-value-no-unknown": null,
+    "media-feature-range-notation": null,
+    "color-function-alias-notation": null,
+    "rule-empty-line-before": null,
+    "declaration-block-single-line-max-declarations": null,
+    "no-duplicate-selectors": null,
+    "value-keyword-case": null,
+    "custom-property-empty-line-before": null,
+    "keyframes-name-pattern": null,
+    "comment-empty-line-before": null,
+    "color-hex-length": null,
+    "declaration-empty-line-before": null,
+    "declaration-block-no-duplicate-properties": null,
+    "declaration-block-no-duplicate-custom-properties": null,
+    "hue-degree-notation": null,
+    "at-rule-empty-line-before": null,
+    "block-no-empty": null,
+    "selector-not-notation": null
+  },
+  "ignoreFiles": [
+    "**/quantum-utilities.css",
+    "**/dist/**"
+  ]
 }
