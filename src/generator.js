@@ -308,10 +308,18 @@ function generateCSS(configPath) {
         else value = isNeg ? `-${valKey}` : valKey;
         property = 'z-index';
       }
-      else if (prefix === 'top') {
-        property = 'top';
+      else if (prefix === 'top' || prefix === 'right' || prefix === 'bottom' || prefix === 'left') {
+        property = prefix;
         if (valKey.startsWith('[') && valKey.endsWith(']')) value = valKey.slice(1, -1);
-        else value = theme.spacing[valKey] || valKey;
+        else if (theme.spacing && theme.spacing[valKey] !== undefined) value = theme.spacing[valKey];
+        else if (/^\d+(\.\d+)?$/.test(valKey)) value = `${parseFloat(valKey) * 0.25}rem`;
+        else if (valKey.includes('_')) value = `${(parseFloat(valKey.split('_')[0]) / parseFloat(valKey.split('_')[1]) * 100).toFixed(2)}%`;
+        else if (['auto', 'full', 'screen', 'min', 'max', 'fit', 'px'].includes(valKey) || /%$/.test(valKey)) {
+          const special = { full: '100%', screen: '100vh', min: 'min-content', max: 'max-content', fit: 'fit-content', px: '1px' };
+          value = special[valKey] || valKey;
+        } else {
+          return null; // refuse unknown bare identifiers (e.g. top-bar → top: bar)
+        }
       }
       else if (prefix === 'aspect') {
         property = ['aspect-ratio', 'width', 'height'];
@@ -364,7 +372,15 @@ function generateCSS(configPath) {
         else {
           // Priority: 1. Specific theme map (e.g. maxWidth for max-w) 2. spacing map 3. Numeric conversion 4. raw value
           const themeMap = prefix === 'max-w' ? theme.maxWidth : (theme[prefix] || theme.spacing);
-          v = (themeMap && themeMap[v]) || theme.spacing[v] || (/^\d+(\.\d+)?$/.test(v) ? `${parseFloat(v) * 0.25}rem` : v);
+          if (themeMap && themeMap[v] !== undefined) v = themeMap[v];
+          else if (theme.spacing && theme.spacing[v] !== undefined) v = theme.spacing[v];
+          else if (/^\d+(\.\d+)?$/.test(v)) v = `${parseFloat(v) * 0.25}rem`;
+          else if (['auto', 'full', 'screen', 'min', 'max', 'fit', 'px'].includes(v) || /%$/.test(v)) {
+            const special = { full: '100%', screen: '100vh', min: 'min-content', max: 'max-content', fit: 'fit-content', px: '1px' };
+            v = special[v] || v;
+          } else {
+            return null; // refuse unknown bare identifiers
+          }
         }
         value = isNeg ? (Array.isArray(v) ? v.map(x => `-${x}`) : `-${v}`) : v;
       } else if (prefix === 'shadow') {
@@ -470,15 +486,16 @@ function generateCSS(configPath) {
         let classSelector = `.${escapedFull}`;
         if (variant) {
           if (variant === 'group-hover') classSelector = `.group:hover ${classSelector}`;
+          else if (variant === 'placeholder') classSelector += `::placeholder`;
           else classSelector += `:${variant}`;
         }
         selectors.push(classSelector);
 
         // 2. Attribute-based selector (e.g., [md~="flex"])
-        // If the class has a variant/breakpoint prefix, we can support it as an attribute
+        // Skip for placeholder — attribute form is not a valid ::placeholder target.
         const separator = fullCls.includes('__') ? '__' : ':';
         const parts = fullCls.split(separator);
-        if (parts.length > 1) {
+        if (parts.length > 1 && variant !== 'placeholder') {
           const prefix = parts[0];
           const utility = parts.slice(1).join(separator);
           let attrSelector = `[${prefix}~="${utility}"]`;

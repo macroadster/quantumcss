@@ -154,25 +154,27 @@ All example files should load **only** `dist/quantum.min.css` (which includes ev
 
 ## Making a Release
 
+`npm run release` only refreshes release *metadata* (README badge, portfolio timeline, examples/index version). It does **not** bump `package.json`, build dist, or create git tags. The build banner already reads `version` from `package.json`.
+
 ```bash
-# 1. Update version in package.json (semver: patch, minor, major)
+# 1. Bump version in package.json (semver: patch, minor, major)
 vim package.json  # Update "version" field
 
-# 2. Run release script (bumps version, builds, tags)
+# 2. Build the CSS you intend to ship
+npm run build
+
+# 3. Refresh release metadata (badge, portfolio timeline, index version)
 npm run release
 
-# 3. Check git log for changes since last release
+# 4. Verify portfolio.html timeline entry; edit the description if it's generic
 git log --oneline -20
 
-# 4. Verify portfolio.html release history was updated by release script
-#    The release script auto-adds entry; verify description is accurate.
-#    If description is generic (e.g. "New features and improvements"),
-#    edit examples/portfolio.html to add specific changes from git log.
+# 5. Commit metadata + dist (and any other release files)
+git add package.json README.md examples/portfolio.html examples/index.html dist
+git commit -m "release: vX.Y.Z — <summary>"
 
-# 5. Commit the portfolio.html update
-git add examples/portfolio.html && git commit -m "docs: update release history"
-
-# 6. Push tags and commits
+# 6. Tag and push
+git tag vX.Y.Z
 git push && git push --tags
 ```
 

@@ -71,13 +71,18 @@ function main() {
     if (!owned.has(key)) classes.add(key);
   }
 
-  // 2. Example classes that are not component-owned named UI
+  // 2. Example classes only when the base utility is a known catalog entry.
+  // Never emit arbitrary HTML class names (e.g. top-bar → top: bar).
   const exampleClasses = collectExampleClasses();
   for (const c of exampleClasses) {
     if (!c) continue;
     const base = baseClassName(c);
     if (owned.has(base) || owned.has(c)) continue;
-    // Skip pure component names even if not in owned list (heuristic: long starlight-*)
+    const leaves = expandAliasLeaves(base);
+    const known = leaves.some((leaf) => typeof utilityMaps[leaf] === 'object')
+      || typeof utilityMaps[base] === 'object'
+      || typeof utilityMaps[base] === 'string';
+    if (!known) continue;
     classes.add(c);
   }
 
