@@ -12,11 +12,8 @@ test.describe('QuantumCSS Integrity Tests', () => {
     expect(starCount).toBeGreaterThan(0);
   });
 
-  // Skipped: gradient-test.html fixture not yet created
-  test.skip('Gradients should be applied correctly', () => {});
-  test.skip('Focus glow should be active on input focus', () => {});
-  test.skip('Theme switching should change variables', () => {});
-  
+  // Gradients / focus-glow / theme coverage live in kitchen-sink + unit tests.
+  // Keep this suite on real fixtures only.
   test('Dropdowns should have blur effect in dark mode', async ({ page }) => {
     await page.goto(`file://${path.resolve(__dirname, '../examples/kitchen-sink.html')}`);
     
@@ -90,7 +87,7 @@ test.describe('QuantumCSS Integrity Tests', () => {
   });
 
   test('html[data-theme] attribute can be set', async ({ page }) => {
-    await page.goto(`file://${path.resolve(__dirname, '../examples/gradient-test.html')}`);
+    await page.goto(`file://${path.resolve(__dirname, '../examples/kitchen-sink.html')}`);
     
     const html = page.locator('html');
     

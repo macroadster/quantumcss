@@ -1,5 +1,15 @@
 #!/usr/bin/env node
 /**
+ * ONE-SHOT historical migrator (QCS-56y). Already applied on main.
+ * Refuses to run unless --force is passed, to avoid re-appending sections.
+ */
+if (!process.argv.includes('--force')) {
+  console.error('scripts/fix-dual-ownership.js is a one-shot migrator.');
+  console.error('It already ran historically. Re-run only with --force if you know why.');
+  process.exit(1);
+}
+
+/**
  * QCS-56y: Resolve dual class ownership.
  * - Move named component/preset rules from quantum-utilities.css → quantum-components.css
  * - Drop broken/garbage duals (top-nav from bad scan)

@@ -6,3 +6,7 @@ node_modules/
 .dolt/
 *.db
 .beads-credential-key
+test-results/
+playwright-report/
+.playwright-mcp/
+*.swp
