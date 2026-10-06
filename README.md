@@ -1,6 +1,6 @@
 # QuantumCSS
 
-![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.17.1-blue)
+![Quantum CSS](https://img.shields.io/badge/Quantum%20CSS-v1.17.2-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Bundle Size](https://img.shields.io/badge/gzipped-~37%20KB-brightgreen)
 
