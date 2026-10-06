@@ -27,7 +27,7 @@
     "release": "node scripts/release.js",
     "lint:css": "stylelint 'src/styles/**/*.css' --ignore-pattern 'src/styles/quantum-utilities.css'",
     "test:unit": "node --test tests/static-css.spec.js tests/theme.spec.js tests/generator.spec.js tests/emit-gate.spec.js",
-    "lint:js": "eslint src/cli.js src/theme.js src/starlight.js scripts/*.js",
+    "lint:js": "eslint src/cli.js src/theme.js src/starlight.js scripts/*.js --max-warnings 0",
     "test:pack": "node scripts/pack-smoke.js",
     "test:smoke": "playwright test"
   },

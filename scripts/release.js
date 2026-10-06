@@ -58,7 +58,7 @@ function getChangelog(currentVersion) {
     if (formattedCommits.length === 0) return null;
 
     return formattedCommits.join(', ');
-  } catch (e) {
+  } catch {
     return null;
   }
 }

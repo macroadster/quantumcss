@@ -37,4 +37,34 @@ test.describe('Example smoke', () => {
     );
     expect(lightBg.length).toBeGreaterThan(0);
   });
+
+  test('Quantum Shell monitor icon stays visible in light, dark, and auto', async ({ page }) => {
+    await page.goto(indexUrl);
+    const shellIcon = page.locator('a[href="shell.html"] i.icon-display');
+    const toggleAuto = page.locator('.theme-toggle > i.icon-display');
+
+    for (const theme of ['dark', 'light', 'auto']) {
+      await page.evaluate((value) => {
+        localStorage.setItem('theme', value);
+      }, theme);
+      await page.reload();
+
+      await expect(shellIcon).toBeVisible();
+      await expect(shellIcon).not.toHaveClass(/\bhidden\b/);
+      const box = await shellIcon.boundingBox();
+      expect(box.width).toBeGreaterThan(24);
+      expect(box.height).toBeGreaterThan(24);
+      const mask = await shellIcon.evaluate((el) => {
+        const style = getComputedStyle(el);
+        return style.webkitMaskImage || style.maskImage;
+      });
+      expect(mask).toContain('url(');
+
+      if (theme === 'auto') {
+        await expect(toggleAuto).toBeVisible();
+      } else {
+        await expect(toggleAuto).toBeHidden();
+      }
+    }
+  });
 });

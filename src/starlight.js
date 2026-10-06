@@ -19,7 +19,7 @@ function resolveThemeStorageKey(html) {
   if (attr === 'path' || attr === 'pathname') {
     try {
       return `theme:${typeof location !== 'undefined' ? location.pathname : ''}`;
-    } catch (_) {
+    } catch {
       return 'theme';
     }
   }
@@ -50,7 +50,7 @@ function applyThemeBootstrap(storageKey) {
     try {
       const saved = localStorage.getItem(key);
       if (saved) theme = saved;
-    } catch (_) { /* private mode */ }
+    } catch { /* private mode */ }
   }
 
   let effective = theme;
@@ -885,7 +885,10 @@ const Starlight = {
       iconSelector: {
         light: '.sun-icon, [data-theme-icon="light"]',
         dark: '.moon-icon, [data-theme-icon="dark"]',
-        auto: '.icon-display, [data-theme-icon="auto"]'
+        // `.icon-display` is the monitor glyph. Content (gallery cards, feature
+        // icons) uses it too, so auto-mode visibility is `.auto-icon` only.
+        // Bare monitor icons beside sun/moon stay supported for older toggles.
+        auto: '.auto-icon, [data-theme-icon="auto"]'
       },
       autoDetect: true,
       locked: htmlEl.hasAttribute('data-theme-locked')
@@ -904,33 +907,49 @@ const Starlight = {
      * @param {string} theme - The theme that is active (light, dark, or auto)
      * @param {string} effectiveTheme - The actual theme being displayed
      */
+    const themeIconNodes = (role) => {
+      const selector = config.iconSelector[role];
+      const nodes = selector ? [...document.querySelectorAll(selector)] : [];
+      if (role !== 'auto') return nodes;
+
+      const seen = new Set(nodes);
+      document.querySelectorAll('.icon-display').forEach((icon) => {
+        if (seen.has(icon)) return;
+        const parent = icon.parentElement;
+        if (!parent) return;
+        const besideThemeIcon = parent.querySelector(
+          ':scope > .sun-icon, :scope > .moon-icon, :scope > [data-theme-icon="light"], :scope > [data-theme-icon="dark"]'
+        );
+        if (!besideThemeIcon) return;
+        seen.add(icon);
+        nodes.push(icon);
+      });
+      return nodes;
+    };
+
     const updateIcons = (theme, effectiveTheme) => {
-      const autoIconSelector = config.iconSelector.auto;
-      const hasAutoIcon = autoIconSelector && document.querySelector(autoIconSelector) !== null;
-      
-      if (theme === 'auto' && hasAutoIcon) {
-        // Auto mode with auto icon: show only auto icon
-        document.querySelectorAll(autoIconSelector).forEach(icon => {
+      const autoNodes = themeIconNodes('auto');
+
+      if (theme === 'auto' && autoNodes.length > 0) {
+        autoNodes.forEach((icon) => {
           icon.classList.remove('hidden');
         });
-        // Hide light/dark icons
         const lightSelector = config.iconSelector.light;
         const darkSelector = config.iconSelector.dark;
-        document.querySelectorAll(`${lightSelector}, ${darkSelector}`).forEach(icon => {
-          icon.classList.add('hidden');
-        });
-        return;
-      }
-      
-      // Otherwise use normal theme-based visibility
-      config.themes.forEach(t => {
-        const selector = config.iconSelector[t];
-        if (selector) {
-          document.querySelectorAll(selector).forEach(icon => {
-            const isEffective = theme === 'auto' ? t === effectiveTheme : t === theme;
-            icon.classList.toggle('hidden', !isEffective);
+        const hideSelector = [lightSelector, darkSelector].filter(Boolean).join(', ');
+        if (hideSelector) {
+          document.querySelectorAll(hideSelector).forEach((icon) => {
+            icon.classList.add('hidden');
           });
         }
+        return;
+      }
+
+      config.themes.forEach((t) => {
+        themeIconNodes(t).forEach((icon) => {
+          const isEffective = theme === 'auto' ? t === effectiveTheme : t === theme;
+          icon.classList.toggle('hidden', !isEffective);
+        });
       });
     };
 

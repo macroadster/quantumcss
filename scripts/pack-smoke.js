@@ -56,7 +56,7 @@ try {
   // clean any leftover tarball in root
   for (const f of fs.readdirSync(root)) {
     if (f.endsWith('.tgz') && f.startsWith('howssatoshi-quantumcss-')) {
-      try { fs.unlinkSync(path.join(root, f)); } catch (_) {}
+      fs.rmSync(path.join(root, f), { force: true });
     }
   }
 }

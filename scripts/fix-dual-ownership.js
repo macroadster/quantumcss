@@ -57,11 +57,6 @@ const PREFER_COMPONENT_BASE = new Set([
   'search',
 ]);
 
-// Escape class name for regex
-function escapeClass(name) {
-  return name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/:/g, '\\:');
-}
-
 /**
  * Parse CSS into top-level rules (handles nested @media by keeping whole at-rule blocks).
  * Returns array of { type: 'rule'|'atrule'|'other', text }
@@ -203,7 +198,6 @@ function rulePrimaryClasses(ruleText) {
   const names = new Set();
   // each selector in list
   for (const part of selector.split(',')) {
-    const m = part.trim().match(/^\.([a-zA-Z_][\w-]*|\\.[a-zA-Z_][\w-]*)/);
     // handle escaped dots in class like starlight-chart-tab\.active
     const m2 = part.trim().match(/^\.((?:[a-zA-Z_][\w-]*|\\.)+)/);
     if (m2) {
@@ -350,7 +344,7 @@ newComp = newComp
   .replace(/base rule in JIT/g, 'base rules colocated below')
   .replace(/base rules in JIT/g, 'base rules colocated below')
   .replace(
-    /LAYOUT PRESETS — Base\/dark rules live in quantum-utilities\.css \(static catalog\)\.\n   Light-mode overrides and child decorations remain below \/ elsewhere in this file\./,
+    /LAYOUT PRESETS — Base\/dark rules live in quantum-utilities\.css \(static catalog\)\.\n {3}Light-mode overrides and child decorations remain below \/ elsewhere in this file\./,
     'LAYOUT PRESETS — Full base + light-mode rules live in this file (static-first ownership).'
   );
 
