@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuantumCSS Demo</title>
+    <link rel="stylesheet" href="dist/quantum.min.css" />
+    <script src="src/starlight.js"></script>
+    <style>
+        body { background: transparent !important; }
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1.5rem;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 100;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: 1px solid var(--q-color-border);
+            background: var(--q-color-surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle:hover { transform: scale(1.05); }
+        section { margin-bottom: 4rem; }
+        h2.section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--q-color-border);
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">
+        <i class="icon-moon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <header class="nav-header">
+        <span class="font-bold text-lg">QuantumCSS Demo</span>
+        <nav>
+            <a href="#components">Components</a>
+            <a href="#forms">Forms</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#timeline">Timeline</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="max-w-3xl mx-auto">
+            <span class="badge badge-success mb-4">v1.17.2</span>
+            <h1 class="text-5xl font-bold tracking-tight mb-4">Beautiful UI by default</h1>
+            <p class="text-xl opacity-70 mb-8">
+                One link tag. No class soup. No build step. Write semantic HTML and QuantumCSS makes it look good.
+            </p>
+            <div class="flex gap-4 justify-center flex-wrap">
+                <button class="btn-primary">Get Started</button>
+                <button class="btn-outline">View on GitHub</button>
+                <button class="btn-ghost">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-6">
+
+        <!-- Alerts -->
+        <section id="alerts">
+            <h2 class="section-title">Alerts &amp; Badges</h2>
+            <div class="flex flex-col gap-4">
+                <div class="alert alert-success">Your changes have been saved successfully.</div>
+                <div class="alert alert-warning">Your session will expire in 5 minutes.</div>
+                <div class="alert">This is a neutral informational alert.</div>
+            </div>
+            <div class="flex gap-3 mt-6 flex-wrap">
+                <span class="badge">Default</span>
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-error">Error</span>
+                <span class="badge">Info</span>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section id="components">
+            <h2 class="section-title">Cards</h2>
+            <div class="dashboard">
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-2">Card Title</h3>
+                    <p class="opacity-70 mb-4">A glass-effect container with border, shadow, and padding. Just add <code>card</code>.</p>
+                    <button class="btn-primary">Action</button>
+                </div>
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-2">Another Card</h3>
+                    <p class="opacity-70 mb-4">Compose freely with bare HTML inside. Forms, lists, media all look great.</p>
+                    <span class="badge badge-success">+12%</span>
+                </div>
+                <div class="starlight-card">
+                    <h3 class="text-lg font-semibold mb-2">Starlight Card</h3>
+                    <p class="opacity-70">Cosmic glassmorphic variant with glow accents.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forms -->
+        <section id="forms">
+            <h2 class="section-title">Forms</h2>
+            <div class="card max-w-xl">
+                <form class="flex flex-col gap-4">
+                    <div>
+                        <label class="block mb-1 text-sm font-medium">Email</label>
+                        <input type="email" placeholder="you@example.com" />
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-medium">Password</label>
+                        <input type="password" placeholder="••••••••" />
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-medium">Message</label>
+                        <textarea placeholder="Write something..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-medium">Country</label>
+                        <select>
+                            <option>United States</option>
+                            <option>Canada</option>
+                            <option>United Kingdom</option>
+                        </select>
+                    </div>
+                    <div class="search">
+                        <i class="icon-search"></i>
+                        <input type="text" placeholder="Search..." />
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="submit" class="btn-primary">Submit</button>
+                        <button type="button" class="btn-outline">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Table -->
+        <section>
+            <h2 class="section-title">Table</h2>
+            <div class="card overflow-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alice Johnson</td>
+                            <td><span class="badge badge-success">Active</span></td>
+                            <td>Admin</td>
+                            <td>Jan 12, 2025</td>
+                        </tr>
+                        <tr>
+                            <td>Bob Smith</td>
+                            <td><span class="badge">Pending</span></td>
+                            <td>Editor</td>
+                            <td>Feb 3, 2025</td>
+                        </tr>
+                        <tr>
+                            <td>Carol Lee</td>
+                            <td><span class="badge badge-error">Inactive</span></td>
+                            <td>Viewer</td>
+                            <td>Mar 8, 2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <section>
+            <h2 class="section-title">Tabs</h2>
+            <div class="card">
+                <div class="tab-list" role="tablist">
+                    <button role="tab" aria-selected="true">Overview</button>
+                    <button role="tab">Analytics</button>
+                    <button role="tab">Settings</button>
+                </div>
+                <div class="tab-panel">
+                    <p>Tabbed content panels for organizing related information. Bare markup, polished styling.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordion -->
+        <section>
+            <h2 class="section-title">Accordion</h2>
+            <div class="max-w-2xl" data-accordion>
+                <div class="accordion-item accordion active">
+                    <div class="accordion-header">
+                        <span>What is QuantumCSS?</span>
+                        <i class="icon-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>A modern, performance-optimized utility-first CSS framework with semantic naming and component-aware utilities.</p>
+                    </div>
+                </div>
+                <div class="accordion-item accordion">
+                    <div class="accordion-header">
+                        <span>Do I need a build step?</span>
+                        <i class="icon-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>No. One link tag and you're done. Optional CLI for theming.</p>
+                    </div>
+                </div>
+                <div class="accordion-item accordion">
+                    <div class="accordion-header">
+                        <span>Is dark mode automatic?</span>
+                        <i class="icon-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes. It follows prefers-color-scheme by default, with manual override via data-theme.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section id="dashboard">
+            <h2 class="section-title">Dashboard</h2>
+            <div class="dashboard">
+                <div class="card">
+                    <h3 class="text-sm opacity-70 mb-1">Users</h3>
+                    <p class="text-3xl font-bold">12,543</p>
+                    <span class="badge badge-success">+12%</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-sm opacity-70 mb-1">Revenue</h3>
+                    <p class="text-3xl font-bold">$48,210</p>
+                    <span class="badge">+4%</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-sm opacity-70 mb-1">Orders</h3>
+                    <p class="text-3xl font-bold">1,893</p>
+                    <span class="badge badge-success">+8%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section id="timeline">
+            <h2 class="section-title">Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4 class="font-semibold">Project started</h4>
+                        <p class="text-sm opacity-70">Initial commit and scaffolding.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4 class="font-semibold">First release</h4>
+                        <p class="text-sm opacity-70">v1.0 shipped to npm.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4 class="font-semibold">Dark mode</h4>
+                        <p class="text-sm opacity-70">Automatic theme support added.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toast -->
+        <section>
+            <h2 class="section-title">Toast</h2>
+            <div class="toast">
+                <span>Changes saved</span>
+            </div>
+        </section>
+
+        <!-- Dialog -->
+        <section>
+            <h2 class="section-title">Dialog</h2>
+            <div class="dialog">
+                <h3 class="text-lg font-semibold mb-2">Confirm action</h3>
+                <p class="opacity-70 mb-4">Are you sure you want to proceed?</p>
+                <div class="flex gap-3 justify-end">
+                    <button class="btn-ghost">Cancel</button>
+                    <button class="btn-primary">Confirm</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animations -->
+        <section>
+            <h2 class="section-title">Animations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card flex flex-col items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-500 ani-float"></div>
+                    <span class="text-sm opacity-70">ani-float</span>
+                </div>
+                <div class="card flex flex-col items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-orange-500 ani-cosmic-pulse"></div>
+                    <span class="text-sm opacity-70">ani-cosmic-pulse</span>
+                </div>
+                <div class="card flex flex-col items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-purple-500 ani-twinkle"></div>
+                    <span class="text-sm opacity-70">ani-twinkle</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Icons -->
+        <section>
+            <h2 class="section-title">Icons</h2>
+            <div class="grid grid-cols-4 md:grid-cols-8 gap-4 text-center">
+                <div class="flex flex-col items-center gap-2"><i class="icon-home-fill"></i><span class="text-xs opacity-60">home</span></div>
+                <div class="flex flex-col items-center gap-2"><i class="icon-mail"></i><span class="text-xs opacity-60">mail</span></div>
+                <div class="flex flex-col items-center gap-2"><i class="icon-heart"></i><span class="text-xs opacity-60">heart</span></div>
+                <div class="flex flex-col items-center gap-2"><i class="icon-cart"></i><span class="text-xs opacity-60">cart</span></div>
+                <div class="flex flex-col items-center gap-2"><i class="icon-github"></i><span class="text-xs opacity-60">github</span></div>
+                <div class="flex flex-col items-center gap-2"><i class="icon-calendar"></i><span class="text-xs opacity-60">calendar</span></div>
+                <div class="flex flex-col items-center gap-2"><i class="icon-chart-bar"></i><span class="text-xs opacity-60">chart</span></div>
+                <div class="flex flex-col items-center gap-2"><i class="icon-globe"></i><span class="text-xs opacity-60">globe</span></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-12 opacity-60 text-sm">
+        Built with QuantumCSS &mdash; MIT License
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+        }
+    </script>
+</body>
+</html>
