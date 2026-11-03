@@ -39,6 +39,8 @@
         .conversation-name { font-size: 0.9375rem; font-weight: 600; color: var(--q-text-primary, #f1f5f9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .conversation-time { font-size: 0.75rem; color: var(--q-text-muted, #64748b); }
         .conversation-message { font-size: 0.875rem; color: var(--q-text-secondary, #94a3b8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .conversation-preview { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-width: 0; }
+        .conversation-preview .conversation-message { min-width: 0; }
         .conversation-item.unread .conversation-message { color: var(--q-text-primary, #f1f5f9); font-weight: 500; }
         .chat-main { display: flex; flex-direction: column; overflow: hidden; }
         .chat-header { display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; border-bottom: 1px solid var(--q-color-border); background: color-mix(in srgb, var(--q-color-bg), white 1%); height: 5rem; flex-shrink: 0; }
@@ -166,7 +168,7 @@
                         </div>
                         <div class="conversation-preview">
                             <span class="conversation-message">Just sent the project files!</span>
-                            <span class="unread-badge">1</span>
+                            <span class="badge-count">1</span>
                         </div>
                     </div>
                 </div>

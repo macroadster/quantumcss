@@ -12,7 +12,7 @@
             color: var(--q-color-text);
             transition: background 0.5s ease, color 0.5s ease;
         }
-        nav, main, footer, section, header { position: relative; z-index: 1; }
+        /* starlight-layout on <body class="starlight-layout"> lifts content above .starlight-stars */
         
         .hero-ai {
             min-height: 90vh;
@@ -78,7 +78,7 @@
         .theme-toggle-btn:hover { border-color: var(--q-color-starlight-blue); transform: scale(1.1); }
     </style>
 </head>
-<body>
+<body class="starlight-layout">
     <div class="starlight-stars ani-nebula"></div>
 
 <header class="nav-header flex items-center justify-between">
@@ -355,7 +355,7 @@
 
     <footer style="background: var(--q-bg-primary); border-top: 1px solid var(--q-color-border);" class="text-center">
         <div class="container" style="padding: 1.5rem 1.5rem;">
-            <div class="text-starlight font-black uppercase tracking-[0.5em] text-xs mb-4 justify-center">Artificial Intelligence Layer</div>
+            <div class="text-starlight-blue font-black uppercase tracking-[0.5em] text-xs mb-4 justify-center">Artificial Intelligence Layer</div>
             <p class="text-[10px] opacity-40 uppercase tracking-widest">© 2026 Eric Yang · Powered by QuantumCSS Architecture</p>
         </div>
     </footer>

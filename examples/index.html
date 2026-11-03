@@ -54,11 +54,7 @@
                 width: 1.5rem;
                 height: 1.5rem;
             }
-            header,
-            section {
-                position: relative;
-                z-index: 1;
-            }
+            /* starlight-layout on <body> lifts content above .starlight-stars */
 
             /* Page-specific vibrancy: Primary hue for icons and titles */
             .starlight-card h3 {
@@ -95,7 +91,7 @@
             }
         </style>
     </head>
-    <body>
+    <body class="starlight-layout">
         <div class="starlight-stars ani-nebula" id="stars"></div>
 
         <button

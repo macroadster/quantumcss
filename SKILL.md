@@ -40,6 +40,12 @@ No JIT. No invented classes.
 | `data-theme-storage="path"` | Per-pathname localStorage (avoids multi-demo pollution) |
 | `data-theme-locked` | Always use default; ignore storage |
 
+Auto-detection runs only when there is no saved preference, no `data-theme-locked`, and no explicit `data-theme-default`. To disable it in that fallback case, set this **before** `starlight.js`:
+
+```html
+<script>window.StarlightConfig = { theme: { autoDetect: false } };</script>
+```
+
 ---
 
 ## 1. Priority
@@ -48,7 +54,7 @@ No JIT. No invented classes.
 
 ```html
 <!-- GOOD --><div class="card"><h2>Title</h2><p>Body.</p><button class="btn-primary">Go</button></div>
-<!-- BAD --> <div class="bg-white_5 rounded-xl border p-6 backdrop-blur">…
+<!-- BAD --> <div class="bg-white_5 rounded-xl border p-6 backdrop-blur-md">…
 ```
 
 Opacity: `bg-white_5` not `bg-white/5`.
@@ -72,12 +78,19 @@ Opacity: `bg-white_5` not `bg-white/5`.
 
 ```html
 <html lang="en" data-theme="dark" data-theme-default="dark">
-<body>
+<body class="starlight-layout">
   <div class="starlight-stars ani-nebula" aria-hidden="true"></div>
   <header class="nav-header">…</header>
   <main class="p-8"><div class="max-w-6xl mx-auto">…</div></main>
 </body>
 ```
+
+> **`.starlight-layout`** lifts all direct children (except `.starlight-stars`) above the
+> starfield via `position: relative; z-index: 1`. Without it, unpositioned elements
+> (headings, paragraphs, tables) render *behind* the opaque star layer and appear dimmed.
+> The nav-header keeps its own `sticky; z-index: 100` via `@layer components`.
+> `.ani-nebula` drifts/scales the starfield at a fixed 55% opacity; it does not pulse
+> text contrast, and `prefers-reduced-motion` renders it static.
 
 ### Light marketing (hotel, bakery, retail, editorial)
 
@@ -153,7 +166,7 @@ Alerts: `alert alert-{success,warning,error,info}`
 ### Accordion (needs `starlight.js`)
 ```html
 <div data-accordion>
-  <div class="accordion-item accordion active">
+  <div class="accordion-item active">
     <div class="accordion-header">
       <span>Question?</span>
       <i class="icon-chevron-down accordion-icon"></i>

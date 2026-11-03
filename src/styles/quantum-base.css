@@ -490,8 +490,6 @@ html[data-theme="light"] {
   --q-light-glass-border: rgba(28, 25, 23, 0.08);
   --q-light-glass-highlight: rgba(255, 255, 255, 0.55);
   --q-light-glass-shadow: 0 10px 30px 0 rgba(28, 25, 23, 0.06);
-
-  scrollbar-color: var(--q-color-starlight-blue) transparent;
 }
 
 html[data-theme="dark"],

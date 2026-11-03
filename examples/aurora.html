@@ -21,7 +21,7 @@
         html[data-theme="light"] body {
             background: var(--q-light-bg, #f8fafc) !important;
         }
-        header, main, section, footer, nav { position: relative; z-index: 1; }
+        /* starlight-layout on <body class="starlight-layout"> lifts content above .starlight-stars */
 
         .hero-stage {
             min-height: 0;
@@ -95,7 +95,7 @@
         }
     </style>
 </head>
-<body>
+<body class="starlight-layout">
     <div class="starlight-stars ani-nebula" aria-hidden="true"></div>
     <div class="starlight-orb starlight-orb-cyan" aria-hidden="true"></div>
     <div class="starlight-orb starlight-orb-peach" aria-hidden="true"></div>
@@ -495,7 +495,7 @@
                     <p class="text-muted text-lg">The tiers are theatrical — the framework is free.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-                    <div class="card price-card p-8 flex flex-col">
+                    <div class="card p-8 flex flex-col">
                         <h3 class="text-lg font-bold mb-1">Orbit</h3>
                         <p class="opacity-60 text-sm mb-6">Personal experiments</p>
                         <div class="metric-value mb-6">$0</div>
@@ -506,7 +506,7 @@
                         </ul>
                         <button type="button" class="btn btn-outline w-full">Clone repo</button>
                     </div>
-                    <div class="card-premium is-featured price-card p-8 flex flex-col">
+                    <div class="card-premium is-featured p-8 flex flex-col">
                         <div class="flex items-center justify-between mb-1">
                             <h3 class="text-lg font-bold">Nebula</h3>
                             <span class="badge badge-primary">Popular</span>
@@ -521,7 +521,7 @@
                         </ul>
                         <button type="button" class="btn-starlight w-full">Start building</button>
                     </div>
-                    <div class="card price-card p-8 flex flex-col">
+                    <div class="card p-8 flex flex-col">
                         <h3 class="text-lg font-bold mb-1">Quasar</h3>
                         <p class="opacity-60 text-sm mb-6">Deep customization</p>
                         <div class="metric-value mb-6">$0</div>

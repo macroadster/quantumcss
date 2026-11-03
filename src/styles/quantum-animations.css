@@ -1,9 +1,9 @@
 /* Cosmic Animation Library */
 
 @keyframes nebula-drift {
-  0% { transform: translate(-5%, -5%) scale(1); opacity: 0.4; }
-  50% { transform: translate(5%, 5%) scale(1.2); opacity: 0.7; }
-  100% { transform: translate(-5%, -5%) scale(1); opacity: 0.4; }
+  0% { transform: translate(-5%, -5%) scale(1); }
+  50% { transform: translate(5%, 5%) scale(1.2); }
+  100% { transform: translate(-5%, -5%) scale(1); }
 }
 
 @keyframes cosmic-pulse {
@@ -31,11 +31,22 @@
 
 .ani-nebula {
   animation: nebula-drift 20s ease-in-out infinite;
-  will-change: transform, opacity;
+  opacity: 0.55;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ani-nebula {
+    animation: none;
+  }
 }
 
 .ani-cosmic-pulse {
   animation: cosmic-pulse 4s ease-in-out infinite;
+}
+
+.ani-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .ani-twinkle {

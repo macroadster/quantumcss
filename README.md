@@ -138,6 +138,29 @@ QuantumCSS follows `prefers-color-scheme` by default. No toggle needed -- it jus
 document.documentElement.setAttribute('data-theme', 'light');
 ```
 
+To make dark/light deterministic, set a default or lock it:
+
+```html
+<html lang="en" data-theme="dark" data-theme-default="dark" data-theme-locked>
+```
+
+When no storage, locked default, or `data-theme-default` is present, you can disable OS-based auto-detection with:
+
+```javascript
+window.StarlightConfig = { theme: { autoDetect: false } };
+```
+
+### Dark pages with a starfield
+
+If you use `.starlight-stars`, put `starlight-layout` on `<body>` so unpositioned content paints above the starfield:
+
+```html
+<body class="starlight-layout">
+  <div class="starlight-stars ani-nebula" aria-hidden="true"></div>
+  <main><h1>Full-strength type</h1></main>
+</body>
+```
+
 ### Responsive spacing
 
 Spacing tokens automatically scale down on narrow screens via CSS custom properties. A `--q-space-8` that gives 2rem on desktop becomes 1.5rem on mobile. No breakpoint classes needed for basic responsiveness.

@@ -897,6 +897,11 @@ const Starlight = {
     if (window.StarlightConfig && window.StarlightConfig.theme) {
       Object.assign(config, window.StarlightConfig.theme);
     }
+    // Purge stale key from pre-v1.18 releases (written but never read)
+    try {
+      localStorage.removeItem(`${config.storageKey}-effective`);
+    } catch { /* private mode */ }
+
     // Re-apply after config merge (storage key / locked may change)
     applyThemeBootstrap(config.storageKey);
 
@@ -970,9 +975,6 @@ const Starlight = {
 
       if (theme === 'auto' && config.autoDetect) {
         effectiveTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        localStorage.setItem(`${config.storageKey}-effective`, effectiveTheme);
-      } else {
-        localStorage.removeItem(`${config.storageKey}-effective`);
       }
 
       // Apply to DOM
@@ -1026,7 +1028,6 @@ const Starlight = {
           // Apply to DOM
           html.setAttribute('data-theme', newEffective);
           
-          localStorage.setItem(`${config.storageKey}-effective`, newEffective);
           updateIcons('auto', newEffective);
           
           window.dispatchEvent(new CustomEvent('themechange', {
@@ -1039,10 +1040,16 @@ const Starlight = {
     // Initialize UI
     document.querySelectorAll('.theme-toggle, [data-theme-toggle]').forEach(createThemeToggle);
 
-    // Set initial theme
+    // Set initial theme — respect data-theme-locked / data-theme-default
     const savedTheme = localStorage.getItem(config.storageKey);
-    if (savedTheme) {
+    if (config.locked) {
+      // Locked: always use the default theme, ignore storage and OS preference
+      window.setTheme(config.defaultTheme, 'init', false);
+    } else if (savedTheme) {
       window.setTheme(savedTheme, 'init');
+    } else if (htmlEl.hasAttribute('data-theme-default')) {
+      // Explicit default set — honor it instead of auto-detecting OS preference
+      window.setTheme(config.defaultTheme, 'init', false);
     } else {
       window.setTheme(config.autoDetect ? 'auto' : config.defaultTheme, 'init', false);
     }

@@ -2,7 +2,7 @@ const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: 'tests',
-  testMatch: /smoke\.spec\.js/,
+  testMatch: /(smoke|css-integrity)\.spec\.js$/,
   timeout: 60_000,
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
