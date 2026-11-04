@@ -5653,6 +5653,15 @@ html[data-theme="light"] .text-glass {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  /* Expand the paint area below the baseline — with line-height: 1, descenders
+     fall outside the background positioning area and get sliced off. Negative
+     margin keeps surrounding layout identical. */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+  /* Same for italic overhang at line ends — glyph ink extends past the inline
+     box and background-clip:text stops painting there. */
+  padding-inline: 0.15em;
+  margin-inline: -0.15em;
 }
 
 html[data-theme="light"] .text-gradient {
