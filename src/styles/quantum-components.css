@@ -8264,10 +8264,6 @@ html[data-theme="light"] .starlight-orb {
     background 0.25s ease;
 }
 
-.field.has-icon .input:focus {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--q-color-starlight-blue) 25%, transparent);
-}
-
 .field-icon {
   position: absolute !important;
   left: 1rem !important;
