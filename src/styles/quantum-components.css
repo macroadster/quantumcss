@@ -4300,9 +4300,12 @@ html[data-theme="light"] .select {
 .textarea:focus,
 .select:focus {
   outline: none;
+  /* single soft blue ring + glow (preferred focus look — matches .search) */
   box-shadow:
-    0 0 0 2px var(--q-color-starlight-deep),
-    0 0 0 4px var(--q-color-starlight-blue);
+    0 0 0 1px var(--q-color-starlight-blue),
+    0 0 24px color-mix(in srgb, var(--q-color-starlight-blue), transparent 55%),
+    inset 0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
   border-color: var(--q-color-starlight-blue);
 }
 
@@ -5268,10 +5271,12 @@ html[data-theme="light"] .accordion-content {
 
 .search-container:focus-within,
 .search:focus-within {
-  /* mirror .input:focus — same ring + border, no one-off glow/fill */
+  /* mirror .input:focus — same single soft ring + glow */
   box-shadow:
-    0 0 0 2px var(--q-color-starlight-deep),
-    0 0 0 4px var(--q-color-starlight-blue);
+    0 0 0 1px var(--q-color-starlight-blue),
+    0 0 24px color-mix(in srgb, var(--q-color-starlight-blue), transparent 55%),
+    inset 0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
   border-color: var(--q-color-starlight-blue);
   outline: none;
 }
