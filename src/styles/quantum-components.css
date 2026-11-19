@@ -5237,10 +5237,11 @@ html[data-theme="light"] .accordion-content {
   border-radius: var(--q-radius-xl);
   transition: all var(--q-duration-base) var(--q-ease-in-out);
   overflow: visible !important;
-  /* liquid refraction edge: specular rim on border-box, translucent fill on padding-box */
+  /* liquid refraction rim: specular edge on border-box; near-opaque dark fill
+     on padding-box hides the edge gradient inside, leaving just the rim */
   background-color: transparent;
   background-image:
-    linear-gradient(180deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.03)),
+    linear-gradient(180deg, rgb(18 19 40 / 0.9), rgb(18 19 40 / 0.8)),
     linear-gradient(168deg,
       rgb(255 255 255 / 0.32) 0%,
       rgb(255 255 255 / 0.08) 30%,
@@ -5265,14 +5266,13 @@ html[data-theme="light"] .accordion-content {
   transform: none !important;
 }
 
+.search-container:focus-within,
 .search:focus-within {
+  /* mirror .input:focus — same ring + border, no one-off glow/fill */
   box-shadow:
-    0 0 0 1px var(--q-color-starlight-blue),
-    0 0 24px color-mix(in srgb, var(--q-color-starlight-blue), transparent 55%),
-    inset 0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+    0 0 0 2px var(--q-color-starlight-deep),
+    0 0 0 4px var(--q-color-starlight-blue);
   border-color: var(--q-color-starlight-blue);
-  background-color: rgba(255, 255, 255, 0.06);
   outline: none;
 }
 
