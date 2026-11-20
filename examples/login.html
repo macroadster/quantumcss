@@ -6,18 +6,9 @@
   <title>Sign in · Starlight</title>
   <link rel="stylesheet" href="../dist/quantum.min.css">
   <link rel="stylesheet" href="login.css">
-  <!-- Prevent FOUC: honor data-theme-default before paint -->
-  <script>
-    (function () {
-      try {
-        var d = document.documentElement;
-        var def = d.getAttribute('data-theme-default') || 'dark';
-        var saved = localStorage.getItem('theme');
-        var theme = saved === 'light' || saved === 'dark' ? saved : def;
-        d.setAttribute('data-theme', theme);
-      } catch (_) {}
-    })();
-  </script>
+  <script src="../src/starlight.js"></script>
+  <!-- Prevent FOUC with the shared bootstrap (honors default + per-path storage) -->
+  <script>applyThemeBootstrap();</script>
 </head>
 <body class="login-demo starlight-layout">
   <!-- Cosmic background -->
@@ -35,11 +26,13 @@
   <button
     type="button"
     class="theme-fab btn-ghost ani-fade-in"
-    id="theme-toggle"
     aria-label="Toggle color theme"
     title="Toggle theme"
+    onclick="toggleTheme()"
   >
-    <i class="icon-sun" id="theme-icon"></i>
+    <i class="icon-display"></i>
+    <i class="icon-sun sun-icon"></i>
+    <i class="icon-moon moon-icon"></i>
   </button>
 
   <main class="auth-shell">
@@ -163,40 +156,8 @@
     <span>Welcome back — redirecting to your workspace…</span>
   </div>
 
-  <script src="../src/starlight.js"></script>
   <script>
     (function () {
-      var root = document.documentElement;
-      var icon = document.getElementById('theme-icon');
-      var toggle = document.getElementById('theme-toggle');
-
-      function syncIcon() {
-        var dark = root.getAttribute('data-theme') !== 'light';
-        icon.className = dark ? 'icon-sun' : 'icon-moon';
-      }
-
-      function applyTheme(theme) {
-        if (typeof window.setTheme === 'function') {
-          window.setTheme(theme);
-        } else {
-          root.setAttribute('data-theme', theme);
-          try { localStorage.setItem('theme', theme); } catch (_) {}
-        }
-        syncIcon();
-      }
-
-      // Prefer dark on first visit for this demo page
-      try {
-        if (!localStorage.getItem('theme')) {
-          applyTheme('dark');
-        }
-      } catch (_) {}
-      syncIcon();
-
-      toggle.addEventListener('click', function () {
-        applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-      });
-
       var form = document.getElementById('login-form');
       var toast = document.getElementById('toast');
 

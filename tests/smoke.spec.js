@@ -3,6 +3,7 @@ const path = require('path');
 
 const indexUrl = `file://${path.resolve(__dirname, '../examples/index.html')}`;
 const sinkUrl = `file://${path.resolve(__dirname, '../examples/kitchen-sink.html')}`;
+const loginUrl = `file://${path.resolve(__dirname, '../examples/login.html')}`;
 
 test.describe('Example smoke', () => {
   test('index cards keep spacing and gradient backgrounds', async ({ page }) => {
@@ -36,6 +37,30 @@ test.describe('Example smoke', () => {
       getComputedStyle(document.documentElement).getPropertyValue('--q-light-bg').trim()
     );
     expect(lightBg.length).toBeGreaterThan(0);
+  });
+
+  test('login uses the shared dark/light/auto theme toggle', async ({ page }) => {
+    await page.goto(loginUrl);
+    const html = page.locator('html');
+    const toggle = page.locator('.theme-fab');
+
+    await expect(html).toHaveAttribute('data-theme', 'dark');
+    await expect(toggle.locator('.moon-icon')).toBeVisible();
+
+    // starlight.js cycles light -> dark -> auto and uses the per-path storage key.
+    await toggle.click();
+    await expect(html).toHaveAttribute('data-theme', 'light');
+    await expect(toggle.locator('.sun-icon')).toBeVisible();
+
+    await toggle.click();
+    await expect(html).toHaveAttribute('data-theme', 'dark');
+
+    await toggle.click();
+    await expect(toggle.locator('.icon-display')).toBeVisible();
+    const saved = await page.evaluate(() =>
+      Object.entries(localStorage).find(([key]) => key.startsWith('theme:'))?.[1]
+    );
+    expect(saved).toBe('auto');
   });
 
   test('Quantum Shell monitor icon stays visible in light, dark, and auto', async ({ page }) => {
