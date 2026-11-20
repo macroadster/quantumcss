@@ -70,22 +70,23 @@
 }
 
 html[data-theme="light"] .btn {
-  background-color: rgb(0 0 0 / 3%);
-  background-image: none;
-  box-shadow: none;
-  border-color: #cbd5e1;
+  background-color: transparent;
+  background-image: var(--q-rim-light-fill), var(--q-rim-light-edge);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
+  box-shadow: var(--q-rim-light-shadow);
   color: #1e293b;
 }
 
 html[data-theme="light"] .btn:hover {
-  background-color: var(--q-light-card-bg);
-  border-color: #94a3b8;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
-  filter: brightness(1.02);
+  background-image: var(--q-rim-light-fill-hover), var(--q-rim-light-edge);
+  border-color: var(--q-color-starlight-blue);
+  color: #1e293b;
 }
 
 html[data-theme="light"] .btn:active {
-  background-color: rgb(0 0 0 / 2%);
+  background-image: var(--q-rim-light-fill), var(--q-rim-light-edge);
   transform: translateY(0) scale(0.97);
 }
 
@@ -7551,18 +7552,20 @@ html[data-theme="light"] .starlight-orb {
   background-clip: padding-box, border-box;
 }
 
-/* Light theme: keep the flat translucent look (no dark rim) */
+/* Light theme: bright liquid refraction rim (specular edge, no dark fill) */
 html[data-theme="light"] .btn-secondary {
-  background-color: rgb(255 255 255 / 5%);
-  background-image: none;
-  border: 1px solid rgb(255 255 255 / 15%);
-  box-shadow: none;
+  background-color: transparent;
+  background-image: var(--q-rim-light-fill), var(--q-rim-light-edge);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
+  box-shadow: var(--q-rim-light-shadow);
 }
 
 html[data-theme="light"] .btn-secondary:hover {
+  background-image: var(--q-rim-light-fill-hover), var(--q-rim-light-edge);
+  border-color: var(--q-color-starlight-blue);
   transform: none;
-  background-color: rgb(255 255 255 / 8%);
-  border-color: rgb(255 255 255 / 25%);
 }
 
 .btn-starlight {

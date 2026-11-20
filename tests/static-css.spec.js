@@ -110,6 +110,17 @@ describe('Static CSS architecture', () => {
         assert.ok(found, `${theme} rim missing on .${cls}`);
       }
     }
+
+    // .btn / .btn-secondary have their own light pins — they must use the
+    // refraction recipe too, not strip it with background-image: none.
+    for (const cls of ['btn', 'btn-secondary']) {
+      const re = new RegExp(`html\\[data-theme="light"\\] \\.${cls}\\s*\\{`);
+      const match = re.exec(comp);
+      assert.ok(match, `light pin missing for .${cls}`);
+      const block = comp.slice(comp.indexOf('{', match.index), comp.indexOf('}', match.index));
+      assert.ok(block.includes('var(--q-rim-light-fill)'), `light rim missing on .${cls}`);
+      assert.doesNotMatch(block, /background-image:\s*none/);
+    }
   });
 
   test('dialog auto-sizes from content and viewport', () => {
