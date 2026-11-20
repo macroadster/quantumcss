@@ -84,6 +84,34 @@ describe('Static CSS architecture', () => {
     assert.match(css, /html\[data-os="linux"\]/);
   });
 
+  test('liquid refraction rim is applied in both themes', () => {
+    const base = fs.readFileSync(basePath, 'utf8');
+    const comp = fs.readFileSync(compPath, 'utf8');
+
+    for (const token of ['--q-rim-fill:', '--q-rim-edge:', '--q-rim-light-fill:', '--q-rim-light-edge:']) {
+      assert.ok(base.includes(token), `missing rim token ${token}`);
+    }
+
+    for (const [theme, fill] of [
+      ['dark', 'var(--q-rim-fill), var(--q-rim-edge)'],
+      ['light', 'var(--q-rim-light-fill), var(--q-rim-light-edge)'],
+    ]) {
+      for (const cls of ['card', 'input', 'icon-btn', 'page-btn', 'dialog']) {
+        const re = new RegExp(`html\\[data-theme="${theme}"\\] \\.${cls}(?:,|\\s*\\{)`, 'g');
+        let match;
+        let found = false;
+        while ((match = re.exec(comp)) !== null) {
+          const block = comp.slice(comp.indexOf('{', match.index), comp.indexOf('}', match.index));
+          if (block.includes(`background-image: ${fill}`) && block.includes('border: 1px solid transparent')) {
+            found = true;
+            break;
+          }
+        }
+        assert.ok(found, `${theme} rim missing on .${cls}`);
+      }
+    }
+  });
+
   test('dialog auto-sizes from content and viewport', () => {
     const css = fs.readFileSync(compPath, 'utf8');
     assert.match(css, /\.dialog,\s*\n\.dialog-content\s*\{/);

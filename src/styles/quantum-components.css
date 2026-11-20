@@ -8561,3 +8561,122 @@ html[data-theme="dark"] .filter-select:focus {
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
 }
 
+/* ==========================================================================
+   Liquid refraction rim — light mode
+   Bright specular edge on the border-box, soft white fill on the padding-box.
+   Uses the same recipe as the existing light .input / .search fields, so those
+   keep their look while the remaining flat light surfaces gain the rim.
+   ========================================================================== */
+html[data-theme="light"] .card,
+html[data-theme="light"] .card-premium,
+html[data-theme="light"] .glass,
+html[data-theme="light"] .modal-content,
+html[data-theme="light"] .dialog,
+html[data-theme="light"] .dialog-content,
+html[data-theme="light"] .toast,
+html[data-theme="light"] .dropdown-content,
+html[data-theme="light"] .dropdown-menu,
+html[data-theme="light"] .nav-dropdown-panel,
+html[data-theme="light"] .stat-card,
+html[data-theme="light"] .quick-action-card,
+html[data-theme="light"] .table-premium-container,
+html[data-theme="light"] .table-wrapper,
+html[data-theme="light"] .accordion-item,
+html[data-theme="light"] .form,
+html[data-theme="light"] .input-starlight,
+html[data-theme="light"] .user-menu,
+html[data-theme="light"] .search-container,
+html[data-theme="light"] .search,
+html[data-theme="light"] .input,
+html[data-theme="light"] .textarea,
+html[data-theme="light"] .select,
+html[data-theme="light"] .filter-select,
+html[data-theme="light"] .icon-btn,
+html[data-theme="light"] .action-btn,
+html[data-theme="light"] .page-btn,
+html[data-theme="light"] .theme-btn,
+html[data-theme="light"] .theme-toggle,
+html[data-theme="light"] [data-theme-toggle] {
+  background-color: transparent;
+  background-image: var(--q-rim-light-fill), var(--q-rim-light-edge);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
+  box-shadow: var(--q-rim-light-shadow);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Selects: keep the chevron above the rim (ink stroke for light surfaces). */
+html[data-theme="light"] select.input,
+html[data-theme="light"] select.select,
+html[data-theme="light"] .select-starlight {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%231e293b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"),
+    var(--q-rim-light-fill),
+    var(--q-rim-light-edge);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: right 0.85rem center, 0 0, 0 0;
+  background-size: 1rem 1rem, 100% 100%, 100% 100%;
+  background-origin: padding-box, padding-box, border-box;
+  background-clip: padding-box, padding-box, border-box;
+}
+
+html[data-theme="light"] .filter-select {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E"),
+    var(--q-rim-light-fill),
+    var(--q-rim-light-edge);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: right 0.5rem center, 0 0, 0 0;
+  background-size: 1.25rem, 100% 100%, 100% 100%;
+  background-origin: padding-box, padding-box, border-box;
+  background-clip: padding-box, padding-box, border-box;
+}
+
+/* Hover: brighten the fill but keep the specular edge. */
+html[data-theme="light"] .card:hover,
+html[data-theme="light"] .card-premium:hover,
+html[data-theme="light"] .glass:hover,
+html[data-theme="light"] .stat-card:hover,
+html[data-theme="light"] .quick-action-card:hover,
+html[data-theme="light"] .icon-btn:hover,
+html[data-theme="light"] .action-btn:hover,
+html[data-theme="light"] .theme-btn:hover,
+html[data-theme="light"] .theme-toggle:hover,
+html[data-theme="light"] [data-theme-toggle]:hover {
+  background-color: transparent;
+  background-image: var(--q-rim-light-fill-hover), var(--q-rim-light-edge);
+}
+
+html[data-theme="light"] .page-btn:hover {
+  background-color: transparent;
+  background-image: var(--q-rim-light-fill-hover), var(--q-rim-light-edge);
+  color: #0f172a;
+}
+
+html[data-theme="light"] .page-btn.active {
+  background-color: transparent;
+  background-image: var(--q-rim-light-fill-hover), var(--q-rim-light-edge);
+  border-color: var(--q-color-starlight-blue);
+  color: #2563eb;
+}
+
+/* Keep the filter select's focus ring. */
+html[data-theme="light"] .filter-select:focus {
+  outline: none;
+  border-color: var(--q-color-starlight-blue);
+  box-shadow: 0 0 0 2px var(--q-color-starlight-deep), 0 0 0 4px var(--q-color-starlight-blue);
+}
+
+/* .search-container now has a rim too — restore its focus-within ring. */
+html[data-theme="light"] .search-container:focus-within {
+  outline: none;
+  border-color: var(--q-color-starlight-blue);
+  box-shadow:
+    0 0 0 1px var(--q-color-starlight-blue),
+    0 0 24px color-mix(in srgb, var(--q-color-starlight-blue), transparent 55%),
+    inset 0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+}
+
