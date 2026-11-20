@@ -8450,3 +8450,114 @@ html[data-theme="light"] .btn-secondary:hover {
     }
 }
 
+/* ==========================================================================
+   Dark rim (liquid refraction) — flat surfaces
+   Same specular-edge recipe already used by .btn / .btn-secondary / .search:
+   the edge gradient sits on the border-box layer while a near-opaque fill on
+   the padding-box hides the gradient inside, leaving just the rim. Scoped to
+   the dark theme so the light refraction overlays stay untouched.
+   ========================================================================== */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .card-premium,
+html[data-theme="dark"] .glass,
+html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .dialog,
+html[data-theme="dark"] .dialog-content,
+html[data-theme="dark"] .toast,
+html[data-theme="dark"] .dropdown-content,
+html[data-theme="dark"] .dropdown-menu,
+html[data-theme="dark"] .nav-dropdown-panel,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .quick-action-card,
+html[data-theme="dark"] .table-premium-container,
+html[data-theme="dark"] .table-wrapper,
+html[data-theme="dark"] .accordion-item,
+html[data-theme="dark"] .form,
+html[data-theme="dark"] .input-starlight,
+html[data-theme="dark"] .user-menu,
+html[data-theme="dark"] .input,
+html[data-theme="dark"] .textarea,
+html[data-theme="dark"] .select,
+html[data-theme="dark"] .filter-select,
+html[data-theme="dark"] .icon-btn,
+html[data-theme="dark"] .action-btn,
+html[data-theme="dark"] .page-btn,
+html[data-theme="dark"] .theme-btn,
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] [data-theme-toggle] {
+  background-color: transparent;
+  background-image: var(--q-rim-fill), var(--q-rim-edge);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
+  box-shadow: var(--q-rim-shadow);
+}
+
+/* Selects: keep the chevron as the topmost layer above the rim. */
+html[data-theme="dark"] select.input,
+html[data-theme="dark"] select.select,
+html[data-theme="dark"] .select-starlight {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"),
+    var(--q-rim-fill),
+    var(--q-rim-edge);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: right 0.85rem center, 0 0, 0 0;
+  background-size: 1rem 1rem, 100% 100%, 100% 100%;
+  background-origin: padding-box, padding-box, border-box;
+  background-clip: padding-box, padding-box, border-box;
+}
+
+html[data-theme="dark"] .filter-select {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E"),
+    var(--q-rim-fill),
+    var(--q-rim-edge);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: right 0.5rem center, 0 0, 0 0;
+  background-size: 1.25rem, 100% 100%, 100% 100%;
+  background-origin: padding-box, padding-box, border-box;
+  background-clip: padding-box, padding-box, border-box;
+}
+
+/* Hover: brighten the fill but keep the specular edge. */
+html[data-theme="dark"] .card:hover,
+html[data-theme="dark"] .card-premium:hover,
+html[data-theme="dark"] .glass:hover,
+html[data-theme="dark"] .stat-card:hover,
+html[data-theme="dark"] .quick-action-card:hover,
+html[data-theme="dark"] .icon-btn:hover,
+html[data-theme="dark"] .action-btn:hover,
+html[data-theme="dark"] .theme-btn:hover,
+html[data-theme="dark"] .theme-toggle:hover,
+html[data-theme="dark"] [data-theme-toggle]:hover {
+  background-image: var(--q-rim-fill-hover), var(--q-rim-edge);
+}
+
+html[data-theme="dark"] .page-btn:hover {
+  background-image: var(--q-rim-fill-hover), var(--q-rim-edge);
+  color: var(--q-text-primary, #f1f5f9);
+}
+
+html[data-theme="dark"] .page-btn.active {
+  background-image: var(--q-rim-fill-hover), var(--q-rim-edge);
+  border-color: color-mix(in srgb, var(--q-color-starlight-blue), transparent 70%);
+  color: var(--q-color-starlight, #00d4ff);
+}
+
+/* Focus: keep the single soft blue ring + glow on rimmed fields. */
+html[data-theme="dark"] .input:focus,
+html[data-theme="dark"] .textarea:focus,
+html[data-theme="dark"] .select:focus,
+html[data-theme="dark"] select.input:focus,
+html[data-theme="dark"] select.select:focus,
+html[data-theme="dark"] .filter-select:focus {
+  outline: none;
+  border-color: var(--q-color-starlight-blue);
+  box-shadow:
+    0 0 0 1px var(--q-color-starlight-blue),
+    0 0 24px color-mix(in srgb, var(--q-color-starlight-blue), transparent 55%),
+    inset 0 0 15px color-mix(in srgb, var(--q-color-starlight-blue), transparent 60%),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+}
+
