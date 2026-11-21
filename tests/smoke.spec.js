@@ -47,10 +47,11 @@ test.describe('Example smoke', () => {
       await button.hover();
       const style = await button.evaluate((el) => {
         const s = getComputedStyle(el);
-        return { width: s.borderTopWidth, background: s.backgroundImage };
+        return { width: s.borderTopWidth, background: s.backgroundImage, shadow: s.boxShadow };
       });
       expect(style.width).toBe('0px');
       expect(style.background).not.toContain('rgba(255, 255, 255, 0.85)');
+      expect(style.shadow).not.toContain('rgba(255, 255, 255, 0.9) 0px 1px 1px');
     }
   });
 
