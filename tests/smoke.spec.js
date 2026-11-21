@@ -39,14 +39,18 @@ test.describe('Example smoke', () => {
     expect(lightBg.length).toBeGreaterThan(0);
   });
 
-  test('glossy buttons have no accent border on light-mode hover', async ({ page }) => {
+  test('glossy buttons are borderless on light-mode hover', async ({ page }) => {
     await page.goto(sinkUrl);
     await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'));
     for (const selector of ['.btn.btn-glossy', '.btn.btn-glossy-primary']) {
       const button = page.locator(selector).first();
       await button.hover();
-      const border = await button.evaluate((el) => getComputedStyle(el).borderTopColor);
-      expect(border).toMatch(/^(transparent|rgba\([^)]*,\s*0\))$/);
+      const style = await button.evaluate((el) => {
+        const s = getComputedStyle(el);
+        return { width: s.borderTopWidth, background: s.backgroundImage };
+      });
+      expect(style.width).toBe('0px');
+      expect(style.background).not.toContain('rgba(255, 255, 255, 0.85)');
     }
   });
 

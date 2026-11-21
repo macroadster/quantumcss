@@ -249,8 +249,6 @@ html[data-theme="light"] .btn:active {
 
 /* Light mode - preserve glossy styles over generic .btn overrides */
 html[data-theme="light"] .btn-glossy:hover {
-  /* no accent outline — the refraction rim already supplies the edge */
-  border-color: transparent;
   box-shadow: 0 0.45em 0.6em rgba(0, 0, 0, 0.25), 
               0 0.125em 0.125em rgba(0, 0, 0, 0.3), 
               inset 0 0.25em 0.25em rgba(0, 0, 0, 0.4),
@@ -334,8 +332,6 @@ html[data-theme="light"] .btn-glossy:active {
 
 /* Light mode - preserve glossy-primary styles over generic .btn overrides */
 html[data-theme="light"] .btn-glossy-primary:hover {
-  /* no accent outline — the refraction rim already supplies the edge */
-  border-color: transparent;
   filter: brightness(1.05);
   box-shadow: 0 0.45em 0.6em rgba(0, 0, 0, 0.35), 
               0 0.125em 0.125em color-mix(in srgb, var(--q-color-primary), black 20%), 
@@ -349,6 +345,30 @@ html[data-theme="light"] .btn-glossy-primary:active {
   box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.15),
               inset 0 0.5em 1em rgba(0, 0, 0, 0.4),
               inset 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
+}
+
+/* Glossy pills are borderless: opt them out of the light .btn refraction rim.
+   The rim's border-box gradient would otherwise paint as a visible edge. */
+html[data-theme="light"] .btn-glossy,
+html[data-theme="light"] .btn-glossy:hover,
+html[data-theme="light"] .btn-glossy:active {
+  border: none;
+  background: linear-gradient(
+    color-mix(in srgb, #a0a0a0, black 30%),
+    #c0c0c0,
+    color-mix(in srgb, #ffffff, white 30%)
+  );
+}
+
+html[data-theme="light"] .btn-glossy-primary,
+html[data-theme="light"] .btn-glossy-primary:hover,
+html[data-theme="light"] .btn-glossy-primary:active {
+  border: none;
+  background: linear-gradient(
+    color-mix(in srgb, var(--q-color-primary), black 35%),
+    var(--q-color-primary),
+    color-mix(in srgb, var(--q-color-primary), white 20%)
+  );
 }
 
 /* Dark mode - Translucent glossy
